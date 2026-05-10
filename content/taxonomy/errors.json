@@ -1,0 +1,288 @@
+{
+  "version": "1.0.0",
+  "grammar": [
+    {
+      "id": "word-order",
+      "label": "Word order",
+      "description": "The verb must appear in the second position in a Norwegian main clause (V2 rule). Errors occur when the subject-verb order is not inverted after a fronted adverbial, or when the basic SVO pattern is broken.",
+      "examples": [
+        {
+          "wrong": "I dag jeg spiser frokost.",
+          "correct": "I dag spiser jeg frokost.",
+          "note": "After the time adverbial 'i dag', the verb must come before the subject."
+        },
+        {
+          "wrong": "Jeg alltid drikker kaffe.",
+          "correct": "Jeg drikker alltid kaffe.",
+          "note": "Adverbs of frequency sit after the verb in main clauses."
+        }
+      ]
+    },
+    {
+      "id": "verb-tense",
+      "label": "Verb tense",
+      "description": "Using the wrong tense for the situation — for example using present tense when past tense is required, or confusing preterite with present perfect.",
+      "examples": [
+        {
+          "wrong": "Jeg spiser middag i går.",
+          "correct": "Jeg spiste middag i går.",
+          "note": "'I går' (yesterday) requires past tense."
+        },
+        {
+          "wrong": "Hun har gå til skolen.",
+          "correct": "Hun har gått til skolen.",
+          "note": "Present perfect requires the past participle, not the infinitive."
+        }
+      ]
+    },
+    {
+      "id": "verb-conjugation",
+      "label": "Verb conjugation",
+      "description": "Using the wrong verb form for the tense or context — e.g. using the infinitive instead of the present tense form, or an incorrect preterite ending.",
+      "examples": [
+        {
+          "wrong": "Jeg å spise frokost.",
+          "correct": "Jeg spiser frokost.",
+          "note": "The infinitive marker 'å' is not used in conjugated verb positions."
+        },
+        {
+          "wrong": "Vi snakket ikke norsk i går.",
+          "correct": "Vi snakket ikke norsk i går.",
+          "note": "This is actually correct — group 1 verb. Error would be 'Vi snakte'."
+        }
+      ]
+    },
+    {
+      "id": "noun-gender",
+      "label": "Noun gender",
+      "description": "Assigning the wrong grammatical gender (en, ei, et) to a noun. Gender affects article choice, definite suffix, adjective agreement, and pronoun reference.",
+      "examples": [
+        {
+          "wrong": "et bok",
+          "correct": "ei bok / en bok",
+          "note": "'Bok' is feminine (ei) in Nynorsk, but also accepted as 'en bok' in Bokmål."
+        },
+        {
+          "wrong": "en hus",
+          "correct": "et hus",
+          "note": "'Hus' is a neuter noun."
+        }
+      ]
+    },
+    {
+      "id": "article-use",
+      "label": "Article use",
+      "description": "Using the wrong indefinite article (en/ei/et) or the wrong definite suffix (-en/-a/-et/-ene/-ene/-ene), or confusing definite and indefinite forms.",
+      "examples": [
+        {
+          "wrong": "et mann",
+          "correct": "en mann",
+          "note": "'Mann' is a common gender (en) noun."
+        },
+        {
+          "wrong": "boken er stor (about a neuter noun)",
+          "correct": "huset er stort",
+          "note": "Neuter nouns take -et in definite singular."
+        }
+      ]
+    },
+    {
+      "id": "adjective-agreement",
+      "label": "Adjective agreement",
+      "description": "The adjective does not agree with the noun it modifies in gender or definiteness. Neuter nouns require -t in indefinite singular; definite and plural forms require -e.",
+      "examples": [
+        {
+          "wrong": "et stor hus",
+          "correct": "et stort hus",
+          "note": "Adjectives add -t before indefinite neuter nouns."
+        },
+        {
+          "wrong": "den stor bilen",
+          "correct": "den store bilen",
+          "note": "Definite constructions require the -e form of the adjective."
+        }
+      ]
+    },
+    {
+      "id": "pronoun-choice",
+      "label": "Pronoun choice",
+      "description": "Using the wrong personal, possessive, or demonstrative pronoun — for example 'den' vs 'det' depending on noun gender, or wrong subject/object form.",
+      "examples": [
+        {
+          "wrong": "Det er min boken.",
+          "correct": "Det er boken min.",
+          "note": "Possessives typically follow the noun in Norwegian."
+        },
+        {
+          "wrong": "Jeg ser hun.",
+          "correct": "Jeg ser henne.",
+          "note": "Object form of 'hun' is 'henne'."
+        }
+      ]
+    },
+    {
+      "id": "preposition",
+      "label": "Preposition",
+      "description": "Using the wrong preposition. Norwegian prepositions do not map one-to-one with English, particularly 'i', 'på', 'til', 'av', and 'for'.",
+      "examples": [
+        {
+          "wrong": "Jeg bor på Norge.",
+          "correct": "Jeg bor i Norge.",
+          "note": "'I' is used for countries and enclosed spaces."
+        },
+        {
+          "wrong": "Jeg går til skolen på bussen.",
+          "correct": "Jeg går til skolen med bussen.",
+          "note": "'Med' expresses means of transport."
+        }
+      ]
+    },
+    {
+      "id": "modal-verb",
+      "label": "Modal verb",
+      "description": "Misusing a modal verb — wrong modal for the context, or placing 'å' before the following infinitive, which is incorrect with modals.",
+      "examples": [
+        {
+          "wrong": "Jeg kan å svømme.",
+          "correct": "Jeg kan svømme.",
+          "note": "Modal verbs are not followed by 'å' before the infinitive."
+        },
+        {
+          "wrong": "Du må ikke gå dit hvis du vil.",
+          "correct": "Du trenger ikke gå dit hvis du vil.",
+          "note": "'Må ikke' means 'must not' (prohibition), not 'don't have to'."
+        }
+      ]
+    },
+    {
+      "id": "negation-placement",
+      "label": "Negation placement",
+      "description": "Placing 'ikke' in the wrong position. In main clauses it follows the verb; in subordinate clauses it precedes the verb.",
+      "examples": [
+        {
+          "wrong": "Jeg ikke liker kaffe.",
+          "correct": "Jeg liker ikke kaffe.",
+          "note": "In main clauses, 'ikke' comes after the finite verb."
+        },
+        {
+          "wrong": "Han sa at han liker ikke kaffe.",
+          "correct": "Han sa at han ikke liker kaffe.",
+          "note": "In subordinate clauses introduced by 'at', 'ikke' precedes the verb."
+        }
+      ]
+    },
+    {
+      "id": "compound-word",
+      "label": "Compound word",
+      "description": "Writing a compound word as two separate words instead of one, or forming the compound incorrectly. Norwegian compounds are written as single words.",
+      "examples": [
+        {
+          "wrong": "kjøkken benk",
+          "correct": "kjøkkenbenk",
+          "note": "Compounds are always written as one word in Norwegian."
+        },
+        {
+          "wrong": "buss stop",
+          "correct": "bussholdeplass",
+          "note": "The English calque 'bus stop' does not carry over; the Norwegian compound is used."
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "wrong-word-same-category",
+      "label": "Wrong word (same category)",
+      "description": "The word chosen is in the same semantic category as the correct word but is not appropriate in context — a false friend, near-synonym, or register mismatch.",
+      "examples": [
+        {
+          "wrong": "Jeg er full.",
+          "correct": "Jeg er mett.",
+          "note": "'Full' means drunk in Norwegian; 'mett' means full (after eating)."
+        },
+        {
+          "wrong": "Se på den fine damen.",
+          "correct": "Se på den vakre damen.",
+          "note": "'Fin' means nice/fine; 'vakker' means beautiful."
+        }
+      ]
+    },
+    {
+      "id": "wrong-word-different-category",
+      "label": "Wrong word (different category)",
+      "description": "The word used is from a completely different semantic field and does not fit the meaning at all — the word is simply not known.",
+      "examples": [
+        {
+          "wrong": "Jeg vil kjøpe en stol til middag.",
+          "correct": "Jeg vil lage middag.",
+          "note": "'Kjøpe en stol' (buy a chair) is semantically unrelated to dinner preparation."
+        }
+      ]
+    },
+    {
+      "id": "spelling",
+      "label": "Spelling",
+      "description": "The correct word is used but spelled incorrectly — including misspelled Norwegian letters (æ, ø, å), double consonants, or English spelling imported into Norwegian.",
+      "examples": [
+        {
+          "wrong": "jæg",
+          "correct": "jeg",
+          "note": "The Norwegian first-person pronoun is 'jeg', not 'jæg'."
+        },
+        {
+          "wrong": "gate",
+          "correct": "gate",
+          "note": "This is correct — a common confusion is 'gata' (definite) vs 'gate' (indefinite)."
+        },
+        {
+          "wrong": "norsk",
+          "correct": "norsk",
+          "note": "Example of æøå confusion: 'grøn' vs correct 'grønn' (double n)."
+        }
+      ]
+    }
+  ],
+  "comprehension": [
+    {
+      "id": "listening-recognition",
+      "label": "Listening recognition",
+      "description": "The learner cannot parse the spoken audio correctly — mishearing words, missing unstressed syllables, or failing to segment the speech stream into words.",
+      "examples": [
+        {
+          "wrong": "Heard 'jeg er' as 'jær'",
+          "correct": "jeg er",
+          "note": "Connected speech in Norwegian often merges 'jeg er' into a single sound."
+        },
+        {
+          "wrong": "Missed 'ikke' in a fast sentence",
+          "correct": "Jeg liker ikke det.",
+          "note": "Negation particles are often weakly stressed and easily missed."
+        }
+      ]
+    },
+    {
+      "id": "reading-parsing",
+      "label": "Reading parsing",
+      "description": "The learner can read the individual words but fails to correctly parse the sentence structure — typically misidentifying the verb, subject, or clause boundaries.",
+      "examples": [
+        {
+          "wrong": "Parsed 'Etter middagen gikk vi hjem' with 'middagen' as subject",
+          "correct": "'vi' is the subject; 'etter middagen' is a fronted adverbial",
+          "note": "V2 inversion makes subject identification harder when adverbials are fronted."
+        }
+      ]
+    },
+    {
+      "id": "meaning-misunderstood",
+      "label": "Meaning misunderstood",
+      "description": "The learner correctly reads or hears the words but arrives at an incorrect interpretation of the overall meaning — often due to false friends, missed context, or pragmatic gaps.",
+      "examples": [
+        {
+          "wrong": "Interpreted 'Kan du ikke hjelpe meg?' as a refusal",
+          "correct": "It is a request for help (negative question).",
+          "note": "Norwegian negative questions are typically polite requests, not rhetorical challenges."
+        }
+      ]
+    }
+  ]
+}
