@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Concept Map Update</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ece4; font-family: 'Segoe UI', system-ui, sans-serif; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  h2 { font-size: 16px; font-weight: 700; color: #1a1a2e; }
+  p.sub { font-size: 12px; color: #888; }
+
+  .phone {
+    width: 240px;
+    background: white;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+  .phone-notch {
+    height: 24px; background: #faf7f0;
+    display: flex; align-items: center; justify-content: center; padding-top: 6px;
+  }
+  .notch-pill { width: 64px; height: 8px; background: #1a1a2e; border-radius: 4px; }
+
+  .dashboard { background: #faf7f0; padding: 14px 14px 0; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .dash-greeting { font-size: 15px; font-weight: 700; color: #1a1a2e; }
+  .dash-date { font-size: 9px; color: #aaa; }
+  .dash-avatar { width: 30px; height: 30px; border-radius: 50%; background: #e87c3e; display: flex; align-items: center; justify-content: center; font-size: 13px; color: white; font-weight: 700; }
+
+  .today-card {
+    background: #1a1a2e; border-radius: 16px;
+    padding: 14px; margin-bottom: 14px; color: white;
+  }
+  .today-label { font-size: 9px; opacity: 0.45; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
+  .today-title { font-size: 14px; font-weight: 800; margin-bottom: 10px; }
+  .today-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 3px 8px;
+    font-size: 9px; color: rgba(255,255,255,0.8);
+  }
+  .pill.orange { background: rgba(232,124,62,0.35); }
+
+  .section-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .section-label { font-size: 10px; font-weight: 700; color: #1a1a2e; }
+  .section-link { font-size: 9px; color: #e87c3e; }
+
+  /* Concept progress bars */
+  .concept-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .concept-row { display: flex; align-items: center; gap: 8px; }
+  .concept-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .concept-name { font-size: 10px; color: #444; width: 72px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 6px; background: #ede9e0; border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .concept-pct { font-size: 9px; color: #aaa; width: 24px; text-align: right; flex-shrink: 0; }
+
+  .streak-row {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff8ef; border-radius: 12px;
+    padding: 10px 12px; margin-bottom: 10px;
+    border: 1px solid #fde8cc;
+  }
+  .streak-fire { font-size: 16px; }
+  .streak-num { font-size: 18px; font-weight: 900; color: #e87c3e; }
+  .streak-detail { display: flex; flex-direction: column; }
+  .streak-label { font-size: 9px; color: #888; }
+  .streak-sub { font-size: 8px; color: #ccc; }
+
+  .start-btn {
+    background: #e87c3e; color: white;
+    border: none; border-radius: 12px;
+    padding: 12px; width: 100%;
+    font-size: 12px; font-weight: 800; cursor: pointer;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+  .bottom-nav {
+    display: flex; justify-content: space-around;
+    padding: 8px 0 10px; border-top: 1px solid #ede9e0;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .nav-icon { font-size: 15px; }
+  .nav-text { font-size: 7px; color: #bbb; }
+  .nav-item.active .nav-text { color: #e87c3e; font-weight: 700; }
+</style>
+</head>
+<body>
+  <h2>Dashboard — Concept Memory Map updated</h2>
+  <p class="sub">Horizontal progress bars, colour-coded by concept status</p>
+
+  <div class="phone">
+    <div class="phone-notch"><div class="notch-pill"></div></div>
+    <div class="dashboard">
+
+      <div class="dash-header">
+        <div>
+          <div class="dash-date">Mandag, 11. mai</div>
+          <div class="dash-greeting">Hei, Anna! 👋</div>
+        </div>
+        <div class="dash-avatar">G</div>
+      </div>
+
+      <div class="today-card">
+        <div class="today-label">I dag · ~12 min</div>
+        <div class="today-title">V2 ordstilling</div>
+        <div class="today-pills">
+          <div class="pill orange">3 reparasjoner</div>
+          <div class="pill">4 repetisjon</div>
+          <div class="pill">2 nytt</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div class="section-label">Konseptfremgang</div>
+        <div class="section-link">Se alle →</div>
+      </div>
+      <div class="concept-list">
+        <div class="concept-row">
+          <div class="concept-dot" style="background:#e87c3e"></div>
+          <div class="concept-name">V2 ordstilling</div>
+          <div class="bar-track"><div class="bar-fill" style="width:62%;background:#e87c3e"></div></div>
+          <div class="concept-pct">62%</div>
+        </div>
+        <div class="concept-row">
+          <div class="concept-dot" style="background:#7cb87e"></div>
+          <div class="concept-name">Presens tense</div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%;background:#7cb87e"></div></div>
+          <div class="concept-pct">88%</div>
+        </div>
+        <div class="concept-row">
+          <div class="concept-dot" style="background:#5b8fd4"></div>
+          <div class="concept-name">Substantiv</div>
+          <div class="bar-track"><div class="bar-fill" style="width:74%;background:#5b8fd4"></div></div>
+          <div class="concept-pct">74%</div>
+        </div>
+        <div class="concept-row">
+          <div class="concept-dot" style="background:#c85c8a"></div>
+          <div class="concept-name">Genus (en/et)</div>
+          <div class="bar-track"><div class="bar-fill" style="width:41%;background:#c85c8a"></div></div>
+          <div class="concept-pct">41%</div>
+        </div>
+        <div class="concept-row">
+          <div class="concept-dot" style="background:#aaa"></div>
+          <div class="concept-name">Adjektiv</div>
+          <div class="bar-track"><div class="bar-fill" style="width:0%;background:#aaa"></div></div>
+          <div class="concept-pct" style="color:#ddd">🔒</div>
+        </div>
+      </div>
+
+      <div class="streak-row">
+        <div class="streak-fire">🔥</div>
+        <div class="streak-num">124</div>
+        <div class="streak-detail">
+          <div class="streak-label">dagers streak</div>
+          <div class="streak-sub">Fortsett i morgen!</div>
+        </div>
+      </div>
+
+      <button class="start-btn">Start dagens økt →</button>
+
+      <div class="bottom-nav">
+        <div class="nav-item active"><div class="nav-icon">🏠</div><div class="nav-text">Hjem</div></div>
+        <div class="nav-item"><div class="nav-icon">📚</div><div class="nav-text">Økt</div></div>
+        <div class="nav-item"><div class="nav-icon">📊</div><div class="nav-text">Fremgang</div></div>
+        <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-text">Profil</div></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

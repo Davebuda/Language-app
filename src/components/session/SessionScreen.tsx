@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSession } from '@/hooks/useSession';
-import { useSessionStore } from '@/stores/session-store';
 import { ExerciseCard } from './ExerciseCard';
 import { ExplanationCard } from './ExplanationCard';
 import { incrementStreak } from '@/lib/streak';
@@ -45,7 +44,6 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
     continueAfterRepair,
   } = useSession(sentences, availableSentenceIds);
 
-  const correctCount = useSessionStore((s) => s.results.filter((r) => r.correct).length);
   const lastResultRef = useRef<ExerciseResult | null>(null);
 
   useEffect(() => {

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Final Design</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ece4; font-family: 'Segoe UI', system-ui, sans-serif; padding: 24px 16px; }
+
+  .header { text-align: center; margin-bottom: 28px; }
+  .header h1 { font-size: 20px; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+  .header p { font-size: 12px; color: #888; }
+
+  /* ─── row layout ─── */
+  .row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 24px; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .col-label { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.07em; }
+  .arrow { font-size: 20px; color: #ccc; padding-top: 90px; }
+
+  /* ─── phone shell ─── */
+  .phone { width: 190px; border-radius: 28px; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.16); border: 1px solid rgba(0,0,0,0.07); }
+  .notch { height: 20px; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+  .notch-pill { width: 54px; height: 7px; border-radius: 4px; }
+
+  /* ─── LANDING ─── */
+  .s-landing { background: #0d0d14; padding: 14px 12px 12px; min-height: 320px; }
+  .ld-logo { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.35); margin-bottom: 22px; letter-spacing: 0.05em; }
+  .ld-h { font-size: 17px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 6px; }
+  .ld-sub { font-size: 9px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 14px; }
+  .ld-btn { background: #e87c3e; color: white; border: none; border-radius: 10px; padding: 9px; width: 100%; font-size: 10px; font-weight: 800; margin-bottom: 14px; }
+  .ld-features { display: flex; flex-direction: column; gap: 6px; }
+  .ld-feat { background: rgba(255,255,255,0.05); border-radius: 9px; padding: 7px 9px; display: flex; gap: 7px; align-items: center; }
+  .ld-feat-icon { font-size: 13px; }
+  .ld-feat-text { font-size: 8px; color: rgba(255,255,255,0.6); line-height: 1.3; }
+  .ld-feat-text b { display: block; color: rgba(255,255,255,0.9); font-size: 9px; }
+
+  /* ─── PLACEMENT QUIZ ─── */
+  .s-quiz { background: #faf7f0; padding: 14px 12px; min-height: 320px; }
+  .qz-dots { display: flex; gap: 3px; margin-bottom: 16px; }
+  .qz-dot { height: 3px; flex: 1; border-radius: 2px; background: #ede9e0; }
+  .qz-dot.on { background: #e87c3e; }
+  .qz-step { font-size: 8px; color: #aaa; margin-bottom: 5px; }
+  .qz-q { font-size: 12px; font-weight: 700; color: #1a1a2e; line-height: 1.35; margin-bottom: 12px; }
+  .qz-opt { padding: 8px 10px; border-radius: 10px; border: 1.5px solid #ede9e0; background: white; font-size: 9px; color: #333; margin-bottom: 5px; }
+  .qz-opt.sel { border-color: #e87c3e; background: #fff8ef; color: #e87c3e; font-weight: 700; }
+
+  /* ─── DASHBOARD ─── */
+  .s-dash { background: #faf7f0; padding: 12px 11px 0; min-height: 320px; }
+  .dh-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .dh-name { font-size: 13px; font-weight: 800; color: #1a1a2e; }
+  .dh-date { font-size: 8px; color: #aaa; }
+  .dh-avatar { width: 26px; height: 26px; border-radius: 50%; background: #e87c3e; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; font-weight: 800; }
+  .dh-today { background: #1a1a2e; border-radius: 12px; padding: 10px 11px; margin-bottom: 10px; color: white; }
+  .dh-tl { font-size: 8px; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .dh-tt { font-size: 12px; font-weight: 800; margin-bottom: 7px; }
+  .dh-pills { display: flex; gap: 4px; flex-wrap: wrap; }
+  .dh-pill { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 2px 7px; font-size: 8px; color: rgba(255,255,255,0.75); }
+  .dh-pill.o { background: rgba(232,124,62,0.35); }
+  .dh-sl { font-size: 9px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .dh-sl span { color: #e87c3e; font-weight: 600; font-size: 8px; }
+  .dh-concepts { display: flex; flex-direction: column; gap: 5px; margin-bottom: 8px; }
+  .dh-crow { display: flex; align-items: center; gap: 5px; }
+  .dh-cdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dh-cname { font-size: 8px; color: #555; flex: 1; }
+  .dh-cbar { height: 5px; border-radius: 2px; flex: 1.5; background: #ede9e0; overflow: hidden; }
+  .dh-cfill { height: 100%; border-radius: 2px; }
+  .dh-cpct { font-size: 8px; color: #aaa; width: 20px; text-align: right; }
+  .dh-streak { display: flex; align-items: center; gap: 5px; background: #fff8ef; border-radius: 9px; padding: 6px 9px; margin-bottom: 7px; border: 1px solid #fde8cc; }
+  .dh-sfire { font-size: 12px; }
+  .dh-snum { font-size: 14px; font-weight: 900; color: #e87c3e; }
+  .dh-stxt { font-size: 8px; color: #888; }
+  .dh-start { background: #e87c3e; color: white; border: none; border-radius: 10px; padding: 9px; width: 100%; font-size: 10px; font-weight: 800; margin-bottom: 7px; }
+  .bot-nav { display: flex; justify-content: space-around; padding: 6px 0 8px; border-top: 1px solid #ede9e0; }
+  .bn-item { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .bn-icon { font-size: 13px; }
+  .bn-txt { font-size: 6px; color: #ccc; }
+  .bn-item.act .bn-txt { color: #e87c3e; font-weight: 700; }
+
+  /* ─── SESSION ─── */
+  .s-session { background: #faf7f0; padding: 11px; min-height: 320px; }
+  .sess-bar { height: 4px; background: #ede9e0; border-radius: 2px; margin-bottom: 11px; }
+  .sess-fill { height: 100%; width: 44%; background: #e87c3e; border-radius: 2px; }
+  .sess-pill { display: inline-flex; align-items: center; gap: 3px; background: white; border: 1px solid #eee; border-radius: 20px; padding: 3px 8px; font-size: 8px; color: #888; margin-bottom: 8px; }
+  .ex-card { background: white; border-radius: 14px; padding: 11px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 8px; }
+  .ex-prompt { font-size: 8px; color: #aaa; margin-bottom: 4px; }
+  .ex-sent { font-size: 13px; font-weight: 800; color: #1a1a2e; margin-bottom: 10px; line-height: 1.25; }
+  .ex-inp { width: 100%; padding: 6px 8px; border: 1.5px solid #ede9e0; border-radius: 7px; font-size: 9px; background: #faf7f0; }
+  .check { background: #1a1a2e; color: white; border: none; border-radius: 9px; padding: 7px; width: 100%; font-size: 9px; font-weight: 800; margin-top: 6px; }
+  .repair { background: #fff8ef; border-radius: 12px; padding: 9px; border: 1.5px solid #fde8cc; }
+  .rep-lbl { font-size: 8px; font-weight: 700; color: #e87c3e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .rep-txt { font-size: 8px; color: #555; line-height: 1.5; margin-bottom: 6px; }
+  .rep-drill { background: white; border-radius: 7px; padding: 6px 8px; font-size: 8px; color: #333; border: 1px solid #fde8cc; }
+
+  /* ─── PROGRESS ─── */
+  .s-progress { background: #faf7f0; padding: 12px 11px 0; min-height: 320px; }
+  .pr-title { font-size: 14px; font-weight: 800; color: #1a1a2e; margin-bottom: 12px; }
+  .pr-section { margin-bottom: 10px; }
+  .pr-sec-lbl { font-size: 9px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .pr-concept { display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: white; border-radius: 9px; margin-bottom: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .pr-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .pr-name { font-size: 9px; color: #333; flex: 1; }
+  .pr-bar { height: 5px; border-radius: 2px; flex: 1; background: #ede9e0; overflow: hidden; }
+  .pr-fill { height: 100%; border-radius: 2px; }
+  .pr-pct { font-size: 8px; color: #aaa; width: 22px; text-align: right; }
+  .pr-lock { font-size: 8px; color: #ccc; }
+
+  /* ─── COMPLETION ─── */
+  .s-complete { background: #faf7f0; padding: 12px 11px; min-height: 320px; }
+  .cmp-title { font-size: 13px; font-weight: 800; color: #1a1a2e; text-align: center; margin-bottom: 2px; }
+  .cmp-sub { font-size: 9px; color: #aaa; text-align: center; margin-bottom: 12px; }
+  .cmp-circle { width: 70px; height: 70px; border-radius: 50%; border: 5px solid #e87c3e; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .cmp-num { font-size: 20px; font-weight: 900; color: #1a1a2e; line-height: 1; }
+  .cmp-pct { font-size: 8px; color: #aaa; }
+  .cmp-stats { display: flex; justify-content: space-around; margin-bottom: 10px; }
+  .cmp-stat { text-align: center; }
+  .cmp-val { font-size: 12px; font-weight: 800; color: #1a1a2e; }
+  .cmp-lbl { font-size: 7px; color: #aaa; }
+  .cmp-card { background: #2d4a2d; border-radius: 12px; padding: 10px; color: white; margin-bottom: 8px; }
+  .cmp-cl { font-size: 8px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .cmp-ct { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  .cmp-cd { font-size: 8px; opacity: 0.7; line-height: 1.4; margin-bottom: 7px; }
+  .cmp-btn { background: #7cb87e; color: white; border: none; border-radius: 8px; padding: 7px; width: 100%; font-size: 9px; font-weight: 700; }
+
+  /* ─── token map ─── */
+  .token-map { background: white; border-radius: 14px; padding: 18px 22px; max-width: 960px; margin: 0 auto; }
+  .token-map h3 { font-size: 13px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px; }
+  .token-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .token-item { display: flex; gap: 8px; align-items: flex-start; }
+  .token-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+  .token-text { font-size: 11px; color: #555; line-height: 1.4; }
+  .token-text strong { display: block; color: #1a1a2e; font-size: 11px; }
+
+  .route-map { background: white; border-radius: 14px; padding: 18px 22px; max-width: 960px; margin: 16px auto 0; }
+  .route-map h3 { font-size: 13px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px; }
+  .routes { display: flex; flex-direction: column; gap: 6px; }
+  .route { display: flex; gap: 10px; align-items: center; }
+  .route-path { font-family: monospace; font-size: 11px; background: #f5f5f5; border-radius: 4px; padding: 2px 6px; color: #e87c3e; min-width: 160px; }
+  .route-desc { font-size: 11px; color: #555; }
+  .route-tag { background: #e8f5e9; color: #2d7a2d; border-radius: 4px; padding: 1px 6px; font-size: 9px; font-weight: 700; margin-left: auto; }
+  .route-tag.new { background: #fff3e0; color: #e87c3e; }
+  .route-tag.exists { background: #e3f2fd; color: #1565c0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>NorskCoach — Complete App Design</h1>
+  <p>All 5 screens · guest mode · full engine wiring · based on your design image</p>
+</div>
+
+<!-- ROW 1: Landing → Placement Quiz → Dashboard -->
+<div class="row">
+  <!-- Landing -->
+  <div class="col">
+    <div class="phone" style="background:#0d0d14">
+      <div class="notch" style="background:#0d0d14"><div class="notch-pill" style="background:#333"></div></div>
+      <div class="s-landing">
+        <div class="ld-logo">NORSKCOACH</div>
+        <div class="ld-h">Lær norsk med selvtillit.</div>
+        <div class="ld-sub">A personal coach that finds your weak spots and fixes them.</div>
+        <button class="ld-btn">Start gratis →</button>
+        <div class="ld-features">
+          <div class="ld-feat"><div class="ld-feat-icon">🧠</div><div class="ld-feat-text"><b>Diagnoses daily</b>Finds exactly where you're stuck</div></div>
+          <div class="ld-feat"><div class="ld-feat-icon">🔁</div><div class="ld-feat-text"><b>Repair loop</b>Every wrong answer gets fixed</div></div>
+          <div class="ld-feat"><div class="ld-feat-icon">📈</div><div class="ld-feat-text"><b>Concept graph</b>Grammar in dependency order</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">① Landing</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Placement Quiz -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch" style="background:#faf7f0"><div class="notch-pill" style="background:#1a1a2e"></div></div>
+      <div class="s-quiz">
+        <div class="qz-dots"><div class="qz-dot on"></div><div class="qz-dot"></div><div class="qz-dot"></div></div>
+        <div class="qz-step">Spørsmål 1 av 3</div>
+        <div class="qz-q">Hvor mye norsk kan du fra før?</div>
+        <div class="qz-opt sel">Ingenting — helt nybegynner</div>
+        <div class="qz-opt">Litt — kjenner noen ord</div>
+        <div class="qz-opt">Grunnleggende setninger</div>
+        <div class="qz-opt">Middels — kan samtale</div>
+      </div>
+    </div>
+    <div class="col-label">② Placement Quiz</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Dashboard -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch" style="background:#faf7f0"><div class="notch-pill" style="background:#1a1a2e"></div></div>
+      <div class="s-dash">
+        <div class="dh-head">
+          <div><div class="dh-date">Mandag, 11. mai</div><div class="dh-name">Hei, Anna! 👋</div></div>
+          <div class="dh-avatar">G</div>
+        </div>
+        <div class="dh-today">
+          <div class="dh-tl">I dag · ~12 min</div>
+          <div class="dh-tt">V2 ordstilling</div>
+          <div class="dh-pills"><div class="dh-pill o">3 reparasjoner</div><div class="dh-pill">4 repetisjon</div><div class="dh-pill">2 nytt</div></div>
+        </div>
+        <div class="dh-sl">Konseptfremgang <span>Se alle →</span></div>
+        <div class="dh-concepts">
+          <div class="dh-crow"><div class="dh-cdot" style="background:#e87c3e"></div><div class="dh-cname">V2 ordstilling</div><div class="dh-cbar"><div class="dh-cfill" style="width:62%;background:#e87c3e"></div></div><div class="dh-cpct">62%</div></div>
+          <div class="dh-crow"><div class="dh-cdot" style="background:#7cb87e"></div><div class="dh-cname">Presens</div><div class="dh-cbar"><div class="dh-cfill" style="width:88%;background:#7cb87e"></div></div><div class="dh-cpct">88%</div></div>
+          <div class="dh-crow"><div class="dh-cdot" style="background:#c85c8a"></div><div class="dh-cname">Genus en/et</div><div class="dh-cbar"><div class="dh-cfill" style="width:41%;background:#c85c8a"></div></div><div class="dh-cpct">41%</div></div>
+        </div>
+        <div class="dh-streak"><div class="dh-sfire">🔥</div><div class="dh-snum">124</div><div class="dh-stxt">dagers streak</div></div>
+        <button class="dh-start">Start dagens økt →</button>
+        <div class="bot-nav">
+          <div class="bn-item act"><div class="bn-icon">🏠</div><div class="bn-txt">Hjem</div></div>
+          <div class="bn-item"><div class="bn-icon">📚</div><div class="bn-txt">Økt</div></div>
+          <div class="bn-item"><div class="bn-icon">📊</div><div class="bn-txt">Fremgang</div></div>
+          <div class="bn-item"><div class="bn-icon">👤</div><div class="bn-txt">Profil</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">③ Dashboard</div>
+  </div>
+</div>
+
+<!-- ROW 2: Session → Progress → Completion -->
+<div class="row">
+  <!-- Session + Repair -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch" style="background:#faf7f0"><div class="notch-pill" style="background:#1a1a2e"></div></div>
+      <div class="s-session">
+        <div class="sess-bar"><div class="sess-fill"></div></div>
+        <div class="sess-pill">✏️ Oversettelse · 3 av 9</div>
+        <div class="ex-card">
+          <div class="ex-prompt">Oversett til engelsk:</div>
+          <div class="ex-sent">Jeg har en bil.</div>
+          <input class="ex-inp" value="" placeholder="I have a car." disabled />
+          <button class="check">Sjekk svar</button>
+        </div>
+        <div class="repair">
+          <div class="rep-lbl">🔁 Reparasjonsløkke</div>
+          <div class="rep-txt"><strong>Nesten!</strong> "en bil" er hankjønn. Husk: hankjønn → en, intetkjønn → et.</div>
+          <div class="rep-drill"><strong>Mikroøvelse:</strong> "en bil" eller "et bil"?</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">④ Session + Repair</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Progress / Concept List -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch" style="background:#faf7f0"><div class="notch-pill" style="background:#1a1a2e"></div></div>
+      <div class="s-progress">
+        <div class="pr-title">Konsepter</div>
+        <div class="pr-section">
+          <div class="pr-sec-lbl">🟢 Mestret</div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#7cb87e"></div><div class="pr-name">Presens tense</div><div class="pr-bar"><div class="pr-fill" style="width:88%;background:#7cb87e"></div></div><div class="pr-pct">88%</div></div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#5b8fd4"></div><div class="pr-name">Pronomen</div><div class="pr-bar"><div class="pr-fill" style="width:82%;background:#5b8fd4"></div></div><div class="pr-pct">82%</div></div>
+        </div>
+        <div class="pr-section">
+          <div class="pr-sec-lbl">🔶 I gang</div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#e87c3e"></div><div class="pr-name">V2 ordstilling</div><div class="pr-bar"><div class="pr-fill" style="width:62%;background:#e87c3e"></div></div><div class="pr-pct">62%</div></div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#c85c8a"></div><div class="pr-name">Genus en/et</div><div class="pr-bar"><div class="pr-fill" style="width:41%;background:#c85c8a"></div></div><div class="pr-pct">41%</div></div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#d4a843"></div><div class="pr-name">Artikkel</div><div class="pr-bar"><div class="pr-fill" style="width:29%;background:#d4a843"></div></div><div class="pr-pct">29%</div></div>
+        </div>
+        <div class="pr-section">
+          <div class="pr-sec-lbl">🔒 Låst</div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#ddd"></div><div class="pr-name">Adjektiv</div><div class="pr-bar"><div class="pr-fill" style="width:0%"></div></div><div class="pr-lock">Krever Genus</div></div>
+          <div class="pr-concept"><div class="pr-dot" style="background:#ddd"></div><div class="pr-name">Preteritum</div><div class="pr-bar"><div class="pr-fill" style="width:0%"></div></div><div class="pr-lock">Krever Presens</div></div>
+        </div>
+        <div class="bot-nav">
+          <div class="bn-item"><div class="bn-icon">🏠</div><div class="bn-txt">Hjem</div></div>
+          <div class="bn-item"><div class="bn-icon">📚</div><div class="bn-txt">Økt</div></div>
+          <div class="bn-item act"><div class="bn-icon">📊</div><div class="bn-txt">Fremgang</div></div>
+          <div class="bn-item"><div class="bn-icon">👤</div><div class="bn-txt">Profil</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">⑤ Fremgang / Progress</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Completion -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch" style="background:#faf7f0"><div class="notch-pill" style="background:#1a1a2e"></div></div>
+      <div class="s-complete">
+        <div class="cmp-title">Flott jobbet, Anna! 👏</div>
+        <div class="cmp-sub">Dagens økt fullført</div>
+        <div class="cmp-circle"><div class="cmp-num">92</div><div class="cmp-pct">%</div></div>
+        <div class="cmp-stats">
+          <div class="cmp-stat"><div class="cmp-val">92%</div><div class="cmp-lbl">Nøyaktighet</div></div>
+          <div class="cmp-stat"><div class="cmp-val">11:32</div><div class="cmp-lbl">Tid</div></div>
+          <div class="cmp-stat"><div class="cmp-val">3</div><div class="cmp-lbl">Konsepter</div></div>
+        </div>
+        <div class="cmp-card">
+          <div class="cmp-cl">🌱 Neste økt</div>
+          <div class="cmp-ct">V2 fordypning</div>
+          <div class="cmp-cd">Du gjør det bra! Neste gang fokuserer vi på inversjon etter adverbialer.</div>
+          <button class="cmp-btn">Gå til dashbord</button>
+        </div>
+        <div class="bot-nav">
+          <div class="bn-item"><div class="bn-icon">🏠</div><div class="bn-txt">Hjem</div></div>
+          <div class="bn-item act"><div class="bn-icon">📚</div><div class="bn-txt">Økt</div></div>
+          <div class="bn-item"><div class="bn-icon">📊</div><div class="bn-txt">Fremgang</div></div>
+          <div class="bn-item"><div class="bn-icon">👤</div><div class="bn-txt">Profil</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">⑥ Completion</div>
+  </div>
+</div>
+
+<!-- Token map -->
+<div class="token-map">
+  <h3>Design tokens</h3>
+  <div class="token-grid">
+    <div class="token-item"><div class="token-swatch" style="background:#0d0d14"></div><div class="token-text"><strong>--color-dark</strong>Landing background only</div></div>
+    <div class="token-item"><div class="token-swatch" style="background:#faf7f0"></div><div class="token-text"><strong>--color-cream</strong>All app screens background</div></div>
+    <div class="token-item"><div class="token-swatch" style="background:#1a1a2e"></div><div class="token-text"><strong>--color-navy</strong>Today card, check buttons, nav pill</div></div>
+    <div class="token-item"><div class="token-swatch" style="background:#e87c3e"></div><div class="token-text"><strong>--color-orange</strong>Primary CTA, progress bar, streak</div></div>
+    <div class="token-item"><div class="token-swatch" style="background:#7cb87e"></div><div class="token-text"><strong>--color-green</strong>Mastered concepts, completion card</div></div>
+    <div class="token-item"><div class="token-swatch" style="background:#fff8ef;border:1px solid #fde8cc"></div><div class="token-text"><strong>--color-repair-bg</strong>Repair loop tint — "teaching mode"</div></div>
+  </div>
+</div>
+
+<!-- Route map -->
+<div class="route-map">
+  <h3>Route architecture</h3>
+  <div class="routes">
+    <div class="route"><div class="route-path">/</div><div class="route-desc">Landing page — dark, public</div><div class="route-tag exists">exists</div></div>
+    <div class="route"><div class="route-path">/onboarding</div><div class="route-desc">3-question placement quiz → seeds fingerprint</div><div class="route-tag new">new</div></div>
+    <div class="route"><div class="route-path">/dashboard</div><div class="route-desc">Home for all users (guest + logged in). Today's session + concept bars + streak</div><div class="route-tag new">new</div></div>
+    <div class="route"><div class="route-path">/session</div><div class="route-desc">Active exercise session — no nav chrome</div><div class="route-tag exists">exists (update)</div></div>
+    <div class="route"><div class="route-path">/session/complete</div><div class="route-desc">Post-session summary — score, stats, next session preview</div><div class="route-tag new">new</div></div>
+    <div class="route"><div class="route-path">/progress</div><div class="route-desc">Full concept list: mastered / in-progress / locked with prereqs</div><div class="route-tag new">new</div></div>
+  </div>
+</div>
+
+</body>
+</html>

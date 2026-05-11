@@ -52,6 +52,15 @@ export interface Scenario {
   openingLine?: string;           // pre-written fallback opening
 }
 
+// ResolvedContent is what exercise components always receive.
+// Source is either a pre-seeded sentence or AI-generated content.
+// All fields from Sentence are present; extras are optional and only
+// populated for generated content.
+export interface ResolvedContent extends Sentence {
+  source: 'seed' | 'generated';
+  distractors?: string[]; // fill-in-blank: 3 plausible wrong options from AI
+}
+
 export interface GrammarExplainer {
   id: string;
   conceptId: string;

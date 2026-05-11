@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placement Quiz Flow</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ece4; font-family: 'Segoe UI', system-ui, sans-serif; padding: 28px; }
+  h2 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  p.sub { font-size: 12px; color: #888; margin-bottom: 24px; }
+
+  .flow { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .arrow { font-size: 24px; color: #ccc; padding-top: 100px; }
+
+  .phone { width: 210px; background: white; border-radius: 32px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.07); }
+  .phone-notch { height: 22px; background: #faf7f0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+  .notch-pill { width: 60px; height: 8px; background: #1a1a2e; border-radius: 4px; }
+  .label { text-align: center; font-size: 10px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 8px; }
+
+  /* QUIZ SCREEN */
+  .quiz { background: #faf7f0; padding: 16px 14px; min-height: 340px; }
+  .quiz-progress { display: flex; gap: 4px; margin-bottom: 20px; }
+  .qp-dot { height: 4px; flex: 1; border-radius: 2px; background: #ede9e0; }
+  .qp-dot.done { background: #e87c3e; }
+  .qp-dot.current { background: #e87c3e; opacity: 0.5; }
+  .quiz-step { font-size: 9px; color: #aaa; margin-bottom: 6px; }
+  .quiz-q { font-size: 14px; font-weight: 700; color: #1a1a2e; line-height: 1.3; margin-bottom: 16px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    padding: 10px 12px; border-radius: 12px;
+    border: 1.5px solid #ede9e0; background: white;
+    font-size: 11px; color: #333; cursor: pointer;
+  }
+  .quiz-opt.selected { border-color: #e87c3e; background: #fff8ef; font-weight: 600; color: #e87c3e; }
+
+  /* Q2 */
+  .quiz-2 { background: #faf7f0; padding: 16px 14px; min-height: 340px; }
+
+  /* RESULT → DASHBOARD */
+  .result { background: #faf7f0; padding: 16px 14px; min-height: 340px; }
+  .result-icon { font-size: 32px; text-align: center; margin-bottom: 8px; }
+  .result-title { font-size: 15px; font-weight: 800; color: #1a1a2e; text-align: center; margin-bottom: 4px; }
+  .result-sub { font-size: 10px; color: #888; text-align: center; margin-bottom: 16px; line-height: 1.4; }
+  .result-card { background: #1a1a2e; border-radius: 14px; padding: 12px; color: white; margin-bottom: 12px; }
+  .rc-label { font-size: 9px; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .rc-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .rc-desc { font-size: 9px; opacity: 0.65; line-height: 1.4; }
+  .cta-btn { background: #e87c3e; color: white; border: none; border-radius: 12px; padding: 11px; width: 100%; font-size: 12px; font-weight: 800; cursor: pointer; }
+
+  /* Guest banner */
+  .guest-banner {
+    background: rgba(26,26,46,0.06); border-radius: 8px;
+    padding: 7px 10px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+    font-size: 9px; color: #666;
+  }
+  .guest-link { color: #e87c3e; font-weight: 700; margin-left: auto; cursor: pointer; }
+</style>
+</head>
+<body>
+<h2>Guest Entry Flow — 3-question placement quiz</h2>
+<p class="sub">User goes: Landing → Q1 (experience) → Q2 (self-assess) → Q3 (goal) → personalised dashboard</p>
+
+<div class="flow">
+
+  <!-- Q1 -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="quiz">
+        <div class="quiz-progress">
+          <div class="qp-dot current"></div>
+          <div class="qp-dot"></div>
+          <div class="qp-dot"></div>
+        </div>
+        <div class="quiz-step">Spørsmål 1 av 3</div>
+        <div class="quiz-q">Hvor mye norsk kan du fra før?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt selected">Ingenting — helt nybegynner</div>
+          <div class="quiz-opt">Litt — kjenner noen ord</div>
+          <div class="quiz-opt">Grunnleggende — kan enkle setninger</div>
+          <div class="quiz-opt">Middels — kan ha en samtale</div>
+        </div>
+      </div>
+    </div>
+    <div class="label">Q1 — Bakgrunn</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Q2 -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="quiz-2">
+        <div style="padding:16px 14px">
+        <div class="quiz-progress">
+          <div class="qp-dot done"></div>
+          <div class="qp-dot current"></div>
+          <div class="qp-dot"></div>
+        </div>
+        <div class="quiz-step">Spørsmål 2 av 3</div>
+        <div class="quiz-q">Hva er vanskeligs for deg nå?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt">Å huske ord og uttrykk</div>
+          <div class="quiz-opt selected">Grammatikk — f.eks. ordstilling</div>
+          <div class="quiz-opt">Å forstå når folk snakker</div>
+          <div class="quiz-opt">Vet ikke ennå</div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="label">Q2 — Svakhet</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Q3 -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="quiz">
+        <div class="quiz-progress">
+          <div class="qp-dot done"></div>
+          <div class="qp-dot done"></div>
+          <div class="qp-dot current"></div>
+        </div>
+        <div class="quiz-step">Spørsmål 3 av 3</div>
+        <div class="quiz-q">Hva er målet ditt med norsk?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt selected">Jobb / integrering i Norge</div>
+          <div class="quiz-opt">Familiebesøk / sosialt</div>
+          <div class="quiz-opt">Reise / friluftsliv</div>
+          <div class="quiz-opt">Akademisk / litteratur</div>
+        </div>
+      </div>
+    </div>
+    <div class="label">Q3 — Mål</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- RESULT -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="result">
+        <div class="guest-banner">
+          👤 Gjest — fremgang lagres lokalt <span class="guest-link">Logg inn →</span>
+        </div>
+        <div class="result-icon">🎯</div>
+        <div class="result-title">Klar for A1!</div>
+        <div class="result-sub">Basert på svarene dine starter vi med grunnleggende ordstilling og substantiver.</div>
+        <div class="result-card">
+          <div class="rc-label">Din første økt</div>
+          <div class="rc-title">V2 ordstilling + basisord</div>
+          <div class="rc-desc">9 øvelser · ~12 min. Motoren tilpasser seg etter hvert svar du gir.</div>
+        </div>
+        <button class="cta-btn">Start første økt →</button>
+      </div>
+    </div>
+    <div class="label">Resultat → Dashboard</div>
+  </div>
+
+</div>
+
+<div style="background:white;border-radius:14px;padding:16px 20px;margin-top:24px;max-width:900px;margin-left:auto;margin-right:auto">
+  <p style="font-size:12px;color:#555;line-height:1.7">
+    <strong style="color:#1a1a2e">How the quiz feeds the engine:</strong> Q1 (experience) sets the starting concept pool (A1 only for beginners). Q2 (weakness) pre-weights certain error tags in the fingerprint, so remediation exercises appear earlier. Q3 (goal) influences sentence scenarios used in exercises (job/formal vs casual). The engine adapts from turn 1 — no wasted first session.
+  </p>
+</div>
+</body>
+</html>

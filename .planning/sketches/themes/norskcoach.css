@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-bg: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-border: #0A0A0F;
+  --color-text: #0A0A0F;
+  --color-text-muted: #6B7280;
+  --color-text-light: #9CA3AF;
+  --color-accent: #DC2626;
+  --color-accent-light: #FEE2E2;
+  --color-success: #16A34A;
+  --color-success-light: #DCFCE7;
+
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-card: 16px;
+  --radius-btn: 9999px;
+  --radius-input: 4px;
+
+  --border-card: 1.5px solid #0A0A0F;
+  --border-input: 2px solid #0A0A0F;
+
+  /* Pattern textures */
+  --pattern-diagonal: repeating-linear-gradient(
+    135deg,
+    #0A0A0F 0px, #0A0A0F 2px,
+    transparent 2px, transparent 14px
+  );
+  --pattern-dots: radial-gradient(circle, #0A0A0F 1.5px, transparent 1.5px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-bg);
+  font-family: var(--font-display);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utility classes */
+.pattern-diagonal {
+  background-image: var(--pattern-diagonal);
+  background-size: 14px 14px;
+}
+
+.pattern-dots {
+  background-image: var(--pattern-dots);
+  background-size: 12px 12px;
+}

@@ -1,0 +1,3 @@
+{"event_id":"69992904-9894-4377-8526-678e8325f43f","team":"norskcoach-session-screen-ui-b","created_at":"2026-05-10T23:24:01.210Z","type":"team_leader_nudge","worker":"leader-fixed","reason":"startup_manual_intervention_required:worker-1:gemini_startup_evidence_missing"}
+{"event_id":"e820825c-e1f6-49e2-a908-c2ab0a67625f","team":"norskcoach-session-screen-ui-b","created_at":"2026-05-10T23:24:11.539Z","type":"team_leader_nudge","worker":"leader-fixed","reason":"start_team_v2: workers=2 tasks=2 panes=2"}
+{"event_id":"000b6021-3082-46eb-a90f-a4118ef4e0a7","team":"norskcoach-session-screen-ui-b","created_at":"2026-05-10T23:26:22.078Z","type":"shutdown_gate_forced","worker":"leader-fixed","reason":"force_bypass"}

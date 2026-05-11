@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-base: #F2F4F8;
+  --bg-gradient: linear-gradient(145deg, #EEF2FF 0%, #F8F4FF 40%, #FFF1F5 80%, #F0FDF8 100%);
+
+  /* Glass surfaces */
+  --glass-white: rgba(255, 255, 255, 0.72);
+  --glass-white-strong: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-border-subtle: rgba(200, 210, 230, 0.5);
+  --glass-shadow: 0 8px 32px rgba(99, 102, 241, 0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --glass-shadow-hover: 0 16px 48px rgba(99, 102, 241, 0.14), 0 4px 12px rgba(0,0,0,0.06);
+
+  /* Colors */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+
+  /* Accents */
+  --accent-blue: #6366F1;
+  --accent-blue-light: #EEF2FF;
+  --accent-blue-glow: rgba(99, 102, 241, 0.15);
+  --accent-red: #DC2626;
+  --accent-red-light: #FEF2F2;
+  --accent-green: #10B981;
+  --accent-green-light: #ECFDF5;
+  --accent-amber: #F59E0B;
+  --accent-amber-light: #FFFBEB;
+
+  /* Progress gradient */
+  --progress-fill: linear-gradient(90deg, #6366F1, #8B5CF6, #A78BFA);
+
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --radius-card: 20px;
+  --radius-btn: 14px;
+  --radius-full: 9999px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-display); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+
+.glass-card {
+  background: var(--glass-white);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-input {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(200,210,230,0.6);
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.glass-input:focus-within, .glass-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px var(--accent-blue-glow);
+  outline: none;
+}

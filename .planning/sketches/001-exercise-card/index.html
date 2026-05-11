@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>001 — Exercise Card</title>
+<link rel="stylesheet" href="../themes/modern.css">
+<style>
+body { background: var(--bg-base); }
+
+.tabs { display:flex; background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(200,210,230,0.4); position:sticky; top:0; z-index:100; }
+.tab { padding:13px 24px; font-size:12px; font-weight:700; cursor:pointer; border:none; background:none; color:var(--text-muted); letter-spacing:0.06em; text-transform:uppercase; border-bottom:2px solid transparent; margin-bottom:-1px; font-family:var(--font-display); transition:all 0.15s; }
+.tab.active { color:var(--accent-blue); border-bottom-color:var(--accent-blue); }
+.variant { display:none; } .variant.active { display:block; }
+
+.viewport { min-height:calc(100vh - 49px); background: var(--bg-gradient); display:flex; justify-content:center; align-items:flex-start; padding:32px 16px; }
+.phone { width:375px; min-height:780px; display:flex; flex-direction:column; gap:0; }
+
+/* Header */
+.s-header { display:flex; align-items:center; justify-content:space-between; padding:16px 4px 10px; }
+.app-name { font-size:17px; font-weight:800; letter-spacing:-0.03em; color:var(--text-primary); }
+.session-ct { font-size:12px; font-weight:700; color:var(--text-muted); background:rgba(255,255,255,0.7); border:1px solid rgba(200,210,230,0.5); border-radius:20px; padding:4px 12px; }
+
+/* Segmented progress */
+.progress-track { display:flex; gap:5px; padding:0 4px 14px; }
+.seg { height:6px; flex:1; border-radius:9999px; background:rgba(255,255,255,0.6); border:1px solid rgba(200,210,230,0.4); transition:background 0.3s; }
+.seg.done { background:linear-gradient(90deg,#6366F1,#8B5CF6); border-color:transparent; }
+.seg.active { background:linear-gradient(90deg,#6366F1,#A78BFA); border-color:transparent; box-shadow:0 0 8px rgba(99,102,241,0.4); }
+
+/* Concept pill */
+.concept-pill { display:inline-flex; align-items:center; gap:6px; background:var(--accent-blue-light); color:var(--accent-blue); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border-radius:20px; padding:5px 12px; margin-bottom:12px; }
+.concept-pill::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent-blue); }
+
+/* ── VARIANT A: Floating glass card ──────────────────────── */
+.card-a {
+  background: var(--glass-white-strong);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.95);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-shadow);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.card-a::before {
+  content:'';
+  position:absolute;
+  top:-30px; right:-30px;
+  width:120px; height:120px;
+  background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.direction-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px; }
+.sentence { font-size:30px; font-weight:800; line-height:1.2; letter-spacing:-0.025em; color:var(--text-primary); }
+.sentence em { font-style:normal; color:var(--accent-blue); }
+.hint { font-size:13px; color:var(--text-secondary); font-weight:500; margin-top:14px; padding-top:14px; border-top:1px solid rgba(200,210,230,0.3); }
+
+/* Input */
+.answer-wrap { position:relative; }
+.answer-input {
+  width:100%; padding:16px 18px;
+  font-size:16px; font-weight:600; font-family:var(--font-display);
+  color:var(--text-primary);
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(10px);
+  border:1.5px solid rgba(200,210,230,0.5);
+  border-radius:14px;
+  outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+  min-height:54px;
+}
+.answer-input:focus { border-color:var(--accent-blue); box-shadow:0 0 0 3px rgba(99,102,241,0.12); }
+.answer-input::placeholder { color:var(--text-muted); font-weight:500; }
+
+/* Button */
+.btn-submit {
+  width:100%; min-height:54px;
+  background:linear-gradient(135deg,#6366F1,#8B5CF6);
+  color:#fff; border:none; border-radius:14px;
+  font-size:15px; font-weight:800; font-family:var(--font-display);
+  letter-spacing:0.01em; cursor:pointer;
+  box-shadow:0 4px 16px rgba(99,102,241,0.3);
+  transition:transform 0.15s, box-shadow 0.15s;
+}
+.btn-submit:hover { transform:translateY(-1px); box-shadow:0 8px 24px rgba(99,102,241,0.4); }
+.btn-submit:active { transform:scale(0.98); }
+.btn-submit:disabled { opacity:0.45; cursor:not-allowed; transform:none; box-shadow:none; }
+
+/* ── VARIANT B: Split accent card ─────────────────────────── */
+.card-b {
+  background:var(--glass-white-strong);
+  backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,0.95);
+  border-radius:var(--radius-card);
+  box-shadow:var(--glass-shadow);
+  overflow:hidden;
+}
+.card-b .color-strip {
+  height:4px;
+  background:linear-gradient(90deg,#6366F1,#8B5CF6,#EC4899);
+}
+.card-b .inner { padding:20px 24px 24px; }
+.card-b .sentence { font-size:32px; font-weight:800; line-height:1.18; letter-spacing:-0.03em; }
+.card-b .sentence .highlight {
+  background:linear-gradient(135deg,#6366F1,#8B5CF6);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.card-b .meta { display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:14px; border-top:1px solid rgba(200,210,230,0.3); }
+.card-b .hint { font-size:12px; color:var(--text-muted); font-weight:500; }
+.card-b .type-badge { font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; background:var(--accent-blue-light); color:var(--accent-blue); border-radius:20px; padding:4px 10px; }
+
+/* ── VARIANT C: Minimal elevated ──────────────────────────── */
+.card-c {
+  background:#fff;
+  border-radius:var(--radius-card);
+  box-shadow:0 2px 4px rgba(0,0,0,0.04), 0 12px 40px rgba(99,102,241,0.08);
+  padding:28px 24px 24px;
+  border:1px solid rgba(220,225,240,0.6);
+}
+.card-c .q-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px; }
+.card-c .sentence { font-size:28px; font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:var(--text-primary); }
+.card-c .sentence strong { color:var(--accent-blue); font-weight:800; }
+.card-c .hint-chip { display:inline-flex; align-items:center; gap:6px; background:#F8FAFF; border:1px solid rgba(99,102,241,0.2); border-radius:20px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--accent-blue); margin-top:14px; }
+
+/* Correct banner */
+.correct-banner { display:none; background:var(--accent-green-light); border:1.5px solid rgba(16,185,129,0.3); border-radius:12px; padding:13px 16px; font-size:13px; font-weight:700; color:var(--accent-green); align-items:center; gap:8px; }
+.correct-banner.show { display:flex; animation:fadeIn 0.2s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+.exercise-stack { display:flex; flex-direction:column; gap:14px; }
+</style>
+</head>
+<body>
+<div class="tabs">
+  <button class="tab active" onclick="sv('a',event)">A: Glass Float ★</button>
+  <button class="tab" onclick="sv('b',event)">B: Gradient Strip</button>
+  <button class="tab" onclick="sv('c',event)">C: Clean Elevated</button>
+</div>
+
+<!-- VARIANT A -->
+<div class="variant active" id="variant-a">
+  <div class="viewport">
+    <div class="phone">
+      <div class="s-header"><span class="app-name">NorskCoach</span><span class="session-ct">3 / 10</span></div>
+      <div class="progress-track">
+        <div class="seg done"></div><div class="seg done"></div><div class="seg active"></div>
+        <div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+      </div>
+      <span class="concept-pill">V2 Word Order</span>
+      <div class="exercise-stack">
+        <div class="card-a">
+          <div class="direction-label">Translate to Norwegian</div>
+          <div class="sentence">Today I eat breakfast <em>at home.</em></div>
+          <div class="hint">💡 Remember: verb must be in second position</div>
+        </div>
+        <input class="answer-input" id="ia" type="text" placeholder="Type in Norwegian…" oninput="tb('ba',this.value)">
+        <div class="correct-banner" id="bna">✓ &nbsp;<strong>I dag spiser jeg frokost hjemme</strong> — great job!</div>
+        <button class="btn-submit" id="ba" disabled onclick="correct('ia','bna','ba')">Check answer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VARIANT B -->
+<div class="variant" id="variant-b">
+  <div class="viewport">
+    <div class="phone">
+      <div class="s-header"><span class="app-name">NorskCoach</span><span class="session-ct">3 / 10</span></div>
+      <div class="progress-track">
+        <div class="seg done"></div><div class="seg done"></div><div class="seg active"></div>
+        <div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+      </div>
+      <span class="concept-pill">V2 Word Order</span>
+      <div class="exercise-stack">
+        <div class="card-b">
+          <div class="color-strip"></div>
+          <div class="inner">
+            <div class="direction-label">Translate to Norwegian</div>
+            <div class="sentence">Today I eat <span class="highlight">breakfast at home.</span></div>
+            <div class="meta">
+              <div class="hint">Verb must be 2nd</div>
+              <div class="type-badge">Translation</div>
+            </div>
+          </div>
+        </div>
+        <input class="answer-input" id="ib" type="text" placeholder="Type in Norwegian…" oninput="tb('bb',this.value)">
+        <div class="correct-banner" id="bnb">✓ &nbsp;<strong>I dag spiser jeg frokost hjemme</strong> — great job!</div>
+        <button class="btn-submit" id="bb" disabled onclick="correct('ib','bnb','bb')">Check answer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VARIANT C -->
+<div class="variant" id="variant-c">
+  <div class="viewport">
+    <div class="phone">
+      <div class="s-header"><span class="app-name">NorskCoach</span><span class="session-ct">3 / 10</span></div>
+      <div class="progress-track">
+        <div class="seg done"></div><div class="seg done"></div><div class="seg active"></div>
+        <div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+      </div>
+      <span class="concept-pill">V2 Word Order</span>
+      <div class="exercise-stack">
+        <div class="card-c">
+          <div class="q-label">Translate to Norwegian</div>
+          <div class="sentence">Today I eat breakfast <strong>at home.</strong></div>
+          <div class="hint-chip">💡 Verb in second position</div>
+        </div>
+        <input class="answer-input" id="ic" type="text" placeholder="Type in Norwegian…" oninput="tb('bc',this.value)">
+        <div class="correct-banner" id="bnc">✓ &nbsp;<strong>I dag spiser jeg frokost hjemme</strong> — great job!</div>
+        <button class="btn-submit" id="bc" disabled onclick="correct('ic','bnc','bc')">Check answer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="sketch-tools" style="position:fixed;bottom:12px;right:12px;z-index:9999;font-family:system-ui;font-size:12px;background:rgba(15,23,42,0.8);color:white;padding:10px 14px;border-radius:10px;opacity:0.35;transition:opacity 0.2s;line-height:1.8;backdrop-filter:blur(8px)" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.35'">
+  📐 Sketch 001 — Exercise Card v2<br><small style="opacity:0.6">Glass · Color tints · Modern</small>
+</div>
+
+<script>
+function sv(v,e){document.querySelectorAll('.variant').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));document.getElementById('variant-'+v).classList.add('active');e.target.classList.add('active');}
+function tb(id,val){const b=document.getElementById(id);if(b)b.disabled=!val.trim();}
+function correct(inp,ban,btn){
+  const i=document.getElementById(inp),b=document.getElementById(ban),bt=document.getElementById(btn);
+  b.classList.add('show'); i.disabled=true; bt.textContent='Next exercise →'; bt.disabled=false;
+  bt.onclick=()=>{b.classList.remove('show');i.value='';i.disabled=false;bt.textContent='Check answer';bt.disabled=true;bt.onclick=()=>correct(inp,ban,btn);}
+}
+</script>
+</body>
+</html>

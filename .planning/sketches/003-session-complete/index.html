@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>003 — Session Complete</title>
+<link rel="stylesheet" href="../themes/modern.css">
+<style>
+body { background:var(--bg-base); }
+.tabs { display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(12px); border-bottom:1px solid rgba(200,210,230,0.4); position:sticky; top:0; z-index:100; }
+.tab { padding:13px 24px; font-size:12px; font-weight:700; cursor:pointer; border:none; background:none; color:var(--text-muted); letter-spacing:0.06em; text-transform:uppercase; border-bottom:2px solid transparent; margin-bottom:-1px; font-family:var(--font-display); transition:all 0.15s; }
+.tab.active { color:var(--accent-blue); border-bottom-color:var(--accent-blue); }
+.variant { display:none; } .variant.active { display:block; }
+.viewport { min-height:calc(100vh - 49px); background:var(--bg-gradient); display:flex; justify-content:center; padding:32px 16px; }
+.phone { width:375px; display:flex; flex-direction:column; }
+
+/* ── VARIANT A: Glass hero score ──────────────────────────── */
+.complete-a {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  padding:48px 28px 40px;
+}
+.score-ring {
+  width:180px; height:180px; border-radius:50%;
+  background: conic-gradient(#6366F1 0% 80%, rgba(200,210,230,0.3) 80% 100%);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; margin-bottom:32px;
+  box-shadow:0 0 0 6px rgba(99,102,241,0.1), 0 20px 60px rgba(99,102,241,0.2);
+  animation:spin-in 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both;
+}
+@keyframes spin-in{from{opacity:0;transform:scale(0.6) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0deg)}}
+.score-ring .inner-circle {
+  width:148px; height:148px; border-radius:50%;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(20px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,0.04);
+}
+.score-num { font-size:52px; font-weight:800; color:var(--text-primary); letter-spacing:-0.04em; line-height:1; }
+.score-denom { font-size:18px; font-weight:700; color:var(--text-muted); }
+.complete-title { font-size:26px; font-weight:800; letter-spacing:-0.025em; text-align:center; }
+.complete-sub { font-size:14px; color:var(--text-secondary); font-weight:500; text-align:center; margin-top:6px; line-height:1.5; }
+
+.stats-row { display:flex; gap:10px; width:100%; margin:24px 0; }
+.stat-pill {
+  flex:1; background:rgba(255,255,255,0.8); backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.95); border-radius:16px;
+  padding:14px 12px; text-align:center;
+  box-shadow:0 4px 16px rgba(99,102,241,0.06);
+}
+.stat-pill .n { font-size:24px; font-weight:800; letter-spacing:-0.03em; }
+.stat-pill .l { font-size:10px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--text-muted); margin-top:2px; }
+.stat-pill.green .n { color:var(--accent-green); }
+.stat-pill.red .n { color:var(--accent-red); }
+.stat-pill.blue .n { color:var(--accent-blue); }
+
+.btn-dash { width:100%; min-height:54px; background:linear-gradient(135deg,#6366F1,#8B5CF6); color:#fff; border:none; border-radius:14px; font-size:15px; font-weight:800; font-family:var(--font-display); cursor:pointer; box-shadow:0 6px 20px rgba(99,102,241,0.3); transition:transform .15s,box-shadow .15s; }
+.btn-dash:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(99,102,241,0.4);}
+.btn-review { margin-top:12px; text-align:center; font-size:13px; font-weight:700; color:var(--text-secondary); cursor:pointer; padding:10px; text-decoration:underline; text-underline-offset:3px; }
+
+/* ── VARIANT B: Celebration glass ────────────────────────── */
+.complete-b { flex:1; display:flex; flex-direction:column; }
+.celebration-hero {
+  height:280px; position:relative; overflow:hidden;
+  background:linear-gradient(160deg,#EEF2FF 0%,#F5F3FF 50%,#FDF2F8 100%);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.celebration-hero::before {
+  content:''; position:absolute; inset:0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(99,102,241,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(236,72,153,0.12) 0%, transparent 50%);
+}
+.hero-score-block { position:relative; z-index:1; text-align:center; }
+.hero-emoji { font-size:48px; margin-bottom:12px; display:block; animation:bounce 0.5s cubic-bezier(0.175,0.885,0.32,1.275) 0.2s both; }
+@keyframes bounce{from{opacity:0;transform:translateY(20px) scale(0.7)}to{opacity:1;transform:translateY(0) scale(1)}}
+.hero-score { font-size:72px; font-weight:800; letter-spacing:-0.05em; line-height:1; background:linear-gradient(135deg,#6366F1,#8B5CF6,#EC4899); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275) 0.1s both; }
+@keyframes popIn{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+.hero-of-10 { font-size:20px; font-weight:700; color:var(--text-muted); }
+.b-body { flex:1; padding:24px 24px 36px; display:flex; flex-direction:column; gap:16px; }
+.b-title { font-size:22px; font-weight:800; letter-spacing:-0.02em; }
+.b-sub { font-size:13px; color:var(--text-secondary); font-weight:500; margin-top:-8px; }
+.achievements { display:flex; gap:8px; flex-wrap:wrap; }
+.ach-badge { display:inline-flex; align-items:center; gap:5px; border-radius:20px; padding:6px 12px; font-size:11px; font-weight:700; }
+.ach-badge.blue { background:var(--accent-blue-light); color:var(--accent-blue); }
+.ach-badge.green { background:var(--accent-green-light); color:var(--accent-green); }
+.ach-badge.amber { background:var(--accent-amber-light); color:#B45309; }
+
+/* ── VARIANT C: Minimal typographic ──────────────────────── */
+.complete-c { flex:1; display:flex; flex-direction:column; padding:40px 28px; }
+.c-eyebrow { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-blue); margin-bottom:8px; }
+.c-score { font-size:80px; font-weight:800; letter-spacing:-0.05em; line-height:1; color:var(--text-primary); }
+.c-score .denom { font-size:36px; color:var(--text-muted); font-weight:700; }
+.c-label { font-size:13px; font-weight:600; color:var(--text-muted); letter-spacing:0.04em; margin-top:4px; }
+.c-divider { height:1px; background:linear-gradient(90deg,var(--accent-blue),transparent); margin:28px 0; opacity:0.3; }
+.c-message { font-size:22px; font-weight:800; letter-spacing:-0.02em; line-height:1.3; color:var(--text-primary); }
+.c-message span { color:var(--accent-blue); }
+.c-detail { font-size:13px; color:var(--text-secondary); font-weight:500; margin-top:8px; line-height:1.6; }
+.c-actions { margin-top:auto; display:flex; flex-direction:column; gap:10px; }
+.btn-outline { width:100%; min-height:48px; background:transparent; border:1.5px solid rgba(99,102,241,0.3); color:var(--accent-blue); border-radius:12px; font-size:14px; font-weight:700; font-family:var(--font-display); cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="tabs">
+  <button class="tab active" onclick="sv('a',event)">A: Ring Score ★</button>
+  <button class="tab" onclick="sv('b',event)">B: Celebration</button>
+  <button class="tab" onclick="sv('c',event)">C: Typographic</button>
+</div>
+
+<!-- A -->
+<div class="variant active" id="variant-a">
+  <div class="viewport"><div class="phone">
+    <div class="complete-a">
+      <div class="score-ring">
+        <div class="inner-circle">
+          <div class="score-num">8</div>
+          <div class="score-denom">/ 10</div>
+        </div>
+      </div>
+      <div class="complete-title">Session complete! 🎉</div>
+      <div class="complete-sub">You practised V2 word order and negation.<br>80% accuracy today.</div>
+      <div class="stats-row">
+        <div class="stat-pill green"><div class="n">8</div><div class="l">Correct</div></div>
+        <div class="stat-pill red"><div class="n">2</div><div class="l">Missed</div></div>
+        <div class="stat-pill blue"><div class="n">12m</div><div class="l">Time</div></div>
+      </div>
+      <button class="btn-dash" onclick="this.textContent='Loading…'">Back to dashboard</button>
+      <div class="btn-review">Review 2 mistakes →</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- B -->
+<div class="variant" id="variant-b">
+  <div class="viewport"><div class="phone">
+    <div class="complete-b">
+      <div class="celebration-hero">
+        <div class="hero-score-block">
+          <span class="hero-emoji">🏆</span>
+          <div class="hero-score">8<span style="font-size:36px;-webkit-text-fill-color:var(--text-muted)">/10</span></div>
+        </div>
+      </div>
+      <div class="b-body">
+        <div>
+          <div class="b-title">Great session!</div>
+          <div class="b-sub">V2 word order · Negation · 12 minutes</div>
+        </div>
+        <div class="achievements">
+          <div class="ach-badge blue">🔵 80% accuracy</div>
+          <div class="ach-badge green">✓ 3-day streak</div>
+          <div class="ach-badge amber">⚡ V2 improving</div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-pill green"><div class="n">8</div><div class="l">Correct</div></div>
+          <div class="stat-pill red"><div class="n">2</div><div class="l">Missed</div></div>
+          <div class="stat-pill blue"><div class="n">12m</div><div class="l">Time</div></div>
+        </div>
+        <button class="btn-dash" onclick="this.textContent='Loading…'">Back to dashboard</button>
+        <div class="btn-review">Review mistakes →</div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- C -->
+<div class="variant" id="variant-c">
+  <div class="viewport"><div class="phone">
+    <div class="complete-c">
+      <div class="c-eyebrow">Session complete</div>
+      <div class="c-score">8<span class="denom"> / 10</span></div>
+      <div class="c-label">correct answers</div>
+      <div class="c-divider"></div>
+      <div class="c-message">You're getting <span>stronger</span> at V2 word order.</div>
+      <div class="c-detail">2 mistakes to review. Your streak is 3 days. Come back tomorrow for your next session.</div>
+      <div class="c-actions">
+        <button class="btn-dash" onclick="this.textContent='Loading…'">Back to dashboard</button>
+        <button class="btn-outline">Review mistakes (2)</button>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div id="sketch-tools" style="position:fixed;bottom:12px;right:12px;z-index:9999;font-family:system-ui;font-size:12px;background:rgba(15,23,42,0.8);color:white;padding:10px 14px;border-radius:10px;opacity:0.35;transition:opacity 0.2s;line-height:1.8;backdrop-filter:blur(8px)" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.35'">
+  📐 Sketch 003 — Complete v2<br><small style="opacity:0.6">Glass · Color · Modern</small>
+</div>
+<script>
+function sv(v,e){document.querySelectorAll('.variant').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));document.getElementById('variant-'+v).classList.add('active');e.target.classList.add('active');}
+</script>
+</body>
+</html>

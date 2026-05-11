@@ -1,0 +1,248 @@
+{
+  "version": "1.0.0",
+  "language": "Norwegian Bokmål",
+  "concepts": [
+    {
+      "id": "perfect-tense",
+      "label": "Perfect tense (har + past participle)",
+      "description": "The present perfect is formed with 'har' + past participle: 'Jeg har spist.' It expresses actions completed with relevance to the present. Participle forms follow the same verb classes as regular preterite.",
+      "cefrLevel": "A2",
+      "prerequisites": ["to-have-verb", "preterite-regular"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 5,
+      "errorTags": ["verb-tense", "verb-conjugation", "spelling"]
+    },
+    {
+      "id": "future-constructions",
+      "label": "Future constructions (skal, vil, kommer til å)",
+      "description": "Norwegian has no dedicated future tense. Future is expressed with modal verbs (skal, vil) followed by a bare infinitive, or with 'kommer til å' + infinitive for predictions about inevitable events.",
+      "cefrLevel": "A2",
+      "prerequisites": ["infinitive-form", "common-modal-verbs"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["verb-tense", "modal-verb", "reading-parsing"]
+    },
+    {
+      "id": "passive-voice",
+      "label": "Passive voice (-s passive and bli passive)",
+      "description": "Norwegian has two passive constructions: the -s passive (boken leses) formed by adding -s to the active verb, and the bli passive (boken blir lest) using bli + past participle. Bli passive is more common in spoken Norwegian.",
+      "cefrLevel": "A2",
+      "prerequisites": ["present-tense-regular", "preterite-regular", "perfect-tense"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 7,
+      "errorTags": ["verb-tense", "verb-conjugation", "reading-parsing"]
+    },
+    {
+      "id": "comparative-adjectives",
+      "label": "Comparative adjectives (-ere / mer)",
+      "description": "Short adjectives form the comparative by adding -ere: stor → større, lang → lengre. Longer adjectives and those ending in unstressed -ig use 'mer' + base form. Irregular comparatives: god → bedre, dårlig → verre.",
+      "cefrLevel": "A2",
+      "prerequisites": ["basic-adjectives", "adjective-agreement"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["adjective-agreement", "wrong-word-same-category", "spelling"]
+    },
+    {
+      "id": "superlative-adjectives",
+      "label": "Superlative adjectives (-est / mest)",
+      "description": "Short adjectives form the superlative with -est: stor → størst, lang → lengst. Longer adjectives use 'mest' + base form. The superlative takes the -e ending in definite and predicative contexts with article: den største.",
+      "cefrLevel": "A2",
+      "prerequisites": ["comparative-adjectives"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["adjective-agreement", "article-use", "spelling"]
+    },
+    {
+      "id": "reflexive-verbs",
+      "label": "Reflexive verbs and reflexive pronouns",
+      "description": "Reflexive verbs use reflexive pronouns (meg, deg, seg, oss, dere, seg) to refer back to the subject: 'Jeg vasker meg.' Many common verbs are inherently reflexive in Norwegian: å gifte seg, å kle på seg, å sette seg.",
+      "cefrLevel": "A2",
+      "prerequisites": ["personal-pronouns", "present-tense-regular"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 5,
+      "errorTags": ["pronoun-choice", "verb-conjugation", "meaning-misunderstood"]
+    },
+    {
+      "id": "object-pronouns",
+      "label": "Object pronouns (meg, deg, ham, henne, det, dem)",
+      "description": "Object forms of personal pronouns used after verbs and prepositions: jeg→meg, du→deg, han→ham, hun→henne, den/det→den/det, vi→oss, dere→dere, de→dem. Distinguishing subject and object forms is a common learner error.",
+      "cefrLevel": "A2",
+      "prerequisites": ["personal-pronouns", "svo-word-order"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["pronoun-choice", "word-order"]
+    },
+    {
+      "id": "subordinate-clauses",
+      "label": "Subordinate clauses and conjunctions (at, fordi, når, hvis)",
+      "description": "Subordinate clauses are introduced by a subordinating conjunction and have straight SVO word order with negation before the verb (ikke after subject). Common conjunctions: at (that), fordi (because), når (when), hvis (if), selv om (even though).",
+      "cefrLevel": "A2",
+      "prerequisites": ["v2-word-order", "negation", "conjunctions"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 7,
+      "errorTags": ["word-order", "negation-placement", "reading-parsing"]
+    },
+    {
+      "id": "relative-clauses",
+      "label": "Relative clauses (som)",
+      "description": "Norwegian relative clauses are introduced by 'som', which serves as both subject and object relative pronoun: 'mannen som bor her' (subject), 'mannen som jeg kjenner' (object). Som cannot be omitted, unlike English 'that'.",
+      "cefrLevel": "A2",
+      "prerequisites": ["subordinate-clauses", "svo-word-order"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 7,
+      "errorTags": ["word-order", "reading-parsing", "wrong-word-different-category"]
+    },
+    {
+      "id": "conjunctions",
+      "label": "Coordinating and subordinating conjunctions",
+      "description": "Coordinating conjunctions (og, men, eller, for, så) join clauses of equal rank and do not change word order. Subordinating conjunctions (fordi, selv om, mens, etter at, før) introduce subordinate clauses with straight word order.",
+      "cefrLevel": "A2",
+      "prerequisites": ["svo-word-order", "v2-word-order"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["word-order", "wrong-word-same-category", "reading-parsing"]
+    },
+    {
+      "id": "advanced-prepositions",
+      "label": "Advanced prepositions and prepositional phrases",
+      "description": "Prepositions with more nuanced or idiomatic uses: hos (at someone's place), innen (within a deadline), overfor (opposite/toward), blant (among), langs (along), rundt (around), samt (as well as in set phrases).",
+      "cefrLevel": "A2",
+      "prerequisites": ["common-prepositions", "svo-word-order"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 5,
+      "errorTags": ["preposition", "wrong-word-same-category", "meaning-misunderstood"]
+    },
+    {
+      "id": "time-expressions",
+      "label": "Time expressions and adverbials",
+      "description": "Expressions of time including: clock times (klokken tre), days of the week (på mandag vs. mandag), months, seasons, frequency adverbs (alltid, ofte, aldri, av og til), and duration phrases (i to timer, for to år siden).",
+      "cefrLevel": "A2",
+      "prerequisites": ["numbers-basic", "common-prepositions", "v2-word-order"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["preposition", "word-order", "spelling"]
+    },
+    {
+      "id": "modal-verbs-advanced",
+      "label": "Modal verbs — extended meanings (burde, trenge, tørre, orke)",
+      "description": "Beyond the four core modals: burde (ought to/should), trenge (need to — used with å in affirmative, without in negative), tørre (dare to), orke (to have the energy to). Past forms and nuanced meanings of all modals.",
+      "cefrLevel": "A2",
+      "prerequisites": ["common-modal-verbs", "infinitive-form"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 5,
+      "errorTags": ["modal-verb", "verb-tense", "meaning-misunderstood"]
+    },
+    {
+      "id": "preterite-irregular-advanced",
+      "label": "Preterite — advanced irregular verbs",
+      "description": "A broader set of strong verb preterites beyond the core eight: skrive→skrev, drikke→drakk, finne→fant, ligge→lå, sitte→satt, falle→falt, holde→holdt, slå→slo, bære→bar.",
+      "cefrLevel": "A2",
+      "prerequisites": ["preterite-irregular-core"],
+      "masteryThreshold": 80,
+      "minAttempts": 30,
+      "minDays": 7,
+      "errorTags": ["verb-tense", "spelling", "verb-conjugation"]
+    },
+    {
+      "id": "indirect-speech",
+      "label": "Indirect speech and reported speech",
+      "description": "Reporting what someone said using 'sa at', 'fortalte at', 'spurte om'. Tense backshift from present to preterite and from perfect to past perfect. Pronoun changes from direct to indirect speech.",
+      "cefrLevel": "A2",
+      "prerequisites": ["subordinate-clauses", "preterite-regular", "perfect-tense"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 7,
+      "errorTags": ["verb-tense", "pronoun-choice", "word-order"]
+    },
+    {
+      "id": "conditional-clauses",
+      "label": "Conditional clauses (hvis/om + present or preterite)",
+      "description": "Real conditionals use 'hvis/om' + present tense in the condition and present or future in the main clause. Unreal conditionals use preterite in both clauses: 'Hvis jeg hadde tid, ville jeg hjelpe.'",
+      "cefrLevel": "A2",
+      "prerequisites": ["subordinate-clauses", "preterite-regular", "common-modal-verbs"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 7,
+      "errorTags": ["verb-tense", "word-order", "reading-parsing"]
+    },
+    {
+      "id": "sentence-adverbials",
+      "label": "Sentence adverbials and their placement",
+      "description": "Adverbs that modify the entire clause (ikke, aldri, alltid, kanskje, nok, vel, jo, da) follow the finite verb in main clauses but precede the finite verb in subordinate clauses. Getting this placement right is a key fluency marker.",
+      "cefrLevel": "A2",
+      "prerequisites": ["negation", "subordinate-clauses"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 7,
+      "errorTags": ["negation-placement", "word-order", "reading-parsing"]
+    },
+    {
+      "id": "genitive",
+      "label": "Genitive — possession with -s",
+      "description": "Norwegian genitive adds -s directly to the owner noun without an apostrophe: Noras bok (Nora's book), mannens hatt (the man's hat). Used more in writing; spoken Norwegian often uses 'sin/sitt/sine' constructions instead.",
+      "cefrLevel": "A2",
+      "prerequisites": ["possessive-pronouns", "definite-articles-singular"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["spelling", "wrong-word-different-category", "reading-parsing"]
+    },
+    {
+      "id": "infinitive-clauses",
+      "label": "Infinitive clauses and complementation",
+      "description": "Extended use of infinitive constructions: infinitive as subject (Å reise er gøy), infinitive after adjectives (vanskelig å forstå), infinitive complements with and without 'å' after specific verbs (begynne å, prøve å, la + bare infinitive).",
+      "cefrLevel": "A2",
+      "prerequisites": ["infinitive-form", "subordinate-clauses"],
+      "masteryThreshold": 80,
+      "minAttempts": 25,
+      "minDays": 5,
+      "errorTags": ["verb-tense", "reading-parsing", "wrong-word-different-category"]
+    },
+    {
+      "id": "word-formation",
+      "label": "Word formation — compounds and common affixes",
+      "description": "Norwegian is highly productive in compounding: two or more nouns joined to form a new noun (tog + stasjon = togstasjon). Common prefixes (u-, mis-, re-) and suffixes (-ig, -lig, -het, -else) to recognise and form new words.",
+      "cefrLevel": "A2",
+      "prerequisites": ["noun-gender", "definite-articles-singular"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["compound-word", "spelling", "noun-gender"]
+    },
+    {
+      "id": "numerals-advanced",
+      "label": "Numerals — ordinals, fractions, and large numbers",
+      "description": "Ordinal numbers (første, andre, tredje…), fractions (en halv, en tredjedel), years and decades (nittiåra, to tusen og tolv), and numbers above 100 (hundre, tusen, million). Agreement of ordinals with nouns.",
+      "cefrLevel": "A2",
+      "prerequisites": ["numbers-basic", "adjective-agreement"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["spelling", "adjective-agreement", "listening-recognition"]
+    },
+    {
+      "id": "imperative",
+      "label": "Imperative mood",
+      "description": "The imperative is formed from the verb stem (infinitive minus final -e for most verbs): spis!, gå!, kjør! Negative imperative adds 'ikke' after the verb: Ikke gå! Polite requests soften the imperative with 'vær så snill å' or 'kan du'.",
+      "cefrLevel": "A2",
+      "prerequisites": ["infinitive-form", "negation"],
+      "masteryThreshold": 80,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["verb-conjugation", "negation-placement", "spelling"]
+    }
+  ]
+}

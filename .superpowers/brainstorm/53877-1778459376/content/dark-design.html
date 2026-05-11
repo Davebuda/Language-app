@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Dark Design</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #07070d; font-family: 'Segoe UI', system-ui, sans-serif; padding: 24px 16px; }
+
+  h1 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 28px; }
+
+  /* Token strip */
+  .tokens { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .token { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .swatch { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); }
+  .tlabel { font-size: 9px; color: rgba(255,255,255,0.35); }
+
+  .row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 20px; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .col-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.07em; }
+  .arrow { font-size: 20px; color: rgba(255,255,255,0.15); padding-top: 90px; }
+
+  /* Phone */
+  .phone { width: 200px; border-radius: 30px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); }
+  .notch { height: 22px; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+  .notch-pill { width: 56px; height: 8px; background: #222; border-radius: 4px; }
+
+  /* ─── LANDING ─── */
+  .s-land { background: #0d0d14; padding: 14px 13px 12px; min-height: 330px; }
+  .ld-logo { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-bottom: 20px; }
+  .ld-h { font-size: 18px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 4px; }
+  .ld-accent { color: #a8ef6a; }
+  .ld-sub { font-size: 9px; color: rgba(255,255,255,0.4); line-height: 1.5; margin-bottom: 14px; }
+  .ld-btn { background: #a8ef6a; color: #0d0d14; border: none; border-radius: 10px; padding: 9px; width: 100%; font-size: 10px; font-weight: 800; margin-bottom: 12px; }
+  .ld-feats { display: flex; flex-direction: column; gap: 5px; }
+  .ld-feat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 9px; padding: 7px 9px; display: flex; gap: 6px; align-items: center; }
+  .ld-feat-icon { font-size: 12px; }
+  .ld-feat-text { font-size: 8px; color: rgba(255,255,255,0.55); line-height: 1.3; }
+  .ld-feat-text b { display: block; color: rgba(255,255,255,0.85); font-size: 9px; }
+
+  /* ─── DASHBOARD ─── */
+  .s-dash { background: #0d0d14; padding: 12px 11px 0; min-height: 330px; }
+  .dh-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .dh-greeting { font-size: 14px; font-weight: 800; color: #fff; }
+  .dh-date { font-size: 8px; color: rgba(255,255,255,0.3); margin-bottom: 2px; }
+  .dh-av { width: 26px; height: 26px; border-radius: 50%; background: #a8ef6a; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #0d0d14; }
+  .dh-card { background: #1a1a26; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 11px; margin-bottom: 10px; }
+  .dh-cl { font-size: 8px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .dh-ct { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 7px; }
+  .dh-pills { display: flex; gap: 4px; flex-wrap: wrap; }
+  .dh-pill { background: rgba(168,239,106,0.12); border: 1px solid rgba(168,239,106,0.2); border-radius: 20px; padding: 2px 7px; font-size: 8px; color: #a8ef6a; }
+  .dh-pill.dim { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+  .dh-sl { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .dh-sl span { color: #a8ef6a; font-size: 8px; }
+  .dh-concepts { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .dh-crow { display: flex; align-items: center; gap: 5px; background: #1a1a26; border-radius: 8px; padding: 5px 7px; border: 1px solid rgba(255,255,255,0.05); }
+  .dh-cdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dh-cname { font-size: 8px; color: rgba(255,255,255,0.7); flex: 1; }
+  .dh-cbar { height: 4px; border-radius: 2px; flex: 1.5; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .dh-cfill { height: 100%; border-radius: 2px; }
+  .dh-cpct { font-size: 8px; color: rgba(255,255,255,0.3); width: 18px; text-align: right; }
+  .dh-start { background: #a8ef6a; color: #0d0d14; border: none; border-radius: 10px; padding: 9px; width: 100%; font-size: 10px; font-weight: 800; margin-bottom: 7px; }
+  .bot-nav { display: flex; justify-content: space-around; padding: 6px 0 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .bn-item { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .bn-icon { font-size: 13px; }
+  .bn-txt { font-size: 6px; color: rgba(255,255,255,0.25); }
+  .bn-item.act .bn-txt { color: #a8ef6a; font-weight: 700; }
+  .bn-item.act .bn-icon { filter: none; }
+
+  /* ─── SESSION ─── */
+  .s-sess { background: #0d0d14; padding: 12px 11px; min-height: 330px; }
+  .sess-bar-wrap { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 10px; }
+  .sess-bar-fill { height: 100%; width: 44%; background: #a8ef6a; border-radius: 2px; }
+  .sess-pill { display: inline-flex; align-items: center; gap: 3px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 3px 8px; font-size: 8px; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+  .ex-card { background: #1a1a26; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 11px; margin-bottom: 8px; }
+  .ex-prompt { font-size: 8px; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+  .ex-sent { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.25; }
+  .ex-inp { width: 100%; padding: 7px 9px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-size: 9px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.6); outline: none; }
+  .check { background: #a8ef6a; color: #0d0d14; border: none; border-radius: 9px; padding: 8px; width: 100%; font-size: 10px; font-weight: 800; margin-top: 7px; }
+  /* repair */
+  .repair { background: rgba(168,239,106,0.06); border: 1px solid rgba(168,239,106,0.15); border-radius: 12px; padding: 9px; }
+  .rep-lbl { font-size: 8px; font-weight: 800; color: #a8ef6a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .rep-txt { font-size: 8px; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 6px; }
+  .rep-drill { background: rgba(255,255,255,0.04); border-radius: 7px; padding: 6px 8px; font-size: 8px; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.06); }
+
+  /* ─── COMPLETE ─── */
+  .s-comp { background: #0d0d14; padding: 14px 12px; min-height: 330px; }
+  .cmp-title { font-size: 14px; font-weight: 800; color: #fff; text-align: center; margin-bottom: 2px; }
+  .cmp-sub { font-size: 9px; color: rgba(255,255,255,0.3); text-align: center; margin-bottom: 12px; }
+  .cmp-circle { width: 76px; height: 76px; border-radius: 50%; border: 5px solid #a8ef6a; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .cmp-num { font-size: 22px; font-weight: 900; color: #fff; line-height: 1; }
+  .cmp-pct { font-size: 8px; color: rgba(255,255,255,0.4); }
+  .cmp-stats { display: flex; justify-content: space-around; margin-bottom: 10px; }
+  .cmp-stat { text-align: center; }
+  .cmp-val { font-size: 12px; font-weight: 800; color: #fff; }
+  .cmp-lbl { font-size: 7px; color: rgba(255,255,255,0.3); }
+  .cmp-card { background: #1a1a26; border: 1px solid rgba(168,239,106,0.15); border-radius: 12px; padding: 10px; margin-bottom: 8px; }
+  .cmp-cl { font-size: 8px; color: rgba(168,239,106,0.7); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .cmp-ct { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .cmp-cd { font-size: 8px; color: rgba(255,255,255,0.45); line-height: 1.4; margin-bottom: 8px; }
+  .cmp-btn { background: #a8ef6a; color: #0d0d14; border: none; border-radius: 8px; padding: 7px; width: 100%; font-size: 9px; font-weight: 800; }
+
+  /* ─── PROGRESS ─── */
+  .s-prog { background: #0d0d14; padding: 12px 11px 0; min-height: 330px; }
+  .pr-title { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+  .pr-sub { font-size: 8px; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+  .pr-sec-lbl { font-size: 8px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; margin-top: 8px; }
+  .pr-row { display: flex; align-items: center; gap: 5px; background: #1a1a26; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 5px 7px; margin-bottom: 3px; }
+  .pr-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .pr-name { font-size: 8px; color: rgba(255,255,255,0.7); flex: 1; }
+  .pr-bar { height: 4px; border-radius: 2px; flex: 1.5; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .pr-fill { height: 100%; border-radius: 2px; }
+  .pr-pct { font-size: 8px; color: rgba(255,255,255,0.3); width: 20px; text-align: right; }
+  .pr-lock { font-size: 7px; color: rgba(255,255,255,0.2); }
+
+  /* design spec panel */
+  .spec-panel { background: #1a1a26; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 18px 20px; max-width: 980px; margin: 16px auto 0; }
+  .spec-panel h3 { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+  .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .spec-item { display: flex; gap: 8px; align-items: flex-start; }
+  .spec-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; border: 1px solid rgba(255,255,255,0.1); }
+  .spec-text { font-size: 10px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+  .spec-text strong { display: block; color: rgba(255,255,255,0.8); }
+
+  .changed-badge { display: inline-block; background: rgba(168,239,106,0.15); color: #a8ef6a; border-radius: 20px; padding: 2px 8px; font-size: 10px; font-weight: 700; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<h1>NorskCoach — Updated Design (Dark throughout)</h1>
+<div class="changed-badge">⚡ New direction — all screens dark, green accent</div>
+<p class="sub">Every screen: dark (#0d0d14 bg, #1a1a26 cards). Primary accent: lime green #a8ef6a. Everything else stays the same.</p>
+
+<!-- Token strip -->
+<div class="tokens">
+  <div class="token"><div class="swatch" style="background:#0d0d14"></div><div class="tlabel">Background</div></div>
+  <div class="token"><div class="swatch" style="background:#1a1a26"></div><div class="tlabel">Cards</div></div>
+  <div class="token"><div class="swatch" style="background:#a8ef6a"></div><div class="tlabel">Green ✦</div></div>
+  <div class="token"><div class="swatch" style="background:rgba(168,239,106,0.08)"></div><div class="tlabel">Green tint</div></div>
+  <div class="token"><div class="swatch" style="background:rgba(255,255,255,0.07)"></div><div class="tlabel">Border</div></div>
+  <div class="token"><div class="swatch" style="background:#ffffff"></div><div class="tlabel">Text</div></div>
+  <div class="token"><div class="swatch" style="background:rgba(255,255,255,0.35)"></div><div class="tlabel">Muted</div></div>
+</div>
+
+<!-- Row 1 -->
+<div class="row">
+  <!-- Landing -->
+  <div class="col">
+    <div class="phone" style="background:#0d0d14">
+      <div class="notch" style="background:#0d0d14"><div class="notch-pill"></div></div>
+      <div class="s-land">
+        <div class="ld-logo">NORSKCOACH</div>
+        <div class="ld-h">Fluent Norwegian,<br><span class="ld-accent">guided by AI.</span></div>
+        <div class="ld-sub">A personal coach that finds your weak spots and fixes them with targeted practice.</div>
+        <button class="ld-btn">Start gratis →</button>
+        <div class="ld-feats">
+          <div class="ld-feat"><div class="ld-feat-icon">🧠</div><div class="ld-feat-text"><b>Diagnoses daily</b>Finds exactly where you're stuck</div></div>
+          <div class="ld-feat"><div class="ld-feat-icon">🔁</div><div class="ld-feat-text"><b>Repair loop</b>Every wrong answer gets fixed</div></div>
+          <div class="ld-feat"><div class="ld-feat-icon">📈</div><div class="ld-feat-text"><b>Concept graph</b>Grammar in dependency order</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">① Landing</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Dashboard -->
+  <div class="col">
+    <div class="phone" style="background:#0d0d14">
+      <div class="notch" style="background:#0d0d14"><div class="notch-pill"></div></div>
+      <div class="s-dash">
+        <div class="dh-head">
+          <div><div class="dh-date">Mandag, 11. mai</div><div class="dh-greeting">God kveld, Gjest 🌙</div></div>
+          <div class="dh-av">G</div>
+        </div>
+        <div class="dh-card">
+          <div class="dh-cl">I dag · ~12 min</div>
+          <div class="dh-ct">V2 ordstilling</div>
+          <div class="dh-pills">
+            <div class="dh-pill">3 reparasjoner</div>
+            <div class="dh-pill dim">4 repetisjon</div>
+            <div class="dh-pill dim">2 nytt</div>
+          </div>
+        </div>
+        <div class="dh-sl">Konseptfremgang <span>Se alle →</span></div>
+        <div class="dh-concepts">
+          <div class="dh-crow"><div class="dh-cdot" style="background:#a8ef6a"></div><div class="dh-cname">Noun gender</div><div class="dh-cbar"><div class="dh-cfill" style="width:62%;background:#a8ef6a"></div></div><div class="dh-cpct">62%</div></div>
+          <div class="dh-crow"><div class="dh-cdot" style="background:#7eb8ef"></div><div class="dh-cname">Articles en/et</div><div class="dh-cbar"><div class="dh-cfill" style="width:88%;background:#7eb8ef"></div></div><div class="dh-cpct">88%</div></div>
+          <div class="dh-crow"><div class="dh-cdot" style="background:#ef7eb8"></div><div class="dh-cname">Definite form</div><div class="dh-cbar"><div class="dh-cfill" style="width:41%;background:#ef7eb8"></div></div><div class="dh-cpct">41%</div></div>
+        </div>
+        <button class="dh-start">Start dagens økt →</button>
+        <div class="bot-nav">
+          <div class="bn-item act"><div class="bn-icon">🏠</div><div class="bn-txt">Hjem</div></div>
+          <div class="bn-item"><div class="bn-icon">📚</div><div class="bn-txt">Økt</div></div>
+          <div class="bn-item"><div class="bn-icon">📊</div><div class="bn-txt">Fremgang</div></div>
+          <div class="bn-item"><div class="bn-icon">👤</div><div class="bn-txt">Profil</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">② Dashboard</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Session -->
+  <div class="col">
+    <div class="phone" style="background:#0d0d14">
+      <div class="notch" style="background:#0d0d14"><div class="notch-pill"></div></div>
+      <div class="s-sess">
+        <div class="sess-bar-wrap"><div class="sess-bar-fill"></div></div>
+        <div class="sess-pill">✏️ Oversettelse · 3 av 9</div>
+        <div class="ex-card">
+          <div class="ex-prompt">Oversett til engelsk:</div>
+          <div class="ex-sent">Jeg har en bil.</div>
+          <input class="ex-inp" placeholder="I have a car." disabled />
+          <button class="check">Sjekk svar</button>
+        </div>
+        <div class="repair">
+          <div class="rep-lbl">🔁 Reparasjonsløkke</div>
+          <div class="rep-txt"><strong style="color:rgba(255,255,255,0.85)">Nesten!</strong> "en bil" er hankjønn. Husk: hankjønn → en, intetkjønn → et.</div>
+          <div class="rep-drill"><strong style="color:rgba(255,255,255,0.75)">Mikroøvelse:</strong> "en bil" eller "et bil"?</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">③ Session + Repair</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Complete -->
+  <div class="col">
+    <div class="phone" style="background:#0d0d14">
+      <div class="notch" style="background:#0d0d14"><div class="notch-pill"></div></div>
+      <div class="s-comp">
+        <div class="cmp-title">Flott jobb! 👏</div>
+        <div class="cmp-sub">Dagens økt fullført</div>
+        <div class="cmp-circle"><div class="cmp-num">87</div><div class="cmp-pct">%</div></div>
+        <div class="cmp-stats">
+          <div class="cmp-stat"><div class="cmp-val">87%</div><div class="cmp-lbl">Nøyaktighet</div></div>
+          <div class="cmp-stat"><div class="cmp-val">11:32</div><div class="cmp-lbl">Tid</div></div>
+          <div class="cmp-stat"><div class="cmp-val">3</div><div class="cmp-lbl">Konsepter</div></div>
+        </div>
+        <div class="cmp-card">
+          <div class="cmp-cl">🌱 Neste økt</div>
+          <div class="cmp-ct">Articles — fordypning</div>
+          <div class="cmp-cd">Du gjør det bra! Neste gang fokuserer vi på inversjon etter adverbialer.</div>
+          <button class="cmp-btn">Gå til dashbord</button>
+        </div>
+        <div class="bot-nav">
+          <div class="bn-item"><div class="bn-icon">🏠</div><div class="bn-txt">Hjem</div></div>
+          <div class="bn-item act"><div class="bn-icon">📚</div><div class="bn-txt">Økt</div></div>
+          <div class="bn-item"><div class="bn-icon">📊</div><div class="bn-txt">Fremgang</div></div>
+          <div class="bn-item"><div class="bn-icon">👤</div><div class="bn-txt">Profil</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">④ Completion</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- Progress -->
+  <div class="col">
+    <div class="phone" style="background:#0d0d14">
+      <div class="notch" style="background:#0d0d14"><div class="notch-pill"></div></div>
+      <div class="s-prog">
+        <div class="pr-title">Konsepter</div>
+        <div class="pr-sub">A1 — 0 av 22 mestret</div>
+        <div class="pr-sec-lbl">🟢 Mestret</div>
+        <div class="pr-row"><div class="pr-dot" style="background:#a8ef6a"></div><div class="pr-name">Presens tense</div><div class="pr-bar"><div class="pr-fill" style="width:88%;background:#a8ef6a"></div></div><div class="pr-pct">88%</div></div>
+        <div class="pr-sec-lbl">🔶 I gang</div>
+        <div class="pr-row"><div class="pr-dot" style="background:#7eb8ef"></div><div class="pr-name">Noun gender</div><div class="pr-bar"><div class="pr-fill" style="width:62%;background:#7eb8ef"></div></div><div class="pr-pct">62%</div></div>
+        <div class="pr-row"><div class="pr-dot" style="background:#ef7eb8"></div><div class="pr-name">Articles en/et</div><div class="pr-bar"><div class="pr-fill" style="width:41%;background:#ef7eb8"></div></div><div class="pr-pct">41%</div></div>
+        <div class="pr-sec-lbl">🔒 Låst</div>
+        <div class="pr-row"><div class="pr-dot" style="background:rgba(255,255,255,0.15)"></div><div class="pr-name">Adjektiv</div><div class="pr-bar"></div><div class="pr-lock">Krever genus</div></div>
+        <div class="pr-row"><div class="pr-dot" style="background:rgba(255,255,255,0.15)"></div><div class="pr-name">Preteritum</div><div class="pr-bar"></div><div class="pr-lock">Krever presens</div></div>
+        <div class="bot-nav">
+          <div class="bn-item"><div class="bn-icon">🏠</div><div class="bn-txt">Hjem</div></div>
+          <div class="bn-item"><div class="bn-icon">📚</div><div class="bn-txt">Økt</div></div>
+          <div class="bn-item act"><div class="bn-icon">📊</div><div class="bn-txt">Fremgang</div></div>
+          <div class="bn-item"><div class="bn-icon">👤</div><div class="bn-txt">Profil</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-label">⑤ Fremgang</div>
+  </div>
+</div>
+
+<!-- Spec panel -->
+<div class="spec-panel">
+  <h3>What changes from the previous plan</h3>
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-swatch" style="background:#a8ef6a"></div><div class="spec-text"><strong>Green replaces orange</strong>All CTAs, progress bars, active states, repair loop tint — #a8ef6a lime green</div></div>
+    <div class="spec-item"><div class="spec-swatch" style="background:#0d0d14"></div><div class="spec-text"><strong>Dark everywhere</strong>#0d0d14 bg on ALL screens. No cream. Dashboard, session, complete, progress — all dark.</div></div>
+    <div class="spec-item"><div class="spec-swatch" style="background:#1a1a26"></div><div class="spec-text"><strong>Cards are #1a1a26</strong>Surface cards slightly lighter than bg with 1px rgba(255,255,255,0.07) border</div></div>
+    <div class="spec-item"><div class="spec-swatch" style="background:rgba(168,239,106,0.08)"></div><div class="spec-text"><strong>Repair loop = green tint</strong>rgba(168,239,106,0.06) bg, rgba(168,239,106,0.15) border. Still a mode-shift signal.</div></div>
+    <div class="spec-item"><div class="spec-swatch" style="background:rgba(255,255,255,0.07)"></div><div class="spec-text"><strong>Subtle borders</strong>rgba(255,255,255,0.07) on all cards. No hard outlines.</div></div>
+    <div class="spec-item"><div class="spec-swatch" style="background:#ffffff"></div><div class="spec-text"><strong>White text hierarchy</strong>#fff primary, rgba(255,255,255,0.6) body, rgba(255,255,255,0.3) muted/labels</div></div>
+  </div>
+</div>
+</body>
+</html>

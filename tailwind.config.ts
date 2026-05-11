@@ -62,17 +62,19 @@ const config: Config = {
         },
         base: '#09090e',
         nc: {
+          // Solid colors — Tailwind handles hex fine
           bg: '#0d0d14',
           card: '#1a1a26',
           green: '#a8ef6a',
-          'green-tint': 'rgba(168,239,106,0.08)',
-          'green-border': 'rgba(168,239,106,0.18)',
-          border: 'rgba(255,255,255,0.07)',
-          'repair-bg': 'rgba(168,239,106,0.06)',
-          'repair-border': 'rgba(168,239,106,0.15)',
-          'text-muted': 'rgba(255,255,255,0.35)',
-          'text-dim': 'rgba(255,255,255,0.55)',
-          'border-subtle': 'rgba(255,255,255,0.04)',
+          // rgba colors — reference CSS vars so Tailwind emits valid CSS
+          'green-tint': 'var(--nc-green-tint)',
+          'green-border': 'var(--nc-green-border)',
+          border: 'var(--nc-border)',
+          'repair-bg': 'var(--nc-repair-bg)',
+          'repair-border': 'var(--nc-repair-border)',
+          'text-muted': 'var(--nc-text-muted)',
+          'text-dim': 'var(--nc-text-dim)',
+          'border-subtle': 'var(--nc-border-subtle)',
         },
       },
       fontFamily: {

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Full App Design</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ece4; font-family: 'Segoe UI', system-ui, sans-serif; padding: 24px; }
+
+  h1 { font-size: 22px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  .desc { font-size: 13px; color: #666; margin-bottom: 28px; }
+
+  .screen-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 220px);
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* Phone shell */
+  .phone {
+    width: 220px;
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .phone-notch {
+    height: 22px;
+    background: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+  }
+  .notch-pill {
+    width: 60px; height: 8px;
+    background: #1a1a2e;
+    border-radius: 4px;
+  }
+  .phone-body { padding: 0; }
+  .screen-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  /* ======================== LANDING ======================== */
+  .landing { background: #0d0d14; min-height: 380px; padding: 16px 14px 14px; }
+  .landing-logo { font-size: 11px; font-weight: 700; color: #fff; opacity: 0.5; margin-bottom: 28px; }
+  .landing-headline { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+  .landing-sub { font-size: 10px; color: rgba(255,255,255,0.5); line-height: 1.5; margin-bottom: 20px; }
+  .landing-btn {
+    background: #e87c3e;
+    color: white; border: none;
+    border-radius: 10px; padding: 9px 18px;
+    font-size: 11px; font-weight: 700;
+    cursor: pointer; width: 100%;
+    margin-bottom: 20px;
+  }
+  .landing-features { display: flex; flex-direction: column; gap: 8px; }
+  .landing-feat {
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px; padding: 8px 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .feat-icon { font-size: 14px; }
+  .feat-text { font-size: 9px; color: rgba(255,255,255,0.75); line-height: 1.3; }
+  .feat-text strong { color: white; display: block; font-size: 10px; }
+
+  /* ======================== DASHBOARD ======================== */
+  .dashboard { background: #faf7f0; min-height: 380px; padding: 14px 12px 0; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .dash-greeting { font-size: 14px; font-weight: 700; color: #1a1a2e; }
+  .dash-avatar { width: 28px; height: 28px; border-radius: 50%; background: #e87c3e; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; font-weight: 700; }
+  .today-card {
+    background: #1a1a2e; border-radius: 14px;
+    padding: 12px; margin-bottom: 12px; color: white;
+  }
+  .today-label { font-size: 9px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .today-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .today-stats { display: flex; gap: 12px; }
+  .today-stat { font-size: 10px; opacity: 0.7; }
+  .today-stat strong { font-size: 15px; opacity: 1; display: block; font-weight: 800; }
+  .dash-section-label { font-size: 9px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .concept-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .concept-node {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; font-weight: 700; color: white;
+    position: relative; cursor: pointer;
+    flex-shrink: 0;
+  }
+  .concept-node .cn-label { font-size: 5.5px; text-align: center; line-height: 1.1; }
+  .dash-streak {
+    display: flex; align-items: center; gap: 6px;
+    background: #fff8ef; border-radius: 10px;
+    padding: 8px 10px; margin-top: 10px;
+    border: 1px solid #fde8cc;
+  }
+  .streak-fire { font-size: 14px; }
+  .streak-num { font-size: 15px; font-weight: 800; color: #e87c3e; }
+  .streak-text { font-size: 9px; color: #888; }
+  .dash-start-btn {
+    background: #e87c3e; color: white;
+    border: none; border-radius: 10px;
+    padding: 10px; width: 100%;
+    font-size: 11px; font-weight: 700; cursor: pointer;
+    margin-top: 10px;
+  }
+  .dash-nav {
+    display: flex; justify-content: space-around;
+    padding: 8px 0 6px; border-top: 1px solid #eee;
+    margin-top: 10px;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .nav-icon { font-size: 14px; }
+  .nav-text { font-size: 7px; color: #bbb; }
+  .nav-item.active .nav-text { color: #e87c3e; }
+  .nav-item.active .nav-icon { filter: none; }
+
+  /* ======================== SESSION ======================== */
+  .session-screen { background: #faf7f0; min-height: 380px; padding: 12px; }
+  .progress-bar-wrap { height: 5px; background: #ede9e0; border-radius: 3px; margin-bottom: 14px; }
+  .progress-fill { height: 100%; width: 40%; background: #e87c3e; border-radius: 3px; }
+  .ex-type-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #fff; border: 1px solid #eee;
+    border-radius: 20px; padding: 4px 10px;
+    font-size: 9px; font-weight: 600; color: #888;
+    margin-bottom: 10px;
+  }
+  .exercise-card {
+    background: white; border-radius: 16px;
+    padding: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 10px;
+  }
+  .ex-prompt { font-size: 9px; color: #aaa; margin-bottom: 6px; }
+  .ex-sentence { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px; line-height: 1.3; }
+  .ex-input {
+    width: 100%; padding: 8px 10px;
+    border: 1.5px solid #ede9e0; border-radius: 8px;
+    font-size: 11px; background: #faf7f0;
+    color: #333; outline: none;
+  }
+  .ex-input:focus { border-color: #e87c3e; }
+  .check-btn {
+    background: #1a1a2e; color: white;
+    border: none; border-radius: 10px;
+    padding: 9px; width: 100%;
+    font-size: 11px; font-weight: 700; cursor: pointer; margin-top: 8px;
+  }
+  /* repair loop */
+  .repair-card {
+    background: #fff8ef; border-radius: 14px;
+    padding: 12px; border: 1.5px solid #fde8cc;
+  }
+  .repair-label { font-size: 9px; font-weight: 700; color: #e87c3e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .repair-explanation { font-size: 10px; color: #555; line-height: 1.5; margin-bottom: 8px; }
+  .repair-drill {
+    background: white; border-radius: 8px;
+    padding: 8px; font-size: 10px; color: #333;
+    border: 1px solid #fde8cc;
+  }
+
+  /* ======================== COMPLETION ======================== */
+  .completion-screen { background: #faf7f0; min-height: 380px; padding: 14px 12px; }
+  .comp-header { text-align: center; margin-bottom: 16px; }
+  .comp-title { font-size: 14px; font-weight: 800; color: #1a1a2e; margin-bottom: 2px; }
+  .comp-subtitle { font-size: 10px; color: #888; }
+  .score-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    border: 5px solid #e87c3e;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    flex-direction: column;
+  }
+  .score-num { font-size: 22px; font-weight: 900; color: #1a1a2e; line-height: 1; }
+  .score-pct { font-size: 9px; color: #888; }
+  .stats-row { display: flex; justify-content: space-around; margin-bottom: 12px; }
+  .stat-item { text-align: center; }
+  .stat-val { font-size: 13px; font-weight: 800; color: #1a1a2e; }
+  .stat-lbl { font-size: 8px; color: #aaa; }
+  .completion-card {
+    background: #2d4a2d; border-radius: 14px;
+    padding: 12px; color: white;
+  }
+  .cc-label { font-size: 9px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .cc-title { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .cc-desc { font-size: 9px; opacity: 0.75; line-height: 1.4; margin-bottom: 10px; }
+  .cc-btn {
+    background: #7cb87e; color: white;
+    border: none; border-radius: 8px;
+    padding: 8px; width: 100%;
+    font-size: 10px; font-weight: 700; cursor: pointer;
+  }
+
+  .arrow { font-size: 28px; color: #ccc; display: flex; align-items: center; padding-top: 100px; }
+
+  .legend {
+    margin-top: 28px;
+    background: white;
+    border-radius: 14px;
+    padding: 16px 20px;
+    max-width: 920px;
+    margin-left: auto; margin-right: auto;
+  }
+  .legend h3 { font-size: 13px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+  .legend-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .legend-item { display: flex; gap: 8px; align-items: flex-start; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .legend-text { font-size: 11px; color: #555; line-height: 1.4; }
+  .legend-text strong { color: #1a1a2e; display: block; }
+</style>
+</head>
+<body>
+<h1>NorskCoach — Full App Screen Design</h1>
+<p class="desc">Four core screens mapped to the design mockup. Based on your provided design image. Review and confirm direction.</p>
+
+<div class="screen-grid">
+
+  <!-- LANDING -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill" style="background:#555"></div></div>
+      <div class="phone-body">
+        <div class="landing">
+          <div class="landing-logo">NorskCoach</div>
+          <div class="landing-headline">Lær norsk med selvtillit.</div>
+          <div class="landing-sub">A personal coach that finds your weak spots and fixes them with targeted practice.</div>
+          <button class="landing-btn">Start gratis →</button>
+          <div class="landing-features">
+            <div class="landing-feat">
+              <div class="feat-icon">🧠</div>
+              <div class="feat-text"><strong>Diagnoses you daily</strong>Finds exactly where you're stuck</div>
+            </div>
+            <div class="landing-feat">
+              <div class="feat-icon">🔁</div>
+              <div class="feat-text"><strong>Repair loop</strong>Every wrong answer gets fixed, not skipped</div>
+            </div>
+            <div class="landing-feat">
+              <div class="feat-icon">📈</div>
+              <div class="feat-text"><strong>Concept graph</strong>Grammar in dependency order</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="screen-label">① Landing</div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="phone-body">
+        <div class="dashboard">
+          <div class="dash-header">
+            <div>
+              <div style="font-size:9px;color:#aaa;margin-bottom:2px">Mandag, 11. mai</div>
+              <div class="dash-greeting">Hei, Anna! 👋</div>
+            </div>
+            <div class="dash-avatar">A</div>
+          </div>
+          <div class="today-card">
+            <div class="today-label">I dag</div>
+            <div class="today-title">V2 ordstilling</div>
+            <div class="today-stats">
+              <div class="today-stat"><strong>3</strong>Reparasjoner</div>
+              <div class="today-stat"><strong>4</strong>Repetisjon</div>
+              <div class="today-stat"><strong>2</strong>Nytt</div>
+            </div>
+          </div>
+          <div class="dash-section-label">Concept Memory Map</div>
+          <div class="concept-grid">
+            <div class="concept-node" style="background:#e87c3e" title="V2 word order"><div class="cn-label">V2<br>orden</div></div>
+            <div class="concept-node" style="background:#7cb87e" title="Present tense"><div class="cn-label">Presens</div></div>
+            <div class="concept-node" style="background:#5b8fd4" title="Nouns"><div class="cn-label">Substantiv</div></div>
+            <div class="concept-node" style="background:#c85c8a" title="Gender"><div class="cn-label">Genus</div></div>
+            <div class="concept-node" style="background:#d4a843" title="Articles"><div class="cn-label">Artikkel</div></div>
+            <div class="concept-node" style="background:#8b5e8b" title="Adjectives"><div class="cn-label">Adjektiv</div></div>
+            <div class="concept-node" style="background:#e05c4b" title="Negation"><div class="cn-label">Negasjon</div></div>
+            <div class="concept-node" style="background:#4abba5" title="Questions"><div class="cn-label">Spørsmål</div></div>
+            <div class="concept-node" style="background:#aaa" title="Locked"><div class="cn-label">🔒</div></div>
+            <div class="concept-node" style="background:#aaa" title="Locked"><div class="cn-label">🔒</div></div>
+          </div>
+          <div class="dash-streak">
+            <div class="streak-fire">🔥</div>
+            <div class="streak-num">124</div>
+            <div class="streak-text">dagers streak</div>
+          </div>
+          <button class="dash-start-btn">Start dagens økt →</button>
+          <div class="dash-nav">
+            <div class="nav-item active"><div class="nav-icon">🏠</div><div class="nav-text">Hjem</div></div>
+            <div class="nav-item"><div class="nav-icon">📚</div><div class="nav-text">Økt</div></div>
+            <div class="nav-item"><div class="nav-icon">📊</div><div class="nav-text">Fremgang</div></div>
+            <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-text">Profil</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="screen-label">② Dashboard</div>
+  </div>
+
+  <!-- SESSION / EXERCISE -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="phone-body">
+        <div class="session-screen">
+          <div class="progress-bar-wrap"><div class="progress-fill"></div></div>
+          <div class="ex-type-pill">✏️ Oversettelse · 3 av 9</div>
+          <div class="exercise-card">
+            <div class="ex-prompt">Oversett til engelsk:</div>
+            <div class="ex-sentence">Jeg har en bil.</div>
+            <input class="ex-input" placeholder="I have a car." disabled />
+            <button class="check-btn">Sjekk svar</button>
+          </div>
+          <!-- Repair loop (shown after wrong answer) -->
+          <div class="repair-card">
+            <div class="repair-label">🔁 Reparasjonsløkke</div>
+            <div class="repair-explanation">
+              <strong>Nesten!</strong> "en bil" bruker artikkel <em>en</em> fordi <em>bil</em> er hankjønn. Husk: hankjønn → en, intetkjønn → et.
+            </div>
+            <div class="repair-drill">
+              <strong>Mikroøvelse:</strong> Hva er riktig? "en bil" eller "et bil"?
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="screen-label">③ Session + Repair</div>
+  </div>
+
+  <!-- COMPLETION -->
+  <div>
+    <div class="phone">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="phone-body">
+        <div class="completion-screen">
+          <div class="comp-header">
+            <div class="comp-title">Flott jobbet, Anna! 👏</div>
+            <div class="comp-subtitle">Dagens økt fullført</div>
+          </div>
+          <div class="score-circle">
+            <div class="score-num">92</div>
+            <div class="score-pct">%</div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-item"><div class="stat-val">92%</div><div class="stat-lbl">Nøyaktighet</div></div>
+            <div class="stat-item"><div class="stat-val">11:32</div><div class="stat-lbl">Tid</div></div>
+            <div class="stat-item"><div class="stat-val">3</div><div class="stat-lbl">Konsepter</div></div>
+          </div>
+          <div class="completion-card">
+            <div class="cc-label">🌱 Neste økt</div>
+            <div class="cc-title">V2 ordstilling (fordypning)</div>
+            <div class="cc-desc">Du gjør det bra med V2! Neste gang fokuserer vi på inversjon etter adverbialer.</div>
+            <button class="cc-btn">Gå til dashbord</button>
+          </div>
+          <div class="dash-nav" style="margin-top:12px">
+            <div class="nav-item"><div class="nav-icon">🏠</div><div class="nav-text">Hjem</div></div>
+            <div class="nav-item active"><div class="nav-icon">📚</div><div class="nav-text">Økt</div></div>
+            <div class="nav-item"><div class="nav-icon">📊</div><div class="nav-text">Fremgang</div></div>
+            <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-text">Profil</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="screen-label">④ Completion</div>
+  </div>
+
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <h3>Design decisions baked in</h3>
+  <div class="legend-grid">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#0d0d14"></div>
+      <div class="legend-text"><strong>Dark landing, warm cream screens</strong>Landing stays #0d0d14 (matches your image). Dashboard/session/completion use warm #faf7f0.</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#e87c3e"></div>
+      <div class="legend-text"><strong>Orange primary accent</strong>All CTAs, progress bars, streak display. Warm, not purple (per CLAUDE.md ban).</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#7cb87e"></div>
+      <div class="legend-text"><strong>Green for success/completion</strong>Completion card background, mastered concept nodes, correct answer feedback.</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#fff8ef"></div>
+      <div class="legend-text"><strong>Repair loop = warm amber tint</strong>Inline below exercise. Mode shift is visible but not alarming. Never a red flash of failure.</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#5b8fd4"></div>
+      <div class="legend-text"><strong>Concept nodes = colour-coded by status</strong>Each concept gets a distinct hue. Grey + lock for prerequisites not yet unlocked.</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#1a1a2e"></div>
+      <div class="legend-text"><strong>Guest mode — no login required</strong>Uses a guest name ("Anna" placeholder). Banner at top offers sign-in to sync. All engine features fully functional.</div>
+    </div>
+  </div>
+</div>
+
+<p style="text-align:center;margin-top:20px;font-size:11px;color:#aaa">Click on any screen if you want to flag it — then tell me what to change in the terminal.</p>
+
+<script>
+// Basic click to highlight
+document.querySelectorAll('.phone').forEach(p => {
+  p.style.cursor = 'pointer';
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.phone').forEach(x => x.style.outline = 'none');
+    p.style.outline = '3px solid #e87c3e';
+  });
+});
+</script>
+</body>
+</html>

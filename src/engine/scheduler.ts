@@ -8,35 +8,48 @@ import { getUnlockedConcepts } from '@/types/concepts';
 
 const AVG_EXERCISE_SECONDS = 45; // average exercise duration
 
-// Exercise types suited for remediation (active production)
-const REMEDIATION_EXERCISES: ExerciseType[] = [
+// Exercise types by learning goal
+const PRODUCTION_EXERCISES: ExerciseType[] = [
   'sentence-transformation',
   'translation-to-norwegian',
   'fill-in-blank',
   'word-order',
 ];
-
-// Exercise types suited for review (recognition and quick recall)
-const REVIEW_EXERCISES: ExerciseType[] = [
+const RECOGNITION_EXERCISES: ExerciseType[] = [
   'translation-to-english',
   'listening-comprehension',
   'speed-round',
 ];
 
-// Exercise types for new material
+// Merged pools used when productionGap is neutral
+const REMEDIATION_EXERCISES: ExerciseType[] = [...PRODUCTION_EXERCISES];
+const REVIEW_EXERCISES: ExerciseType[] = [...RECOGNITION_EXERCISES];
 const NEW_MATERIAL_EXERCISES: ExerciseType[] = [
   'translation-to-norwegian',
   'fill-in-blank',
 ];
 
+// When the learner's productionGap > 30: push production exercises.
+// When < -30: push recognition exercises. Otherwise use the default pool.
+function resolvePool(
+  defaultPool: ExerciseType[],
+  productionGap: number,
+): ExerciseType[] {
+  if (productionGap > 30) return PRODUCTION_EXERCISES;
+  if (productionGap < -30) return RECOGNITION_EXERCISES;
+  return defaultPool;
+}
+
 function pickExerciseType(
   pool: ExerciseType[],
-  recentlyUsed: ExerciseType[]
+  recentlyUsed: ExerciseType[],
+  productionGap = 0,
 ): ExerciseType {
+  const adjusted = resolvePool(pool, productionGap);
   // Avoid repeating the same type more than twice in a row
   const lastTwo = recentlyUsed.slice(-2);
-  const filtered = pool.filter((t) => !lastTwo.includes(t));
-  const source = filtered.length > 0 ? filtered : pool;
+  const filtered = adjusted.filter((t) => !lastTwo.includes(t));
+  const source = filtered.length > 0 ? filtered : adjusted;
   return source[Math.floor(Math.random() * source.length)];
 }
 
@@ -74,7 +87,7 @@ export interface SchedulerOutput {
 }
 
 export function generateSession(input: SchedulerInput): SchedulerOutput {
-  const { fingerprint, graph, availableSentenceIds } = input;
+  const { fingerprint, graph } = input;
   const recipe: SessionRecipe = { ...DEFAULT_SESSION_RECIPE, ...input.recipe };
 
   const masteredIds = new Set(
@@ -110,10 +123,11 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     exercises: ExerciseType[],
     purpose: SessionItem['purpose']
   ) {
-    const sentences = availableSentenceIds[conceptId] ?? [];
-    if (sentences.length === 0) return;
-    const contentId = sentences[Math.floor(Math.random() * sentences.length)];
-    const exerciseType = pickExerciseType(exercises, usedExerciseTypes);
+    // Use 'placeholder' as contentId — content is resolved at render time by
+    // the AI content resolution layer in useSession, not at session planning time.
+    const contentId = `pending:${conceptId}`;
+    const gap = fingerprint.productionGap[conceptId] ?? 0;
+    const exerciseType = pickExerciseType(exercises, usedExerciseTypes, gap);
     usedExerciseTypes.push(exerciseType);
     items.push(makeItem(`item-${itemIndex++}`, conceptId, contentId, exerciseType, purpose));
   }

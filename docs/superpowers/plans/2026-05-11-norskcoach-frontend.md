@@ -4,6 +4,8 @@
 
 **Goal:** Build all six screens (landing, onboarding, dashboard, session, complete, progress) wired to the live adaptive engine, working in full guest mode with no login required.
 
+> **DESIGN DIRECTION (updated):** Dark UI throughout — `#0d0d14` background on ALL screens, `#1a1a26` cards, lime green `#a8ef6a` as the single accent color. No cream/light mode. Text is white hierarchy. See Task 1 for the full token set.
+
 **Architecture:** Next.js App Router pages for each route. Zustand stores (`useSessionStore`, `useFingerprintStore`) carry state across navigation. IndexedDB persists the fingerprint. Mock sentences in `src/lib/mock-sentences.ts` provide dev content until Supabase is seeded.
 
 **Tech Stack:** Next.js 15, React 19, TypeScript, Tailwind CSS, Framer Motion, Zustand, `idb`, `lucide-react`, shadcn/ui Button.
@@ -22,14 +24,26 @@
 Open `src/app/globals.css`. In the `:root` block (after the existing variables), add:
 
 ```css
-/* NorskCoach app tokens */
---nc-orange: #e87c3e;
---nc-cream: #faf7f0;
---nc-navy: #1a1a2e;
---nc-green: #7cb87e;
---nc-repair-bg: #fff8ef;
---nc-repair-border: #fde8cc;
---nc-muted: #ede9e0;
+/* NorskCoach dark design tokens */
+--nc-bg: #0d0d14;
+--nc-card: #1a1a26;
+--nc-green: #a8ef6a;
+--nc-green-tint: rgba(168, 239, 106, 0.08);
+--nc-green-border: rgba(168, 239, 106, 0.18);
+--nc-border: rgba(255, 255, 255, 0.07);
+--nc-border-subtle: rgba(255, 255, 255, 0.04);
+--nc-text: #ffffff;
+--nc-text-muted: rgba(255, 255, 255, 0.35);
+--nc-text-dim: rgba(255, 255, 255, 0.55);
+--nc-repair-bg: rgba(168, 239, 106, 0.06);
+--nc-repair-border: rgba(168, 239, 106, 0.15);
+```
+
+Also update the `body` background in globals.css to use the token:
+```css
+body {
+  background-color: #0d0d14;
+}
 ```
 
 - [ ] **Step 2: Add Tailwind color tokens**
@@ -38,13 +52,16 @@ In `tailwind.config.ts`, inside `theme.extend.colors`, add:
 
 ```ts
 nc: {
-  orange: '#e87c3e',
-  cream: '#faf7f0',
-  navy: '#1a1a2e',
-  green: '#7cb87e',
-  'repair-bg': '#fff8ef',
-  'repair-border': '#fde8cc',
-  muted: '#ede9e0',
+  bg: '#0d0d14',
+  card: '#1a1a26',
+  green: '#a8ef6a',
+  'green-tint': 'rgba(168,239,106,0.08)',
+  'green-border': 'rgba(168,239,106,0.18)',
+  border: 'rgba(255,255,255,0.07)',
+  'repair-bg': 'rgba(168,239,106,0.06)',
+  'repair-border': 'rgba(168,239,106,0.15)',
+  'text-muted': 'rgba(255,255,255,0.35)',
+  'text-dim': 'rgba(255,255,255,0.55)',
 },
 ```
 
