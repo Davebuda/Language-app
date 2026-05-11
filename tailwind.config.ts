@@ -43,45 +43,42 @@ const config: Config = {
 
         // NorskCoach brand tokens
         nc: {
-          bg:             '#0c0d14',
-          card:           '#14162a',
-          'card-hover':   '#181b2e',
+          bg:              '#F5F6FA',
+          card:            '#FFFFFF',
+          'card-hover':    '#F8F9FC',
+          dark:            '#111118',
 
-          // Electric lime — primary brand accent
-          green:          '#c8ff00',
-          'green-tint':   'var(--nc-green-tint)',
-          'green-border': 'var(--nc-green-border)',
-          'green-glow':   'var(--nc-green-glow)',
+          // Electric lime — AI/coach moments only
+          green:           '#C8FF00',
+          'green-tint':    'rgba(200,255,0,0.07)',
+          'green-border':  'rgba(200,255,0,0.20)',
 
           // Coral — repair / error accent
-          coral:          '#ff6b5b',
-          'coral-tint':   'var(--nc-coral-tint)',
-          'coral-border': 'var(--nc-coral-border)',
+          coral:           '#F4845F',
+          'coral-tint':    'rgba(244,132,95,0.08)',
+          'coral-border':  'rgba(244,132,95,0.22)',
 
-          // Mint — success / positive accent
-          mint:           '#6dffd8',
-          'mint-tint':    'var(--nc-mint-tint)',
-          'mint-border':  'var(--nc-mint-border)',
+          // Mint — success / reading
+          mint:            '#A8D5BA',
+          'mint-tint':     'rgba(168,213,186,0.10)',
+          'mint-border':   'rgba(168,213,186,0.25)',
 
-          // Neutral
-          border:         'var(--nc-border)',
-          'border-subtle':'var(--nc-border-subtle)',
-          'text-muted':   'var(--nc-text-muted)',
-          'text-dim':     'var(--nc-text-dim)',
+          // Violet — conversation mode
+          violet:          '#A78BFA',
+          'violet-tint':   'rgba(167,139,250,0.08)',
+          'violet-border': 'rgba(167,139,250,0.20)',
 
-          // Repair state
-          'repair-bg':    'var(--nc-repair-bg)',
-          'repair-border':'var(--nc-repair-border)',
+          // Neutral borders & text
+          border:          'rgba(17,17,24,0.07)',
+          'border-subtle': 'rgba(17,17,24,0.04)',
+          text:            '#111118',
+          'text-muted':    'rgba(17,17,24,0.45)',
+          'text-dim':      'rgba(17,17,24,0.28)',
+
+          // Repair state — coral-tinted
+          'repair-bg':     'rgba(244,132,95,0.06)',
+          'repair-border': 'rgba(244,132,95,0.18)',
         },
-
-        // Surface scale
-        surface: {
-          DEFAULT:  '#111320',
-          elevated: '#161828',
-          border:   '#1e2038',
-          muted:    '#0c0d14',
-        },
-        base: '#080910',
       },
 
       fontFamily: {
@@ -89,12 +86,6 @@ const config: Config = {
         sans:    ['"Outfit"', 'sans-serif'],
       },
 
-      backgroundImage: {
-        // Lime glow replaces the old blue glow
-        'brand-glow':    'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(200,255,0,0.10) 0%, transparent 70%)',
-        'brand-glow-sm': 'radial-gradient(ellipse 40% 30% at 50% 0%, rgba(200,255,0,0.07) 0%, transparent 60%)',
-        'lime-spot':     'radial-gradient(ellipse 50% 35% at 50% 100%, rgba(200,255,0,0.12) 0%, transparent 70%)',
-      },
 
       keyframes: {
         'fade-up': {
@@ -127,9 +118,14 @@ const config: Config = {
       },
 
       borderRadius: {
-        '2xl': '1rem',
-        '3xl': '1.5rem',
-        '4xl': '2rem',
+        hero:    '20px',
+        card:    '16px',
+        feature: '16px',
+        chip:    '8px',
+        pill:    '9999px',
+        '2xl':   '1rem',
+        '3xl':   '1.5rem',
+        '4xl':   '2rem',
       },
     },
   },

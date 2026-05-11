@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { BottomNav } from '@/components/layout/BottomNav'
@@ -15,19 +15,19 @@ export default function ShadowPage() {
         >
           <div className="text-6xl">🎙️</div>
           <div>
-            <h1 className="text-[24px] font-extrabold text-white">Uttalelab</h1>
-            <p className="mt-1 text-[13px] text-white/40">Hørselstrening og skygging</p>
+            <h1 className="text-[24px] font-extrabold text-nc-text">Uttalelab</h1>
+            <p className="mt-1 text-[13px] text-nc-text-muted">Hørselstrening og skygging</p>
           </div>
 
           <div className="w-full rounded-2xl bg-nc-card border border-nc-border p-5 text-left">
-            <p className="text-[14px] leading-relaxed text-white/70">
+            <p className="text-[14px] leading-relaxed text-nc-text-muted">
               Du vil lytte til norske innfødte og gjenta setninger. AI sammenligner uttalen din og gir deg tilbakemelding på nøyaktig hvor du avviker fra norsk uttale — inkludert retroflekse lyder og tonelag.
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2">
             {['Skygging', 'Fonemanalyse', 'Retroflekse lyder'].map((chip) => (
-              <span key={chip} className="rounded-full bg-nc-card border border-nc-border px-3 py-1 text-[11px] font-semibold text-white/50">
+              <span key={chip} className="rounded-full bg-nc-card border border-nc-border px-3 py-1 text-[11px] font-semibold text-nc-text-muted">
                 {chip}
               </span>
             ))}
@@ -43,3 +43,4 @@ export default function ShadowPage() {
     </div>
   )
 }
+

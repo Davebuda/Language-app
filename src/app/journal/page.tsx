@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { motion } from 'framer-motion'
 import { WritingEditor } from '@/components/journal/WritingEditor'
@@ -13,8 +13,8 @@ export default function JournalPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-[22px] font-extrabold text-white">Skrivejournal</h1>
-          <p className="text-[13px] text-white/40">Skriv fritt på norsk — AI gir deg tilbakemelding</p>
+          <h1 className="text-[22px] font-extrabold text-nc-text">Skrivejournal</h1>
+          <p className="text-[13px] text-nc-text-muted">Skriv fritt på norsk — AI gir deg tilbakemelding</p>
         </motion.div>
 
         <motion.div
@@ -30,3 +30,4 @@ export default function JournalPage() {
     </div>
   )
 }
+

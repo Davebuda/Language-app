@@ -4,7 +4,7 @@ import './globals.css'
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -30,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${outfit.variable}`}>
-      <body className="font-display antialiased" style={{ backgroundColor: '#0c0d14' }}>
+    <html lang="en" className={outfit.variable}>
+      <body className="font-display antialiased">
         {children}
       </body>
     </html>

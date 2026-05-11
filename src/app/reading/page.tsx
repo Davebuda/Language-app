@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -97,8 +97,8 @@ export default function ReadingPage() {
               className="flex flex-col gap-4"
             >
               <div>
-                <h1 className="text-[22px] font-extrabold text-white">Lesestudio</h1>
-                <p className="text-[13px] text-white/40">Les norsk tekst på ditt nivå</p>
+                <h1 className="text-[22px] font-extrabold text-nc-text">Lesestudio</h1>
+                <p className="text-[13px] text-nc-text-muted">Les norsk tekst på ditt nivå</p>
               </div>
 
               {/* Filter pills */}
@@ -110,7 +110,7 @@ export default function ReadingPage() {
                     className={`rounded-full px-3 py-1 text-[11px] font-semibold border transition-colors ${
                       filterLevel === lvl
                         ? 'bg-nc-green/20 text-nc-green border-nc-green/30'
-                        : 'bg-nc-card border-nc-border text-white/50'
+                        : 'bg-nc-card border-nc-border text-nc-text-muted'
                     }`}
                   >
                     {lvl === 'all' ? 'Alle' : lvl}
@@ -130,15 +130,15 @@ export default function ReadingPage() {
                     className="w-full text-left bg-nc-card border border-nc-border rounded-2xl p-4 hover:border-nc-green/30 transition-colors active:scale-[0.99]"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <span className="text-[15px] font-bold text-white">{text.title}</span>
+                      <span className="text-[15px] font-bold text-nc-text">{text.title}</span>
                       <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[text.cefrLevel]}`}>
                         {text.cefrLevel}
                       </span>
                     </div>
                     <div className="mt-1 flex items-center gap-2">
-                      <span className="text-[11px] text-white/40">{GENRE_LABELS[text.genre]}</span>
-                      <span className="text-white/20">·</span>
-                      <span className="text-[11px] text-white/40">~{text.estimatedMinutes} min</span>
+                      <span className="text-[11px] text-nc-text-muted">{GENRE_LABELS[text.genre]}</span>
+                      <span className="text-nc-text-dim">·</span>
+                      <span className="text-[11px] text-nc-text-muted">~{text.estimatedMinutes} min</span>
                     </div>
                   </motion.button>
                 ))}
@@ -156,7 +156,7 @@ export default function ReadingPage() {
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => setSelectedText(null)}
-                  className="flex items-center gap-1 text-[13px] text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-1 text-[13px] text-nc-text-muted hover:text-nc-text transition-colors"
                 >
                   <ChevronLeft size={16} />
                   Tilbake
@@ -164,7 +164,7 @@ export default function ReadingPage() {
                 <button
                   onClick={() => setShowParallel((v) => !v)}
                   className={`rounded-full border px-3 py-1 text-[11px] font-semibold transition-colors ${
-                    showParallel ? 'bg-nc-green/20 border-nc-green/30 text-nc-green' : 'bg-nc-card border-nc-border text-white/50'
+                    showParallel ? 'bg-nc-green/20 border-nc-green/30 text-nc-green' : 'bg-nc-card border-nc-border text-nc-text-muted'
                   }`}
                 >
                   {showParallel ? 'Norsk' : 'Vis engelsk'}
@@ -172,12 +172,12 @@ export default function ReadingPage() {
               </div>
 
               <div>
-                <h1 className="text-[20px] font-extrabold text-white">{selectedText.title}</h1>
+                <h1 className="text-[20px] font-extrabold text-nc-text">{selectedText.title}</h1>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[selectedText.cefrLevel]}`}>
                     {selectedText.cefrLevel}
                   </span>
-                  <span className="text-[11px] text-white/40">{GENRE_LABELS[selectedText.genre]}</span>
+                  <span className="text-[11px] text-nc-text-muted">{GENRE_LABELS[selectedText.genre]}</span>
                 </div>
               </div>
 
@@ -185,9 +185,9 @@ export default function ReadingPage() {
               <div className={showParallel ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
                 <div className="rounded-xl bg-nc-card border border-nc-border p-4">
                   {showParallel && (
-                    <div className="mb-2 text-[10px] uppercase tracking-widest text-white/30">Norsk</div>
+                    <div className="mb-2 text-[10px] uppercase tracking-widest text-nc-text-dim">Norsk</div>
                   )}
-                  <p className="text-[16px] leading-[1.9] text-white/90">
+                  <p className="text-[16px] leading-[1.9] text-nc-text">
                     {selectedText.content.split('\n').map((line, i) => (
                       <span key={i}>
                         {line.split(' ').map((word, j) => (
@@ -207,8 +207,8 @@ export default function ReadingPage() {
 
                 {showParallel && (
                   <div className="rounded-xl bg-nc-card border border-nc-border p-4">
-                    <div className="mb-2 text-[10px] uppercase tracking-widest text-white/30">Engelsk</div>
-                    <p className="text-[15px] leading-[1.9] text-white/60">
+                    <div className="mb-2 text-[10px] uppercase tracking-widest text-nc-text-dim">Engelsk</div>
+                    <p className="text-[15px] leading-[1.9] text-nc-text-muted">
                       {selectedText.contentEn}
                     </p>
                   </div>
@@ -227,9 +227,9 @@ export default function ReadingPage() {
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-[15px] font-bold text-nc-green">{tappedWord}</span>
-                      <button onClick={() => setTappedWord(null)} className="text-white/30 text-[12px]">✕</button>
+                      <button onClick={() => setTappedWord(null)} className="text-nc-text-dim text-[12px]">✕</button>
                     </div>
-                    <p className="mt-1 text-[12px] text-white/40">Ordoppslag kommer snart</p>
+                    <p className="mt-1 text-[12px] text-nc-text-muted">Ordoppslag kommer snart</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -249,3 +249,4 @@ export default function ReadingPage() {
     </div>
   )
 }
+

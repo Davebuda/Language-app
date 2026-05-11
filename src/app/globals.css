@@ -4,68 +4,73 @@
 
 @layer base {
   :root {
-    --background: 240 12% 5%;
-    --foreground: 0 0% 98%;
+    --background: 233 13% 97%;
+    --foreground: 240 6% 7%;
 
-    --card: 237 14% 9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 7%;
 
-    --popover: 237 14% 9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 7%;
 
     /* Primary = electric lime */
     --primary: 73 100% 50%;
-    --primary-foreground: 0 0% 5%;
+    --primary-foreground: 240 6% 7%;
 
-    --secondary: 237 10% 13%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 233 13% 95%;
+    --secondary-foreground: 240 6% 7%;
 
-    --muted: 237 10% 13%;
-    --muted-foreground: 240 5% 50%;
+    --muted: 233 13% 95%;
+    --muted-foreground: 240 5% 45%;
 
-    --accent: 237 10% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 233 13% 93%;
+    --accent-foreground: 240 6% 7%;
 
-    --destructive: 4 82% 65%;
+    --destructive: 16 88% 68%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 237 10% 13%;
-    --input: 237 10% 13%;
+    --border: 240 6% 90%;
+    --input: 240 6% 92%;
     --ring: 73 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
     /* ── NorskCoach design tokens ── */
-    --nc-bg:            #0c0d14;
-    --nc-card:          #14162a;
-    --nc-card-hover:    #181b2e;
+    --nc-bg:            #F5F6FA;
+    --nc-card:          #FFFFFF;
+    --nc-card-hover:    #F8F9FC;
+    --nc-dark:          #111118;
 
-    /* Electric lime — the primary brand accent */
-    --nc-green:         #c8ff00;
-    --nc-green-tint:    rgba(200, 255, 0, 0.08);
+    /* Electric lime — AI/coach moments only */
+    --nc-green:         #C8FF00;
+    --nc-green-tint:    rgba(200, 255, 0, 0.07);
     --nc-green-border:  rgba(200, 255, 0, 0.20);
-    --nc-green-glow:    rgba(200, 255, 0, 0.15);
 
-    /* Coral — error / repair accent */
-    --nc-coral:         #ff6b5b;
-    --nc-coral-tint:    rgba(255, 107, 91, 0.10);
-    --nc-coral-border:  rgba(255, 107, 91, 0.22);
+    /* Coral — repair / error accent */
+    --nc-coral:         #F4845F;
+    --nc-coral-tint:    rgba(244, 132, 95, 0.08);
+    --nc-coral-border:  rgba(244, 132, 95, 0.22);
 
-    /* Mint — success / positive accent */
-    --nc-mint:          #6dffd8;
-    --nc-mint-tint:     rgba(109, 255, 216, 0.08);
-    --nc-mint-border:   rgba(109, 255, 216, 0.20);
+    /* Mint — success / reading */
+    --nc-mint:          #A8D5BA;
+    --nc-mint-tint:     rgba(168, 213, 186, 0.10);
+    --nc-mint-border:   rgba(168, 213, 186, 0.25);
+
+    /* Violet — conversation mode */
+    --nc-violet:        #A78BFA;
+    --nc-violet-tint:   rgba(167, 139, 250, 0.08);
+    --nc-violet-border: rgba(167, 139, 250, 0.20);
 
     /* Neutral borders & text */
-    --nc-border:        rgba(255, 255, 255, 0.07);
-    --nc-border-subtle: rgba(255, 255, 255, 0.04);
-    --nc-text:          #ffffff;
-    --nc-text-muted:    rgba(255, 255, 255, 0.35);
-    --nc-text-dim:      rgba(255, 255, 255, 0.55);
+    --nc-border:        rgba(17, 17, 24, 0.07);
+    --nc-border-subtle: rgba(17, 17, 24, 0.04);
+    --nc-text:          #111118;
+    --nc-text-muted:    rgba(17, 17, 24, 0.45);
+    --nc-text-dim:      rgba(17, 17, 24, 0.28);
 
     /* Repair state — coral-tinted */
-    --nc-repair-bg:     rgba(255, 107, 91, 0.06);
-    --nc-repair-border: rgba(255, 107, 91, 0.18);
+    --nc-repair-bg:     rgba(244, 132, 95, 0.06);
+    --nc-repair-border: rgba(244, 132, 95, 0.18);
   }
 
   * {
@@ -88,7 +93,7 @@
 
   ::selection {
     background-color: rgba(200, 255, 0, 0.25);
-    color: #0c0d14;
+    color: #111118;
   }
 
   ::-webkit-scrollbar {
@@ -100,12 +105,45 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1e2038;
+    background: rgba(17, 17, 24, 0.12);
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(200, 255, 0, 0.25);
+    background: rgba(17, 17, 24, 0.22);
+  }
+}
+
+@layer components {
+  .nc-dark-card {
+    border-radius: 20px;
+    background: #111118;
+    color: white;
+  }
+
+  .nc-surface-card {
+    border-radius: 16px;
+    background: #FFFFFF;
+    border: 1px solid rgba(17, 17, 24, 0.07);
+    box-shadow: 0 2px 12px rgba(17, 17, 24, 0.06);
+  }
+
+  .nc-btn-primary {
+    background: #C8FF00;
+    color: #111118;
+    border-radius: 9999px;
+  }
+
+  .nc-btn-cta {
+    background: #111118;
+    color: #C8FF00;
+    border-radius: 9999px;
+  }
+
+  .nc-word-chip {
+    background: #F5F6FA;
+    color: #111118;
+    border-radius: 8px;
   }
 }
 

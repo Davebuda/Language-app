@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -53,21 +53,21 @@ export function WritingEditor() {
     <div className="flex flex-col gap-4">
       {/* Daily prompt */}
       <div className="rounded-xl bg-nc-card border border-nc-border p-3">
-        <div className="mb-1 text-[10px] font-bold uppercase tracking-widest text-white/30">
+        <div className="mb-1 text-[10px] font-bold uppercase tracking-widest text-nc-text-dim">
           Dagens prompt
         </div>
-        <p className="text-[13px] text-white/70">{prompt}</p>
+        <p className="text-[13px] text-nc-text-muted">{prompt}</p>
       </div>
 
       {/* Textarea */}
       <div className="flex flex-col gap-1">
         <textarea
-          className="w-full min-h-[180px] resize-none rounded-xl bg-nc-card border border-nc-border p-4 text-white placeholder-white/20 text-[15px] leading-relaxed focus:outline-none focus:border-nc-green/40 transition-colors"
+          className="w-full min-h-[180px] resize-none rounded-xl bg-nc-card border border-nc-border p-4 text-nc-text placeholder-nc-text-dim text-[15px] leading-relaxed focus:outline-none focus:border-nc-green/40 transition-colors"
           placeholder="Skriv på norsk her..."
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <div className="text-right text-[11px] text-white/30">{wordCount} ord</div>
+        <div className="text-right text-[11px] text-nc-text-dim">{wordCount} ord</div>
       </div>
 
       {/* Analyze button */}
@@ -103,7 +103,7 @@ export function WritingEditor() {
           >
             {/* Praise */}
             <div className="rounded-xl bg-nc-green/8 border border-nc-green/20 p-4">
-              <p className="text-[13px] text-white/80">🎉 {feedback.praise}</p>
+              <p className="text-[13px] text-nc-text">🎉 {feedback.praise}</p>
             </div>
 
             {/* Errors */}
@@ -111,12 +111,12 @@ export function WritingEditor() {
               <div className="flex flex-col gap-2">
                 {feedback.errors.map((err, i) => (
                   <div key={i} className="rounded-xl bg-nc-card border border-nc-border border-l-2 border-l-red-400/60 pl-4 pr-4 py-3">
-                    <p className="text-[13px] text-white">
-                      <span className="line-through text-white/40">{err.wrong}</span>
+                    <p className="text-[13px] text-nc-text">
+                      <span className="line-through text-nc-text-muted">{err.wrong}</span>
                       {' → '}
                       <span className="text-nc-green font-semibold">{err.correct}</span>
                     </p>
-                    <p className="mt-1 text-[12px] text-white/50">{err.briefWhy}</p>
+                    <p className="mt-1 text-[12px] text-nc-text-muted">{err.briefWhy}</p>
                   </div>
                 ))}
               </div>
@@ -124,7 +124,7 @@ export function WritingEditor() {
 
             {/* Suggestion */}
             <div className="rounded-xl bg-nc-card border border-nc-border p-4">
-              <p className="text-[13px] text-white/70">💡 {feedback.suggestion}</p>
+              <p className="text-[13px] text-nc-text-muted">💡 {feedback.suggestion}</p>
             </div>
 
             {/* Show corrected toggle */}
@@ -159,3 +159,4 @@ export function WritingEditor() {
     </div>
   )
 }
+

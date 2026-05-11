@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { MessageCircle, PenLine, BookOpen, Mic } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -24,37 +23,45 @@ const LEARNING_MODES = [
     id: 'conversation',
     href: '/conversation',
     label: 'Samtale',
-    desc: 'Snakk med AI-tutor',
-    Icon: MessageCircle,
-    color: 'text-violet-400',
-    bg: 'bg-violet-400/8 border-violet-400/20',
-  },
-  {
-    id: 'journal',
-    href: '/journal',
-    label: 'Skriv',
-    desc: 'Journalskriving',
-    Icon: PenLine,
-    color: 'text-sky-400',
-    bg: 'bg-sky-400/8 border-sky-400/20',
+    desc: 'AI-tutor, norsk',
+    emoji: '💬',
+    bg: 'rgba(167,139,250,0.07)',
+    border: 'rgba(167,139,250,0.18)',
+    iconBg: 'rgba(167,139,250,0.14)',
+    labelColor: '#A78BFA',
   },
   {
     id: 'reading',
     href: '/reading',
     label: 'Les',
-    desc: 'Lesestudio',
-    Icon: BookOpen,
-    color: 'text-amber-400',
-    bg: 'bg-amber-400/8 border-amber-400/20',
+    desc: '4 tekster klare',
+    emoji: '📖',
+    bg: 'rgba(168,213,186,0.07)',
+    border: 'rgba(168,213,186,0.18)',
+    iconBg: 'rgba(168,213,186,0.14)',
+    labelColor: '#4A9E72',
+  },
+  {
+    id: 'journal',
+    href: '/journal',
+    label: 'Skriv',
+    desc: 'Journal + AI-analyse',
+    emoji: '✍️',
+    bg: 'rgba(200,255,0,0.07)',
+    border: 'rgba(200,255,0,0.20)',
+    iconBg: 'rgba(200,255,0,0.14)',
+    labelColor: '#111118',
   },
   {
     id: 'shadow',
     href: '/shadow',
     label: 'Uttale',
-    desc: 'Skygging & uttale',
-    Icon: Mic,
-    color: 'text-rose-400',
-    bg: 'bg-rose-400/8 border-rose-400/20',
+    desc: 'Snart tilgjengelig',
+    emoji: '🎙️',
+    bg: 'rgba(17,17,24,0.03)',
+    border: 'rgba(17,17,24,0.07)',
+    iconBg: 'rgba(17,17,24,0.06)',
+    labelColor: 'rgba(17,17,24,0.30)',
   },
 ] as const
 
@@ -76,9 +83,8 @@ export default function DashboardPage() {
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
   const streak = getStreak()
 
-  const displayName = user?.user_metadata?.full_name
-    ?? user?.email?.split('@')[0]
-    ?? 'Gjest'
+  const displayName =
+    user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
 
   useEffect(() => {
     if (!localStorage.getItem('norskcoach_onboarded')) {
@@ -96,29 +102,37 @@ export default function DashboardPage() {
     setPlan(output)
   }, [fingerprint, status])
 
-  const topConcepts = conceptGraph.concepts.slice(0, 8).map((c, i) => {
-    const mastery = fingerprint?.conceptMastery[c.id]
-    return {
-      id: c.id,
-      label: c.label,
-      score: mastery ? Math.round(mastery.decayedScore) : 0,
-      color: getConceptColor(c.id, i),
-      locked:
-        !mastery &&
-        c.prerequisites.length > 0 &&
-        !c.prerequisites.every((p) => !!fingerprint?.conceptMastery[p]),
-    }
-  }).slice(0, 5)
+  const topConcepts = conceptGraph.concepts
+    .slice(0, 8)
+    .map((c, i) => {
+      const mastery = fingerprint?.conceptMastery[c.id]
+      return {
+        id: c.id,
+        label: c.label,
+        score: mastery ? Math.round(mastery.decayedScore) : 0,
+        color: getConceptColor(c.id, i),
+        locked:
+          !mastery &&
+          c.prerequisites.length > 0 &&
+          !c.prerequisites.every((p) => !!fingerprint?.conceptMastery[p]),
+      }
+    })
+    .slice(0, 5)
 
-  const remediation = plan?.session.items.filter((i) => i.purpose === 'remediation').length ?? 0
-  const review = plan?.session.items.filter((i) => i.purpose === 'review').length ?? 0
-  const newMaterial = plan?.session.items.filter((i) => i.purpose === 'new-material').length ?? 0
+  const remediation =
+    plan?.session.items.filter((i) => i.purpose === 'remediation').length ?? 0
+  const review =
+    plan?.session.items.filter((i) => i.purpose === 'review').length ?? 0
+  const newMaterial =
+    plan?.session.items.filter((i) => i.purpose === 'new-material').length ?? 0
   const estimatedMin = plan
     ? Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))
     : 12
 
   const primaryConceptId = plan?.primaryFocus ?? 'noun-gender'
-  const primaryConcept = conceptGraph.concepts.find((c) => c.id === primaryConceptId)
+  const primaryConcept = conceptGraph.concepts.find(
+    (c) => c.id === primaryConceptId,
+  )
   const sessionTitle = primaryConcept?.label ?? 'Grunnleggende norsk'
 
   return (
@@ -127,11 +141,18 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-[11px] font-medium capitalize text-white/30">{todayFormatted()}</div>
-            <h1 className="text-[20px] font-extrabold text-white">Hei, {displayName}! 👋</h1>
+            <div className="text-[11px] font-semibold capitalize uppercase tracking-[0.10em] text-nc-text-dim">
+              {todayFormatted()}
+            </div>
+            <h1 className="text-[24px] font-extrabold text-nc-text">
+              Hei, {displayName}! 👋
+            </h1>
           </div>
-          <Link href="/profile">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-nc-green text-sm font-bold text-[#0d0d14]">
+          <Link href="/profile" aria-label="Profil">
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-nc-dark text-sm font-bold text-nc-green"
+              style={{ boxShadow: '0 4px 14px rgba(17,17,24,0.20)' }}
+            >
               {displayName.slice(0, 1).toUpperCase()}
             </div>
           </Link>
@@ -140,33 +161,57 @@ export default function DashboardPage() {
         {/* Guest banner */}
         <GuestBanner />
 
-        {/* Today's session card */}
+        {/* Today's session card — dark hero card */}
         {!plan ? (
-          <div className="h-24 animate-pulse rounded-2xl bg-nc-card border border-nc-border" />
+          <div className="h-24 animate-pulse rounded-[20px] bg-nc-card border border-nc-border" />
         ) : (
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="rounded-2xl bg-nc-card border border-nc-border p-4"
+            className="rounded-[20px] bg-nc-dark p-5 relative overflow-hidden"
           >
-            <div className="mb-1 text-[10px] uppercase tracking-widest text-white/30">
+            <div className="mb-1 text-[10px] uppercase tracking-[0.12em] font-bold"
+              style={{ color: 'rgba(200,255,0,0.55)' }}>
               I dag · ~{estimatedMin} min
             </div>
-            <div className="mb-3 text-[16px] font-extrabold text-white">{sessionTitle}</div>
+            <div className="mb-3 text-[18px] font-extrabold text-white">
+              {sessionTitle}
+            </div>
             <div className="flex flex-wrap gap-2">
               {remediation > 0 && (
-                <span className="rounded-full bg-nc-green/15 border border-nc-green/25 px-3 py-1 text-[10px] font-semibold text-nc-green">
+                <span
+                  className="rounded-full px-3 py-1.5 text-[10px] font-bold border"
+                  style={{
+                    background: 'rgba(244,132,95,0.20)',
+                    borderColor: 'rgba(244,132,95,0.40)',
+                    color: '#F4845F',
+                  }}
+                >
                   {remediation} reparasjoner
                 </span>
               )}
               {review > 0 && (
-                <span className="rounded-full bg-white/6 px-3 py-1 text-[10px] font-semibold text-white/50">
+                <span
+                  className="rounded-full px-3 py-1.5 text-[10px] font-bold border"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    borderColor: 'rgba(255,255,255,0.14)',
+                    color: 'rgba(255,255,255,0.50)',
+                  }}
+                >
                   {review} repetisjon
                 </span>
               )}
               {newMaterial > 0 && (
-                <span className="rounded-full bg-white/6 px-3 py-1 text-[10px] font-semibold text-white/50">
+                <span
+                  className="rounded-full px-3 py-1.5 text-[10px] font-bold border"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    borderColor: 'rgba(255,255,255,0.14)',
+                    color: 'rgba(255,255,255,0.50)',
+                  }}
+                >
                   {newMaterial} nytt
                 </span>
               )}
@@ -174,28 +219,38 @@ export default function DashboardPage() {
           </motion.div>
         )}
 
-        {/* Coach insight — from diagnosis engine */}
+        {/* Coach insight — white card with lime left border */}
         {plan?.diagnosisResults && plan.diagnosisResults.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="rounded-2xl border border-nc-green/15 bg-nc-green/5 p-4"
+            className="rounded-[16px] bg-nc-card border border-nc-border p-4"
+            style={{
+              borderLeft: '3px solid rgba(200,255,0,0.50)',
+              boxShadow: '0 2px 12px rgba(17,17,24,0.06)',
+            }}
           >
-            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-nc-green/60">
+            <div className="mb-1 text-[9px] font-bold uppercase tracking-[0.12em] text-nc-text-dim">
               🎯 Trener-innsikt
             </div>
-            <p className="text-[13px] leading-relaxed text-white/70">
+            <p className="text-[13px] leading-relaxed text-nc-text-muted">
               {plan.diagnosisResults[0].reasoning}
             </p>
             <div className="mt-2 flex items-center gap-1.5">
-              <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-1 flex-1 overflow-hidden rounded-full"
+                style={{ background: 'rgba(17,17,24,0.08)' }}
+              >
                 <div
-                  className="h-full rounded-full bg-nc-green/60"
-                  style={{ width: `${Math.round(plan.diagnosisResults[0].confidence * 100)}%` }}
+                  className="h-full rounded-full bg-nc-green"
+                  style={{
+                    width: `${Math.round(plan.diagnosisResults[0].confidence * 100)}%`,
+                    opacity: 0.7,
+                  }}
                 />
               </div>
-              <span className="text-[10px] font-semibold text-white/30">
+              <span className="text-[10px] font-semibold text-nc-text-dim">
                 {Math.round(plan.diagnosisResults[0].confidence * 100)}% sikker
               </span>
             </div>
@@ -205,10 +260,10 @@ export default function DashboardPage() {
         {/* Concept progress */}
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-wide text-white/50">
+            <span className="text-[11px] font-bold uppercase tracking-wide text-nc-text-dim">
               Konseptfremgang
             </span>
-            <Link href="/progress" className="text-[11px] font-semibold text-nc-green">
+            <Link href="/progress" className="text-[11px] font-semibold text-nc-coral">
               Se alle →
             </Link>
           </div>
@@ -228,11 +283,11 @@ export default function DashboardPage() {
 
         {/* Learning modes grid */}
         <div>
-          <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-white/50">
+          <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-nc-text-dim">
             Læringsverktøy
           </div>
           <div className="grid grid-cols-2 gap-2">
-            {LEARNING_MODES.map(({ id, href, label, desc, Icon, color, bg }, i) => (
+            {LEARNING_MODES.map(({ id, href, label, desc, emoji, bg, border, iconBg, labelColor }, i) => (
               <motion.div
                 key={id}
                 initial={{ opacity: 0, y: 6 }}
@@ -241,12 +296,25 @@ export default function DashboardPage() {
               >
                 <Link
                   href={href}
-                  className={`flex flex-col gap-2 rounded-2xl border p-4 transition-all active:scale-[0.97] ${bg}`}
+                  aria-label={label}
+                  className="flex flex-col gap-3 rounded-[18px] p-4 transition-transform active:scale-[0.97]"
+                  style={{
+                    background: bg,
+                    border: `1px solid ${border}`,
+                    boxShadow: '0 2px 10px rgba(17,17,24,0.05)',
+                  }}
                 >
-                  <Icon size={20} className={color} strokeWidth={1.8} />
+                  <div
+                    className="flex h-9 w-9 items-center justify-center rounded-[11px] text-lg"
+                    style={{ background: iconBg }}
+                  >
+                    {emoji}
+                  </div>
                   <div>
-                    <div className="text-[13px] font-bold text-white">{label}</div>
-                    <div className="text-[11px] text-white/40">{desc}</div>
+                    <div className="text-[14px] font-extrabold" style={{ color: labelColor }}>
+                      {label}
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-nc-text-dim">{desc}</div>
                   </div>
                 </Link>
               </motion.div>
@@ -255,16 +323,25 @@ export default function DashboardPage() {
         </div>
 
         {/* Streak */}
-        <div className="flex items-center gap-3 rounded-xl bg-nc-card border border-nc-border px-4 py-3">
+        <div
+          className="flex items-center gap-3 rounded-[16px] bg-nc-card border border-nc-border px-4 py-3"
+          style={{ boxShadow: '0 2px 12px rgba(17,17,24,0.05)' }}
+        >
           <span className="text-xl">🔥</span>
-          <span className="text-[22px] font-black text-nc-green">{streak}</span>
-          <span className="text-[12px] text-white/40">dagers streak</span>
+          <span className="text-[26px] font-black text-nc-coral tracking-tight">{streak}</span>
+          <span className="text-[12px] text-nc-text-muted">dagers streak</span>
         </div>
 
         {/* CTA */}
         <button
           onClick={() => router.push('/session')}
-          className="w-full rounded-xl bg-nc-green py-4 text-sm font-extrabold text-[#0d0d14] transition-transform active:scale-[0.98]"
+          aria-label="Start dagens økt"
+          className="w-full rounded-full py-4 text-sm font-extrabold transition-transform active:scale-[0.98]"
+          style={{
+            background: '#111118',
+            color: '#C8FF00',
+            boxShadow: '0 6px 24px rgba(17,17,24,0.18)',
+          }}
         >
           Start dagens økt →
         </button>

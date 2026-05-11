@@ -32,11 +32,11 @@ type SpeechRecCtor = new () => SpeechRec
 
 const TOPICS = [
   { id: 'daily-routine', label: 'Daglig rutine', emoji: '☀️', desc: 'Morgen, kvelder, vaner' },
-  { id: 'food', label: 'Mat og drikke', emoji: '🍕', desc: 'Lage mat, restaurant, favoritter' },
-  { id: 'family', label: 'Familie', emoji: '👨‍👩‍👧', desc: 'Familiemedlemmer, hjemmeliv' },
-  { id: 'norway', label: 'Norge', emoji: '🏔️', desc: 'Natur, byer, kultur' },
-  { id: 'hobbies', label: 'Fritid', emoji: '🎯', desc: 'Sport, musikk, interesser' },
-  { id: 'work', label: 'Jobb', emoji: '💼', desc: 'Arbeid, kolleger, drømmejobb' },
+  { id: 'food',         label: 'Mat og drikke', emoji: '🍕', desc: 'Lage mat, restaurant, favoritter' },
+  { id: 'family',       label: 'Familie',       emoji: '👨‍👩‍👧', desc: 'Familiemedlemmer, hjemmeliv' },
+  { id: 'norway',       label: 'Norge',         emoji: '🏔️', desc: 'Natur, byer, kultur' },
+  { id: 'hobbies',      label: 'Fritid',        emoji: '🎯', desc: 'Sport, musikk, interesser' },
+  { id: 'work',         label: 'Jobb',          emoji: '💼', desc: 'Arbeid, kolleger, drømmejobb' },
 ] as const
 
 const LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2']
@@ -87,12 +87,11 @@ export default function ConversationPage() {
     setIsThinking(true)
     try {
       const result = await aiService.conversationTurn(history, level, selectedTopic ?? 'daily-routine')
-      const tutorMsg: DisplayMessage = {
+      setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
         correction: result.correction,
-      }
-      setMessages((prev) => [...prev, tutorMsg])
+      }])
       speakNorwegian(result.tutorResponse)
     } finally {
       setIsThinking(false)
@@ -109,44 +108,27 @@ export default function ConversationPage() {
     const trimmed = text.trim()
     if (!trimmed) return
     setInputText('')
-
-    const userMsg: DisplayMessage = { role: 'user', content: trimmed }
-    const nextMessages = [...messages, userMsg]
+    const nextMessages = [...messages, { role: 'user' as const, content: trimmed }]
     setMessages(nextMessages)
-
-    const history: ConversationMessage[] = nextMessages.map((m) => ({ role: m.role, content: m.content }))
-    await addTutorMessage(history)
+    await addTutorMessage(nextMessages.map((m) => ({ role: m.role, content: m.content })))
   }
 
   function toggleListening() {
     const Ctor = getSpeechRecognitionCtor()
     if (!Ctor) return
-
-    if (isListening) {
-      recognitionRef.current?.stop()
-      setIsListening(false)
-      return
-    }
-
+    if (isListening) { recognitionRef.current?.stop(); setIsListening(false); return }
     const rec = new Ctor()
     recognitionRef.current = rec
     rec.lang = 'no-NO'
     rec.continuous = false
     rec.interimResults = true
-
     rec.onresult = (e: SpeechRecEvent) => {
       const parts: string[] = []
-      for (let i = 0; i < e.results.length; i++) {
-        parts.push(e.results[i][0].transcript)
-      }
+      for (let i = 0; i < e.results.length; i++) parts.push(e.results[i][0].transcript)
       const transcript = parts.join('')
       setInputText(transcript)
-      if (e.results[e.results.length - 1].isFinal) {
-        setIsListening(false)
-        void handleSend(transcript)
-      }
+      if (e.results[e.results.length - 1].isFinal) { setIsListening(false); void handleSend(transcript) }
     }
-
     rec.onend = () => setIsListening(false)
     rec.onerror = () => setIsListening(false)
     rec.start()
@@ -166,8 +148,8 @@ export default function ConversationPage() {
               className="flex flex-col gap-4 flex-1"
             >
               <div>
-                <h1 className="text-[22px] font-extrabold text-white">Samtale</h1>
-                <p className="text-[13px] text-white/40">Snakk norsk med din AI-tutor</p>
+                <h1 className="text-[22px] font-extrabold text-nc-text">Samtale</h1>
+                <p className="text-[13px] text-nc-text-muted">Snakk norsk med din AI-tutor</p>
               </div>
 
               {/* Topic grid */}
@@ -176,16 +158,17 @@ export default function ConversationPage() {
                   <button
                     key={t.id}
                     onClick={() => setSelectedTopic(t.id)}
-                    className={`flex flex-col gap-2 rounded-2xl border p-4 text-left transition-colors active:scale-[0.98] ${
+                    className={`flex flex-col gap-2 rounded-[16px] border p-4 text-left transition-all active:scale-[0.98] ${
                       selectedTopic === t.id
-                        ? 'border-nc-green/60 bg-nc-green/5'
-                        : 'border-nc-border bg-nc-card hover:border-nc-green/30'
+                        ? 'border-nc-dark bg-nc-dark/5'
+                        : 'border-nc-border bg-nc-card hover:border-nc-dark/20'
                     }`}
+                    style={{ boxShadow: '0 2px 10px rgba(17,17,24,0.05)' }}
                   >
                     <span className="text-2xl">{t.emoji}</span>
                     <div>
-                      <div className="text-[13px] font-bold text-white">{t.label}</div>
-                      <div className="text-[11px] text-white/40">{t.desc}</div>
+                      <div className="text-[13px] font-bold text-nc-text">{t.label}</div>
+                      <div className="text-[11px] text-nc-text-muted mt-0.5">{t.desc}</div>
                     </div>
                   </button>
                 ))}
@@ -193,16 +176,16 @@ export default function ConversationPage() {
 
               {/* Level selector */}
               <div>
-                <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-white/40">Nivå</div>
+                <div className="mb-2 nc-label">Nivå</div>
                 <div className="flex gap-2">
                   {LEVELS.map((l) => (
                     <button
                       key={l}
                       onClick={() => setLevel(l)}
-                      className={`flex-1 rounded-xl py-2 text-[12px] font-bold border transition-colors ${
+                      className={`flex-1 rounded-full py-2.5 text-[13px] font-bold border transition-colors ${
                         level === l
-                          ? 'bg-nc-green text-[#0d0d14] border-nc-green'
-                          : 'bg-nc-card border-nc-border text-white/60'
+                          ? 'bg-nc-dark text-nc-green border-nc-dark'
+                          : 'bg-nc-card border-nc-border text-nc-text-muted hover:border-nc-dark/20'
                       }`}
                     >
                       {l}
@@ -214,7 +197,8 @@ export default function ConversationPage() {
               <button
                 disabled={!selectedTopic}
                 onClick={() => void startConversation()}
-                className="w-full rounded-xl bg-nc-green py-4 text-sm font-extrabold text-[#0d0d14] disabled:opacity-40 transition-transform active:scale-[0.98]"
+                className="w-full rounded-full py-4 text-sm font-extrabold transition-transform active:scale-[0.98] disabled:opacity-40"
+                style={{ background: '#111118', color: '#C8FF00', boxShadow: '0 6px 20px rgba(17,17,24,0.18)' }}
               >
                 Start samtale →
               </button>
@@ -229,13 +213,13 @@ export default function ConversationPage() {
             >
               {/* Chat header */}
               <div className="flex items-center justify-between shrink-0">
-                <div className="text-[15px] font-bold text-white">
+                <div className="text-[15px] font-bold text-nc-text">
                   {TOPICS.find((t) => t.id === selectedTopic)?.emoji}{' '}
                   {TOPICS.find((t) => t.id === selectedTopic)?.label}
                 </div>
                 <button
                   onClick={() => { setPhase('setup'); window.speechSynthesis?.cancel() }}
-                  className="flex items-center gap-1 rounded-full bg-nc-card border border-nc-border px-3 py-1 text-[11px] text-white/50 hover:text-white transition-colors"
+                  className="flex items-center gap-1 rounded-full bg-nc-card border border-nc-border px-3 py-1 text-[11px] text-nc-text-muted hover:text-nc-text transition-colors"
                 >
                   <X size={12} /> Avslutt
                 </button>
@@ -248,46 +232,52 @@ export default function ConversationPage() {
                     {msg.role === 'tutor' && (
                       <div className="flex items-center gap-1.5 mb-0.5">
                         <span className="text-sm">🇳🇴</span>
-                        <span className="text-[10px] font-semibold text-white/30">Kari</span>
+                        <span className="text-[10px] font-semibold text-nc-text-dim">Kari</span>
                       </div>
                     )}
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-[14px] leading-relaxed ${
                         msg.role === 'user'
-                          ? 'bg-nc-green/20 border border-nc-green/20 text-white rounded-br-sm'
-                          : 'bg-nc-card border border-nc-border text-white rounded-bl-sm'
+                          ? 'rounded-br-sm text-nc-text'
+                          : 'bg-nc-card border border-nc-border text-nc-text rounded-bl-sm'
                       }`}
+                      style={msg.role === 'user' ? {
+                        background: 'rgba(17,17,24,0.07)',
+                        border: '1px solid rgba(17,17,24,0.10)',
+                      } : {
+                        boxShadow: '0 2px 8px rgba(17,17,24,0.05)',
+                      }}
                     >
                       {msg.content}
                     </div>
 
-                    {/* Correction card */}
                     {msg.role === 'tutor' && msg.correction && (
                       <motion.div
                         initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="max-w-[80%] rounded-xl bg-amber-500/8 border border-amber-500/20 px-3 py-2"
+                        className="max-w-[80%] rounded-xl px-3 py-2"
+                        style={{ background: 'rgba(244,132,95,0.07)', border: '1px solid rgba(244,132,95,0.18)' }}
                       >
-                        <p className="text-[12px] text-white/70">
-                          <span className="line-through text-white/30">{msg.correction.original}</span>
+                        <p className="text-[12px] text-nc-text-muted">
+                          <span className="line-through text-nc-text-dim">{msg.correction.original}</span>
                           {' → '}
-                          <span className="text-amber-400 font-semibold">{msg.correction.corrected}</span>
+                          <span className="text-nc-coral font-semibold">{msg.correction.corrected}</span>
                         </p>
-                        <p className="mt-0.5 text-[11px] text-white/40">{msg.correction.explanation}</p>
+                        <p className="mt-0.5 text-[11px] text-nc-text-dim">{msg.correction.explanation}</p>
                       </motion.div>
                     )}
                   </div>
                 ))}
 
-                {/* Thinking indicator */}
                 {isThinking && (
                   <div className="flex items-start gap-2">
                     <span className="text-sm">🇳🇴</span>
-                    <div className="rounded-2xl rounded-bl-sm bg-nc-card border border-nc-border px-4 py-3 flex gap-1">
+                    <div className="rounded-2xl rounded-bl-sm bg-nc-card border border-nc-border px-4 py-3 flex gap-1"
+                      style={{ boxShadow: '0 2px 8px rgba(17,17,24,0.05)' }}>
                       {[0, 0.2, 0.4].map((delay) => (
                         <motion.div
                           key={delay}
-                          className="w-1.5 h-1.5 rounded-full bg-white/30"
+                          className="w-1.5 h-1.5 rounded-full bg-nc-text/25"
                           animate={{ opacity: [0.3, 1, 0.3] }}
                           transition={{ duration: 1, delay, repeat: Infinity }}
                         />
@@ -305,15 +295,16 @@ export default function ConversationPage() {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') void handleSend(inputText) }}
                   placeholder="Skriv eller snakk..."
-                  className="flex-1 rounded-xl bg-nc-card border border-nc-border px-4 py-2.5 text-[14px] text-white placeholder-white/20 focus:outline-none focus:border-nc-green/40 transition-colors"
+                  className="flex-1 rounded-full bg-nc-card border border-nc-border px-4 py-2.5 text-[14px] text-nc-text placeholder-nc-text-dim focus:outline-none focus:border-nc-dark/25 transition-colors"
+                  style={{ boxShadow: '0 1px 4px rgba(17,17,24,0.04)' }}
                 />
                 {hasSpeechAPI && (
                   <button
                     onClick={toggleListening}
-                    className={`rounded-xl border px-3 py-2.5 transition-colors ${
+                    className={`rounded-full border px-3 py-2.5 transition-colors ${
                       isListening
-                        ? 'bg-red-500/20 border-red-500/40 text-red-400'
-                        : 'bg-nc-card border-nc-border text-white/60 hover:text-white'
+                        ? 'bg-red-500/10 border-red-500/30 text-red-500'
+                        : 'bg-nc-card border-nc-border text-nc-text-muted hover:text-nc-text'
                     }`}
                   >
                     {isListening ? (
@@ -328,7 +319,7 @@ export default function ConversationPage() {
                 <button
                   onClick={() => void handleSend(inputText)}
                   disabled={!inputText.trim() || isThinking}
-                  className="rounded-xl bg-nc-green px-3 py-2.5 text-[#0d0d14] disabled:opacity-40 transition-colors"
+                  className="rounded-full bg-nc-dark px-3 py-2.5 text-nc-green disabled:opacity-40 transition-colors"
                 >
                   <Send size={18} />
                 </button>
