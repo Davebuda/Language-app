@@ -114,9 +114,11 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
 }
 
 // conceptId → array of sentence IDs (for generateSession)
-export const MOCK_SENTENCE_IDS: Record<string, string[]> = {}
-for (const sentence of Object.values(MOCK_SENTENCES)) {
+export const MOCK_SENTENCE_IDS: Record<string, string[]> = Object.values(MOCK_SENTENCES).reduce<
+  Record<string, string[]>
+>((acc, sentence) => {
   for (const conceptId of sentence.conceptIds) {
-    MOCK_SENTENCE_IDS[conceptId] = [...(MOCK_SENTENCE_IDS[conceptId] ?? []), sentence.id]
+    acc[conceptId] = [...(acc[conceptId] ?? []), sentence.id]
   }
-}
+  return acc
+}, {})
