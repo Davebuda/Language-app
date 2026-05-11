@@ -15,11 +15,14 @@ import {
 } from '@/engine';
 import type { ExerciseResult } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
-import conceptGraphJson from '@content/concepts/a1-graph.json';
+import a1GraphJson from '@content/concepts/a1-graph.json';
+import a2GraphJson from '@content/concepts/a2-graph.json';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 
-const conceptGraph = conceptGraphJson as ConceptGraph;
+const a1Graph = a1GraphJson as ConceptGraph;
+const a2Graph = a2GraphJson as ConceptGraph;
+const A1_CONCEPTS = a1Graph.concepts;
 
 const ANON_ID_KEY = 'norsk-coach-anon-id';
 
@@ -31,9 +34,16 @@ function getOrCreateAnonId(): string {
   return id;
 }
 
-// ---------------------------------------------------------------------------
-// Supabase sync helpers
-// ---------------------------------------------------------------------------
+function checkA1Complete(fp: MistakeFingerprint): boolean {
+  return A1_CONCEPTS.every((node) => {
+    const m = fp.conceptMastery[node.id];
+    return (
+      m != null &&
+      m.rawScore >= node.masteryThreshold &&
+      m.attemptCount >= node.minAttempts
+    );
+  });
+}
 
 async function loadFingerprintFromSupabase(userId: string): Promise<MistakeFingerprint | null> {
   const supabase = createClient();
@@ -42,17 +52,9 @@ async function loadFingerprintFromSupabase(userId: string): Promise<MistakeFinge
     .select('data')
     .eq('user_id', userId)
     .single();
-
   if (error || !data) return null;
-  // Validate the stored blob has the required fingerprint shape before casting
   const raw = data.data;
-  if (
-    raw &&
-    typeof raw === 'object' &&
-    'userId' in raw &&
-    'conceptMastery' in raw &&
-    'recentErrors' in raw
-  ) {
+  if (raw && typeof raw === 'object' && 'userId' in raw && 'conceptMastery' in raw && 'recentErrors' in raw) {
     return raw as MistakeFingerprint;
   }
   return null;
@@ -66,31 +68,16 @@ async function saveFingerprintToSupabase(fp: MistakeFingerprint): Promise<void> 
   );
 }
 
-// ---------------------------------------------------------------------------
-// Migration: promote anonymous local fingerprint to auth user on first sign-in
-// ---------------------------------------------------------------------------
-
 async function migrateAnonFingerprintToUser(user: User): Promise<MistakeFingerprint | null> {
   const anonId = localStorage.getItem(ANON_ID_KEY);
   if (!anonId || anonId === user.id) return null;
-
   const local = await loadFingerprint(anonId);
   if (!local) return null;
-
   const migrated: MistakeFingerprint = { ...local, userId: user.id };
-  await Promise.all([
-    saveFingerprint(migrated),
-    saveFingerprintToSupabase(migrated),
-  ]);
-
-  // Preserve anon key pointing to new id so we don't migrate again
+  await Promise.all([saveFingerprint(migrated), saveFingerprintToSupabase(migrated)]);
   localStorage.setItem(ANON_ID_KEY, user.id);
   return migrated;
 }
-
-// ---------------------------------------------------------------------------
-// Hook
-// ---------------------------------------------------------------------------
 
 export function useFingerprint() {
   const { fingerprint, status, setFingerprint, setStatus } = useFingerprintStore();
@@ -98,7 +85,6 @@ export function useFingerprint() {
   const prevUserRef = useRef<User | null>(null);
   const bootstrappingRef = useRef(false);
 
-  // Bootstrap: load fingerprint once auth state is resolved
   useEffect(() => {
     if (authLoading) return;
     if (bootstrappingRef.current) return;
@@ -106,38 +92,23 @@ export function useFingerprint() {
     async function bootstrap() {
       bootstrappingRef.current = true;
       if (user) {
-        // Signed in — check if this is a fresh sign-in (prev was null)
         const wasAnon = prevUserRef.current === null;
-
         if (wasAnon) {
-          // Try migration first
           const migrated = await migrateAnonFingerprintToUser(user).catch(() => null);
-          if (migrated) {
-            setFingerprint(refreshDecay(migrated));
-            return;
-          }
+          if (migrated) { setFingerprint(refreshDecay(migrated)); return; }
         }
-
-        // Try Supabase, fall back to IndexedDB, fall back to empty
         const remote = await loadFingerprintFromSupabase(user.id).catch(() => null);
-        if (remote) {
-          setFingerprint(refreshDecay(remote));
-          return;
-        }
-
+        if (remote) { setFingerprint(refreshDecay(remote)); return; }
         const local = await loadFingerprint(user.id).catch(() => null);
         if (local) {
           setFingerprint(refreshDecay(local));
-          // Backfill remote if missing
           saveFingerprintToSupabase(local).catch(console.warn);
           return;
         }
-
         const empty = createEmptyFingerprint(user.id);
         setFingerprint(empty);
         setStatus('empty');
       } else {
-        // Anonymous
         const anonId = getOrCreateAnonId();
         const local = await loadFingerprint(anonId).catch(() => null);
         if (local) {
@@ -152,7 +123,6 @@ export function useFingerprint() {
 
     bootstrap().finally(() => { bootstrappingRef.current = false; });
     prevUserRef.current = user;
-    // Run only when auth resolves or user identity changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authLoading, user?.id]);
 
@@ -161,7 +131,8 @@ export function useFingerprint() {
       const fp = useFingerprintStore.getState().fingerprint;
       if (!fp) return;
 
-      const node = conceptGraph.concepts.find((c) => c.id === result.conceptId);
+      const activeGraph = fp.currentLevel === 'A2' ? a2Graph : a1Graph;
+      const node = activeGraph.concepts.find((c) => c.id === result.conceptId);
       const minAttempts = node?.minAttempts ?? 15;
       const minDays = node?.minDays ?? 3;
 
@@ -188,17 +159,18 @@ export function useFingerprint() {
           correct: result.correctAnswer,
           sentenceId: result.itemId,
         });
-        // Re-aggregate error patterns after every new error entry
         updated = { ...updated, errorPatterns: aggregateErrorPatterns(updated) };
+      }
+
+      // ── A1 → A2 level progression ────────────────────────────────────────
+      if (updated.currentLevel === 'A1' && checkA1Complete(updated)) {
+        updated = { ...updated, currentLevel: 'A2', updatedAt: new Date().toISOString() };
+        try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
       }
 
       setFingerprint(updated);
       saveFingerprint(updated).catch(console.warn);
-
-      // Sync to Supabase if authenticated
-      if (user) {
-        saveFingerprintToSupabase(updated).catch(console.warn);
-      }
+      if (user) { saveFingerprintToSupabase(updated).catch(console.warn); }
     },
     [setFingerprint, user]
   );
@@ -209,9 +181,7 @@ export function useFingerprint() {
     const refreshed = refreshDecay(fp);
     setFingerprint(refreshed);
     saveFingerprint(refreshed).catch(console.warn);
-    if (user) {
-      saveFingerprintToSupabase(refreshed).catch(console.warn);
-    }
+    if (user) { saveFingerprintToSupabase(refreshed).catch(console.warn); }
   }, [setFingerprint, user]);
 
   return { fingerprint, status, recordResult, refreshFingerprint };

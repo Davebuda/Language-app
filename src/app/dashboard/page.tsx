@@ -40,7 +40,19 @@ export default function DashboardPage() {
   const { fingerprint, status } = useFingerprintStore()
   const { user } = useAuth()
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
+  const [showLevelUp, setShowLevelUp] = useState(false)
   const streak = getStreak()
+
+  // Show level-up celebration when A1→A2 transition is detected
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('norskcoach_levelup_pending') === '1') {
+        localStorage.removeItem('norskcoach_levelup_pending')
+        setShowLevelUp(true)
+        setTimeout(() => setShowLevelUp(false), 4000)
+      }
+    } catch { /* ignore */ }
+  }, [fingerprint?.currentLevel])
 
   const displayName =
     user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
@@ -129,6 +141,23 @@ export default function DashboardPage() {
         </div>
 
         {!user ? <GuestBanner /> : null}
+
+        {/* Level-up celebration */}
+        {showLevelUp && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="rounded-[18px] p-4 text-center"
+            style={{ background: '#181526', boxShadow: '0 8px 32px rgba(24,21,38,0.22)' }}
+          >
+            <div className="text-2xl mb-1">🎉</div>
+            <div className="text-[17px] font-extrabold" style={{ color: '#C8FF00' }}>Nivå opp! Du er nå A2</div>
+            <div className="text-[12px] mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              Du har mestret alle A1-konsepter. Neste nivå er låst opp.
+            </div>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 8 }}

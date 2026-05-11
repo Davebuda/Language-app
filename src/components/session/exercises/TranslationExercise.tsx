@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import { checkAnswer } from '@/lib/answer';
+import { aiService } from '@/ai';
+import { useFingerprintStore } from '@/stores/fingerprint-store';
+import type { CEFRLevel } from '@/types/fingerprint';
 
 interface TranslationExerciseProps {
   item: SessionItem;
@@ -22,6 +25,21 @@ function useSmartFocus(inputRef: React.RefObject<HTMLInputElement | null>) {
   }, [inputRef]);
 }
 
+// Semantic check: if AI says no errors and answer length is in a reasonable range,
+// accept it as correct even if it doesn't match the reference string exactly.
+async function semanticCheck(userAnswer: string, correctAnswer: string, level: string): Promise<boolean> {
+  try {
+    const errors = await aiService.detectErrors(userAnswer, level as CEFRLevel);
+    if (errors.length > 0) return false;
+    const userLen = userAnswer.trim().length;
+    const correctLen = correctAnswer.trim().length;
+    const ratio = userLen / correctLen;
+    return ratio >= 0.5 && ratio <= 2.0;
+  } catch {
+    return false;
+  }
+}
+
 export function TranslationExercise({ item, sentence, sessionId, onResult }: TranslationExerciseProps) {
   const [userInput, setUserInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -35,10 +53,19 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
   const correctAnswer = toNorwegian ? sentence.norwegian : sentence.english;
   const promptLabel = toNorwegian ? 'Oversett til norsk' : 'Oversett til engelsk';
 
-  function submit() {
+  async function submit() {
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
-    const correct = checkAnswer(userInput, correctAnswer);
+
+    let correct = checkAnswer(userInput, correctAnswer);
+
+    // Semantic upgrade for Norwegian translations when AI model is loaded
+    if (!correct && toNorwegian && aiService.isReady()) {
+      const { fingerprint } = useFingerprintStore.getState();
+      const level = fingerprint?.currentLevel ?? 'A1';
+      correct = await semanticCheck(userInput, correctAnswer, level);
+    }
+
     const result: ExerciseResult = {
       sessionId,
       itemId: item.id,
@@ -70,13 +97,13 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
         type="text"
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}
-        onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
+        onKeyDown={(e) => { if (e.key === 'Enter') void submit(); }}
         disabled={submitted}
         placeholder="Ditt svar…"
         className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-violet/70 focus:ring-1 focus:ring-nc-violet/40 disabled:opacity-50 transition-colors"
       />
       <button
-        onClick={submit}
+        onClick={() => void submit()}
         disabled={submitted || !userInput.trim()}
         className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >

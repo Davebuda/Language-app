@@ -6,13 +6,15 @@ import { useFingerprintStore } from '@/stores/fingerprint-store';
 import { useFingerprint } from '@/hooks/useFingerprint';
 import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
-import type { ExerciseResult, SessionItem } from '@/types/session';
+import type { ExerciseResult, SessionItem, ExerciseType } from '@/types/session';
 import type { Sentence, ResolvedContent } from '@/types/content';
 import type { GenerateParams } from '@/ai/types';
 import type { ConceptGraph } from '@/types/concepts';
-import conceptGraphJson from '@content/concepts/a1-graph.json';
+import a1GraphJson from '@content/concepts/a1-graph.json';
+import a2GraphJson from '@content/concepts/a2-graph.json';
 
-const conceptGraph = conceptGraphJson as ConceptGraph;
+const a1Graph = a1GraphJson as ConceptGraph;
+const a2Graph = a2GraphJson as ConceptGraph;
 
 const SCENARIOS = [
   'daily-routine', 'food', 'transport', 'family',
@@ -42,6 +44,49 @@ function buildGenerateParams(
     productionGap: fingerprint?.productionGap[conceptId] ?? 0,
     scenario,
   };
+}
+
+// Generate up to 5 sentences for a concept and add them to the in-memory pool.
+// Called in the background when the unused pool runs low.
+async function topUpConcept(
+  conceptId: string,
+  preferredExerciseType: string,
+  existingSeeds: Sentence[],
+): Promise<void> {
+  const { fingerprint } = useFingerprintStore.getState();
+  if (!fingerprint) return;
+  const exerciseTypes = [
+    preferredExerciseType,
+    'translation-to-norwegian',
+    'fill-in-blank',
+    'word-order',
+    'translation-to-english',
+  ];
+  for (let i = 0; i < 5; i++) {
+    try {
+      const exerciseType = (exerciseTypes[i % exerciseTypes.length] ?? 'translation-to-norwegian') as ExerciseType;
+      const scenario = SCENARIOS[Math.floor(Math.random() * SCENARIOS.length)] ?? 'daily-routine';
+      const generated = await aiService.generateContent({
+        conceptId,
+        exerciseType,
+        level: fingerprint.currentLevel,
+        purpose: 'new-material',
+        recentErrors: (fingerprint.recentErrors ?? [])
+          .filter((e) => e.conceptId === conceptId)
+          .slice(0, 3)
+          .map((e) => e.errorTag),
+        masteryScore: fingerprint.conceptMastery[conceptId]?.rawScore,
+        productionGap: fingerprint.productionGap[conceptId] ?? 0,
+        scenario,
+      });
+      if (generated) {
+        // ResolvedContent satisfies Sentence — cast is safe
+        existingSeeds.push(generated as Sentence);
+      }
+    } catch {
+      // Silent — content top-up is best-effort
+    }
+  }
 }
 
 export function useSession(
@@ -104,6 +149,13 @@ export function useSession(
     // Seed fallback: prefer sentences that support the requested exercise type
     const conceptId = item.conceptIds[0] ?? '';
     const seeds = seedsByConceptId.current.get(conceptId) ?? [];
+
+    // Dynamic top-up: if the unused pool is thin, generate more sentences in the background
+    const unusedSeeds = seeds.filter((s) => !usedSentenceIds.current.has(s.id));
+    if (unusedSeeds.length < 3 && aiService.isReady()) {
+      void topUpConcept(conceptId, item.exerciseType, seeds);
+    }
+
     const compatible = seeds.filter((s) => s.exerciseTypes.includes(item.exerciseType));
     const pool = compatible.length > 0 ? compatible : seeds;
 
@@ -131,7 +183,8 @@ export function useSession(
     const { fingerprint } = useFingerprintStore.getState();
     if (!fingerprint) return;
 
-    const output = generateSession({ fingerprint, graph: conceptGraph, availableSentenceIds: availableSentenceIdsProp });
+    const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
+    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp });
     contentCache.current.clear();
     usedSentenceIds.current.clear();
     sessionStore.startSession(output.session);

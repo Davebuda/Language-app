@@ -13,9 +13,11 @@ import { incrementStreak } from '@/lib/streak'
 import type { Sentence } from '@/types/content'
 import type { ExerciseResult } from '@/types/session'
 import type { ConceptGraph } from '@/types/concepts'
-import conceptGraphJson from '@content/concepts/a1-graph.json'
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
 
-const conceptGraph = conceptGraphJson as ConceptGraph
+const a1Graph = a1GraphJson as ConceptGraph
+const a2Graph = a2GraphJson as ConceptGraph
 
 interface SessionScreenProps {
   sentences: Record<string, Sentence>
@@ -167,7 +169,7 @@ export function SessionScreen({
                     correctAnswer={lastResultRef.current?.correctAnswer ?? ''}
                     conceptId={currentItem.conceptIds[0] ?? 'concept'}
                     conceptLabel={
-                      conceptGraph.concepts.find(
+                      (fingerprint?.currentLevel === 'A2' ? a2Graph : a1Graph).concepts.find(
                         (concept) => concept.id === currentItem.conceptIds[0],
                       )?.label
                     }
