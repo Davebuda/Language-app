@@ -12,9 +12,10 @@ import type { Sentence } from '@/types/content';
 import type { ExerciseResult } from '@/types/session';
 
 interface SessionScreenProps {
-  // Seed sentences from Supabase — used as cold-start fallback while the
-  // local model loads, and as few-shot quality anchors for generation.
-  seeds: Record<string, Sentence>;
+  /** All available sentences keyed by ID (mock + Supabase merged). */
+  sentences: Record<string, Sentence>;
+  /** Sentence IDs grouped by concept ID — drives the session scheduler. */
+  availableSentenceIds: Record<string, string[]>;
 }
 
 function SegmentedProgress({ current, total }: { current: number; total: number }) {
@@ -33,7 +34,7 @@ function SegmentedProgress({ current, total }: { current: number; total: number 
   );
 }
 
-export function SessionScreen({ seeds }: SessionScreenProps) {
+export function SessionScreen({ sentences, availableSentenceIds }: SessionScreenProps) {
   const {
     session,
     currentItem,
@@ -44,7 +45,7 @@ export function SessionScreen({ seeds }: SessionScreenProps) {
     startNewSession,
     submitResult,
     continueAfterRepair,
-  } = useSession(seeds);
+  } = useSession(sentences, availableSentenceIds);
 
   const correctCount = useSessionStore((s) => s.results.filter((r) => r.correct).length);
   const lastResultRef = useRef<ExerciseResult | null>(null);
