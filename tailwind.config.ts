@@ -61,6 +61,18 @@ const config: Config = {
           muted: '#0d0d14',
         },
         base: '#09090e',
+        nc: {
+          bg: '#0d0d14',
+          card: '#1a1a26',
+          green: '#a8ef6a',
+          'green-tint': 'rgba(168,239,106,0.08)',
+          'green-border': 'rgba(168,239,106,0.18)',
+          border: 'rgba(255,255,255,0.07)',
+          'repair-bg': 'rgba(168,239,106,0.06)',
+          'repair-border': 'rgba(168,239,106,0.15)',
+          'text-muted': 'rgba(255,255,255,0.35)',
+          'text-dim': 'rgba(255,255,255,0.55)',
+        },
       },
       fontFamily: {
         display: ['"Plus Jakarta Sans"', 'sans-serif'],

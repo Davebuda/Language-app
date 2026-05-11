@@ -33,6 +33,20 @@
     --ring: 217 91% 60%;
 
     --radius: 0.625rem;
+
+    /* NorskCoach dark design tokens */
+    --nc-bg: #0d0d14;
+    --nc-card: #1a1a26;
+    --nc-green: #a8ef6a;
+    --nc-green-tint: rgba(168, 239, 106, 0.08);
+    --nc-green-border: rgba(168, 239, 106, 0.18);
+    --nc-border: rgba(255, 255, 255, 0.07);
+    --nc-border-subtle: rgba(255, 255, 255, 0.04);
+    --nc-text: #ffffff;
+    --nc-text-muted: rgba(255, 255, 255, 0.35);
+    --nc-text-dim: rgba(255, 255, 255, 0.55);
+    --nc-repair-bg: rgba(168, 239, 106, 0.06);
+    --nc-repair-border: rgba(168, 239, 106, 0.15);
   }
 
   * {
@@ -48,7 +62,7 @@
 
   body {
     @apply bg-base text-foreground;
-    background-color: #09090e;
+    background-color: #0d0d14;
     color: #f4f4f6;
     min-height: 100dvh;
     font-feature-settings: "cv11", "ss01";
