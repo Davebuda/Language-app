@@ -72,6 +72,7 @@ const config: Config = {
           'repair-border': 'rgba(168,239,106,0.15)',
           'text-muted': 'rgba(255,255,255,0.35)',
           'text-dim': 'rgba(255,255,255,0.55)',
+          'border-subtle': 'rgba(255,255,255,0.04)',
         },
       },
       fontFamily: {

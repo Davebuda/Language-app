@@ -15,8 +15,12 @@ export function getStreak(): number {
     const raw = localStorage.getItem(KEY)
     if (!raw) return 0
     const data: StreakData = JSON.parse(raw)
+    if (typeof data.count !== 'number' || typeof data.lastDate !== 'string') return 0
     const today = todayStr()
-    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
+    // DST-safe yesterday: subtract 1 day in local date parts
+    const d = new Date()
+    d.setDate(d.getDate() - 1)
+    const yesterday = d.toISOString().slice(0, 10)
     if (data.lastDate === today || data.lastDate === yesterday) return data.count
     return 0
   } catch {
@@ -28,9 +32,15 @@ export function incrementStreak(): void {
   if (typeof window === 'undefined') return
   try {
     const today = todayStr()
-    const existing = getStreak()
+    const raw = localStorage.getItem(KEY)
+    if (raw) {
+      const existing: Partial<StreakData> = JSON.parse(raw)
+      // Already incremented today — do not double-count
+      if (existing.lastDate === today) return
+    }
+    const currentCount = getStreak()
     const data: StreakData = {
-      count: existing + 1,
+      count: currentCount + 1,
       lastDate: today,
     }
     localStorage.setItem(KEY, JSON.stringify(data))
