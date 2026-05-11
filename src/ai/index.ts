@@ -1,11 +1,8 @@
-// AI service singleton.
-// WebLLMService is always instantiated — it handles SSR gracefully by
-// checking for browser/WebGPU availability inside init().
-// Call aiService.init() at app mount to begin background model loading.
-
+// Phase 2: use StubAIService — template-based responses, no WASM.
+// WebLLMService (real on-device AI) is wired in Phase 3.
 import type { AIService } from './types';
-import { WebLLMService } from './webllm';
+import { StubAIService } from './stub';
 
-export const aiService: AIService = new WebLLMService();
+export const aiService: AIService = new StubAIService();
 
 export type { AIService } from './types';
