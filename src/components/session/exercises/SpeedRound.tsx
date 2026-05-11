@@ -59,7 +59,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   }
 
   const pct = (secondsLeft / initialSeconds) * 100;
-  const urgentColor = secondsLeft <= 10 ? '#ef4444' : '#a8ef6a';
+  const urgentColor = secondsLeft <= 10 ? '#ff6b5b' : '#c8ff00';
 
   return (
     <div className="space-y-5">

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -30,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${plusJakartaSans.variable}`}>
-      <body className="font-display antialiased" style={{ backgroundColor: '#0d0d14' }}>
+    <html lang="en" className={`dark ${outfit.variable}`}>
+      <body className="font-display antialiased" style={{ backgroundColor: '#0c0d14' }}>
         {children}
       </body>
     </html>

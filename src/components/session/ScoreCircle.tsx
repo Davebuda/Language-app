@@ -35,7 +35,7 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="#a8ef6a"
+        stroke="#c8ff00"
         strokeWidth={8}
         strokeLinecap="round"
         strokeDasharray={circumference}
@@ -49,7 +49,7 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
         y={size / 2 - 4}
         textAnchor="middle"
         dominantBaseline="middle"
-        style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontWeight: 900 }}
+        style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 900 }}
         fontSize={size * 0.22}
         fill="#ffffff"
       >
@@ -60,7 +60,7 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
         x={size / 2}
         y={size / 2 + size * 0.17}
         textAnchor="middle"
-        style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontWeight: 600 }}
+        style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 600 }}
         fontSize={size * 0.1}
         fill="rgba(255,255,255,0.4)"
       >

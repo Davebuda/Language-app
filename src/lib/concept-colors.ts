@@ -1,5 +1,5 @@
 const CONCEPT_COLORS: Record<string, string> = {
-  'noun-gender': '#a8ef6a',
+  'noun-gender': '#c8ff00',
   'indefinite-articles': '#7eb8ef',
   'definite-articles-singular': '#ef7eb8',
   'plural-formation': '#efcc7e',

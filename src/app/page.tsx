@@ -3,14 +3,14 @@ import { StartButton } from '@/components/landing/StartButton'
 
 export default function HomePage() {
   return (
-    <main className="relative flex min-h-dvh flex-col overflow-hidden bg-[#0d0d14] text-white">
-      {/* Green ambient glow */}
+    <main className="relative flex min-h-dvh flex-col overflow-hidden bg-nc-bg text-white">
+      {/* Lime ambient glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[500px]"
         style={{
           background:
-            'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(168,239,106,0.08) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(200,255,0,0.09) 0%, transparent 70%)',
         }}
       />
 

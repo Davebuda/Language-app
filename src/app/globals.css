@@ -4,49 +4,68 @@
 
 @layer base {
   :root {
-    --background: 240 10% 4%;
-    --foreground: 240 5% 96%;
+    --background: 240 12% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 240 8% 7%;
-    --card-foreground: 240 5% 96%;
+    --card: 237 14% 9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 240 8% 7%;
-    --popover-foreground: 240 5% 96%;
+    --popover: 237 14% 9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary = electric lime */
+    --primary: 73 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 240 6% 12%;
-    --secondary-foreground: 240 5% 96%;
+    --secondary: 237 10% 13%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 6% 12%;
-    --muted-foreground: 240 5% 55%;
+    --muted: 237 10% 13%;
+    --muted-foreground: 240 5% 50%;
 
-    --accent: 240 6% 14%;
-    --accent-foreground: 240 5% 96%;
+    --accent: 237 10% 15%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 4 82% 65%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 12%;
-    --input: 240 6% 12%;
-    --ring: 217 91% 60%;
+    --border: 237 10% 13%;
+    --input: 237 10% 13%;
+    --ring: 73 100% 50%;
 
-    --radius: 0.625rem;
+    --radius: 0.75rem;
 
-    /* NorskCoach dark design tokens */
-    --nc-bg: #0d0d14;
-    --nc-card: #1a1a26;
-    --nc-green: #a8ef6a;
-    --nc-green-tint: rgba(168, 239, 106, 0.08);
-    --nc-green-border: rgba(168, 239, 106, 0.18);
-    --nc-border: rgba(255, 255, 255, 0.07);
+    /* ── NorskCoach design tokens ── */
+    --nc-bg:            #0c0d14;
+    --nc-card:          #14162a;
+    --nc-card-hover:    #181b2e;
+
+    /* Electric lime — the primary brand accent */
+    --nc-green:         #c8ff00;
+    --nc-green-tint:    rgba(200, 255, 0, 0.08);
+    --nc-green-border:  rgba(200, 255, 0, 0.20);
+    --nc-green-glow:    rgba(200, 255, 0, 0.15);
+
+    /* Coral — error / repair accent */
+    --nc-coral:         #ff6b5b;
+    --nc-coral-tint:    rgba(255, 107, 91, 0.10);
+    --nc-coral-border:  rgba(255, 107, 91, 0.22);
+
+    /* Mint — success / positive accent */
+    --nc-mint:          #6dffd8;
+    --nc-mint-tint:     rgba(109, 255, 216, 0.08);
+    --nc-mint-border:   rgba(109, 255, 216, 0.20);
+
+    /* Neutral borders & text */
+    --nc-border:        rgba(255, 255, 255, 0.07);
     --nc-border-subtle: rgba(255, 255, 255, 0.04);
-    --nc-text: #ffffff;
-    --nc-text-muted: rgba(255, 255, 255, 0.35);
-    --nc-text-dim: rgba(255, 255, 255, 0.55);
-    --nc-repair-bg: rgba(168, 239, 106, 0.06);
-    --nc-repair-border: rgba(168, 239, 106, 0.15);
+    --nc-text:          #ffffff;
+    --nc-text-muted:    rgba(255, 255, 255, 0.35);
+    --nc-text-dim:      rgba(255, 255, 255, 0.55);
+
+    /* Repair state — coral-tinted */
+    --nc-repair-bg:     rgba(255, 107, 91, 0.06);
+    --nc-repair-border: rgba(255, 107, 91, 0.18);
   }
 
   * {
@@ -61,15 +80,15 @@
   }
 
   body {
-    background-color: #0d0d14;
-    color: #f4f4f6;
+    background-color: var(--nc-bg);
+    color: var(--nc-text);
     min-height: 100dvh;
     font-feature-settings: "cv11", "ss01";
   }
 
   ::selection {
-    background-color: rgba(168, 239, 106, 0.25);
-    color: #0d0d14;
+    background-color: rgba(200, 255, 0, 0.25);
+    color: #0c0d14;
   }
 
   ::-webkit-scrollbar {
@@ -77,16 +96,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0d0d14;
+    background: var(--nc-bg);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1a1a26;
+    background: #1e2038;
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(168, 239, 106, 0.3);
+    background: rgba(200, 255, 0, 0.25);
   }
 }
 

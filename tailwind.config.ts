@@ -40,77 +40,96 @@ const config: Config = {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
-        // Project-specific tokens
-        brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
-        },
-        surface: {
-          DEFAULT: '#111118',
-          elevated: '#16161f',
-          border: '#1e1e2e',
-          muted: '#0d0d14',
-        },
-        base: '#09090e',
+
+        // NorskCoach brand tokens
         nc: {
-          // Solid colors — Tailwind handles hex fine
-          bg: '#0d0d14',
-          card: '#1a1a26',
-          green: '#a8ef6a',
-          // rgba colors — reference CSS vars so Tailwind emits valid CSS
-          'green-tint': 'var(--nc-green-tint)',
+          bg:             '#0c0d14',
+          card:           '#14162a',
+          'card-hover':   '#181b2e',
+
+          // Electric lime — primary brand accent
+          green:          '#c8ff00',
+          'green-tint':   'var(--nc-green-tint)',
           'green-border': 'var(--nc-green-border)',
-          border: 'var(--nc-border)',
-          'repair-bg': 'var(--nc-repair-bg)',
-          'repair-border': 'var(--nc-repair-border)',
-          'text-muted': 'var(--nc-text-muted)',
-          'text-dim': 'var(--nc-text-dim)',
-          'border-subtle': 'var(--nc-border-subtle)',
+          'green-glow':   'var(--nc-green-glow)',
+
+          // Coral — repair / error accent
+          coral:          '#ff6b5b',
+          'coral-tint':   'var(--nc-coral-tint)',
+          'coral-border': 'var(--nc-coral-border)',
+
+          // Mint — success / positive accent
+          mint:           '#6dffd8',
+          'mint-tint':    'var(--nc-mint-tint)',
+          'mint-border':  'var(--nc-mint-border)',
+
+          // Neutral
+          border:         'var(--nc-border)',
+          'border-subtle':'var(--nc-border-subtle)',
+          'text-muted':   'var(--nc-text-muted)',
+          'text-dim':     'var(--nc-text-dim)',
+
+          // Repair state
+          'repair-bg':    'var(--nc-repair-bg)',
+          'repair-border':'var(--nc-repair-border)',
         },
+
+        // Surface scale
+        surface: {
+          DEFAULT:  '#111320',
+          elevated: '#161828',
+          border:   '#1e2038',
+          muted:    '#0c0d14',
+        },
+        base: '#080910',
       },
+
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'sans-serif'],
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        display: ['"Outfit"', 'sans-serif'],
+        sans:    ['"Outfit"', 'sans-serif'],
       },
+
       backgroundImage: {
-        'brand-glow': 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%)',
-        'brand-glow-sm': 'radial-gradient(ellipse 40% 30% at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 60%)',
+        // Lime glow replaces the old blue glow
+        'brand-glow':    'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(200,255,0,0.10) 0%, transparent 70%)',
+        'brand-glow-sm': 'radial-gradient(ellipse 40% 30% at 50% 0%, rgba(200,255,0,0.07) 0%, transparent 60%)',
+        'lime-spot':     'radial-gradient(ellipse 50% 35% at 50% 100%, rgba(200,255,0,0.12) 0%, transparent 70%)',
       },
+
       keyframes: {
         'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '0%':   { opacity: '0', transform: 'translateY(16px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         'fade-in': {
-          '0%': { opacity: '0' },
+          '0%':   { opacity: '0' },
           '100%': { opacity: '1' },
         },
         blink: {
           '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' },
+          '50%':      { opacity: '0' },
         },
         pulse: {
           '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.5' },
+          '50%':      { opacity: '0.5' },
+        },
+        'scale-in': {
+          '0%':   { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
       },
+
       animation: {
-        'fade-up': 'fade-up 0.5s ease-out forwards',
-        'fade-in': 'fade-in 0.4s ease-out forwards',
-        blink: 'blink 1s step-end infinite',
+        'fade-up':  'fade-up 0.5s ease-out forwards',
+        'fade-in':  'fade-in 0.4s ease-out forwards',
+        'scale-in': 'scale-in 0.3s ease-out forwards',
+        blink:      'blink 1s step-end infinite',
       },
+
       borderRadius: {
         '2xl': '1rem',
         '3xl': '1.5rem',
+        '4xl': '2rem',
       },
     },
   },
