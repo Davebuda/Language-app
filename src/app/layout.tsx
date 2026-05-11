@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${plusJakartaSans.variable}`}>
-      <body className="font-display antialiased" style={{ backgroundColor: '#09090e' }}>
+      <body className="font-display antialiased" style={{ backgroundColor: '#0d0d14' }}>
         {children}
       </body>
     </html>
