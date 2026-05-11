@@ -6,10 +6,12 @@ import type {
   TaggedError,
   ReviewParams,
   WritingFeedback,
+  ConversationMessage,
+  ConversationTurnResult,
 } from './types';
 import type { ResolvedContent } from '@/types/content';
 import type { CEFRLevel } from '@/types/fingerprint';
-import { buildGenerationPrompt, buildExplanationPrompt } from './prompts';
+import { buildGenerationPrompt, buildExplanationPrompt, buildConversationPrompt, buildWritingFeedbackPrompt } from './prompts';
 import { validateGenerated } from './validate';
 
 // Primary model: 3B params, ~2 GB VRAM, good multilingual instruction following.
@@ -156,6 +158,20 @@ export class WebLLMService implements AIService {
     return res.choices[0]?.message?.content ?? '';
   }
 
+  private async completeChat(
+    system: string,
+    messages: Array<{ role: string; content: string }>,
+    maxTokens = 300,
+  ): Promise<string> {
+    if (!this.engine) throw new Error('engine not ready');
+    const res = await this.engine.chat.completions.create({
+      messages: [{ role: 'system', content: system }, ...messages] as Parameters<typeof this.engine.chat.completions.create>[0]['messages'],
+      max_tokens: maxTokens,
+      temperature: 0.8,
+    });
+    return res.choices[0]?.message?.content ?? '';
+  }
+
   async generateContent(params: GenerateParams): Promise<ResolvedContent | null> {
     if (!this.isReady()) return null;
 
@@ -214,12 +230,75 @@ export class WebLLMService implements AIService {
     return [];
   }
 
-  async reviewWriting(_params: ReviewParams): Promise<WritingFeedback> {
-    return {
-      errors: [],
-      praise: 'Good attempt! Keep writing in Norwegian.',
-      suggestion: 'Focus on getting the word order right — verb second in main clauses.',
-      source: 'template',
-    };
+  async reviewWriting(params: ReviewParams): Promise<WritingFeedback> {
+    if (!this.isReady()) {
+      return {
+        errors: [],
+        praise: 'Good attempt! Keep writing in Norwegian.',
+        suggestion: 'Focus on getting the word order right — verb second in main clauses.',
+        source: 'template',
+      };
+    }
+    try {
+      const { system, user } = buildWritingFeedbackPrompt(params.userText, params.level);
+      const raw = await this.complete(system, user, true);
+      const parsed = JSON.parse(raw) as {
+        errors?: Array<{ wrong: string; correct: string; tag: string; why: string; start?: number; end?: number }>;
+        praise?: string;
+        suggestion?: string;
+      };
+      return {
+        errors: (parsed.errors ?? []).map((e) => ({
+          tag: e.tag as TaggedError['tag'],
+          wrong: e.wrong,
+          correct: e.correct,
+          briefWhy: e.why,
+          span: e.start != null && e.end != null ? { start: e.start, end: e.end } : undefined,
+        })),
+        praise: parsed.praise ?? 'Good attempt!',
+        suggestion: parsed.suggestion ?? 'Keep practising!',
+        source: 'ai',
+      };
+    } catch {
+      return {
+        errors: [],
+        praise: 'Good attempt! Keep writing in Norwegian.',
+        suggestion: 'Focus on getting the word order right.',
+        source: 'template',
+      };
+    }
+  }
+
+  async conversationTurn(
+    messages: ConversationMessage[],
+    level: CEFRLevel,
+    topic: string,
+  ): Promise<ConversationTurnResult> {
+    if (!this.isReady()) {
+      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' };
+    }
+    try {
+      const { system, messages: chatMessages } = buildConversationPrompt(
+        messages.map((m) => ({ role: m.role === 'tutor' ? 'assistant' : 'user', content: m.content })),
+        level,
+        topic,
+      );
+      const raw = await this.completeChat(system, chatMessages);
+
+      // Parse optional CORRECTION: block
+      const correctionMatch = raw.match(/CORRECTION:(\{.*\})/s);
+      let correction: ConversationTurnResult['correction'];
+      if (correctionMatch) {
+        try {
+          const c = JSON.parse(correctionMatch[1]) as { original: string; correct: string; tag: string; why: string };
+          correction = { original: c.original, corrected: c.correct, errorTag: c.tag, explanation: c.why };
+        } catch { /* ignore malformed correction */ }
+      }
+
+      const tutorResponse = raw.replace(/\nCORRECTION:\{.*\}/s, '').trim();
+      return { tutorResponse, correction, source: 'ai' };
+    } catch {
+      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' };
+    }
   }
 }

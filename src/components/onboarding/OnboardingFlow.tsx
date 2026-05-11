@@ -197,7 +197,8 @@ export function OnboardingFlow() {
   // Render the active step's content
   function renderStep(step: Step) {
     if (step.kind === 'intro') {
-      const slide = INTRO_SLIDES.find((s) => s.id === step.id)!
+      const slide = INTRO_SLIDES.find((s) => s.id === step.id)
+      if (!slide) return null
       return <IntroSlide key={step.id} slide={slide} onNext={() => advance()} />
     }
     if (step.kind === 'quiz') {

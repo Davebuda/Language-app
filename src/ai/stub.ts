@@ -10,6 +10,8 @@ import type {
   TaggedError,
   ReviewParams,
   WritingFeedback,
+  ConversationMessage,
+  ConversationTurnResult,
 } from './types';
 import type { ResolvedContent } from '@/types/content';
 import type { CEFRLevel } from '@/types/fingerprint';
@@ -91,5 +93,41 @@ export class StubAIService implements AIService {
       suggestion: 'Focus on getting the word order right — verb second in main clauses.',
       source: 'template',
     };
+  }
+
+  async conversationTurn(
+    messages: ConversationMessage[],
+    level: CEFRLevel,
+    topic: string,
+  ): Promise<ConversationTurnResult> {
+    const lastUser = messages.filter((m) => m.role === 'user').at(-1)?.content ?? '';
+    const openers: Record<string, string[]> = {
+      A1: [
+        'Bra! Kan du fortelle mer?',
+        'Interessant! Hva liker du best?',
+        'Flott! Hva gjør du i dag?',
+      ],
+      A2: [
+        'Det er interessant! Hvorfor liker du det?',
+        'Bra sagt! Har du gjort det mange ganger?',
+        'Spennende! Hva skjer videre?',
+      ],
+      B1: [
+        'Veldig bra! Kan du utdype det litt?',
+        'Interessant perspektiv. Hva synes du er det vanskeligste?',
+        'Det skjønner jeg. Har du noen andre tanker om det?',
+      ],
+      B2: [
+        'Interessant poeng. Tror du det alltid er slik?',
+        'Det er et godt argument. Hva ville du sagt til noen som er uenig?',
+        'Spennende! Hvilke erfaringer har du med dette?',
+      ],
+    };
+    const pool = openers[level] ?? openers['A1'];
+    const response = lastUser
+      ? pool[Math.floor(Math.random() * pool.length)]
+      : `Hei! La oss snakke om ${topic}. Hva tenker du på når du hører det ordet?`;
+
+    return { tutorResponse: response, source: 'template' };
   }
 }

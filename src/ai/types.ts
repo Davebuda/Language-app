@@ -38,6 +38,27 @@ export interface TaggedError {
   wrong: string;
   correct: string;
   briefWhy: string;
+  span?: { start: number; end: number };
+}
+
+// ── Conversation ──────────────────────────────────────────────────────────────
+
+export interface ConversationMessage {
+  role: 'user' | 'tutor';
+  content: string;
+}
+
+export interface ConversationCorrection {
+  original: string;
+  corrected: string;
+  errorTag: string;
+  explanation: string;
+}
+
+export interface ConversationTurnResult {
+  tutorResponse: string;
+  correction?: ConversationCorrection;
+  source: 'ai' | 'template';
 }
 
 export interface ReviewParams {
@@ -64,4 +85,9 @@ export interface AIService {
   generateContent(params: GenerateParams): Promise<ResolvedContent | null>;
   detectErrors(text: string, level: CEFRLevel): Promise<TaggedError[]>;
   reviewWriting(params: ReviewParams): Promise<WritingFeedback>;
+  conversationTurn(
+    messages: ConversationMessage[],
+    level: CEFRLevel,
+    topic: string
+  ): Promise<ConversationTurnResult>;
 }

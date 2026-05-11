@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { MessageCircle, PenLine, BookOpen, Mic } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -17,6 +18,45 @@ import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
+
+const LEARNING_MODES = [
+  {
+    id: 'conversation',
+    href: '/conversation',
+    label: 'Samtale',
+    desc: 'Snakk med AI-tutor',
+    Icon: MessageCircle,
+    color: 'text-violet-400',
+    bg: 'bg-violet-400/8 border-violet-400/20',
+  },
+  {
+    id: 'journal',
+    href: '/journal',
+    label: 'Skriv',
+    desc: 'Journalskriving',
+    Icon: PenLine,
+    color: 'text-sky-400',
+    bg: 'bg-sky-400/8 border-sky-400/20',
+  },
+  {
+    id: 'reading',
+    href: '/reading',
+    label: 'Les',
+    desc: 'Lesestudio',
+    Icon: BookOpen,
+    color: 'text-amber-400',
+    bg: 'bg-amber-400/8 border-amber-400/20',
+  },
+  {
+    id: 'shadow',
+    href: '/shadow',
+    label: 'Uttale',
+    desc: 'Skygging & uttale',
+    Icon: Mic,
+    color: 'text-rose-400',
+    bg: 'bg-rose-400/8 border-rose-400/20',
+  },
+] as const
 
 const conceptGraph = conceptGraphJson as ConceptGraph
 
@@ -182,6 +222,34 @@ export default function DashboardPage() {
                 locked={c.locked}
                 prereqLabel={c.locked ? 'Låst' : undefined}
               />
+            ))}
+          </div>
+        </div>
+
+        {/* Learning modes grid */}
+        <div>
+          <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-white/50">
+            Læringsverktøy
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {LEARNING_MODES.map(({ id, href, label, desc, Icon, color, bg }, i) => (
+              <motion.div
+                key={id}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * i }}
+              >
+                <Link
+                  href={href}
+                  className={`flex flex-col gap-2 rounded-2xl border p-4 transition-all active:scale-[0.97] ${bg}`}
+                >
+                  <Icon size={20} className={color} strokeWidth={1.8} />
+                  <div>
+                    <div className="text-[13px] font-bold text-white">{label}</div>
+                    <div className="text-[11px] text-white/40">{desc}</div>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>

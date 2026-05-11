@@ -204,6 +204,73 @@ export function buildGenerationPrompt(
   return { system: SYSTEM, user: builder(params) };
 }
 
+// ── Conversation turn ──────────────────────────────────────────────────────
+
+export function buildConversationPrompt(
+  messages: Array<{ role: string; content: string }>,
+  level: string,
+  topic: string,
+): { system: string; messages: Array<{ role: string; content: string }> } {
+  const topicLabel = TOPIC_DESCRIPTIONS[topic] ?? topic;
+  const levelNote: Record<string, string> = {
+    A1: 'very simple sentences, present tense only, max 6 words per sentence',
+    A2: 'simple sentences, 2-3 tenses, everyday vocabulary',
+    B1: 'natural sentences, varied grammar, can handle some complexity',
+    B2: 'fluent natural Norwegian, complex grammar is fine',
+  };
+  const system = `You are Kari, a warm and encouraging Norwegian language tutor. You are having a spoken conversation with a learner about: ${topicLabel}.
+
+Learner level: ${level} — ${levelNote[level] ?? 'adjust to their level'}
+
+STRICT RULES:
+1. Respond ONLY in Norwegian Bokmål — never switch to English in your response
+2. Keep your response to 1–3 short sentences — this is a spoken conversation, not a lecture
+3. Be warm and curious — always end with a follow-up question to keep the conversation going
+4. If the learner made a clear grammar mistake, weave the correct form naturally into your own response without pointing it out explicitly
+5. If the error is significant, add a correction note in [brackets] at the very end of your response: [merk: "their mistake" → "correct form"]
+6. Never break character, never explain that you are AI
+
+After your Norwegian response, if there was a grammar error, output this on a new line:
+CORRECTION:{"original":"exact words they used wrong","correct":"the right form","tag":"error category","why":"one sentence English explanation"}
+
+If no error, output nothing extra.`;
+
+  return { system, messages };
+}
+
+// ── Writing feedback ───────────────────────────────────────────────────────
+
+export function buildWritingFeedbackPrompt(
+  text: string,
+  level: string,
+): { system: string; user: string } {
+  return {
+    system: `You are a Norwegian Bokmål grammar teacher giving constructive feedback.
+Analyze the text and return ONLY valid JSON — no markdown, no prose outside the JSON.
+Focus on the 1–3 most important errors only. Be encouraging.`,
+    user: `Norwegian text from a ${level} learner:
+"""
+${text}
+"""
+
+Return JSON with this exact structure:
+{
+  "errors": [
+    {
+      "wrong": "the exact phrase from the text that is wrong",
+      "correct": "the corrected version",
+      "tag": "one of: word-order|verb-conjugation|noun-gender|article-use|negation-placement|adjective-agreement|modal-verb|preposition|spelling|other",
+      "why": "brief English explanation of the rule",
+      "start": <integer char offset in original text>,
+      "end": <integer char offset in original text>
+    }
+  ],
+  "praise": "one specific positive observation about the writing",
+  "suggestion": "the single most important thing to work on next"
+}`,
+  };
+}
+
 export function buildExplanationPrompt(
   params: ExplainParams
 ): { system: string; user: string } {

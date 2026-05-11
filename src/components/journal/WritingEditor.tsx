@@ -1,0 +1,161 @@
+'use client'
+
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { aiService } from '@/ai'
+import type { WritingFeedback } from '@/ai/types'
+
+const PROMPTS = [
+  'Beskriv din ideelle norske helg',
+  'Hva liker du best med vinteren?',
+  'Skriv om et sted du vil besøke i Norge',
+  'Beskriv deg selv på norsk',
+  'Hva er din favorittmat, og hvorfor?',
+]
+
+function getDailyPrompt(): string {
+  return PROMPTS[new Date().getDay() % PROMPTS.length]
+}
+
+function buildCorrectedText(original: string, errors: WritingFeedback['errors']): string {
+  let result = original
+  for (const err of errors) {
+    result = result.replace(err.wrong, err.correct)
+  }
+  return result
+}
+
+export function WritingEditor() {
+  const [text, setText] = useState('')
+  const [feedback, setFeedback] = useState<WritingFeedback | null>(null)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [showCorrected, setShowCorrected] = useState(false)
+
+  const prompt = useMemo(() => getDailyPrompt(), [])
+  const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0
+  const canAnalyze = wordCount >= 5
+
+  async function handleAnalyze() {
+    setIsAnalyzing(true)
+    setFeedback(null)
+    setShowCorrected(false)
+    try {
+      const result = await aiService.reviewWriting({ userText: text, prompt, level: 'A1' })
+      setFeedback(result)
+    } finally {
+      setIsAnalyzing(false)
+    }
+  }
+
+  const correctedText = feedback ? buildCorrectedText(text, feedback.errors) : ''
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Daily prompt */}
+      <div className="rounded-xl bg-nc-card border border-nc-border p-3">
+        <div className="mb-1 text-[10px] font-bold uppercase tracking-widest text-white/30">
+          Dagens prompt
+        </div>
+        <p className="text-[13px] text-white/70">{prompt}</p>
+      </div>
+
+      {/* Textarea */}
+      <div className="flex flex-col gap-1">
+        <textarea
+          className="w-full min-h-[180px] resize-none rounded-xl bg-nc-card border border-nc-border p-4 text-white placeholder-white/20 text-[15px] leading-relaxed focus:outline-none focus:border-nc-green/40 transition-colors"
+          placeholder="Skriv på norsk her..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <div className="text-right text-[11px] text-white/30">{wordCount} ord</div>
+      </div>
+
+      {/* Analyze button */}
+      {canAnalyze && (
+        <button
+          onClick={handleAnalyze}
+          disabled={isAnalyzing}
+          className="w-full rounded-xl bg-nc-green py-3 text-sm font-extrabold text-[#0d0d14] disabled:opacity-50 transition-transform active:scale-[0.98] flex items-center justify-center gap-2"
+        >
+          {isAnalyzing ? (
+            <>
+              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+              </svg>
+              Analyserer...
+            </>
+          ) : (
+            'Analyser tekst'
+          )}
+        </button>
+      )}
+
+      {/* Feedback */}
+      <AnimatePresence>
+        {feedback && (
+          <motion.div
+            key="feedback"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="flex flex-col gap-3"
+          >
+            {/* Praise */}
+            <div className="rounded-xl bg-nc-green/8 border border-nc-green/20 p-4">
+              <p className="text-[13px] text-white/80">🎉 {feedback.praise}</p>
+            </div>
+
+            {/* Errors */}
+            {feedback.errors.length > 0 && (
+              <div className="flex flex-col gap-2">
+                {feedback.errors.map((err, i) => (
+                  <div key={i} className="rounded-xl bg-nc-card border border-nc-border border-l-2 border-l-red-400/60 pl-4 pr-4 py-3">
+                    <p className="text-[13px] text-white">
+                      <span className="line-through text-white/40">{err.wrong}</span>
+                      {' → '}
+                      <span className="text-nc-green font-semibold">{err.correct}</span>
+                    </p>
+                    <p className="mt-1 text-[12px] text-white/50">{err.briefWhy}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Suggestion */}
+            <div className="rounded-xl bg-nc-card border border-nc-border p-4">
+              <p className="text-[13px] text-white/70">💡 {feedback.suggestion}</p>
+            </div>
+
+            {/* Show corrected toggle */}
+            {feedback.errors.length > 0 && (
+              <button
+                onClick={() => setShowCorrected((v) => !v)}
+                className="text-[12px] font-semibold text-nc-green underline underline-offset-2 text-left"
+              >
+                {showCorrected ? 'Skjul rettet versjon' : 'Se rettet versjon'}
+              </button>
+            )}
+
+            {/* Corrected version */}
+            <AnimatePresence>
+              {showCorrected && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="rounded-xl bg-nc-card border border-nc-green/20 p-4">
+                    <div className="mb-1 text-[10px] uppercase tracking-widest text-nc-green/50">Rettet versjon</div>
+                    <p className="text-[15px] leading-relaxed text-nc-green/90">{correctedText}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
