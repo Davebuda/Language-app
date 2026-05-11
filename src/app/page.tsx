@@ -33,7 +33,7 @@ export default function HomePage() {
           Fluent Norwegian,{' '}
           <span className="text-nc-green">guided by AI.</span>
         </h1>
-        <p className="mb-8 max-w-sm text-[15px] leading-relaxed text-white/45">
+        <p className="mb-8 max-w-sm text-[15px] leading-relaxed text-white/40">
           En personlig coach som finner svakhetene dine, forklarer dem, og fikser dem med
           målrettet øvelse.
         </p>
@@ -62,7 +62,7 @@ export default function HomePage() {
           ].map(({ icon, title, desc }) => (
             <div
               key={title}
-              className="flex items-start gap-4 rounded-2xl border border-white/6 bg-white/4 px-5 py-4"
+              className="flex items-start gap-4 rounded-2xl border border-white/5 bg-white/5 px-5 py-4"
             >
               <span className="mt-0.5 text-[20px]">{icon}</span>
               <div>
@@ -75,7 +75,7 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <div className="relative pb-6 text-center text-[11px] text-white/15">
+      <div className="relative pb-6 text-center text-[11px] text-white/10">
         © NorskCoach 2026
       </div>
     </main>
