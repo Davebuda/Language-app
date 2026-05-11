@@ -4,31 +4,11 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph, ConceptNode } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
 
 const conceptGraph = conceptGraphJson as ConceptGraph
-
-const CONCEPT_COLORS: Record<string, string> = {
-  'noun-gender': '#a8ef6a',
-  'indefinite-articles': '#7eb8ef',
-  'definite-articles-singular': '#ef7eb8',
-  'plural-formation': '#efcc7e',
-  'definite-articles-plural': '#b87eef',
-  'present-tense-regular': '#7eefcc',
-  'subject-pronouns': '#ef9e7e',
-  'v2-word-order': '#ef7e7e',
-  'negation': '#7eefb8',
-  'interrogatives': '#c4ef7e',
-  'adjective-agreement': '#7ec4ef',
-  'modal-verbs': '#ef7ec4',
-}
-
-function getConceptColor(id: string, index: number): string {
-  if (CONCEPT_COLORS[id]) return CONCEPT_COLORS[id]
-  const palette = Object.values(CONCEPT_COLORS)
-  return palette[index % palette.length]
-}
 
 function getPrereqLabel(concept: ConceptNode, allConcepts: ConceptNode[]): string {
   const firstPrereq = allConcepts.find((c) => c.id === concept.prerequisites[0])
@@ -58,7 +38,8 @@ export default function ProgressPage() {
     const prereqsMet = c.prerequisites.every((p) => masteredIds.has(p))
     if (masteredIds.has(c.id)) {
       mastered.push(c)
-    } else if (hasData || (prereqsMet && c.prerequisites.length === 0)) {
+    } else if (hasData || prereqsMet) {
+      // hasData = actively practiced; prereqsMet = unlocked (ready to start)
       inProgress.push(c)
     } else {
       locked.push(c)

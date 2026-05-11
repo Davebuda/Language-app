@@ -13,31 +13,11 @@ import { GuestBanner } from '@/components/layout/GuestBanner'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
 
 const conceptGraph = conceptGraphJson as ConceptGraph
-
-const CONCEPT_COLORS: Record<string, string> = {
-  'noun-gender': '#a8ef6a',
-  'indefinite-articles': '#7eb8ef',
-  'definite-articles-singular': '#ef7eb8',
-  'plural-formation': '#efcc7e',
-  'definite-articles-plural': '#b87eef',
-  'present-tense-regular': '#7eefcc',
-  'subject-pronouns': '#ef9e7e',
-  'v2-word-order': '#ef7e7e',
-  'negation': '#7eefb8',
-  'interrogatives': '#c4ef7e',
-  'adjective-agreement': '#7ec4ef',
-  'modal-verbs': '#ef7ec4',
-}
-
-function getConceptColor(id: string, index: number): string {
-  if (CONCEPT_COLORS[id]) return CONCEPT_COLORS[id]
-  const palette = Object.values(CONCEPT_COLORS)
-  return palette[index % palette.length]
-}
 
 function todayFormatted(): string {
   return new Date().toLocaleDateString('nb-NO', {
@@ -55,19 +35,20 @@ export default function DashboardPage() {
   const streak = getStreak()
 
   useEffect(() => {
-    if (status === 'loading') return
     if (typeof window !== 'undefined' && !localStorage.getItem('norskcoach_onboarded')) {
       router.replace('/onboarding')
-      return
     }
-    if (!fingerprint) return
+  }, [router])
+
+  useEffect(() => {
+    if (status === 'loading' || !fingerprint) return
     const output = generateSession({
       fingerprint,
       graph: conceptGraph,
       availableSentenceIds: MOCK_SENTENCE_IDS,
     })
     setPlan(output)
-  }, [fingerprint, status, router])
+  }, [fingerprint, status])
 
   const topConcepts = conceptGraph.concepts.slice(0, 8).map((c, i) => {
     const mastery = fingerprint?.conceptMastery[c.id]
@@ -112,7 +93,9 @@ export default function DashboardPage() {
         <GuestBanner />
 
         {/* Today's session card */}
-        {plan && plan.session.items.length > 0 ? (
+        {!plan ? (
+          <div className="h-24 animate-pulse rounded-2xl bg-nc-card border border-nc-border" />
+        ) : (
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -141,11 +124,6 @@ export default function DashboardPage() {
               )}
             </div>
           </motion.div>
-        ) : (
-          <div className="rounded-2xl border border-nc-border p-6 text-center">
-            <div className="text-2xl">🚧</div>
-            <p className="mt-2 text-sm text-white/30">Innhold kommer snart</p>
-          </div>
         )}
 
         {/* Concept progress */}

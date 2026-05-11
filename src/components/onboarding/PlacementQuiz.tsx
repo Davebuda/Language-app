@@ -140,7 +140,7 @@ export function PlacementQuiz() {
           <div
             key={i}
             className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-              i <= step ? 'bg-nc-green' : 'bg-[rgba(255,255,255,0.1)]'
+              i < step ? 'bg-nc-green' : 'bg-[rgba(255,255,255,0.1)]'
             }`}
           />
         ))}
