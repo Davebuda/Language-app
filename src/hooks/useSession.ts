@@ -86,16 +86,20 @@ export function useSession(
   const resolveItem = useCallback(async (item: SessionItem): Promise<void> => {
     if (contentCache.current.has(item.id)) return;
 
-    const { fingerprint } = useFingerprintStore.getState();
-    const scenario = nextScenario();
-    const params = buildGenerateParams(item, fingerprint, scenario);
+    try {
+      const { fingerprint } = useFingerprintStore.getState();
+      const scenario = nextScenario();
+      const params = buildGenerateParams(item, fingerprint, scenario);
 
-    // Try AI generation first
-    const generated = await aiService.generateContent(params);
-    if (generated) {
-      contentCache.current.set(item.id, generated);
-      forceUpdate((n) => n + 1);
-      return;
+      // Try AI generation first
+      const generated = await aiService.generateContent(params);
+      if (generated) {
+        contentCache.current.set(item.id, generated);
+        forceUpdate((n) => n + 1);
+        return;
+      }
+    } catch {
+      // AI unavailable — fall through to seed
     }
 
     // Seed fallback: prefer sentences that support the requested exercise type
