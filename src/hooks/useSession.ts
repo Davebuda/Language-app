@@ -8,7 +8,6 @@ import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
 import type { ExerciseResult, SessionItem, ExerciseType } from '@/types/session';
 import type { Sentence, ResolvedContent } from '@/types/content';
-import type { GenerateParams } from '@/ai/types';
 import type { ConceptGraph } from '@/types/concepts';
 import a1GraphJson from '@content/concepts/a1-graph.json';
 import a2GraphJson from '@content/concepts/a2-graph.json';
@@ -21,30 +20,6 @@ const SCENARIOS = [
   'shopping', 'work', 'weather', 'health',
 ];
 
-// Build AI generation params from a session item + current fingerprint state
-function buildGenerateParams(
-  item: SessionItem,
-  fingerprint: ReturnType<typeof useFingerprintStore.getState>['fingerprint'],
-  scenario: string,
-): GenerateParams {
-  const conceptId = item.conceptIds[0] ?? '';
-  const mastery = fingerprint?.conceptMastery[conceptId];
-  const recentErrors = (fingerprint?.recentErrors ?? [])
-    .filter((e) => e.conceptId === conceptId)
-    .slice(0, 5)
-    .map((e) => e.errorTag);
-
-  return {
-    conceptId,
-    exerciseType: item.exerciseType,
-    level: fingerprint?.currentLevel ?? 'A1',
-    purpose: item.purpose,
-    recentErrors,
-    masteryScore: mastery?.rawScore,
-    productionGap: fingerprint?.productionGap[conceptId] ?? 0,
-    scenario,
-  };
-}
 
 // Generate up to 5 sentences for a concept and add them to the in-memory pool.
 // Called in the background when the unused pool runs low.
@@ -103,8 +78,6 @@ export function useSession(
   // sentence IDs already used in this session — prevents same sentence appearing twice
   const usedSentenceIds = useRef<Set<string>>(new Set());
   const lastErrorRef = useRef<Parameters<typeof buildRepairPlan>[0] | null>(null);
-  // Per-instance scenario cursor — not module-level to avoid HMR drift
-  const scenarioCursorRef = useRef(0);
 
   // Toggle flips to force re-renders when new content resolves
   const [, forceUpdate] = useState(0);
@@ -142,8 +115,12 @@ export function useSession(
       void topUpConcept(conceptId, item.exerciseType, seeds);
     }
 
-    const compatible = seeds.filter((s) => s.exerciseTypes.includes(item.exerciseType));
-    const pool = compatible.length > 0 ? compatible : seeds;
+    // Never use fill-in-blank sentences (containing ___) for non-blank exercises
+    const isFillBlank = item.exerciseType === 'fill-in-blank';
+    const eligible = isFillBlank ? seeds : seeds.filter((s) => !s.norwegian.includes('___'));
+
+    const compatible = eligible.filter((s) => s.exerciseTypes.includes(item.exerciseType));
+    const pool = compatible.length > 0 ? compatible : eligible;
 
     // Prefer sentences not yet used in this session; fall back to full pool if exhausted
     const fresh = pool.filter((s) => !usedSentenceIds.current.has(s.id));
@@ -155,24 +132,6 @@ export function useSession(
       forceUpdate((n) => n + 1);
     }
 
-    // ── AI background upgrade (non-blocking) ────────────────────────────────
-    // If the model is ready, attempt to upgrade seed content to AI-generated.
-    // Only upgrades if the learner hasn't submitted the item yet.
-    if (aiService.isReady()) {
-      const { fingerprint } = useFingerprintStore.getState();
-      const scenario = SCENARIOS[scenarioCursorRef.current++ % SCENARIOS.length] ?? 'daily-routine';
-      const params = buildGenerateParams(item, fingerprint, scenario);
-      aiService.generateContent(params).then((generated) => {
-        // Only replace if item is still pending (not yet submitted)
-        if (generated && contentCache.current.has(item.id)) {
-          const cached = contentCache.current.get(item.id);
-          if (cached?.source === 'seed') {
-            contentCache.current.set(item.id, generated);
-            forceUpdate((n) => n + 1);
-          }
-        }
-      }).catch(() => { /* seed already shown — no action needed */ });
-    }
   }, []);
 
   // Pre-fetch: resolve current item + the next 2 ahead

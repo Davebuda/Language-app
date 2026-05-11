@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Bell, Menu, Play, Waves } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -12,13 +12,16 @@ import { generateSession } from '@/engine/scheduler'
 import type { SchedulerOutput } from '@/engine/scheduler'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { GuestBanner } from '@/components/layout/GuestBanner'
+import { LevelBadge, LevelSelector } from '@/components/dashboard/LevelSelector'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph } from '@/types/concepts'
-import conceptGraphJson from '@content/concepts/a1-graph.json'
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
 
-const conceptGraph = conceptGraphJson as ConceptGraph
+const a1Graph = a1GraphJson as ConceptGraph
+const a2Graph = a2GraphJson as ConceptGraph
 
 const SECONDARY_MODES = [
   { id: 'conversation', href: '/conversation', label: 'Speak', emoji: '💬' },
@@ -63,17 +66,23 @@ export default function DashboardPage() {
     }
   }, [])
 
+  // Pick the active concept graph based on the user's current level
+  const activeGraph =
+    fingerprint?.currentLevel === 'A2' || fingerprint?.currentLevel === 'B1' || fingerprint?.currentLevel === 'B2'
+      ? a2Graph
+      : a1Graph
+
   useEffect(() => {
     if (status === 'loading' || !fingerprint) return
     const output = generateSession({
       fingerprint,
-      graph: conceptGraph,
+      graph: activeGraph,
       availableSentenceIds: MOCK_SENTENCE_IDS,
     })
     setPlan(output)
-  }, [fingerprint, status])
+  }, [fingerprint, status, activeGraph])
 
-  const primaryConcept = conceptGraph.concepts.find(
+  const primaryConcept = activeGraph.concepts.find(
     (concept) => concept.id === (plan?.primaryFocus ?? 'noun-gender'),
   )
   const sessionTitle = primaryConcept?.label ?? 'Norwegian Foundations'
@@ -89,7 +98,7 @@ export default function DashboardPage() {
 
   const masteryTiles = useMemo(
     () =>
-      conceptGraph.concepts.slice(0, 16).map((concept, index) => {
+      activeGraph.concepts.slice(0, 16).map((concept, index) => {
         const mastery = fingerprint?.conceptMastery[concept.id]
         const score = mastery ? Math.round(mastery.decayedScore) : 0
         const prereqsMet = concept.prerequisites.every((prerequisite) =>
@@ -106,12 +115,19 @@ export default function DashboardPage() {
           color: getConceptColor(concept.id, index),
         }
       }),
-    [fingerprint],
+    [fingerprint, activeGraph],
   )
+
+  // Show level prompt if user has never explicitly set their level
+  const showLevelPrompt =
+    !!fingerprint && fingerprint.levelSetByUser === false
+
+  const levelLabel = fingerprint?.currentLevel ?? 'A1'
 
   return (
     <div className="flex min-h-dvh flex-col bg-transparent">
       <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
+        {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <button
             type="button"
@@ -125,10 +141,16 @@ export default function DashboardPage() {
             <div className="text-[11px] font-medium tracking-[0.08em] text-nc-text-dim">
               {todayFormatted()}
             </div>
-            <h1 className="mt-1 text-[2rem] font-display font-semibold text-nc-text">
-              God kveld, {displayName}! 👋
-            </h1>
-            <p className="mt-1 text-sm text-nc-text-muted">Klar for å lære i dag?</p>
+            <div className="mt-1 flex items-center gap-2">
+              <h1 className="text-[2rem] font-display font-semibold text-nc-text">
+                God kveld, {displayName}! 👋
+              </h1>
+              {/* Level badge — always visible, tap to change */}
+              <LevelBadge />
+            </div>
+            <p className="mt-1 text-sm text-nc-text-muted">
+              {levelLabel} · Klar for å lære i dag?
+            </p>
           </div>
 
           <button
@@ -143,22 +165,34 @@ export default function DashboardPage() {
         {!user ? <GuestBanner /> : null}
 
         {/* Level-up celebration */}
-        {showLevelUp && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="rounded-[18px] p-4 text-center"
-            style={{ background: '#181526', boxShadow: '0 8px 32px rgba(24,21,38,0.22)' }}
-          >
-            <div className="text-2xl mb-1">🎉</div>
-            <div className="text-[17px] font-extrabold" style={{ color: '#C8FF00' }}>Nivå opp! Du er nå A2</div>
-            <div className="text-[12px] mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              Du har mestret alle A1-konsepter. Neste nivå er låst opp.
-            </div>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {showLevelUp && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="rounded-[18px] p-4 text-center"
+              style={{ background: '#181526', boxShadow: '0 8px 32px rgba(24,21,38,0.22)' }}
+            >
+              <div className="text-2xl mb-1">🎉</div>
+              <div className="text-[17px] font-extrabold" style={{ color: '#C8FF00' }}>
+                Nivå opp! Du er nå A2
+              </div>
+              <div className="text-[12px] mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                Du har mestret alle A1-konsepter. Neste nivå er låst opp.
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
+        {/* Level selector prompt — shown once to users who haven't set their level */}
+        <AnimatePresence>
+          {showLevelPrompt && (
+            <LevelSelector variant="prompt" />
+          )}
+        </AnimatePresence>
+
+        {/* Today's session card */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -166,7 +200,9 @@ export default function DashboardPage() {
         >
           <div className="relative z-[1] grid gap-4 md:grid-cols-[1fr_132px] md:items-end">
             <div>
-              <div className="nc-label-light">{"Today's session"}</div>
+              <div className="nc-label-light">
+                {"Today's session · "}{levelLabel}
+              </div>
               <div className="mt-2 text-[1.75rem] font-display font-semibold text-white">
                 {sessionTitle}
               </div>
@@ -207,6 +243,7 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
+        {/* Stats row */}
         <div className="grid grid-cols-3 gap-3">
           {[
             { label: 'day streak', value: String(streak), accent: 'text-[#ff9a78]', icon: '🔥' },
@@ -241,12 +278,13 @@ export default function DashboardPage() {
           ))}
         </div>
 
+        {/* Concept mastery — label shows active level */}
         <div className="nc-panel p-4">
           <div className="flex items-center justify-between gap-3">
             <div>
               <div className="nc-label">Concept mastery</div>
               <div className="mt-1 text-sm text-nc-text-muted">
-                AI - {masteryTiles.length} concepts
+                {levelLabel} — {masteryTiles.length} concepts
               </div>
             </div>
             <Link href="/progress" className="text-[12px] font-medium text-nc-text-dim">
@@ -273,6 +311,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Quick practice */}
         <div className="nc-panel-dark p-4">
           <div className="relative z-[1] flex items-center justify-between gap-3">
             <div>
@@ -283,6 +322,7 @@ export default function DashboardPage() {
               <span className="text-[11px] text-white/45">5 min boost</span>
               <button
                 type="button"
+                onClick={() => router.push('/session')}
                 className="flex h-9 w-9 items-center justify-center rounded-[0.85rem] border border-white/10 bg-white/8 text-white"
               >
                 <Play size={14} />
@@ -291,6 +331,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Secondary modes */}
         <div className="grid grid-cols-3 gap-3">
           {SECONDARY_MODES.map((mode) => (
             <Link
@@ -304,6 +345,7 @@ export default function DashboardPage() {
           ))}
         </div>
 
+        {/* Keep going CTA */}
         <div className="rounded-[1rem] border border-[rgba(214,255,90,0.35)] bg-[linear-gradient(135deg,rgba(214,255,90,0.50)_0%,rgba(251,247,241,0.92)_72%)] px-4 py-4">
           <div className="flex items-start justify-between gap-4">
             <div>

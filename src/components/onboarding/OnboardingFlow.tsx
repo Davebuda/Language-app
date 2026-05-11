@@ -134,6 +134,7 @@ function seedFingerprint(
   if (levelQuestion && 'level' in levelQuestion) {
     fp.currentLevel = levelQuestion.level
   }
+  fp.levelSetByUser = true
 
   if (answers[1] === 'vocab') {
     fp.productionGap['noun-gender'] = 30

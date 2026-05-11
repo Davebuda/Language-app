@@ -50,6 +50,7 @@ export interface MistakeFingerprint {
   createdAt: string;
   updatedAt: string;
   currentLevel: CEFRLevel;
+  levelSetByUser: boolean;  // true once the user has explicitly chosen a level
   conceptMastery: Record<string, ConceptMastery>; // keyed by concept ID
   recentErrors: ErrorLogEntry[]; // capped at 200, newest first
   errorPatterns: ErrorPattern[];
@@ -66,6 +67,7 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     currentLevel: 'A1',
+    levelSetByUser: false,
     conceptMastery: {},
     recentErrors: [],
     errorPatterns: [],
