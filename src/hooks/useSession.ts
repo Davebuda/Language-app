@@ -126,27 +126,13 @@ export function useSession(
     seedsByConceptId.current = idx;
   }, [sentences]);
 
-  // Resolve content for one item: try AI, fall back to seed
+  // Resolve content for one item.
+  // Seeds are used immediately (never blocks) — AI generation runs in the background
+  // and upgrades the content if it completes before the learner submits the item.
   const resolveItem = useCallback(async (item: SessionItem): Promise<void> => {
     if (contentCache.current.has(item.id)) return;
 
-    try {
-      const { fingerprint } = useFingerprintStore.getState();
-      const scenario = SCENARIOS[scenarioCursorRef.current++ % SCENARIOS.length] ?? 'daily-routine';
-      const params = buildGenerateParams(item, fingerprint, scenario);
-
-      // Try AI generation first
-      const generated = await aiService.generateContent(params);
-      if (generated) {
-        contentCache.current.set(item.id, generated);
-        forceUpdate((n) => n + 1);
-        return;
-      }
-    } catch {
-      // AI unavailable — fall through to seed
-    }
-
-    // Seed fallback: prefer sentences that support the requested exercise type
+    // ── Seed path (synchronous) ──────────────────────────────────────────────
     const conceptId = item.conceptIds[0] ?? '';
     const seeds = seedsByConceptId.current.get(conceptId) ?? [];
 
@@ -167,6 +153,25 @@ export function useSession(
       usedSentenceIds.current.add(picked.id);
       contentCache.current.set(item.id, { ...picked, source: 'seed' });
       forceUpdate((n) => n + 1);
+    }
+
+    // ── AI background upgrade (non-blocking) ────────────────────────────────
+    // If the model is ready, attempt to upgrade seed content to AI-generated.
+    // Only upgrades if the learner hasn't submitted the item yet.
+    if (aiService.isReady()) {
+      const { fingerprint } = useFingerprintStore.getState();
+      const scenario = SCENARIOS[scenarioCursorRef.current++ % SCENARIOS.length] ?? 'daily-routine';
+      const params = buildGenerateParams(item, fingerprint, scenario);
+      aiService.generateContent(params).then((generated) => {
+        // Only replace if item is still pending (not yet submitted)
+        if (generated && contentCache.current.has(item.id)) {
+          const cached = contentCache.current.get(item.id);
+          if (cached?.source === 'seed') {
+            contentCache.current.set(item.id, generated);
+            forceUpdate((n) => n + 1);
+          }
+        }
+      }).catch(() => { /* seed already shown — no action needed */ });
     }
   }, []);
 
