@@ -1,9 +1,8 @@
 import type { AIService } from './types';
-import { WebLLMService } from './webllm';
+import { StubAIService } from './stub';
 
-// WebLLMService: uses on-device Llama-3.2-3B via WebGPU when available.
-// Falls back gracefully to template responses when WebGPU is absent or the
-// model hasn't loaded yet — no degradation to the user experience.
-export const aiService: AIService = new WebLLMService();
+// StubAIService: template-based responses, always available.
+// Real model integration is Phase 2 — WebLLMService crashes Turbopack via WASM.
+export const aiService: AIService = new StubAIService();
 
 export type { AIService } from './types';

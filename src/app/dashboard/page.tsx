@@ -41,10 +41,10 @@ export default function DashboardPage() {
     ?? 'Gjest'
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !localStorage.getItem('norskcoach_onboarded')) {
-      router.replace('/onboarding')
+    if (!localStorage.getItem('norskcoach_onboarded')) {
+      localStorage.setItem('norskcoach_onboarded', 'true')
     }
-  }, [router])
+  }, [])
 
   useEffect(() => {
     if (status === 'loading' || !fingerprint) return

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSession } from '@/hooks/useSession';
+import { useFingerprintStore } from '@/stores/fingerprint-store';
 import { ExerciseCard } from './ExerciseCard';
 import { ExplanationCard } from './ExplanationCard';
 import { AIStatusBadge } from '@/components/ai/AIStatusBadge';
@@ -50,11 +51,18 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
   } = useSession(sentences, availableSentenceIds);
 
   const lastResultRef = useRef<ExerciseResult | null>(null);
+  // Guard: start session exactly once, only after the fingerprint is ready.
+  // Without this, startNewSession fires before IndexedDB finishes loading
+  // the fingerprint, sees null, and bails — leaving the skeleton forever.
+  const sessionStartedRef = useRef(false);
+  const { fingerprint } = useFingerprintStore();
 
   useEffect(() => {
+    if (!fingerprint || sessionStartedRef.current) return;
+    sessionStartedRef.current = true;
     startNewSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fingerprint]);
 
   const router = useRouter()
 

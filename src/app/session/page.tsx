@@ -1,5 +1,6 @@
 import { SessionScreen } from '@/components/session/SessionScreen'
 import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+import { loadContentSentences } from '@/lib/content-loader'
 import type { Sentence } from '@/types/content'
 
 export const metadata = { title: 'Økt — NorskCoach' }
@@ -53,15 +54,33 @@ async function fetchSupabaseSentences(): Promise<{
 }
 
 export default async function SessionPage() {
+  // Load real content from local JSON files (800+ sentences across A1 + A2)
+  const { sentences: contentSentences, availableSentenceIds: contentIds } = loadContentSentences()
+
+  // Optionally merge with Supabase if env vars are present
   const { sentences: dbSentences, ids: dbIds } = await fetchSupabaseSentences()
 
-  // DB content takes priority over mock for same IDs
-  const sentences: Record<string, Sentence> = { ...MOCK_SENTENCES, ...dbSentences }
+  // Priority: DB > local content files > mock fallback
+  const sentences: Record<string, Sentence> = {
+    ...MOCK_SENTENCES,
+    ...contentSentences,
+    ...dbSentences,
+  }
+
+  // Start with mock IDs, add content IDs, then DB IDs (deduplication not needed —
+  // useSession already tracks used sentence IDs per session)
   const availableSentenceIds: Record<string, string[]> = { ...MOCK_SENTENCE_IDS }
-  for (const [conceptId, sentenceIds] of Object.entries(dbIds)) {
+
+  for (const [conceptId, ids] of Object.entries(contentIds)) {
     availableSentenceIds[conceptId] = [
       ...(availableSentenceIds[conceptId] ?? []),
-      ...sentenceIds,
+      ...ids,
+    ]
+  }
+  for (const [conceptId, ids] of Object.entries(dbIds)) {
+    availableSentenceIds[conceptId] = [
+      ...(availableSentenceIds[conceptId] ?? []),
+      ...ids,
     ]
   }
 
