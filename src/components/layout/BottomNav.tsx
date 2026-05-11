@@ -1,48 +1,54 @@
 'use client'
 
 import Link from 'next/link'
-import { Home, BookOpen, MessageCircle, BarChart2, User } from 'lucide-react'
+import type { ElementType } from 'react'
+import { BookOpen, BarChart2, Home, MessageCircle, User } from 'lucide-react'
 
-export type NavTab = 'home' | 'session' | 'conversation' | 'progress' | 'profile'
+export type NavTab =
+  | 'home'
+  | 'session'
+  | 'conversation'
+  | 'progress'
+  | 'profile'
 
-const TABS: { id: NavTab; label: string; href: string; Icon: React.ElementType }[] = [
-  { id: 'home',         label: 'Hjem',     href: '/dashboard',    Icon: Home },
-  { id: 'session',      label: 'Økt',      href: '/session',      Icon: BookOpen },
-  { id: 'conversation', label: 'Samtale',  href: '/conversation', Icon: MessageCircle },
-  { id: 'progress',     label: 'Fremgang', href: '/progress',     Icon: BarChart2 },
-  { id: 'profile',      label: 'Profil',   href: '/profile',      Icon: User },
+const TABS: {
+  id: NavTab
+  label: string
+  href: string
+  Icon: ElementType
+}[] = [
+  { id: 'home', label: 'Home', href: '/dashboard', Icon: Home },
+  { id: 'session', label: 'Learn', href: '/session', Icon: BookOpen },
+  { id: 'conversation', label: 'Practice', href: '/conversation', Icon: MessageCircle },
+  { id: 'progress', label: 'Progress', href: '/progress', Icon: BarChart2 },
+  { id: 'profile', label: 'Profile', href: '/profile', Icon: User },
 ]
 
 export function BottomNav({ active }: { active: NavTab }) {
   return (
     <nav
       className="border-t border-nc-border"
-      style={{ background: 'rgba(245,246,250,0.94)', backdropFilter: 'blur(16px)' }}
+      style={{ background: 'rgba(251,247,241,0.96)' }}
     >
-      <div className="mx-auto flex max-w-lg justify-around px-1 py-2">
+      <div className="mx-auto flex max-w-lg justify-around px-2 py-2.5">
         {TABS.map(({ id, label, href, Icon }) => {
           const isActive = id === active
+
           return (
             <Link
               key={id}
               href={href}
               aria-label={label}
-              className="flex flex-col items-center gap-1 px-2 py-1"
+              className="flex min-w-[56px] flex-col items-center gap-1 px-1 py-1"
             >
-              <div
-                className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-                  isActive ? 'bg-nc-dark' : ''
-                }`}
-              >
-                <Icon
-                  size={18}
-                  className={isActive ? 'text-nc-green' : 'text-nc-text-muted'}
-                  strokeWidth={isActive ? 2.5 : 1.8}
-                />
-              </div>
+              <Icon
+                size={18}
+                className={isActive ? 'text-nc-text' : 'text-nc-text-dim'}
+                strokeWidth={isActive ? 2.15 : 1.7}
+              />
               <span
-                className={`text-[9px] font-bold uppercase tracking-[0.07em] leading-none ${
-                  isActive ? 'text-nc-dark' : 'text-nc-text-dim'
+                className={`text-[9px] font-medium tracking-[0.01em] ${
+                  isActive ? 'text-nc-text' : 'text-nc-text-dim'
                 }`}
               >
                 {label}

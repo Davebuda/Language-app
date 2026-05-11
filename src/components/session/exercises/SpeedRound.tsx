@@ -59,7 +59,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   }
 
   const pct = (secondsLeft / initialSeconds) * 100;
-  const urgentColor = secondsLeft <= 10 ? '#ff6b5b' : '#c8ff00';
+  const urgentColor = secondsLeft <= 10 ? '#ff7a6a' : '#b7a7ff';
 
   return (
     <div className="space-y-5">
@@ -99,12 +99,12 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(userInput); }}
         disabled={submitted}
         placeholder="Engelsk oversettelse…"
-        className="min-h-[48px] w-full rounded-xl border border-nc-border bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-green/60 focus:ring-1 focus:ring-nc-green/40 disabled:opacity-50 transition-colors"
+        className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-violet/70 focus:ring-1 focus:ring-nc-violet/40 disabled:opacity-50 transition-colors"
       />
       <button
         onClick={() => submitAnswer(userInput)}
         disabled={submitted || !userInput.trim()}
-        className="min-h-[48px] w-full rounded-xl bg-nc-green px-6 py-3 font-bold text-[#0d0d14] transition-all hover:bg-nc-green/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk svar
       </button>

@@ -1,41 +1,47 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 interface ScoreCircleProps {
-  accuracy: number // 0–100
+  accuracy: number
   size?: number
 }
 
 export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
   const [animated, setAnimated] = useState(0)
+  const gradientId = useId().replace(/:/g, '')
   const radius = (size - 12) / 2
   const circumference = 2 * Math.PI * radius
   const offset = circumference - (animated / 100) * circumference
 
   useEffect(() => {
-    const t = setTimeout(() => setAnimated(accuracy), 80)
-    return () => clearTimeout(t)
+    const timeout = setTimeout(() => setAnimated(accuracy), 80)
+    return () => clearTimeout(timeout)
   }, [accuracy])
 
   return (
     <svg width={size} height={size}>
-      {/* Dark track */}
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#c7b8ff" />
+          <stop offset="100%" stopColor="#ad9fff" />
+        </linearGradient>
+      </defs>
+
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="rgba(255,255,255,0.08)"
+        stroke="rgba(23,23,29,0.09)"
         strokeWidth={8}
       />
-      {/* Green progress arc */}
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="#c8ff00"
+        stroke={`url(#${gradientId})`}
         strokeWidth={8}
         strokeLinecap="round"
         strokeDasharray={circumference}
@@ -43,28 +49,26 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
         transform={`rotate(-90 ${size / 2} ${size / 2})`}
         style={{ transition: 'stroke-dashoffset 0.8s ease-out' }}
       />
-      {/* Score number — white */}
       <text
         x={size / 2}
         y={size / 2 - 4}
         textAnchor="middle"
         dominantBaseline="middle"
-        style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 900 }}
+        style={{ fontFamily: 'var(--font-display), sans-serif', fontWeight: 700 }}
         fontSize={size * 0.22}
-        fill="#ffffff"
+        fill="#17171d"
       >
         {accuracy}
       </text>
-      {/* Percent sign — muted */}
       <text
         x={size / 2}
         y={size / 2 + size * 0.17}
         textAnchor="middle"
-        style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 600 }}
-        fontSize={size * 0.1}
-        fill="rgba(255,255,255,0.4)"
+        style={{ fontFamily: 'var(--font-sans), sans-serif', fontWeight: 500 }}
+        fontSize={size * 0.095}
+        fill="rgba(23,23,29,0.42)"
       >
-        %
+        accuracy
       </text>
     </svg>
   )

@@ -1,7 +1,7 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import { useAIStatusStore } from '@/stores/ai-status-store'
-import { motion, AnimatePresence } from 'framer-motion'
 
 export function AIStatusBadge() {
   const { state, loadingPct } = useAIStatusStore()
@@ -11,25 +11,12 @@ export function AIStatusBadge() {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        className="inline-flex items-center gap-1.5 rounded-full border border-nc-green/20 bg-nc-green/8 px-2.5 py-1 text-[10px] font-semibold"
+        initial={{ opacity: 0, y: -4 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -4 }}
+        className="rounded-[0.75rem] border border-nc-border bg-white px-2.5 py-1.5 text-[10px] font-medium text-nc-text-muted"
       >
-        {state === 'loading' ? (
-          <>
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-nc-green opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-nc-green" />
-            </span>
-            <span className="text-nc-green/70">AI laster {loadingPct}%</span>
-          </>
-        ) : (
-          <>
-            <span className="h-1.5 w-1.5 rounded-full bg-nc-green" />
-            <span className="text-nc-green/70">AI aktiv</span>
-          </>
-        )}
+        {state === 'loading' ? `AI ${loadingPct}%` : 'AI ready'}
       </motion.div>
     </AnimatePresence>
   )

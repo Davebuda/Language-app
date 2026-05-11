@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import type { RepairPlan } from '@/engine/repair-loop'
 import { GRAMMAR_EXPLAINERS } from '@/lib/grammar-explainers'
 
@@ -25,45 +25,53 @@ export function ExplanationCard({
   const label = conceptLabel ?? conceptId
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-nc-repair-border bg-nc-repair-bg">
-      <div className="relative space-y-4 p-5">
-        {/* Label */}
-        <div className="flex items-center justify-between">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-nc-green">
-            🔁 Reparasjonsløkke
-          </p>
-          <span className="rounded-full bg-nc-green/10 border border-nc-green/20 px-2.5 py-0.5 text-[10px] font-semibold text-nc-green">
+    <div className="nc-panel-soft overflow-hidden p-5">
+      <div className="absolute right-5 top-5 h-24 w-24 opacity-65">
+        <div className="absolute inset-0 rounded-full border border-nc-apricot/60" />
+        <div className="absolute inset-[18%] rounded-full border border-nc-apricot/40" />
+        <div className="absolute left-[52%] top-[6%] h-2 w-2 rounded-full bg-nc-apricot" />
+        <div className="absolute left-[18%] top-[50%] h-1.5 w-1.5 rounded-full bg-nc-violet" />
+      </div>
+
+      <div className="relative z-[1] space-y-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="nc-label">Almost there</p>
+            <h3 className="mt-2 text-[1.65rem] font-display font-semibold text-nc-text">
+              Repair the pattern, not just the answer.
+            </h3>
+          </div>
+          <span className="rounded-[0.75rem] bg-white px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-nc-text-dim">
             {label}
           </span>
         </div>
 
-        {/* Correct answer */}
-        <div className="space-y-1">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/30">
-            Riktig svar
-          </p>
-          <p className="text-2xl font-extrabold leading-tight text-white">
-            {correctAnswer}
-          </p>
-        </div>
-
-        {/* Explanation */}
-        <p className="text-[13px] leading-relaxed text-white/65">
+        <p className="text-sm leading-7 text-nc-text-muted">
           {repairPlan.explanation}
         </p>
 
-        {/* Grammar explainer toggle */}
-        {explainer && (
+        <div className="rounded-[0.95rem] border border-[#d7e8bd] bg-[linear-gradient(180deg,#eef7d2_0%,#f8fbef_100%)] px-4 py-3">
+          <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-nc-text-dim">
+            Correct answer
+          </div>
+          <div className="mt-1 text-[15px] font-medium text-nc-text">
+            {correctAnswer}
+          </div>
+        </div>
+
+        {explainer ? (
           <>
             <button
-              onClick={() => setShowGrammar((v) => !v)}
-              className="w-full rounded-xl border border-nc-border bg-[rgba(255,255,255,0.03)] px-4 py-2.5 text-left text-[12px] font-semibold text-white/50 transition-colors hover:border-nc-green/30 hover:text-white/70"
+              onClick={() => setShowGrammar((current) => !current)}
+              className="w-full rounded-[0.9rem] border border-nc-border bg-white px-4 py-3 text-left text-sm font-medium text-nc-text transition-colors hover:bg-[#fffdf9]"
             >
-              📖 {showGrammar ? 'Skjul grammatikk' : `Vis grammatikkregler for ${explainer.title}`}
+              {showGrammar
+                ? 'Skjul grammatikk'
+                : `Vis grammatikkregler for ${explainer.title}`}
             </button>
 
             <AnimatePresence>
-              {showGrammar && (
+              {showGrammar ? (
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
@@ -71,33 +79,41 @@ export function ExplanationCard({
                   transition={{ duration: 0.22 }}
                   className="overflow-hidden"
                 >
-                  <div className="rounded-xl border border-nc-border bg-[rgba(255,255,255,0.02)] p-4 space-y-3">
-                    <p className="text-[12px] font-bold text-white">{explainer.shortRule}</p>
-                    <div className="flex flex-col gap-1.5">
-                      {explainer.examples.slice(0, 2).map((ex, i) => (
-                        <div key={i} className="rounded-lg border border-nc-border bg-[rgba(255,255,255,0.03)] px-3 py-2">
-                          <div className="text-[12px] font-bold text-white">{ex.norwegian}</div>
-                          <div className="text-[10px] text-white/40">{ex.english}</div>
+                  <div className="rounded-[0.95rem] border border-nc-border bg-white px-4 py-4">
+                    <p className="text-sm font-medium text-nc-text">
+                      {explainer.shortRule}
+                    </p>
+                    <div className="mt-3 flex flex-col gap-2">
+                      {explainer.examples.slice(0, 2).map((example, index) => (
+                        <div
+                          key={`${example.norwegian}-${index}`}
+                          className="rounded-[0.85rem] border border-nc-border bg-[#fff9f3] px-3 py-3"
+                        >
+                          <div className="text-sm font-medium text-nc-text">
+                            {example.norwegian}
+                          </div>
+                          <div className="mt-1 text-xs text-nc-text-dim">
+                            {example.english}
+                          </div>
                         </div>
                       ))}
                     </div>
-                    <div className="rounded-lg border border-nc-green/15 bg-nc-green/5 px-3 py-2">
-                      <p className="text-[11px] leading-relaxed text-white/60">💡 {explainer.tip}</p>
+                    <div className="mt-3 rounded-[0.85rem] bg-nc-apricot/18 px-3 py-3 text-sm leading-7 text-nc-text-muted">
+                      {explainer.tip}
                     </div>
                   </div>
                 </motion.div>
-              )}
+              ) : null}
             </AnimatePresence>
           </>
-        )}
+        ) : null}
 
-        {/* Continue */}
         <button
           type="button"
           onClick={onContinue}
-          className="min-h-[48px] w-full rounded-xl bg-nc-green px-6 font-bold text-[#0d0d14] transition-transform duration-150 hover:-translate-y-[1px] active:translate-y-0"
+          className="nc-button-dark min-h-[48px] w-full px-6 text-sm font-medium transition-transform hover:-translate-y-0.5"
         >
-          Fortsett å øve →
+          Next question
         </button>
       </div>
     </div>

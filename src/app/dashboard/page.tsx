@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Bell, Menu, Play, Waves } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -11,61 +12,19 @@ import { generateSession } from '@/engine/scheduler'
 import type { SchedulerOutput } from '@/engine/scheduler'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { GuestBanner } from '@/components/layout/GuestBanner'
-import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
 
-const LEARNING_MODES = [
-  {
-    id: 'conversation',
-    href: '/conversation',
-    label: 'Samtale',
-    desc: 'AI-tutor, norsk',
-    emoji: '💬',
-    bg: 'rgba(167,139,250,0.07)',
-    border: 'rgba(167,139,250,0.18)',
-    iconBg: 'rgba(167,139,250,0.14)',
-    labelColor: '#A78BFA',
-  },
-  {
-    id: 'reading',
-    href: '/reading',
-    label: 'Les',
-    desc: '4 tekster klare',
-    emoji: '📖',
-    bg: 'rgba(168,213,186,0.07)',
-    border: 'rgba(168,213,186,0.18)',
-    iconBg: 'rgba(168,213,186,0.14)',
-    labelColor: '#4A9E72',
-  },
-  {
-    id: 'journal',
-    href: '/journal',
-    label: 'Skriv',
-    desc: 'Journal + AI-analyse',
-    emoji: '✍️',
-    bg: 'rgba(200,255,0,0.07)',
-    border: 'rgba(200,255,0,0.20)',
-    iconBg: 'rgba(200,255,0,0.14)',
-    labelColor: '#111118',
-  },
-  {
-    id: 'shadow',
-    href: '/shadow',
-    label: 'Uttale',
-    desc: 'Snart tilgjengelig',
-    emoji: '🎙️',
-    bg: 'rgba(17,17,24,0.03)',
-    border: 'rgba(17,17,24,0.07)',
-    iconBg: 'rgba(17,17,24,0.06)',
-    labelColor: 'rgba(17,17,24,0.30)',
-  },
-] as const
-
 const conceptGraph = conceptGraphJson as ConceptGraph
+
+const SECONDARY_MODES = [
+  { id: 'conversation', href: '/conversation', label: 'Speak', emoji: '💬' },
+  { id: 'reading', href: '/reading', label: 'Read', emoji: '📖' },
+  { id: 'journal', href: '/journal', label: 'Write', emoji: '✍️' },
+] as const
 
 function todayFormatted(): string {
   return new Date().toLocaleDateString('nb-NO', {
@@ -102,249 +61,237 @@ export default function DashboardPage() {
     setPlan(output)
   }, [fingerprint, status])
 
-  const topConcepts = conceptGraph.concepts
-    .slice(0, 8)
-    .map((c, i) => {
-      const mastery = fingerprint?.conceptMastery[c.id]
-      return {
-        id: c.id,
-        label: c.label,
-        score: mastery ? Math.round(mastery.decayedScore) : 0,
-        color: getConceptColor(c.id, i),
-        locked:
-          !mastery &&
-          c.prerequisites.length > 0 &&
-          !c.prerequisites.every((p) => !!fingerprint?.conceptMastery[p]),
-      }
-    })
-    .slice(0, 5)
-
-  const remediation =
-    plan?.session.items.filter((i) => i.purpose === 'remediation').length ?? 0
-  const review =
-    plan?.session.items.filter((i) => i.purpose === 'review').length ?? 0
-  const newMaterial =
-    plan?.session.items.filter((i) => i.purpose === 'new-material').length ?? 0
+  const primaryConcept = conceptGraph.concepts.find(
+    (concept) => concept.id === (plan?.primaryFocus ?? 'noun-gender'),
+  )
+  const sessionTitle = primaryConcept?.label ?? 'Norwegian Foundations'
   const estimatedMin = plan
     ? Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))
-    : 12
+    : 18
+  const remediation =
+    plan?.session.items.filter((item) => item.purpose === 'remediation').length ?? 0
+  const review =
+    plan?.session.items.filter((item) => item.purpose === 'review').length ?? 0
+  const newMaterial =
+    plan?.session.items.filter((item) => item.purpose === 'new-material').length ?? 0
 
-  const primaryConceptId = plan?.primaryFocus ?? 'noun-gender'
-  const primaryConcept = conceptGraph.concepts.find(
-    (c) => c.id === primaryConceptId,
+  const masteryTiles = useMemo(
+    () =>
+      conceptGraph.concepts.slice(0, 16).map((concept, index) => {
+        const mastery = fingerprint?.conceptMastery[concept.id]
+        const score = mastery ? Math.round(mastery.decayedScore) : 0
+        const prereqsMet = concept.prerequisites.every((prerequisite) =>
+          !!fingerprint?.conceptMastery[prerequisite],
+        )
+        const locked = !mastery && concept.prerequisites.length > 0 && !prereqsMet
+
+        return {
+          id: concept.id,
+          label: concept.label,
+          index: index + 1,
+          score,
+          locked,
+          color: getConceptColor(concept.id, index),
+        }
+      }),
+    [fingerprint],
   )
-  const sessionTitle = primaryConcept?.label ?? 'Grunnleggende norsk'
 
   return (
-    <div className="flex min-h-dvh flex-col bg-nc-bg">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-4 pt-5">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-[11px] font-semibold capitalize uppercase tracking-[0.10em] text-nc-text-dim">
+    <div className="flex min-h-dvh flex-col bg-transparent">
+      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
+        <div className="flex items-start justify-between gap-4">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text"
+            aria-label="Menu"
+          >
+            <Menu size={18} />
+          </button>
+
+          <div className="flex-1">
+            <div className="text-[11px] font-medium tracking-[0.08em] text-nc-text-dim">
               {todayFormatted()}
             </div>
-            <h1 className="text-[24px] font-extrabold text-nc-text">
-              Hei, {displayName}! 👋
+            <h1 className="mt-1 text-[2rem] font-display font-semibold text-nc-text">
+              God kveld, {displayName}! 👋
             </h1>
+            <p className="mt-1 text-sm text-nc-text-muted">Klar for å lære i dag?</p>
           </div>
-          <Link href="/profile" aria-label="Profil">
-            <div
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-nc-dark text-sm font-bold text-nc-green"
-              style={{ boxShadow: '0 4px 14px rgba(17,17,24,0.20)' }}
-            >
-              {displayName.slice(0, 1).toUpperCase()}
-            </div>
-          </Link>
+
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text"
+            aria-label="Notifications"
+          >
+            <Bell size={17} />
+          </button>
         </div>
 
-        {/* Guest banner */}
-        <GuestBanner />
+        {!user ? <GuestBanner /> : null}
 
-        {/* Today's session card — dark hero card */}
-        {!plan ? (
-          <div className="h-24 animate-pulse rounded-[20px] bg-nc-card border border-nc-border" />
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="rounded-[20px] bg-nc-dark p-5 relative overflow-hidden"
-          >
-            <div className="mb-1 text-[10px] uppercase tracking-[0.12em] font-bold"
-              style={{ color: 'rgba(200,255,0,0.55)' }}>
-              I dag · ~{estimatedMin} min
-            </div>
-            <div className="mb-3 text-[18px] font-extrabold text-white">
-              {sessionTitle}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {remediation > 0 && (
-                <span
-                  className="rounded-full px-3 py-1.5 text-[10px] font-bold border"
-                  style={{
-                    background: 'rgba(244,132,95,0.20)',
-                    borderColor: 'rgba(244,132,95,0.40)',
-                    color: '#F4845F',
-                  }}
-                >
-                  {remediation} reparasjoner
-                </span>
-              )}
-              {review > 0 && (
-                <span
-                  className="rounded-full px-3 py-1.5 text-[10px] font-bold border"
-                  style={{
-                    background: 'rgba(255,255,255,0.08)',
-                    borderColor: 'rgba(255,255,255,0.14)',
-                    color: 'rgba(255,255,255,0.50)',
-                  }}
-                >
-                  {review} repetisjon
-                </span>
-              )}
-              {newMaterial > 0 && (
-                <span
-                  className="rounded-full px-3 py-1.5 text-[10px] font-bold border"
-                  style={{
-                    background: 'rgba(255,255,255,0.08)',
-                    borderColor: 'rgba(255,255,255,0.14)',
-                    color: 'rgba(255,255,255,0.50)',
-                  }}
-                >
-                  {newMaterial} nytt
-                </span>
-              )}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Coach insight — white card with lime left border */}
-        {plan?.diagnosisResults && plan.diagnosisResults.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="rounded-[16px] bg-nc-card border border-nc-border p-4"
-            style={{
-              borderLeft: '3px solid rgba(200,255,0,0.50)',
-              boxShadow: '0 2px 12px rgba(17,17,24,0.06)',
-            }}
-          >
-            <div className="mb-1 text-[9px] font-bold uppercase tracking-[0.12em] text-nc-text-dim">
-              🎯 Trener-innsikt
-            </div>
-            <p className="text-[13px] leading-relaxed text-nc-text-muted">
-              {plan.diagnosisResults[0].reasoning}
-            </p>
-            <div className="mt-2 flex items-center gap-1.5">
-              <div
-                className="h-1 flex-1 overflow-hidden rounded-full"
-                style={{ background: 'rgba(17,17,24,0.08)' }}
-              >
-                <div
-                  className="h-full rounded-full bg-nc-green"
-                  style={{
-                    width: `${Math.round(plan.diagnosisResults[0].confidence * 100)}%`,
-                    opacity: 0.7,
-                  }}
-                />
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="nc-panel-dark p-5"
+        >
+          <div className="relative z-[1] grid gap-4 md:grid-cols-[1fr_132px] md:items-end">
+            <div>
+              <div className="nc-label-light">{"Today's session"}</div>
+              <div className="mt-2 text-[1.75rem] font-display font-semibold text-white">
+                {sessionTitle}
               </div>
-              <span className="text-[10px] font-semibold text-nc-text-dim">
-                {Math.round(plan.diagnosisResults[0].confidence * 100)}% sikker
-              </span>
+              <p className="mt-2 text-sm text-white/55">Estimated time: {estimatedMin} min</p>
+              <button
+                onClick={() => router.push('/session')}
+                className="nc-button-primary mt-5 inline-flex items-center gap-2 px-4 py-3 text-sm font-medium"
+              >
+                <Play size={15} />
+                Start session
+              </button>
             </div>
-          </motion.div>
-        )}
 
-        {/* Concept progress */}
-        <div>
-          <div className="mb-2 flex items-center justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-wide text-nc-text-dim">
-              Konseptfremgang
-            </span>
-            <Link href="/progress" className="text-[11px] font-semibold text-nc-coral">
-              Se alle →
+            <div className="relative hidden h-28 overflow-hidden rounded-[1rem] border border-white/8 bg-white/5 md:block">
+              <div className="absolute inset-0 opacity-60">
+                <div className="nc-pattern-orbits absolute inset-0" />
+              </div>
+              <div className="absolute inset-x-[-20%] bottom-[-8%] h-[55%] bg-[radial-gradient(circle_at_50%_50%,rgba(185,176,255,0.45),transparent_55%)]" />
+            </div>
+          </div>
+
+          <div className="relative z-[1] mt-5 flex flex-wrap gap-2">
+            {remediation > 0 ? (
+              <span className="rounded-[0.7rem] border border-[#ffbba3]/20 bg-[#ffbba3]/10 px-3 py-1.5 text-[11px] font-medium text-[#ffcab9]">
+                {remediation} repairs
+              </span>
+            ) : null}
+            {review > 0 ? (
+              <span className="rounded-[0.7rem] border border-white/10 bg-white/8 px-3 py-1.5 text-[11px] font-medium text-white/60">
+                {review} review
+              </span>
+            ) : null}
+            {newMaterial > 0 ? (
+              <span className="rounded-[0.7rem] border border-white/10 bg-white/8 px-3 py-1.5 text-[11px] font-medium text-white/60">
+                {newMaterial} new
+              </span>
+            ) : null}
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { label: 'day streak', value: String(streak), accent: 'text-[#ff9a78]', icon: '🔥' },
+            {
+              label: 'accuracy',
+              value: `${Math.round(masteryTiles.reduce((sum, tile) => sum + tile.score, 0) / Math.max(masteryTiles.length, 1))}%`,
+              accent: 'text-nc-violet',
+              icon: '↗',
+            },
+            {
+              label: 'concepts',
+              value: String(
+                Object.values(fingerprint?.conceptMastery ?? {}).filter(
+                  (entry) => entry.attemptCount > 0,
+                ).length,
+              ),
+              accent: 'text-[#9cc36b]',
+              icon: '◌',
+            },
+          ].map((stat) => (
+            <div key={stat.label} className="nc-panel px-3 py-3">
+              <div className="flex items-center gap-2">
+                <span className={`text-sm ${stat.accent}`}>{stat.icon}</span>
+                <span className={`text-[1.6rem] font-display font-semibold ${stat.accent}`}>
+                  {stat.value}
+                </span>
+              </div>
+              <div className="mt-1 text-[10px] font-medium text-nc-text-dim">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="nc-panel p-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <div className="nc-label">Concept mastery</div>
+              <div className="mt-1 text-sm text-nc-text-muted">
+                AI - {masteryTiles.length} concepts
+              </div>
+            </div>
+            <Link href="/progress" className="text-[12px] font-medium text-nc-text-dim">
+              View all
             </Link>
           </div>
-          <div className="flex flex-col gap-2">
-            {topConcepts.map((c) => (
-              <ConceptProgressRow
-                key={c.id}
-                color={c.color}
-                name={c.label}
-                score={c.score}
-                locked={c.locked}
-                prereqLabel={c.locked ? 'Låst' : undefined}
-              />
-            ))}
-          </div>
-        </div>
 
-        {/* Learning modes grid */}
-        <div>
-          <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-nc-text-dim">
-            Læringsverktøy
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {LEARNING_MODES.map(({ id, href, label, desc, emoji, bg, border, iconBg, labelColor }, i) => (
-              <motion.div
-                key={id}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 * i }}
+          <div className="mt-4 grid grid-cols-4 gap-2">
+            {masteryTiles.map((tile) => (
+              <div
+                key={tile.id}
+                className="rounded-[0.8rem] border px-2.5 py-2"
+                style={{
+                  borderColor: tile.locked ? 'rgba(23,23,29,0.07)' : `${tile.color}33`,
+                  backgroundColor: tile.locked ? 'rgba(23,23,29,0.02)' : `${tile.color}20`,
+                }}
               >
-                <Link
-                  href={href}
-                  aria-label={label}
-                  className="flex flex-col gap-3 rounded-[18px] p-4 transition-transform active:scale-[0.97]"
-                  style={{
-                    background: bg,
-                    border: `1px solid ${border}`,
-                    boxShadow: '0 2px 10px rgba(17,17,24,0.05)',
-                  }}
-                >
-                  <div
-                    className="flex h-9 w-9 items-center justify-center rounded-[11px] text-lg"
-                    style={{ background: iconBg }}
-                  >
-                    {emoji}
-                  </div>
-                  <div>
-                    <div className="text-[14px] font-extrabold" style={{ color: labelColor }}>
-                      {label}
-                    </div>
-                    <div className="mt-0.5 text-[11px] text-nc-text-dim">{desc}</div>
-                  </div>
-                </Link>
-              </motion.div>
+                <div className="text-[12px] font-medium text-nc-text">{tile.index}</div>
+                <div className="mt-1 text-[10px] leading-4 text-nc-text-dim">
+                  {tile.locked ? 'Locked' : `${tile.score}%`}
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Streak */}
-        <div
-          className="flex items-center gap-3 rounded-[16px] bg-nc-card border border-nc-border px-4 py-3"
-          style={{ boxShadow: '0 2px 12px rgba(17,17,24,0.05)' }}
-        >
-          <span className="text-xl">🔥</span>
-          <span className="text-[26px] font-black text-nc-coral tracking-tight">{streak}</span>
-          <span className="text-[12px] text-nc-text-muted">dagers streak</span>
+        <div className="nc-panel-dark p-4">
+          <div className="relative z-[1] flex items-center justify-between gap-3">
+            <div>
+              <div className="text-sm font-medium text-white">Quick practice</div>
+              <div className="mt-1 text-[13px] text-white/52">Listen and repeat common phrases</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-white/45">5 min boost</span>
+              <button
+                type="button"
+                className="flex h-9 w-9 items-center justify-center rounded-[0.85rem] border border-white/10 bg-white/8 text-white"
+              >
+                <Play size={14} />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* CTA */}
-        <button
-          onClick={() => router.push('/session')}
-          aria-label="Start dagens økt"
-          className="w-full rounded-full py-4 text-sm font-extrabold transition-transform active:scale-[0.98]"
-          style={{
-            background: '#111118',
-            color: '#C8FF00',
-            boxShadow: '0 6px 24px rgba(17,17,24,0.18)',
-          }}
-        >
-          Start dagens økt →
-        </button>
+        <div className="grid grid-cols-3 gap-3">
+          {SECONDARY_MODES.map((mode) => (
+            <Link
+              key={mode.id}
+              href={mode.href}
+              className="nc-panel flex flex-col gap-2 px-3 py-3"
+            >
+              <span className="text-lg">{mode.emoji}</span>
+              <span className="text-[13px] font-medium text-nc-text">{mode.label}</span>
+            </Link>
+          ))}
+        </div>
+
+        <div className="rounded-[1rem] border border-[rgba(214,255,90,0.35)] bg-[linear-gradient(135deg,rgba(214,255,90,0.50)_0%,rgba(251,247,241,0.92)_72%)] px-4 py-4">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="text-[13px] font-medium text-nc-text">Keep going!</div>
+              <p className="mt-1 text-sm text-nc-text-muted">
+                Your next session is ready.
+              </p>
+            </div>
+            <Waves size={24} className="text-[rgba(23,23,29,0.32)]" />
+          </div>
+          <button
+            onClick={() => router.push('/session')}
+            className="nc-button-lime mt-4 px-4 py-3 text-sm font-medium"
+          >
+            Continue learning
+          </button>
+        </div>
       </main>
 
       <BottomNav active="home" />

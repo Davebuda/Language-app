@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 
 export default function LoginPage() {
@@ -13,122 +13,148 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     setLoading(true)
     setErrorMsg(null)
     const { error } = await signIn(email)
+
     if (error) {
       setErrorMsg(error)
       setLoading(false)
-    } else {
-      setSubmitted(true)
-      setLoading(false)
+      return
     }
+
+    setSubmitted(true)
+    setLoading(false)
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center px-5 bg-nc-bg">
-      {/* Back arrow */}
-      <div className="absolute top-5 left-5">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-white/30 hover:text-white/60 transition-colors"
-        >
-          <ArrowLeft size={16} />
-          Tilbake
-        </Link>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-sm"
-      >
-        {/* Wordmark */}
-        <div className="mb-10 flex items-center gap-2">
-          <div
-            className="h-2 w-2 rounded-full bg-nc-green"
-            style={{ boxShadow: '0 0 12px rgba(168,239,106,0.6)' }}
-          />
-          <span className="text-[12px] font-bold uppercase tracking-[0.15em] text-white/30">
-            NorskCoach
-          </span>
+    <div className="min-h-dvh bg-transparent px-5 py-5">
+      <div className="mx-auto flex min-h-[calc(100dvh-2.5rem)] w-full max-w-md flex-col justify-center">
+        <div className="mb-5 flex items-center justify-between gap-4">
+          <Link
+            href="/"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text-dim transition-colors hover:text-nc-text"
+            aria-label="Tilbake"
+          >
+            <ArrowLeft size={14} />
+          </Link>
+          <div className="nc-label">Account</div>
         </div>
 
-        <h1 className="text-[32px] font-extrabold leading-[1.1] tracking-tight text-white mb-2">
-          Fremgangen din,<br />overalt.
-        </h1>
-        <p className="text-[15px] mb-8 text-white/40 leading-relaxed">
-          Logg inn for å synkronisere fremgangen din på tvers av enheter.
-        </p>
-
-        <AnimatePresence mode="wait">
-          {submitted ? (
-            <motion.div
-              key="success"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="rounded-2xl border border-nc-green/20 bg-nc-green/6 px-6 py-5"
-            >
-              <p className="font-bold text-sm mb-1 text-nc-green">
-                Sjekk e-posten din
-              </p>
-              <p className="text-sm text-white/50">
-                Vi sendte en innloggingslenke til{' '}
-                <span className="font-semibold text-white/80">{email}</span>.
-              </p>
-            </motion.div>
-          ) : (
-            <motion.form
-              key="form"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-4"
-            >
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="email" className="text-sm font-semibold text-white/50">
-                  E-postadresse
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="deg@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-12 w-full rounded-xl border border-nc-border bg-[rgba(255,255,255,0.04)] px-4 text-sm text-white placeholder:text-white/20 outline-none transition-all focus:border-nc-green/50 focus:ring-1 focus:ring-nc-green/30"
-                />
-              </div>
-
-              {errorMsg && (
-                <p className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-2 text-[12px] text-red-400">
-                  {errorMsg}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-4"
+        >
+          <div className="nc-panel-dark p-6">
+            <div className="pointer-events-none absolute inset-0 opacity-45">
+              <div className="nc-pattern-orbits absolute inset-0" />
+              <div className="nc-topography absolute inset-x-0 bottom-0 h-32 opacity-70" />
+            </div>
+            <div className="relative z-[1] flex items-center justify-between gap-4">
+              <div>
+                <div className="nc-label-light">NorskCoach account</div>
+                <h1 className="mt-3 max-w-[14rem] text-[2.35rem] leading-[0.96] text-white">
+                  Fremgangen din,
+                  <br />
+                  overalt.
+                </h1>
+                <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-white/62">
+                  Koble læringsprofilen din til e-post og fortsett sømløst på tvers av enheter.
                 </p>
-              )}
-              <button
-                type="submit"
-                disabled={loading || !email}
-                className="h-12 w-full rounded-xl bg-nc-green font-bold text-[#0d0d14] transition-all hover:bg-nc-green/90 active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Sender…' : 'Send innloggingslenke'}
-              </button>
-            </motion.form>
-          )}
-        </AnimatePresence>
+              </div>
+              <div className="hidden h-20 w-20 rounded-[1rem] border border-white/10 bg-white/5 md:block">
+                <div className="nc-pattern-orbits h-full w-full opacity-60" />
+              </div>
+            </div>
+          </div>
 
-        <p className="mt-8 text-sm text-center text-white/25">
-          Ikke behov for konto —{' '}
-          <Link href="/dashboard" className="font-semibold text-nc-green/70 hover:text-nc-green transition-colors">
-            fortsett uten innlogging
-          </Link>
-        </p>
-      </motion.div>
+          <div className="nc-panel p-6">
+            <div className="nc-label">Sign in</div>
+            <div className="mt-2 text-[1.45rem] font-display font-semibold text-nc-text">
+              Synkroniser profilen din
+            </div>
+            <p className="mt-2 text-sm leading-7 text-nc-text-muted">
+              Vi sender deg en innloggingslenke. Ingen passord, bare rask tilgang til samme
+              læringshistorikk overalt.
+            </p>
+
+            <AnimatePresence mode="wait">
+              {submitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="nc-panel-soft mt-6 px-5 py-5"
+                >
+                  <div className="nc-label">Sjekk innboksen</div>
+                  <p className="mt-2 text-sm leading-7 text-nc-text-muted">
+                    Vi sendte en lenke til <span className="font-medium text-nc-text">{email}</span>.
+                  </p>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleSubmit}
+                  className="mt-6 flex flex-col gap-4"
+                >
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="email"
+                      className="text-[13px] font-medium text-nc-text-muted"
+                    >
+                      E-postadresse
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      placeholder="deg@example.com"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                      className="nc-input"
+                    />
+                  </div>
+
+                  {errorMsg ? (
+                    <p className="rounded-[0.9rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-500">
+                      {errorMsg}
+                    </p>
+                  ) : null}
+
+                  <button
+                    type="submit"
+                    disabled={loading || !email}
+                    className="nc-button-dark inline-flex w-full items-center justify-center gap-2 px-4 py-4 text-sm font-medium transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-35"
+                  >
+                    <span>{loading ? 'Sender…' : 'Send innloggingslenke'}</span>
+                    {!loading ? <ArrowRight size={15} /> : null}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+
+            <p className="mt-7 text-center text-sm leading-7 text-nc-text-dim">
+              Vil du bare utforske først?{' '}
+              <Link
+                href="/dashboard"
+                className="font-medium text-nc-violet transition-colors hover:text-nc-text"
+              >
+                Fortsett uten innlogging
+              </Link>
+              .
+            </p>
+          </div>
+        </motion.section>
+      </div>
     </div>
   )
 }

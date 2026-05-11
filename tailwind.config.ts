@@ -43,47 +43,44 @@ const config: Config = {
 
         // NorskCoach brand tokens
         nc: {
-          bg:              '#F5F6FA',
+          bg:              '#FDF6EE',
           card:            '#FFFFFF',
-          'card-hover':    '#F8F9FC',
-          dark:            '#111118',
+          'card-hover':    '#FFFCF7',
+          dark:            '#181526',
 
-          // Electric lime — AI/coach moments only
           green:           '#C8FF00',
           'green-tint':    'rgba(200,255,0,0.07)',
-          'green-border':  'rgba(200,255,0,0.20)',
+          'green-border':  'rgba(200,255,0,0.22)',
 
-          // Coral — repair / error accent
-          coral:           '#F4845F',
-          'coral-tint':    'rgba(244,132,95,0.08)',
-          'coral-border':  'rgba(244,132,95,0.22)',
+          coral:           '#FF7A6A',
+          'coral-tint':    'rgba(255,122,106,0.10)',
+          'coral-border':  'rgba(255,122,106,0.24)',
 
-          // Mint — success / reading
-          mint:            '#A8D5BA',
-          'mint-tint':     'rgba(168,213,186,0.10)',
-          'mint-border':   'rgba(168,213,186,0.25)',
+          mint:            '#CFE3CB',
+          'mint-tint':     'rgba(207,227,203,0.20)',
+          'mint-border':   'rgba(207,227,203,0.40)',
 
-          // Violet — conversation mode
-          violet:          '#A78BFA',
-          'violet-tint':   'rgba(167,139,250,0.08)',
-          'violet-border': 'rgba(167,139,250,0.20)',
+          violet:          '#B7A7FF',
+          'violet-tint':   'rgba(183,167,255,0.14)',
+          'violet-border': 'rgba(183,167,255,0.28)',
+          apricot:         '#FFC8A5',
+          'apricot-tint':  'rgba(255,200,165,0.18)',
+          'apricot-border':'rgba(255,200,165,0.36)',
 
-          // Neutral borders & text
-          border:          'rgba(17,17,24,0.07)',
-          'border-subtle': 'rgba(17,17,24,0.04)',
-          text:            '#111118',
-          'text-muted':    'rgba(17,17,24,0.45)',
-          'text-dim':      'rgba(17,17,24,0.28)',
+          border:          'rgba(24,21,38,0.08)',
+          'border-subtle': 'rgba(24,21,38,0.05)',
+          text:            '#181526',
+          'text-muted':    'rgba(24,21,38,0.62)',
+          'text-dim':      'rgba(24,21,38,0.38)',
 
-          // Repair state — coral-tinted
-          'repair-bg':     'rgba(244,132,95,0.06)',
-          'repair-border': 'rgba(244,132,95,0.18)',
+          'repair-bg':     'rgba(255,200,165,0.20)',
+          'repair-border': 'rgba(255,200,165,0.38)',
         },
       },
 
       fontFamily: {
-        display: ['"Outfit"', 'sans-serif'],
-        sans:    ['"Outfit"', 'sans-serif'],
+        display: ['var(--font-display)', 'sans-serif'],
+        sans: ['var(--font-sans)', 'sans-serif'],
       },
 
 
@@ -118,14 +115,14 @@ const config: Config = {
       },
 
       borderRadius: {
-        hero:    '20px',
-        card:    '16px',
-        feature: '16px',
-        chip:    '8px',
+        hero:    '18px',
+        card:    '14px',
+        feature: '14px',
+        chip:    '10px',
         pill:    '9999px',
-        '2xl':   '1rem',
-        '3xl':   '1.5rem',
-        '4xl':   '2rem',
+        '2xl':   '0.95rem',
+        '3xl':   '1.25rem',
+        '4xl':   '1.5rem',
       },
     },
   },

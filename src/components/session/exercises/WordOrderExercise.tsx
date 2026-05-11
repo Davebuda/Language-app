@@ -57,7 +57,7 @@ function WordTile({ id, word }: { id: string; word: string }) {
       }}
       {...attributes}
       {...listeners}
-      className="cursor-grab touch-none select-none rounded-lg border border-nc-border bg-nc-card px-4 py-2 text-sm font-semibold text-white active:cursor-grabbing hover:border-nc-green/40 hover:text-nc-green transition-colors"
+      className="cursor-grab touch-none select-none rounded-lg border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white active:cursor-grabbing hover:border-nc-violet/45 hover:text-nc-violet transition-colors"
     >
       {word}
     </div>
@@ -116,7 +116,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       <p className="text-base text-white/50">{sentence.english}</p>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={tiles.map((t) => t.id)} strategy={horizontalListSortingStrategy}>
-          <div className="flex flex-wrap gap-2 min-h-[48px] rounded-xl border border-nc-border bg-[rgba(255,255,255,0.02)] p-3">
+          <div className="flex min-h-[48px] flex-wrap gap-2 rounded-xl border border-white/12 bg-[rgba(255,255,255,0.02)] p-3">
             {tiles.map((tile) => (
               <WordTile key={tile.id} id={tile.id} word={tile.word} />
             ))}
@@ -126,7 +126,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       <button
         onClick={submit}
         disabled={submitted}
-        className="min-h-[48px] w-full rounded-xl bg-nc-green px-6 py-3 font-bold text-[#0d0d14] transition-all hover:bg-nc-green/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk rekkefølge
       </button>

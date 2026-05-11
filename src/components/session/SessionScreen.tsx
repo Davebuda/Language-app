@@ -1,43 +1,45 @@
-'use client';
+'use client'
 
-import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useSession } from '@/hooks/useSession';
-import { useFingerprintStore } from '@/stores/fingerprint-store';
-import { ExerciseCard } from './ExerciseCard';
-import { ExplanationCard } from './ExplanationCard';
-import { AIStatusBadge } from '@/components/ai/AIStatusBadge';
-import { incrementStreak } from '@/lib/streak';
-import type { Sentence } from '@/types/content';
-import type { ExerciseResult } from '@/types/session';
-import type { ConceptGraph } from '@/types/concepts';
-import conceptGraphJson from '@content/concepts/a1-graph.json';
+import { useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import { AnimatePresence, motion } from 'framer-motion'
+import { X } from 'lucide-react'
+import { useSession } from '@/hooks/useSession'
+import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { ExerciseCard } from './ExerciseCard'
+import { ExplanationCard } from './ExplanationCard'
+import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
+import { incrementStreak } from '@/lib/streak'
+import type { Sentence } from '@/types/content'
+import type { ExerciseResult } from '@/types/session'
+import type { ConceptGraph } from '@/types/concepts'
+import conceptGraphJson from '@content/concepts/a1-graph.json'
 
-const conceptGraph = conceptGraphJson as ConceptGraph;
+const conceptGraph = conceptGraphJson as ConceptGraph
 
 interface SessionScreenProps {
-  /** All available sentences keyed by ID (mock + Supabase merged). */
-  sentences: Record<string, Sentence>;
-  /** Sentence IDs grouped by concept ID — drives the session scheduler. */
-  availableSentenceIds: Record<string, string[]>;
+  sentences: Record<string, Sentence>
+  availableSentenceIds: Record<string, string[]>
 }
 
 function getExerciseTypeLabel(type: string): string {
   const map: Record<string, string> = {
-    'translation-to-norwegian': '✏️ Oversett til norsk',
-    'translation-to-english': '✏️ Oversett til engelsk',
-    'fill-in-blank': '📝 Fyll inn',
-    'word-order': '🔀 Ordstilling',
-    'listening-comprehension': '🎧 Lytteøvelse',
-    'speed-round': '⚡ Hurtigrunde',
-    'sentence-transformation': '✏️ Omskriv',
-    'dictation': '🎧 Diktat',
+    'translation-to-norwegian': 'Translate to Norwegian',
+    'translation-to-english': 'Translate to English',
+    'fill-in-blank': 'Fill in the blank',
+    'word-order': 'Word order',
+    'listening-comprehension': 'Listening',
+    'speed-round': 'Speed round',
+    'sentence-transformation': 'Sentence transformation',
+    dictation: 'Dictation',
   }
-  return map[type] ?? '✏️ Øvelse'
+  return map[type] ?? 'Exercise'
 }
 
-export function SessionScreen({ sentences, availableSentenceIds }: SessionScreenProps) {
+export function SessionScreen({
+  sentences,
+  availableSentenceIds,
+}: SessionScreenProps) {
   const {
     session,
     currentItem,
@@ -48,26 +50,26 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
     startNewSession,
     submitResult,
     continueAfterRepair,
-  } = useSession(sentences, availableSentenceIds);
+  } = useSession(sentences, availableSentenceIds)
 
-  const lastResultRef = useRef<ExerciseResult | null>(null);
-  // Guard: start session exactly once, only after the fingerprint is ready.
-  // Without this, startNewSession fires before IndexedDB finishes loading
-  // the fingerprint, sees null, and bails — leaving the skeleton forever.
-  const sessionStartedRef = useRef(false);
-  const { fingerprint } = useFingerprintStore();
+  const lastResultRef = useRef<ExerciseResult | null>(null)
+  const sessionStartedRef = useRef(false)
+  const { fingerprint } = useFingerprintStore()
 
   useEffect(() => {
-    if (!fingerprint || sessionStartedRef.current) return;
-    sessionStartedRef.current = true;
-    startNewSession();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fingerprint]);
+    if (!fingerprint || sessionStartedRef.current) return
+    sessionStartedRef.current = true
+    startNewSession()
+  }, [fingerprint, startNewSession])
 
   const router = useRouter()
 
-  const totalItems = session?.items.length ?? 0;
-  const isComplete = !!session && totalItems > 0 && currentItemIndex >= totalItems;
+  const totalItems = session?.items.length ?? 0
+  const isComplete = !!session && totalItems > 0 && currentItemIndex >= totalItems
+  const progressValue =
+    totalItems > 0
+      ? Math.min(currentItemIndex + 1, totalItems)
+      : 0
 
   useEffect(() => {
     if (!session || totalItems === 0) return
@@ -75,46 +77,56 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
       incrementStreak()
       router.push('/session/complete')
     }
-  }, [isComplete, session, totalItems, router])
+  }, [isComplete, router, session, totalItems])
 
   function handleResult(result: ExerciseResult) {
-    lastResultRef.current = result;
-    submitResult(result);
+    lastResultRef.current = result
+    submitResult(result)
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-nc-bg text-white">
-      <header className="px-5 pt-5 pb-2">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex-1 h-[4px] bg-[rgba(255,255,255,0.08)] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-nc-green rounded-full transition-all duration-300"
-              style={{
-                width: `${totalItems > 0 ? (Math.min(currentItemIndex, totalItems) / totalItems) * 100 : 0}%`,
-              }}
-            />
+    <div className="flex min-h-dvh flex-col bg-transparent text-nc-text">
+      <header className="mx-auto flex w-full max-w-lg items-center gap-4 px-5 pt-5 pb-2">
+        <button
+          type="button"
+          onClick={() => router.push('/dashboard')}
+          className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text"
+          aria-label="Back to dashboard"
+        >
+          <X size={18} />
+        </button>
+
+        <div className="flex-1">
+          <div className="flex items-center gap-1.5">
+            {Array.from({ length: Math.max(totalItems, 6) }).map((_, index) => {
+              const isActive = index < progressValue
+              return (
+                <div
+                  key={index}
+                  className={`h-1.5 flex-1 rounded-full transition-colors ${
+                    isActive ? 'bg-nc-violet' : 'bg-[rgba(23,23,29,0.10)]'
+                  }`}
+                />
+              )
+            })}
           </div>
-          <span className="text-[11px] font-semibold text-white/30 min-w-[48px] text-right">
-            {Math.min(currentItemIndex + 1, Math.max(totalItems, 1))} / {totalItems || '—'}
-          </span>
-        </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          {currentItem && (
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-nc-border bg-nc-card px-3 py-1 text-[10px] font-semibold text-white/40">
-              {getExerciseTypeLabel(currentItem.exerciseType)}
+          <div className="mt-3 flex items-center justify-between gap-3">
+            <div>
+              <div className="nc-label">
+                {currentItem
+                  ? getExerciseTypeLabel(currentItem.exerciseType)
+                  : 'Session'}
+              </div>
+              <div className="mt-1 text-sm text-nc-text-muted">
+                {progressValue} / {totalItems || '-'}
+              </div>
             </div>
-          )}
-          {currentItem && (
-            <PurposePill purpose={currentItem.purpose} />
-          )}
-          <div className="ml-auto">
             <AIStatusBadge />
           </div>
         </div>
       </header>
 
-      {/* Body */}
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-4 py-6">
+      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-4 py-5">
         {!session ? (
           <LoadingSkeleton />
         ) : totalItems === 0 ? (
@@ -126,9 +138,9 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentItemIndex}
-                initial={{ x: 60, opacity: 0 }}
+                initial={{ x: 48, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -60, opacity: 0 }}
+                exit={{ x: -48, opacity: 0 }}
                 transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
               >
                 <ExerciseCard
@@ -142,7 +154,7 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
             </AnimatePresence>
 
             <AnimatePresence>
-              {isInRepair && repairPlan && (
+              {isInRepair && repairPlan ? (
                 <motion.div
                   key="repair"
                   initial={{ opacity: 0, y: 12 }}
@@ -154,11 +166,15 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
                     repairPlan={repairPlan}
                     correctAnswer={lastResultRef.current?.correctAnswer ?? ''}
                     conceptId={currentItem.conceptIds[0] ?? 'concept'}
-                    conceptLabel={conceptGraph.concepts.find((c) => c.id === currentItem.conceptIds[0])?.label}
+                    conceptLabel={
+                      conceptGraph.concepts.find(
+                        (concept) => concept.id === currentItem.conceptIds[0],
+                      )?.label
+                    }
                     onContinue={continueAfterRepair}
                   />
                 </motion.div>
-              )}
+              ) : null}
             </AnimatePresence>
           </>
         ) : (
@@ -166,39 +182,23 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
         )}
       </main>
     </div>
-  );
-}
-
-function PurposePill({ purpose }: { purpose: string }) {
-  const map: Record<string, { label: string; color: string }> = {
-    'remediation': { label: 'Reparasjon', color: 'text-orange-400 border-orange-400/20 bg-orange-400/8' },
-    'review': { label: 'Repetisjon', color: 'text-blue-400 border-blue-400/20 bg-blue-400/8' },
-    'new-material': { label: 'Nytt', color: 'text-nc-green border-nc-green/20 bg-nc-green/8' },
-    'interleaving': { label: 'Blanding', color: 'text-purple-400 border-purple-400/20 bg-purple-400/8' },
-  }
-  const config = map[purpose]
-  if (!config) return null
-  return (
-    <div className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${config.color}`}>
-      {config.label}
-    </div>
   )
 }
 
 function LoadingSkeleton() {
   return (
-    <div className="rounded-2xl border border-nc-border bg-nc-card p-5">
-      <div className="h-48 animate-pulse rounded-2xl bg-[rgba(255,255,255,0.06)]" />
+    <div className="nc-panel p-5">
+      <div className="h-64 animate-pulse rounded-[1rem] bg-[rgba(23,23,29,0.06)]" />
     </div>
-  );
+  )
 }
 
 function EmptyState() {
   return (
-    <div className="flex flex-1 items-center justify-center">
-      <p className="max-w-xs text-center text-sm text-white/30">
-        Ingen øvelser tilgjengelig ennå — innhold seedes snart.
+    <div className="nc-panel flex flex-1 items-center justify-center p-6 text-center">
+      <p className="max-w-xs text-sm leading-7 text-nc-text-muted">
+        Ingen ovelser tilgjengelig enna. Innholdet blir seedet snart.
       </p>
     </div>
-  );
+  )
 }

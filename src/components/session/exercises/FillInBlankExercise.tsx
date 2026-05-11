@@ -59,7 +59,7 @@ function MultipleChoice({
         transition={{ duration: 0.25 }}
       >
         {before && <span>{before}</span>}
-        <span className="inline-flex min-w-[80px] items-center justify-center rounded-lg border border-dashed border-nc-green/40 bg-nc-green/8 px-3 py-1 text-xl text-white/40">
+        <span className="inline-flex min-w-[80px] items-center justify-center rounded-lg border border-dashed border-nc-violet/45 bg-nc-violet/12 px-3 py-1 text-xl text-white/40">
           {selected ?? '___'}
         </span>
         {after && <span>{after}</span>}
@@ -82,10 +82,10 @@ function MultipleChoice({
               className={[
                 'min-h-[48px] rounded-xl border px-4 py-3 text-sm font-semibold transition',
                 showCorrect
-                  ? 'border-nc-green/60 bg-nc-green/15 text-nc-green'
+                  ? 'border-nc-violet/60 bg-nc-violet/18 text-nc-violet'
                   : showWrong
                     ? 'border-red-500/60 bg-red-500/10 text-red-400'
-                    : 'border-nc-border bg-[rgba(255,255,255,0.04)] text-white/70 hover:border-nc-green/40 hover:text-white',
+                    : 'border-white/12 bg-[rgba(255,255,255,0.04)] text-white/70 hover:border-nc-violet/45 hover:text-white',
                 selected ? 'cursor-default' : 'cursor-pointer',
               ].join(' ')}
             >
@@ -141,7 +141,7 @@ function FreeText({
           onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
           disabled={submitted}
           placeholder="___"
-          className="min-h-[44px] min-w-[120px] rounded-lg border border-nc-green/40 bg-[rgba(255,255,255,0.04)] px-3 py-1 text-xl font-semibold text-white placeholder:text-white/25 focus:outline-none focus:border-nc-green/70 focus:ring-1 focus:ring-nc-green/30 disabled:opacity-50 transition-colors"
+          className="min-h-[44px] min-w-[120px] rounded-lg border border-nc-violet/45 bg-[rgba(255,255,255,0.04)] px-3 py-1 text-xl font-semibold text-white placeholder:text-white/25 focus:outline-none focus:border-nc-violet/70 focus:ring-1 focus:ring-nc-violet/30 disabled:opacity-50 transition-colors"
         />
         {after && <span>{after}</span>}
       </motion.div>
@@ -149,7 +149,7 @@ function FreeText({
       <button
         onClick={submit}
         disabled={submitted || !userInput.trim()}
-        className="min-h-[48px] w-full rounded-xl bg-nc-green px-6 py-3 font-bold text-[#0d0d14] transition-all hover:bg-nc-green/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk svar
       </button>
