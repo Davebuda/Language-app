@@ -162,9 +162,18 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   }
 
   // Shuffle: don't let all remediation items cluster at start
-  // Keep first item as a warm-up review, then shuffle the rest
+  // Keep first item as a warm-up review, then shuffle the rest with Fisher-Yates
+  // (sort-based shuffle is statistically biased — certain orderings over-appear)
+  function fisherYates<T>(arr: T[]): T[] {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
   const [first, ...rest] = items;
-  const shuffled = first ? [first, ...rest.sort(() => Math.random() - 0.5)] : rest;
+  const shuffled = first ? [first, ...fisherYates(rest)] : fisherYates(items);
 
   const primaryFocus = weakConcepts[0] ?? nextConcept?.id ?? 'general-review';
 

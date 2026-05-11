@@ -20,7 +20,6 @@ async function fetchSupabaseSentences(): Promise<{
       .select(
         'id, norwegian, english, concept_ids, vocab_clusters, error_tags_detectable, cefr_level, difficulty, exercise_types, audio_url, notes, scenario_id'
       )
-      .eq('cefr_level', 'A1')
       .limit(1000)
 
     if (error || !rows?.length) return { sentences: {}, ids: {} }

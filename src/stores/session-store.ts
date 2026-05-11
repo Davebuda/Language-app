@@ -33,6 +33,8 @@ const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
   enterRepair: (plan) => set({ isInRepair: true, repairPlan: plan }),
   updateRepairExplanation: (text) =>
     set((s) =>
+      // Intentional silent discard: if the learner exits repair before the async
+      // AI explanation resolves, repairPlan is null and the update is dropped — correct.
       s.repairPlan ? { repairPlan: { ...s.repairPlan, explanation: text } } : {}
     ),
   exitRepair: () => set({ isInRepair: false, repairPlan: null }),

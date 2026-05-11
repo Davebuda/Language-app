@@ -32,8 +32,8 @@ function wordCount(s: string): number {
   return s.trim().replace(/___/g, 'BLANK').split(/\s+/).length;
 }
 
-// Norwegian Bokmål character set: letters (including æøå), digits, spaces, punctuation
-const NORWEGIAN_CHARS = /^[a-zA-ZæøåÆØÅ0-9\s.,!?;:'"()\-–]+$/;
+// Norwegian Bokmål character set — includes / for abbreviations and % for common expressions
+const NORWEGIAN_CHARS = /^[a-zA-ZæøåÆØÅ0-9\s.,!?;:'"()\-–/%]+$/;
 
 function checkStructure(raw: RawGenerated, exerciseType: ExerciseType): string | null {
   if (!isNonEmptyString(raw.norwegian)) return 'missing or empty norwegian';
@@ -43,14 +43,17 @@ function checkStructure(raw: RawGenerated, exerciseType: ExerciseType): string |
     case 'fill-in-blank': {
       if (!raw.norwegian.includes('___')) return 'no ___ blank marker in norwegian';
       if (!isNonEmptyString(raw.targetWord)) return 'missing targetWord';
-      if (!isStringArray(raw.distractors, 2)) return 'need at least 2 distractors';
-      if ((raw.distractors as string[]).includes(raw.targetWord as string))
+      if (!isStringArray(raw.distractors, 3)) return 'need at least 3 distractors';
+      // Case-insensitive check — "Ikke" and "ikke" are the same answer
+      const targetLower = (raw.targetWord as string).toLowerCase();
+      if ((raw.distractors as string[]).some((d) => d.toLowerCase() === targetLower))
         return 'distractor contains the correct answer';
       break;
     }
     case 'word-order': {
-      if (raw.words !== undefined && !isStringArray(raw.words, 2))
-        return 'words array is present but invalid';
+      // words array is required for word-order exercises — components need it to scramble
+      if (!isStringArray(raw.words, 2))
+        return 'word-order exercise must include a words array of at least 2 items';
       break;
     }
   }

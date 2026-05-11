@@ -113,8 +113,10 @@ export class WebLLMService implements AIService {
     }
   }
 
+  // isAvailable: the service could eventually produce output (not permanently failed).
+  // isReady: the model is loaded and can produce output RIGHT NOW.
+  // Callers that want to show a loading indicator should check !isReady() && isAvailable().
   isAvailable(): boolean {
-    // Stub is always available; this service is available unless load definitively failed
     return this.state !== 'unavailable';
   }
 

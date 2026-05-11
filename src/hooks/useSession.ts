@@ -144,6 +144,11 @@ export function useSession(
 
   const submitResult = useCallback(
     (result: ExerciseResult) => {
+      // Capture before any store mutations — index doesn't advance here, but
+      // capturing early makes the dependency explicit and safe against refactors.
+      const currentIndex = useSessionStore.getState().currentItemIndex;
+      const item = useSessionStore.getState().session?.items[currentIndex];
+
       sessionStore.recordResult(result);
       recordFingerprintResult(result);
 
@@ -151,10 +156,6 @@ export function useSession(
         sessionStore.advanceItem();
         return;
       }
-
-      const item = useSessionStore.getState().session?.items[
-        useSessionStore.getState().currentItemIndex
-      ];
       const { fingerprint } = useFingerprintStore.getState();
       const errorCount = (fingerprint?.recentErrors ?? []).filter(
         (e) => e.errorTag === (result.errorTag ?? 'word-order'),

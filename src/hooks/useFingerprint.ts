@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import type { User } from '@supabase/supabase-js';
 import { useFingerprintStore } from '@/stores/fingerprint-store';
+import { useSessionStore } from '@/stores/session-store';
 import { loadFingerprint, saveFingerprint } from '@/storage/indexeddb';
 import { createEmptyFingerprint } from '@/types/fingerprint';
 import type { MistakeFingerprint } from '@/types/fingerprint';
@@ -42,7 +43,18 @@ async function loadFingerprintFromSupabase(userId: string): Promise<MistakeFinge
     .single();
 
   if (error || !data) return null;
-  return data.data as MistakeFingerprint;
+  // Validate the stored blob has the required fingerprint shape before casting
+  const raw = data.data;
+  if (
+    raw &&
+    typeof raw === 'object' &&
+    'userId' in raw &&
+    'conceptMastery' in raw &&
+    'recentErrors' in raw
+  ) {
+    return raw as MistakeFingerprint;
+  }
+  return null;
 }
 
 async function saveFingerprintToSupabase(fp: MistakeFingerprint): Promise<void> {
@@ -83,12 +95,15 @@ export function useFingerprint() {
   const { fingerprint, status, setFingerprint, setStatus } = useFingerprintStore();
   const { user, loading: authLoading } = useAuth();
   const prevUserRef = useRef<User | null>(null);
+  const bootstrappingRef = useRef(false);
 
   // Bootstrap: load fingerprint once auth state is resolved
   useEffect(() => {
     if (authLoading) return;
+    if (bootstrappingRef.current) return;
 
     async function bootstrap() {
+      bootstrappingRef.current = true;
       if (user) {
         // Signed in — check if this is a fresh sign-in (prev was null)
         const wasAnon = prevUserRef.current === null;
@@ -134,7 +149,7 @@ export function useFingerprint() {
       }
     }
 
-    bootstrap();
+    bootstrap().finally(() => { bootstrappingRef.current = false; });
     prevUserRef.current = user;
     // Run only when auth resolves or user identity changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -162,10 +177,12 @@ export function useFingerprint() {
       };
 
       if (!result.correct && result.errorTag) {
+        const sessionItems = useSessionStore.getState().session?.items ?? [];
+        const matchingItem = sessionItems.find((i) => i.id === result.itemId);
         updated = logError(updated, {
           conceptId: result.conceptId,
           errorTag: result.errorTag,
-          exerciseType: result.itemId as never,
+          exerciseType: matchingItem?.exerciseType ?? 'translation-to-norwegian',
           wrong: result.userAnswer,
           correct: result.correctAnswer,
           sentenceId: result.itemId,
