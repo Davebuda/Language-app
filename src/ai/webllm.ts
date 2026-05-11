@@ -107,14 +107,29 @@ export class WebLLMService implements AIService {
   isAvailable(): boolean { return this.state !== 'unavailable' }
   isReady(): boolean { return this.state === 'ready' && this.engine !== null }
 
-  private async complete(system: string, user: string, json: boolean, maxTokens = 400): Promise<string> {
+  // Race every engine call against a 20 s timeout.
+  // WebLLM's BindingError fires inside WASM and can silently hang the Promise
+  // without ever rejecting — the timeout ensures callers always get a result.
+  private withTimeout<T>(promise: Promise<T>, ms = 20_000): Promise<T> {
+    return Promise.race([
+      promise,
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('WebLLM timeout')), ms)
+      ),
+    ])
+  }
+
+  private async complete(system: string, user: string, _json: boolean, maxTokens = 400): Promise<string> {
     if (!this.engine) throw new Error('engine not ready')
-    const res = await this.engine.chat.completions.create({
-      messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
-      ...(json ? { response_format: { type: 'json_object' } } : {}),
-      max_tokens: maxTokens,
-      temperature: 0.7,
-    })
+    // response_format: json_object triggers a BindingError in some WebLLM builds.
+    // Omit it and rely on prompt-level JSON instructions instead.
+    const res = await this.withTimeout(
+      this.engine.chat.completions.create({
+        messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
+        max_tokens: maxTokens,
+        temperature: 0.7,
+      })
+    )
     return res.choices[0]?.message?.content ?? ''
   }
 
@@ -124,11 +139,13 @@ export class WebLLMService implements AIService {
     maxTokens = 300,
   ): Promise<string> {
     if (!this.engine) throw new Error('engine not ready')
-    const res = await this.engine.chat.completions.create({
-      messages: [{ role: 'system', content: system }, ...messages] as Parameters<typeof this.engine.chat.completions.create>[0]['messages'],
-      max_tokens: maxTokens,
-      temperature: 0.85,
-    })
+    const res = await this.withTimeout(
+      this.engine.chat.completions.create({
+        messages: [{ role: 'system', content: system }, ...messages] as Parameters<typeof this.engine.chat.completions.create>[0]['messages'],
+        max_tokens: maxTokens,
+        temperature: 0.85,
+      })
+    )
     return res.choices[0]?.message?.content ?? ''
   }
 
