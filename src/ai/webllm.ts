@@ -1,161 +1,121 @@
 import type {
-  AIService,
-  ExplainParams,
-  Explanation,
-  GenerateParams,
-  TaggedError,
-  ReviewParams,
-  WritingFeedback,
-  ConversationMessage,
-  ConversationTurnResult,
-} from './types';
-import type { ResolvedContent } from '@/types/content';
-import type { CEFRLevel } from '@/types/fingerprint';
-import { buildGenerationPrompt, buildExplanationPrompt, buildConversationPrompt, buildWritingFeedbackPrompt } from './prompts';
-import { validateGenerated } from './validate';
+  AIService, ExplainParams, Explanation, GenerateParams,
+  TaggedError, ReviewParams, WritingFeedback,
+  ConversationMessage, ConversationTurnResult,
+} from './types'
+import type { ResolvedContent } from '@/types/content'
+import type { CEFRLevel } from '@/types/fingerprint'
+import {
+  buildGenerationPrompt, buildExplanationPrompt,
+  buildConversationPrompt, buildWritingFeedbackPrompt,
+  buildErrorDetectionPrompt,
+} from './prompts'
+import { validateGenerated } from './validate'
 
-// Primary model: 3B params, ~2 GB VRAM, good multilingual instruction following.
-// Falls back gracefully to template responses until the model is loaded.
-const MODEL_ID = 'Llama-3.2-3B-Instruct-q4f16_1-MLC';
-const MAX_RETRIES = 2;
+const MODEL_ID = 'Llama-3.2-3B-Instruct-q4f16_1-MLC'
+const MAX_RETRIES = 2
 
-type LoadState = 'idle' | 'loading' | 'ready' | 'unavailable';
+type LoadState = 'idle' | 'loading' | 'ready' | 'unavailable'
 
-// Typed subset of the WebLLM engine API we use
-interface MLCEngine {
+// Minimal interface for what we use from the engine
+interface ChatEngine {
   chat: {
     completions: {
       create(opts: {
-        messages: Array<{ role: string; content: string }>;
-        response_format?: { type: 'json_object' | 'text' };
-        max_tokens?: number;
-        temperature?: number;
-      }): Promise<{
-        choices: Array<{ message: { content: string | null } }>;
-      }>;
-    };
-  };
+        messages: Array<{ role: string; content: string }>
+        response_format?: { type: 'json_object' | 'text' }
+        max_tokens?: number
+        temperature?: number
+      }): Promise<{ choices: Array<{ message: { content: string | null } }> }>
+    }
+  }
 }
 
 function difficultyTier(masteryScore?: number): 1 | 2 | 3 {
-  if (!masteryScore || masteryScore < 40) return 1;
-  if (masteryScore < 70) return 2;
-  return 3;
+  if (!masteryScore || masteryScore < 40) return 1
+  if (masteryScore < 70) return 2
+  return 3
 }
 
-// Template explanation used when model is not ready — personalized by referencing
-// the learner's actual wrong/correct answers and error count.
 function templateExplanation(params: ExplainParams): string {
-  const countNote =
-    params.errorCount && params.errorCount > 2
-      ? ` You've hit this ${params.errorCount} times — make this a focus point.`
-      : '';
-
   const byTag: Partial<Record<string, string>> = {
-    'word-order':
-      `You wrote "${params.wrong}". Norwegian uses the V2 rule — the finite verb must sit in position 2 of the main clause. Correct: "${params.correct}".`,
-    'negation-placement':
-      `You wrote "${params.wrong}". "Ikke" follows the finite verb in main clauses: "${params.correct}". In subordinate clauses it comes before the verb.`,
-    'noun-gender':
-      `You wrote "${params.wrong}". Norwegian nouns have three genders (en/ei/et) that govern articles and adjective endings. Correct: "${params.correct}".`,
-    'article-use':
-      `You wrote "${params.wrong}". The definite article is a suffix in Norwegian: -en (en-words), -a or -en (ei-words), -et (et-words). Correct: "${params.correct}".`,
-    'verb-conjugation':
-      `You wrote "${params.wrong}". Norwegian verbs take the same form for all persons — present tense adds -r to the stem. Correct: "${params.correct}".`,
-    'adjective-agreement':
-      `You wrote "${params.wrong}". Adjectives must agree with noun gender: stor (en/ei), stort (et), store (definite or plural). Correct: "${params.correct}".`,
-    'modal-verb':
-      `You wrote "${params.wrong}". Modal verbs (kan, vil, skal, må) take a bare infinitive — no "å". Correct: "${params.correct}".`,
-    preposition:
-      `You wrote "${params.wrong}". Norwegian prepositions don't map 1-to-1 to English: i (in/at enclosed places), på (on/at open places), til (direction). Correct: "${params.correct}".`,
-  };
-
-  const base =
-    byTag[params.errorTag] ??
-    `You wrote "${params.wrong}". The correct answer is "${params.correct}". Review this concept and try again.`;
-
-  return base + countNote;
+    'word-order': `You wrote "${params.wrong}". Norwegian uses the V2 rule — verb must be in position 2. Correct: "${params.correct}".`,
+    'negation-placement': `You wrote "${params.wrong}". "Ikke" follows the finite verb in main clauses. Correct: "${params.correct}".`,
+    'noun-gender': `You wrote "${params.wrong}". Norwegian nouns have three genders (en/ei/et). Correct: "${params.correct}".`,
+    'verb-conjugation': `You wrote "${params.wrong}". Norwegian present tense adds -r to the stem. Correct: "${params.correct}".`,
+    'modal-verb': `You wrote "${params.wrong}". Modals (kan, vil, skal, må) take a bare infinitive — no "å". Correct: "${params.correct}".`,
+  }
+  const base = byTag[params.errorTag] ?? `You wrote "${params.wrong}". The correct answer is "${params.correct}".`
+  const countNote = params.errorCount && params.errorCount > 2 ? ` You've hit this ${params.errorCount} times.` : ''
+  return base + countNote
 }
 
 export class WebLLMService implements AIService {
-  private engine: MLCEngine | null = null;
-  private state: LoadState = 'idle';
-  private loadPromise: Promise<void> | null = null;
-  readonly onProgress?: (pct: number) => void;
-
-  constructor(onProgress?: (pct: number) => void) {
-    this.onProgress = onProgress;
-  }
+  private engine: ChatEngine | null = null
+  private state: LoadState = 'idle'
+  private loadPromise: Promise<void> | null = null
 
   async init(): Promise<void> {
-    if (this.state === 'ready' || this.state === 'unavailable') return;
-    if (this.loadPromise) return this.loadPromise;
-
-    this.state = 'loading';
-    this.loadPromise = this._load();
-    return this.loadPromise;
+    if (this.state === 'ready' || this.state === 'unavailable') return
+    if (this.loadPromise) return this.loadPromise
+    this.state = 'loading'
+    this.loadPromise = this._load()
+    return this.loadPromise
   }
 
   private async _load(): Promise<void> {
     if (typeof window === 'undefined' || !('gpu' in navigator)) {
-      this.state = 'unavailable';
-      // Notify store asynchronously — store may not be imported in SSR
-      import('@/stores/ai-status-store').then(({ useAIStatusStore }) => {
-        useAIStatusStore.getState().setState('unavailable');
-      }).catch(() => {});
-      return;
+      this.state = 'unavailable'
+      this._updateStore('unavailable')
+      return
     }
     try {
-      const [{ CreateMLCEngine }, { useAIStatusStore }] = await Promise.all([
+      const [{ CreateWebWorkerMLCEngine }, { useAIStatusStore }] = await Promise.all([
         import('@mlc-ai/web-llm'),
         import('@/stores/ai-status-store'),
-      ]);
-      useAIStatusStore.getState().setState('loading');
-      this.engine = (await CreateMLCEngine(MODEL_ID, {
+      ])
+      useAIStatusStore.getState().setState('loading')
+
+      // Web Worker isolates WASM from Turbopack — this fixes the crash
+      const worker = new Worker(
+        new URL('../workers/webllm.worker', import.meta.url),
+        { type: 'module' }
+      )
+
+      this.engine = (await CreateWebWorkerMLCEngine(worker, MODEL_ID, {
         initProgressCallback: (report: { progress: number }) => {
-          const pct = Math.round(report.progress * 100);
-          this.onProgress?.(pct);
-          useAIStatusStore.getState().setLoadingPct(pct);
+          const pct = Math.round(report.progress * 100)
+          useAIStatusStore.getState().setLoadingPct(pct)
         },
-      })) as unknown as MLCEngine;
-      this.state = 'ready';
-      useAIStatusStore.getState().setState('ready');
+      })) as unknown as ChatEngine
+
+      this.state = 'ready'
+      useAIStatusStore.getState().setState('ready')
     } catch (err) {
-      console.warn('[WebLLM] Model load failed:', err);
-      this.state = 'unavailable';
-      import('@/stores/ai-status-store').then(({ useAIStatusStore }) => {
-        useAIStatusStore.getState().setState('unavailable');
-      }).catch(() => {});
+      console.warn('[WebLLM] Load failed:', err)
+      this.state = 'unavailable'
+      this._updateStore('unavailable')
     }
   }
 
-  // isAvailable: the service could eventually produce output (not permanently failed).
-  // isReady: the model is loaded and can produce output RIGHT NOW.
-  // Callers that want to show a loading indicator should check !isReady() && isAvailable().
-  isAvailable(): boolean {
-    return this.state !== 'unavailable';
+  private _updateStore(state: 'unavailable' | 'ready') {
+    import('@/stores/ai-status-store')
+      .then(({ useAIStatusStore }) => useAIStatusStore.getState().setState(state))
+      .catch(() => {})
   }
 
-  isReady(): boolean {
-    return this.state === 'ready' && this.engine !== null;
-  }
+  isAvailable(): boolean { return this.state !== 'unavailable' }
+  isReady(): boolean { return this.state === 'ready' && this.engine !== null }
 
-  private async complete(
-    system: string,
-    user: string,
-    json: boolean,
-  ): Promise<string> {
-    if (!this.engine) throw new Error('engine not ready');
+  private async complete(system: string, user: string, json: boolean, maxTokens = 400): Promise<string> {
+    if (!this.engine) throw new Error('engine not ready')
     const res = await this.engine.chat.completions.create({
-      messages: [
-        { role: 'system', content: system },
-        { role: 'user', content: user },
-      ],
+      messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
       ...(json ? { response_format: { type: 'json_object' } } : {}),
-      max_tokens: 400,
+      max_tokens: maxTokens,
       temperature: 0.7,
-    });
-    return res.choices[0]?.message?.content ?? '';
+    })
+    return res.choices[0]?.message?.content ?? ''
   }
 
   private async completeChat(
@@ -163,32 +123,25 @@ export class WebLLMService implements AIService {
     messages: Array<{ role: string; content: string }>,
     maxTokens = 300,
   ): Promise<string> {
-    if (!this.engine) throw new Error('engine not ready');
+    if (!this.engine) throw new Error('engine not ready')
     const res = await this.engine.chat.completions.create({
       messages: [{ role: 'system', content: system }, ...messages] as Parameters<typeof this.engine.chat.completions.create>[0]['messages'],
       max_tokens: maxTokens,
-      temperature: 0.8,
-    });
-    return res.choices[0]?.message?.content ?? '';
+      temperature: 0.85,
+    })
+    return res.choices[0]?.message?.content ?? ''
   }
 
   async generateContent(params: GenerateParams): Promise<ResolvedContent | null> {
-    if (!this.isReady()) return null;
-
-    const { system, user } = buildGenerationPrompt(params);
-
+    if (!this.isReady()) return null
+    const { system, user } = buildGenerationPrompt(params)
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
       try {
-        const raw = await this.complete(system, user, true);
-        const parsed: unknown = JSON.parse(raw);
-        const result = validateGenerated(parsed, params);
-
-        if (!result.valid) {
-          console.warn(`[WebLLM] validation failed (attempt ${attempt + 1}): ${result.error}`);
-          continue;
-        }
-
-        const { content } = result;
+        const raw = await this.complete(system, user, true)
+        const parsed: unknown = JSON.parse(raw)
+        const result = validateGenerated(parsed, params)
+        if (!result.valid) continue
+        const { content } = result
         return {
           id: crypto.randomUUID(),
           norwegian: content.norwegian,
@@ -204,49 +157,54 @@ export class WebLLMService implements AIService {
           scenarioId: content.scenarioId,
           source: 'generated',
           distractors: content.distractors,
-        };
+        }
       } catch (err) {
-        console.warn(`[WebLLM] generation error (attempt ${attempt + 1}):`, err);
+        console.warn(`[WebLLM] generateContent attempt ${attempt + 1}:`, err)
       }
     }
-
-    return null;
+    return null
   }
 
   async explainMistake(params: ExplainParams): Promise<Explanation> {
-    if (!this.isReady()) {
-      return { text: templateExplanation(params), source: 'template' };
-    }
+    if (!this.isReady()) return { text: templateExplanation(params), source: 'template' }
     try {
-      const { system, user } = buildExplanationPrompt(params);
-      const text = await this.complete(system, user, false);
-      return { text: text.trim(), source: 'ai' };
+      const { system, user } = buildExplanationPrompt(params)
+      const text = await this.complete(system, user, false, 200)
+      return { text: text.trim(), source: 'ai' }
     } catch {
-      return { text: templateExplanation(params), source: 'template' };
+      return { text: templateExplanation(params), source: 'template' }
     }
   }
 
-  async detectErrors(_text: string, _level: CEFRLevel): Promise<TaggedError[]> {
-    return [];
+  async detectErrors(text: string, level: CEFRLevel): Promise<TaggedError[]> {
+    if (!this.isReady()) return []
+    try {
+      const { system, user } = buildErrorDetectionPrompt(text, level)
+      const raw = await this.complete(system, user, true, 300)
+      const parsed = JSON.parse(raw) as { errors?: Array<{ wrong: string; correct: string; tag: string; why: string }> }
+      return (parsed.errors ?? []).map((e) => ({
+        tag: e.tag as TaggedError['tag'],
+        wrong: e.wrong,
+        correct: e.correct,
+        briefWhy: e.why,
+      }))
+    } catch {
+      return []
+    }
   }
 
   async reviewWriting(params: ReviewParams): Promise<WritingFeedback> {
     if (!this.isReady()) {
-      return {
-        errors: [],
-        praise: 'Good attempt! Keep writing in Norwegian.',
-        suggestion: 'Focus on getting the word order right — verb second in main clauses.',
-        source: 'template',
-      };
+      return { errors: [], praise: 'Good attempt! Keep writing in Norwegian.', suggestion: 'Focus on verb placement — V2 rule in main clauses.', source: 'template' }
     }
     try {
-      const { system, user } = buildWritingFeedbackPrompt(params.userText, params.level);
-      const raw = await this.complete(system, user, true);
+      const { system, user } = buildWritingFeedbackPrompt(params.userText, params.level)
+      const raw = await this.complete(system, user, true, 500)
       const parsed = JSON.parse(raw) as {
-        errors?: Array<{ wrong: string; correct: string; tag: string; why: string; start?: number; end?: number }>;
-        praise?: string;
-        suggestion?: string;
-      };
+        errors?: Array<{ wrong: string; correct: string; tag: string; why: string; start?: number; end?: number }>
+        praise?: string
+        suggestion?: string
+      }
       return {
         errors: (parsed.errors ?? []).map((e) => ({
           tag: e.tag as TaggedError['tag'],
@@ -258,14 +216,9 @@ export class WebLLMService implements AIService {
         praise: parsed.praise ?? 'Good attempt!',
         suggestion: parsed.suggestion ?? 'Keep practising!',
         source: 'ai',
-      };
+      }
     } catch {
-      return {
-        errors: [],
-        praise: 'Good attempt! Keep writing in Norwegian.',
-        suggestion: 'Focus on getting the word order right.',
-        source: 'template',
-      };
+      return { errors: [], praise: 'Good attempt!', suggestion: 'Focus on verb placement.', source: 'template' }
     }
   }
 
@@ -275,30 +228,27 @@ export class WebLLMService implements AIService {
     topic: string,
   ): Promise<ConversationTurnResult> {
     if (!this.isReady()) {
-      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' };
+      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' }
     }
     try {
       const { system, messages: chatMessages } = buildConversationPrompt(
         messages.map((m) => ({ role: m.role === 'tutor' ? 'assistant' : 'user', content: m.content })),
         level,
         topic,
-      );
-      const raw = await this.completeChat(system, chatMessages);
-
-      // Parse optional CORRECTION: block
-      const correctionMatch = raw.match(/CORRECTION:(\{.*\})/s);
-      let correction: ConversationTurnResult['correction'];
+      )
+      const raw = await this.completeChat(system, chatMessages)
+      const correctionMatch = raw.match(/CORRECTION:(\{.*?\})/s)
+      let correction: ConversationTurnResult['correction']
       if (correctionMatch) {
         try {
-          const c = JSON.parse(correctionMatch[1]) as { original: string; correct: string; tag: string; why: string };
-          correction = { original: c.original, corrected: c.correct, errorTag: c.tag, explanation: c.why };
-        } catch { /* ignore malformed correction */ }
+          const c = JSON.parse(correctionMatch[1]) as { original: string; correct: string; tag: string; why: string }
+          correction = { original: c.original, corrected: c.correct, errorTag: c.tag, explanation: c.why }
+        } catch { /* ignore */ }
       }
-
-      const tutorResponse = raw.replace(/\nCORRECTION:\{.*\}/s, '').trim();
-      return { tutorResponse, correction, source: 'ai' };
+      const tutorResponse = raw.replace(/\nCORRECTION:\{.*?\}/s, '').trim()
+      return { tutorResponse, correction, source: 'ai' }
     } catch {
-      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' };
+      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' }
     }
   }
 }

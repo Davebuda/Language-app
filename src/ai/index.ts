@@ -1,8 +1,8 @@
-import type { AIService } from './types';
-import { StubAIService } from './stub';
+import { WebLLMService } from './webllm'
 
-// StubAIService: template-based responses, always available.
-// Real model integration is Phase 2 — WebLLMService crashes Turbopack via WASM.
-export const aiService: AIService = new StubAIService();
+// WebLLM runs in a Web Worker — isolated from Turbopack/SSR.
+// Degrades gracefully to template responses until the model loads.
+// Model (~2GB) downloads once and is cached in IndexedDB by WebLLM.
+export const aiService = new WebLLMService()
 
-export type { AIService } from './types';
+export type { AIService } from './types'

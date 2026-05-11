@@ -292,3 +292,33 @@ ${repeatNote}
 Explain what went wrong and state the rule clearly. Reference their specific mistake by quoting it.`,
   };
 }
+
+// ── Error detection (semantic scoring for translation exercises) ────────────
+
+export function buildErrorDetectionPrompt(
+  text: string,
+  level: string,
+): { system: string; user: string } {
+  return {
+    system: `You are a Norwegian Bokmål grammar checker.
+Analyze the given Norwegian text and identify grammar errors.
+Return ONLY valid JSON — no markdown, no explanation outside the JSON.
+Focus on: word-order, verb-conjugation, noun-gender, article-use, negation-placement, adjective-agreement, modal-verb, preposition, spelling.
+Report the 1-3 most significant errors only.`,
+    user: `Norwegian text from a ${level} learner:
+"${text}"
+
+Return JSON:
+{
+  "errors": [
+    {
+      "wrong": "exact phrase from the text",
+      "correct": "corrected version",
+      "tag": "error-category",
+      "why": "one sentence explanation in English"
+    }
+  ]
+}
+If no errors, return: {"errors": []}`,
+  }
+}
