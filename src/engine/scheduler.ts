@@ -132,31 +132,61 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     items.push(makeItem(`item-${itemIndex++}`, conceptId, contentId, exerciseType, purpose));
   }
 
-  // Remediation — weak spots first
+  // Cap repeats of any single concept across all slots to avoid the same
+  // concept dominating the session (especially for learners with few weak spots).
+  const conceptRepeatCount = new Map<string, number>();
+  const MAX_CONCEPT_REPEATS = 2;
+
+  function addItemCapped(
+    conceptId: string,
+    exercises: ExerciseType[],
+    purpose: SessionItem['purpose'],
+    fallbackPool: string[],
+  ) {
+    const count = conceptRepeatCount.get(conceptId) ?? 0;
+    const effectiveId =
+      count < MAX_CONCEPT_REPEATS
+        ? conceptId
+        : (fallbackPool.find((id) => (conceptRepeatCount.get(id) ?? 0) < MAX_CONCEPT_REPEATS) ?? conceptId);
+    conceptRepeatCount.set(effectiveId, (conceptRepeatCount.get(effectiveId) ?? 0) + 1);
+    addItem(effectiveId, exercises, purpose);
+  }
+
+  // Remediation — weak spots first; fall back to unlocked concepts for cold-start users
+  const remediationPool = weakConcepts.length > 0
+    ? weakConcepts
+    : unlockedConcepts.map((c) => c.id);
   for (let i = 0; i < counts.remediation; i++) {
-    const conceptId = weakConcepts[i % Math.max(weakConcepts.length, 1)];
-    if (conceptId) addItem(conceptId, REMEDIATION_EXERCISES, 'remediation');
+    const conceptId = remediationPool[i % Math.max(remediationPool.length, 1)];
+    if (conceptId) addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool);
   }
 
-  // Review — decaying concepts
+  // Review — decaying concepts; fall back to weak then unlocked
+  const reviewPool = decayingConcepts.length > 0
+    ? decayingConcepts
+    : weakConcepts.length > 0
+      ? weakConcepts
+      : unlockedConcepts.map((c) => c.id);
   for (let i = 0; i < counts.review; i++) {
-    const conceptId =
-      decayingConcepts[i % Math.max(decayingConcepts.length, 1)] ?? weakConcepts[0];
-    if (conceptId) addItem(conceptId, REVIEW_EXERCISES, 'review');
+    const conceptId = reviewPool[i % Math.max(reviewPool.length, 1)];
+    if (conceptId) addItemCapped(conceptId, REVIEW_EXERCISES, 'review', reviewPool);
   }
 
-  // New material — next unlocked concept
-  const nextConcept = unlockedConcepts[0];
-  if (nextConcept) {
-    for (let i = 0; i < counts.newMaterial; i++) {
-      addItem(nextConcept.id, NEW_MATERIAL_EXERCISES, 'new-material');
+  // New material — spread across the next unlocked concepts, not just the first
+  const newMaterialConcepts = unlockedConcepts.slice(0, Math.max(counts.newMaterial, 3));
+  for (let i = 0; i < counts.newMaterial; i++) {
+    const concept = newMaterialConcepts[i % Math.max(newMaterialConcepts.length, 1)];
+    if (concept) {
+      conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
+      addItem(concept.id, NEW_MATERIAL_EXERCISES, 'new-material');
     }
   }
 
-  // Interleaving — mix from in-progress concepts
+  // Interleaving — mix from in-progress concepts; fall back to unlocked concepts
   const inProgress = [...inProgressIds].filter((id) => !masteredIds.has(id));
+  const interleavingPool = inProgress.length > 0 ? inProgress : unlockedConcepts.map((c) => c.id);
   for (let i = 0; i < counts.interleaving; i++) {
-    const conceptId = inProgress[Math.floor(Math.random() * inProgress.length)];
+    const conceptId = interleavingPool[Math.floor(Math.random() * interleavingPool.length)];
     if (conceptId)
       addItem(conceptId, [...REMEDIATION_EXERCISES, ...REVIEW_EXERCISES], 'interleaving');
   }
@@ -175,7 +205,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   const [first, ...rest] = items;
   const shuffled = first ? [first, ...fisherYates(rest)] : fisherYates(items);
 
-  const primaryFocus = weakConcepts[0] ?? nextConcept?.id ?? 'general-review';
+  const primaryFocus = weakConcepts[0] ?? newMaterialConcepts[0]?.id ?? 'general-review';
 
   const session: Session = {
     id: crypto.randomUUID(),

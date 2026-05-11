@@ -1,8 +1,9 @@
-// Phase 2: use StubAIService — template-based responses, no WASM.
-// WebLLMService (real on-device AI) is wired in Phase 3.
 import type { AIService } from './types';
-import { StubAIService } from './stub';
+import { WebLLMService } from './webllm';
 
-export const aiService: AIService = new StubAIService();
+// WebLLMService: uses on-device Llama-3.2-3B via WebGPU when available.
+// Falls back gracefully to template responses when WebGPU is absent or the
+// model hasn't loaded yet — no degradation to the user experience.
+export const aiService: AIService = new WebLLMService();
 
 export type { AIService } from './types';

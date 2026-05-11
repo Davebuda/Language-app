@@ -6,9 +6,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useSession } from '@/hooks/useSession';
 import { ExerciseCard } from './ExerciseCard';
 import { ExplanationCard } from './ExplanationCard';
+import { AIStatusBadge } from '@/components/ai/AIStatusBadge';
 import { incrementStreak } from '@/lib/streak';
 import type { Sentence } from '@/types/content';
 import type { ExerciseResult } from '@/types/session';
+import type { ConceptGraph } from '@/types/concepts';
+import conceptGraphJson from '@content/concepts/a1-graph.json';
+
+const conceptGraph = conceptGraphJson as ConceptGraph;
 
 interface SessionScreenProps {
   /** All available sentences keyed by ID (mock + Supabase merged). */
@@ -85,11 +90,19 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
             {Math.min(currentItemIndex + 1, Math.max(totalItems, 1))} / {totalItems || '—'}
           </span>
         </div>
-        {currentItem && (
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-nc-border bg-nc-card px-3 py-1 text-[10px] font-semibold text-white/40">
-            {getExerciseTypeLabel(currentItem.exerciseType)}
+        <div className="flex items-center gap-2 flex-wrap">
+          {currentItem && (
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-nc-border bg-nc-card px-3 py-1 text-[10px] font-semibold text-white/40">
+              {getExerciseTypeLabel(currentItem.exerciseType)}
+            </div>
+          )}
+          {currentItem && (
+            <PurposePill purpose={currentItem.purpose} />
+          )}
+          <div className="ml-auto">
+            <AIStatusBadge />
           </div>
-        )}
+        </div>
       </header>
 
       {/* Body */}
@@ -133,6 +146,7 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
                     repairPlan={repairPlan}
                     correctAnswer={lastResultRef.current?.correctAnswer ?? ''}
                     conceptId={currentItem.conceptIds[0] ?? 'concept'}
+                    conceptLabel={conceptGraph.concepts.find((c) => c.id === currentItem.conceptIds[0])?.label}
                     onContinue={continueAfterRepair}
                   />
                 </motion.div>
@@ -145,6 +159,22 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
       </main>
     </div>
   );
+}
+
+function PurposePill({ purpose }: { purpose: string }) {
+  const map: Record<string, { label: string; color: string }> = {
+    'remediation': { label: 'Reparasjon', color: 'text-orange-400 border-orange-400/20 bg-orange-400/8' },
+    'review': { label: 'Repetisjon', color: 'text-blue-400 border-blue-400/20 bg-blue-400/8' },
+    'new-material': { label: 'Nytt', color: 'text-nc-green border-nc-green/20 bg-nc-green/8' },
+    'interleaving': { label: 'Blanding', color: 'text-purple-400 border-purple-400/20 bg-purple-400/8' },
+  }
+  const config = map[purpose]
+  if (!config) return null
+  return (
+    <div className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${config.color}`}>
+      {config.label}
+    </div>
+  )
 }
 
 function LoadingSkeleton() {

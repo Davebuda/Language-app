@@ -2,6 +2,7 @@
 
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { isMastered } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
 import { getConceptColor } from '@/lib/concept-colors'
@@ -23,8 +24,7 @@ export default function ProgressPage() {
     conceptGraph.concepts
       .filter((c) => {
         const m = fingerprint?.conceptMastery[c.id]
-        if (!m) return false
-        return m.decayedScore >= c.masteryThreshold
+        return isMastered(m, c.masteryThreshold, c.minAttempts, c.minDays)
       })
       .map((c) => c.id)
   )

@@ -55,6 +55,8 @@ export function useSession(
   const contentCache = useRef<Map<string, ResolvedContent>>(new Map());
   // conceptId → sentences that support various exercise types
   const seedsByConceptId = useRef<Map<string, Sentence[]>>(new Map());
+  // sentence IDs already used in this session — prevents same sentence appearing twice
+  const usedSentenceIds = useRef<Set<string>>(new Set());
   const lastErrorRef = useRef<Parameters<typeof buildRepairPlan>[0] | null>(null);
   // Per-instance scenario cursor — not module-level to avoid HMR drift
   const scenarioCursorRef = useRef(0);
@@ -105,8 +107,12 @@ export function useSession(
     const compatible = seeds.filter((s) => s.exerciseTypes.includes(item.exerciseType));
     const pool = compatible.length > 0 ? compatible : seeds;
 
-    const picked = pool[Math.floor(Math.random() * pool.length)];
+    // Prefer sentences not yet used in this session; fall back to full pool if exhausted
+    const fresh = pool.filter((s) => !usedSentenceIds.current.has(s.id));
+    const source = fresh.length > 0 ? fresh : pool;
+    const picked = source[Math.floor(Math.random() * source.length)];
     if (picked) {
+      usedSentenceIds.current.add(picked.id);
       contentCache.current.set(item.id, { ...picked, source: 'seed' });
       forceUpdate((n) => n + 1);
     }
@@ -127,6 +133,7 @@ export function useSession(
 
     const output = generateSession({ fingerprint, graph: conceptGraph, availableSentenceIds: availableSentenceIdsProp });
     contentCache.current.clear();
+    usedSentenceIds.current.clear();
     sessionStore.startSession(output.session);
 
     // Kick off background model loading on first session start

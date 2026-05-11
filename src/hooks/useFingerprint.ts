@@ -11,6 +11,7 @@ import {
   updateConceptMastery,
   refreshDecay,
   logError,
+  aggregateErrorPatterns,
 } from '@/engine';
 import type { ExerciseResult } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
@@ -187,6 +188,8 @@ export function useFingerprint() {
           correct: result.correctAnswer,
           sentenceId: result.itemId,
         });
+        // Re-aggregate error patterns after every new error entry
+        updated = { ...updated, errorPatterns: aggregateErrorPatterns(updated) };
       }
 
       setFingerprint(updated);

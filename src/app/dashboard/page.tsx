@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { useAuth } from '@/hooks/useAuth'
 import { generateSession } from '@/engine/scheduler'
 import type { SchedulerOutput } from '@/engine/scheduler'
 import { BottomNav } from '@/components/layout/BottomNav'
@@ -31,8 +32,13 @@ export default function DashboardPage() {
   useFingerprint()
   const router = useRouter()
   const { fingerprint, status } = useFingerprintStore()
+  const { user } = useAuth()
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
   const streak = getStreak()
+
+  const displayName = user?.user_metadata?.full_name
+    ?? user?.email?.split('@')[0]
+    ?? 'Gjest'
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !localStorage.getItem('norskcoach_onboarded')) {
@@ -82,11 +88,13 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-[11px] font-medium capitalize text-white/30">{todayFormatted()}</div>
-            <h1 className="text-[20px] font-extrabold text-white">Hei, Gjest! 👋</h1>
+            <h1 className="text-[20px] font-extrabold text-white">Hei, {displayName}! 👋</h1>
           </div>
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-nc-green text-sm font-bold text-[#0d0d14]">
-            G
-          </div>
+          <Link href="/profile">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-nc-green text-sm font-bold text-[#0d0d14]">
+              {displayName.slice(0, 1).toUpperCase()}
+            </div>
+          </Link>
         </div>
 
         {/* Guest banner */}
@@ -122,6 +130,34 @@ export default function DashboardPage() {
                   {newMaterial} nytt
                 </span>
               )}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Coach insight — from diagnosis engine */}
+        {plan?.diagnosisResults && plan.diagnosisResults.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="rounded-2xl border border-nc-green/15 bg-nc-green/5 p-4"
+          >
+            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-nc-green/60">
+              🎯 Trener-innsikt
+            </div>
+            <p className="text-[13px] leading-relaxed text-white/70">
+              {plan.diagnosisResults[0].reasoning}
+            </p>
+            <div className="mt-2 flex items-center gap-1.5">
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className="h-full rounded-full bg-nc-green/60"
+                  style={{ width: `${Math.round(plan.diagnosisResults[0].confidence * 100)}%` }}
+                />
+              </div>
+              <span className="text-[10px] font-semibold text-white/30">
+                {Math.round(plan.diagnosisResults[0].confidence * 100)}% sikker
+              </span>
             </div>
           </motion.div>
         )}

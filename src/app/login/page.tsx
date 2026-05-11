@@ -4,19 +4,27 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft } from 'lucide-react'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function LoginPage() {
+  const { signIn } = useAuth()
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
-    // Auth deferred to Phase 3 — simulate submission for now
-    await new Promise((r) => setTimeout(r, 600))
-    setSubmitted(true)
-    setLoading(false)
+    setErrorMsg(null)
+    const { error } = await signIn(email)
+    if (error) {
+      setErrorMsg(error)
+      setLoading(false)
+    } else {
+      setSubmitted(true)
+      setLoading(false)
+    }
   }
 
   return (
@@ -98,6 +106,11 @@ export default function LoginPage() {
                 />
               </div>
 
+              {errorMsg && (
+                <p className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-2 text-[12px] text-red-400">
+                  {errorMsg}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={loading || !email}

@@ -97,19 +97,33 @@ export class WebLLMService implements AIService {
   private async _load(): Promise<void> {
     if (typeof window === 'undefined' || !('gpu' in navigator)) {
       this.state = 'unavailable';
+      // Notify store asynchronously — store may not be imported in SSR
+      import('@/stores/ai-status-store').then(({ useAIStatusStore }) => {
+        useAIStatusStore.getState().setState('unavailable');
+      }).catch(() => {});
       return;
     }
     try {
-      const { CreateMLCEngine } = await import('@mlc-ai/web-llm');
+      const [{ CreateMLCEngine }, { useAIStatusStore }] = await Promise.all([
+        import('@mlc-ai/web-llm'),
+        import('@/stores/ai-status-store'),
+      ]);
+      useAIStatusStore.getState().setState('loading');
       this.engine = (await CreateMLCEngine(MODEL_ID, {
         initProgressCallback: (report: { progress: number }) => {
-          this.onProgress?.(Math.round(report.progress * 100));
+          const pct = Math.round(report.progress * 100);
+          this.onProgress?.(pct);
+          useAIStatusStore.getState().setLoadingPct(pct);
         },
       })) as unknown as MLCEngine;
       this.state = 'ready';
+      useAIStatusStore.getState().setState('ready');
     } catch (err) {
       console.warn('[WebLLM] Model load failed:', err);
       this.state = 'unavailable';
+      import('@/stores/ai-status-store').then(({ useAIStatusStore }) => {
+        useAIStatusStore.getState().setState('unavailable');
+      }).catch(() => {});
     }
   }
 
