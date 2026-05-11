@@ -18,20 +18,18 @@ interface SessionScreenProps {
   availableSentenceIds: Record<string, string[]>;
 }
 
-function SegmentedProgress({ current, total }: { current: number; total: number }) {
-  const safeTotal = Math.max(total, 1);
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: safeTotal }).map((_, i) => (
-        <div
-          key={i}
-          className={`h-[5px] flex-1 rounded-full transition-colors duration-300 ${
-            i < current ? 'bg-[#0A0A0F]' : 'bg-[#E5E7EB]'
-          }`}
-        />
-      ))}
-    </div>
-  );
+function getExerciseTypeLabel(type: string): string {
+  const map: Record<string, string> = {
+    'translation-to-norwegian': '✏️ Oversett til norsk',
+    'translation-to-english': '✏️ Oversett til engelsk',
+    'fill-in-blank': '📝 Fyll inn',
+    'word-order': '🔀 Ordstilling',
+    'listening-comprehension': '🎧 Lytteøvelse',
+    'speed-round': '⚡ Hurtigrunde',
+    'sentence-transformation': '✏️ Omskriv',
+    'dictation': '🎧 Diktat',
+  }
+  return map[type] ?? '✏️ Øvelse'
 }
 
 export function SessionScreen({ sentences, availableSentenceIds }: SessionScreenProps) {
@@ -74,29 +72,27 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[#FAFAFA] text-[#0A0A0F]">
-      {/* Header */}
-      <header className="flex items-center justify-between border-b border-[#E5E7EB] px-5 py-4">
-        <div className="flex items-baseline gap-2">
-          <span className="text-base font-extrabold tracking-tight">NorskCoach</span>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6B7280]">
-            Session
+    <div className="flex min-h-dvh flex-col bg-nc-bg text-white">
+      <header className="px-5 pt-5 pb-2">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="flex-1 h-[4px] bg-[rgba(255,255,255,0.08)] rounded-full overflow-hidden">
+            <div
+              className="h-full bg-nc-green rounded-full transition-all duration-300"
+              style={{
+                width: `${totalItems > 0 ? (Math.min(currentItemIndex, totalItems) / totalItems) * 100 : 0}%`,
+              }}
+            />
+          </div>
+          <span className="text-[11px] font-semibold text-white/30 min-w-[48px] text-right">
+            {Math.min(currentItemIndex + 1, Math.max(totalItems, 1))} / {totalItems || '—'}
           </span>
         </div>
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0A0A0F]">
-          {Math.min(currentItemIndex + (isComplete ? 0 : 1), Math.max(totalItems, 1))}
-          {' / '}
-          {totalItems || '—'}
-        </span>
+        {currentItem && (
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-nc-border bg-nc-card px-3 py-1 text-[10px] font-semibold text-white/40">
+            {getExerciseTypeLabel(currentItem.exerciseType)}
+          </div>
+        )}
       </header>
-
-      {/* Segmented progress */}
-      <div className="px-5 py-3">
-        <SegmentedProgress
-          current={Math.min(currentItemIndex, totalItems)}
-          total={totalItems || 10}
-        />
-      </div>
 
       {/* Body */}
       <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-4 py-6">
@@ -155,8 +151,8 @@ export function SessionScreen({ sentences, availableSentenceIds }: SessionScreen
 
 function LoadingSkeleton() {
   return (
-    <div className="rounded-2xl border-[1.5px] border-[#0A0A0F] bg-white p-5">
-      <div className="h-48 animate-pulse rounded-2xl bg-[#E5E7EB]" />
+    <div className="rounded-2xl border border-nc-border bg-nc-card p-5">
+      <div className="h-48 animate-pulse rounded-2xl bg-[rgba(255,255,255,0.06)]" />
     </div>
   );
 }
@@ -164,8 +160,8 @@ function LoadingSkeleton() {
 function EmptyState() {
   return (
     <div className="flex flex-1 items-center justify-center">
-      <p className="max-w-xs text-center text-sm text-[#6B7280]">
-        No exercises available yet — content is being seeded.
+      <p className="max-w-xs text-center text-sm text-white/30">
+        Ingen øvelser tilgjengelig ennå — innhold seedes snart.
       </p>
     </div>
   );
