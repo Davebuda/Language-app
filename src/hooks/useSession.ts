@@ -14,15 +14,10 @@ import conceptGraphJson from '@content/concepts/a1-graph.json';
 
 const conceptGraph = conceptGraphJson as ConceptGraph;
 
-// Rotate through topic scenarios to prevent repetitive surface contexts
 const SCENARIOS = [
   'daily-routine', 'food', 'transport', 'family',
   'shopping', 'work', 'weather', 'health',
 ];
-let scenarioCursor = 0;
-function nextScenario(): string {
-  return SCENARIOS[scenarioCursor++ % SCENARIOS.length] ?? 'daily-routine';
-}
 
 // Build AI generation params from a session item + current fingerprint state
 function buildGenerateParams(
@@ -61,6 +56,8 @@ export function useSession(
   // conceptId → sentences that support various exercise types
   const seedsByConceptId = useRef<Map<string, Sentence[]>>(new Map());
   const lastErrorRef = useRef<Parameters<typeof buildRepairPlan>[0] | null>(null);
+  // Per-instance scenario cursor — not module-level to avoid HMR drift
+  const scenarioCursorRef = useRef(0);
 
   // Toggle flips to force re-renders when new content resolves
   const [, forceUpdate] = useState(0);
@@ -88,7 +85,7 @@ export function useSession(
 
     try {
       const { fingerprint } = useFingerprintStore.getState();
-      const scenario = nextScenario();
+      const scenario = SCENARIOS[scenarioCursorRef.current++ % SCENARIOS.length] ?? 'daily-routine';
       const params = buildGenerateParams(item, fingerprint, scenario);
 
       // Try AI generation first
@@ -199,11 +196,14 @@ export function useSession(
     [sessionStore, recordFingerprintResult],
   );
 
-  const continueAfterRepair = useCallback(() => {
+  const continueAfterRepair = useCallback(async () => {
     const state = useSessionStore.getState();
     const error = lastErrorRef.current;
 
-    if (error) {
+    // Only inject repair items for original session items, not for repair items
+    // themselves — otherwise a wrong answer on a repair item causes exponential growth.
+    const currentItem = state.session?.items[state.currentItemIndex];
+    if (error && currentItem && !currentItem.isRepairItem) {
       const seeds = seedsByConceptId.current.get(error.conceptId) ?? [];
       const sentenceIds = seeds.map((s) => s.id);
       const repairItems = makeRepairItems(
@@ -211,8 +211,10 @@ export function useSession(
         state.repairPlan ?? buildRepairPlan(error),
         sentenceIds,
       );
-      // Pre-resolve repair items before injecting so content is ready
-      repairItems.forEach((item) => { resolveItem(item); });
+      // Await first item so the learner doesn't land on a blank exercise.
+      // Fire-and-forget the rest — they'll resolve while the first is shown.
+      if (repairItems[0]) await resolveItem(repairItems[0]);
+      repairItems.slice(1).forEach((item) => { resolveItem(item); });
       state.injectRepairItems(repairItems, state.currentItemIndex);
     }
 
@@ -226,18 +228,10 @@ export function useSession(
     if (!session || !currentItem || currentContent || isInRepair) return;
     const isComplete = currentItemIndex >= session.items.length;
     if (isComplete) return;
-    // Give resolution 3 s before skipping; avoids flicker on slow networks
+    // Give resolution 3 s before silently skipping — do NOT record a result
+    // to avoid inflating mastery scores for content that was never shown
     const timer = setTimeout(() => {
       if (contentCache.current.has(currentItem.id)) return;
-      sessionStore.recordResult({
-        sessionId: session.id,
-        itemId: currentItem.id,
-        correct: true,
-        userAnswer: '',
-        correctAnswer: '',
-        timeTakenSeconds: 0,
-        conceptId: currentItem.conceptIds[0] ?? '',
-      });
       sessionStore.advanceItem();
     }, 3000);
     return () => clearTimeout(timer);

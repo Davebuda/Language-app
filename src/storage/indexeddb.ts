@@ -9,6 +9,7 @@ const DB_VERSION = 1;
 const FINGERPRINT_STORE = 'fingerprints';
 
 async function getDB(): Promise<IDBPDatabase> {
+  if (typeof window === 'undefined') throw new Error('IndexedDB unavailable on server');
   return openDB(DB_NAME, DB_VERSION, {
     upgrade(db) {
       if (!db.objectStoreNames.contains(FINGERPRINT_STORE)) {

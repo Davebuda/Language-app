@@ -10,7 +10,7 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     errorTagsDetectable: ['noun-gender', 'article-use'],
     cefrLevel: 'A1',
     difficulty: 1,
-    exerciseTypes: ['translation-to-english', 'translation-to-norwegian', 'fill-in-blank'],
+    exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
   'mock-s2': {
     id: 'mock-s2',
@@ -21,7 +21,7 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     errorTagsDetectable: ['noun-gender', 'article-use'],
     cefrLevel: 'A1',
     difficulty: 1,
-    exerciseTypes: ['translation-to-english', 'fill-in-blank'],
+    exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
   'mock-s3': {
     id: 'mock-s3',
@@ -43,7 +43,7 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     errorTagsDetectable: ['article-use'],
     cefrLevel: 'A1',
     difficulty: 1,
-    exerciseTypes: ['translation-to-english', 'fill-in-blank'],
+    exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
   'mock-s5': {
     id: 'mock-s5',
@@ -54,7 +54,7 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     errorTagsDetectable: ['article-use'],
     cefrLevel: 'A1',
     difficulty: 1,
-    exerciseTypes: ['translation-to-english', 'fill-in-blank'],
+    exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
   'mock-s6': {
     id: 'mock-s6',
@@ -76,7 +76,7 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     errorTagsDetectable: ['article-use'],
     cefrLevel: 'A1',
     difficulty: 2,
-    exerciseTypes: ['translation-to-english', 'fill-in-blank'],
+    exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
   'mock-s8': {
     id: 'mock-s8',
@@ -109,7 +109,7 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     errorTagsDetectable: ['article-use'],
     cefrLevel: 'A1',
     difficulty: 2,
-    exerciseTypes: ['translation-to-english', 'fill-in-blank'],
+    exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
 }
 
