@@ -58,6 +58,7 @@ export interface MistakeFingerprint {
   productionGap: Record<string, number>; // conceptId → gap between recognition and production (0–100)
   totalSessionsCompleted: number;
   lastSessionAt: string | null;
+  speakingMinutesTotal: number; // cumulative minutes of spoken Norwegian produced via mic
 }
 
 // Factory: create a new empty fingerprint
@@ -75,5 +76,6 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     productionGap: {},
     totalSessionsCompleted: 0,
     lastSessionAt: null,
+    speakingMinutesTotal: 0,
   };
 }

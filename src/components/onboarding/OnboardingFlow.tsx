@@ -7,10 +7,13 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { createEmptyFingerprint } from '@/types/fingerprint'
 import { saveFingerprint } from '@/storage/indexeddb'
+import { DiagnosticQuiz } from './DiagnosticQuiz'
+import type { DiagnosticResult } from '@/lib/diagnostic/engine'
+import type { CEFRLevel } from '@/types/fingerprint'
 
 type Step =
   | { kind: 'intro'; id: string }
-  | { kind: 'quiz'; questionIndex: number }
+  | { kind: 'diagnostic' }
   | { kind: 'ready' }
 
 const INTRO_SLIDES = [
@@ -48,71 +51,23 @@ const INTRO_SLIDES = [
   },
 ] as const
 
-const QUESTIONS = [
-  {
-    heading: 'Hvor mye norsk kan du fra før?',
-    options: [
-      { label: 'Ingenting - helt nybegynner', value: 'none', level: 'A1' as const },
-      { label: 'Litt - kjenner noen ord', value: 'some', level: 'A1' as const },
-      { label: 'Grunnleggende - enkle setninger', value: 'basic', level: 'A1' as const },
-      {
-        label: 'Middels - jeg kan holde en samtale',
-        value: 'intermediate',
-        level: 'A2' as const,
-      },
-    ],
-  },
-  {
-    heading: 'Hva er vanskeligst for deg nå?',
-    options: [
-      { label: 'Ord og uttrykk', value: 'vocab' },
-      { label: 'Grammatikk og ordstilling', value: 'grammar' },
-      { label: 'Lytte og forstå', value: 'listening' },
-      { label: 'Vet ikke ennå', value: 'unknown' },
-    ],
-  },
-  {
-    heading: 'Hva er målet ditt med norsk?',
-    options: [
-      { label: 'Jobb eller integrering i Norge', value: 'work' },
-      { label: 'Familie og sosialt liv', value: 'social' },
-      { label: 'Reise og friluftsliv', value: 'travel' },
-      { label: 'Akademisk og litteratur', value: 'academic' },
-    ],
-  },
-] as const
-
-const FIRST_CONCEPTS: Record<string, { label: string; sub: string }[]> = {
-  'none,vocab': [
+const FIRST_CONCEPTS_BY_LEVEL: Record<CEFRLevel, { label: string; sub: string }[]> = {
+  A1: [
     { label: 'Personlige pronomen', sub: '~3 min' },
     { label: 'Ubestemte artikler', sub: '~4 min' },
   ],
-  'none,grammar': [
-    { label: 'Personlige pronomen', sub: '~3 min' },
-    { label: 'Substantivets kjønn', sub: '~5 min' },
-  ],
-  'some,grammar': [
-    { label: 'Substantivets kjønn', sub: '~5 min' },
-    { label: 'V2-ordstilling', sub: '~6 min' },
-  ],
-  'basic,grammar': [
+  A2: [
     { label: 'V2-ordstilling', sub: '~6 min' },
     { label: 'Adjektivbøying', sub: '~5 min' },
   ],
-  'intermediate,grammar': [
-    { label: 'V2-ordstilling', sub: '~6 min' },
-    { label: 'Adjektivbøying', sub: '~5 min' },
+  B1: [
+    { label: 'Bisetningsordstilling', sub: '~7 min' },
+    { label: 'Perfektum', sub: '~6 min' },
   ],
-}
-
-function getFirstConcepts(answers: string[]) {
-  const key = `${answers[0]},${answers[1]}`
-  return (
-    FIRST_CONCEPTS[key] ?? [
-      { label: 'Personlige pronomen', sub: '~3 min' },
-      { label: 'Ubestemte artikler', sub: '~4 min' },
-    ]
-  )
+  B2: [
+    { label: 'Kondisjonalis', sub: '~8 min' },
+    { label: 'Avansert V2', sub: '~7 min' },
+  ],
 }
 
 function getOrCreateUserId(): string {
@@ -123,28 +78,32 @@ function getOrCreateUserId(): string {
   return id
 }
 
-function seedFingerprint(
-  answers: string[],
+function seedFingerprintFromDiagnostic(
+  result: DiagnosticResult,
   setFingerprint: (fp: ReturnType<typeof createEmptyFingerprint>) => void,
 ) {
   const userId = getOrCreateUserId()
   const fp = createEmptyFingerprint(userId)
+  const now = new Date().toISOString()
 
-  const levelQuestion = QUESTIONS[0].options.find((option) => option.value === answers[0])
-  if (levelQuestion && 'level' in levelQuestion) {
-    fp.currentLevel = levelQuestion.level
-  }
+  // Cap displayed level at A2 until B1/B2 graphs exist
+  fp.currentLevel = result.rawScore >= 0.55 ? 'A2' : result.cefrLevel
   fp.levelSetByUser = true
 
-  if (answers[1] === 'vocab') {
-    fp.productionGap['noun-gender'] = 30
-    fp.productionGap['indefinite-articles'] = 30
-  } else if (answers[1] === 'grammar') {
-    fp.productionGap['noun-gender'] = 50
-    fp.productionGap['indefinite-articles'] = 40
-    fp.productionGap['definite-articles-singular'] = 40
-  } else if (answers[1] === 'listening') {
-    fp.productionGap['noun-gender'] = 20
+  // Seed concept mastery from diagnostic answers
+  for (const [conceptId, seed] of Object.entries(result.conceptSeeds)) {
+    fp.conceptMastery[conceptId] = {
+      conceptId,
+      rawScore: seed.rawScore,
+      confidenceScore: seed.confidenceScore,
+      decayedScore: seed.decayedScore,
+      attemptCount: seed.attemptCount,
+      correctCount: seed.correctCount,
+      uniqueDaysActive: seed.uniqueDaysActive,
+      lastAttemptAt: seed.lastAttemptAt ?? now,
+      lastCorrectAt: seed.lastCorrectAt,
+      streak: seed.streak,
+    }
   }
 
   setFingerprint(fp)
@@ -166,84 +125,57 @@ export function OnboardingFlow() {
 
   const steps: Step[] = [
     ...INTRO_SLIDES.map((slide) => ({ kind: 'intro' as const, id: slide.id })),
-    ...QUESTIONS.map((_, index) => ({ kind: 'quiz' as const, questionIndex: index })),
+    { kind: 'diagnostic' },
     { kind: 'ready' },
   ]
 
   const [stepIndex, setStepIndex] = useState(0)
   const [direction, setDirection] = useState(1)
-  const [answers, setAnswers] = useState<string[]>([])
-  const [selected, setSelected] = useState<string | null>(null)
+  const [diagnosticResult, setDiagnosticResult] = useState<DiagnosticResult | null>(null)
 
   const currentStep = steps[stepIndex]
 
-  function advance(value?: string) {
-    const nextAnswers = value !== undefined ? [...answers, value] : answers
-    if (value !== undefined) setAnswers(nextAnswers)
-
-    if (stepIndex < steps.length - 1) {
-      setDirection(1)
-      setSelected(null)
-      setStepIndex((current) => current + 1)
-      return
-    }
-
-    seedFingerprint(nextAnswers, setFingerprint)
-    router.push('/session')
+  function advanceTo(next: number) {
+    setDirection(1)
+    setStepIndex(next)
   }
 
   function back() {
-    if (stepIndex === 0) {
-      router.push('/')
-      return
-    }
-
+    if (stepIndex === 0) { router.push('/'); return }
     setDirection(-1)
-    setSelected(null)
-    if (currentStep.kind === 'quiz' || currentStep.kind === 'ready') {
-      setAnswers((current) => current.slice(0, -1))
-    }
-    setStepIndex((current) => current - 1)
+    // Back from ready → return to last intro slide (skip diagnostic re-run)
+    if (currentStep.kind === 'ready') { setStepIndex(INTRO_SLIDES.length - 1); return }
+    setStepIndex((i) => i - 1)
   }
 
-  function goToDashboard() {
-    seedFingerprint(answers, setFingerprint)
-    router.push('/dashboard')
+  function handleDiagnosticComplete(result: DiagnosticResult) {
+    setDiagnosticResult(result)
+    advanceTo(steps.findIndex((s) => s.kind === 'ready'))
+  }
+
+  function commit(destination: '/session' | '/dashboard') {
+    if (!diagnosticResult) return
+    seedFingerprintFromDiagnostic(diagnosticResult, setFingerprint)
+    router.push(destination)
   }
 
   function renderStep(step: Step) {
     if (step.kind === 'intro') {
       const slide = INTRO_SLIDES.find((item) => item.id === step.id)
       if (!slide) return null
-      return <IntroSlide slide={slide} onNext={() => advance()} />
+      return <IntroSlide slide={slide} onNext={() => advanceTo(stepIndex + 1)} />
     }
 
-    if (step.kind === 'quiz') {
-      const question = QUESTIONS[step.questionIndex]
-      return (
-        <QuizStep
-          heading={question.heading}
-          questionNumber={step.questionIndex + 1}
-          totalQuestions={QUESTIONS.length}
-          options={question.options}
-          selected={selected}
-          onSelect={(value) => {
-            setSelected(value)
-            setTimeout(() => advance(value), 180)
-          }}
-        />
-      )
+    if (step.kind === 'diagnostic') {
+      return <DiagnosticQuiz onComplete={handleDiagnosticComplete} />
     }
 
     return (
       <ReadyStep
-        answers={answers}
-        concepts={getFirstConcepts(answers)}
-        onStart={() => {
-          seedFingerprint(answers, setFingerprint)
-          router.push('/session')
-        }}
-        onDashboard={goToDashboard}
+        level={diagnosticResult?.cefrLevel ?? 'A1'}
+        concepts={FIRST_CONCEPTS_BY_LEVEL[diagnosticResult?.cefrLevel ?? 'A1']}
+        onStart={() => commit('/session')}
+        onDashboard={() => commit('/dashboard')}
       />
     )
   }
@@ -401,82 +333,17 @@ function IntroSlide({
   )
 }
 
-function QuizStep({
-  heading,
-  questionNumber,
-  totalQuestions,
-  options,
-  selected,
-  onSelect,
-}: {
-  heading: string
-  questionNumber: number
-  totalQuestions: number
-  options: readonly { label: string; value: string }[]
-  selected: string | null
-  onSelect: (value: string) => void
-}) {
-  return (
-    <div className="flex flex-1 flex-col gap-5">
-      <div className="nc-panel-dark p-5">
-        <div className="pointer-events-none absolute inset-0 opacity-40">
-          <div className="nc-pattern-orbits absolute inset-0" />
-        </div>
-
-        <div className="relative z-[1]">
-          <div className="nc-label-light">
-            Spørsmål {questionNumber} av {totalQuestions}
-          </div>
-          <h2 className="mt-3 max-w-[15rem] text-[1.95rem] leading-[0.98] text-white">
-            {heading}
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-white/58">
-            Svarene former den første økten og hvilke konsepter vi prioriterer.
-          </p>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-3">
-        {options.map((option, index) => {
-          const isSelected = selected === option.value
-
-          return (
-            <button
-              key={option.value}
-              onClick={() => onSelect(option.value)}
-              className={`rounded-[0.95rem] border px-4 py-4 text-left transition-all ${
-                isSelected
-                  ? 'border-nc-violet/28 bg-nc-violet/12 text-nc-text shadow-[0_18px_30px_rgba(183,167,255,0.12)]'
-                  : 'border-nc-border bg-white text-nc-text-muted hover:-translate-y-0.5 hover:text-nc-text'
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                <div className="pt-0.5 text-[11px] font-medium text-nc-text-dim">
-                  0{index + 1}
-                </div>
-                <div className="text-sm font-medium leading-6">{option.label}</div>
-              </div>
-            </button>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
 function ReadyStep({
-  answers,
+  level,
   concepts,
   onStart,
   onDashboard,
 }: {
-  answers: string[]
+  level: CEFRLevel
   concepts: { label: string; sub: string }[]
   onStart: () => void
   onDashboard: () => void
 }) {
-  const levelAnswer = QUESTIONS[0].options.find((option) => option.value === answers[0])
-  const level = levelAnswer && 'level' in levelAnswer ? levelAnswer.level : 'A1'
 
   return (
     <motion.div

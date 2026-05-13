@@ -261,13 +261,19 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
             { label: 'day streak', value: String(streak), accent: 'text-[#ff9a78]', icon: '🔥' },
             {
+              label: 'mins spoken',
+              value: `${Math.round(fingerprint?.speakingMinutesTotal ?? 0)}`,
+              accent: 'text-nc-violet',
+              icon: '🎙',
+            },
+            {
               label: 'accuracy',
               value: `${Math.round(masteryTiles.reduce((sum, tile) => sum + tile.score, 0) / Math.max(masteryTiles.length, 1))}%`,
-              accent: 'text-nc-violet',
+              accent: 'text-nc-sage',
               icon: '↗',
             },
             {

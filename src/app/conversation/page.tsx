@@ -104,6 +104,7 @@ export default function ConversationPage() {
   const turnIndexRef = useRef(0)
   const errorCountRef = useRef(0)
   const sessionStartRef = useRef<number>(0)
+  const micStartRef = useRef<number>(0)
 
   async function persistSessionStart(topic: string, lvl: CEFRLevel): Promise<void> {
     if (!user) return
@@ -211,10 +212,21 @@ export default function ConversationPage() {
     await addTutorMessage(nextMessages.map((m) => ({ role: m.role, content: m.content })))
   }
 
+  function addSpeakingMinutes(elapsedMs: number): void {
+    const fp = useFingerprintStore.getState().fingerprint
+    if (!fp) return
+    const minutes = elapsedMs / 60_000
+    if (minutes < 0.05) return // ignore accidental taps under 3 seconds
+    const updated = { ...fp, speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + minutes, updatedAt: new Date().toISOString() }
+    setFingerprint(updated)
+    saveFingerprint(updated).catch(console.warn)
+  }
+
   function toggleListening() {
     const Ctor = getSpeechRecognitionCtor()
     if (!Ctor) return
     if (isListening) { recognitionRef.current?.stop(); setIsListening(false); return }
+    micStartRef.current = Date.now()
     const rec = new Ctor()
     recognitionRef.current = rec
     rec.lang = 'no-NO'
@@ -225,7 +237,11 @@ export default function ConversationPage() {
       for (let i = 0; i < e.results.length; i++) parts.push(e.results[i][0].transcript)
       const transcript = parts.join('')
       setInputText(transcript)
-      if (e.results[e.results.length - 1].isFinal) { setIsListening(false); void handleSend(transcript) }
+      if (e.results[e.results.length - 1].isFinal) {
+        addSpeakingMinutes(Date.now() - micStartRef.current)
+        setIsListening(false)
+        void handleSend(transcript)
+      }
     }
     rec.onend = () => setIsListening(false)
     rec.onerror = () => setIsListening(false)
