@@ -4,6 +4,27 @@ import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { aiService } from '@/ai'
 import type { WritingFeedback } from '@/ai/types'
+import { createClient } from '@/lib/supabase/client'
+import { useAuth } from '@/hooks/useAuth'
+import { logError, aggregateErrorPatterns } from '@/engine'
+import { saveFingerprint } from '@/storage/indexeddb'
+import { useFingerprintStore } from '@/stores/fingerprint-store'
+import type { ErrorTag } from '@/types/taxonomy'
+
+// Best-effort: map writing feedback error tags to concept IDs
+const WRITING_TAG_TO_CONCEPT: Partial<Record<string, string>> = {
+  'word-order': 'v2-word-order',
+  'noun-gender': 'noun-gender',
+  'article-use': 'indefinite-articles',
+  'verb-conjugation': 'present-tense-verbs',
+  'verb-tense': 'past-tense-regular',
+  'modal-verb': 'modal-verbs',
+  'adjective-agreement': 'adjective-agreement',
+  'pronoun-choice': 'personal-pronouns',
+  'preposition': 'prepositions-place',
+  'negation-placement': 'negation-placement',
+  'spelling': 'noun-gender',
+}
 
 const PROMPTS = [
   'Beskriv din ideelle norske helg',
@@ -31,17 +52,58 @@ export function WritingEditor() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showCorrected, setShowCorrected] = useState(false)
 
+  const { user } = useAuth()
+  const { fingerprint, setFingerprint } = useFingerprintStore()
+
   const prompt = useMemo(() => getDailyPrompt(), [])
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0
   const canAnalyze = wordCount >= 5
+
+  async function persistSubmission(result: WritingFeedback): Promise<void> {
+    if (!user) return
+    try {
+      const supabase = createClient()
+      await supabase.from('writing_submissions').insert({
+        user_id: user.id,
+        content: text,
+        prompt_text: prompt,
+        feedback: result as unknown as Record<string, unknown>,
+        error_tags: result.errors.map((e) => e.tag),
+        error_count: result.errors.length,
+        word_count: wordCount,
+        cefr_level: fingerprint?.currentLevel ?? 'A1',
+      })
+    } catch { /* silent */ }
+  }
+
+  function pushErrorsToFingerprint(result: WritingFeedback): void {
+    if (!fingerprint || result.errors.length === 0) return
+    let updated = fingerprint
+    for (const err of result.errors) {
+      const conceptId = WRITING_TAG_TO_CONCEPT[err.tag]
+      if (!conceptId) continue
+      updated = logError(updated, {
+        conceptId,
+        errorTag: err.tag as ErrorTag,
+        exerciseType: 'free-writing',
+        wrong: err.wrong,
+        correct: err.correct,
+      })
+    }
+    const withPatterns = { ...updated, errorPatterns: aggregateErrorPatterns(updated) }
+    setFingerprint(withPatterns)
+    saveFingerprint(withPatterns).catch(console.warn)
+  }
 
   async function handleAnalyze() {
     setIsAnalyzing(true)
     setFeedback(null)
     setShowCorrected(false)
     try {
-      const result = await aiService.reviewWriting({ userText: text, prompt, level: 'A1' })
+      const result = await aiService.reviewWriting({ userText: text, prompt, level: fingerprint?.currentLevel ?? 'A1' })
       setFeedback(result)
+      void persistSubmission(result)
+      pushErrorsToFingerprint(result)
     } finally {
       setIsAnalyzing(false)
     }

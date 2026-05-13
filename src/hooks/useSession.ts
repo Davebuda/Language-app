@@ -6,6 +6,7 @@ import { useFingerprintStore } from '@/stores/fingerprint-store';
 import { useFingerprint } from '@/hooks/useFingerprint';
 import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
+import { emitEvent } from '@/lib/events';
 import type { ExerciseResult, SessionItem, ExerciseType } from '@/types/session';
 import type { Sentence, ResolvedContent } from '@/types/content';
 import type { ConceptGraph } from '@/types/concepts';
@@ -156,6 +157,13 @@ export function useSession(
     // Kick off background model loading on first session start
     aiService.init().catch(() => { /* swallow — service degrades gracefully */ });
 
+    emitEvent({
+      eventType: 'session_started',
+      mode: 'session',
+      sessionId: output.session.id,
+      payload: { level: fingerprint.currentLevel, itemCount: output.session.items.length },
+    });
+
     prefetch(output.session.items, 0);
   }, [sessionStore, prefetch, availableSentenceIdsProp]);
 
@@ -175,6 +183,16 @@ export function useSession(
 
       sessionStore.recordResult(result);
       recordFingerprintResult(result);
+
+      const sessionId = useSessionStore.getState().session?.id;
+      emitEvent({
+        eventType: 'exercise_result',
+        mode: 'session',
+        sessionId,
+        conceptIds: [result.conceptId],
+        errorTags: result.errorTag ? [result.errorTag] : [],
+        payload: { correct: result.correct, exerciseType: item?.exerciseType },
+      });
 
       if (result.correct) {
         sessionStore.advanceItem();
@@ -198,6 +216,15 @@ export function useSession(
       lastErrorRef.current = error;
       const plan = buildRepairPlan(error);
       sessionStore.enterRepair(plan);
+
+      emitEvent({
+        eventType: 'repair_triggered',
+        mode: 'session',
+        sessionId,
+        conceptIds: [error.conceptId],
+        errorTags: [error.errorTag],
+        payload: { wrong: error.wrong, correct: error.correct },
+      });
 
       // Async: upgrade the template explanation with an AI-generated one.
       // Updates the store in-place so the learner sees it if they haven't

@@ -6,11 +6,11 @@ import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { saveFingerprint } from '@/storage/indexeddb'
 import type { CEFRLevel } from '@/types/fingerprint'
 
-const LEVELS: { value: CEFRLevel; label: string; desc: string }[] = [
+const LEVELS: { value: CEFRLevel; label: string; desc: string; comingSoon?: boolean }[] = [
   { value: 'A1', label: 'A1', desc: 'Beginner — first words' },
   { value: 'A2', label: 'A2', desc: 'Elementary — simple conversations' },
-  { value: 'B1', label: 'B1', desc: 'Intermediate — handle most situations' },
-  { value: 'B2', label: 'B2', desc: 'Upper Intermediate — fluent discussions' },
+  { value: 'B1', label: 'B1', desc: 'A2 content · B1 graph coming soon', comingSoon: true },
+  { value: 'B2', label: 'B2', desc: 'A2 content · B2 graph coming soon', comingSoon: true },
 ]
 
 interface LevelSelectorProps {
@@ -62,11 +62,21 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
                 borderColor: current === lvl.value ? '#111118' : 'rgba(17,17,24,0.10)',
               }}
             >
-              <span
-                className="text-[13px] font-bold"
-                style={{ color: current === lvl.value ? '#C8FF00' : '#111118' }}
-              >
-                {lvl.label}
+              <span className="flex items-center gap-1.5">
+                <span
+                  className="text-[13px] font-bold"
+                  style={{ color: current === lvl.value ? '#C8FF00' : '#111118' }}
+                >
+                  {lvl.label}
+                </span>
+                {lvl.comingSoon && (
+                  <span
+                    className="rounded px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wide"
+                    style={{ background: 'rgba(200,255,0,0.12)', color: '#9aac3a' }}
+                  >
+                    soon
+                  </span>
+                )}
               </span>
               <span
                 className="text-[11px] leading-snug"

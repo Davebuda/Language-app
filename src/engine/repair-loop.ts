@@ -53,7 +53,7 @@ const REMEDIATION_EXERCISE_MAP: Partial<Record<ErrorTag, ExerciseType[]>> = {
   'modal-verb': ['fill-in-blank', 'translation-to-norwegian'],
   'negation-placement': ['sentence-transformation', 'fill-in-blank', 'word-order'],
   'listening-recognition': ['listening-comprehension', 'dictation'],
-  'reading-parsing': ['reading-comprehension', 'translation-to-english'],
+  'reading-parsing': ['translation-to-english', 'translation-to-norwegian'],
 };
 
 export interface RepairPlan {

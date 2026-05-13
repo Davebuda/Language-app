@@ -8,6 +8,7 @@ import { useSessionStore } from '@/stores/session-store'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { ScoreCircle } from '@/components/session/ScoreCircle'
 import { BottomNav } from '@/components/layout/BottomNav'
+import { emitEvent } from '@/lib/events'
 import type { ConceptGraph } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
 
@@ -29,8 +30,24 @@ export default function SessionCompletePage() {
   useEffect(() => {
     if (!session && results.length === 0) {
       router.replace('/dashboard')
+      return
     }
-  }, [results, router, session])
+    if (session) {
+      const correct = results.filter((r) => r.correct).length
+      emitEvent({
+        eventType: 'session_completed',
+        mode: 'session',
+        sessionId: session.id,
+        conceptIds: [...new Set(results.map((r) => r.conceptId))],
+        payload: {
+          accuracy: results.length > 0 ? Math.round((correct / results.length) * 100) : 0,
+          itemCount: results.length,
+          level: session.level,
+        },
+      })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.id])
 
   const totalAnswered = results.length
   const correctCount = results.filter((result) => result.correct).length

@@ -19,6 +19,49 @@ interface ExerciseCardProps {
   repairPlan?: RepairPlan | null
 }
 
+function NotYetAvailable({
+  type,
+  onResult,
+  item,
+  sessionId,
+}: {
+  type: string
+  onResult: (result: ExerciseResult) => void
+  item: SessionItem
+  sentence: ResolvedContent
+  sessionId: string
+}) {
+  return (
+    <div className="space-y-5">
+      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+        Exercise type
+      </p>
+      <p className="text-[18px] font-bold leading-snug text-white/70">
+        {type === 'reading-comprehension' ? 'Reading comprehension' : 'Free writing'} is coming soon.
+      </p>
+      <p className="text-sm text-white/45">
+        This exercise type is not available yet. Tap continue to skip.
+      </p>
+      <button
+        onClick={() =>
+          onResult({
+            sessionId,
+            itemId: item.id,
+            correct: true,
+            userAnswer: '[skipped]',
+            correctAnswer: '[skipped]',
+            timeTakenSeconds: 0,
+            conceptId: item.conceptIds[0] ?? '',
+          })
+        }
+        className="min-h-[48px] w-full rounded-xl bg-white/10 px-6 py-3 font-bold text-white/60 transition-all hover:bg-white/15"
+      >
+        Continue
+      </button>
+    </div>
+  )
+}
+
 export function ExerciseCard({
   item,
   sentence,
@@ -54,6 +97,9 @@ export function ExerciseCard({
         return <ListeningExercise {...props} />
       case 'speed-round':
         return <SpeedRound {...props} />
+      case 'reading-comprehension':
+      case 'free-writing':
+        return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sentence={sentence} sessionId={sessionId} />
       default:
         return <TranslationExercise {...props} />
     }

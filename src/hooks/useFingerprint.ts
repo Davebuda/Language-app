@@ -13,6 +13,7 @@ import {
   logError,
   aggregateErrorPatterns,
 } from '@/engine';
+import { emitEvent } from '@/lib/events';
 import type { ExerciseResult } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
 import a1GraphJson from '@content/concepts/a1-graph.json';
@@ -166,6 +167,11 @@ export function useFingerprint() {
       if (updated.currentLevel === 'A1' && checkA1Complete(updated)) {
         updated = { ...updated, currentLevel: 'A2', updatedAt: new Date().toISOString() };
         try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
+        emitEvent({
+          eventType: 'level_changed',
+          mode: 'session',
+          payload: { from: 'A1', to: 'A2' },
+        });
       }
 
       setFingerprint(updated);

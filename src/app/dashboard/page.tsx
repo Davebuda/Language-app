@@ -192,6 +192,23 @@ export default function DashboardPage() {
           )}
         </AnimatePresence>
 
+        {/* B1/B2 notice — these levels have no dedicated concept graph yet */}
+        <AnimatePresence>
+          {(fingerprint?.currentLevel === 'B1' || fingerprint?.currentLevel === 'B2') && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="rounded-[1rem] border border-[rgba(200,255,0,0.18)] bg-[rgba(200,255,0,0.07)] px-4 py-3"
+            >
+              <p className="text-[12px] leading-6 text-nc-text-muted">
+                <span className="font-semibold text-nc-text">{fingerprint.currentLevel} selected.</span>{' '}
+                The {fingerprint.currentLevel} concept graph is coming soon — your sessions are currently running A2 material.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Today's session card */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}

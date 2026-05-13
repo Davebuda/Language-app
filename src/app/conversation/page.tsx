@@ -6,6 +6,13 @@ import { Mic, MicOff, Send, X } from 'lucide-react'
 import { aiService } from '@/ai'
 import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
 import { BottomNav } from '@/components/layout/BottomNav'
+import { createClient } from '@/lib/supabase/client'
+import { useAuth } from '@/hooks/useAuth'
+import { logError, aggregateErrorPatterns } from '@/engine'
+import { saveFingerprint } from '@/storage/indexeddb'
+import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { emitEvent } from '@/lib/events'
+import type { ErrorTag } from '@/types/taxonomy'
 
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
@@ -40,6 +47,20 @@ const TOPICS = [
 ] as const
 
 const LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2']
+
+// Best-effort mapping: error tag → most relevant concept ID for fingerprint logging
+const ERROR_TAG_TO_CONCEPT: Partial<Record<string, string>> = {
+  'word-order': 'v2-word-order',
+  'noun-gender': 'noun-gender',
+  'article-use': 'indefinite-articles',
+  'verb-conjugation': 'present-tense-verbs',
+  'verb-tense': 'past-tense-regular',
+  'modal-verb': 'modal-verbs',
+  'adjective-agreement': 'adjective-agreement',
+  'pronoun-choice': 'personal-pronouns',
+  'preposition': 'prepositions-place',
+  'negation-placement': 'negation-placement',
+}
 
 function getSpeechRecognitionCtor(): SpeechRecCtor | null {
   if (typeof window === 'undefined') return null
@@ -77,6 +98,75 @@ export default function ConversationPage() {
   const recognitionRef = useRef<SpeechRec | null>(null)
   const hasSpeechAPI = typeof window !== 'undefined' && !!getSpeechRecognitionCtor()
 
+  const { user } = useAuth()
+  const { fingerprint, setFingerprint } = useFingerprintStore()
+  const dbSessionIdRef = useRef<string | null>(null)
+  const turnIndexRef = useRef(0)
+  const errorCountRef = useRef(0)
+  const sessionStartRef = useRef<number>(0)
+
+  async function persistSessionStart(topic: string, lvl: CEFRLevel): Promise<void> {
+    if (!user) return
+    try {
+      const supabase = createClient()
+      const { data, error } = await supabase
+        .from('conversation_sessions')
+        .insert({ user_id: user.id, topic, cefr_level: lvl, mode: 'free' })
+        .select('id')
+        .single()
+      if (!error && data) {
+        dbSessionIdRef.current = data.id
+        emitEvent({ eventType: 'session_started', mode: 'conversation', sessionId: data.id, payload: { topic, level: lvl } })
+      }
+    } catch { /* silent */ }
+  }
+
+  async function persistTurn(role: 'user' | 'tutor', content: string, correction?: ConversationTurnResult['correction']): Promise<void> {
+    if (!user || !dbSessionIdRef.current) return
+    try {
+      const supabase = createClient()
+      await supabase.from('conversation_turns').insert({
+        session_id: dbSessionIdRef.current,
+        role,
+        content,
+        corrected_content: correction ? correction.corrected : null,
+        error_tags: correction ? [correction.errorTag] : [],
+        concept_ids: correction ? [ERROR_TAG_TO_CONCEPT[correction.errorTag] ?? ''].filter(Boolean) : [],
+        turn_index: turnIndexRef.current++,
+      })
+    } catch { /* silent */ }
+  }
+
+  async function persistSessionEnd(): Promise<void> {
+    if (!user || !dbSessionIdRef.current) return
+    try {
+      const supabase = createClient()
+      await supabase.from('conversation_sessions').update({
+        ended_at: new Date().toISOString(),
+        duration_seconds: Math.round((Date.now() - sessionStartRef.current) / 1000),
+        turn_count: turnIndexRef.current,
+        error_count: errorCountRef.current,
+      }).eq('id', dbSessionIdRef.current)
+    } catch { /* silent */ }
+  }
+
+  function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>): void {
+    if (!fingerprint) return
+    const conceptId = ERROR_TAG_TO_CONCEPT[correction.errorTag]
+    if (!conceptId) return
+    const updated = logError(fingerprint, {
+      conceptId,
+      errorTag: correction.errorTag as ErrorTag,
+      exerciseType: 'translation-to-norwegian',
+      wrong: correction.original,
+      correct: correction.corrected,
+    })
+    const withPatterns = { ...updated, errorPatterns: aggregateErrorPatterns(updated) }
+    setFingerprint(withPatterns)
+    saveFingerprint(withPatterns).catch(console.warn)
+    errorCountRef.current++
+  }
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
@@ -93,14 +183,21 @@ export default function ConversationPage() {
         correction: result.correction,
       }])
       speakNorwegian(result.tutorResponse)
+      void persistTurn('tutor', result.tutorResponse, result.correction)
+      if (result.correction) logConversationError(result.correction)
     } finally {
       setIsThinking(false)
     }
-  }, [level, selectedTopic])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [level, selectedTopic, user, fingerprint])
 
   async function startConversation() {
     setPhase('chat')
     setMessages([])
+    turnIndexRef.current = 0
+    errorCountRef.current = 0
+    sessionStartRef.current = Date.now()
+    void persistSessionStart(selectedTopic ?? 'daily-routine', level)
     await addTutorMessage([])
   }
 
@@ -110,6 +207,7 @@ export default function ConversationPage() {
     setInputText('')
     const nextMessages = [...messages, { role: 'user' as const, content: trimmed }]
     setMessages(nextMessages)
+    void persistTurn('user', trimmed)
     await addTutorMessage(nextMessages.map((m) => ({ role: m.role, content: m.content })))
   }
 
@@ -218,7 +316,7 @@ export default function ConversationPage() {
                   {TOPICS.find((t) => t.id === selectedTopic)?.label}
                 </div>
                 <button
-                  onClick={() => { setPhase('setup'); window.speechSynthesis?.cancel() }}
+                  onClick={() => { void persistSessionEnd(); setPhase('setup'); window.speechSynthesis?.cancel() }}
                   className="flex items-center gap-1 rounded-full bg-nc-card border border-nc-border px-3 py-1 text-[11px] text-nc-text-muted hover:text-nc-text transition-colors"
                 >
                   <X size={12} /> Avslutt
