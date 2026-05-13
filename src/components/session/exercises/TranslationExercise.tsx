@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
-import { checkAnswer } from '@/lib/answer';
+import { gradeAnswer } from '@/app/session/actions';
 import { aiService } from '@/ai';
 import { useFingerprintStore } from '@/stores/fingerprint-store';
 import type { CEFRLevel } from '@/types/fingerprint';
@@ -25,15 +25,13 @@ function useSmartFocus(inputRef: React.RefObject<HTMLInputElement | null>) {
   }, [inputRef]);
 }
 
-// Semantic check: if AI says no errors and answer length is in a reasonable range,
-// accept it as correct even if it doesn't match the reference string exactly.
-async function semanticCheck(userAnswer: string, correctAnswer: string, level: string): Promise<boolean> {
+// Semantic upgrade: if AI says no errors, accept even if exact match fails.
+// Only runs after server already returned correct=false, as an upgrade path.
+async function semanticUpgrade(userAnswer: string, correctAnswer: string, level: string): Promise<boolean> {
   try {
     const errors = await aiService.detectErrors(userAnswer, level as CEFRLevel);
     if (errors.length > 0) return false;
-    const userLen = userAnswer.trim().length;
-    const correctLen = correctAnswer.trim().length;
-    const ratio = userLen / correctLen;
+    const ratio = userAnswer.trim().length / correctAnswer.trim().length;
     return ratio >= 0.5 && ratio <= 2.0;
   } catch {
     return false;
@@ -50,20 +48,23 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
 
   const toNorwegian = item.exerciseType === 'translation-to-norwegian';
   const prompt = toNorwegian ? sentence.english : sentence.norwegian;
-  const correctAnswer = toNorwegian ? sentence.norwegian : sentence.english;
   const promptLabel = toNorwegian ? 'Oversett til norsk' : 'Oversett til engelsk';
 
   async function submit() {
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
 
-    let correct = checkAnswer(userInput, correctAnswer);
+    // Grade server-side — correct answer is not exposed to the client before submission
+    const { correct: serverCorrect, correctAnswer: serverAnswer, errorTag } =
+      await gradeAnswer(sentence.id, item.exerciseType, userInput);
+
+    let correct = serverCorrect;
 
     // Semantic upgrade for Norwegian translations when AI model is loaded
     if (!correct && toNorwegian && aiService.isReady()) {
       const { fingerprint } = useFingerprintStore.getState();
       const level = fingerprint?.currentLevel ?? 'A1';
-      correct = await semanticCheck(userInput, correctAnswer, level);
+      correct = await semanticUpgrade(userInput, serverAnswer, level);
     }
 
     const result: ExerciseResult = {
@@ -71,9 +72,9 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
       itemId: item.id,
       correct,
       userAnswer: userInput,
-      correctAnswer,
+      correctAnswer: serverAnswer,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : (sentence.errorTagsDetectable[0] ?? 'word-order'),
+      errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'word-order'),
       conceptId: item.conceptIds[0] ?? '',
     };
     onResult(result);

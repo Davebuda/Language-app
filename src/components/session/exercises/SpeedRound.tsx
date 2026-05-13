@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
-import { checkAnswer } from '@/lib/answer';
+import { gradeAnswer } from '@/app/session/actions';
 
 interface SpeedRoundProps {
   item: SessionItem;
@@ -44,17 +44,17 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   function submitAnswer(answer: string) {
     if (submitted) return;
     setSubmitted(true);
-    const correctAnswer = sentence.english;
-    const correct = checkAnswer(answer, correctAnswer);
-    onResult({
-      sessionId,
-      itemId: item.id,
-      correct,
-      userAnswer: answer,
-      correctAnswer,
-      timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : 'spelling',
-      conceptId: item.conceptIds[0] ?? '',
+    void gradeAnswer(sentence.id, item.exerciseType, answer).then(({ correct, correctAnswer, errorTag }) => {
+      onResult({
+        sessionId,
+        itemId: item.id,
+        correct,
+        userAnswer: answer,
+        correctAnswer,
+        timeTakenSeconds: (Date.now() - startRef.current) / 1000,
+        errorTag: correct ? undefined : (errorTag ?? 'spelling'),
+        conceptId: item.conceptIds[0] ?? '',
+      });
     });
   }
 

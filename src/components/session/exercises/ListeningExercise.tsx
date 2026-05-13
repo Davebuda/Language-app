@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
-import { checkAnswer } from '@/lib/answer';
+import { gradeAnswer } from '@/app/session/actions';
 
 interface ListeningExerciseProps {
   item: SessionItem;
@@ -74,18 +74,18 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
   const howler = useHowlerAudio(sentence.audioUrl ?? '');
   const tts = useTTS(sentence.norwegian);
 
-  function submit() {
+  async function submit() {
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
-    const correct = checkAnswer(userInput, sentence.norwegian);
+    const { correct, correctAnswer, errorTag } = await gradeAnswer(sentence.id, item.exerciseType, userInput);
     onResult({
       sessionId,
       itemId: item.id,
       correct,
       userAnswer: userInput,
-      correctAnswer: sentence.norwegian,
+      correctAnswer,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : 'listening-recognition',
+      errorTag: correct ? undefined : (errorTag ?? 'listening-recognition'),
       conceptId: item.conceptIds[0] ?? '',
     });
   }
@@ -126,13 +126,13 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
         type="text"
         value={userInput}
         onChange={(e) => setUserInput(e.target.value)}
-        onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
+        onKeyDown={(e) => { if (e.key === 'Enter') void submit(); }}
         disabled={submitted}
         placeholder="Skriv hva du hørte…"
         className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-violet/70 focus:ring-1 focus:ring-nc-violet/40 disabled:opacity-50 transition-colors"
       />
       <button
-        onClick={submit}
+        onClick={() => void submit()}
         disabled={submitted || !userInput.trim()}
         className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
