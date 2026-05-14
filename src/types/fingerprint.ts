@@ -63,6 +63,8 @@ export interface MistakeFingerprint {
   lastSessionAt: string | null;
   speakingMinutesTotal: number; // cumulative minutes of spoken Norwegian produced via mic
   inputProductionPreference: InputProductionPreference;
+  lastRecalibrationAt: string | null;
+  askedDiagnosticQuestionIds: string[]; // prevents question repetition across diagnostic+recalibration
 }
 
 // Factory: create a new empty fingerprint
@@ -82,5 +84,7 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     lastSessionAt: null,
     speakingMinutesTotal: 0,
     inputProductionPreference: 'balanced',
+    lastRecalibrationAt: null,
+    askedDiagnosticQuestionIds: [],
   };
 }

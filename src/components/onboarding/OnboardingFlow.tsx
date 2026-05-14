@@ -107,6 +107,9 @@ function seedFingerprintFromDiagnostic(
     }
   }
 
+  // Record which questions were asked so recalibration doesn't repeat them
+  fp.askedDiagnosticQuestionIds = result.askedQuestionIds ?? []
+
   setFingerprint(fp)
   saveFingerprint(fp).catch(console.warn)
   localStorage.setItem('norskcoach_onboarded', '1')

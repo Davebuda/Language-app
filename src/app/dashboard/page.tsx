@@ -46,6 +46,20 @@ export default function DashboardPage() {
   const [showLevelUp, setShowLevelUp] = useState(false)
   const streak = getStreak()
 
+  // Recalibration trigger: suggested after 7+ day gap or 30+ days since last recalibration
+  const showRecalibrationSuggestion = (() => {
+    if (!fingerprint) return false
+    const lastSession = fingerprint.lastSessionAt
+    const lastRecal = fingerprint.lastRecalibrationAt
+    const daysSinceSession = lastSession
+      ? (Date.now() - new Date(lastSession).getTime()) / 86_400_000
+      : Infinity
+    const daysSinceRecal = lastRecal
+      ? (Date.now() - new Date(lastRecal).getTime()) / 86_400_000
+      : Infinity
+    return daysSinceSession > 7 || daysSinceRecal > 30
+  })()
+
   // Show level-up celebration when A1→A2 transition is detected
   useEffect(() => {
     try {
@@ -209,6 +223,33 @@ export default function DashboardPage() {
           )}
         </AnimatePresence>
 
+        {/* Recalibration suggestion — soft nudge after gaps */}
+        <AnimatePresence>
+          {showRecalibrationSuggestion && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center justify-between gap-3 rounded-[1rem] border border-nc-apricot/22 bg-nc-apricot/8 px-4 py-3"
+            >
+              <div>
+                <p className="text-[13px] font-medium text-nc-text">
+                  Been a while — recalibrate your profile?
+                </p>
+                <p className="mt-0.5 text-[11px] text-nc-text-dim">
+                  A 7-question check on concepts you may have forgotten.
+                </p>
+              </div>
+              <button
+                onClick={() => router.push('/recalibrate')}
+                className="shrink-0 rounded-[0.8rem] bg-nc-apricot/20 px-3 py-2 text-[12px] font-semibold text-nc-coral transition-colors hover:bg-nc-apricot/30"
+              >
+                Start
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Today's session card */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -355,7 +396,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Secondary modes */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-4 gap-3">
           {SECONDARY_MODES.map((mode) => (
             <Link
               key={mode.id}
@@ -366,6 +407,13 @@ export default function DashboardPage() {
               <span className="text-[13px] font-medium text-nc-text">{mode.label}</span>
             </Link>
           ))}
+          <Link
+            href="/recalibrate"
+            className="nc-panel flex flex-col gap-2 px-3 py-3"
+          >
+            <span className="text-lg">🔄</span>
+            <span className="text-[13px] font-medium text-nc-text">Check</span>
+          </Link>
         </div>
 
         {/* Keep going CTA */}

@@ -21,6 +21,8 @@ export interface DiagnosticResult {
   rawScore: number
   /** Initial concept mastery entries to seed the fingerprint */
   conceptSeeds: Record<string, Pick<ConceptMastery, 'rawScore' | 'attemptCount' | 'correctCount' | 'uniqueDaysActive' | 'confidenceScore' | 'decayedScore' | 'streak' | 'lastAttemptAt' | 'lastCorrectAt' | 'recentOutcomes'>>
+  /** IDs of questions that were asked — stored so recalibration doesn't repeat them */
+  askedQuestionIds: string[]
 }
 
 // ── Constants ─────────────────────────────────────────────────────────────
@@ -148,5 +150,5 @@ export function computeResult(state: DiagnosticState): DiagnosticResult {
     }
   }
 
-  return { cefrLevel, rawScore: raw, conceptSeeds }
+  return { cefrLevel, rawScore: raw, conceptSeeds, askedQuestionIds: [...state.askedIds] }
 }
