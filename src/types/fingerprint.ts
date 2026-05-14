@@ -17,15 +17,16 @@ export interface ErrorLogEntry {
 
 export interface ConceptMastery {
   conceptId: string;
-  rawScore: number;         // 0–100, unweighted accuracy
+  rawScore: number;         // 0–100, EMA-based mastery (phase-adaptive α)
   confidenceScore: number;  // 0–1, how reliable the score is
-  decayedScore: number;     // rawScore × decay factor
+  decayedScore: number;     // rawScore decayed toward cold-start floor of 35
   attemptCount: number;
   correctCount: number;
   uniqueDaysActive: number;  // # of calendar days practiced
   lastAttemptAt: string | null; // ISO string
   lastCorrectAt: string | null;
   streak: number;           // consecutive correct answers
+  recentOutcomes: boolean[]; // last 5 outcomes, newest first — slip detection
 }
 
 export interface ErrorPattern {
@@ -45,6 +46,8 @@ export interface VocabularyClusterMastery {
   totalWordCount: number;
 }
 
+export type InputProductionPreference = 'input_heavy' | 'balanced' | 'production_heavy'
+
 export interface MistakeFingerprint {
   userId: string;           // Supabase auth user ID or anonymous UUID
   createdAt: string;
@@ -59,6 +62,7 @@ export interface MistakeFingerprint {
   totalSessionsCompleted: number;
   lastSessionAt: string | null;
   speakingMinutesTotal: number; // cumulative minutes of spoken Norwegian produced via mic
+  inputProductionPreference: InputProductionPreference;
 }
 
 // Factory: create a new empty fingerprint
@@ -77,5 +81,6 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     totalSessionsCompleted: 0,
     lastSessionAt: null,
     speakingMinutesTotal: 0,
+    inputProductionPreference: 'balanced',
   };
 }

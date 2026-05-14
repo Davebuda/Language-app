@@ -103,6 +103,7 @@ function seedFingerprintFromDiagnostic(
       lastAttemptAt: seed.lastAttemptAt ?? now,
       lastCorrectAt: seed.lastCorrectAt,
       streak: seed.streak,
+      recentOutcomes: seed.recentOutcomes,
     }
   }
 

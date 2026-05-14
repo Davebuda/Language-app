@@ -20,7 +20,7 @@ export interface DiagnosticResult {
   /** Raw 0–1 score, stored separately from the displayed CEFR band */
   rawScore: number
   /** Initial concept mastery entries to seed the fingerprint */
-  conceptSeeds: Record<string, Pick<ConceptMastery, 'rawScore' | 'attemptCount' | 'correctCount' | 'uniqueDaysActive' | 'confidenceScore' | 'decayedScore' | 'streak' | 'lastAttemptAt' | 'lastCorrectAt'>>
+  conceptSeeds: Record<string, Pick<ConceptMastery, 'rawScore' | 'attemptCount' | 'correctCount' | 'uniqueDaysActive' | 'confidenceScore' | 'decayedScore' | 'streak' | 'lastAttemptAt' | 'lastCorrectAt' | 'recentOutcomes'>>
 }
 
 // ── Constants ─────────────────────────────────────────────────────────────
@@ -144,6 +144,7 @@ export function computeResult(state: DiagnosticState): DiagnosticResult {
       streak: correct ? 1 : 0,
       lastAttemptAt: now,
       lastCorrectAt: correct ? now : null,
+      recentOutcomes: [correct],
     }
   }
 

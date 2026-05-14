@@ -210,6 +210,7 @@ export function buildConversationPrompt(
   messages: Array<{ role: string; content: string }>,
   level: string,
   topic: string,
+  constraintEvalSuffix?: string,
 ): { system: string; messages: Array<{ role: string; content: string }> } {
   const topicLabel = TOPIC_DESCRIPTIONS[topic] ?? topic;
   const levelNote: Record<string, string> = {
@@ -233,7 +234,7 @@ STRICT RULES:
 After your Norwegian response, if there was a grammar error, output this on a new line:
 CORRECTION:{"original":"exact words they used wrong","correct":"the right form","tag":"error category","why":"one sentence English explanation"}
 
-If no error, output nothing extra.`;
+If no error, output nothing extra.${constraintEvalSuffix ?? ''}`;
 
   return { system, messages };
 }

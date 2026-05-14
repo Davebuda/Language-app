@@ -58,6 +58,8 @@ export interface ConversationCorrection {
 export interface ConversationTurnResult {
   tutorResponse: string;
   correction?: ConversationCorrection;
+  constraintMet?: boolean;       // true/false if a constraint was evaluated, undefined if none
+  constraintFeedback?: string;   // explanation if constraint was missed
   source: 'ai' | 'template';
 }
 
@@ -88,6 +90,7 @@ export interface AIService {
   conversationTurn(
     messages: ConversationMessage[],
     level: CEFRLevel,
-    topic: string
+    topic: string,
+    constraintEvalSuffix?: string,
   ): Promise<ConversationTurnResult>;
 }

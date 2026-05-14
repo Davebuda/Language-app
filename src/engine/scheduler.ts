@@ -1,4 +1,4 @@
-import type { MistakeFingerprint } from '@/types/fingerprint';
+import type { MistakeFingerprint, InputProductionPreference } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
 import type { Session, SessionItem, SessionRecipe, ExerciseType } from '@/types/session';
 import { DEFAULT_SESSION_RECIPE } from '@/types/session';
@@ -29,14 +29,20 @@ const NEW_MATERIAL_EXERCISES: ExerciseType[] = [
   'fill-in-blank',
 ];
 
-// When the learner's productionGap > 30: push production exercises.
-// When < -30: push recognition exercises. Otherwise use the default pool.
+// Resolve which exercise pool to use based on productionGap signal AND
+// the user's explicit input/production preference.
 function resolvePool(
   defaultPool: ExerciseType[],
   productionGap: number,
+  preference: InputProductionPreference = 'balanced',
 ): ExerciseType[] {
+  // Hard production-gap signal overrides preference
   if (productionGap > 30) return PRODUCTION_EXERCISES;
   if (productionGap < -30) return RECOGNITION_EXERCISES;
+
+  // Soft preference bias: shift the pool without fully overriding it
+  if (preference === 'production_heavy') return PRODUCTION_EXERCISES;
+  if (preference === 'input_heavy') return RECOGNITION_EXERCISES;
   return defaultPool;
 }
 
@@ -44,8 +50,9 @@ function pickExerciseType(
   pool: ExerciseType[],
   recentlyUsed: ExerciseType[],
   productionGap = 0,
+  preference: InputProductionPreference = 'balanced',
 ): ExerciseType {
-  const adjusted = resolvePool(pool, productionGap);
+  const adjusted = resolvePool(pool, productionGap, preference);
   // Avoid repeating the same type more than twice in a row
   const lastTwo = recentlyUsed.slice(-2);
   const filtered = adjusted.filter((t) => !lastTwo.includes(t));
@@ -118,6 +125,8 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   const usedExerciseTypes: ExerciseType[] = [];
   let itemIndex = 0;
 
+  const preference = fingerprint.inputProductionPreference ?? 'balanced';
+
   function addItem(
     conceptId: string,
     exercises: ExerciseType[],
@@ -127,7 +136,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     // the AI content resolution layer in useSession, not at session planning time.
     const contentId = `pending:${conceptId}`;
     const gap = fingerprint.productionGap[conceptId] ?? 0;
-    const exerciseType = pickExerciseType(exercises, usedExerciseTypes, gap);
+    const exerciseType = pickExerciseType(exercises, usedExerciseTypes, gap, preference);
     usedExerciseTypes.push(exerciseType);
     items.push(makeItem(`item-${itemIndex++}`, conceptId, contentId, exerciseType, purpose));
   }

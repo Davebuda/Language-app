@@ -8,11 +8,19 @@ import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
-import { logError, aggregateErrorPatterns } from '@/engine'
+import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { emitEvent } from '@/lib/events'
+import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
+import type { ResponseConstraint } from '@/lib/constraints'
 import type { ErrorTag } from '@/types/taxonomy'
+import type { ConceptGraph } from '@/types/concepts'
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
+
+const a1Graph = a1GraphJson as ConceptGraph
+const a2Graph = a2GraphJson as ConceptGraph
 
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
@@ -105,6 +113,8 @@ export default function ConversationPage() {
   const errorCountRef = useRef(0)
   const sessionStartRef = useRef<number>(0)
   const micStartRef = useRef<number>(0)
+  const [activeConstraint, setActiveConstraint] = useState<ResponseConstraint | null>(null)
+  const [constraintResult, setConstraintResult] = useState<{ met: boolean; feedback?: string } | null>(null)
 
   async function persistSessionStart(topic: string, lvl: CEFRLevel): Promise<void> {
     if (!user) return
@@ -168,16 +178,37 @@ export default function ConversationPage() {
     errorCountRef.current++
   }
 
+  function recordConstraintResult(constraintConceptId: string, met: boolean): void {
+    const fp = useFingerprintStore.getState().fingerprint
+    if (!fp) return
+    const activeGraph = fp.currentLevel === 'A2' ? a2Graph : a1Graph
+    const node = activeGraph.concepts.find((c) => c.id === constraintConceptId)
+    const existing = fp.conceptMastery[constraintConceptId]
+    const updated = updateConceptMastery(existing, met, node?.minAttempts ?? 15, node?.minDays ?? 3)
+    const newFp = {
+      ...fp,
+      conceptMastery: { ...fp.conceptMastery, [constraintConceptId]: { ...updated, conceptId: constraintConceptId } },
+      updatedAt: new Date().toISOString(),
+    }
+    setFingerprint(newFp)
+    saveFingerprint(newFp).catch(console.warn)
+  }
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages, isThinking])
 
-  const addTutorMessage = useCallback(async (history: ConversationMessage[]) => {
+  const addTutorMessage = useCallback(async (history: ConversationMessage[], isUserTurn = true) => {
     setIsThinking(true)
     try {
-      const result = await aiService.conversationTurn(history, level, selectedTopic ?? 'daily-routine')
+      // Only evaluate the constraint on user turns (not the opening tutor greeting)
+      const constraintSuffix = (isUserTurn && activeConstraint && !constraintResult)
+        ? buildConstraintEvalPrompt(activeConstraint)
+        : undefined
+
+      const result = await aiService.conversationTurn(history, level, selectedTopic ?? 'daily-routine', constraintSuffix)
       setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
@@ -186,20 +217,35 @@ export default function ConversationPage() {
       speakNorwegian(result.tutorResponse)
       void persistTurn('tutor', result.tutorResponse, result.correction)
       if (result.correction) logConversationError(result.correction)
+
+      // Record constraint result and update mastery if evaluated
+      if (result.constraintMet !== undefined && activeConstraint && !constraintResult) {
+        setConstraintResult({ met: result.constraintMet, feedback: result.constraintFeedback })
+        recordConstraintResult(activeConstraint.conceptId, result.constraintMet)
+      }
     } finally {
       setIsThinking(false)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [level, selectedTopic, user, fingerprint])
+  }, [level, selectedTopic, user, fingerprint, activeConstraint, constraintResult])
 
   async function startConversation() {
     setPhase('chat')
     setMessages([])
+    setConstraintResult(null)
     turnIndexRef.current = 0
     errorCountRef.current = 0
     sessionStartRef.current = Date.now()
+
+    // Select a constraint based on the user's current in-practice concepts
+    if (fingerprint) {
+      const graph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
+      const constraint = selectConstraint(fingerprint, graph)
+      setActiveConstraint(constraint)
+    }
+
     void persistSessionStart(selectedTopic ?? 'daily-routine', level)
-    await addTutorMessage([])
+    await addTutorMessage([], false)
   }
 
   async function handleSend(text: string) {
@@ -400,6 +446,40 @@ export default function ConversationPage() {
                   </div>
                 )}
               </div>
+
+              {/* Constraint challenge banner */}
+              <AnimatePresence>
+                {activeConstraint && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="shrink-0 rounded-xl px-3 py-2.5 text-[12px]"
+                    style={{
+                      background: constraintResult
+                        ? constraintResult.met
+                          ? 'rgba(159,230,127,0.10)'
+                          : 'rgba(239,118,100,0.08)'
+                        : 'rgba(185,176,255,0.10)',
+                      border: constraintResult
+                        ? constraintResult.met
+                          ? '1px solid rgba(159,230,127,0.30)'
+                          : '1px solid rgba(239,118,100,0.20)'
+                        : '1px solid rgba(185,176,255,0.22)',
+                    }}
+                  >
+                    {constraintResult ? (
+                      constraintResult.met
+                        ? <span style={{ color: '#4caf50' }}>✓ Challenge met: {activeConstraint.instruction}</span>
+                        : <span style={{ color: '#e57373' }}>Challenge: {constraintResult.feedback ?? activeConstraint.instruction}</span>
+                    ) : (
+                      <span style={{ color: 'rgba(185,176,255,0.85)' }}>
+                        🎯 Challenge: {activeConstraint.instruction}
+                      </span>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Input area */}
               <div className="shrink-0 flex gap-2 pt-2 border-t border-nc-border">

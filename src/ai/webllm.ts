@@ -243,6 +243,7 @@ export class WebLLMService implements AIService {
     messages: ConversationMessage[],
     level: CEFRLevel,
     topic: string,
+    constraintEvalSuffix?: string,
   ): Promise<ConversationTurnResult> {
     if (!this.isReady()) {
       return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' }
@@ -252,8 +253,10 @@ export class WebLLMService implements AIService {
         messages.map((m) => ({ role: m.role === 'tutor' ? 'assistant' : 'user', content: m.content })),
         level,
         topic,
+        constraintEvalSuffix,
       )
       const raw = await this.completeChat(system, chatMessages)
+
       const correctionMatch = raw.match(/CORRECTION:(\{.*?\})/s)
       let correction: ConversationTurnResult['correction']
       if (correctionMatch) {
@@ -262,8 +265,25 @@ export class WebLLMService implements AIService {
           correction = { original: c.original, corrected: c.correct, errorTag: c.tag, explanation: c.why }
         } catch { /* ignore */ }
       }
-      const tutorResponse = raw.replace(/\nCORRECTION:\{.*?\}/s, '').trim()
-      return { tutorResponse, correction, source: 'ai' }
+
+      // Parse constraint check result if present
+      let constraintMet: boolean | undefined
+      let constraintFeedback: string | undefined
+      const constraintMetMatch = raw.match(/\nCONSTRAINT_MET/)
+      const constraintMissedMatch = raw.match(/\nCONSTRAINT_MISSED: (.+)/)
+      if (constraintMetMatch) constraintMet = true
+      else if (constraintMissedMatch) {
+        constraintMet = false
+        constraintFeedback = constraintMissedMatch[1]?.trim()
+      }
+
+      const tutorResponse = raw
+        .replace(/\nCORRECTION:\{.*?\}/s, '')
+        .replace(/\nCONSTRAINT_MET/, '')
+        .replace(/\nCONSTRAINT_MISSED:.*/, '')
+        .trim()
+
+      return { tutorResponse, correction, constraintMet, constraintFeedback, source: 'ai' }
     } catch {
       return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' }
     }

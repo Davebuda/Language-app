@@ -9,9 +9,11 @@ import type { ExerciseType } from '@/types/session';
 
 // ── Mastery Scoring ────────────────────────────────────────────────────
 
-const DECAY_HALF_LIFE_DAYS = 30; // mastery halves after 30 days without practice
+const DECAY_HALF_LIFE_DAYS = 46;  // ~6.5 weeks — research-backed forgetting curve
+const DECAY_FLOOR = 35;           // cold-start midpoint: users don't forget everything
 const MAX_RECENT_ERRORS = 200;
 const ERROR_PATTERN_WINDOW_DAYS = 30;
+const MAX_RECENT_OUTCOMES = 5;
 
 function daysSince(isoString: string | null): number {
   if (!isoString) return Infinity;
@@ -22,8 +24,15 @@ function daysSince(isoString: string | null): number {
 function computeDecayFactor(lastAttemptAt: string | null): number {
   const days = daysSince(lastAttemptAt);
   if (days === Infinity) return 0;
-  // Exponential decay: e^(-ln(2)/halfLife * days)
   return Math.exp((-Math.LN2 / DECAY_HALF_LIFE_DAYS) * days);
+}
+
+// Apply decay with a floor so forgotten concepts stay above zero
+function applyDecayWithFloor(rawScore: number, lastAttemptAt: string | null): number {
+  if (!lastAttemptAt) return 0;
+  const factor = computeDecayFactor(lastAttemptAt);
+  // Decay toward DECAY_FLOOR, not toward 0
+  return Math.round(DECAY_FLOOR + (rawScore - DECAY_FLOOR) * factor);
 }
 
 function computeConfidence(
@@ -34,8 +43,22 @@ function computeConfidence(
 ): number {
   const attemptConfidence = Math.min(1, attemptCount / minAttempts);
   const dayConfidence = Math.min(1, uniqueDays / minDays);
-  // Geometric mean — both must be high for confidence to be high
   return Math.sqrt(attemptConfidence * dayConfidence);
+}
+
+// Phase-adaptive EMA learning rate: intro updates faster, maintenance is resistant to slips
+function learningRate(attemptCount: number, rawScore: number): number {
+  if (attemptCount < 5) return 0.40;          // intro — fast convergence on early data
+  if (rawScore < 70) return 0.25;             // practice
+  if (rawScore < 85) return 0.15;             // consolidation
+  return 0.08;                                // maintenance — high resistance to slips
+}
+
+// A wrong answer is a slip if 4 of the last 5 outcomes were correct
+function isSlip(recentOutcomes: boolean[]): boolean {
+  if (recentOutcomes.length < 4) return false;
+  const correctInRecent = recentOutcomes.slice(0, 5).filter(Boolean).length;
+  return correctInRecent >= 4;
 }
 
 export function updateConceptMastery(
@@ -58,9 +81,9 @@ export function updateConceptMastery(
     lastAttemptAt: null,
     lastCorrectAt: null,
     streak: 0,
+    recentOutcomes: [],
   };
 
-  // Check if this is a new active day
   const lastDay = prev.lastAttemptAt ? new Date(prev.lastAttemptAt).toDateString() : null;
   const isNewDay = lastDay !== today;
 
@@ -69,17 +92,22 @@ export function updateConceptMastery(
   const nextUniqueDays = prev.uniqueDaysActive + (isNewDay ? 1 : 0);
   const nextStreak = correct ? prev.streak + 1 : 0;
 
-  // Raw score: weighted accuracy over all attempts (recent attempts weighted more heavily)
-  // Simplified: correctCount / attemptCount with slight recency weight
-  const rawScore = Math.round((nextCorrectCount / nextAttemptCount) * 100);
+  // Update recent outcomes (cap at 5, newest first)
+  const nextRecentOutcomes = [correct, ...(prev.recentOutcomes ?? [])].slice(0, MAX_RECENT_OUTCOMES);
+
+  // Phase-adaptive EMA with slip weighting
+  const α = learningRate(prev.attemptCount, prev.rawScore);
+  // Wrong answer on strong concept (slip) carries 30% of normal weight
+  const effectiveOutcome = (!correct && isSlip(prev.recentOutcomes ?? [])) ? 0.30 : (correct ? 1 : 0);
+  const rawScore = Math.round(prev.rawScore * (1 - α) + effectiveOutcome * 100 * α);
+  const clampedScore = Math.max(0, Math.min(100, rawScore));
 
   const confidence = computeConfidence(nextAttemptCount, nextUniqueDays, minAttempts, minDays);
-  const decayFactor = computeDecayFactor(now);
-  const decayedScore = Math.round(rawScore * decayFactor);
+  const decayedScore = applyDecayWithFloor(clampedScore, now);
 
   return {
     ...prev,
-    rawScore,
+    rawScore: clampedScore,
     confidenceScore: Math.round(confidence * 100) / 100,
     decayedScore,
     attemptCount: nextAttemptCount,
@@ -88,6 +116,7 @@ export function updateConceptMastery(
     lastAttemptAt: now,
     lastCorrectAt: correct ? now : prev.lastCorrectAt,
     streak: nextStreak,
+    recentOutcomes: nextRecentOutcomes,
   };
 }
 
@@ -97,10 +126,10 @@ export function updateConceptMastery(
 export function refreshDecay(fingerprint: MistakeFingerprint): MistakeFingerprint {
   const updated = { ...fingerprint, conceptMastery: { ...fingerprint.conceptMastery } };
   for (const [id, mastery] of Object.entries(updated.conceptMastery)) {
-    const decayFactor = computeDecayFactor(mastery.lastAttemptAt);
     updated.conceptMastery[id] = {
       ...mastery,
-      decayedScore: Math.round(mastery.rawScore * decayFactor),
+      recentOutcomes: mastery.recentOutcomes ?? [],
+      decayedScore: applyDecayWithFloor(mastery.rawScore, mastery.lastAttemptAt),
     };
   }
   updated.updatedAt = new Date().toISOString();
@@ -207,4 +236,31 @@ export function computeProductionGap(
   return Math.round(
     ((writingErrors - recognitionErrors) / (writingErrors + recognitionErrors)) * 100
   );
+}
+
+// ── Phase Model ────────────────────────────────────────────────────────
+
+export type ConceptPhase = 'locked' | 'intro' | 'practice' | 'consolidation' | 'maintenance';
+
+/**
+ * Derive a concept's learning phase from existing mastery data.
+ * Pure function — no side effects, no state.
+ *
+ * locked       prerequisites not fully cleared
+ * intro        fewer than 5 attempts (just started)
+ * practice     ≥ 5 attempts, mastery < 70
+ * consolidation mastery 70–85
+ * maintenance  mastery ≥ 85
+ */
+export function getConceptPhase(
+  mastery: ConceptMastery | undefined,
+  prereqIds: string[],
+  masteredIds: Set<string>,
+): ConceptPhase {
+  const prereqsMet = prereqIds.every((id) => masteredIds.has(id));
+  if (!prereqsMet) return 'locked';
+  if (!mastery || mastery.attemptCount < 5) return 'intro';
+  if (mastery.rawScore < 70) return 'practice';
+  if (mastery.rawScore < 85) return 'consolidation';
+  return 'maintenance';
 }

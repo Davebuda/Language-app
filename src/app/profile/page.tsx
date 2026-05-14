@@ -6,11 +6,19 @@ import { ArrowRight, LogOut } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { saveFingerprint } from '@/storage/indexeddb'
 import { isMastered } from '@/engine'
 import { getStreak } from '@/lib/streak'
 import { BottomNav } from '@/components/layout/BottomNav'
+import type { InputProductionPreference } from '@/types/fingerprint'
 import type { ConceptGraph } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
+
+const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
+  { value: 'input_heavy', label: 'Input-heavy', desc: 'More reading & listening' },
+  { value: 'balanced', label: 'Balanced', desc: 'Mix of both' },
+  { value: 'production_heavy', label: 'Production', desc: 'More writing & speaking' },
+]
 
 const conceptGraph = conceptGraphJson as ConceptGraph
 
@@ -25,7 +33,7 @@ export default function ProfilePage() {
   const router = useRouter()
   const { user, signOut, loading: authLoading } = useAuth()
   useFingerprint()
-  const { fingerprint } = useFingerprintStore()
+  const { fingerprint, setFingerprint } = useFingerprintStore()
   const streak = getStreak()
 
   const masteredCount = conceptGraph.concepts.filter((concept) => {
@@ -163,6 +171,44 @@ export default function ProfilePage() {
             </div>
           </div>
         ) : null}
+
+        {/* Input/production preference */}
+        <div className="nc-panel p-4">
+          <div className="nc-label">Session style</div>
+          <p className="mt-1 text-[12px] text-nc-text-dim">
+            Biases which exercise types appear in your sessions.
+          </p>
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            {PREFERENCE_OPTIONS.map((opt) => {
+              const current = fingerprint?.inputProductionPreference ?? 'balanced'
+              const isActive = current === opt.value
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => {
+                    if (!fingerprint) return
+                    const updated = { ...fingerprint, inputProductionPreference: opt.value, updatedAt: new Date().toISOString() }
+                    setFingerprint(updated)
+                    saveFingerprint(updated).catch(console.warn)
+                  }}
+                  className="flex flex-col gap-1 rounded-[0.875rem] border px-3 py-2.5 text-left transition-colors"
+                  style={{
+                    background: isActive ? '#111118' : '#fff',
+                    borderColor: isActive ? '#111118' : 'rgba(17,17,24,0.10)',
+                  }}
+                >
+                  <span className="text-[12px] font-bold" style={{ color: isActive ? '#C8FF00' : '#111118' }}>
+                    {opt.label}
+                  </span>
+                  <span className="text-[10px] leading-snug" style={{ color: isActive ? 'rgba(255,255,255,0.50)' : 'rgba(17,17,24,0.45)' }}>
+                    {opt.desc}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
 
         {user ? (
           <button

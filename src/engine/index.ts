@@ -7,7 +7,9 @@ export {
   aggregateErrorPatterns,
   isMastered,
   computeProductionGap,
+  getConceptPhase,
 } from './fingerprint';
+export type { ConceptPhase } from './fingerprint';
 export { runDiagnosis, getPrimaryWeakConcepts, getDecayingConcepts } from './diagnosis';
 export { generateSession } from './scheduler';
 export type { SchedulerInput, SchedulerOutput } from './scheduler';

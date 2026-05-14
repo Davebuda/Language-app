@@ -99,6 +99,7 @@ export class StubAIService implements AIService {
     messages: ConversationMessage[],
     level: CEFRLevel,
     topic: string,
+    _constraintEvalSuffix?: string,
   ): Promise<ConversationTurnResult> {
     const lastUser = messages.filter((m) => m.role === 'user').at(-1)?.content ?? '';
     const openers: Record<string, string[]> = {
