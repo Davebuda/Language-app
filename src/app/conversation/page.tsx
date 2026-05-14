@@ -200,6 +200,18 @@ export default function ConversationPage() {
     }
   }, [messages, isThinking])
 
+  // Auto-activate mic when chat phase opens (voice-first default)
+  useEffect(() => {
+    if (phase === 'chat' && hasSpeechAPI && messages.length > 0 && !isListening && !isThinking) {
+      // Small delay so tutor greeting finishes before mic opens
+      const timer = setTimeout(() => {
+        if (!isListening && !isThinking) toggleListening()
+      }, 800)
+      return () => clearTimeout(timer)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, messages.length])
+
   const addTutorMessage = useCallback(async (history: ConversationMessage[], isUserTurn = true) => {
     setIsThinking(true)
     try {

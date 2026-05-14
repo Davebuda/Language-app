@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, Share2 } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useSessionStore } from '@/stores/session-store'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { ScoreCircle } from '@/components/session/ScoreCircle'
@@ -11,6 +11,13 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { emitEvent } from '@/lib/events'
 import type { ConceptGraph } from '@/types/concepts'
 import conceptGraphJson from '@content/concepts/a1-graph.json'
+
+const REFLECTION_PROMPTS = [
+  'Hva føltes vanskeligst akkurat nå?',
+  'Hvor nølte du mest?',
+  'Hvilken øvelse overrasket deg?',
+  'Hva vil du huske til neste økt?',
+] as const
 
 const conceptGraph = conceptGraphJson as ConceptGraph
 
@@ -57,6 +64,12 @@ export default function SessionCompletePage() {
   const practicedConceptIds = [...new Set(results.map((result) => result.conceptId))]
   const conceptsCount = practicedConceptIds.length
 
+  // Production items: translation-to-norwegian, sentence-transformation, word-order, fill-in-blank
+  const productionTypes = new Set(['translation-to-norwegian', 'sentence-transformation', 'word-order', 'fill-in-blank'])
+  const productionCount = results.filter((r) =>
+    session?.items.find((i) => i.id === r.itemId && productionTypes.has(i.exerciseType))
+  ).length
+
   const primaryFocus = session?.primaryFocus ?? practicedConceptIds[0] ?? 'noun-gender'
   const primaryConceptNode = conceptGraph.concepts.find(
     (concept) => concept.id === primaryFocus,
@@ -68,6 +81,26 @@ export default function SessionCompletePage() {
         (prerequisite) => !!fingerprint?.conceptMastery[prerequisite],
       ),
   )
+
+  // Pick a consistent prompt for this session using session ID as seed
+  const reflectionPrompt = REFLECTION_PROMPTS[
+    (session?.id ?? '').charCodeAt(0) % REFLECTION_PROMPTS.length
+  ] ?? REFLECTION_PROMPTS[0]
+
+  const [reflectionText, setReflectionText] = useState('')
+  const [reflectionSubmitted, setReflectionSubmitted] = useState(false)
+
+  function submitReflection() {
+    if (!reflectionText.trim()) { goToDashboard(); return }
+    setReflectionSubmitted(true)
+    emitEvent({
+      eventType: 'exercise_result',
+      mode: 'reflection',
+      sessionId: session?.id,
+      payload: { prompt: reflectionPrompt, response: reflectionText.trim() },
+    })
+    setTimeout(goToDashboard, 600)
+  }
 
   function goToDashboard() {
     endSession()
@@ -99,10 +132,12 @@ export default function SessionCompletePage() {
           className="text-center"
         >
           <h1 className="text-[2.35rem] font-display font-semibold text-nc-text">
-            Flott jobb! 👋
+            Du bygger norsk! 🗣️
           </h1>
           <p className="mt-2 text-sm text-nc-text-muted">
-            {"You're getting better every day."}
+            {productionCount > 0
+              ? `${productionCount} produksjonsøvelser fullført — det teller.`
+              : 'Bra innsats i dag.'}
           </p>
         </motion.div>
 
@@ -123,9 +158,9 @@ export default function SessionCompletePage() {
 
             <div className="grid w-full grid-cols-3 gap-3">
               {[
-                { label: 'Correct answers', value: `${correctCount} / ${totalAnswered}` },
-                { label: 'Time spent', value: duration },
-                { label: 'New concepts', value: String(conceptsCount) },
+                { label: 'Produksjon', value: String(productionCount) },
+                { label: 'Tid brukt', value: duration },
+                { label: 'Konsepter', value: String(conceptsCount) },
               ].map((stat) => (
                 <div key={stat.label} className="nc-panel px-3 py-3 text-center">
                   <div className="text-[18px] font-display font-semibold text-nc-text">
@@ -164,19 +199,49 @@ export default function SessionCompletePage() {
           </div>
         </div>
 
+        {/* Self-reflection prompt */}
+        <AnimatePresence>
+          {!reflectionSubmitted && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              className="nc-panel p-4"
+            >
+              <div className="nc-label">Reflekter ett øyeblikk</div>
+              <p className="mt-2 text-[14px] font-medium text-nc-text">{reflectionPrompt}</p>
+              <textarea
+                className="mt-3 w-full resize-none rounded-[0.9rem] border border-nc-border bg-[#fffdf9] px-4 py-3 text-sm text-nc-text placeholder-nc-text-dim focus:outline-none focus:border-nc-violet/40 transition-colors"
+                rows={2}
+                placeholder="Skriv kort her..."
+                value={reflectionText}
+                onChange={(e) => setReflectionText(e.target.value)}
+              />
+              <div className="mt-3 flex gap-2">
+                <button
+                  onClick={submitReflection}
+                  className="flex-1 rounded-[0.85rem] bg-nc-dark py-2.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+                >
+                  {reflectionText.trim() ? 'Del og fortsett' : 'Hopp over'}
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div className="rounded-[1rem] border border-[rgba(214,255,90,0.30)] bg-[linear-gradient(135deg,rgba(214,255,90,0.42)_0%,rgba(251,247,241,0.94)_78%)] px-4 py-4">
-          <div className="text-[15px] font-medium text-nc-text">Keep going!</div>
+          <div className="text-[15px] font-medium text-nc-text">Fortsett å lære!</div>
           <p className="mt-1 text-sm text-nc-text-muted">
-            Your next session is ready.
+            Neste økt er klar.
           </p>
           <div className="mt-3 text-[14px] font-medium text-nc-text">
-            {nextConceptNode?.label ?? primaryConceptNode?.label ?? 'Continue with A1'}
+            {nextConceptNode?.label ?? primaryConceptNode?.label ?? 'Fortsett med A1'}
           </div>
           <button
             onClick={goToDashboard}
             className="nc-button-lime mt-4 px-4 py-3 text-sm font-medium"
           >
-            Continue learning
+            Til dashboard
           </button>
         </div>
       </main>

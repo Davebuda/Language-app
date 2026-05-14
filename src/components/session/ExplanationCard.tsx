@@ -36,9 +36,9 @@ export function ExplanationCard({
       <div className="relative z-[1] space-y-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="nc-label">Almost there</p>
+            <p className="nc-label">La oss se på dette</p>
             <h3 className="mt-2 text-[1.65rem] font-display font-semibold text-nc-text">
-              Repair the pattern, not just the answer.
+              Nesten — ett mønster til.
             </h3>
           </div>
           <span className="rounded-[0.75rem] bg-white px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-nc-text-dim">
@@ -113,7 +113,7 @@ export function ExplanationCard({
           onClick={onContinue}
           className="nc-button-dark min-h-[48px] w-full px-6 text-sm font-medium transition-transform hover:-translate-y-0.5"
         >
-          Next question
+          Prøv igjen
         </button>
       </div>
     </div>

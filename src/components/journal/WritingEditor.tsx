@@ -1,7 +1,8 @@
 ﻿'use client'
 
-import { useState, useMemo } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Mic, MicOff } from 'lucide-react'
 import { aiService } from '@/ai'
 import type { WritingFeedback } from '@/ai/types'
 import { createClient } from '@/lib/supabase/client'
@@ -46,11 +47,24 @@ function buildCorrectedText(original: string, errors: WritingFeedback['errors'])
   return result
 }
 
+// ── Speech recognition helpers ────────────────────────────────────────
+interface SpeechRecA { onresult: ((e: { results: { length: number; [i: number]: { [i: number]: { transcript: string }; isFinal: boolean } } }) => void) | null; onend: (() => void) | null; onerror: (() => void) | null; lang: string; continuous: boolean; interimResults: boolean; start(): void; stop(): void }
+function getSpeechCtor(): (new () => SpeechRecA) | null {
+  if (typeof window === 'undefined') return null
+  const w = window as Window & { SpeechRecognition?: new () => SpeechRecA; webkitSpeechRecognition?: new () => SpeechRecA }
+  return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null
+}
+
 export function WritingEditor() {
   const [text, setText] = useState('')
   const [feedback, setFeedback] = useState<WritingFeedback | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showCorrected, setShowCorrected] = useState(false)
+  // Voice mode: 'voice' is default when API is available, 'text' is explicit fallback
+  const hasSpeechAPI = !!getSpeechCtor()
+  const [inputMode, setInputMode] = useState<'voice' | 'text'>(hasSpeechAPI ? 'voice' : 'text')
+  const [isListening, setIsListening] = useState(false)
+  const recognitionRef = useRef<SpeechRecA | null>(null)
 
   const { user } = useAuth()
   const { fingerprint, setFingerprint } = useFingerprintStore()
@@ -58,6 +72,26 @@ export function WritingEditor() {
   const prompt = useMemo(() => getDailyPrompt(), [])
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0
   const canAnalyze = wordCount >= 5
+
+  function toggleListening() {
+    const Ctor = getSpeechCtor()
+    if (!Ctor) return
+    if (isListening) { recognitionRef.current?.stop(); setIsListening(false); return }
+    const rec = new Ctor()
+    recognitionRef.current = rec
+    rec.lang = 'no-NO'
+    rec.continuous = true
+    rec.interimResults = true
+    rec.onresult = (e) => {
+      const parts: string[] = []
+      for (let i = 0; i < e.results.length; i++) parts.push(e.results[i][0].transcript)
+      setText(parts.join(' '))
+    }
+    rec.onend = () => setIsListening(false)
+    rec.onerror = () => setIsListening(false)
+    rec.start()
+    setIsListening(true)
+  }
 
   async function persistSubmission(result: WritingFeedback): Promise<void> {
     if (!user) return
@@ -121,16 +155,70 @@ export function WritingEditor() {
         <p className="text-[13px] text-nc-text-muted">{prompt}</p>
       </div>
 
-      {/* Textarea */}
-      <div className="flex flex-col gap-1">
-        <textarea
-          className="w-full min-h-[180px] resize-none rounded-xl bg-nc-card border border-nc-border p-4 text-nc-text placeholder-nc-text-dim text-[15px] leading-relaxed focus:outline-none focus:border-nc-green/40 transition-colors"
-          placeholder="Skriv på norsk her..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <div className="text-right text-[11px] text-nc-text-dim">{wordCount} ord</div>
-      </div>
+      {/* Mode switcher — voice is default when available */}
+      {hasSpeechAPI && (
+        <div className="flex gap-2">
+          {(['voice', 'text'] as const).map((mode) => (
+            <button
+              key={mode}
+              onClick={() => { if (isListening) toggleListening(); setInputMode(mode) }}
+              className="flex-1 rounded-full border py-2 text-[12px] font-bold transition-colors"
+              style={{
+                background: inputMode === mode ? '#111118' : '#fff',
+                borderColor: inputMode === mode ? '#111118' : 'rgba(17,17,24,0.12)',
+                color: inputMode === mode ? '#C8FF00' : 'rgba(17,17,24,0.55)',
+              }}
+            >
+              {mode === 'voice' ? '🎙 Snakk' : '⌨️ Skriv'}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Voice input mode */}
+      {inputMode === 'voice' && hasSpeechAPI ? (
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={toggleListening}
+            className="flex flex-col items-center justify-center gap-3 rounded-2xl border py-8 transition-all active:scale-[0.98]"
+            style={{
+              background: isListening ? 'rgba(17,17,24,0.04)' : '#fff',
+              borderColor: isListening ? 'rgba(17,17,24,0.20)' : 'rgba(17,17,24,0.10)',
+            }}
+          >
+            <motion.div
+              animate={isListening ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+              transition={{ duration: 1, repeat: isListening ? Infinity : 0 }}
+              className="flex h-14 w-14 items-center justify-center rounded-full"
+              style={{ background: isListening ? '#111118' : 'rgba(17,17,24,0.06)' }}
+            >
+              {isListening
+                ? <MicOff size={22} color="#C8FF00" />
+                : <Mic size={22} color="rgba(17,17,24,0.55)" />}
+            </motion.div>
+            <span className="text-[13px] font-bold" style={{ color: isListening ? '#111118' : 'rgba(17,17,24,0.45)' }}>
+              {isListening ? 'Trykk for å stoppe' : 'Trykk for å snakke'}
+            </span>
+          </button>
+          {text && (
+            <div className="rounded-xl bg-nc-card border border-nc-border p-4 text-[15px] leading-relaxed text-nc-text">
+              {text}
+              <div className="mt-2 text-right text-[11px] text-nc-text-dim">{wordCount} ord</div>
+            </div>
+          )}
+        </div>
+      ) : (
+        /* Text input mode */
+        <div className="flex flex-col gap-1">
+          <textarea
+            className="w-full min-h-[180px] resize-none rounded-xl bg-nc-card border border-nc-border p-4 text-nc-text placeholder-nc-text-dim text-[15px] leading-relaxed focus:outline-none focus:border-nc-green/40 transition-colors"
+            placeholder="Skriv på norsk her..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <div className="text-right text-[11px] text-nc-text-dim">{wordCount} ord</div>
+        </div>
+      )}
 
       {/* Analyze button */}
       {canAnalyze && (

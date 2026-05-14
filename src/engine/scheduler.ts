@@ -211,6 +211,26 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     }
     return a;
   }
+  // Production guarantee: every session must contain at least one production exercise.
+  // If none exist (e.g. pure recognition session), swap the first recognition item.
+  const hasProduction = items.some((item) =>
+    (PRODUCTION_EXERCISES as string[]).includes(item.exerciseType)
+  );
+  if (!hasProduction && items.length > 0) {
+    const swapIdx = items.findIndex((item) =>
+      (REVIEW_EXERCISES as string[]).includes(item.exerciseType)
+    );
+    if (swapIdx !== -1) {
+      const target = items[swapIdx];
+      const conceptId = target.conceptIds[0] ?? '';
+      const gap = fingerprint.productionGap[conceptId] ?? 0;
+      items[swapIdx] = {
+        ...target,
+        exerciseType: pickExerciseType(PRODUCTION_EXERCISES, usedExerciseTypes, gap, preference),
+      };
+    }
+  }
+
   const [first, ...rest] = items;
   const shuffled = first ? [first, ...fisherYates(rest)] : fisherYates(items);
 
