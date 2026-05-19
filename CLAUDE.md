@@ -2,11 +2,19 @@
 
 ## What This Is
 
-An adaptive Norwegian language learning web app. Not a course — a coach. It builds a per-user mistake fingerprint, generates a personalized session every time, and runs every wrong answer through a repair loop with spaced-repetition follow-up.
+An adaptive Norwegian language learning web app. Not a course — a coach. It builds a per-user mistake fingerprint, generates a personalized session every time, runs every wrong answer through a repair loop with spaced-repetition follow-up, and pushes the user to speak.
 
 **One-line positioning:** A personal Norwegian tutor that finds your weak spots, explains why they happen, and fixes them with targeted practice — and pushes you to actually speak.
 
-This file is the single source of truth for how to work on this project. If anything you believe about the project conflicts with this file, this file wins. If this file conflicts with observed code, stop and flag it — do not silently work around it.
+This file is the operating context. The full durable plan lives in `docs/roadmap.md` (must-read), with feature-specific specs in `docs/muntlig/architecture.md`, `docs/ui-1/`, and other `docs/` files. If this file conflicts with `docs/roadmap.md`, the roadmap wins. If either conflicts with observed code, stop and flag it.
+
+---
+
+## Read in This Order Before Working
+
+1. `docs/roadmap.md` — the durable plan: current state, must-change items, build sequence, deferred backlog
+2. `docs/muntlig/architecture.md` — the speaking-practice module spec (Phase C)
+3. `docs/ui-1/` — the active UI transformation phase documents
 
 ---
 
@@ -14,93 +22,94 @@ This file is the single source of truth for how to work on this project. If anyt
 
 Three things working together. Everything serves these:
 
-1. **Diagnosis** — knowing precisely what the learner is failing at, including root causes under surface mistakes.
+1. **Diagnosis** — knowing precisely what the learner is failing at, including root causes.
 2. **Scheduling** — generating a personalized session that mixes remediation, review, new material, and interleaving.
 3. **Remediation** — every wrong answer triggers explain → micro-drill → retry → schedule for spaced review.
 
-AI is a power tool that supports the coaching. AI is **never** the headline. Every AI path has a non-AI fallback.
+AI is a power tool. AI is never the headline. Every AI path has a non-AI fallback.
 
 ---
 
 ## The North Star (Results Principle)
 
-The app exists to make the user speak more Norwegian and build sentences confidently. Two layered outcomes: production fluency (can construct sentences) and speaking confidence (actually does, in low-stakes varied contexts). Every feature must push toward production. A pure-recognition feature fails this test unless wrapped with an output requirement. This is a results principle, not a mandate to rebuild what exists — but it governs what gets built next and how success is measured.
+The app exists to make the user speak more Norwegian and build sentences confidently. Two layered outcomes: production fluency and speaking confidence. Every feature pushes toward production. The muntlig module is the most literal embodiment of this and exists for it.
 
 ---
 
 ## Tech Stack (ACTUAL — not aspirational)
 
 - **Platform:** Web. Next.js (App Router), TypeScript strict, Tailwind.
-- **Backend:** Supabase (Postgres + Auth + RLS).
+- **Backend:** Supabase (Postgres + Auth + RLS), EU region.
 - **State:** Zustand stores; fingerprint persists to IndexedDB, syncs to Supabase fire-and-forget for auth users.
-- **Local AI:** WebLLM in a Web Worker, runs via WebGPU. Used for conversation replies, constraint evaluation, semantic grading. Core engine does NOT depend on it — every AI path has a template/rule fallback. Model Norwegian quality is UNVERIFIED.
+- **Local AI:** web-llm in a Web Worker via WebGPU. Target model: NB-Llama-3.2-3B (National Library of Norway, Norwegian-fine-tuned). Currently running vanilla Llama-3.2-3B — must swap in Phase A1. Core engine does NOT depend on AI — every AI path has a template/rule fallback.
+- **Typography:** Schibsted Grotesk (single family, display 700 / body 400). Designed by Norwegian media company for Scandinavian digital reading.
 - **Hosting target:** small EU VPS + Supabase EU region. Free per user is a hard constraint.
 
-There is no iOS app, no Swift, no MLX, no SwiftUI. Earlier docs describing those are historical design artifacts from a deferred native plan. Do not act on them.
+There is no iOS app, no Swift, no MLX. Earlier docs describing those are historical artifacts from a deferred native plan. Do not act on them.
 
 ---
 
-## Current State (VERIFIED — the engine is complete)
+## Current State Snapshot
 
-The adaptive engine is built, traced, and verified correct:
+**Engine:** complete and verified. Diagnostic, fingerprint, mastery scoring (phase-adaptive EMA + slip detection), decay (floor 35), phase model, scheduler (40/30/20/10), four-rule diagnosis, repair loop with full SRS ladder, honest error tagging, content dedup, full pipeline parity across session/conversation/journal.
 
-- **Diagnostic placement** — IRT-style adaptive quiz, seeds the fingerprint (rawScore 60 correct / 20 wrong, confidence 0.4, 1 attempt). Cold-start verified sound: new users get real adaptation from session one.
-- **Mistake fingerprint** — JSON blob in IndexedDB + Supabase. Per-concept: rawScore, confidenceScore, decayedScore, attempts, uniqueDaysActive, streak, recentOutcomes, SRS state. Plus error log (200 cap), error patterns, production gap, speaking minutes, input/production preference.
-- **Mastery scoring** — phase-adaptive EMA, slip detection, geometric-mean confidence.
-- **Decay** — 46-day half-life, decays toward floor of 35 (not zero).
-- **Phase model** — locked → intro → practice → consolidation → maintenance, computed live.
-- **Scheduler** — recipe 40/30/20/10, pulls 5 weak concepts, SRS-driven review pool, repeat cap, production guarantee, shuffle.
-- **Diagnosis engine** — 4 root-cause rules on real error data.
-- **Repair loop** — template explanation + 2 micro-drills + retry + SRS scheduling (ladder 1→3→7→14→30).
-- **Error tagging** — uses sentence's real error_tags_detectable, not guessed from exercise type.
-- **Content dedup** — no repeated sentence within a session.
-- **Full pipeline parity** — session, conversation, AND journal all feed the identical mastery + SRS pipeline.
+**UI transformation:** in progress. UI-0 done (aesthetic direction, token contract, dirty diff triaged), UI-1.0 done (Schibsted Grotesk, shadcn audit), UI-1.1 done (onboarding pass). UI-1.2 (session loop) is next.
 
-Built features: diagnostic, dashboard, session loop, repair loop, recalibration, conversation mode (AI tutor + constraints), journal, reading (hardcoded texts), progress, profile.
+**Muntlig:** designed, not built. See `docs/muntlig/architecture.md`. Blocked on Phase A1.
 
-Stubs / not built: vocab SRS, shadowing, listening module, reading comprehension scoring, B1/B2 concept graph. Several UI buttons are dead. Landing email form is cosmetic.
+**Deferred:** vocab SRS, listening module, B1/B2 graph, reading scoring, v2 engine upgrades (FSRS, BKT, dual storage). See roadmap.
 
 ---
 
 ## Current Phase
 
-**UI transformation is the next phase.** The engine is done and honest. No more engine feature work. The job now is making the working system look and feel like it deserves to, using real component libraries (shadcn/ui + Aceternity), not hand-rolled UI.
+**Phase A — Engine corrections (research-mandated, mandatory, cheap).** Sequence per roadmap:
 
-Out of scope right now: new engine features, vocab SRS, shadowing, listening module, B1/B2 content, native/iOS anything.
+- **A1:** Swap to NB-Llama-3.2-3B in web-llm, re-validate AI tasks against Norwegian eval harness.
+- **A2:** Reduce decay half-life from 46 days to 21–30 days.
+- **A3:** Add 5-session calibration window flag to scheduler.
+- **A4:** Add anonymized event-log table; write on session complete / repair triggered / level changed / conversation completed.
+
+After Phase A: continue UI transformation (Phase B, UI-1.2 next). Phase C (muntlig) starts after A1 is verified.
+
+Out of scope right now: new engine features beyond the four corrections, anything in the deferred backlog, native/iOS anything.
 
 ---
 
-## Operating Rules (HARD RAILS — these caused real problems when absent)
+## Operating Rules (HARD RAILS — earned from real project failures)
 
-1. **Depth, not breadth.** Do not add feature surface. Finish and harden the current phase before proposing anything new. Adding features while foundations are open is the failure mode that wasted real time on this project.
+1. **Depth, not breadth.** No new feature surface while foundations are unfinished. Breadth-while-foundations-open is the documented failure mode of this project.
 
-2. **Analysis-first on decisions; direct on mechanics.** If a task involves a reversible architectural or design choice, produce an analysis with 2–3 options and tradeoffs and STOP for approval. If a task is mechanical and well-understood, do it directly and show the diff. Do not run analysis loops on one-line fixes; do not build architectural changes without analysis.
+2. **Analysis-first on decisions; direct on mechanics.** Architectural choices get 2–3 options analyzed and stop for approval. Mechanical changes go direct to diff. Don't analyze one-liners; don't build architectural changes without analysis.
 
-3. **Verify, don't assume.** Before declaring anything done, produce a concrete trace against stated acceptance criteria. "It should work" is not verification. A wrong audit was caught this way; conversation parity was confirmed this way. This is mandatory.
+3. **Verify, don't assume.** Concrete trace against acceptance criteria before declaring done. Visual verification (actual screenshots, not just gate-checks) for UI work. This caught the wrong cold-start audit, confirmed conversation parity, surfaced the diagnostic question-structure ambiguity in UI-1.1. Mandatory.
 
-4. **One move at a time.** Finish the current move, verify it, summarize what changed, then stop. Do not chain into the next move unprompted.
+4. **One move at a time.** Finish, verify, summarize, stop. Don't chain unprompted.
 
-5. **Surface drift, don't route around it.** If code conflicts with this file or a spec, or if a request seems to contradict the moat or north star, raise it as an explicit question. Do not silently reinterpret the request to make it fit.
+5. **Surface drift, don't route around it.** If a request seems to contradict the moat, the north star, or the roadmap, raise it as an explicit question — don't silently reinterpret.
 
-6. **No silent substitution.** Never make a feature appear to work when it doesn't (the B1/B2-runs-A2 pattern). Honest banners over silent fallbacks.
+6. **No silent substitution.** Honest banners over silent fallbacks (the B1/B2-runs-A2 pattern). If something isn't fully built, say so in the UI.
 
-7. **Scope discipline on prompts.** If asked to fix X, fix X. Do not also refactor Y, restyle Z, or build the thing you think should come next. Note adjacent issues; don't act on them without approval.
+7. **Scope discipline on prompts.** Fix X means fix X. Note adjacent issues; don't act on them.
 
 ---
 
 ## The Architect Subagent
 
-This project has an architect subagent (`.claude/agents/architect.md`). Its job is direction, sequencing, and pushback — NOT writing code. Consult it before starting any phase, when a request feels like it might be breadth not depth, when you're unsure if something is in scope, or when a decision has architectural weight. The architect proposes and challenges; the main session executes after approval. Treat its scope/direction flags as blocking until resolved with the user.
+This project has an architect subagent at `.claude/agents/architect.md`. Its job is direction, sequencing, and pushback — not writing code. Consult it before starting any phase, when a request might be breadth-not-depth, when scope is unclear, or when a decision has architectural weight. Its scope/direction flags are blocking until resolved with the user.
 
 ---
 
 ## When in Doubt
 
-Re-read the moat and the north star above. Every decision should trace to one of them. If it doesn't, it's probably out of scope — raise it, don't build it.
+Re-read `docs/roadmap.md`, the moat, and the north star. Every decision should trace to one of them. If it doesn't, it's probably out of scope — raise it, don't build it.
+
+---
 
 ## How to Start a Session
 
 1. Read this file fully.
-2. State the current phase and what's in scope.
-3. For anything non-trivial, propose a plan and stop for approval (see Operating Rule 2).
-4. Do not ask the user to re-explain the project. It's here.
+2. Read `docs/roadmap.md` for current state and phase.
+3. State the current phase and what's in scope before acting.
+4. For anything non-trivial, propose a plan and stop for approval.
+5. Do not ask the user to re-explain the project. It's all in `docs/`.
