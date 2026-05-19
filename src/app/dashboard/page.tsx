@@ -419,7 +419,7 @@ export default function DashboardPage() {
                 style={{ background: activeConcepts[0]?.color ?? 'var(--nc-text-dim)' }}
               />
               <span className="truncate text-[12px] text-[var(--nc-text-muted)]">
-                {activeConcepts.length} concepts in focus
+                {activeConcepts.length === 1 ? '1 concept in focus' : `${activeConcepts.length} concepts in focus`}
                 {activeConcepts[0] &&
                   ` — ${activeConcepts[0].label}${activeConcepts.length > 1 ? ` +${activeConcepts.length - 1}` : ''}`}
               </span>
