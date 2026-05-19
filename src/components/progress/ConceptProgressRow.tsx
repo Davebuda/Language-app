@@ -49,9 +49,9 @@ export function ConceptProgressRow({
         <div className="mt-2 h-[5px] overflow-hidden rounded-full bg-[var(--nc-border)]">
           {!locked ? (
             <motion.div
-              className="h-full rounded-full bg-[var(--nc-red)]"
-              initial={{ width: 0 }}
-              animate={{ width: `${score}%` }}
+              className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: score / 100 }}
               transition={{ duration: 0.65, ease: 'easeOut' }}
             />
           ) : null}

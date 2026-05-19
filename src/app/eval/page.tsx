@@ -312,8 +312,8 @@ export default function EvalPage() {
           {running && (
             <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[var(--nc-border)]">
               <motion.div
-                className="h-full rounded-full bg-[var(--nc-red)]"
-                animate={{ width: `${progress}%` }}
+                className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+                animate={{ scaleX: progress / 100 }}
                 transition={{ duration: 0.3 }}
               />
             </div>

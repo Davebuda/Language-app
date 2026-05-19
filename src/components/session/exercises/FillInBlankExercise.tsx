@@ -84,7 +84,7 @@ function MultipleChoice({
                 showCorrect
                   ? 'border-nc-green/50 bg-nc-green/14 text-nc-green'
                   : showWrong
-                    ? 'border-nc-coral/50 bg-nc-coral/10 text-nc-coral'
+                    ? 'border-nc-red/50 bg-nc-red/10 text-nc-red'
                     : 'border-white/12 bg-[rgba(255,255,255,0.04)] text-white/70 hover:border-nc-green/35 hover:text-white',
                 selected ? 'cursor-default' : 'cursor-pointer',
               ].join(' ')}

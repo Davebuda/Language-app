@@ -75,9 +75,9 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       {/* Timer bar */}
       <div className="h-[3px] overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
         <motion.div
-          className="h-full rounded-full"
+          className="h-full w-full origin-left rounded-full"
           style={{ background: urgentColor }}
-          animate={{ width: `${pct}%` }}
+          animate={{ scaleX: pct / 100 }}
           transition={{ duration: 0.9, ease: 'linear' }}
         />
       </div>

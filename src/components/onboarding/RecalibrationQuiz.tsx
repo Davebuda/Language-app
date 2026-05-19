@@ -96,10 +96,10 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
 
       {/* Progress */}
       <div className="flex items-center gap-3">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[rgba(23,23,29,0.08)]">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
           <motion.div
-            className="h-full rounded-full bg-nc-apricot"
-            animate={{ width: `${progress * 100}%` }}
+            className="h-full w-full origin-left rounded-full bg-nc-red"
+            animate={{ scaleX: progress }}
             transition={{ duration: 0.4 }}
           />
         </div>
@@ -191,7 +191,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
               {[0, 0.15, 0.3].map((d) => (
                 <motion.div
                   key={d}
-                  className="h-2 w-2 rounded-full bg-nc-apricot"
+                  className="h-2 w-2 rounded-full bg-nc-red"
                   animate={{ opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 0.9, delay: d, repeat: Infinity }}
                 />

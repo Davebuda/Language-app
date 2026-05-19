@@ -66,11 +66,6 @@
     --nc-green-border: rgba(74,222,128,0.25);
     --nc-green-fg:     #052e16;
 
-    /* Deprecated warm accents — neutral */
-    --nc-apricot: rgba(255,255,255,0.08);
-    --nc-coral:   rgba(255,255,255,0.08);
-    --nc-sage:    rgba(255,255,255,0.04);
-
     /* Borders & text */
     --nc-border:        rgba(255,255,255,0.10);
     --nc-border-subtle: rgba(255,255,255,0.06);
@@ -336,14 +331,6 @@
     background: rgba(255,255,255,0.12);
   }
 
-  .nc-button-lime {
-    background: var(--nc-red);
-    color: #FFFFFF;
-    font-weight: 700;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 12px rgba(220,38,38,0.40);
-  }
-
   /* ── Answer chips ── */
   .nc-chip {
     border-radius: 9999px;
@@ -389,8 +376,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nc-button-primary,
-  .nc-button-lime {
+  .nc-button-primary {
     transition: none;
   }
   .nc-button-primary:hover { transform: none; }

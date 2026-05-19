@@ -79,10 +79,10 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
     <div className="flex flex-1 flex-col gap-5">
       {/* Progress */}
       <div className="flex items-center gap-3">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[rgba(23,23,29,0.08)]">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
           <motion.div
-            className="h-full rounded-full bg-nc-red"
-            animate={{ width: `${progress * 100}%` }}
+            className="h-full w-full origin-left rounded-full bg-nc-red"
+            animate={{ scaleX: progress }}
             transition={{ duration: 0.4 }}
           />
         </div>
