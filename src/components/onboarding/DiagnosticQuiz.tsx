@@ -79,14 +79,20 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
     <div className="flex flex-1 flex-col gap-5">
       {/* Progress */}
       <div className="flex items-center gap-3">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+        <div
+          role="progressbar"
+          aria-valuenow={answered}
+          aria-valuemax={MAX_Q}
+          aria-label="Quiz progress"
+          className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10"
+        >
           <motion.div
             className="h-full w-full origin-left rounded-full bg-nc-red"
             animate={{ scaleX: progress }}
             transition={{ duration: 0.4 }}
           />
         </div>
-        <span className="text-[11px] font-medium text-nc-text-dim">{answered} / {MAX_Q}</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-nc-text-dim">{answered} / {MAX_Q}</span>
       </div>
 
       {/* Question card */}
@@ -101,10 +107,10 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
           className="nc-glass-dark p-5"
         >
           <div>
-            <div className="nc-label-light mb-3">
+            <div className="nc-label mb-3">
               {currentQuestion.cefrLevel} · {currentQuestion.conceptId.replace(/-/g, ' ')}
             </div>
-            <p className="text-[1.25rem] font-semibold leading-snug text-white">
+            <p className="text-balance text-[1.75rem] font-bold leading-[1.2] text-nc-text">
               {currentQuestion.prompt}
             </p>
           </div>
@@ -117,19 +123,19 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
           const isCorrect = index === currentQuestion.correctIndex
           const isSelected = selected === index
 
-          let borderColor = 'rgba(23,23,29,0.10)'
-          let bgColor = '#fff'
-          let textColor = 'rgba(23,23,29,0.65)'
+          let borderColor = 'rgba(255,255,255,0.10)'
+          let bgColor = 'rgba(255,255,255,0.06)'
+          let textColor = 'var(--nc-text)'
 
           if (revealed) {
             if (isCorrect) {
-              borderColor = 'rgba(159,230,127,0.5)'
-              bgColor = 'rgba(159,230,127,0.12)'
-              textColor = '#2d6a22'
+              borderColor = 'rgba(74,222,128,0.25)'
+              bgColor = 'rgba(74,222,128,0.12)'
+              textColor = 'var(--nc-green)'
             } else if (isSelected && !isCorrect) {
-              borderColor = 'rgba(239,118,100,0.4)'
-              bgColor = 'rgba(239,118,100,0.08)'
-              textColor = '#c0392b'
+              borderColor = 'rgba(220,38,38,0.28)'
+              bgColor = 'rgba(220,38,38,0.10)'
+              textColor = 'var(--nc-red)'
             }
           }
 
@@ -138,10 +144,10 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
               key={index}
               onClick={() => handleSelect(index)}
               disabled={revealed}
-              className="rounded-[0.95rem] border px-4 py-3.5 text-left text-sm font-medium transition-all disabled:cursor-default"
+              className="rounded-[0.95rem] border px-4 py-3.5 text-left text-[0.9375rem] font-medium transition-all disabled:cursor-default"
               style={{ borderColor, backgroundColor: bgColor, color: textColor }}
             >
-              <span className="mr-2 text-[11px] font-semibold opacity-40">0{index + 1}</span>
+              <span className="mr-2 text-[11px] font-bold uppercase tracking-[0.08em] opacity-40">0{index + 1}</span>
               {option}
             </button>
           )

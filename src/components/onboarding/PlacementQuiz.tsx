@@ -100,31 +100,32 @@ export function PlacementQuiz() {
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col items-center gap-6 text-center"
       >
-        <div className="text-5xl">🎯</div>
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+          <span className="font-display text-xl font-bold text-nc-text">A1</span>
+        </div>
         <div>
-          <h2 className="text-xl font-extrabold text-white">Klar for A1!</h2>
-          <p className="mt-2 text-sm leading-relaxed text-white/50">
+          <h2 className="text-2xl font-bold text-nc-text">Klar for A1!</h2>
+          <p className="mt-2 text-pretty text-sm leading-7 text-nc-text-muted">
             Vi starter med grunnleggende ordklasser og artikler.
-            <br />
             Motoren tilpasser seg etter hvert svar.
           </p>
         </div>
-        <div className="w-full rounded-2xl bg-nc-card border border-nc-border p-4 text-left">
-          <div className="mb-1 text-[10px] uppercase tracking-widest text-white/30">Din første økt</div>
-          <div className="text-base font-bold text-white">Substantiv og artikler</div>
-          <div className="mt-1 text-[11px] text-white/45">
+        <div className="nc-glass w-full p-4 text-left">
+          <div className="nc-label mb-2">Din første økt</div>
+          <div className="text-base font-bold text-nc-text">Substantiv og artikler</div>
+          <div className="mt-1 text-[11px] tabular-nums text-nc-text-dim">
             9 øvelser · ~12 min · motoren tilpasser seg
           </div>
         </div>
         <button
           onClick={() => router.push('/session')}
-          className="w-full rounded-xl bg-nc-green py-3.5 text-sm font-bold text-[#0d0d14]"
+          className="nc-gradient-red inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-sm font-bold text-white"
         >
           Start første økt →
         </button>
         <button
           onClick={() => router.push('/dashboard')}
-          className="text-sm text-white/30 underline"
+          className="text-sm font-medium text-nc-text-dim transition-colors hover:text-nc-text"
         >
           Gå til dashbord først
         </button>
@@ -156,10 +157,10 @@ export function PlacementQuiz() {
           className="flex flex-col gap-4"
         >
           <div>
-            <div className="mb-1 text-[11px] font-semibold text-white/30">
+            <div className="nc-label mb-2">
               Spørsmål {step + 1} av {QUESTIONS.length}
             </div>
-            <h2 className="text-[18px] font-extrabold leading-snug text-white">
+            <h2 className="text-balance text-[1.75rem] font-bold leading-[1.2] text-nc-text">
               {question.text}
             </h2>
           </div>
@@ -172,10 +173,10 @@ export function PlacementQuiz() {
                   setSelected(opt.value)
                   setTimeout(() => advance(opt.value), 180)
                 }}
-                className={`rounded-xl border px-4 py-3 text-left text-[13px] font-medium transition-all duration-150 ${
+                className={`rounded-xl border px-4 py-3 text-left text-[0.9375rem] font-medium transition-all duration-150 ${
                   selected === opt.value
                     ? 'border-nc-green bg-nc-green/10 text-nc-green font-bold'
-                    : 'border-nc-border bg-nc-card text-white/70 hover:border-nc-green/40 hover:text-white'
+                    : 'border-nc-border bg-nc-card text-nc-text-muted hover:border-nc-green/40 hover:text-nc-text'
                 }`}
               >
                 {opt.label}
