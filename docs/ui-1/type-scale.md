@@ -5,10 +5,30 @@ Typeface: Schibsted Grotesk (single family, 400/500/700 loaded).
 
 ---
 
-## Primary test
+## Primary test — scope-limited definition
 
-On any exercise or prompt screen: the Norwegian text must be unmistakably the most prominent
-element. A learner finishing a session remembers the Norwegian, not the layout.
+"Norwegian dominates" is not a universal rule. It applies to two distinct screen categories
+differently, and conflating them produces wrong decisions. Be precise:
+
+### Learning screens — rule is active (UI-1.2 and beyond)
+Session loop screens where the learner is **producing or wrestling with Norwegian**:
+translation exercises, fill-in-blank, word-order, listening comprehension, reading.
+On these screens, the Norwegian sentence the learner is working on is T1 — the largest,
+boldest, most visually prominent element on screen. Everything else (English instructions,
+option labels, chrome) is subordinate. No exception.
+
+The acceptance criterion for every UI-1.2 exercise screen: cover the Norwegian T1 text
+with your thumb. If the screen still makes visual sense without it, the hierarchy is wrong.
+
+### Assessment screens — rule is explicitly exempt (diagnostic, recalibration)
+DiagnosticQuiz and RecalibrationQuiz use **English instructions with Norwegian answer options**
+by pedagogical design. An instruction in Norwegian would confound "didn't know the grammar"
+with "didn't understand the task," corrupting placement accuracy. English instructions here
+are a correct measurement choice, not a slop exception. The T1 slot on these screens
+is the English instruction; Norwegian appears at T2 in the options. This is correct.
+
+This exemption is narrow: it applies only to assessment/diagnostic screens. The moment
+a screen is about learning rather than measuring, the rule is active.
 
 ---
 
