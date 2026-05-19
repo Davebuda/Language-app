@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Bell, Play, MessageCircle, BookOpen, PenLine, RefreshCw } from 'lucide-react'
+import { Bell, Play, Mic, ArrowRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -16,7 +16,6 @@ import { LevelBadge } from '@/components/dashboard/LevelSelector'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
-import { Badge } from '@/components/ui/badge'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
@@ -24,20 +23,40 @@ import a2GraphJson from '@content/concepts/a2-graph.json'
 const a1Graph = a1GraphJson as ConceptGraph
 const a2Graph = a2GraphJson as ConceptGraph
 
-const MODES = [
-  { id: 'conversation', href: '/conversation', label: 'Speak',       Icon: MessageCircle },
-  { id: 'reading',      href: '/reading',      label: 'Read',        Icon: BookOpen },
-  { id: 'journal',      href: '/journal',      label: 'Write',       Icon: PenLine },
-  { id: 'recalibrate',  href: '/recalibrate',  label: 'Recalibrate', Icon: RefreshCw },
-] as const
 
-const PHASE_META: Record<ConceptPhase, { label: string; bg: string; color: string }> = {
-  maintenance:   { label: 'Strong',        bg: 'rgba(74,222,128,0.15)',   color: '#4ade80' },
-  consolidation: { label: 'Consolidating', bg: 'rgba(167,139,250,0.15)',  color: '#c4b5fd' },
-  practice:      { label: 'Practice',      bg: 'rgba(251,146,60,0.15)',   color: '#fb923c' },
-  intro:         { label: 'Intro',         bg: 'rgba(250,204,21,0.12)',   color: '#fbbf24' },
-  locked:        { label: 'Locked',        bg: 'rgba(255,255,255,0.06)',  color: 'rgba(237,232,227,0.36)' },
+// Maps concept IDs to suggested conversation topics (Norwegian display labels)
+const CONCEPT_TO_TOPIC: Record<string, string> = {
+  'v2-word-order':        'daglig rutine',
+  'present-tense-verbs':  'daglig rutine',
+  'negation-placement':   'daglig rutine',
+  'days-of-week':         'daglig rutine',
+  'common-questions':     'daglig rutine',
+  'noun-gender':          'mat og drikke',
+  'indefinite-articles':  'mat og drikke',
+  'basic-numbers':        'mat og drikke',
+  'personal-pronouns':    'familie',
+  'adjective-agreement':  'Norge',
+  'prepositions-place':   'Norge',
+  'past-tense-regular':   'Norge',
+  'modal-verbs':          'jobb',
 }
+
+// Texts available per CEFR level (from SEED_TEXTS in reading/page.tsx)
+const READING_TEXT_COUNTS: Record<string, number> = {
+  A1: 2,
+  A2: 2,
+  B1: 0,
+  B2: 0,
+}
+
+// Journal prompts (mirrors PROMPTS in WritingEditor — must stay in sync)
+const DASHBOARD_PROMPTS = [
+  'Beskriv din ideelle norske helg',
+  'Hva liker du best med vinteren?',
+  'Skriv om et sted du vil besøke i Norge',
+  'Beskriv deg selv på norsk',
+  'Hva er din favorittmat, og hvorfor?',
+]
 
 function todayFormatted(): string {
   return new Date().toLocaleDateString('nb-NO', {
@@ -153,6 +172,21 @@ export default function DashboardPage() {
       })
       .slice(0, 5)
   }, [fingerprint, activeGraph])
+
+  // Speak card — suggest a topic based on the learner's weakest active concept
+  const suggestedTopic = useMemo(() => {
+    const target = activeConcepts.find(
+      (c) => c.phase === 'practice' || c.phase === 'consolidation',
+    )
+    return target ? (CONCEPT_TO_TOPIC[target.id] ?? 'daglig rutine') : 'daglig rutine'
+  }, [activeConcepts])
+
+  // Read card — texts at learner's level
+  const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
+
+  // Write card — today's prompt teaser (first 38 chars + ellipsis)
+  const todayPrompt = DASHBOARD_PROMPTS[new Date().getDay() % DASHBOARD_PROMPTS.length]
+  const promptTeaser = todayPrompt.length > 38 ? todayPrompt.slice(0, 38) + '…' : todayPrompt
 
   return (
     <div className="nc-gradient-page flex min-h-dvh flex-col">
@@ -275,6 +309,82 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
+        {/* ── Speak — Muntlig ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+          className="nc-glass-elevated p-5"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <div className="nc-label mb-2 text-[var(--nc-text-dim)]">MUNTLIG</div>
+              <div className="font-display text-[1.2rem] font-bold leading-tight text-[var(--nc-text)]">
+                Snakk med Kari
+              </div>
+              <p className="mt-1 text-[12px] text-[var(--nc-text-muted)]">
+                Foreslått tema:{' '}
+                <span className="font-semibold text-[var(--nc-text)]">{suggestedTopic}</span>
+              </p>
+              {speakingMins > 0 && (
+                <p className="mt-1 text-[11px] text-[var(--nc-text-dim)]">
+                  {speakingMins} min snakket totalt
+                </p>
+              )}
+            </div>
+            <div className="nc-glass flex size-11 shrink-0 items-center justify-center rounded-full">
+              <Mic size={18} className="text-[var(--nc-text-muted)]" />
+            </div>
+          </div>
+          <Link
+            href="/conversation"
+            className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border-strong)] bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.10)] transition-colors"
+          >
+            <Play size={13} />
+            Start samtale
+          </Link>
+        </motion.div>
+
+        {/* ── Write — Skrivejournal ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.10 }}
+          className="nc-glass p-4"
+        >
+          <div className="nc-label mb-2 text-[var(--nc-text-dim)]">SKRIVEJOURNAL</div>
+          <p className="text-[13px] italic text-[var(--nc-text-muted)]">
+            &ldquo;{promptTeaser}&rdquo;
+          </p>
+          <Link
+            href="/journal"
+            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)] transition-colors"
+          >
+            Skriv i dag <ArrowRight size={12} />
+          </Link>
+        </motion.div>
+
+        {/* ── Read — Lesestudio ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="nc-glass p-4"
+        >
+          <div className="nc-label mb-2 text-[var(--nc-text-dim)]">LESESTUDIO</div>
+          <p className="text-[13px] text-[var(--nc-text-muted)]">
+            {textsAtLevel > 0
+              ? `${textsAtLevel} tekster på ditt ${levelLabel}-nivå`
+              : 'Tekster tilgjengelig for lesing'}
+          </p>
+          <Link
+            href="/reading"
+            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)] transition-colors"
+          >
+            Bla gjennom <ArrowRight size={12} />
+          </Link>
+        </motion.div>
+
         {/* ── Stats — compact 4-column ── */}
         <div className="grid grid-cols-4 gap-2.5">
           {[
@@ -285,10 +395,10 @@ export default function DashboardPage() {
           ].map((s) => (
             <div
               key={s.label}
-              className="nc-glass-cream px-2.5 py-3 text-center"
+              className="nc-glass-cream px-2.5 py-2 text-center"
             >
               <div
-                className="font-display tabular-nums text-[1.5rem] font-bold leading-none tracking-tight"
+                className="font-display tabular-nums text-[1.25rem] font-bold leading-none tracking-tight"
                 style={{ color: s.color }}
               >
                 {s.value}
@@ -300,68 +410,28 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        {/* ── Practice modes ── */}
-        <div className="grid grid-cols-4 gap-2.5">
-          {MODES.map((mode) => (
-            <Link
-              key={mode.id}
-              href={mode.href}
-              className="nc-glass-cream flex flex-col items-center gap-2 px-2 py-3"
-            >
-              <mode.Icon size={18} className="text-[var(--nc-text-muted)]" />
-              <span className="text-[11px] font-semibold leading-none text-[var(--nc-text-muted)]">
-                {mode.label}
+        {/* ── Concepts in focus ── */}
+        {activeConcepts.length > 0 && (
+          <div className="flex items-center justify-between gap-3 px-1">
+            <div className="flex min-w-0 items-center gap-2">
+              <div
+                className="size-2 shrink-0 rounded-full"
+                style={{ background: activeConcepts[0]?.color ?? 'var(--nc-text-dim)' }}
+              />
+              <span className="truncate text-[12px] text-[var(--nc-text-muted)]">
+                {activeConcepts.length} concepts in focus
+                {activeConcepts[0] &&
+                  ` — ${activeConcepts[0].label}${activeConcepts.length > 1 ? ` +${activeConcepts.length - 1}` : ''}`}
               </span>
-            </Link>
-          ))}
-        </div>
-
-        {/* ── Currently learning ── */}
-        <div>
-          <div className="mb-3 flex items-baseline justify-between">
-            <span className="text-[13px] font-bold text-[var(--nc-text)]">Currently learning</span>
-            <Link href="/progress" className="text-[11px] font-semibold text-[var(--nc-text-dim)]">
+            </div>
+            <Link
+              href="/progress"
+              className="shrink-0 text-[11px] font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text)] transition-colors"
+            >
               View all →
             </Link>
           </div>
-
-          {activeConcepts.length === 0 ? (
-            <div className="nc-glass-cream rounded-[0.95rem] border-dashed px-4 py-5 text-center">
-              <p className="text-[12px] leading-6 text-[var(--nc-text-dim)]">
-                Start a session to track your concept mastery here.
-              </p>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2">
-              {activeConcepts.map((concept) => {
-                const meta = PHASE_META[concept.phase]
-                return (
-                  <motion.div
-                    key={concept.id}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="nc-glass-cream flex items-center gap-3 px-4 py-3"
-                  >
-                    <div
-                      className="size-2.5 shrink-0 rounded-full"
-                      style={{ background: concept.color }}
-                    />
-                    <span className="min-w-0 flex-1 truncate text-[13px] font-semibold text-[var(--nc-text)]">
-                      {concept.label}
-                    </span>
-                    <Badge
-                      variant="outline"
-                      className="shrink-0 border-0 px-2.5 py-0.5 text-[10px] font-bold"
-                      style={{ background: meta.bg, color: meta.color }}
-                    >
-                      {meta.label}{concept.score > 0 ? ` · ${concept.score}%` : ''}
-                    </Badge>
-                  </motion.div>
-                )
-              })}
-            </div>
-          )}
-        </div>
+        )}
 
         {/* ── Recalibration banner ── */}
         <AnimatePresence>
