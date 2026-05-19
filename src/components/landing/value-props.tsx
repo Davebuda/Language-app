@@ -53,19 +53,19 @@ export function ValueProps() {
               border: '1px solid rgba(255,255,255,0.06)',
             }}
             whileHover={{
-              backgroundColor: 'rgba(59,130,246,0.04)',
-              borderColor: 'rgba(59,130,246,0.18)',
+              backgroundColor: 'var(--nc-red-tint)',
+              borderColor: 'var(--nc-red-border)',
               transition: { duration: 0.2 },
             }}
           >
             <div
               className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg"
               style={{
-                background: 'rgba(59,130,246,0.1)',
-                border: '1px solid rgba(59,130,246,0.2)',
+                background: 'var(--nc-red-tint)',
+                border: '1px solid var(--nc-red-border)',
               }}
             >
-              <Icon className="h-4 w-4 text-brand-400" />
+              <Icon className="h-4 w-4 text-[var(--nc-red)]" />
             </div>
 
             <h3 className="mb-2 text-sm font-bold text-foreground">{prop.title}</h3>

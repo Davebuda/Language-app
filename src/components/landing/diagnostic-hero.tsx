@@ -15,7 +15,7 @@ const DIAGNOSTIC_INSIGHTS: { label: string; category: string; severity: 'high' |
 const severityColor = {
   high: '#ef4444',
   medium: '#f59e0b',
-  low: '#3b82f6',
+  low: 'var(--nc-red)',
 }
 
 const severityLabel = {
@@ -80,10 +80,8 @@ function DiagnosticPanel() {
     <div
       className="relative rounded-2xl p-5 sm:p-6"
       style={{
-        background: 'rgba(17,17,24,0.8)',
-        border: '1px solid rgba(59,130,246,0.18)',
-        backdropFilter: 'blur(12px)',
-        boxShadow: '0 0 60px rgba(59,130,246,0.06), inset 0 1px 0 rgba(255,255,255,0.04)',
+        background: 'var(--nc-dark)',
+        border: '1px solid var(--nc-red-border)',
       }}
     >
       {/* Header */}
@@ -100,7 +98,7 @@ function DiagnosticPanel() {
               className="inline-block h-1 rounded-full transition-all duration-300"
               style={{
                 width: i === activeIndex ? '16px' : '4px',
-                backgroundColor: i === activeIndex ? '#3b82f6' : 'rgba(255,255,255,0.12)',
+                backgroundColor: i === activeIndex ? 'var(--nc-red)' : 'rgba(255,255,255,0.12)',
               }}
             />
           ))}
@@ -181,12 +179,7 @@ export function DiagnosticHero() {
           Learn Norwegian{' '}
           <span
             className="relative inline-block"
-            style={{
-              background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #93c5fd 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
+            style={{ color: 'var(--nc-red)' }}
           >
             precisely.
           </span>

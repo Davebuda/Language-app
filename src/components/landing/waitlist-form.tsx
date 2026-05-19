@@ -40,11 +40,11 @@ export function WaitlistForm() {
           transition={{ duration: 0.3 }}
           className="flex items-center gap-3 rounded-xl px-5 py-4 text-sm font-medium"
           style={{
-            background: 'rgba(59,130,246,0.08)',
-            border: '1px solid rgba(59,130,246,0.25)',
+            background: 'rgba(220,38,38,0.14)',
+            border: '1px solid rgba(220,38,38,0.28)',
           }}
         >
-          <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-400" />
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-nc-red" />
           <span className="text-foreground">
             You&apos;re on the list. We&apos;ll reach out when early access opens.
           </span>
@@ -68,7 +68,7 @@ export function WaitlistForm() {
                   border: error
                     ? '1px solid rgba(239,68,68,0.5)'
                     : '1px solid rgba(255,255,255,0.08)',
-                  caretColor: '#3b82f6',
+                  caretColor: 'var(--nc-red)',
                 }}
               />
               {error && (
@@ -80,8 +80,7 @@ export function WaitlistForm() {
               type="submit"
               className="group flex shrink-0 items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
               style={{
-                background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)',
-                boxShadow: '0 0 24px rgba(59,130,246,0.35)',
+                background: 'var(--nc-red)',
               }}
             >
               Join waitlist

@@ -12,30 +12,30 @@ import conceptGraphJson from '@content/concepts/a1-graph.json'
 
 const conceptGraph = conceptGraphJson as ConceptGraph
 
-const PHASE_META: Record<ConceptPhase, { label: string; countTone: string; description: string }> = {
+const PHASE_META: Record<ConceptPhase, { label: string; badgeTone: string; description: string }> = {
   maintenance: {
     label: 'Maintenance',
-    countTone: 'bg-[rgba(214,255,90,0.24)] text-nc-text',
+    badgeTone: 'bg-[var(--nc-green-tint)] border-[var(--nc-green-border)] text-[var(--nc-green)]',
     description: 'Strong — held at spaced intervals',
   },
   consolidation: {
-    label: 'Consolidation',
-    countTone: 'bg-nc-violet/18 text-nc-violet',
+    label: 'Consolidating',
+    badgeTone: 'bg-[var(--nc-red-tint)] border-[var(--nc-red-border)] text-[var(--nc-red)]',
     description: 'Solidifying — nearly mastered',
   },
   practice: {
     label: 'Practice',
-    countTone: 'bg-nc-apricot/20 text-nc-coral',
+    badgeTone: 'bg-[rgba(249,115,22,0.08)] border-[rgba(249,115,22,0.22)] text-[#F97316]',
     description: 'Active drilling in progress',
   },
   intro: {
     label: 'Intro',
-    countTone: 'bg-[rgba(23,23,29,0.06)] text-nc-text-muted',
+    badgeTone: 'bg-[var(--nc-card-soft)] border-[var(--nc-border)] text-[var(--nc-text-muted)]',
     description: 'Just started — first exposures',
   },
   locked: {
     label: 'Locked',
-    countTone: 'bg-[rgba(23,23,29,0.05)] text-nc-text-dim',
+    badgeTone: 'bg-transparent border-[var(--nc-border)] text-[var(--nc-text-dim)] opacity-60',
     description: 'Prerequisites not yet cleared',
   },
 }
@@ -86,14 +86,14 @@ export default function ProgressPage() {
   const masteredCount = byPhase.maintenance.length + byPhase.consolidation.length
 
   return (
-    <div className="flex min-h-dvh flex-col bg-transparent">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
-        <div className="nc-panel p-5">
+    <div className="nc-gradient-page flex flex-col min-h-dvh">
+      <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
+        <div>
           <div className="nc-label">Concepts</div>
-          <h1 className="mt-2 text-[2rem] font-display font-semibold text-nc-text">
+          <h1 className="mt-2 text-[2rem] font-display font-semibold text-[var(--nc-text)]">
             Progress
           </h1>
-          <p className="mt-2 text-sm text-nc-text-muted">
+          <p className="mt-1 text-sm text-[var(--nc-text-muted)]">
             A1 — {masteredCount} of {totalCount} in maintenance or consolidation
           </p>
         </div>
@@ -108,21 +108,21 @@ export default function ProgressPage() {
             .reduce((sum, p) => sum + byPhase[p].length, 0)
 
           return (
-            <section key={phase} className="nc-panel p-4">
-              <div className="flex items-center justify-between gap-3">
+            <section key={phase}>
+              <div className="nc-glass flex items-center justify-between gap-3 px-4 py-3 mb-2">
                 <div>
-                  <div className="text-[13px] font-medium text-nc-text">{meta.label}</div>
-                  <div className="mt-0.5 text-[11px] text-nc-text-dim">{meta.description}</div>
+                  <div className="text-[13px] font-medium text-[var(--nc-text)]">{meta.label}</div>
+                  <div className="mt-0.5 text-[11px] text-[var(--nc-text-dim)]">{meta.description}</div>
                 </div>
-                <div className={`rounded-[0.75rem] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] ${meta.countTone}`}>
+                <div className={`rounded-[var(--radius)] border px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] ${meta.badgeTone}`}>
                   {concepts.length}
                 </div>
               </div>
-              <div className="mt-4 flex flex-col gap-2">
+              <div className="flex flex-col gap-1">
                 {concepts.map((concept, i) => (
                   <ConceptProgressRow
                     key={concept.id}
-                    color={phase === 'locked' ? 'rgba(23,23,29,0.18)' : getConceptColor(concept.id, startIndex + i)}
+                    color={phase === 'locked' ? 'var(--nc-border)' : getConceptColor(concept.id, startIndex + i)}
                     name={concept.label}
                     score={Math.round(fingerprint?.conceptMastery[concept.id]?.decayedScore ?? 0)}
                     locked={phase === 'locked'}

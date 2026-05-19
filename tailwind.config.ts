@@ -41,46 +41,46 @@ const config: Config = {
           foreground: 'hsl(var(--popover-foreground))',
         },
 
-        // NorskCoach brand tokens
+        // NorskCoach brand tokens — Ember dark theme
+        // Primary: red #DC2626 | Base: warm charcoal #120E0E
         nc: {
-          bg:              '#FDF6EE',
-          card:            '#FFFFFF',
-          'card-hover':    '#FFFCF7',
-          dark:            '#181526',
+          bg:              '#120E0E',
+          card:            'rgba(255,255,255,0.06)',
+          'card-soft':     'rgba(255,255,255,0.03)',
+          'card-hover':    'rgba(255,255,255,0.10)',
+          dark:            '#0A0707',
+          'dark-2':        '#0D0A0A',
 
-          green:           '#C8FF00',
-          'green-tint':    'rgba(200,255,0,0.07)',
-          'green-border':  'rgba(200,255,0,0.22)',
+          // Primary brand — red (CTA, active states, progress)
+          // --nc-violet* removed; --nc-red* is the single brand system
+          red:             '#DC2626',
+          'red-tint':      'rgba(220,38,38,0.14)',
+          'red-border':    'rgba(220,38,38,0.28)',
 
-          coral:           '#FF7A6A',
-          'coral-tint':    'rgba(255,122,106,0.10)',
-          'coral-border':  'rgba(255,122,106,0.24)',
+          // Success state — brighter for dark bg
+          green:           '#4ade80',
+          'green-tint':    'rgba(74,222,128,0.12)',
+          'green-border':  'rgba(74,222,128,0.25)',
+          'green-fg':      '#052e16',
 
-          mint:            '#CFE3CB',
-          'mint-tint':     'rgba(207,227,203,0.20)',
-          'mint-border':   'rgba(207,227,203,0.40)',
+          // Practice phase accent
+          coral:           'rgba(255,255,255,0.08)',
+          'coral-tint':    'rgba(255,255,255,0.04)',
+          'coral-border':  'rgba(255,255,255,0.10)',
 
-          violet:          '#B7A7FF',
-          'violet-tint':   'rgba(183,167,255,0.14)',
-          'violet-border': 'rgba(183,167,255,0.28)',
-          apricot:         '#FFC8A5',
-          'apricot-tint':  'rgba(255,200,165,0.18)',
-          'apricot-border':'rgba(255,200,165,0.36)',
-
-          border:          'rgba(24,21,38,0.08)',
-          'border-subtle': 'rgba(24,21,38,0.05)',
-          text:            '#181526',
-          'text-muted':    'rgba(24,21,38,0.62)',
-          'text-dim':      'rgba(24,21,38,0.38)',
-
-          'repair-bg':     'rgba(255,200,165,0.20)',
-          'repair-border': 'rgba(255,200,165,0.38)',
+          border:          'rgba(255,255,255,0.10)',
+          'border-subtle': 'rgba(255,255,255,0.06)',
+          'border-strong': 'rgba(255,255,255,0.16)',
+          text:            '#EDE8E3',
+          'text-muted':    'rgba(237,232,227,0.58)',
+          'text-dim':      'rgba(237,232,227,0.36)',
         },
       },
 
       fontFamily: {
         display: ['var(--font-display)', 'sans-serif'],
-        sans: ['var(--font-sans)', 'sans-serif'],
+        sans:    ['var(--font-body)', 'sans-serif'],
+        mono:    ['ui-monospace', 'monospace'],
       },
 
 
@@ -115,14 +115,11 @@ const config: Config = {
       },
 
       borderRadius: {
-        hero:    '18px',
-        card:    '14px',
-        feature: '14px',
-        chip:    '10px',
+        hero:    '0.75rem',
+        card:    '0.75rem',
+        feature: '0.75rem',
+        chip:    '9999px',
         pill:    '9999px',
-        '2xl':   '0.95rem',
-        '3xl':   '1.25rem',
-        '4xl':   '1.5rem',
       },
     },
   },

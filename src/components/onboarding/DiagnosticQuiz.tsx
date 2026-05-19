@@ -81,7 +81,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
       <div className="flex items-center gap-3">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[rgba(23,23,29,0.08)]">
           <motion.div
-            className="h-full rounded-full bg-nc-violet"
+            className="h-full rounded-full bg-nc-red"
             animate={{ width: `${progress * 100}%` }}
             transition={{ duration: 0.4 }}
           />
@@ -98,12 +98,9 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
           animate="center"
           exit="exit"
           transition={transition}
-          className="nc-panel-dark p-5"
+          className="nc-glass-dark p-5"
         >
-          <div className="pointer-events-none absolute inset-0 opacity-35">
-            <div className="nc-pattern-orbits absolute inset-0" />
-          </div>
-          <div className="relative z-[1]">
+          <div>
             <div className="nc-label-light mb-3">
               {currentQuestion.cefrLevel} · {currentQuestion.conceptId.replace(/-/g, ' ')}
             </div>
@@ -158,7 +155,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="nc-panel-soft p-4"
+            className="nc-glass p-4"
           >
             <p className="text-sm leading-7 text-nc-text-muted">
               {currentQuestion.explanation}
@@ -176,14 +173,14 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="nc-panel-soft p-4 text-center"
+            className="nc-glass p-4 text-center"
           >
             <p className="text-sm font-medium text-nc-text">Working out your level…</p>
             <div className="mt-3 flex justify-center gap-1">
               {[0, 0.15, 0.3].map((d) => (
                 <motion.div
                   key={d}
-                  className="h-2 w-2 rounded-full bg-nc-violet"
+                  className="h-2 w-2 rounded-full bg-nc-red"
                   animate={{ opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 0.9, delay: d, repeat: Infinity }}
                 />
