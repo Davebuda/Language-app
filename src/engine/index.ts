@@ -10,7 +10,7 @@ export {
   getConceptPhase,
 } from './fingerprint';
 export type { ConceptPhase } from './fingerprint';
-export { runDiagnosis, getPrimaryWeakConcepts, getDecayingConcepts } from './diagnosis';
+export { runDiagnosis, getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts } from './diagnosis';
 export { generateSession } from './scheduler';
 export type { SchedulerInput, SchedulerOutput } from './scheduler';
 export { buildRepairPlan, makeRepairItems } from './repair-loop';

@@ -7,10 +7,16 @@ import { aiService } from '@/ai'
 import type { WritingFeedback } from '@/ai/types'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
-import { logError, aggregateErrorPatterns } from '@/engine'
+import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import type { ErrorTag } from '@/types/taxonomy'
+import type { ConceptGraph } from '@/types/concepts'
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
+
+const a1Graph = a1GraphJson as ConceptGraph
+const a2Graph = a2GraphJson as ConceptGraph
 
 // Best-effort: map writing feedback error tags to concept IDs
 const WRITING_TAG_TO_CONCEPT: Partial<Record<string, string>> = {
@@ -112,10 +118,13 @@ export function WritingEditor() {
 
   function pushErrorsToFingerprint(result: WritingFeedback): void {
     if (!fingerprint || result.errors.length === 0) return
+    const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
     let updated = fingerprint
     for (const err of result.errors) {
       const conceptId = WRITING_TAG_TO_CONCEPT[err.tag]
       if (!conceptId) continue
+      const node = activeGraph.concepts.find((c) => c.id === conceptId)
+      // logError first (only touches recentErrors/updatedAt), then mastery
       updated = logError(updated, {
         conceptId,
         errorTag: err.tag as ErrorTag,
@@ -123,6 +132,17 @@ export function WritingEditor() {
         wrong: err.wrong,
         correct: err.correct,
       })
+      const updatedMastery = updateConceptMastery(
+        updated.conceptMastery[conceptId],
+        false,
+        node?.minAttempts ?? 15,
+        node?.minDays ?? 3,
+      )
+      updated = {
+        ...updated,
+        conceptMastery: { ...updated.conceptMastery, [conceptId]: { ...updatedMastery, conceptId } },
+        updatedAt: new Date().toISOString(),
+      }
     }
     const withPatterns = { ...updated, errorPatterns: aggregateErrorPatterns(updated) }
     setFingerprint(withPatterns)

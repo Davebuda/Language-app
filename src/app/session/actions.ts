@@ -34,17 +34,10 @@ function deriveCorrectAnswer(
   }
 }
 
-function inferErrorTag(exerciseType: ExerciseType): ErrorTag {
-  switch (exerciseType) {
-    case 'listening-comprehension':
-    case 'dictation':
-      return 'listening-recognition'
-    case 'speed-round':
-    case 'translation-to-english':
-      return 'meaning-misunderstood'
-    default:
-      return 'word-order'
-  }
+// Pick the most relevant error tag from those the sentence declares detectable.
+// Returns undefined when the list is empty — callers must handle that case.
+function pickErrorTag(tags: ErrorTag[]): ErrorTag | undefined {
+  return tags.length > 0 ? tags[0] : undefined
 }
 
 export async function gradeAnswer(
@@ -66,7 +59,7 @@ export async function gradeAnswer(
         const supabase = createClient(supabaseUrl, supabaseKey)
         const { data } = await supabase
           .from('sentences')
-          .select('id, norwegian, english, notes, exercise_types')
+          .select('id, norwegian, english, notes, exercise_types, error_tags_detectable')
           .eq('id', sentenceId)
           .single()
         if (data) {
@@ -77,7 +70,7 @@ export async function gradeAnswer(
             notes: data.notes ?? undefined,
             conceptIds: [],
             vocabularyClusters: [],
-            errorTagsDetectable: [],
+            errorTagsDetectable: data.error_tags_detectable ?? [],
             cefrLevel: 'A1',
             difficulty: 1,
             exerciseTypes: data.exercise_types ?? [],
@@ -103,6 +96,6 @@ export async function gradeAnswer(
   return {
     correct,
     correctAnswer,
-    errorTag: correct ? undefined : inferErrorTag(exerciseType),
+    errorTag: correct ? undefined : pickErrorTag(sentence.errorTagsDetectable),
   }
 }

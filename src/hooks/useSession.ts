@@ -76,8 +76,6 @@ export function useSession(
   const contentCache = useRef<Map<string, ResolvedContent>>(new Map());
   // conceptId → sentences that support various exercise types
   const seedsByConceptId = useRef<Map<string, Sentence[]>>(new Map());
-  // sentence IDs already used in this session — prevents same sentence appearing twice
-  const usedSentenceIds = useRef<Set<string>>(new Set());
   const lastErrorRef = useRef<Parameters<typeof buildRepairPlan>[0] | null>(null);
 
   // Toggle flips to force re-renders when new content resolves
@@ -110,8 +108,10 @@ export function useSession(
     const conceptId = item.conceptIds[0] ?? '';
     const seeds = seedsByConceptId.current.get(conceptId) ?? [];
 
+    const usedIds = useSessionStore.getState().usedSentenceIds;
+
     // Dynamic top-up: if the unused pool is thin, generate more sentences in the background
-    const unusedSeeds = seeds.filter((s) => !usedSentenceIds.current.has(s.id));
+    const unusedSeeds = seeds.filter((s) => !usedIds.has(s.id));
     if (unusedSeeds.length < 3 && aiService.isReady()) {
       void topUpConcept(conceptId, item.exerciseType, seeds);
     }
@@ -124,11 +124,11 @@ export function useSession(
     const pool = compatible.length > 0 ? compatible : eligible;
 
     // Prefer sentences not yet used in this session; fall back to full pool if exhausted
-    const fresh = pool.filter((s) => !usedSentenceIds.current.has(s.id));
+    const fresh = pool.filter((s) => !usedIds.has(s.id));
     const source = fresh.length > 0 ? fresh : pool;
     const picked = source[Math.floor(Math.random() * source.length)];
     if (picked) {
-      usedSentenceIds.current.add(picked.id);
+      sessionStore.markSentenceUsed(picked.id);
       contentCache.current.set(item.id, { ...picked, source: 'seed' });
       forceUpdate((n) => n + 1);
     }
@@ -151,7 +151,6 @@ export function useSession(
     const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
     const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp });
     contentCache.current.clear();
-    usedSentenceIds.current.clear();
     sessionStore.startSession(output.session);
 
     // Kick off background model loading on first session start
@@ -200,13 +199,13 @@ export function useSession(
       }
       const { fingerprint } = useFingerprintStore.getState();
       const errorCount = (fingerprint?.recentErrors ?? []).filter(
-        (e) => e.errorTag === (result.errorTag ?? 'word-order'),
+        (e) => e.errorTag === (result.errorTag ?? 'unspecified'),
       ).length;
 
       const error = {
         id: crypto.randomUUID(),
         conceptId: result.conceptId,
-        errorTag: result.errorTag ?? 'word-order',
+        errorTag: result.errorTag ?? 'unspecified',
         exerciseType: item?.exerciseType ?? 'translation-to-norwegian',
         wrong: result.userAnswer,
         correct: result.correctAnswer,

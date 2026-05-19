@@ -10,6 +10,7 @@ interface SessionSlice {
   results: ExerciseResult[];
   isInRepair: boolean;
   repairPlan: RepairPlan | null;
+  usedSentenceIds: Set<string>;
   startSession: (session: Session) => void;
   advanceItem: () => void;
   recordResult: (result: ExerciseResult) => void;
@@ -18,7 +19,10 @@ interface SessionSlice {
   exitRepair: () => void;
   endSession: () => void;
   injectRepairItems: (items: SessionItem[], afterIndex: number) => void;
+  markSentenceUsed: (id: string) => void;
 }
+
+const EMPTY_USED_SENTENCES: Set<string> = new Set();
 
 const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
   session: null,
@@ -26,8 +30,9 @@ const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
   results: [],
   isInRepair: false,
   repairPlan: null,
+  usedSentenceIds: EMPTY_USED_SENTENCES,
   startSession: (session) =>
-    set({ session, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null }),
+    set({ session, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null, usedSentenceIds: new Set() }),
   advanceItem: () => set((s) => ({ currentItemIndex: s.currentItemIndex + 1 })),
   recordResult: (result) => set((s) => ({ results: [...s.results, result] })),
   enterRepair: (plan) => set({ isInRepair: true, repairPlan: plan }),
@@ -39,7 +44,7 @@ const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
     ),
   exitRepair: () => set({ isInRepair: false, repairPlan: null }),
   endSession: () =>
-    set({ session: null, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null }),
+    set({ session: null, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null, usedSentenceIds: new Set() }),
   injectRepairItems: (items, afterIndex) =>
     set((s) => ({
       session: s.session
@@ -53,6 +58,8 @@ const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
           }
         : null,
     })),
+  markSentenceUsed: (id) =>
+    set((s) => ({ usedSentenceIds: new Set([...s.usedSentenceIds, id]) })),
 });
 
 export const useSessionStore = create<SessionSlice>()(createSessionSlice);

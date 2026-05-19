@@ -27,6 +27,8 @@ export interface ConceptMastery {
   lastCorrectAt: string | null;
   streak: number;           // consecutive correct answers
   recentOutcomes: boolean[]; // last 5 outcomes, newest first — slip detection
+  srsLevel: number;         // SRS ladder rung 0–4 (resets to 0 on wrong answer)
+  nextReviewAt: string | null; // ISO string — when this concept is next due for review
 }
 
 export interface ErrorPattern {

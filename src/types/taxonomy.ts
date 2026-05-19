@@ -23,7 +23,10 @@ export type ComprehensionErrorTag =
   | 'reading-parsing'          // couldn't decode written sentence
   | 'meaning-misunderstood';   // recognized words but missed meaning
 
-export type ErrorTag = GrammarErrorTag | VocabularyErrorTag | ComprehensionErrorTag;
+// Used when an answer is wrong but the sentence carries no detectable error tags
+export type MetaErrorTag = 'unspecified';
+
+export type ErrorTag = GrammarErrorTag | VocabularyErrorTag | ComprehensionErrorTag | MetaErrorTag;
 
 export const GRAMMAR_ERROR_TAGS: GrammarErrorTag[] = [
   'word-order', 'verb-tense', 'verb-conjugation', 'noun-gender',
@@ -43,4 +46,5 @@ export const ALL_ERROR_TAGS: ErrorTag[] = [
   ...GRAMMAR_ERROR_TAGS,
   ...VOCABULARY_ERROR_TAGS,
   ...COMPREHENSION_ERROR_TAGS,
+  'unspecified',
 ];

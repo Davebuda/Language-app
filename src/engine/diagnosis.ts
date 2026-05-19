@@ -138,3 +138,10 @@ export function getDecayingConcepts(
     .filter(([, m]) => m.rawScore >= threshold && m.decayedScore < threshold)
     .map(([id]) => id);
 }
+
+export function getReviewDueConcepts(fingerprint: MistakeFingerprint): string[] {
+  const now = new Date().toISOString();
+  return Object.entries(fingerprint.conceptMastery)
+    .filter(([, m]) => m.nextReviewAt != null && m.nextReviewAt <= now)
+    .map(([id]) => id);
+}

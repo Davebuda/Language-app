@@ -3,7 +3,7 @@ import type { ConceptGraph } from '@/types/concepts';
 import type { Session, SessionItem, SessionRecipe, ExerciseType } from '@/types/session';
 import { DEFAULT_SESSION_RECIPE } from '@/types/session';
 import { isMastered } from './fingerprint';
-import { getPrimaryWeakConcepts, getDecayingConcepts, runDiagnosis } from './diagnosis';
+import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
 import { getUnlockedConcepts } from '@/types/concepts';
 
 const AVG_EXERCISE_SECONDS = 45; // average exercise duration
@@ -108,8 +108,9 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   );
 
   const inProgressIds = new Set(Object.keys(fingerprint.conceptMastery));
-  const weakConcepts = getPrimaryWeakConcepts(fingerprint, 3);
+  const weakConcepts = getPrimaryWeakConcepts(fingerprint, 5);
   const decayingConcepts = getDecayingConcepts(fingerprint);
+  const reviewDueConcepts = getReviewDueConcepts(fingerprint);
   const diagnosisResults = runDiagnosis(fingerprint);
   const unlockedConcepts = getUnlockedConcepts(graph, masteredIds);
 
@@ -170,12 +171,14 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     if (conceptId) addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool);
   }
 
-  // Review — decaying concepts; fall back to weak then unlocked
-  const reviewPool = decayingConcepts.length > 0
-    ? decayingConcepts
-    : weakConcepts.length > 0
-      ? weakConcepts
-      : unlockedConcepts.map((c) => c.id);
+  // Review — SRS-due concepts first; fall back through decaying → weak → unlocked
+  const reviewPool = reviewDueConcepts.length > 0
+    ? reviewDueConcepts
+    : decayingConcepts.length > 0
+      ? decayingConcepts
+      : weakConcepts.length > 0
+        ? weakConcepts
+        : unlockedConcepts.map((c) => c.id);
   for (let i = 0; i < counts.review; i++) {
     const conceptId = reviewPool[i % Math.max(reviewPool.length, 1)];
     if (conceptId) addItemCapped(conceptId, REVIEW_EXERCISES, 'review', reviewPool);

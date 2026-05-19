@@ -11,6 +11,16 @@ import type { ExerciseType } from '@/types/session';
 
 const DECAY_HALF_LIFE_DAYS = 46;  // ~6.5 weeks — research-backed forgetting curve
 const DECAY_FLOOR = 35;           // cold-start midpoint: users don't forget everything
+
+// SRS review intervals in days, indexed by srsLevel (0–4)
+const SRS_LADDER_DAYS = [1, 3, 7, 14, 30] as const;
+
+function srsNextReviewAt(srsLevel: number): string {
+  const days = SRS_LADDER_DAYS[Math.min(srsLevel, SRS_LADDER_DAYS.length - 1)] ?? 1;
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return d.toISOString();
+}
 const MAX_RECENT_ERRORS = 200;
 const ERROR_PATTERN_WINDOW_DAYS = 30;
 const MAX_RECENT_OUTCOMES = 5;
@@ -82,6 +92,8 @@ export function updateConceptMastery(
     lastCorrectAt: null,
     streak: 0,
     recentOutcomes: [],
+    srsLevel: 0,
+    nextReviewAt: null,
   };
 
   const lastDay = prev.lastAttemptAt ? new Date(prev.lastAttemptAt).toDateString() : null;
@@ -105,6 +117,9 @@ export function updateConceptMastery(
   const confidence = computeConfidence(nextAttemptCount, nextUniqueDays, minAttempts, minDays);
   const decayedScore = applyDecayWithFloor(clampedScore, now);
 
+  const prevSrsLevel = prev.srsLevel ?? 0;
+  const nextSrsLevel = correct ? Math.min(prevSrsLevel + 1, SRS_LADDER_DAYS.length - 1) : 0;
+
   return {
     ...prev,
     rawScore: clampedScore,
@@ -117,6 +132,8 @@ export function updateConceptMastery(
     lastCorrectAt: correct ? now : prev.lastCorrectAt,
     streak: nextStreak,
     recentOutcomes: nextRecentOutcomes,
+    srsLevel: nextSrsLevel,
+    nextReviewAt: srsNextReviewAt(nextSrsLevel),
   };
 }
 
