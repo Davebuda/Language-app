@@ -57,7 +57,7 @@ function WordTile({ id, word }: { id: string; word: string }) {
       }}
       {...attributes}
       {...listeners}
-      className="cursor-grab touch-none select-none rounded-lg border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white active:cursor-grabbing hover:border-nc-violet/45 hover:text-nc-violet transition-colors"
+      className="cursor-grab touch-none select-none rounded-lg border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white active:cursor-grabbing hover:border-nc-green/40 hover:text-nc-green transition-colors"
     >
       {word}
     </div>
@@ -126,7 +126,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       <button
         onClick={submit}
         disabled={submitted}
-        className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="min-h-[48px] w-full rounded-xl nc-button-primary px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk rekkefølge
       </button>

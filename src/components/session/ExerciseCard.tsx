@@ -33,13 +33,13 @@ function NotYetAvailable({
 }) {
   return (
     <div className="space-y-5">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+      <p className="nc-label">
         Exercise type
       </p>
-      <p className="text-[18px] font-bold leading-snug text-white/70">
+      <p className="text-[18px] font-bold leading-snug text-nc-text">
         {type === 'reading-comprehension' ? 'Reading comprehension' : 'Free writing'} is coming soon.
       </p>
-      <p className="text-sm text-white/45">
+      <p className="text-sm text-nc-text-muted">
         This exercise type is not available yet. Tap continue to skip.
       </p>
       <button
@@ -54,7 +54,7 @@ function NotYetAvailable({
             conceptId: item.conceptIds[0] ?? '',
           })
         }
-        className="min-h-[48px] w-full rounded-xl bg-white/10 px-6 py-3 font-bold text-white/60 transition-all hover:bg-white/15"
+        className="nc-button-dark min-h-[48px] w-full px-6 py-3 transition-colors"
       >
         Continue
       </button>
@@ -111,12 +111,8 @@ export function ExerciseCard({
       animate={wasWrong && shakeKey > 0 ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
       transition={{ duration: 0.4 }}
       onAnimationComplete={() => setWasWrong(false)}
-      className="nc-panel-dark p-5"
+      className="nc-glass-cream-strong p-6"
     >
-      <div className="absolute inset-0 opacity-45">
-        <div className="nc-pattern-orbits absolute inset-0 bg-no-repeat" />
-        <div className="nc-pattern-topography absolute inset-x-[48%] bottom-[-12%] h-[56%]" />
-      </div>
       <div className="relative z-[1]">{renderExercise()}</div>
     </motion.div>
   )

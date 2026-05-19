@@ -85,7 +85,7 @@ export default async function SessionPage() {
   }
 
   return (
-    <main className="bg-nc-bg min-h-dvh">
+    <main className="min-h-dvh">
       <SessionScreen
         availableSentenceIds={availableSentenceIds}
         sentences={sentences}

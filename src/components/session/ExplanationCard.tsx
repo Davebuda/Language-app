@@ -25,33 +25,25 @@ export function ExplanationCard({
   const label = conceptLabel ?? conceptId
 
   return (
-    <div className="nc-panel-soft overflow-hidden p-5">
-      <div className="absolute right-5 top-5 h-24 w-24 opacity-65">
-        <div className="absolute inset-0 rounded-full border border-nc-apricot/60" />
-        <div className="absolute inset-[18%] rounded-full border border-nc-apricot/40" />
-        <div className="absolute left-[52%] top-[6%] h-2 w-2 rounded-full bg-nc-apricot" />
-        <div className="absolute left-[18%] top-[50%] h-1.5 w-1.5 rounded-full bg-nc-violet" />
-      </div>
-
-      <div className="relative z-[1] space-y-4">
+    <div className="nc-glass-cream-strong space-y-4 overflow-hidden p-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="nc-label">La oss se på dette</p>
-            <h3 className="mt-2 text-[1.65rem] font-display font-semibold text-nc-text">
-              Nesten — ett mønster til.
+            <p className="nc-label-red">Pattern repair</p>
+            <h3 className="mt-2 text-balance text-[1.65rem] font-display font-semibold text-nc-text">
+              Almost there!
             </h3>
           </div>
-          <span className="rounded-[0.75rem] bg-white px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-nc-text-dim">
+          <span className="rounded-full border border-[var(--nc-border)] bg-[var(--nc-card-soft)] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-nc-text-muted">
             {label}
           </span>
         </div>
 
-        <p className="text-sm leading-7 text-nc-text-muted">
+        <p className="text-pretty text-sm leading-7 text-nc-text-muted">
           {repairPlan.explanation}
         </p>
 
-        <div className="rounded-[0.95rem] border border-[#d7e8bd] bg-[linear-gradient(180deg,#eef7d2_0%,#f8fbef_100%)] px-4 py-3">
-          <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-nc-text-dim">
+        <div className="rounded-[0.95rem] border border-[var(--nc-green-border)] bg-[var(--nc-green-tint)] px-4 py-3">
+          <div className="nc-label">
             Correct answer
           </div>
           <div className="mt-1 text-[15px] font-medium text-nc-text">
@@ -62,8 +54,9 @@ export function ExplanationCard({
         {explainer ? (
           <>
             <button
+              type="button"
               onClick={() => setShowGrammar((current) => !current)}
-              className="w-full rounded-[0.9rem] border border-nc-border bg-white px-4 py-3 text-left text-sm font-medium text-nc-text transition-colors hover:bg-[#fffdf9]"
+              className="nc-button-dark w-full px-4 py-3 text-left text-sm"
             >
               {showGrammar
                 ? 'Skjul grammatikk'
@@ -73,13 +66,12 @@ export function ExplanationCard({
             <AnimatePresence>
               {showGrammar ? (
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.22 }}
-                  className="overflow-hidden"
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
                 >
-                  <div className="rounded-[0.95rem] border border-nc-border bg-white px-4 py-4">
+                  <div className="rounded-[0.95rem] border border-[var(--nc-border)] bg-[var(--nc-card)] px-4 py-4">
                     <p className="text-sm font-medium text-nc-text">
                       {explainer.shortRule}
                     </p>
@@ -87,18 +79,18 @@ export function ExplanationCard({
                       {explainer.examples.slice(0, 2).map((example, index) => (
                         <div
                           key={`${example.norwegian}-${index}`}
-                          className="rounded-[0.85rem] border border-nc-border bg-[#fff9f3] px-3 py-3"
+                          className="rounded-[0.85rem] border border-[var(--nc-border)] bg-[var(--nc-card-soft)] px-3 py-3"
                         >
                           <div className="text-sm font-medium text-nc-text">
                             {example.norwegian}
                           </div>
-                          <div className="mt-1 text-xs text-nc-text-dim">
+                          <div className="mt-1 text-xs text-nc-text-muted">
                             {example.english}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <div className="mt-3 rounded-[0.85rem] bg-nc-apricot/18 px-3 py-3 text-sm leading-7 text-nc-text-muted">
+                    <div className="mt-3 rounded-[0.85rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-3 text-sm leading-7 text-nc-text-muted">
                       {explainer.tip}
                     </div>
                   </div>
@@ -111,11 +103,10 @@ export function ExplanationCard({
         <button
           type="button"
           onClick={onContinue}
-          className="nc-button-dark min-h-[48px] w-full px-6 text-sm font-medium transition-transform hover:-translate-y-0.5"
+          className="min-h-[48px] w-full rounded-[var(--radius)] bg-[var(--nc-red)] px-6 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
         >
           Prøv igjen
         </button>
-      </div>
     </div>
   )
 }

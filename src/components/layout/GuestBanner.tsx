@@ -6,7 +6,7 @@ export function GuestBanner() {
   const router = useRouter()
 
   return (
-    <div className="nc-panel-soft flex items-center justify-between gap-3 px-4 py-3">
+    <div className="nc-glass flex items-center justify-between gap-3 px-4 py-3">
       <div>
         <p className="nc-label">Guest mode</p>
         <p className="mt-1 text-sm text-nc-text-muted">

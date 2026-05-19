@@ -46,7 +46,7 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -6 }}
-        className="nc-panel p-4"
+        className="nc-glass p-4"
       >
         <div className="nc-label mb-3">What&apos;s your Norwegian level?</div>
         <div className="grid grid-cols-2 gap-2">

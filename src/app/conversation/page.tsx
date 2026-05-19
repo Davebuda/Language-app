@@ -165,14 +165,30 @@ export default function ConversationPage() {
     if (!fingerprint) return
     const conceptId = ERROR_TAG_TO_CONCEPT[correction.errorTag]
     if (!conceptId) return
-    const updated = logError(fingerprint, {
+
+    // Update mastery (wrong answer) — same pattern as recordConstraintResult
+    const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
+    const node = activeGraph.concepts.find((c) => c.id === conceptId)
+    const updatedMastery = updateConceptMastery(
+      fingerprint.conceptMastery[conceptId],
+      false,
+      node?.minAttempts ?? 15,
+      node?.minDays ?? 3,
+    )
+    const withMastery = {
+      ...fingerprint,
+      conceptMastery: { ...fingerprint.conceptMastery, [conceptId]: { ...updatedMastery, conceptId } },
+      updatedAt: new Date().toISOString(),
+    }
+
+    const withError = logError(withMastery, {
       conceptId,
       errorTag: correction.errorTag as ErrorTag,
       exerciseType: 'translation-to-norwegian',
       wrong: correction.original,
       correct: correction.corrected,
     })
-    const withPatterns = { ...updated, errorPatterns: aggregateErrorPatterns(updated) }
+    const withPatterns = { ...withError, errorPatterns: aggregateErrorPatterns(withError) }
     setFingerprint(withPatterns)
     saveFingerprint(withPatterns).catch(console.warn)
     errorCountRef.current++
@@ -308,8 +324,8 @@ export default function ConversationPage() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-nc-bg">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pt-5 pb-4 overflow-hidden">
+    <div className="nc-gradient-page flex flex-col min-h-dvh">
+      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pt-5 pb-4 overflow-hidden relative z-10">
         <AnimatePresence mode="wait">
           {phase === 'setup' ? (
             <motion.div
@@ -320,8 +336,8 @@ export default function ConversationPage() {
               className="flex flex-col gap-4 flex-1"
             >
               <div>
-                <h1 className="text-[22px] font-extrabold text-nc-text">Samtale</h1>
-                <p className="text-[13px] text-nc-text-muted">Snakk norsk med din AI-tutor</p>
+                <h1 className="text-balance text-[22px] font-extrabold text-[var(--nc-text)]">Samtale</h1>
+                <p className="text-[13px] text-[var(--nc-text-muted)]">Snakk norsk med din AI-tutor</p>
               </div>
 
               {/* Topic grid */}
@@ -330,17 +346,20 @@ export default function ConversationPage() {
                   <button
                     key={t.id}
                     onClick={() => setSelectedTopic(t.id)}
-                    className={`flex flex-col gap-2 rounded-[16px] border p-4 text-left transition-all active:scale-[0.98] ${
+                    className={`flex flex-col gap-2 rounded-[16px] p-4 text-left transition-all active:scale-[0.98] ${
                       selectedTopic === t.id
-                        ? 'border-nc-dark bg-nc-dark/5'
-                        : 'border-nc-border bg-nc-card hover:border-nc-dark/20'
+                        ? 'nc-glass-elevated'
+                        : 'nc-glass'
                     }`}
-                    style={{ boxShadow: '0 2px 10px rgba(17,17,24,0.05)' }}
+                    style={selectedTopic === t.id ? {
+                      borderColor: 'rgba(220,38,38,0.40)',
+                      boxShadow: '0 0 0 1px rgba(220,38,38,0.20)',
+                    } : {}}
                   >
                     <span className="text-2xl">{t.emoji}</span>
                     <div>
-                      <div className="text-[13px] font-bold text-nc-text">{t.label}</div>
-                      <div className="text-[11px] text-nc-text-muted mt-0.5">{t.desc}</div>
+                      <div className="text-[13px] font-bold text-[var(--nc-text)]">{t.label}</div>
+                      <div className="text-[11px] text-[var(--nc-text-muted)] mt-0.5">{t.desc}</div>
                     </div>
                   </button>
                 ))}
@@ -356,8 +375,8 @@ export default function ConversationPage() {
                       onClick={() => setLevel(l)}
                       className={`flex-1 rounded-full py-2.5 text-[13px] font-bold border transition-colors ${
                         level === l
-                          ? 'bg-nc-dark text-nc-green border-nc-dark'
-                          : 'bg-nc-card border-nc-border text-nc-text-muted hover:border-nc-dark/20'
+                          ? 'bg-[var(--nc-red)] text-white border-[var(--nc-red)]'
+                          : 'nc-glass text-[var(--nc-text-muted)] hover:text-[var(--nc-text)]'
                       }`}
                     >
                       {l}
@@ -369,8 +388,7 @@ export default function ConversationPage() {
               <button
                 disabled={!selectedTopic}
                 onClick={() => void startConversation()}
-                className="w-full rounded-full py-4 text-sm font-extrabold transition-transform active:scale-[0.98] disabled:opacity-40"
-                style={{ background: '#111118', color: '#C8FF00', boxShadow: '0 6px 20px rgba(17,17,24,0.18)' }}
+                className="nc-button-primary w-full rounded-full py-4 text-sm font-extrabold transition-transform active:scale-[0.98] disabled:opacity-40"
               >
                 Start samtale →
               </button>
@@ -385,13 +403,13 @@ export default function ConversationPage() {
             >
               {/* Chat header */}
               <div className="flex items-center justify-between shrink-0">
-                <div className="text-[15px] font-bold text-nc-text">
+                <div className="text-[15px] font-bold text-[var(--nc-text)]">
                   {TOPICS.find((t) => t.id === selectedTopic)?.emoji}{' '}
                   {TOPICS.find((t) => t.id === selectedTopic)?.label}
                 </div>
                 <button
                   onClick={() => { void persistSessionEnd(); setPhase('setup'); window.speechSynthesis?.cancel() }}
-                  className="flex items-center gap-1 rounded-full bg-nc-card border border-nc-border px-3 py-1 text-[11px] text-nc-text-muted hover:text-nc-text transition-colors"
+                  className="nc-glass flex items-center gap-1 px-3 py-1 text-[11px] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
                 >
                   <X size={12} /> Avslutt
                 </button>
@@ -404,21 +422,15 @@ export default function ConversationPage() {
                     {msg.role === 'tutor' && (
                       <div className="flex items-center gap-1.5 mb-0.5">
                         <span className="text-sm">🇳🇴</span>
-                        <span className="text-[10px] font-semibold text-nc-text-dim">Kari</span>
+                        <span className="text-[10px] font-semibold text-[var(--nc-text-dim)]">Kari</span>
                       </div>
                     )}
                     <div
                       className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-[14px] leading-relaxed ${
                         msg.role === 'user'
-                          ? 'rounded-br-sm text-nc-text'
-                          : 'bg-nc-card border border-nc-border text-nc-text rounded-bl-sm'
+                          ? 'nc-gradient-red rounded-br-sm text-white'
+                          : 'nc-glass-cream rounded-bl-sm text-[var(--nc-text)]'
                       }`}
-                      style={msg.role === 'user' ? {
-                        background: 'rgba(17,17,24,0.07)',
-                        border: '1px solid rgba(17,17,24,0.10)',
-                      } : {
-                        boxShadow: '0 2px 8px rgba(17,17,24,0.05)',
-                      }}
                     >
                       {msg.content}
                     </div>
@@ -430,12 +442,12 @@ export default function ConversationPage() {
                         className="max-w-[80%] rounded-xl px-3 py-2"
                         style={{ background: 'rgba(244,132,95,0.07)', border: '1px solid rgba(244,132,95,0.18)' }}
                       >
-                        <p className="text-[12px] text-nc-text-muted">
-                          <span className="line-through text-nc-text-dim">{msg.correction.original}</span>
+                        <p className="text-[12px] text-[var(--nc-text-muted)]">
+                          <span className="line-through text-[var(--nc-text-dim)]">{msg.correction.original}</span>
                           {' → '}
-                          <span className="text-nc-coral font-semibold">{msg.correction.corrected}</span>
+                          <span className="font-semibold" style={{ color: 'var(--nc-red)' }}>{msg.correction.corrected}</span>
                         </p>
-                        <p className="mt-0.5 text-[11px] text-nc-text-dim">{msg.correction.explanation}</p>
+                        <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)]">{msg.correction.explanation}</p>
                       </motion.div>
                     )}
                   </div>
@@ -444,12 +456,11 @@ export default function ConversationPage() {
                 {isThinking && (
                   <div className="flex items-start gap-2">
                     <span className="text-sm">🇳🇴</span>
-                    <div className="rounded-2xl rounded-bl-sm bg-nc-card border border-nc-border px-4 py-3 flex gap-1"
-                      style={{ boxShadow: '0 2px 8px rgba(17,17,24,0.05)' }}>
+                    <div className="nc-glass rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1 text-[var(--nc-text-muted)]">
                       {[0, 0.2, 0.4].map((delay) => (
                         <motion.div
                           key={delay}
-                          className="w-1.5 h-1.5 rounded-full bg-nc-text/25"
+                          className="size-1.5 rounded-full bg-[var(--nc-text-muted)]"
                           animate={{ opacity: [0.3, 1, 0.3] }}
                           transition={{ duration: 1, delay, repeat: Infinity }}
                         />
@@ -494,24 +505,25 @@ export default function ConversationPage() {
               </AnimatePresence>
 
               {/* Input area */}
-              <div className="shrink-0 flex gap-2 pt-2 border-t border-nc-border">
+              <div className="shrink-0 nc-glass border-t border-[var(--nc-border)] px-4 py-3 flex items-center gap-3">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') void handleSend(inputText) }}
                   placeholder="Skriv eller snakk..."
-                  className="flex-1 rounded-full bg-nc-card border border-nc-border px-4 py-2.5 text-[14px] text-nc-text placeholder-nc-text-dim focus:outline-none focus:border-nc-dark/25 transition-colors"
-                  style={{ boxShadow: '0 1px 4px rgba(17,17,24,0.04)' }}
+                  className="flex-1 bg-transparent outline-none text-[var(--nc-text)] placeholder:text-[var(--nc-text-dim)] text-[14px]"
                 />
                 {hasSpeechAPI && (
                   <button
                     onClick={toggleListening}
-                    className={`rounded-full border px-3 py-2.5 transition-colors ${
+                    aria-label={isListening ? 'Stop recording' : 'Start recording'}
+                    className={`flex size-11 items-center justify-center rounded-full transition-colors ${
                       isListening
-                        ? 'bg-red-500/10 border-red-500/30 text-red-500'
-                        : 'bg-nc-card border-nc-border text-nc-text-muted hover:text-nc-text'
+                        ? 'text-white'
+                        : 'nc-glass text-[var(--nc-text-muted)]'
                     }`}
+                    style={isListening ? { background: 'var(--nc-red)' } : {}}
                   >
                     {isListening ? (
                       <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1 }}>
@@ -525,7 +537,8 @@ export default function ConversationPage() {
                 <button
                   onClick={() => void handleSend(inputText)}
                   disabled={!inputText.trim() || isThinking}
-                  className="rounded-full bg-nc-dark px-3 py-2.5 text-nc-green disabled:opacity-40 transition-colors"
+                  aria-label="Send message"
+                  className="nc-button-primary flex size-11 items-center justify-center rounded-full disabled:opacity-40"
                 >
                   <Send size={18} />
                 </button>

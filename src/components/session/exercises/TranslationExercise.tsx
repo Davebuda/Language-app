@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import { gradeAnswer } from '@/app/session/actions';
@@ -41,6 +42,7 @@ async function semanticUpgrade(userAnswer: string, correctAnswer: string, level:
 export function TranslationExercise({ item, sentence, sessionId, onResult }: TranslationExerciseProps) {
   const [userInput, setUserInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [feedbackTone, setFeedbackTone] = useState<'idle' | 'correct' | 'wrong'>('idle');
   const inputRef = useRef<HTMLInputElement>(null);
   const startRef = useRef(Date.now());
 
@@ -54,18 +56,20 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
 
-    // Grade server-side — correct answer is not exposed to the client before submission
+    // Grade server-side: correct answer is not exposed to the client before submission.
     const { correct: serverCorrect, correctAnswer: serverAnswer, errorTag } =
       await gradeAnswer(sentence.id, item.exerciseType, userInput);
 
     let correct = serverCorrect;
 
-    // Semantic upgrade for Norwegian translations when AI model is loaded
+    // Semantic upgrade for Norwegian translations when AI model is loaded.
     if (!correct && toNorwegian && aiService.isReady()) {
       const { fingerprint } = useFingerprintStore.getState();
       const level = fingerprint?.currentLevel ?? 'A1';
       correct = await semanticUpgrade(userInput, serverAnswer, level);
     }
+
+    setFeedbackTone(correct ? 'correct' : 'wrong');
 
     const result: ExerciseResult = {
       sessionId,
@@ -74,19 +78,29 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
       userAnswer: userInput,
       correctAnswer: serverAnswer,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'word-order'),
+      errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'unspecified'),
       conceptId: item.conceptIds[0] ?? '',
     };
     onResult(result);
   }
 
+  const answerFieldClassName = [
+    'nc-input',
+    feedbackTone === 'correct'
+      ? 'border-[var(--nc-green-border)] bg-[var(--nc-green-tint)]'
+      : feedbackTone === 'wrong'
+        ? 'border-[var(--nc-red-border)] bg-[var(--nc-red-tint)]'
+        : '',
+    submitted ? 'opacity-50' : '',
+  ].filter(Boolean).join(' ');
+
   return (
     <div className="space-y-5">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+      <p className="nc-label">
         {promptLabel}
       </p>
       <motion.p
-        className="text-[22px] font-bold leading-snug text-white"
+        className="font-display text-2xl font-bold leading-[1.15] tracking-tight text-nc-text"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
@@ -97,18 +111,24 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
         ref={inputRef}
         type="text"
         value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-        onKeyDown={(e) => { if (e.key === 'Enter') void submit(); }}
+        onChange={(e) => {
+          setUserInput(e.target.value);
+          if (feedbackTone !== 'idle') setFeedbackTone('idle');
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') void submit();
+        }}
         disabled={submitted}
-        placeholder="Ditt svar…"
-        className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-violet/70 focus:ring-1 focus:ring-nc-violet/40 disabled:opacity-50 transition-colors"
+        placeholder="Ditt svar..."
+        className={answerFieldClassName}
       />
       <button
         onClick={() => void submit()}
         disabled={submitted || !userInput.trim()}
-        className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[var(--radius)] bg-[var(--nc-red)] px-6 py-3 text-sm font-bold text-white transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[var(--nc-card-soft)] disabled:text-nc-text-dim disabled:shadow-none"
       >
-        Sjekk svar
+        <span>Sjekk svar</span>
+        <ArrowRight size={16} />
       </button>
     </div>
   );

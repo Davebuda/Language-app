@@ -90,7 +90,7 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
     });
   }
 
-  const audioButtonClass = "min-h-[48px] rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-5 py-3 font-semibold text-white/70 transition hover:border-nc-violet/45 hover:text-white disabled:opacity-40";
+  const audioButtonClass = "min-h-[48px] rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-5 py-3 font-semibold text-white/70 transition hover:border-nc-green/40 hover:text-white disabled:opacity-40";
 
   return (
     <div className="space-y-5">
@@ -129,12 +129,12 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
         onKeyDown={(e) => { if (e.key === 'Enter') void submit(); }}
         disabled={submitted}
         placeholder="Skriv hva du hørte…"
-        className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-violet/70 focus:ring-1 focus:ring-nc-violet/40 disabled:opacity-50 transition-colors"
+        className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-green/50 focus:ring-1 focus:ring-nc-green/15 disabled:opacity-50 transition-colors"
       />
       <button
         onClick={() => void submit()}
         disabled={submitted || !userInput.trim()}
-        className="min-h-[48px] w-full rounded-xl bg-[linear-gradient(135deg,#D7CBFF_0%,#B7A7FF_60%,#EFE8FF_100%)] px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="nc-button-primary min-h-[48px] w-full rounded-xl px-6 py-3 font-bold transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-white/30 disabled:shadow-none"
       >
         Sjekk svar
       </button>

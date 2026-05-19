@@ -87,12 +87,12 @@ export function SessionScreen({
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-transparent text-nc-text">
-      <header className="mx-auto flex w-full max-w-lg items-center gap-4 px-5 pt-5 pb-2">
+    <div className="nc-gradient-page flex flex-col text-[var(--nc-text)]">
+      <header className="mx-auto flex w-full max-w-lg items-center gap-3 px-5 pb-1 pt-4">
         <button
           type="button"
           onClick={() => router.push('/dashboard')}
-          className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text"
+          className="flex size-10 items-center justify-center rounded-[0.9rem] border border-[var(--nc-border)] bg-[var(--nc-card)] text-[var(--nc-text)]"
           aria-label="Back to dashboard"
         >
           <X size={18} />
@@ -106,20 +106,20 @@ export function SessionScreen({
                 <div
                   key={index}
                   className={`h-1.5 flex-1 rounded-full transition-colors ${
-                    isActive ? 'bg-nc-violet' : 'bg-[rgba(23,23,29,0.10)]'
+                    isActive ? 'bg-[var(--nc-green)]' : 'bg-[var(--nc-border)]'
                   }`}
                 />
               )
             })}
           </div>
-          <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="mt-2.5 flex items-center justify-between gap-3">
             <div>
               <div className="nc-label">
                 {currentItem
                   ? getExerciseTypeLabel(currentItem.exerciseType)
                   : 'Session'}
               </div>
-              <div className="mt-1 text-sm text-nc-text-muted">
+              <div className="mt-1 tabular-nums text-sm text-nc-text-muted">
                 {progressValue} / {totalItems || '-'}
               </div>
             </div>
@@ -190,7 +190,7 @@ export function SessionScreen({
 function LoadingSkeleton() {
   return (
     <div className="nc-panel p-5">
-      <div className="h-64 animate-pulse rounded-[1rem] bg-[rgba(23,23,29,0.06)]" />
+      <div className="h-64 animate-pulse rounded-[1rem] bg-[var(--nc-card-soft)]" />
     </div>
   )
 }

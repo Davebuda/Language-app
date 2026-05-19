@@ -8,6 +8,7 @@ interface ConceptProgressRowProps {
   score: number
   locked?: boolean
   prereqLabel?: string
+  className?: string
 }
 
 export function ConceptProgressRow({
@@ -16,35 +17,39 @@ export function ConceptProgressRow({
   score,
   locked = false,
   prereqLabel,
+  className,
 }: ConceptProgressRowProps) {
+  const defaultClass = locked
+    ? 'nc-glass flex items-center gap-3 px-4 py-3 opacity-60'
+    : 'nc-glass-cream flex items-center gap-3 px-4 py-3'
+
   return (
-    <div className="nc-panel flex items-center gap-3 px-4 py-3">
+    <div className={className ?? defaultClass}>
       <div
         className="h-2.5 w-2.5 shrink-0 rounded-full"
-        style={{ backgroundColor: locked ? 'rgba(23,23,29,0.18)' : color }}
+        style={{ backgroundColor: locked ? 'var(--nc-border)' : color }}
       />
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-3">
-          <span className="truncate text-[13px] font-medium text-nc-text">
+          <span className="truncate text-[13px] font-medium text-[var(--nc-text)]">
             {name}
           </span>
           {locked ? (
-            <span className="text-[10px] font-medium text-nc-text-dim">
+            <span className="text-[10px] font-medium text-[var(--nc-text-dim)]">
               {prereqLabel}
             </span>
           ) : (
-            <span className="text-[12px] font-semibold text-nc-text-dim">
+            <span className="text-[12px] font-semibold text-[var(--nc-text-dim)]">
               {score}%
             </span>
           )}
         </div>
 
-        <div className="mt-2 h-[5px] overflow-hidden rounded-full bg-[rgba(23,23,29,0.08)]">
+        <div className="mt-2 h-[5px] overflow-hidden rounded-full bg-[var(--nc-border)]">
           {!locked ? (
             <motion.div
-              className="h-full rounded-full"
-              style={{ background: color }}
+              className="h-full rounded-full bg-[var(--nc-red)]"
               initial={{ width: 0 }}
               animate={{ width: `${score}%` }}
               transition={{ duration: 0.65, ease: 'easeOut' }}

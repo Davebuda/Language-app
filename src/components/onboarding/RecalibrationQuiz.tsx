@@ -38,7 +38,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
 
   if (!currentQuestion) {
     return (
-      <div className="nc-panel p-6 text-center">
+      <div className="nc-glass p-6 text-center">
         <p className="text-sm text-nc-text-muted">
           No recalibration questions available — all concepts are up to date.
         </p>
@@ -116,12 +116,9 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -48, opacity: 0 }}
           transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] as const }}
-          className="nc-panel-dark p-5"
+          className="nc-glass-dark p-5"
         >
-          <div className="pointer-events-none absolute inset-0 opacity-30">
-            <div className="nc-pattern-orbits absolute inset-0" />
-          </div>
-          <div className="relative z-[1]">
+          <div>
             <div className="nc-label-light mb-3">
               {currentQuestion.cefrLevel} · {currentQuestion.conceptId.replace(/-/g, ' ')}
             </div>
@@ -169,7 +166,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="nc-panel-soft p-4"
+            className="nc-glass p-4"
           >
             <p className="text-sm leading-7 text-nc-text-muted">
               {currentQuestion.explanation}
@@ -187,7 +184,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="nc-panel-soft p-4 text-center"
+            className="nc-glass p-4 text-center"
           >
             <p className="text-sm font-medium text-nc-text">Updating your profile…</p>
             <div className="mt-3 flex justify-center gap-1">

@@ -30,12 +30,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-dvh bg-transparent px-5 py-5">
-      <div className="mx-auto flex min-h-[calc(100dvh-2.5rem)] w-full max-w-md flex-col justify-center">
+    <div className="nc-gradient-page flex flex-col min-h-dvh px-5 py-5">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-2.5rem)] w-full max-w-md flex-col justify-center">
         <div className="mb-5 flex items-center justify-between gap-4">
           <Link
             href="/"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text-dim transition-colors hover:text-nc-text"
+            className="nc-glass inline-flex h-10 w-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
             aria-label="Tilbake"
           >
             <ArrowLeft size={14} />
@@ -49,35 +49,29 @@ export default function LoginPage() {
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-4"
         >
-          <div className="nc-panel-dark p-6">
-            <div className="pointer-events-none absolute inset-0 opacity-45">
-              <div className="nc-pattern-orbits absolute inset-0" />
-              <div className="nc-topography absolute inset-x-0 bottom-0 h-32 opacity-70" />
-            </div>
-            <div className="relative z-[1] flex items-center justify-between gap-4">
+          <div className="nc-glass-elevated p-6 md:p-8">
+            <div className="flex items-center justify-between gap-4">
               <div>
-                <div className="nc-label-light">NorskCoach account</div>
-                <h1 className="mt-3 max-w-[14rem] text-[2.35rem] leading-[0.96] text-white">
+                <div className="nc-label">NorskCoach account</div>
+                <h1 className="mt-3 max-w-[14rem] text-[2.35rem] leading-[0.96] text-[var(--nc-text)]">
                   Fremgangen din,
                   <br />
                   overalt.
                 </h1>
-                <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-white/62">
+                <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-[var(--nc-text-muted)]">
                   Koble læringsprofilen din til e-post og fortsett sømløst på tvers av enheter.
                 </p>
               </div>
-              <div className="hidden h-20 w-20 rounded-[1rem] border border-white/10 bg-white/5 md:block">
-                <div className="nc-pattern-orbits h-full w-full opacity-60" />
-              </div>
+              <div className="hidden h-20 w-20 rounded-[1rem] border border-[var(--nc-border)] bg-white/5 md:block" />
             </div>
           </div>
 
-          <div className="nc-panel p-6">
-            <div className="nc-label">Sign in</div>
-            <div className="mt-2 text-[1.45rem] font-display font-semibold text-nc-text">
+          <div className="nc-surface p-6">
+            <div className="nc-label" style={{ color: 'rgba(17,17,16,0.55)' }}>Sign in</div>
+            <div className="mt-2 text-[1.45rem] font-display font-semibold" style={{ color: '#111110' }}>
               Synkroniser profilen din
             </div>
-            <p className="mt-2 text-sm leading-7 text-nc-text-muted">
+            <p className="mt-2 text-sm leading-7" style={{ color: 'rgba(17,17,16,0.55)' }}>
               Vi sender deg en innloggingslenke. Ingen passord, bare rask tilgang til samme
               læringshistorikk overalt.
             </p>
@@ -89,11 +83,14 @@ export default function LoginPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="nc-panel-soft mt-6 px-5 py-5"
+                  className="mt-6 rounded-[var(--radius)] border border-[rgba(17,17,16,0.10)] bg-[rgba(17,17,16,0.04)] px-5 py-5"
                 >
-                  <div className="nc-label">Sjekk innboksen</div>
-                  <p className="mt-2 text-sm leading-7 text-nc-text-muted">
-                    Vi sendte en lenke til <span className="font-medium text-nc-text">{email}</span>.
+                  <div className="text-[11px] font-bold uppercase tracking-[0.08em]" style={{ color: 'rgba(17,17,16,0.45)' }}>
+                    Sjekk innboksen
+                  </div>
+                  <p className="mt-2 text-sm leading-7" style={{ color: 'rgba(17,17,16,0.55)' }}>
+                    Vi sendte en lenke til{' '}
+                    <span className="font-medium" style={{ color: '#111110' }}>{email}</span>.
                   </p>
                 </motion.div>
               ) : (
@@ -108,7 +105,8 @@ export default function LoginPage() {
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="email"
-                      className="text-[13px] font-medium text-nc-text-muted"
+                      className="text-[13px] font-medium"
+                      style={{ color: 'rgba(17,17,16,0.55)' }}
                     >
                       E-postadresse
                     </label>
@@ -120,12 +118,13 @@ export default function LoginPage() {
                       placeholder="deg@example.com"
                       value={email}
                       onChange={(event) => setEmail(event.target.value)}
-                      className="nc-input"
+                      className="w-full min-h-[3rem] rounded-[var(--radius)] border-[1.5px] border-[rgba(17,17,16,0.15)] bg-[rgba(17,17,16,0.04)] px-4 py-3 text-[0.9375rem] outline-none transition-colors focus:border-[#DC2626] focus:ring-2 focus:ring-[rgba(220,38,38,0.12)]"
+                      style={{ color: '#111110' }}
                     />
                   </div>
 
                   {errorMsg ? (
-                    <p className="rounded-[0.9rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-500">
+                    <p className="rounded-[0.9rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600">
                       {errorMsg}
                     </p>
                   ) : null}
@@ -133,7 +132,7 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={loading || !email}
-                    className="nc-button-dark inline-flex w-full items-center justify-center gap-2 px-4 py-4 text-sm font-medium transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-35"
+                    className="nc-button-primary inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-4 py-4 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-35"
                   >
                     <span>{loading ? 'Sender…' : 'Send innloggingslenke'}</span>
                     {!loading ? <ArrowRight size={15} /> : null}
@@ -142,11 +141,12 @@ export default function LoginPage() {
               )}
             </AnimatePresence>
 
-            <p className="mt-7 text-center text-sm leading-7 text-nc-text-dim">
+            <p className="mt-7 text-center text-sm leading-7" style={{ color: 'rgba(17,17,16,0.45)' }}>
               Vil du bare utforske først?{' '}
               <Link
                 href="/dashboard"
-                className="font-medium text-nc-violet transition-colors hover:text-nc-text"
+                className="font-medium transition-colors hover:opacity-80"
+                style={{ color: '#DC2626' }}
               >
                 Fortsett uten innlogging
               </Link>

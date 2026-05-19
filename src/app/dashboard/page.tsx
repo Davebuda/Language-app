@@ -3,19 +3,20 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Bell, Menu, Play, Waves } from 'lucide-react'
+import { Bell, Play, MessageCircle, BookOpen, PenLine, RefreshCw } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
-import { generateSession } from '@/engine/scheduler'
-import type { SchedulerOutput } from '@/engine/scheduler'
+import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
+import { getConceptPhase, isMastered } from '@/engine'
+import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { GuestBanner } from '@/components/layout/GuestBanner'
-import { LevelBadge, LevelSelector } from '@/components/dashboard/LevelSelector'
+import { LevelBadge } from '@/components/dashboard/LevelSelector'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
+import { Badge } from '@/components/ui/badge'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
@@ -23,17 +24,24 @@ import a2GraphJson from '@content/concepts/a2-graph.json'
 const a1Graph = a1GraphJson as ConceptGraph
 const a2Graph = a2GraphJson as ConceptGraph
 
-const SECONDARY_MODES = [
-  { id: 'conversation', href: '/conversation', label: 'Speak', emoji: '💬' },
-  { id: 'reading', href: '/reading', label: 'Read', emoji: '📖' },
-  { id: 'journal', href: '/journal', label: 'Write', emoji: '✍️' },
+const MODES = [
+  { id: 'conversation', href: '/conversation', label: 'Speak',       Icon: MessageCircle },
+  { id: 'reading',      href: '/reading',      label: 'Read',        Icon: BookOpen },
+  { id: 'journal',      href: '/journal',      label: 'Write',       Icon: PenLine },
+  { id: 'recalibrate',  href: '/recalibrate',  label: 'Recalibrate', Icon: RefreshCw },
 ] as const
+
+const PHASE_META: Record<ConceptPhase, { label: string; bg: string; color: string }> = {
+  maintenance:   { label: 'Strong',        bg: 'rgba(74,222,128,0.15)',   color: '#4ade80' },
+  consolidation: { label: 'Consolidating', bg: 'rgba(167,139,250,0.15)',  color: '#c4b5fd' },
+  practice:      { label: 'Practice',      bg: 'rgba(251,146,60,0.15)',   color: '#fb923c' },
+  intro:         { label: 'Intro',         bg: 'rgba(250,204,21,0.12)',   color: '#fbbf24' },
+  locked:        { label: 'Locked',        bg: 'rgba(255,255,255,0.06)',  color: 'rgba(237,232,227,0.36)' },
+}
 
 function todayFormatted(): string {
   return new Date().toLocaleDateString('nb-NO', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
+    weekday: 'long', day: 'numeric', month: 'long',
   })
 }
 
@@ -46,21 +54,7 @@ export default function DashboardPage() {
   const [showLevelUp, setShowLevelUp] = useState(false)
   const streak = getStreak()
 
-  // Recalibration trigger: suggested after 7+ day gap or 30+ days since last recalibration
-  const showRecalibrationSuggestion = (() => {
-    if (!fingerprint) return false
-    const lastSession = fingerprint.lastSessionAt
-    const lastRecal = fingerprint.lastRecalibrationAt
-    const daysSinceSession = lastSession
-      ? (Date.now() - new Date(lastSession).getTime()) / 86_400_000
-      : Infinity
-    const daysSinceRecal = lastRecal
-      ? (Date.now() - new Date(lastRecal).getTime()) / 86_400_000
-      : Infinity
-    return daysSinceSession > 7 || daysSinceRecal > 30
-  })()
-
-  // Show level-up celebration when A1→A2 transition is detected
+  // Level-up celebration when A1→A2 transition fires
   useEffect(() => {
     try {
       if (localStorage.getItem('norskcoach_levelup_pending') === '1') {
@@ -71,20 +65,17 @@ export default function DashboardPage() {
     } catch { /* ignore */ }
   }, [fingerprint?.currentLevel])
 
-  const displayName =
-    user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
-
   useEffect(() => {
     if (!localStorage.getItem('norskcoach_onboarded')) {
       localStorage.setItem('norskcoach_onboarded', 'true')
     }
   }, [])
 
-  // Pick the active concept graph based on the user's current level
   const activeGraph =
-    fingerprint?.currentLevel === 'A2' || fingerprint?.currentLevel === 'B1' || fingerprint?.currentLevel === 'B2'
-      ? a2Graph
-      : a1Graph
+    fingerprint?.currentLevel === 'A2' ||
+    fingerprint?.currentLevel === 'B1' ||
+    fingerprint?.currentLevel === 'B2'
+      ? a2Graph : a1Graph
 
   useEffect(() => {
     if (status === 'loading' || !fingerprint) return
@@ -96,153 +87,300 @@ export default function DashboardPage() {
     setPlan(output)
   }, [fingerprint, status, activeGraph])
 
+  // Recalibration: only show if user has an actual session history (avoids the "always show" bug)
+  const showRecalibrationSuggestion = (() => {
+    if (!fingerprint) return false
+    const lastSession = fingerprint.lastSessionAt
+    if (!lastSession) return false // never shown to brand-new users
+    const daysSince = (Date.now() - new Date(lastSession).getTime()) / 86_400_000
+    return daysSince > 7
+  })()
+
+  const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
+  const levelLabel = fingerprint?.currentLevel ?? 'A1'
+
   const primaryConcept = activeGraph.concepts.find(
-    (concept) => concept.id === (plan?.primaryFocus ?? 'noun-gender'),
+    (c) => c.id === (plan?.primaryFocus ?? 'noun-gender'),
   )
   const sessionTitle = primaryConcept?.label ?? 'Norwegian Foundations'
   const estimatedMin = plan
     ? Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))
     : 18
-  const remediation =
-    plan?.session.items.filter((item) => item.purpose === 'remediation').length ?? 0
-  const review =
-    plan?.session.items.filter((item) => item.purpose === 'review').length ?? 0
-  const newMaterial =
-    plan?.session.items.filter((item) => item.purpose === 'new-material').length ?? 0
+  const remediation = plan?.session.items.filter((i) => i.purpose === 'remediation').length ?? 0
+  const review      = plan?.session.items.filter((i) => i.purpose === 'review').length ?? 0
+  const newMaterial = plan?.session.items.filter((i) => i.purpose === 'new-material').length ?? 0
 
-  const masteryTiles = useMemo(
-    () =>
-      activeGraph.concepts.slice(0, 16).map((concept, index) => {
-        const mastery = fingerprint?.conceptMastery[concept.id]
-        const score = mastery ? Math.round(mastery.decayedScore) : 0
-        const prereqsMet = concept.prerequisites.every((prerequisite) =>
-          !!fingerprint?.conceptMastery[prerequisite],
-        )
-        const locked = !mastery && concept.prerequisites.length > 0 && !prereqsMet
-
-        return {
-          id: concept.id,
-          label: concept.label,
-          index: index + 1,
-          score,
-          locked,
-          color: getConceptColor(concept.id, index),
-        }
-      }),
-    [fingerprint, activeGraph],
+  // Compact stats
+  const attemptedMastery = Object.values(fingerprint?.conceptMastery ?? {}).filter(
+    (m) => m.attemptCount > 0,
   )
+  const accuracy = attemptedMastery.length > 0
+    ? Math.round(attemptedMastery.reduce((s, m) => s + m.decayedScore, 0) / attemptedMastery.length)
+    : 0
+  const speakingMins = Math.round(fingerprint?.speakingMinutesTotal ?? 0)
 
-  // Show level prompt if user has never explicitly set their level
-  const showLevelPrompt =
-    !!fingerprint && fingerprint.levelSetByUser === false
+  // "Currently learning" — named concepts, non-locked only, max 5
+  const activeConcepts = useMemo(() => {
+    const masteredIds = new Set(
+      activeGraph.concepts
+        .filter((c) => isMastered(
+          fingerprint?.conceptMastery[c.id],
+          c.masteryThreshold,
+          c.minAttempts,
+          c.minDays,
+        ))
+        .map((c) => c.id),
+    )
 
-  const levelLabel = fingerprint?.currentLevel ?? 'A1'
+    return activeGraph.concepts
+      .map((c, i) => {
+        const mastery = fingerprint?.conceptMastery[c.id]
+        const phase = getConceptPhase(mastery, c.prerequisites, masteredIds)
+        return {
+          id: c.id,
+          label: c.label,
+          phase,
+          score: mastery ? Math.round(mastery.decayedScore) : 0,
+          color: getConceptColor(c.id, i),
+        }
+      })
+      .filter((c) => c.phase !== 'locked')
+      .sort((a, b) => {
+        const order: Record<ConceptPhase, number> = {
+          practice: 0, consolidation: 1, intro: 2, maintenance: 3, locked: 4,
+        }
+        return order[a.phase] - order[b.phase]
+      })
+      .slice(0, 5)
+  }, [fingerprint, activeGraph])
 
   return (
-    <div className="flex min-h-dvh flex-col bg-transparent">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4">
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text"
-            aria-label="Menu"
-          >
-            <Menu size={18} />
-          </button>
+    <div className="nc-gradient-page flex min-h-dvh flex-col">
+      <main className="relative mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
 
-          <div className="flex-1">
-            <div className="text-[11px] font-medium tracking-[0.08em] text-nc-text-dim">
+        {/* ── Header ── */}
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
               {todayFormatted()}
             </div>
-            <div className="mt-1 flex items-center gap-2">
-              <h1 className="text-[2rem] font-display font-semibold text-nc-text">
-                God kveld, {displayName}! 👋
+            <div className="mt-1 flex flex-wrap items-center gap-2.5">
+              <h1 className="text-balance font-display text-[2rem] font-bold leading-tight tracking-tight text-[var(--nc-text)]">
+                God kveld, {displayName}!
               </h1>
-              {/* Level badge — always visible, tap to change */}
               <LevelBadge />
             </div>
-            <p className="mt-1 text-sm text-nc-text-muted">
-              {levelLabel} · Klar for å lære i dag?
-            </p>
           </div>
-
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text"
             aria-label="Notifications"
+            className="nc-glass flex size-10 shrink-0 items-center justify-center text-[var(--nc-text-muted)]"
           >
-            <Bell size={17} />
+            <Bell size={16} />
           </button>
         </div>
 
-        {!user ? <GuestBanner /> : null}
-
-        {/* Level-up celebration */}
+        {/* ── Level-up toast ── */}
         <AnimatePresence>
           {showLevelUp && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -8 }}
+              initial={{ opacity: 0, scale: 0.95, y: -6 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="rounded-[18px] p-4 text-center"
-              style={{ background: '#181526', boxShadow: '0 8px 32px rgba(24,21,38,0.22)' }}
+              className="nc-glass-elevated p-4 text-center"
             >
-              <div className="text-2xl mb-1">🎉</div>
-              <div className="text-[17px] font-extrabold" style={{ color: '#C8FF00' }}>
+              <div className="mb-1 text-2xl">🎉</div>
+              <div className="text-[17px] font-extrabold text-[var(--nc-green)]">
                 Nivå opp! Du er nå A2
               </div>
-              <div className="text-[12px] mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              <div className="mt-1 text-[12px] text-[var(--nc-text-dim)]">
                 Du har mestret alle A1-konsepter. Neste nivå er låst opp.
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Level selector prompt — shown once to users who haven't set their level */}
-        <AnimatePresence>
-          {showLevelPrompt && (
-            <LevelSelector variant="prompt" />
-          )}
-        </AnimatePresence>
-
-        {/* B1/B2 notice — these levels have no dedicated concept graph yet */}
+        {/* ── B1/B2 graph notice ── */}
         <AnimatePresence>
           {(fingerprint?.currentLevel === 'B1' || fingerprint?.currentLevel === 'B2') && (
             <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="rounded-[1rem] border border-[rgba(200,255,0,0.18)] bg-[rgba(200,255,0,0.07)] px-4 py-3"
+              className="nc-glass px-4 py-3"
             >
-              <p className="text-[12px] leading-6 text-nc-text-muted">
-                <span className="font-semibold text-nc-text">{fingerprint.currentLevel} selected.</span>{' '}
-                The {fingerprint.currentLevel} concept graph is coming soon — your sessions are currently running A2 material.
+              <p className="text-[12px] leading-6 text-[var(--nc-text-muted)]">
+                <span className="font-semibold text-[var(--nc-text)]">
+                  {fingerprint.currentLevel} content is in development.
+                </span>{' '}
+                You&apos;re practicing A2 material at higher intensity until it ships.
               </p>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Recalibration suggestion — soft nudge after gaps */}
+        {/* ── Guest banner — white surface ── */}
+        {!user && (
+          <div className="nc-surface flex items-center justify-between gap-3 px-4 py-2.5">
+            <p className="text-[12px] text-[#111110]/60">
+              Logg inn for å synkronisere fremgangen din
+            </p>
+            <Link
+              href="/login"
+              className="nc-button-primary shrink-0 px-3 py-1.5 text-[12px] font-bold"
+            >
+              Logg inn
+            </Link>
+          </div>
+        )}
+
+        {/* ── TODAY'S SESSION — primary action ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="nc-gradient-red p-5 text-white"
+        >
+          <div className="text-white/60 nc-label mb-2">{"Today's session · "}{levelLabel}</div>
+          <div className="font-display text-[1.5rem] font-bold text-white text-balance mt-1">
+            {sessionTitle}
+          </div>
+          <p className="mt-2 text-[12px] text-white/55">
+            Estimated: {estimatedMin} min
+          </p>
+          <button
+            onClick={() => router.push('/session')}
+            className="mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[var(--radius)] bg-white/14 backdrop-blur border border-white/20 px-5 py-3 text-sm font-bold text-white hover:bg-white/20"
+          >
+            <Play size={14} />
+            Start session
+          </button>
+
+          {/* Session composition badges */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {remediation > 0 && (
+              <span className="rounded-[0.65rem] border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white/80">
+                {remediation} repairs
+              </span>
+            )}
+            {review > 0 && (
+              <span className="rounded-[0.65rem] border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white/80">
+                {review} review
+              </span>
+            )}
+            {newMaterial > 0 && (
+              <span className="rounded-[0.65rem] border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white/80">
+                {newMaterial} new
+              </span>
+            )}
+          </div>
+        </motion.div>
+
+        {/* ── Stats — compact 4-column ── */}
+        <div className="grid grid-cols-4 gap-2.5">
+          {[
+            { label: 'streak',      value: String(streak),       color: 'var(--nc-red)' },
+            { label: 'mins spoken', value: String(speakingMins), color: 'var(--nc-text)' },
+            { label: 'accuracy',    value: `${accuracy}%`,       color: 'var(--nc-green)' },
+            { label: 'sessions',    value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-muted)' },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="nc-glass-cream px-2.5 py-3 text-center"
+            >
+              <div
+                className="font-display tabular-nums text-[1.5rem] font-bold leading-none tracking-tight"
+                style={{ color: s.color }}
+              >
+                {s.value}
+              </div>
+              <div className="mt-1.5 text-[9px] font-medium leading-tight text-[var(--nc-text-dim)]">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Practice modes ── */}
+        <div className="grid grid-cols-4 gap-2.5">
+          {MODES.map((mode) => (
+            <Link
+              key={mode.id}
+              href={mode.href}
+              className="nc-glass-cream flex flex-col items-center gap-2 px-2 py-3"
+            >
+              <mode.Icon size={18} className="text-[var(--nc-text-muted)]" />
+              <span className="text-[11px] font-semibold leading-none text-[var(--nc-text-muted)]">
+                {mode.label}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        {/* ── Currently learning ── */}
+        <div>
+          <div className="mb-3 flex items-baseline justify-between">
+            <span className="text-[13px] font-bold text-[var(--nc-text)]">Currently learning</span>
+            <Link href="/progress" className="text-[11px] font-semibold text-[var(--nc-text-dim)]">
+              View all →
+            </Link>
+          </div>
+
+          {activeConcepts.length === 0 ? (
+            <div className="nc-glass-cream rounded-[0.95rem] border-dashed px-4 py-5 text-center">
+              <p className="text-[12px] leading-6 text-[var(--nc-text-dim)]">
+                Start a session to track your concept mastery here.
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {activeConcepts.map((concept) => {
+                const meta = PHASE_META[concept.phase]
+                return (
+                  <motion.div
+                    key={concept.id}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="nc-glass-cream flex items-center gap-3 px-4 py-3"
+                  >
+                    <div
+                      className="size-2.5 shrink-0 rounded-full"
+                      style={{ background: concept.color }}
+                    />
+                    <span className="min-w-0 flex-1 truncate text-[13px] font-semibold text-[var(--nc-text)]">
+                      {concept.label}
+                    </span>
+                    <Badge
+                      variant="outline"
+                      className="shrink-0 border-0 px-2.5 py-0.5 text-[10px] font-bold"
+                      style={{ background: meta.bg, color: meta.color }}
+                    >
+                      {meta.label}{concept.score > 0 ? ` · ${concept.score}%` : ''}
+                    </Badge>
+                  </motion.div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* ── Recalibration banner ── */}
         <AnimatePresence>
           {showRecalibrationSuggestion && (
             <motion.div
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="flex items-center justify-between gap-3 rounded-[1rem] border border-nc-apricot/22 bg-nc-apricot/8 px-4 py-3"
+              className="nc-glass border-l-4 border-l-[var(--nc-red)] flex items-center justify-between gap-3 px-4 py-3"
             >
               <div>
-                <p className="text-[13px] font-medium text-nc-text">
-                  Been a while — recalibrate your profile?
-                </p>
-                <p className="mt-0.5 text-[11px] text-nc-text-dim">
-                  A 7-question check on concepts you may have forgotten.
+                <p className="text-[13px] font-semibold text-[var(--nc-text)]">Been a while?</p>
+                <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)]">
+                  Quick 7-question check to recalibrate your profile.
                 </p>
               </div>
               <button
                 onClick={() => router.push('/recalibrate')}
-                className="shrink-0 rounded-[0.8rem] bg-nc-apricot/20 px-3 py-2 text-[12px] font-semibold text-nc-coral transition-colors hover:bg-nc-apricot/30"
+                className="nc-button-primary shrink-0 px-3 py-2 text-[12px] font-bold"
               >
                 Start
               </button>
@@ -250,192 +388,7 @@ export default function DashboardPage() {
           )}
         </AnimatePresence>
 
-        {/* Today's session card */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="nc-panel-dark p-5"
-        >
-          <div className="relative z-[1] grid gap-4 md:grid-cols-[1fr_132px] md:items-end">
-            <div>
-              <div className="nc-label-light">
-                {"Today's session · "}{levelLabel}
-              </div>
-              <div className="mt-2 text-[1.75rem] font-display font-semibold text-white">
-                {sessionTitle}
-              </div>
-              <p className="mt-2 text-sm text-white/55">Estimated time: {estimatedMin} min</p>
-              <button
-                onClick={() => router.push('/session')}
-                className="nc-button-primary mt-5 inline-flex items-center gap-2 px-4 py-3 text-sm font-medium"
-              >
-                <Play size={15} />
-                Start session
-              </button>
-            </div>
-
-            <div className="relative hidden h-28 overflow-hidden rounded-[1rem] border border-white/8 bg-white/5 md:block">
-              <div className="absolute inset-0 opacity-60">
-                <div className="nc-pattern-orbits absolute inset-0" />
-              </div>
-              <div className="absolute inset-x-[-20%] bottom-[-8%] h-[55%] bg-[radial-gradient(circle_at_50%_50%,rgba(185,176,255,0.45),transparent_55%)]" />
-            </div>
-          </div>
-
-          <div className="relative z-[1] mt-5 flex flex-wrap gap-2">
-            {remediation > 0 ? (
-              <span className="rounded-[0.7rem] border border-[#ffbba3]/20 bg-[#ffbba3]/10 px-3 py-1.5 text-[11px] font-medium text-[#ffcab9]">
-                {remediation} repairs
-              </span>
-            ) : null}
-            {review > 0 ? (
-              <span className="rounded-[0.7rem] border border-white/10 bg-white/8 px-3 py-1.5 text-[11px] font-medium text-white/60">
-                {review} review
-              </span>
-            ) : null}
-            {newMaterial > 0 ? (
-              <span className="rounded-[0.7rem] border border-white/10 bg-white/8 px-3 py-1.5 text-[11px] font-medium text-white/60">
-                {newMaterial} new
-              </span>
-            ) : null}
-          </div>
-        </motion.div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            { label: 'day streak', value: String(streak), accent: 'text-[#ff9a78]', icon: '🔥' },
-            {
-              label: 'mins spoken',
-              value: `${Math.round(fingerprint?.speakingMinutesTotal ?? 0)}`,
-              accent: 'text-nc-violet',
-              icon: '🎙',
-            },
-            {
-              label: 'accuracy',
-              value: `${Math.round(masteryTiles.reduce((sum, tile) => sum + tile.score, 0) / Math.max(masteryTiles.length, 1))}%`,
-              accent: 'text-nc-sage',
-              icon: '↗',
-            },
-            {
-              label: 'concepts',
-              value: String(
-                Object.values(fingerprint?.conceptMastery ?? {}).filter(
-                  (entry) => entry.attemptCount > 0,
-                ).length,
-              ),
-              accent: 'text-[#9cc36b]',
-              icon: '◌',
-            },
-          ].map((stat) => (
-            <div key={stat.label} className="nc-panel px-3 py-3">
-              <div className="flex items-center gap-2">
-                <span className={`text-sm ${stat.accent}`}>{stat.icon}</span>
-                <span className={`text-[1.6rem] font-display font-semibold ${stat.accent}`}>
-                  {stat.value}
-                </span>
-              </div>
-              <div className="mt-1 text-[10px] font-medium text-nc-text-dim">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Concept mastery — label shows active level */}
-        <div className="nc-panel p-4">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <div className="nc-label">Concept mastery</div>
-              <div className="mt-1 text-sm text-nc-text-muted">
-                {levelLabel} — {masteryTiles.length} concepts
-              </div>
-            </div>
-            <Link href="/progress" className="text-[12px] font-medium text-nc-text-dim">
-              View all
-            </Link>
-          </div>
-
-          <div className="mt-4 grid grid-cols-4 gap-2">
-            {masteryTiles.map((tile) => (
-              <div
-                key={tile.id}
-                className="rounded-[0.8rem] border px-2.5 py-2"
-                style={{
-                  borderColor: tile.locked ? 'rgba(23,23,29,0.07)' : `${tile.color}33`,
-                  backgroundColor: tile.locked ? 'rgba(23,23,29,0.02)' : `${tile.color}20`,
-                }}
-              >
-                <div className="text-[12px] font-medium text-nc-text">{tile.index}</div>
-                <div className="mt-1 text-[10px] leading-4 text-nc-text-dim">
-                  {tile.locked ? 'Locked' : `${tile.score}%`}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick practice */}
-        <div className="nc-panel-dark p-4">
-          <div className="relative z-[1] flex items-center justify-between gap-3">
-            <div>
-              <div className="text-sm font-medium text-white">Quick practice</div>
-              <div className="mt-1 text-[13px] text-white/52">Listen and repeat common phrases</div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-white/45">5 min boost</span>
-              <button
-                type="button"
-                onClick={() => router.push('/session')}
-                className="flex h-9 w-9 items-center justify-center rounded-[0.85rem] border border-white/10 bg-white/8 text-white"
-              >
-                <Play size={14} />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Secondary modes */}
-        <div className="grid grid-cols-4 gap-3">
-          {SECONDARY_MODES.map((mode) => (
-            <Link
-              key={mode.id}
-              href={mode.href}
-              className="nc-panel flex flex-col gap-2 px-3 py-3"
-            >
-              <span className="text-lg">{mode.emoji}</span>
-              <span className="text-[13px] font-medium text-nc-text">{mode.label}</span>
-            </Link>
-          ))}
-          <Link
-            href="/recalibrate"
-            className="nc-panel flex flex-col gap-2 px-3 py-3"
-          >
-            <span className="text-lg">🔄</span>
-            <span className="text-[13px] font-medium text-nc-text">Check</span>
-          </Link>
-        </div>
-
-        {/* Keep going CTA */}
-        <div className="rounded-[1rem] border border-[rgba(214,255,90,0.35)] bg-[linear-gradient(135deg,rgba(214,255,90,0.50)_0%,rgba(251,247,241,0.92)_72%)] px-4 py-4">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <div className="text-[13px] font-medium text-nc-text">Keep going!</div>
-              <p className="mt-1 text-sm text-nc-text-muted">
-                Your next session is ready.
-              </p>
-            </div>
-            <Waves size={24} className="text-[rgba(23,23,29,0.32)]" />
-          </div>
-          <button
-            onClick={() => router.push('/session')}
-            className="nc-button-lime mt-4 px-4 py-3 text-sm font-medium"
-          >
-            Continue learning
-          </button>
-        </div>
       </main>
-
       <BottomNav active="home" />
     </div>
   )

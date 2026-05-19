@@ -185,11 +185,12 @@ export function OnboardingFlow() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-transparent">
-      <div className="mx-auto flex w-full max-w-lg items-center gap-3 px-5 pt-5">
+    <div className="nc-gradient-page flex flex-col">
+      {/* Progress header */}
+      <div className="relative z-10 mx-auto flex w-full max-w-lg items-center gap-3 px-5 pt-5">
         <button
           onClick={back}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text-dim transition-colors hover:text-nc-text"
+          className="nc-glass inline-flex h-10 w-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
           aria-label="Tilbake"
         >
           <ArrowLeft size={14} />
@@ -200,18 +201,19 @@ export function OnboardingFlow() {
             <div
               key={index}
               className={`h-1.5 rounded-[0.4rem] transition-colors ${
-                index <= stepIndex ? 'bg-nc-violet' : 'bg-[rgba(23,23,29,0.08)]'
+                index <= stepIndex ? 'bg-[var(--nc-red)]' : 'bg-white/[0.15]'
               }`}
             />
           ))}
         </div>
 
-        <span className="text-[11px] font-medium tracking-[0.08em] text-nc-text-dim">
+        <span className="text-[11px] font-medium tracking-[0.08em] text-[var(--nc-text-dim)]">
           {stepIndex + 1}/{steps.length}
         </span>
       </div>
 
-      <div className="mx-auto flex w-full max-w-lg flex-1 overflow-hidden px-5 pb-10 pt-6">
+      {/* Main content */}
+      <div className="relative z-10 mx-auto flex w-full max-w-lg flex-1 overflow-hidden px-5 pb-10 pt-6" style={{ minHeight: 'calc(100dvh - 5rem)' }}>
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={stepIndex}
@@ -240,44 +242,38 @@ function IntroSlide({
 }) {
   return (
     <div className="flex flex-1 flex-col gap-5">
-      <div className="nc-panel-dark min-h-[18rem] p-6">
-        <div className="pointer-events-none absolute inset-0 opacity-45">
-          <div className="nc-pattern-orbits absolute inset-0" />
-          <div className="nc-topography absolute inset-x-0 bottom-0 h-40 opacity-70" />
-        </div>
-
-        <div className="relative z-[1] flex h-full flex-col justify-between">
+      {/* Main hero card */}
+      <div className="nc-glass-elevated p-6">
+        <div className="flex h-full flex-col justify-between">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="nc-label-light">{slide.label}</div>
-              <h1 className="mt-4 max-w-[14rem] text-[2.25rem] leading-[0.96] text-white">
+              <div className="nc-label-red">{slide.label}</div>
+              <h1 className="mt-4 max-w-[14rem] text-[2.25rem] leading-[0.96] text-[var(--nc-text)]">
                 {slide.heading}
               </h1>
-              <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-white/62">
+              <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-[var(--nc-text-muted)]">
                 {slide.body}
               </p>
             </div>
 
-            <div className="hidden h-20 w-20 rounded-[1rem] border border-white/10 bg-white/5 sm:block">
-              <div className="nc-pattern-orbits h-full w-full opacity-60" />
-            </div>
+            <div className="hidden h-20 w-20 rounded-[1rem] border border-white/10 bg-white/5 sm:block" />
           </div>
 
-          <div className="text-sm text-white/46">Bygges rundt det du faktisk trenger.</div>
+          <div className="mt-6 text-sm text-[var(--nc-text-dim)]">Bygges rundt det du faktisk trenger.</div>
         </div>
       </div>
 
       {'detail' in slide && slide.detail ? (
-        <div className="nc-panel p-4">
+        <div className="nc-glass p-4">
           <div className="nc-label">Eksempel på konseptprofil</div>
           <div className="mt-4 flex flex-col gap-3">
             {slide.detail.map((item) => (
               <div key={item.label} className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-nc-violet">{item.icon}</span>
-                  <span className="text-sm font-medium text-nc-text">{item.label}</span>
+                  <span className="text-xs text-[var(--nc-red)]">{item.icon}</span>
+                  <span className="text-sm font-medium text-[var(--nc-text)]">{item.label}</span>
                 </div>
-                <span className="text-xs font-semibold text-nc-text-dim">{item.sub}</span>
+                <span className="text-xs font-semibold text-[var(--nc-text-dim)]">{item.sub}</span>
               </div>
             ))}
           </div>
@@ -285,19 +281,19 @@ function IntroSlide({
       ) : null}
 
       {'steps' in slide && slide.steps ? (
-        <div className="nc-panel-soft p-4">
+        <div className="nc-glass p-4">
           <div className="nc-label">Reparasjonsflyt</div>
           <div className="mt-4 grid grid-cols-2 gap-3">
             {slide.steps.map((item, index) => (
               <div
                 key={item.label}
-                className="rounded-[0.95rem] border border-nc-border bg-white px-4 py-4"
+                className="nc-glass px-4 py-4"
               >
-                <div className="text-[11px] font-medium tracking-[0.08em] text-nc-text-dim">
+                <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--nc-text-dim)]">
                   {item.icon}
                 </div>
-                <div className="mt-2 text-sm font-medium text-nc-text">{item.label}</div>
-                <div className="mt-3 text-[11px] text-nc-text-dim">
+                <div className="mt-2 text-sm font-medium text-[var(--nc-text)]">{item.label}</div>
+                <div className="mt-3 text-[11px] text-[var(--nc-text-dim)]">
                   {index < slide.steps.length - 1 ? 'Neste steg' : 'Klar for nytt forsøk'}
                 </div>
               </div>
@@ -307,7 +303,7 @@ function IntroSlide({
       ) : null}
 
       {!('detail' in slide) && !('steps' in slide) ? (
-        <div className="nc-panel-soft p-4">
+        <div className="nc-glass p-4">
           <div className="nc-label">Hva du får</div>
           <div className="mt-4 grid gap-3">
             {[
@@ -316,8 +312,8 @@ function IntroSlide({
               'Fremdrift som bygger på det du faktisk gjør.',
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <div className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-nc-violet" />
-                <p className="text-sm leading-7 text-nc-text-muted">{item}</p>
+                <div className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-[var(--nc-red)]" />
+                <p className="text-sm leading-7 text-[var(--nc-text-muted)]">{item}</p>
               </div>
             ))}
           </div>
@@ -328,7 +324,7 @@ function IntroSlide({
 
       <button
         onClick={onNext}
-        className="nc-button-dark inline-flex items-center justify-center gap-2 px-4 py-4 text-sm font-medium transition-transform hover:-translate-y-0.5"
+        className="nc-gradient-red inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
       >
         <span>{slide.cta}</span>
         <ArrowRight size={15} />
@@ -356,34 +352,35 @@ function ReadyStep({
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-1 flex-col gap-5"
     >
-      <div className="nc-panel-soft px-5 py-6 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[1rem] bg-white shadow-[0_12px_24px_rgba(23,23,29,0.08)]">
-          <span className="text-lg font-display font-semibold text-nc-text">{level}</span>
+      {/* Level badge card */}
+      <div className="nc-glass-elevated px-5 py-6 text-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[1rem] bg-white/10 border border-white/14">
+          <span className="font-display text-lg font-semibold text-[var(--nc-text)]">{level}</span>
         </div>
-        <h2 className="mt-4 text-[2rem] leading-[0.98] text-nc-text">Første økt er klar.</h2>
-        <p className="mt-3 text-sm leading-7 text-nc-text-muted">
+        <h2 className="mt-4 text-[2rem] leading-[0.98] text-[var(--nc-text)]">Første økt er klar.</h2>
+        <p className="mt-3 text-sm leading-7 text-[var(--nc-text-muted)]">
           Vi starter på {level}-nivå og justerer videre ut fra hvordan du svarer.
         </p>
       </div>
 
-      <div className="nc-panel-dark p-5">
-        <div className="relative z-[1]">
-          <div className="nc-label-light">Din første økt</div>
-          <div className="mt-4 flex flex-col gap-3">
-            {concepts.map((concept) => (
-              <div key={concept.label} className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-nc-green" />
-                  <span className="text-sm font-medium text-white/88">{concept.label}</span>
-                </div>
-                <span className="text-xs font-semibold text-white/45">{concept.sub}</span>
+      {/* First session concepts */}
+      <div className="nc-glass p-5">
+        <div className="nc-label-red">Din første økt</div>
+        <div className="mt-4 flex flex-col gap-3">
+          {concepts.map((concept) => (
+            <div key={concept.label} className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-[var(--nc-green)]" />
+                <span className="text-sm font-medium text-[var(--nc-text)]">{concept.label}</span>
               </div>
-            ))}
-          </div>
+              <span className="text-xs font-semibold text-[var(--nc-text-dim)]">{concept.sub}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="nc-panel p-4">
+      {/* How it adapts */}
+      <div className="nc-glass p-4">
         <div className="nc-label">Hvordan det tilpasser seg</div>
         <div className="mt-4 grid gap-3">
           {[
@@ -392,8 +389,8 @@ function ReadyStep({
             'Samtale, lesing og skriving bruker samme læringsprofil.',
           ].map((item) => (
             <div key={item} className="flex items-start gap-3">
-              <div className="mt-1 h-2 w-2 rounded-full bg-nc-violet" />
-              <p className="text-sm leading-7 text-nc-text-muted">{item}</p>
+              <div className="mt-1 h-2 w-2 rounded-full bg-[var(--nc-red)]" />
+              <p className="text-sm leading-7 text-[var(--nc-text-muted)]">{item}</p>
             </div>
           ))}
         </div>
@@ -403,7 +400,7 @@ function ReadyStep({
 
       <button
         onClick={onStart}
-        className="nc-button-dark inline-flex items-center justify-center gap-2 px-4 py-4 text-sm font-medium transition-transform hover:-translate-y-0.5"
+        className="nc-gradient-red inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
       >
         <span>Start første økt</span>
         <ArrowRight size={15} />
@@ -411,7 +408,7 @@ function ReadyStep({
 
       <button
         onClick={onDashboard}
-        className="text-sm font-medium text-nc-text-dim transition-colors hover:text-nc-text"
+        className="text-sm font-medium text-[var(--nc-text-dim)] transition-colors hover:text-[var(--nc-text)]"
       >
         Gå til dashboard først
       </button>

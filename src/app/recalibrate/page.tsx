@@ -23,8 +23,8 @@ export default function RecalibratePage() {
 
   if (!fingerprint) {
     return (
-      <div className="flex min-h-dvh items-center justify-center bg-nc-bg">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-nc-border border-t-nc-violet" />
+      <div className="nc-gradient-page flex min-h-dvh items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--nc-border)] border-t-[var(--nc-red)]" />
       </div>
     )
   }
@@ -49,19 +49,19 @@ export default function RecalibratePage() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-transparent">
-      <div className="mx-auto flex w-full max-w-lg items-center gap-3 px-5 pt-5">
+    <div className="nc-gradient-page flex flex-col min-h-dvh">
+      <div className="relative z-10 mx-auto flex w-full max-w-lg items-center gap-3 px-5 pt-5">
         <button
           onClick={() => router.push('/dashboard')}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[0.9rem] border border-nc-border bg-white text-nc-text-dim transition-colors hover:text-nc-text"
+          className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
           aria-label="Back"
         >
           <ArrowLeft size={14} />
         </button>
-        <span className="text-[13px] font-medium text-nc-text-muted">Back to dashboard</span>
+        <span className="text-[13px] font-medium text-[var(--nc-text-muted)]">Back to dashboard</span>
       </div>
 
-      <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pb-10 pt-6">
+      <div className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pb-10 pt-6">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

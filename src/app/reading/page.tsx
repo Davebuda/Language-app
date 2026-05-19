@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -85,8 +85,8 @@ export default function ReadingPage() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-nc-bg">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-4 pt-5">
+    <div className="nc-gradient-page flex flex-col min-h-dvh">
+      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-4 pt-5 relative z-10">
         <AnimatePresence mode="wait">
           {!selectedText ? (
             <motion.div
@@ -96,9 +96,10 @@ export default function ReadingPage() {
               exit={{ opacity: 0, y: -10 }}
               className="flex flex-col gap-4"
             >
+              {/* Header */}
               <div>
-                <h1 className="text-[22px] font-extrabold text-nc-text">Lesestudio</h1>
-                <p className="text-[13px] text-nc-text-muted">Les norsk tekst på ditt nivå</p>
+                <h1 className="text-[22px] font-extrabold text-[var(--nc-text)]">Lesestudio</h1>
+                <p className="text-[13px] text-[var(--nc-text-muted)]">Les norsk tekst på ditt nivå</p>
               </div>
 
               {/* Filter pills */}
@@ -109,8 +110,8 @@ export default function ReadingPage() {
                     onClick={() => setFilterLevel(lvl)}
                     className={`rounded-full px-3 py-1 text-[11px] font-semibold border transition-colors ${
                       filterLevel === lvl
-                        ? 'bg-nc-green/20 text-nc-green border-nc-green/30'
-                        : 'bg-nc-card border-nc-border text-nc-text-muted'
+                        ? 'bg-[var(--nc-red-tint)] text-[var(--nc-red)] border-[var(--nc-red-border)]'
+                        : 'nc-glass text-[var(--nc-text-muted)] hover:text-[var(--nc-text)]'
                     }`}
                   >
                     {lvl === 'all' ? 'Alle' : lvl}
@@ -127,18 +128,18 @@ export default function ReadingPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
                     onClick={() => { setSelectedText(text); setTappedWord(null); setShowParallel(false) }}
-                    className="w-full text-left bg-nc-card border border-nc-border rounded-2xl p-4 hover:border-nc-green/30 transition-colors active:scale-[0.99]"
+                    className="w-full text-left nc-glass-cream rounded-2xl p-4 hover:border-[var(--nc-red-border)] transition-colors active:scale-[0.99]"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <span className="text-[15px] font-bold text-nc-text">{text.title}</span>
+                      <span className="text-[15px] font-bold text-[var(--nc-text)]">{text.title}</span>
                       <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[text.cefrLevel]}`}>
                         {text.cefrLevel}
                       </span>
                     </div>
                     <div className="mt-1 flex items-center gap-2">
-                      <span className="text-[11px] text-nc-text-muted">{GENRE_LABELS[text.genre]}</span>
-                      <span className="text-nc-text-dim">·</span>
-                      <span className="text-[11px] text-nc-text-muted">~{text.estimatedMinutes} min</span>
+                      <span className="text-[11px] text-[var(--nc-text-muted)]">{GENRE_LABELS[text.genre]}</span>
+                      <span className="text-[var(--nc-text-dim)]">·</span>
+                      <span className="text-[11px] text-[var(--nc-text-muted)]">~{text.estimatedMinutes} min</span>
                     </div>
                   </motion.button>
                 ))}
@@ -156,45 +157,48 @@ export default function ReadingPage() {
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => setSelectedText(null)}
-                  className="flex items-center gap-1 text-[13px] text-nc-text-muted hover:text-nc-text transition-colors"
+                  className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
+                  aria-label="Tilbake"
                 >
-                  <ChevronLeft size={16} />
-                  Tilbake
+                  <ChevronLeft size={18} />
                 </button>
                 <button
                   onClick={() => setShowParallel((v) => !v)}
                   className={`rounded-full border px-3 py-1 text-[11px] font-semibold transition-colors ${
-                    showParallel ? 'bg-nc-green/20 border-nc-green/30 text-nc-green' : 'bg-nc-card border-nc-border text-nc-text-muted'
+                    showParallel
+                      ? 'bg-[var(--nc-red-tint)] border-[var(--nc-red-border)] text-[var(--nc-red)]'
+                      : 'nc-glass text-[var(--nc-text-muted)]'
                   }`}
                 >
                   {showParallel ? 'Norsk' : 'Vis engelsk'}
                 </button>
               </div>
 
+              {/* Title block */}
               <div>
-                <h1 className="text-[20px] font-extrabold text-nc-text">{selectedText.title}</h1>
+                <h1 className="font-display text-xl font-bold text-[var(--nc-text)]">{selectedText.title}</h1>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[selectedText.cefrLevel]}`}>
                     {selectedText.cefrLevel}
                   </span>
-                  <span className="text-[11px] text-nc-text-muted">{GENRE_LABELS[selectedText.genre]}</span>
+                  <span className="text-[11px] text-[var(--nc-text-muted)]">{GENRE_LABELS[selectedText.genre]}</span>
                 </div>
               </div>
 
               {/* Text content */}
               <div className={showParallel ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
-                <div className="rounded-xl bg-nc-card border border-nc-border p-4">
+                <div className="nc-glass-elevated p-5 md:p-7">
                   {showParallel && (
-                    <div className="mb-2 text-[10px] uppercase tracking-widest text-nc-text-dim">Norsk</div>
+                    <div className="mb-2 text-[10px] uppercase tracking-widest text-[var(--nc-text-dim)]">Norsk</div>
                   )}
-                  <p className="text-[16px] leading-[1.9] text-nc-text">
+                  <p className="text-[16px] leading-8 text-[var(--nc-text-muted)]">
                     {selectedText.content.split('\n').map((line, i) => (
                       <span key={i}>
                         {line.split(' ').map((word, j) => (
                           <span
                             key={j}
                             onClick={() => handleWordTap(word)}
-                            className="cursor-pointer hover:text-nc-green hover:bg-nc-green/10 rounded px-0.5 transition-colors"
+                            className="cursor-pointer hover:text-[var(--nc-red)] rounded px-0.5 transition-colors"
                           >
                             {word}{' '}
                           </span>
@@ -206,9 +210,9 @@ export default function ReadingPage() {
                 </div>
 
                 {showParallel && (
-                  <div className="rounded-xl bg-nc-card border border-nc-border p-4">
-                    <div className="mb-2 text-[10px] uppercase tracking-widest text-nc-text-dim">Engelsk</div>
-                    <p className="text-[15px] leading-[1.9] text-nc-text-muted">
+                  <div className="nc-glass-elevated p-5 md:p-7">
+                    <div className="mb-2 text-[10px] uppercase tracking-widest text-[var(--nc-text-dim)]">Engelsk</div>
+                    <p className="text-[15px] leading-8 text-[var(--nc-text-muted)]">
                       {selectedText.contentEn}
                     </p>
                   </div>
@@ -223,20 +227,26 @@ export default function ReadingPage() {
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="rounded-xl bg-nc-card border border-nc-green/20 p-4"
+                    className="nc-glass p-4"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[15px] font-bold text-nc-green">{tappedWord}</span>
-                      <button onClick={() => setTappedWord(null)} className="text-nc-text-dim text-[12px]">✕</button>
+                      <span className="text-[15px] font-bold text-[var(--nc-text)]">{tappedWord}</span>
+                      <button
+                        onClick={() => setTappedWord(null)}
+                        className="text-[var(--nc-text-dim)] text-[12px] hover:text-[var(--nc-text)] transition-colors"
+                        aria-label="Lukk"
+                      >
+                        ✕
+                      </button>
                     </div>
-                    <p className="mt-1 text-[12px] text-nc-text-muted">Ordoppslag kommer snart</p>
+                    <p className="mt-1 text-[12px] text-[var(--nc-text-muted)]">Ordoppslag kommer snart</p>
                   </motion.div>
                 )}
               </AnimatePresence>
 
               <button
                 onClick={() => setSelectedText(null)}
-                className="w-full rounded-xl bg-nc-green py-3 text-sm font-extrabold text-[#0d0d14] transition-transform active:scale-[0.98]"
+                className="nc-button-primary w-full rounded-xl py-3 text-sm font-extrabold transition-transform active:scale-[0.98]"
               >
                 Ferdig lesing ✓
               </button>
@@ -249,4 +259,3 @@ export default function ReadingPage() {
     </div>
   )
 }
-

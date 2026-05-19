@@ -4,55 +4,43 @@ import Link from 'next/link'
 import type { ElementType } from 'react'
 import { BookOpen, BarChart2, Home, MessageCircle, User } from 'lucide-react'
 
-export type NavTab =
-  | 'home'
-  | 'session'
-  | 'conversation'
-  | 'progress'
-  | 'profile'
+export type NavTab = 'home' | 'session' | 'conversation' | 'progress' | 'profile'
 
-const TABS: {
-  id: NavTab
-  label: string
-  href: string
-  Icon: ElementType
-}[] = [
-  { id: 'home', label: 'Home', href: '/dashboard', Icon: Home },
-  { id: 'session', label: 'Learn', href: '/session', Icon: BookOpen },
+const TABS: { id: NavTab; label: string; href: string; Icon: ElementType }[] = [
+  { id: 'home',         label: 'Home',     href: '/dashboard',    Icon: Home },
+  { id: 'session',      label: 'Learn',    href: '/session',      Icon: BookOpen },
   { id: 'conversation', label: 'Practice', href: '/conversation', Icon: MessageCircle },
-  { id: 'progress', label: 'Progress', href: '/progress', Icon: BarChart2 },
-  { id: 'profile', label: 'Profile', href: '/profile', Icon: User },
+  { id: 'progress',     label: 'Progress', href: '/progress',     Icon: BarChart2 },
+  { id: 'profile',      label: 'Profile',  href: '/profile',      Icon: User },
 ]
 
 export function BottomNav({ active }: { active: NavTab }) {
   return (
     <nav
-      className="border-t border-nc-border"
-      style={{ background: 'rgba(251,247,241,0.96)' }}
+      aria-label="Primary navigation"
+      className="border-t border-[rgba(255,255,255,0.08)] bg-[rgba(18,14,14,0.88)] pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
     >
-      <div className="mx-auto flex max-w-lg justify-around px-2 py-2.5">
+      <div className="mx-auto flex max-w-lg justify-around px-2 py-2">
         {TABS.map(({ id, label, href, Icon }) => {
           const isActive = id === active
-
           return (
             <Link
               key={id}
               href={href}
               aria-label={label}
-              className="flex min-w-[56px] flex-col items-center gap-1 px-1 py-1"
+              aria-current={isActive ? 'page' : undefined}
+              className={`flex min-h-[44px] min-w-[56px] flex-col items-center justify-center gap-0.5 px-1 ${
+                isActive ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text-muted)]'
+              }`}
             >
-              <Icon
-                size={18}
-                className={isActive ? 'text-nc-text' : 'text-nc-text-dim'}
-                strokeWidth={isActive ? 2.15 : 1.7}
-              />
+              <Icon size={18} strokeWidth={isActive ? 2.2 : 1.6} />
+              <span className="text-[9px] font-semibold">{label}</span>
               <span
-                className={`text-[9px] font-medium tracking-[0.01em] ${
-                  isActive ? 'text-nc-text' : 'text-nc-text-dim'
+                aria-hidden="true"
+                className={`h-[3px] w-[3px] rounded-full transition-opacity ${
+                  isActive ? 'bg-[var(--nc-red)] opacity-100' : 'opacity-0'
                 }`}
-              >
-                {label}
-              </span>
+              />
             </Link>
           )
         })}

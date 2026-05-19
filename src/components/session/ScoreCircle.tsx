@@ -1,16 +1,15 @@
 'use client'
 
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface ScoreCircleProps {
   accuracy: number
   size?: number
 }
 
-export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
+export function ScoreCircle({ accuracy, size = 172 }: ScoreCircleProps) {
   const [animated, setAnimated] = useState(0)
-  const gradientId = useId().replace(/:/g, '')
-  const radius = (size - 12) / 2
+  const radius = (size - 16) / 2
   const circumference = 2 * Math.PI * radius
   const offset = circumference - (animated / 100) * circumference
 
@@ -20,20 +19,19 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
   }, [accuracy])
 
   return (
-    <svg width={size} height={size}>
-      <defs>
-        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#c7b8ff" />
-          <stop offset="100%" stopColor="#ad9fff" />
-        </linearGradient>
-      </defs>
-
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={(size - 28) / 2}
+        fill="white"
+      />
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="rgba(23,23,29,0.09)"
+        stroke="var(--nc-border)"
         strokeWidth={8}
       />
       <circle
@@ -41,7 +39,7 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke={`url(#${gradientId})`}
+        stroke="var(--nc-green)"
         strokeWidth={8}
         strokeLinecap="round"
         strokeDasharray={circumference}
@@ -51,12 +49,12 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
       />
       <text
         x={size / 2}
-        y={size / 2 - 4}
+        y={size / 2 - 6}
         textAnchor="middle"
         dominantBaseline="middle"
-        style={{ fontFamily: 'var(--font-display), sans-serif', fontWeight: 700 }}
-        fontSize={size * 0.22}
-        fill="#17171d"
+        style={{ fontFamily: 'var(--font-display), sans-serif', fontWeight: 800 }}
+        fontSize={size * 0.24}
+        fill="var(--nc-text)"
       >
         {accuracy}
       </text>
@@ -64,9 +62,9 @@ export function ScoreCircle({ accuracy, size = 100 }: ScoreCircleProps) {
         x={size / 2}
         y={size / 2 + size * 0.17}
         textAnchor="middle"
-        style={{ fontFamily: 'var(--font-sans), sans-serif', fontWeight: 500 }}
-        fontSize={size * 0.095}
-        fill="rgba(23,23,29,0.42)"
+        style={{ fontFamily: 'var(--font-body), sans-serif', fontWeight: 500 }}
+        fontSize={size * 0.085}
+        fill="var(--nc-text-muted)"
       >
         accuracy
       </text>

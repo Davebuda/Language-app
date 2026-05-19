@@ -214,11 +214,11 @@ interface RunResult {
 }
 
 const CATEGORY_COLORS: Record<EvalTask['category'], string> = {
-  generate: 'bg-nc-violet/15 text-nc-violet',
-  explain: 'bg-nc-apricot/20 text-nc-coral',
-  detect: 'bg-nc-sage/30 text-[#2d6a22]',
-  conversation: 'bg-[rgba(214,255,90,0.18)] text-[#7a9a00]',
-  review: 'bg-[rgba(23,23,29,0.06)] text-nc-text-muted',
+  generate: 'bg-[rgba(220,38,38,0.15)] text-[var(--nc-red)]',
+  explain:  'bg-[rgba(255,255,255,0.08)] text-[var(--nc-text-muted)]',
+  detect:   'bg-[rgba(74,222,128,0.12)] text-[var(--nc-green)]',
+  conversation: 'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-muted)]',
+  review:   'bg-[rgba(255,255,255,0.05)] text-[var(--nc-text-dim)]',
 }
 
 // ── Page ───────────────────────────────────────────────────────────────────
@@ -273,24 +273,25 @@ export default function EvalPage() {
     : 0
 
   return (
-    <div className="min-h-dvh bg-nc-bg px-5 py-6">
-      <div className="mx-auto max-w-3xl space-y-5">
+    <div className="nc-gradient-page flex flex-col min-h-dvh">
+      <div className="relative z-10 mx-auto w-full max-w-3xl space-y-5 px-5 py-6">
+
         {/* Header */}
-        <div className="nc-panel-dark p-5">
-          <div className="relative z-[1] flex items-start justify-between gap-4">
+        <div className="nc-glass-elevated p-5">
+          <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="nc-label-light">Norwegian AI Evaluation</div>
-              <h1 className="mt-2 text-[1.8rem] font-display font-semibold text-white">
+              <div className="nc-label">Norwegian AI Evaluation</div>
+              <h1 className="mt-2 font-display text-[1.8rem] font-semibold text-[var(--nc-text)]">
                 Model quality harness
               </h1>
-              <p className="mt-2 text-[13px] text-white/55">
+              <p className="mt-2 text-[13px] text-[var(--nc-text-muted)]">
                 {TASKS.length} tasks × {RUNS_PER_TASK} runs each. Requires the AI model to be loaded.
               </p>
             </div>
             <AIStatusBadge />
           </div>
 
-          <div className="relative z-[1] mt-5 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <button
               onClick={runAll}
               disabled={running}
@@ -299,16 +300,19 @@ export default function EvalPage() {
               {running ? `Running… ${progress}%` : 'Run evaluation'}
             </button>
             {results.length > 0 && (
-              <button onClick={downloadResults} className="rounded-[0.85rem] border border-white/12 bg-white/8 px-5 py-2.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/12">
+              <button
+                onClick={downloadResults}
+                className="nc-button-dark px-5 py-2.5 text-sm font-semibold"
+              >
                 Download JSON
               </button>
             )}
           </div>
 
           {running && (
-            <div className="relative z-[1] mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+            <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[var(--nc-border)]">
               <motion.div
-                className="h-full rounded-full bg-nc-violet"
+                className="h-full rounded-full bg-[var(--nc-red)]"
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.3 }}
               />
@@ -324,9 +328,9 @@ export default function EvalPage() {
               { label: 'Success rate', value: `${successRate}%` },
               { label: 'Avg duration', value: `${Math.round(results.reduce((s, r) => s + r.durationMs, 0) / results.length)}ms` },
             ].map((s) => (
-              <div key={s.label} className="nc-panel px-3 py-3 text-center">
-                <div className="text-[1.4rem] font-display font-semibold text-nc-text">{s.value}</div>
-                <div className="mt-1 text-[10px] font-medium text-nc-text-dim">{s.label}</div>
+              <div key={s.label} className="nc-glass px-3 py-3 text-center">
+                <div className="font-display text-[1.4rem] font-semibold text-[var(--nc-red)]">{s.value}</div>
+                <div className="mt-1 text-[10px] font-medium text-[var(--nc-text-dim)]">{s.label}</div>
               </div>
             ))}
           </div>
@@ -340,22 +344,22 @@ export default function EvalPage() {
             const hasError = runs.some((r) => r.error)
 
             return (
-              <div key={task.id} className="nc-panel overflow-hidden">
+              <div key={task.id} className="nc-glass overflow-hidden">
                 <button
-                  className="w-full flex items-center gap-3 p-4 text-left"
+                  className="flex w-full items-center gap-3 p-4 text-left"
                   onClick={() => setSelectedTask(isOpen ? null : task.id)}
                 >
                   <span className={`rounded-[0.6rem] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${CATEGORY_COLORS[task.category]}`}>
                     {task.category}
                   </span>
-                  <span className="flex-1 text-[13px] font-medium text-nc-text">{task.description}</span>
+                  <span className="flex-1 text-[13px] font-medium text-[var(--nc-text)]">{task.description}</span>
                   {runs.length > 0 && (
-                    <span className={`text-[11px] font-semibold ${hasError ? 'text-red-400' : 'text-nc-text-dim'}`}>
+                    <span className={`text-[11px] font-semibold ${hasError ? 'text-red-400' : 'text-[var(--nc-text-dim)]'}`}>
                       {hasError ? '✗ error' : `✓ ${runs.length}×`}
                     </span>
                   )}
                   {runs.length > 0 && (
-                    <span className="text-[11px] text-nc-text-dim">
+                    <span className="text-[11px] text-[var(--nc-text-dim)]">
                       {isOpen ? '▲' : '▼'}
                     </span>
                   )}
@@ -369,17 +373,17 @@ export default function EvalPage() {
                       exit={{ height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-nc-border px-4 pb-4 pt-3 space-y-3">
+                      <div className="space-y-3 border-t border-[var(--nc-border)] px-4 pb-4 pt-3">
                         {runs.map((run) => (
                           <div key={run.run}>
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-[10px] font-semibold uppercase tracking-wide text-nc-text-dim">
+                            <div className="mb-1 flex items-center gap-2">
+                              <span className="text-[10px] font-semibold uppercase tracking-wide text-[var(--nc-text-dim)]">
                                 Run {run.run}
                               </span>
-                              <span className="text-[10px] text-nc-text-dim">{run.durationMs}ms</span>
+                              <span className="text-[10px] text-[var(--nc-text-dim)]">{run.durationMs}ms</span>
                               {run.error && <span className="text-[10px] text-red-400">ERROR</span>}
                             </div>
-                            <pre className="rounded-[0.8rem] bg-[rgba(23,23,29,0.04)] border border-nc-border p-3 text-[12px] leading-relaxed text-nc-text overflow-x-auto whitespace-pre-wrap">
+                            <pre className="nc-glass-cream overflow-x-auto whitespace-pre-wrap p-3 text-[12px] leading-relaxed text-[var(--nc-text)]">
                               {run.error ?? run.output}
                             </pre>
                           </div>
@@ -394,8 +398,8 @@ export default function EvalPage() {
         </div>
 
         {results.length === 0 && !running && (
-          <div className="nc-panel p-8 text-center">
-            <p className="text-sm text-nc-text-muted">
+          <div className="nc-glass p-8 text-center">
+            <p className="text-sm text-[var(--nc-text-muted)]">
               Load the AI model first (it appears in the status badge above), then run the evaluation.
               Results are shown per task and can be downloaded as JSON for manual rating.
             </p>
