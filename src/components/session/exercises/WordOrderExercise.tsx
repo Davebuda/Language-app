@@ -57,7 +57,7 @@ function WordTile({ id, word }: { id: string; word: string }) {
       }}
       {...attributes}
       {...listeners}
-      className="cursor-grab touch-none select-none rounded-lg border border-white/12 bg-white/10 px-4 py-2 text-sm font-semibold text-white active:cursor-grabbing hover:border-nc-green/40 hover:text-nc-green transition-colors"
+      className="cursor-grab touch-none select-none rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-white active:cursor-grabbing hover:border-nc-green/50 hover:bg-nc-green/10 hover:text-nc-green transition-colors"
     >
       {word}
     </div>
@@ -111,17 +111,11 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
   return (
     <div className="space-y-5">
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
-        Sett ordene i riktig rekkefølge
-      </p>
-      <p className="text-[26px] sm:text-[28px] font-bold text-white leading-snug">
-        {sentence.norwegian}
-      </p>
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
         {sentence.english}
       </p>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={tiles.map((t) => t.id)} strategy={horizontalListSortingStrategy}>
-          <div className="flex min-h-[48px] flex-wrap gap-2 rounded-xl border border-white/12 bg-[rgba(255,255,255,0.02)] p-3">
+          <div className="flex flex-wrap gap-3 rounded-xl border border-white/12 bg-[rgba(255,255,255,0.02)] p-4">
             {tiles.map((tile) => (
               <WordTile key={tile.id} id={tile.id} word={tile.word} />
             ))}
