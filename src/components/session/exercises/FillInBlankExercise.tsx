@@ -53,7 +53,7 @@ function MultipleChoice({
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">Fyll inn</p>
 
       <motion.div
-        className="flex flex-wrap items-center gap-2 text-[22px] font-bold text-white"
+        className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-white"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
@@ -128,7 +128,7 @@ function FreeText({
     <div className="space-y-5">
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">Fyll inn</p>
       <motion.div
-        className="flex flex-wrap items-center gap-2 text-[22px] font-bold text-white"
+        className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-white"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
