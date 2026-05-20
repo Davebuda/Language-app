@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
+import type { ErrorTag } from '@/types/taxonomy';
 import { checkAnswer, extractBlank } from '@/lib/answer';
 
 interface FillInBlankExerciseProps {
@@ -23,11 +24,12 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function MultipleChoice({
-  before, after, correct, options, englishHint, sessionId, item, onResult,
+  before, after, correct, options, englishHint, sessionId, item, onResult, errorTag,
 }: {
   before: string; after: string; correct: string; options: string[];
   englishHint: string; sessionId: string; item: SessionItem;
   onResult: (r: ExerciseResult) => void;
+  errorTag: ErrorTag | undefined;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const startRef = useRef(Date.now());
@@ -43,7 +45,7 @@ function MultipleChoice({
       userAnswer: option,
       correctAnswer: correct,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: isCorrect ? undefined : 'verb-conjugation',
+      errorTag: isCorrect ? undefined : errorTag,
       conceptId: item.conceptIds[0] ?? '',
     });
   }
@@ -99,10 +101,11 @@ function MultipleChoice({
 }
 
 function FreeText({
-  before, after, correct, englishHint, sessionId, item, onResult,
+  before, after, correct, englishHint, sessionId, item, onResult, errorTag,
 }: {
   before: string; after: string; correct: string; englishHint: string;
   sessionId: string; item: SessionItem; onResult: (r: ExerciseResult) => void;
+  errorTag: ErrorTag | undefined;
 }) {
   const [userInput, setUserInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -119,7 +122,7 @@ function FreeText({
       userAnswer: userInput,
       correctAnswer: correct,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: isCorrect ? undefined : 'verb-conjugation',
+      errorTag: isCorrect ? undefined : errorTag,
       conceptId: item.conceptIds[0] ?? '',
     });
   }
@@ -160,6 +163,9 @@ function FreeText({
 export function FillInBlankExercise({ item, sentence, sessionId, onResult }: FillInBlankExerciseProps) {
   const { before, after } = extractBlank(sentence.norwegian);
   const correctAnswer = sentence.notes ?? '';
+  // Take the first declared error tag. For multi-tag sentences this logs the primary
+  // tag, not the specific error the user made — see backlog future-item note.
+  const errorTag = sentence.errorTagsDetectable[0];
 
   const options = useMemo(() => {
     if (!sentence.distractors?.length || !correctAnswer) return null;
@@ -172,6 +178,7 @@ export function FillInBlankExercise({ item, sentence, sessionId, onResult }: Fil
         before={before} after={after} correct={correctAnswer}
         options={options} englishHint={sentence.english}
         sessionId={sessionId} item={item} onResult={onResult}
+        errorTag={errorTag}
       />
     );
   }
@@ -181,6 +188,7 @@ export function FillInBlankExercise({ item, sentence, sessionId, onResult }: Fil
       before={before} after={after} correct={correctAnswer}
       englishHint={sentence.english}
       sessionId={sessionId} item={item} onResult={onResult}
+      errorTag={errorTag}
     />
   );
 }

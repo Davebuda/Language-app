@@ -267,6 +267,9 @@ The `setInterval` callback captures `userInput` from the `useEffect` closure at 
 This is P0 item 5 (numbered entry above). Captured here as a cross-reference to make the pair visible together.  
 **Severity:** Real correctness bug — same pattern as SpeedRound: wrong data flowing into the learning model from a production exercise surface.
 
+**`errorTagsDetectable[0]` heuristic — future-item concern:**  
+Item 5 fixes the hardcoded tag by using `sentence.errorTagsDetectable[0]`. This is correct for single-tag sentences and matches the pattern used elsewhere (repair-loop, grader). For multi-tag sentences, it always logs the first declared tag regardless of which specific error the user actually made. Proper per-answer error classification (deriving the tag from the actual user mistake, not the sentence's declared list) is a future improvement — relevant when the content corpus grows to sentences that test multiple concepts simultaneously.
+
 **FillInBlank blank indicator size mismatch at 1280px+ (UI polish — not a bug)**  
 `src/components/session/exercises/FillInBlankExercise.tsx`  
 At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly smaller than the surrounding sentence text (32px). The hierarchy between prompt and answer buttons still passes the 1.6× rule; this is a cosmetic size inconsistency only. Does not affect correctness, fingerprint, or session traversal.  
@@ -279,9 +282,9 @@ At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly 
 See `test-reports/system-walkthrough-2026-05-20.md` sections U2–U7.  
 Key items: authenticated session persistence (U2), session counter increment post-completion (U3), streak update logic (U4).
 
-**AI explanation side-effect from sentence-transformation grader fix (to verify at item 4 or 5):**  
-Pre-fix, the AI received English input for sentence-transformation exercises and tried to explain it as wrong Norwegian grammar (the grader misrouted the exercise). Post-fix, the grader routes sentence-transformation to the English expected answer, so the AI will receive the correct context for any grading error. This side-effect should resolve automatically. Verify when the AI module work happens (item 4 or item 5) by triggering a sentence-transformation exercise, submitting a wrong English answer, and confirming the AI explanation references the correct English grammar error rather than misinterpreting English as Norwegian.
+**AI explanation side-effect from sentence-transformation grader fix — queued eval task:**  
+The fix now routes sentence-transformation to the English expected answer, so the AI receives English wrong/correct context. Verify via a single deliberate eval-page task: in `src/app/eval/page.tsx` TASKS array, add one `explain` task with `wrong: 'Where is that man over there?'`, `correct: 'Who is that man over there?'`, `errorTag: 'word-order'`, `conceptId: 'question-formation'`, `level: 'A2'`. Run it on `/eval` and confirm the AI explanation references English question formation (wrong interrogative pronoun "Where" vs "Who"), not Norwegian V2 word order. This is a one-task addition to the eval harness — no corpus addition needed. Queue as a small follow-up whenever `/eval` output is reviewed next.
 
 ---
 
-*Last updated: 2026-05-20 | Source: system walkthrough + P0 item 1+2 closure*
+*Last updated: 2026-05-20 | Source: system walkthrough + P0 items 1–4 closure*
