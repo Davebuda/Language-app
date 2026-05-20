@@ -45,6 +45,19 @@ Background: deep dark, not pure black — the topographic grid provides depth wi
 
 ---
 
+---
+
+## AI Status Chip Contract (P0 item 4 implementation reference)
+
+Two states, no design pass required — both fit the existing token contract and dark/precise direction.
+
+- **"AI ready"** — model loaded and responding. Current behavior; low-opacity green treatment.
+- **"AI unavailable"** — model failed to load, returned null, or exceeded retry threshold. Display with distinct (non-green) treatment using existing tokens — muted or `--nc-red` at low opacity. This is a status disclosure, not an error state. Template explanations may still fire; they must not be attributed as AI output.
+
+No new color values. No new design tokens. Both states use existing primitives. The `useAIStatusStore` states are `idle | loading | ready | unavailable`; the chip renders two visible states (ready / unavailable) and handles idle/loading as the existing spinner behavior. Implementation lives entirely in the badge component. This section records the UX contract so the implementation in P0 item 4 does not need a design round-trip.
+
+---
+
 ## Reference
 
 - `docs/ui-1/typeface-analysis.md` — Schibsted Grotesk selection rationale

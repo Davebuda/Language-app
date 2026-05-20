@@ -61,9 +61,15 @@ export class WebLLMService implements AIService {
   private engine: ChatEngine | null = null
   private state: LoadState = 'idle'
   private loadPromise: Promise<void> | null = null
+  // Consecutive empty-response failures from complete()/completeChat().
+  // Two failures means the model is functionally broken — set unavailable.
+  private consecutiveGenerationFailures = 0
+  private static readonly GENERATION_FAILURE_THRESHOLD = 2
 
   async init(): Promise<void> {
-    if (this.state === 'ready' || this.state === 'unavailable') return
+    // Allow re-init from unavailable so a future UI retry affordance only needs
+    // to call init() without touching the service internals.
+    if (this.state === 'ready') return
     if (this.loadPromise) return this.loadPromise
     this.state = 'loading'
     this.loadPromise = this._load()
@@ -71,6 +77,8 @@ export class WebLLMService implements AIService {
   }
 
   private async _load(): Promise<void> {
+    // Reset health counter on each (re-)load attempt.
+    this.consecutiveGenerationFailures = 0
     if (typeof window === 'undefined' || !('gpu' in navigator)) {
       this.state = 'unavailable'
       this._updateStore('unavailable')
@@ -126,6 +134,19 @@ export class WebLLMService implements AIService {
     ])
   }
 
+  private _recordGenerationFailure(): void {
+    this.consecutiveGenerationFailures++
+    if (this.consecutiveGenerationFailures >= WebLLMService.GENERATION_FAILURE_THRESHOLD) {
+      console.warn('[WebLLM] Generation consistently failing — marking unavailable')
+      this.state = 'unavailable'
+      this._updateStore('unavailable')
+    }
+  }
+
+  private _recordGenerationSuccess(): void {
+    this.consecutiveGenerationFailures = 0
+  }
+
   private async complete(system: string, user: string, _json: boolean, maxTokens = 400): Promise<string> {
     if (!this.engine) throw new Error('engine not ready')
     // response_format: json_object triggers a BindingError in some WebLLM builds.
@@ -137,7 +158,13 @@ export class WebLLMService implements AIService {
         temperature: 0.7,
       })
     )
-    return res.choices[0]?.message?.content ?? ''
+    const content = res.choices[0]?.message?.content
+    if (!content) {
+      this._recordGenerationFailure()
+      throw new Error('[WebLLM] empty response from engine')
+    }
+    this._recordGenerationSuccess()
+    return content
   }
 
   private async completeChat(
@@ -153,7 +180,13 @@ export class WebLLMService implements AIService {
         temperature: 0.85,
       })
     )
-    return res.choices[0]?.message?.content ?? ''
+    const content = res.choices[0]?.message?.content
+    if (!content) {
+      this._recordGenerationFailure()
+      throw new Error('[WebLLM] empty response from engine')
+    }
+    this._recordGenerationSuccess()
+    return content
   }
 
   async generateContent(params: GenerateParams): Promise<ResolvedContent | null> {

@@ -6,7 +6,17 @@ import { useAIStatusStore } from '@/stores/ai-status-store'
 export function AIStatusBadge() {
   const { state, loadingPct } = useAIStatusStore()
 
-  if (state === 'idle' || state === 'unavailable') return null
+  if (state === 'idle') return null
+
+  // Unavailable: static badge, muted styling — distinct from the animated 'ready' chip.
+  // No motion: unavailable is a discovered fact, not a progress event.
+  if (state === 'unavailable') {
+    return (
+      <div className="rounded-[0.75rem] border border-nc-border bg-nc-card px-2.5 py-1.5 text-[10px] font-medium text-nc-text-dim">
+        AI unavailable
+      </div>
+    )
+  }
 
   return (
     <AnimatePresence>

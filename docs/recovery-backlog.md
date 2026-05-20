@@ -19,6 +19,23 @@ These jobs are non-interchangeable. Putting varied practice in the retry step mu
 
 ---
 
+## P0 item 4 — CLOSED 2026-05-20
+
+**Acceptance test: passed.** Badge correctly shows "AI unavailable" when store state is `unavailable`. Generation health counter fires at threshold 2, resets on success, re-init allowed from `unavailable`.
+
+**What shipped:**
+- `src/ai/webllm.ts` — `complete()` and `completeChat()` throw on null/empty response; `consecutiveGenerationFailures` counter, threshold 2 → `_updateStore('unavailable')`; `init()` re-init allowed from `unavailable`; `_load()` resets counter on each attempt
+- `src/components/ai/AIStatusBadge.tsx` — static "AI unavailable" chip (`bg-nc-card text-nc-text-dim`) for `unavailable` state; `idle → null` unchanged; animated `loading/ready` unchanged
+- `tests/ai/webllm-health.test.ts` — 7 tests; full suite 77 passing
+
+**Deeper finding vs backlog framing:** The backlog said "wire the badge to existing state." Reading the code found two bugs: (1) component returned `null` for `unavailable` (silent disappearance), and (2) the model "loads" but `complete()` returns null content — the SyntaxError appeared in callers, never inside `complete()`, so state stayed `'ready'` indefinitely. Both bugs fixed.
+
+**AI explanation side-effect — partially confirmed:** The AI produced a real accurate word-order explanation during live verification. Sentence-transformation context (English vs Norwegian) still queued — no production sentence currently declares `sentence-transformation` in `exerciseTypes`.
+
+**Live badge-to-unavailable:** Counter/threshold confirmed by unit test. Live trigger requires walkthrough failure mode (all completions return null). Not reproducible in current environment where model partially works.
+
+---
+
 ## P0 item 3 — CLOSED 2026-05-20
 
 **Acceptance test: passed.** Repair loop retry now returns to the original sentence with the original exercise type.
@@ -80,6 +97,10 @@ Background content generation via `topUpConcept` calls `aiService.generateConten
 **The `resolveItem` fallback is a runtime safety net, not a fix.**  
 `useSession.ts` line 123–124 already falls back from `compatible` to `eligible` when no compatible sentence exists. This handles the runtime case but doesn't fix the scheduler mismatch — the item's `exerciseType` field still carries the wrong value, so the grader still gets the wrong type. The scheduler guard is the right fix; `resolveItem`'s fallback can remain as a belt-and-suspenders safety net.
 
+**There is no `exercises` table in Supabase.** The only content table is `sentences`. Any spec or design doc referencing an `exercises` table, `expectedAnswer` column, or `expected_answer` column is citing the wrong schema. Columns verified via Supabase MCP 2026-05-20: `id`, `norwegian`, `english`, `concept_ids`, `vocab_clusters`, `error_tags_detectable`, `cefr_level`, `difficulty`, `scenario_id`, `audio_url`, `exercise_types`, `notes`, `created_at`. There are also no `session_items` or `session_item_validation_logs` tables — sessions live entirely in Zustand (client state) and IndexedDB (persistence). Telemetry logging belongs to the A4 event-logging task in the roadmap, not the P0 items.
+
+**The audio URL field is `audio_url`, not `referenceAudioUri`.** It is nullable. Missing audio is handled by `ListeningExercise` via a three-tier fallback: Howler.js (if `audio_url` set) → Web Speech API TTS → "audio not available" banner. Listening exercises are always traversable regardless of `audio_url`. The item 2 guard excludes listening — Option B confirmed: the three-tier fallback is sufficient.
+
 ---
 
 ---
@@ -87,6 +108,21 @@ Background content generation via `topUpConcept` calls `aiService.generateConten
 ## P0 — Session loop must be completable
 
 These **eight** items collectively unblock the core loop. Items 1 and 2 from the original draft were consolidated — they share the same root cause and the same single code change in `generateSession`. The walkthrough confirmed a real user cannot complete a session. Nothing else ships until all eight are verified.
+
+**Critical-path chain (original 9-item numbering):** 2 → 4 → 8 → 9. Items 1 (merged into 2), 3, 5, 6, 7 are distributed independently. Item 5 (AI status badge) can run in parallel with the chain since it touches only the AI worker subsystem — it has no dependency on items 8 or 9.
+
+| Item (original #) | Description | Current doc # | Status |
+|---|---|---|---|
+| 1 + 2 | Scheduler guard + grader mismatch | 1 | **CLOSED** |
+| 4 | Repair loop retry | 3 | **CLOSED** |
+| 8 | Template targeting | 7 | Open — must complete before item 9 |
+| 9 | Atomic session progression | 8 | Open — depends on 1+2, 4, and 8 |
+| 3 | Word-order exercise | 2 | Open, independent |
+| 5 | AI status badge | 4 | Open, parallel |
+| 6 | FillInBlank error tag | 5 | Open, independent |
+| 7 | Journal rettet versjon | 6 | Open, independent |
+
+**Remaining critical path (current doc numbering):** item 7 (template targeting) → item 8 (atomic progression).
 
 ### 1. Fix exercise-type mismatch between scheduler and sentence data — grader correctness fix
 
@@ -99,7 +135,7 @@ These **eight** items collectively unblock the core loop. Items 1 and 2 from the
 
 ---
 
-*(Item 2 consolidated into item 1 — same root cause, same code change.)*
+*(Item 2 consolidated into item 1 — same root cause, same code change. Collapse discovered during plan-first analysis: Claude Code read the actual source files — `useSession.ts`, `scheduler.ts`, `actions.ts` — before building, and found both failure modes trace to `generateSession` assigning exercise types without checking `sentence.exerciseTypes`. The architecture did not match what was assumed from the prior external spec.)*
 
 ---
 
@@ -133,6 +169,7 @@ These **eight** items collectively unblock the core loop. Items 1 and 2 from the
 **AI status signal — already centralized:** `useAIStatusStore` (`src/stores/ai-status-store.ts`) already exists with states `idle | loading | ready | unavailable`. The `unavailable` state is already defined. The fix is wiring the chip to display "AI unavailable" when this store state is `'unavailable'`, and ensuring the AI worker sets `unavailable` on null/error results instead of silently discarding them.  
 **Separate work — model fix:** The model fix follows the existing A1 three-step path in the roadmap. Badge fix ships first as the honest interim.  
 **Subsystem:** `ai-status-store.ts` (set `'unavailable'` on failure) + AI status chip component (render two states).  
+**Scope note — simpler than originally estimated:** `useAIStatusStore` already has all four required states (`idle | loading | ready | unavailable`). No new infrastructure or separate signal needed. Work is wiring the badge to read the store, and ensuring the AI worker calls `setState('unavailable')` on null/failure instead of silently discarding. Can run in parallel with the critical-path chain (items 7 → 8) since it touches only the AI worker subsystem.  
 **Acceptance:** Load the session with the current broken model. Header chip shows "AI unavailable." If/when model loads successfully, chip switches to "AI ready." Template explanations appear without AI attribution in the unavailable state.  
 
 ---
@@ -229,6 +266,11 @@ The `setInterval` callback captures `userInput` from the `useEffect` closure at 
 **FillInBlank hardcoded `errorTag: 'verb-conjugation'` (correctness bug — same class, also fingerprint corruption)**  
 This is P0 item 5 (numbered entry above). Captured here as a cross-reference to make the pair visible together.  
 **Severity:** Real correctness bug — same pattern as SpeedRound: wrong data flowing into the learning model from a production exercise surface.
+
+**FillInBlank blank indicator size mismatch at 1280px+ (UI polish — not a bug)**  
+`src/components/session/exercises/FillInBlankExercise.tsx`  
+At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly smaller than the surrounding sentence text (32px). The hierarchy between prompt and answer buttons still passes the 1.6× rule; this is a cosmetic size inconsistency only. Does not affect correctness, fingerprint, or session traversal.  
+**Severity: Polish. Schedule for UI-3 alongside `nc-*` cleanup — not a bug, not a P0 or P1 issue.**
 
 ---
 

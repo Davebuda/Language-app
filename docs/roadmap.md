@@ -6,11 +6,13 @@ The current build sequence with every research-validated priority locked in. Thi
 
 **A full end-to-end system walkthrough on 2026-05-20 found that the session loop — the single most important surface in the app — is uncompletable for a real user.** Three distinct failure modes block session completion: the English-direction grader always fails (C1), exercises silently render blank (C3), and word-order exercises cannot be solved without drag events (C4). The AI model is non-functional, producing null output for all generation tasks (C2). Details: `test-reports/system-walkthrough-2026-05-20.md`.
 
-**This finding forces a re-sequencing.** The prior next-phase plan (UI-1.3 dashboard, A2 decay half-life, A3 calibration window, A4 event log, muntlig module) is explicitly deferred behind the P0 recovery batch. None of those items may be scheduled until the nine P0 items in `docs/recovery-backlog.md` are verified complete.
+**This finding forces a re-sequencing.** The prior next-phase plan (UI-1.3 dashboard, A2 decay half-life, A3 calibration window, A4 event log, muntlig module) is explicitly deferred behind the P0 recovery batch. None of those items may be scheduled until the eight P0 items in `docs/recovery-backlog.md` are verified complete.
+
+**Recovery status (2026-05-20):** UI-1.2 closed cleanly (all exercise surfaces pass 1.6× acceptance test). P0 items 1+2 (scheduler guard + grader mismatch) and item 3 (repair loop retry) are closed. P0 items 4–8 pending. Remaining critical-path chain: item 7 (template targeting) → item 8 (atomic progression). Items 2 (word-order), 4 (AI badge), 5 (FillInBlank error tag), 6 (journal) are distributable independently.
 
 The prior plan's three streams remain valid and are resumed after recovery:
-- Stream 1 engine corrections (A1 model swap continues; A2–A4 deferred)
-- Stream 2 UI transformation (UI-1.2 session loop is partially done; UI-1.3+ deferred)
+- Stream 1 engine corrections (A1 model swap deferred to post-P0; A2–A4 deferred)
+- Stream 2 UI transformation (UI-1.2 done; UI-1.3+ deferred to post-P0)
 - Stream 3 muntlig module (deferred — do not start muntlig until P0 is clear)
 
 Recovery backlog: `docs/recovery-backlog.md`
@@ -98,13 +100,9 @@ Schibsted Grotesk selected as single family. Shadcn primitives audited; install 
 
 White-buttons-on-dark-canvas slop fixed. Tokens remapped. `role="progressbar"` accessibility added without a Radix install. PlacementQuiz cleanup. The type scale was applied and verified — T1 prompt is the dominant element. The "Norwegian dominates" principle was sharpened in docs to apply to learning surfaces, not assessment surfaces.
 
-### UI-1.2 — Session Loop (NEXT — scoping starts now, build starts after A1 ships)
+### UI-1.2 — Session Loop (DONE — closed 2026-05-20)
 
-The single most important screen. The moat made visible — repair loop card, all exercise subtypes, explanation surfaces. On this screen the "Norwegian is the hero" principle is load-bearing and non-exempt. Folds in the GrammarExplainerCard height:auto fix.
-
-The scoping pass (architect-led) runs in parallel with A1. The build does not start until A1 is verified done — this prevents any regression ambiguity between model-output changes and UI changes.
-
-**Acceptance — concrete and measurable:** Norwegian prompt must be at minimum 1.6× the type-size of any answer option, sit in the upper third of the card, and use the highest font weight on screen. A breakpoint screenshot passes if all three conditions are met; it fails if any are not. Tune the ratio after the first screenshot if needed, but commit to the measurable form before building. Four breakpoints: 375px, 768px, 1280px, 1920px.
+All four exercise surfaces (TranslationExercise, SpeedRound, WordOrderExercise, FillInBlankExercise) pass the 1.6× Norwegian-dominates acceptance test at all four breakpoints (375/768/1280/1920px). The Playwright walkthrough on the same date subsequently surfaced session-loop correctness bugs (P0 recovery batch) — the UI work is preserved; the correctness work is what's open.
 
 ### UI-1.3 — Dashboard
 
@@ -195,12 +193,13 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 
 ### Recovery batch (P0) — current phase
 
-Sequencing to be confirmed by architect review (in progress). Pending approval:
+Critical-path chain (original 9-item numbering): 2 (and 1) → 4 → 8 → 9. Items 3, 5, 6, 7 distributed independently around the chain. Item 5 (AI badge) runs in parallel — it touches only the AI worker and has no dependency on the critical path.
 
-0. **First item TBD — architect verdict required.** See recovery backlog items 1–9 and the architect's sequencing analysis.
-1. **P0 items 1–9** per `docs/recovery-backlog.md`, in architect-approved order.
-2. **P0 batch verifies** — a real user can complete a full session with no blank cards, no stuck states, correct English-direction grading, correct repair loop flow.
-3. **P1 items** from the recovery backlog, in order of user-impact severity.
+0. ~~Items 1+2 (scheduler guard + grader mismatch).~~ **CLOSED 2026-05-20.**
+1. ~~Item 4 / doc item 3 (repair loop retry — "Prøv igjen").~~ **CLOSED 2026-05-20.**
+2. **Remaining items in parallel where independent.** Critical path: doc item 7 (template targeting) → doc item 8 (atomic progression). Independent: doc items 2 (word-order), 4 (AI badge), 5 (FillInBlank error tag), 6 (journal). Each goes through architect before building.
+3. **P0 batch verifies** — a real user can complete a full session with no blank cards, no stuck states, correct grading, correct repair loop flow with retry, correct template targeting.
+4. **P1 items** from the recovery backlog, in order of user-impact severity.
 
 ### Deferred — resumes after recovery batch clears
 

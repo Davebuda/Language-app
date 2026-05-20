@@ -1,6 +1,6 @@
 # Plan: P0 Item 2 (+ Item 1) — Scheduler Exercise-Type Guard
 
-**Status: AWAITING APPROVAL — do not implement until approved**  
+**Status: APPROVED — plan locked, implement on explicit 'go' from user**  
 **Date:** 2026-05-20  
 **Source:** `docs/recovery-backlog.md` items 1 and 2  
 **Findings:** `test-reports/system-walkthrough-2026-05-20.md` C1 + C3
@@ -29,6 +29,8 @@ Items 1 and 2 share the same root cause and the same fix. This plan covers both.
 | `src/engine/scheduler.test.ts` (new) | Unit tests for the guard |
 
 No schema changes. No Supabase migrations. No new stores.
+
+**Dashboard pre-clearance:** The `app/dashboard/page.tsx` change is purely prop-threading — `MOCK_SENTENCES` already exists and is being passed alongside the existing `MOCK_SENTENCE_IDS`. No visual change, no new component, no logic change. Pre-cleared as low-risk: the slop-gate (no new behavior hidden in wiring changes) is satisfied.
 
 ---
 
@@ -194,6 +196,19 @@ New file: `src/engine/scheduler.test.ts`
 - Content JSON files — no sentence data changes in this plan.
 - The `topUpConcept` path — unaffected; still calls when AI is ready.
 - Any UI component — this is engine/scheduler only.
+
+---
+
+## Verification gate
+
+Before claiming this item done:
+
+1. Run the app and navigate to a session. Confirm no blank dark card (pulse skeleton persisting for 3 seconds then silently advancing) appears at any point during the session.
+2. Open the browser console. Confirm `console.warn` fires with concept ID and skip reason for any concept the guard excludes (logged, not thrown — session must not crash).
+3. Run `npm run type-check` — zero errors.
+4. Run `npm test` — all tests in `src/engine/scheduler.test.ts` pass.
+5. Complete a full session without interruption. If eligible concept count was below target, session completes short — expected behavior, not a failure.
+6. Take a screenshot of the completed session (or a near-completion state) and save to `.claude/screenshots/item-2-guard/`. Include at minimum a 375px and 1280px breakpoint capture.
 
 ---
 
