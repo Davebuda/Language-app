@@ -113,6 +113,18 @@ Dead `nc-*` classes removed, dead buttons resolved one way or the other, single 
 
 ---
 
+## Integrity Follow-ups (noted, not scheduled)
+
+Small correctness issues surfaced during UI-1.2 that are out of scope for the current pass. Each needs a slot — don't let them disappear.
+
+**1. Blank indicator size mismatch in FillInBlankExercise (UI polish).**
+At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly smaller than the surrounding sentence text (32px at `lg`). The hierarchy between prompt and answer buttons still passes the 1.6× rule; this is cosmetic. Belongs in the UI-3 polish pass alongside the `nc-*` cleanup.
+
+**2. Hardcoded `errorTag: 'verb-conjugation'` in FillInBlankExercise (correctness bug).**
+Both `MultipleChoice.choose()` and `FreeText.submit()` hardcode `errorTag: 'verb-conjugation'` regardless of the actual error. This is the same fingerprint-pollution pattern fixed elsewhere with the `error_tags_detectable` swap — wrong answers get tagged with the wrong error type, which corrupts the mistake fingerprint and misdirects the repair loop. Fix: derive the error tag from `sentence.errorTagsDetectable[0]` (or the concept's primary tag) instead of hardcoding. This is a real bug — not cosmetic — but out of scope for UI-1.2. Schedule as part of the engine-correctness clean-up pass after UI-1.2 closes.
+
+---
+
 ## Stream 3 — Muntlig Module (next major build after UI-1 converges)
 
 The full speaking-practice system. Designed, costed, and validated as zero-cost-buildable in `docs/muntlig/architecture.md`. Will require:

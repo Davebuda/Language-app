@@ -113,7 +113,12 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
         Sett ordene i riktig rekkefølge
       </p>
-      <p className="text-base text-white/50">{sentence.english}</p>
+      <p className="text-[26px] sm:text-[28px] font-bold text-white leading-snug">
+        {sentence.norwegian}
+      </p>
+      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+        {sentence.english}
+      </p>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={tiles.map((t) => t.id)} strategy={horizontalListSortingStrategy}>
           <div className="flex min-h-[48px] flex-wrap gap-2 rounded-xl border border-white/12 bg-[rgba(255,255,255,0.02)] p-3">
