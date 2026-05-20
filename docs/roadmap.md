@@ -123,6 +123,9 @@ At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly 
 **2. Hardcoded `errorTag: 'verb-conjugation'` in FillInBlankExercise (correctness bug).**
 Both `MultipleChoice.choose()` and `FreeText.submit()` hardcode `errorTag: 'verb-conjugation'` regardless of the actual error. This is the same fingerprint-pollution pattern fixed elsewhere with the `error_tags_detectable` swap — wrong answers get tagged with the wrong error type, which corrupts the mistake fingerprint and misdirects the repair loop. Fix: derive the error tag from `sentence.errorTagsDetectable[0]` (or the concept's primary tag) instead of hardcoding. This is a real bug — not cosmetic — but out of scope for UI-1.2. Schedule as part of the engine-correctness clean-up pass after UI-1.2 closes.
 
+**3. Stale `userInput` closure in SpeedRound timer (correctness bug).**
+The `setInterval` in `SpeedRound` captures `userInput` from the `useEffect` closure at mount time. When the timer expires and auto-submits, it calls `submitAnswer(userInput)` with the stale empty string, not the value the user has actually typed. This means a learner who was mid-answer when time ran out gets recorded as a wrong answer with `userAnswer: ''` — corrupting the fingerprint with fake failure data. This is the same shape as the `inferErrorTag` pollution already fixed: wrong data flowing into the learning model from a production exercise surface, not a cosmetic issue. Fix: use a `useRef` to track the live input value alongside the `useState`, and reference `inputRef.current.value` (or a parallel `userInputRef.current`) in the timer callback. Schedule after UI-1.2 closes.
+
 ---
 
 ## Stream 3 — Muntlig Module (next major build after UI-1 converges)
