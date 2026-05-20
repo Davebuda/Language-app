@@ -109,16 +109,16 @@ Background content generation via `topUpConcept` calls `aiService.generateConten
 
 These **eight** items collectively unblock the core loop. Items 1 and 2 from the original draft were consolidated — they share the same root cause and the same single code change in `generateSession`. The walkthrough confirmed a real user cannot complete a session. Nothing else ships until all eight are verified.
 
-**Critical-path chain (original 9-item numbering):** 2 → 4 → 8 → 9. Items 1 (merged into 2), 3, 5, 6, 7 are distributed independently. Item 5 (AI status badge) can run in parallel with the chain since it touches only the AI worker subsystem — it has no dependency on items 8 or 9.
+**Critical-path chain (original 9-item numbering):** 2 → 4 → 8 → 9. Items 1 (merged into 2), 3, 5, 6, 7 are distributed independently.
 
 | Item (original #) | Description | Current doc # | Status |
 |---|---|---|---|
 | 1 + 2 | Scheduler guard + grader mismatch | 1 | **CLOSED** |
 | 4 | Repair loop retry | 3 | **CLOSED** |
+| 5 | AI status badge | 4 | **CLOSED** |
 | 8 | Template targeting | 7 | Open — must complete before item 9 |
 | 9 | Atomic session progression | 8 | Open — depends on 1+2, 4, and 8 |
 | 3 | Word-order exercise | 2 | Open, independent |
-| 5 | AI status badge | 4 | Open, parallel |
 | 6 | FillInBlank error tag | 5 | Open, independent |
 | 7 | Journal rettet versjon | 6 | Open, independent |
 
