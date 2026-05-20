@@ -45,12 +45,26 @@ function getDailyPrompt(): string {
   return PROMPTS[new Date().getDay() % PROMPTS.length]
 }
 
-function buildCorrectedText(original: string, errors: WritingFeedback['errors']): string {
+function buildCorrectedText(
+  original: string,
+  errors: WritingFeedback['errors'],
+): { text: string; unapplied: number } {
   let result = original
+  let unapplied = 0
   for (const err of errors) {
-    result = result.replace(err.wrong, err.correct)
+    if (!err.wrong || !err.correct) continue
+    // Case-insensitive: the AI often lowercases excerpts (e.g. "jeg" when the
+    // original has "Jeg"). String.replace is case-sensitive and would silently miss.
+    const escaped = err.wrong.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const regex = new RegExp(escaped, 'i')
+    const next = result.replace(regex, err.correct)
+    if (next === result) {
+      unapplied++
+      console.warn('[journal] correction could not be applied:', err.wrong, '→', err.correct)
+    }
+    result = next
   }
-  return result
+  return { text: result, unapplied }
 }
 
 // ── Speech recognition helpers ────────────────────────────────────────
@@ -163,7 +177,9 @@ export function WritingEditor() {
     }
   }
 
-  const correctedText = feedback ? buildCorrectedText(text, feedback.errors) : ''
+  const correctionResult = feedback ? buildCorrectedText(text, feedback.errors) : null
+  const correctedText = correctionResult?.text ?? ''
+  const unappliedCount = correctionResult?.unapplied ?? 0
 
   return (
     <div className="flex flex-col gap-4">
@@ -319,6 +335,11 @@ export function WritingEditor() {
                   <div className="rounded-xl bg-nc-card border border-nc-green/20 p-4">
                     <div className="mb-1 text-[10px] uppercase tracking-widest text-nc-green/50">Rettet versjon</div>
                     <p className="text-[15px] leading-relaxed text-nc-green/90">{correctedText}</p>
+                    {unappliedCount > 0 && (
+                      <p className="mt-2 text-[11px] text-nc-text-dim">
+                        Noen rettelser kunne ikke brukes automatisk — se tilbakemeldingen over.
+                      </p>
+                    )}
                   </div>
                 </motion.div>
               )}

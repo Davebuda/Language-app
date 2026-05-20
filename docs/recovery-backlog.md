@@ -7,6 +7,21 @@ The walkthrough found that the session loop — the single most important surfac
 
 ---
 
+## ✅ P0 BATCH COMPLETE — 2026-05-21
+
+All eight P0 items are closed. The session loop is completable end-to-end. The session now:
+- queues only exercises with eligible seed sentences (item 1+2)
+- builds word-order sentences via click-to-arrange two-zone model (item 2)
+- retries the original sentence with the original exercise type (item 3)
+- shows an honest "AI unavailable" badge when generation fails (item 4)
+- derives error tags from sentence data, not hardcoded values (items 5, 7)
+- shows honest "rettet versjon" applying identified corrections (item 6)
+- advances only on user interaction, never silently (item 8)
+
+Remaining open: items 2 (word-order content audit — ongoing), 6 (journal AI quality), P1 and P2 items, and the deferred stream work (UI-1.3, engine corrections, muntlig).
+
+---
+
 ## No-silent-substitution — architectural principle confirmed during P0 recovery
 
 Three items during P0 recovery were fundamentally the same class of bug: the system silently did something other than what the user expected, with no visible signal. The fixes share a pattern: **honest visible state over silent fallback.**
@@ -14,8 +29,9 @@ Three items during P0 recovery were fundamentally the same class of bug: the sys
 1. **Item 4 (AI badge):** Model loaded but generations returned null. The badge showed "AI ready." Fix: show "AI unavailable" when generation consistently fails. Honest state over silent lie.
 2. **Items 5 and 7 (error tag derivation):** Exercise components hardcoded wrong error tags. The fingerprint silently recorded `'verb-conjugation'` or `'word-order'` for errors that were nothing of the kind. Fix: derive from `sentence.errorTagsDetectable[0]`. Correct data over silently wrong data.
 3. **Item 8 (session auto-skip):** An exercise with no resolved content silently advanced the session counter after 3 seconds. The user's progress jumped without interaction. Fix: remove the silent skip; show LoadingSkeleton and let the user exit via X if needed. Honest state over silent advancement.
+4. **Item 6 (journal partial correction):** `buildCorrectedText` used case-sensitive `String.replace`. When the AI lowercased excerpts in `err.wrong`, the search failed silently and the "Rettet versjon" showed uncorrected text despite the feedback card claiming corrections. Fix: case-insensitive regex matching; honest UI note when any correction can't be applied. Silent failure replaced by partial-correction disclosure.
 
-This is the same principle stated in CLAUDE.md ("honest banners over silent fallbacks") applied at three distinct layers — AI status, fingerprint data, and session progression. Future items at any layer should default to honest visibility when in doubt.
+This is the same principle stated in CLAUDE.md ("honest banners over silent fallbacks") applied at four distinct layers — AI status, fingerprint data, session progression, and journal rewrite application. **This pattern has appeared on every layer touched during P0 recovery.** It is a named operating principle. Future items at any layer should default to honest visibility when in doubt. If adding a fallback: the fallback must be visible to the user, not silent.
 
 ---
 
@@ -329,6 +345,9 @@ Key items: authenticated session persistence (U2), session counter increment pos
 **AI explanation side-effect from sentence-transformation grader fix — queued eval task:**  
 The fix now routes sentence-transformation to the English expected answer, so the AI receives English wrong/correct context. Verify via a single deliberate eval-page task: in `src/app/eval/page.tsx` TASKS array, add one `explain` task with `wrong: 'Where is that man over there?'`, `correct: 'Who is that man over there?'`, `errorTag: 'word-order'`, `conceptId: 'question-formation'`, `level: 'A2'`. Run it on `/eval` and confirm the AI explanation references English question formation (wrong interrogative pronoun "Where" vs "Who"), not Norwegian V2 word order. This is a one-task addition to the eval harness — no corpus addition needed. Queue as a small follow-up whenever `/eval` output is reviewed next.
 
+**Journal AI output quality — mid-sentence capitalization ("og Jeg") — queued for model swap / prompt-hardening v2:**  
+When the journal AI identifies a correction, it sometimes lowercases the `wrong` excerpt (causing the `buildCorrectedText` case-insensitive fix to correctly apply it) but also generates `correct` forms with wrong capitalization for the context. The walkthrough saw "og Jeg er fra Polen" — the AI identified `wrong: "jeg er fra Polen"` / `correct: "Jeg er fra Polen"` treating it as a sentence-start capitalization fix, but the text appeared mid-sentence after "og". The mechanical application (`buildCorrectedText`) correctly applied what the AI said. The root cause is AI output quality, not code. This is one manifestation of the broader Norwegian model quality issue (Stream 1.1 in the roadmap). Pick up when the model swap lands or prompt-hardening v2 is scoped. No code change needed.
+
 ---
 
-*Last updated: 2026-05-20 | Source: system walkthrough + P0 items 1–4 closure*
+*Last updated: 2026-05-21 | Source: system walkthrough + P0 batch complete*
