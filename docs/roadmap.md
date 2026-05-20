@@ -22,7 +22,7 @@ These four changes are correctness, not optimization. They emerged from the vali
 
 **Eval harness state:** Real and runnable at `/eval`. Covers generate, explain, detect, conversation, review. Human-evaluated output, not automated pass/fail. Exists now; no harness build needed before the swap.
 
-**Native speaker sourcing:** Required. Resolve this first — if a speaker is not available, sourcing is the actual first move before the model swap.
+**Native speaker — provisional gate (Option B):** No native speaker lined up. The user reviews the `/eval` JSON output at their current Norwegian level. A1's pass condition is provisional: (a) no English drift visible in outputs, (b) no V2 word-order violations, (c) no obvious grammar errors detectable at the user's level. Native speaker review is queued as a follow-up validation that must complete before any muntlig content generation depends on the model. This makes the gate unblocking but not final.
 
 **Acceptance:** Conversation responses, mistake explanations, sentence generation, and constraint evaluation all run on NB-Llama; native speaker confirms no English drift and correct V2 word order in generated sentences.
 
@@ -162,7 +162,7 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 
 The literal next moves, in order, until further notice:
 
-0. **Resolve the native speaker question for A1.** If a fluent Norwegian speaker is not lined up for the `/eval` output review, sourcing one is the actual first move. This is the gate for A1, not the model swap itself.
+0. ~~Resolve the native speaker question for A1.~~ **Resolved — Option B.** User reviews `/eval` JSON at their current Norwegian level. Native speaker review queued as follow-up before muntlig content generation.
 1. **A1 model swap + UI-1.2 scoping pass run in parallel.** A1 touches only the AI worker. UI-1.2 scoping is architect-led (enumerate exercise subtypes, verify the acceptance test, bound the GrammarExplainerCard fix scope). No build code written yet.
 2. **A1 verifies (native speaker reviews `/eval` JSON output).** Once verified, the AI worker is stable for the duration of the UI work.
 3. **UI-1.2 builds and verifies against the concrete acceptance test.** Four breakpoint screenshots required. One move; no engine corrections run concurrently.
