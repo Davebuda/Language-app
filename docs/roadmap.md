@@ -14,19 +14,28 @@ The plan now interleaves three streams: surgical engine corrections from the val
 
 These four changes are correctness, not optimization. They emerged from the validation research and address things that have been silently degrading the system. **They are not peers — 1.1 is a correctness gate; 1.2–1.4 are deferred until UI-1.2 is verified done.** Order within 1.2–1.4 matters; see the operating sequence below.
 
-### 1.1 Swap to NB-Llama-3.2-3B — CORRECTNESS GATE, starts now
+### 1.1 Norwegian model quality — CORRECTNESS GATE, three-step path
 
-**Why:** Vanilla Llama-3.2-3B has known failure modes on Norwegian — English drift, V2 word-order violations, fabricated compound words. Every shipped AI surface (conversation, constraint evaluation, semantic grading, mistake explanations) is currently running on a degraded model. This is a live correctness defect across the entire AI surface, not an enhancement. The National Library of Norway has released NB-Llama-3.2-3B, fine-tuned on Norwegian Bokmål and Nynorsk, same architecture, same web-llm runtime.
+**Why:** Vanilla Llama-3.2-3B has documented Norwegian failure modes — English drift mid-response, V2 word-order violations, fabricated compound words. Every shipped AI surface (conversation, constraint evaluation, semantic grading, mistake explanations) is affected. This is a live correctness defect, not an enhancement.
 
-**Scope:** Change the model identifier in the WebLLM initialization. Run `/eval` harness (19 tasks × 3 runs, browser-based, outputs JSON for manual rating — not automated). Fluent Norwegian speaker reviews the downloaded JSON and rates outputs. Native speaker review is the verification gate, not eval numbers alone.
+**Research finding:** NB-Llama-3.2-3B is NOT in the web-llm prebuilt registry and exists only in GGUF format (llama.cpp/Ollama). There is no 3B Instruct variant from NbAiLab. The prior claim that this was "a model identifier change" was incorrect. See three-step path below.
 
-**Eval harness state:** Real and runnable at `/eval`. Covers generate, explain, detect, conversation, review. Human-evaluated output, not automated pass/fail. Exists now; no harness build needed before the swap.
+**Step 1 — Prompt-harden the current Llama-3.2-3B (in progress).**
+Explicit Norwegian-enforcement rules added to every AI call site: require Bokmål output, prohibit English drift, enforce V2 word order in generated sentences, compound-word heuristic (words >18 chars trigger retry with simpler-vocabulary note). Applied across all five prompt builders. Run `/eval`, user reviews JSON. Three outcomes: (a) clears the bar → provisionally done; (b) partial → proceed to Step 2 with Step 1 as interim; (c) no improvement → Step 2 urgent.
 
-**Native speaker — provisional gate (Option B):** No native speaker lined up. The user reviews the `/eval` JSON output at their current Norwegian level. A1's pass condition is provisional: (a) no English drift visible in outputs, (b) no V2 word-order violations, (c) no obvious grammar errors detectable at the user's level. Native speaker review is queued as a follow-up validation that must complete before any muntlig content generation depends on the model. This makes the gate unblocking but not final.
+**Step 2 — Compile NB-Llama-3.2-1B-Instruct for web-llm (if Step 1 insufficient).**
+`NbAiLab/nb-llama-3.2-1B-Instruct` exists on HuggingFace. MLC compile pipeline: `mlc_llm convert_weight` → `gen_config` → WebGPU WASM → host artifacts → register custom `appConfig`. Keeps in-browser AI. Uses 1B (smaller, but Norwegian-tuned and Instruct-tuned). The 3B base model has no Instruct variant. Estimated half-day pipeline.
 
-**Acceptance:** Conversation responses, mistake explanations, sentence generation, and constraint evaluation all run on NB-Llama; native speaker confirms no English drift and correct V2 word order in generated sentences.
+**Step 3 — Server-side Ollama on VPS (last resort only).**
+NB-Llama GGUF via Ollama on the Hetzner VPS. AI module calls VPS endpoint instead of web worker. Full 3B quality. Loses local-first AI property. Only considered if Step 2 also fails the bar.
 
-**Runs in parallel with:** UI-1.2 scoping pass (different subsystem — AI worker, not session loop UI tree). Does not run concurrently with UI-1.2 build; A1 must complete before the build starts to avoid confounding regressions.
+**Reasoning:** prove the cheap fix doesn't work before committing to the expensive one — same discipline as the rest of the project.
+
+**Eval harness:** Real and runnable at `/eval`. 19 tasks × 3 runs. Human-reviewed JSON output, not automated. No build needed.
+
+**Native speaker gate (Option B, provisional):** User reviews `/eval` JSON at their current Norwegian level. Pass: no English drift, no V2 violations, no obvious grammar errors. Native speaker review queued as follow-up before any muntlig content generation depends on the model.
+
+**Runs in parallel with:** UI-1.2 scoping pass. Does not run concurrently with UI-1.2 build.
 
 **Priority:** Highest. Unblocks muntlig. Fixes a live defect.
 

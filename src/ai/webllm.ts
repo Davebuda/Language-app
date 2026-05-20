@@ -37,6 +37,13 @@ function difficultyTier(masteryScore?: number): 1 | 2 | 3 {
   return 3
 }
 
+// Heuristic: flag suspiciously long words that may be fabricated Norwegian compounds.
+// Threshold 18 chars catches true fabrications while allowing real long words
+// (e.g. "barnehageplassen" = 16, "togstasjonen" = 12).
+function likelySyntheticCompound(text: string): boolean {
+  return text.split(/\s+/).some(w => w.replace(/[.,!?;:«»"']/g, '').length > 18)
+}
+
 function templateExplanation(params: ExplainParams): string {
   const byTag: Partial<Record<string, string>> = {
     'word-order': `You wrote "${params.wrong}". Norwegian uses the V2 rule — verb must be in position 2. Correct: "${params.correct}".`,
@@ -154,11 +161,21 @@ export class WebLLMService implements AIService {
     const { system, user } = buildGenerationPrompt(params)
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
       try {
-        const raw = await this.complete(system, user, true)
+        // On retry after a compound-word hit, append a simpler-vocabulary note
+        const userPrompt = attempt > 0
+          ? `${user}\n\nIMPORTANT: Use only short, common Norwegian words (under 15 characters each). No compound words.`
+          : user
+        const raw = await this.complete(system, userPrompt, true)
         const parsed: unknown = JSON.parse(raw)
         const result = validateGenerated(parsed, params)
         if (!result.valid) continue
         const { content } = result
+        // Heuristic guard: reject and retry if the Norwegian text contains
+        // a word long enough to be a plausible fabricated compound.
+        if (likelySyntheticCompound(content.norwegian)) {
+          console.warn('[WebLLM] Suspected fabricated compound in:', content.norwegian)
+          continue
+        }
         return {
           id: crypto.randomUUID(),
           norwegian: content.norwegian,

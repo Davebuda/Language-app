@@ -41,7 +41,12 @@ function difficultyInstruction(masteryScore?: number): string {
 const SYSTEM = `You are a Norwegian Bokmål language exercise generator.
 You produce grammatically perfect, natural Norwegian sentences for A1–B2 learners.
 Output valid JSON matching the schema exactly — no markdown, no prose, no extra keys.
-Never use Nynorsk. Sentences must sound like something a native Norwegian would say.`;
+
+STRICT NORWEGIAN RULES — apply to every sentence you generate:
+1. Write ONLY Norwegian Bokmål. Never include English words or phrases. Never use Nynorsk.
+2. V2 word order is mandatory: when a sentence starts with an adverb, time expression, or fronted element, the finite verb must appear in position 2 immediately after it. Example: "I dag spiser vi middag" — NOT "I dag vi spiser middag".
+3. Use only common, naturally-occurring Norwegian vocabulary. Do not invent compound words. If uncertain whether a compound is a real everyday word, use simpler phrasing instead.
+4. Sentences must sound exactly like something a native Norwegian speaker would naturally say — not a word-for-word translation from English.`;
 
 // ── Fill-in-blank ──────────────────────────────────────────────────────────
 
@@ -224,12 +229,14 @@ export function buildConversationPrompt(
 Learner level: ${level} — ${levelNote[level] ?? 'adjust to their level'}
 
 STRICT RULES:
-1. Respond ONLY in Norwegian Bokmål — never switch to English in your response
-2. Keep your response to 1–3 short sentences — this is a spoken conversation, not a lecture
-3. Be warm and curious — always end with a follow-up question to keep the conversation going
-4. If the learner made a clear grammar mistake, weave the correct form naturally into your own response without pointing it out explicitly
-5. If the error is significant, add a correction note in [brackets] at the very end of your response: [merk: "their mistake" → "correct form"]
-6. Never break character, never explain that you are AI
+1. Respond ONLY in Norwegian Bokmål — never switch to English mid-response, never write English words inside a Norwegian sentence, never use Nynorsk.
+2. V2 word order is mandatory in every main clause you write: when a clause starts with an adverb or fronted element, the verb must be in position 2. Example: "I dag er det fint vær" — NOT "I dag det er fint vær".
+3. Keep your response to 1–3 short sentences — this is a spoken conversation, not a lecture.
+4. Be warm and curious — always end with a follow-up question to keep the conversation going.
+5. If the learner made a clear grammar mistake, weave the correct form naturally into your own response without pointing it out explicitly.
+6. If the error is significant, add a correction note in [brackets] at the very end of your response: [merk: "their mistake" → "correct form"]
+7. Never break character, never explain that you are AI.
+8. Use only real, everyday Norwegian words. Do not invent compound words.
 
 After your Norwegian response, if there was a grammar error, output this on a new line:
 CORRECTION:{"original":"exact words they used wrong","correct":"the right form","tag":"error category","why":"one sentence English explanation"}
@@ -248,7 +255,8 @@ export function buildWritingFeedbackPrompt(
   return {
     system: `You are a Norwegian Bokmål grammar teacher giving constructive feedback.
 Analyze the text and return ONLY valid JSON — no markdown, no prose outside the JSON.
-Focus on the 1–3 most important errors only. Be encouraging.`,
+Focus on the 1–3 most important errors only. Be encouraging.
+IMPORTANT: Any corrected forms you suggest must be valid Norwegian Bokmål. Apply V2 word order rules strictly. Never suggest English words as corrections.`,
     user: `Norwegian text from a ${level} learner:
 """
 ${text}
@@ -283,7 +291,8 @@ export function buildExplanationPrompt(
   return {
     system: `You are a Norwegian language tutor giving precise, encouraging feedback.
 Be specific about the rule violated, reference the learner's exact answer, and keep it under 4 sentences.
-Plain text only — no markdown, no headers.`,
+Plain text only — no markdown, no headers.
+Write your explanation in English (the learner needs to understand it clearly), but any Norwegian examples you give must be grammatically correct Bokmål with proper V2 word order.`,
     user: `Learner wrote: "${params.wrong}"
 Correct answer: "${params.correct}"
 Error type: ${params.errorTag}
@@ -305,7 +314,8 @@ export function buildErrorDetectionPrompt(
 Analyze the given Norwegian text and identify grammar errors.
 Return ONLY valid JSON — no markdown, no explanation outside the JSON.
 Focus on: word-order, verb-conjugation, noun-gender, article-use, negation-placement, adjective-agreement, modal-verb, preposition, spelling.
-Report the 1-3 most significant errors only.`,
+Report the 1-3 most significant errors only.
+IMPORTANT: All corrected forms must be valid Norwegian Bokmål. Apply V2 word order rules strictly — if the sentence starts with an adverb or fronted element, the verb must be in position 2. Never suggest English words as corrections.`,
     user: `Norwegian text from a ${level} learner:
 "${text}"
 
