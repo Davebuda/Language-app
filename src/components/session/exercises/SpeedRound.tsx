@@ -52,7 +52,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         userAnswer: answer,
         correctAnswer,
         timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-        errorTag: correct ? undefined : (errorTag ?? 'spelling'),
+        errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'spelling'),
         conceptId: item.conceptIds[0] ?? '',
       });
     });

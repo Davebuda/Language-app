@@ -103,7 +103,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       userAnswer: userWords.join(' '),
       correctAnswer: sentence.norwegian,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : 'word-order',
+      errorTag: correct ? undefined : (sentence.errorTagsDetectable[0] ?? 'word-order'),
       conceptId: item.conceptIds[0] ?? '',
     });
   }

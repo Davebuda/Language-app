@@ -17,6 +17,22 @@ The repair loop has three layers with three distinct jobs. Future items must res
 
 These jobs are non-interchangeable. Putting varied practice in the retry step muddies verification. Repeating the original exercise in the micro-drills wastes the drill slot. Items 3 (retry), 7 (template targeting), and 8 (atomic progression) each touch one layer — keep that layer's job in scope and leave the others alone.
 
+## Error-tag derivation contract — durable context for all exercise components
+
+**Default:** Exercise components derive `errorTag` from `sentence.errorTagsDetectable[0]` to honestly reflect what the sentence's declared detectable issues are. When the grader server action is called (TranslationExercise, SpeedRound, ListeningExercise), the grader's response takes priority; `sentence.errorTagsDetectable[0]` is the client-side fallback for corpus-miss cases. When the grader is not called (WordOrderExercise, FillInBlankExercise — both do local comparison), `sentence.errorTagsDetectable[0]` is the primary source.
+
+**Listening exemption:** `ListeningExercise` uses `'listening-recognition'` as its fallback — deliberate. Listening errors are channel-level (audio processing) regardless of the sentence's grammar tags. The `'listening-recognition'` tag signals to the repair loop that this is a listening-channel failure, not a grammar failure, and should route to listening/dictation remediation drills. Future exercise types inherit the default unless they have an equally explicit channel-level reason to override.
+
+**Table of current state (post item 7):**
+
+| Component | errorTag source | Notes |
+|---|---|---|
+| `TranslationExercise` | `gradeAnswer` → fallback `sentence.errorTagsDetectable[0]` | Server-first |
+| `FillInBlankExercise` | `sentence.errorTagsDetectable[0]` | Fixed item 5 |
+| `WordOrderExercise` | `sentence.errorTagsDetectable[0]` (fallback `'word-order'`) | Fixed item 7 |
+| `SpeedRound` | `gradeAnswer` → fallback `sentence.errorTagsDetectable[0]` (fallback `'spelling'`) | Fixed item 7 |
+| `ListeningExercise` | `gradeAnswer` → fallback `'listening-recognition'` | Deliberate exemption |
+
 ---
 
 ## P0 item 4 — CLOSED 2026-05-20

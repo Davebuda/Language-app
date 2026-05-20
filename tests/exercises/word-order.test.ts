@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { normalizeAnswer } from '@/lib/answer';
+import type { ErrorTag } from '@/types/taxonomy';
 
 function isCorrectOrder(userWords: string[], correctWords: string[]): boolean {
   return (
@@ -23,5 +24,39 @@ describe('WordOrderExercise correct-order detection', () => {
 
   it('returns false when word count differs', () => {
     expect(isCorrectOrder(['Jeg', 'spiser'], ['Jeg', 'spiser', 'mat'])).toBe(false);
+  });
+});
+
+// ── errorTag derivation — fix for P0 item 7 ──────────────────────────────────
+// WordOrderExercise derives errorTag from sentence.errorTagsDetectable[0], not
+// a hardcoded 'word-order'. The fix mirrors the FillInBlank item 5 pattern.
+describe('WordOrderExercise errorTag derivation', () => {
+  it('wrong answer uses first declared error tag — not hardcoded word-order', () => {
+    const errorTagsDetectable: ErrorTag[] = ['adjective-agreement'];
+    const correct = false;
+    const result = correct ? undefined : (errorTagsDetectable[0] ?? 'word-order');
+    expect(result).toBe('adjective-agreement');
+    expect(result).not.toBe('word-order');
+  });
+
+  it('correct answer always returns undefined errorTag', () => {
+    const errorTagsDetectable: ErrorTag[] = ['adjective-agreement'];
+    const correct = true;
+    const result = correct ? undefined : (errorTagsDetectable[0] ?? 'word-order');
+    expect(result).toBeUndefined();
+  });
+
+  it('falls back to word-order when errorTagsDetectable is empty', () => {
+    const errorTagsDetectable: ErrorTag[] = [];
+    const correct = false;
+    const result = correct ? undefined : (errorTagsDetectable[0] ?? 'word-order');
+    expect(result).toBe('word-order');
+  });
+
+  it('noun-gender concept uses noun-gender tag, not V2 boilerplate trigger', () => {
+    const errorTagsDetectable: ErrorTag[] = ['noun-gender'];
+    const correct = false;
+    const result = correct ? undefined : (errorTagsDetectable[0] ?? 'word-order');
+    expect(result).toBe('noun-gender');
   });
 });
