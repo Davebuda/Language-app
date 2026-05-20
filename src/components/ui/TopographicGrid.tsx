@@ -14,69 +14,97 @@ export function TopographicGrid() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let animId = 0
     const startTime = performance.now()
-    const s = { paused: false }  // mutable pause flag for IntersectionObserver
+    const state = { paused: false }
 
-    const ROWS = 38
-    const COLS = 30
-    const SEGS = 90
+    // Concentric terrain rings — RINGS total, SEGS vertices each
+    const RINGS = 26
+    const SEGS  = 200
+
+    // Stable orbital params — recomputed on resize, not per-frame
+    const orb = { scale: 0, r1: 0, r2: 0 }
 
     function resize() {
-      canvas.width = window.innerWidth
+      canvas.width  = window.innerWidth
       canvas.height = window.innerHeight
-    }
-
-    // u,v are 0-1 normalised coords; returns y-offset in px
-    function disp(u: number, v: number, t: number): number {
-      // Pulse: sharp surges that momentarily amplify the folds
-      const pulse = 1.0
-        + 0.85 * Math.pow(Math.max(0, Math.sin(t * 1.4)),       2)
-        + 0.55 * Math.pow(Math.max(0, Math.sin(t * 2.3 + 1.57)), 2)
-      const amp = canvas.width * 0.072 * pulse
-      const env = Math.sin(u * Math.PI) * Math.sin(v * Math.PI)
-      return (
-        env *
-        (Math.sin(u * 4.8  + v * 3.5 + t * 1.00)        * amp +
-         Math.sin(u * 9.5  + v * 5.8 + t * 0.70 + 1.23) * amp * 0.52 +
-         Math.sin(u * 3.8  + v * 9.2 + t * 0.45 + 2.71) * amp * 0.38 +
-         Math.sin(u * 14.0 + v * 6.4 + t * 1.10 + 0.55) * amp * 0.20)
-      )
+      orb.scale = Math.min(canvas.width, canvas.height)
+      orb.r1    = orb.scale * 0.060
+      orb.r2    = orb.scale * 0.100
     }
 
     function draw(elapsed: number) {
-      const t = elapsed * 0.001 * 1.1
+      const t = elapsed * 0.001 * 0.42
       const { width: W, height: H } = canvas
       ctx.clearRect(0, 0, W, H)
-      ctx.lineWidth = 0.5
 
-      // Horizontal lines
-      for (let r = 0; r <= ROWS; r++) {
-        const v = r / ROWS
-        const alpha = 0.045 + 0.027 * Math.abs(Math.sin(r * 0.41 + 0.8))
+      const scale = Math.min(W, H)
+
+      // ── Topographic terrain rings ────────────────────────────────────────
+      const cx = W * 0.70
+      const cy = H * 0.58
+      const rMin = scale * 0.04
+      const rMax = scale * 0.62
+
+      ctx.lineCap  = 'round'
+      ctx.lineJoin = 'round'
+
+      for (let k = 0; k < RINGS; k++) {
+        const p     = Math.pow(k / (RINGS - 1), 0.72)
+        const r     = rMin + p * (rMax - rMin)
+        const rx    = r * 1.52
+        const ry    = r * 0.78
+        const alpha = Math.max(0, 0.14 - p * 0.12)
+        if (alpha < 0.004) continue
+
+        const nAmp = scale * 0.020 * (1 - p * 0.55)
         ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`
+        ctx.lineWidth   = 0.55
         ctx.beginPath()
+
         for (let seg = 0; seg <= SEGS; seg++) {
-          const u = seg / SEGS
-          const x = u * W
-          const y = v * H + disp(u, v, t)
+          const a = (seg / SEGS) * Math.PI * 2
+          const noise =
+            Math.sin(a * 2.3 + k * 0.52 + t * 0.95)        * nAmp +
+            Math.sin(a * 5.1 + k * 0.88 + t * 0.58 + 1.31) * nAmp * 0.44 +
+            Math.sin(a * 9.4 + k * 0.34 + t * 0.32 + 2.65) * nAmp * 0.21
+          const x = cx + (rx + noise)        * Math.cos(a)
+          const y = cy + (ry + noise * 0.52) * Math.sin(a)
           seg === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
         }
+        ctx.closePath()
         ctx.stroke()
       }
 
-      // Vertical lines
-      for (let c = 0; c <= COLS; c++) {
-        const u = c / COLS
-        const alpha = 0.032 + 0.019 * Math.abs(Math.sin(c * 0.37 + 0.5))
-        ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`
+      // ── Orbital system ───────────────────────────────────────────────────
+      // Centre sits above the terrain peak, upper-right zone
+      const ox = W * 0.74
+      const oy = H * 0.26
+
+      // Orbit path rings
+      ;[orb.r1, orb.r2].forEach(r => {
         ctx.beginPath()
-        for (let seg = 0; seg <= SEGS; seg++) {
-          const v = seg / SEGS
-          const x = u * W
-          const y = v * H + disp(u, v, t)
-          seg === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
-        }
+        ctx.arc(ox, oy, r, 0, Math.PI * 2)
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+        ctx.lineWidth   = 0.6
         ctx.stroke()
-      }
+      })
+
+      // [orbit radius, speed rad/s, phase, ball radius, alpha]
+      type Ball = [number, number, number, number, number]
+      const BALLS: Ball[] = [
+        [orb.r2, 0.26, 0.00, orb.scale * 0.0095, 0.90],  // large, outer, slowest
+        [orb.r1, 0.58, 1.85, orb.scale * 0.0052, 0.75],  // medium, inner
+        [orb.r2, 0.40, 3.60, orb.scale * 0.0030, 0.55],  // small, outer, offset phase
+      ]
+
+      BALLS.forEach(([orbit, speed, phase, bRadius, alpha]) => {
+        const angle = t * speed + phase
+        const bx = ox + orbit * Math.cos(angle)
+        const by = oy + orbit * Math.sin(angle)
+        ctx.beginPath()
+        ctx.arc(bx, by, bRadius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`
+        ctx.fill()
+      })
     }
 
     function loop(now: number) {
@@ -85,11 +113,11 @@ export function TopographicGrid() {
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && s.paused) {
-        s.paused = false
+      if (entry.isIntersecting && state.paused) {
+        state.paused = false
         animId = requestAnimationFrame(loop)
-      } else if (!entry.isIntersecting && !s.paused) {
-        s.paused = true
+      } else if (!entry.isIntersecting && !state.paused) {
+        state.paused = true
         cancelAnimationFrame(animId)
       }
     })
