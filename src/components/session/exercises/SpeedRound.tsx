@@ -83,7 +83,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       </div>
 
       <motion.p
-        className="text-[26px] font-bold text-white"
+        className="text-[28px] font-bold text-white"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
       >
