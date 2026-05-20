@@ -7,6 +7,36 @@ The walkthrough found that the session loop — the single most important surfac
 
 ---
 
+## Repair loop principle — durable context for items 3, 7, 8
+
+The repair loop has three layers with three distinct jobs. Future items must respect this division:
+
+- **Micro-drills vary** — two exercises on the same concept but different sentences and types. Their job is generalisation: can the learner apply the rule to a novel example?
+- **Retry repeats** — the same sentence, the same exercise type. Its job is verification: can the learner now do the specific thing they failed at?
+- **SRS scheduling** — sets the review interval based on the retry outcome. Its job is persistence: will the learner still know this next week?
+
+These jobs are non-interchangeable. Putting varied practice in the retry step muddies verification. Repeating the original exercise in the micro-drills wastes the drill slot. Items 3 (retry), 7 (template targeting), and 8 (atomic progression) each touch one layer — keep that layer's job in scope and leave the others alone.
+
+---
+
+## P0 item 3 — CLOSED 2026-05-20
+
+**Acceptance test: passed.** Repair loop retry now returns to the original sentence with the original exercise type.
+
+**What shipped:**
+- `src/types/session.ts` — `sentenceId?: string` added to `ExerciseResult`; populates `ErrorLogEntry.sentenceId` in the fingerprint error log (field already existed but was never set)
+- `src/hooks/useSession.ts / submitResult` — captures resolved sentence ID from `contentCache.current.get(item.id)?.id` at submission time; included in error object
+- `src/hooks/useSession.ts / continueAfterRepair` — pre-seeds the retry item's contentCache entry with the original resolved content before `resolveItem` fires; explicit fallback + `console.warn` on cache miss
+- `src/engine/repair-loop.ts / buildRepairPlan` — `retryExerciseType = error.exerciseType`; removed "slightly different" logic and comment
+- `src/engine/repair-loop.ts / EXPLANATION_TEMPLATES` — added missing `unspecified` entry (pre-existing TS error, fixed in passing)
+- `tests/engine/repair-loop.test.ts` — 12 new tests; total across engine suite now 29
+
+**Key architectural finding (durable):** Threading `sentenceId` through to `error.sentenceId → makeRepairItems retry contentId` is necessary for fingerprint logging but NOT sufficient to make the retry show the original sentence. `resolveItem` ignores `contentId` — it always resolves by concept pool. The `contentCache` pre-seed is what forces the retry to show the correct sentence. Both changes are needed; one without the other would leave the bug partially alive.
+
+**AI explanation side-effect:** The AI model is still non-functional (C2 open). Could not verify whether the explanation now references English grammar context vs Norwegian. Queued for verification at item 4 (AI badge) or item 5 (template targeting) when the AI module is in scope.
+
+---
+
 ## P0 item 1/2 — CLOSED 2026-05-20
 
 **Acceptance test: passed.** All three translation-style exercise types now grade correctly:
@@ -187,11 +217,29 @@ These are ordered by user-impact severity. None may be scheduled until all P0 it
 
 ---
 
-## Unverifiable — needs auth or longer interaction
+## Integrity follow-ups — real bugs, not cosmetic, not yet scheduled
 
-See `test-reports/system-walkthrough-2026-05-20.md` sections U1–U7.  
-Key items: speed round stale-closure (U1), authenticated session persistence (U2), session counter increment post-completion (U3), streak update logic (U4).
+These were surfaced during the walkthrough and the UI-1.2 phase. Both are correctness bugs that corrupt the mistake fingerprint. Neither is cosmetic. They are not yet scheduled in the P0 or P1 batches because they are out of scope for the current critical path (2 → 3 → 7 → 8), but they must not disappear.
+
+**SpeedRound stale-closure timer (correctness bug — fingerprint corruption)**  
+`src/components/session/exercises/SpeedRound.tsx`  
+The `setInterval` callback captures `userInput` from the `useEffect` closure at mount time. When the timer expires and auto-submits, it calls `submitAnswer(userInput)` with the stale empty string — not the value the user actually typed. A learner who was mid-answer when time ran out is recorded as a wrong answer with `userAnswer: ''`, corrupting the fingerprint with fake failure data. Fix: use a `useRef` to track the live input value alongside `useState`, and reference `inputRef.current` in the timer callback. Also noted in `docs/roadmap.md` integrity follow-ups.  
+**Severity:** Real correctness bug — fingerprint pollution from fake wrong-answer events. Not cosmetic.
+
+**FillInBlank hardcoded `errorTag: 'verb-conjugation'` (correctness bug — same class, also fingerprint corruption)**  
+This is P0 item 5 (numbered entry above). Captured here as a cross-reference to make the pair visible together.  
+**Severity:** Real correctness bug — same pattern as SpeedRound: wrong data flowing into the learning model from a production exercise surface.
 
 ---
 
-*Last updated: 2026-05-20 | Source: system walkthrough*
+## Unverifiable — needs auth or longer interaction
+
+See `test-reports/system-walkthrough-2026-05-20.md` sections U2–U7.  
+Key items: authenticated session persistence (U2), session counter increment post-completion (U3), streak update logic (U4).
+
+**AI explanation side-effect from sentence-transformation grader fix (to verify at item 4 or 5):**  
+Pre-fix, the AI received English input for sentence-transformation exercises and tried to explain it as wrong Norwegian grammar (the grader misrouted the exercise). Post-fix, the grader routes sentence-transformation to the English expected answer, so the AI will receive the correct context for any grading error. This side-effect should resolve automatically. Verify when the AI module work happens (item 4 or item 5) by triggering a sentence-transformation exercise, submitting a wrong English answer, and confirming the AI explanation references the correct English grammar error rather than misinterpreting English as Norwegian.
+
+---
+
+*Last updated: 2026-05-20 | Source: system walkthrough + P0 item 1+2 closure*

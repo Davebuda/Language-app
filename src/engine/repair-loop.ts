@@ -38,6 +38,8 @@ const EXPLANATION_TEMPLATES: Record<ErrorTag, string> = {
     'Break the sentence into parts: find the verb first (V2 rule), then the subject, then the rest.',
   'meaning-misunderstood':
     'You recognized the words but the meaning didn\'t quite land. Focus on the key verb and any prepositions — they carry a lot of the meaning in Norwegian.',
+  unspecified:
+    'Review this concept and try again. Pay attention to the specific rule being tested.',
 };
 
 // Which exercise types work best for remediating each error tag
@@ -73,13 +75,9 @@ export function buildRepairPlan(error: ErrorLogEntry): RepairPlan {
     'sentence-transformation',
   ];
 
-  // Retry is a slightly different exercise type from the original
-  const retryType: ExerciseType =
-    error.exerciseType === 'fill-in-blank'
-      ? 'sentence-transformation'
-      : error.exerciseType === 'sentence-transformation'
-        ? 'translation-to-norwegian'
-        : 'fill-in-blank';
+  // Retry uses the same exercise type as the original — its job is verification,
+  // not generalisation. Varied practice belongs in the micro-drills, not here.
+  const retryType: ExerciseType = error.exerciseType;
 
   // Spaced repetition intervals: 1d → 3d → 7d → 14d → 30d
   const reviewIntervalDays = 1;

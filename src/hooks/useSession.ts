@@ -202,6 +202,10 @@ export function useSession(
         (e) => e.errorTag === (result.errorTag ?? 'unspecified'),
       ).length;
 
+      // Capture the sentence that was shown — needed so the retry step can use the
+      // same sentence rather than drawing randomly from the concept's seed pool.
+      const resolvedSentenceId = contentCache.current.get(item?.id ?? '')?.id;
+
       const error = {
         id: crypto.randomUUID(),
         conceptId: result.conceptId,
@@ -210,6 +214,7 @@ export function useSession(
         wrong: result.userAnswer,
         correct: result.correctAnswer,
         timestamp: new Date().toISOString(),
+        sentenceId: resolvedSentenceId,
       } as const;
 
       lastErrorRef.current = error;
@@ -262,8 +267,23 @@ export function useSession(
         state.repairPlan ?? buildRepairPlan(error),
         sentenceIds,
       );
+
+      // Pre-seed the retry item's cache with the original resolved content so the
+      // learner sees the same sentence they failed on, not a random pool draw.
+      // resolveItem checks the cache first and returns early on a hit.
+      // Fallback: if the cache lookup fails (should never happen in a live session
+      // but handles page-reload or unexpected cache miss), log and let resolveItem
+      // fall through to its normal pool selection — graceful degradation, not crash.
+      const originalContent = contentCache.current.get(currentItem.id);
+      const retryItem = repairItems[repairItems.length - 1];
+      if (originalContent && retryItem) {
+        contentCache.current.set(retryItem.id, originalContent);
+      } else {
+        console.warn('[repair] cache miss for original sentence — retry will use pool fallback');
+      }
+
       // Await first item so the learner doesn't land on a blank exercise.
-      // Fire-and-forget the rest — they'll resolve while the first is shown.
+      // Fire-and-forget the rest — retry will hit cache, others resolve normally.
       if (repairItems[0]) await resolveItem(repairItems[0]);
       repairItems.slice(1).forEach((item) => { resolveItem(item); });
       state.injectRepairItems(repairItems, state.currentItemIndex);

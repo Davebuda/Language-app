@@ -76,4 +76,5 @@ export interface ExerciseResult {
   timeTakenSeconds: number;
   errorTag?: ErrorTag;          // set if wrong answer
   conceptId: string;
+  sentenceId?: string;          // resolved sentence that was shown; used by retry step and fingerprint error log
 }
