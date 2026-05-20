@@ -100,7 +100,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
         {promptLabel}
       </p>
       <motion.p
-        className="font-display text-2xl font-bold leading-[1.15] tracking-tight text-nc-text"
+        className="font-display text-[28px] font-bold leading-[1.15] tracking-tight text-nc-text"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
