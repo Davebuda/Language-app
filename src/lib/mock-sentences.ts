@@ -111,6 +111,19 @@ export const MOCK_SENTENCES: Record<string, Sentence> = {
     difficulty: 2,
     exerciseTypes: ['translation-to-english', 'translation-to-norwegian'],
   },
+  // Sentence-transformation fixture: used to verify the grader maps sentence-transformation → english.
+  // No production sentences currently declare this type; this keeps the grader contract testable.
+  'mock-s11': {
+    id: 'mock-s11',
+    norwegian: 'Hvem er den mannen der borte?',
+    english: 'Who is that man over there?',
+    conceptIds: ['question-formation'],
+    vocabularyClusters: ['people-family'],
+    errorTagsDetectable: ['word-order'],
+    cefrLevel: 'A2',
+    difficulty: 2,
+    exerciseTypes: ['sentence-transformation'],
+  },
 }
 
 // conceptId → array of sentence IDs (for generateSession)

@@ -2,11 +2,18 @@
 
 The current build sequence with every research-validated priority locked in. This document supersedes earlier scattered planning. If you want to know what's next, what's deferred, and why — start here.
 
-## Current Position
+## Current Position — RE-SEQUENCED 2026-05-20
 
-The engine is complete and verified. The UI transformation is in progress (UI-0 done, UI-1.0 typeface done, UI-1.1 onboarding done; UI-1.2 session loop next). Two research passes (one on muntlig zero-cost solutions, one on engine validation) closed every major second-guess and surfaced three correctness gaps in what was assumed working.
+**A full end-to-end system walkthrough on 2026-05-20 found that the session loop — the single most important surface in the app — is uncompletable for a real user.** Three distinct failure modes block session completion: the English-direction grader always fails (C1), exercises silently render blank (C3), and word-order exercises cannot be solved without drag events (C4). The AI model is non-functional, producing null output for all generation tasks (C2). Details: `test-reports/system-walkthrough-2026-05-20.md`.
 
-The plan now interleaves three streams: surgical engine corrections from the validation research, the continuing UI transformation, and the muntlig module as the next major build after both converge.
+**This finding forces a re-sequencing.** The prior next-phase plan (UI-1.3 dashboard, A2 decay half-life, A3 calibration window, A4 event log, muntlig module) is explicitly deferred behind the P0 recovery batch. None of those items may be scheduled until the nine P0 items in `docs/recovery-backlog.md` are verified complete.
+
+The prior plan's three streams remain valid and are resumed after recovery:
+- Stream 1 engine corrections (A1 model swap continues; A2–A4 deferred)
+- Stream 2 UI transformation (UI-1.2 session loop is partially done; UI-1.3+ deferred)
+- Stream 3 muntlig module (deferred — do not start muntlig until P0 is clear)
+
+Recovery backlog: `docs/recovery-backlog.md`
 
 ---
 
@@ -184,18 +191,28 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 
 ## Operating Sequence
 
-The literal next moves, in order, until further notice:
+**Updated 2026-05-20 — recovery batch supersedes prior sequence.** See `docs/recovery-backlog.md` for full item definitions.
 
-0. ~~Resolve the native speaker question for A1.~~ **Resolved — Option B.** User reviews `/eval` JSON at their current Norwegian level. Native speaker review queued as follow-up before muntlig content generation.
-1. **A1 model swap + UI-1.2 scoping pass run in parallel.** A1 touches only the AI worker. UI-1.2 scoping is architect-led (enumerate exercise subtypes, verify the acceptance test, bound the GrammarExplainerCard fix scope). No build code written yet.
-2. **A1 verifies (native speaker reviews `/eval` JSON output).** Once verified, the AI worker is stable for the duration of the UI work.
-3. **UI-1.2 builds and verifies against the concrete acceptance test.** Four breakpoint screenshots required. One move; no engine corrections run concurrently.
-4. **A2 (decay half-life).** Standalone, one-constant change, multi-point trace verification. After UI-1.2 ships.
-5. **A3 (calibration window).** Analysis pass first (fingerprint schema, migration, scheduler integration — 2–3 options, stop for approval). Build after analysis is approved. After A2.
-6. **A4 (event log).** Migration + write call. `anonymous_session_id` scheme is already decided (per-user-hashed). After A3.
-7. **UI-1.3 dashboard, then UI-2 remaining screens, then UI-3 cleanup.**
-8. **Muntlig module** as the next major build phase.
-9. **v2 backlog** when the working app has real users and real data.
+### Recovery batch (P0) — current phase
+
+Sequencing to be confirmed by architect review (in progress). Pending approval:
+
+0. **First item TBD — architect verdict required.** See recovery backlog items 1–9 and the architect's sequencing analysis.
+1. **P0 items 1–9** per `docs/recovery-backlog.md`, in architect-approved order.
+2. **P0 batch verifies** — a real user can complete a full session with no blank cards, no stuck states, correct English-direction grading, correct repair loop flow.
+3. **P1 items** from the recovery backlog, in order of user-impact severity.
+
+### Deferred — resumes after recovery batch clears
+
+These items were the prior "next moves." They are not cancelled; they resume after P0 verifies.
+
+4. ~~A1 model swap + UI-1.2 scoping pass.~~ **Deferred to post-P0.** A1 (model swap) continues its existing three-step path; the P0 item 5 (AI unavailability badge) ships first as the honest interim. UI-1.2 session loop work already done (WordOrderExercise, SpeedRound, TranslationExercise typography) is preserved; remaining UI-1.2 work resumes post-P0.
+5. ~~A2 (decay half-life).~~ Deferred to post-P0.
+6. ~~A3 (calibration window).~~ Deferred to post-P0.
+7. ~~A4 (event log).~~ Deferred to post-P0.
+8. ~~UI-1.3 dashboard, UI-2 remaining screens, UI-3 cleanup.~~ Deferred to post-P0.
+9. ~~Muntlig module.~~ **Explicitly deferred.** Do not start muntlig until P0 is verified and the AI model swap is complete. Building muntlig on a non-functional AI model is wasted work.
+10. **v2 backlog** when the working app has real users and real data.
 
 Anything proposed outside this sequence is breadth, and breadth without justification is the failure mode we've already paid for.
 

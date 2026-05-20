@@ -1,6 +1,7 @@
 import type { MistakeFingerprint, InputProductionPreference } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
 import type { Session, SessionItem, SessionRecipe, ExerciseType } from '@/types/session';
+import type { Sentence } from '@/types/content';
 import { DEFAULT_SESSION_RECIPE } from '@/types/session';
 import { isMastered } from './fingerprint';
 import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
@@ -82,6 +83,7 @@ export interface SchedulerInput {
   fingerprint: MistakeFingerprint;
   graph: ConceptGraph;
   availableSentenceIds: Record<string, string[]>; // conceptId → sentence IDs
+  sentences: Record<string, Sentence>;            // sentenceId → full sentence (for type compatibility check)
   recipe?: Partial<SessionRecipe>;
 }
 
@@ -94,7 +96,7 @@ export interface SchedulerOutput {
 }
 
 export function generateSession(input: SchedulerInput): SchedulerOutput {
-  const { fingerprint, graph } = input;
+  const { fingerprint, graph, availableSentenceIds, sentences } = input;
   const recipe: SessionRecipe = { ...DEFAULT_SESSION_RECIPE, ...input.recipe };
 
   const masteredIds = new Set(
@@ -128,18 +130,52 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
 
   const preference = fingerprint.inputProductionPreference ?? 'balanced';
 
+  // Returns the first exercise type from `candidates` for which at least one
+  // sentence for `conceptId` declares support. Null means no eligible sentence
+  // exists — the item should be skipped rather than queued blank.
+  function firstEligibleType(
+    conceptId: string,
+    candidates: ExerciseType[],
+  ): ExerciseType | null {
+    const ids = availableSentenceIds[conceptId] ?? [];
+    if (ids.length === 0) return null;
+    for (const type of candidates) {
+      if (ids.some((id) => sentences[id]?.exerciseTypes.includes(type))) {
+        return type;
+      }
+    }
+    return null;
+  }
+
   function addItem(
     conceptId: string,
     exercises: ExerciseType[],
     purpose: SessionItem['purpose']
-  ) {
-    // Use 'placeholder' as contentId — content is resolved at render time by
-    // the AI content resolution layer in useSession, not at session planning time.
-    const contentId = `pending:${conceptId}`;
+  ): boolean {
     const gap = fingerprint.productionGap[conceptId] ?? 0;
-    const exerciseType = pickExerciseType(exercises, usedExerciseTypes, gap, preference);
+    const adjusted = resolvePool(exercises, gap, preference);
+
+    // Anti-repetition: prefer types not used in the last two exercises, then
+    // fall back to the full adjusted pool if nothing deduped is eligible.
+    const lastTwo = usedExerciseTypes.slice(-2);
+    const deduped = adjusted.filter((t) => !lastTwo.includes(t));
+    const candidates = deduped.length > 0
+      ? [...deduped, ...adjusted.filter((t) => !deduped.includes(t))]
+      : adjusted;
+
+    const exerciseType = firstEligibleType(conceptId, candidates);
+    if (exerciseType === null) {
+      // No sentence in the corpus supports any exercise type in this pool for
+      // this concept. Skip rather than queue an item that will render blank.
+      console.warn(`[scheduler] skipping "${conceptId}" — no eligible sentence for any type in pool`);
+      return false;
+    }
+
+    // Content is resolved at render time by useSession, not at planning time.
+    const contentId = `pending:${conceptId}`;
     usedExerciseTypes.push(exerciseType);
     items.push(makeItem(`item-${itemIndex++}`, conceptId, contentId, exerciseType, purpose));
+    return true;
   }
 
   // Cap repeats of any single concept across all slots to avoid the same
@@ -152,14 +188,18 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     exercises: ExerciseType[],
     purpose: SessionItem['purpose'],
     fallbackPool: string[],
-  ) {
+  ): boolean {
     const count = conceptRepeatCount.get(conceptId) ?? 0;
     const effectiveId =
       count < MAX_CONCEPT_REPEATS
         ? conceptId
         : (fallbackPool.find((id) => (conceptRepeatCount.get(id) ?? 0) < MAX_CONCEPT_REPEATS) ?? conceptId);
-    conceptRepeatCount.set(effectiveId, (conceptRepeatCount.get(effectiveId) ?? 0) + 1);
-    addItem(effectiveId, exercises, purpose);
+    const added = addItem(effectiveId, exercises, purpose);
+    // Only charge the repeat counter when an item was actually queued.
+    if (added) {
+      conceptRepeatCount.set(effectiveId, (conceptRepeatCount.get(effectiveId) ?? 0) + 1);
+    }
+    return added;
   }
 
   // Remediation — weak spots first; fall back to unlocked concepts for cold-start users
@@ -189,8 +229,10 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   for (let i = 0; i < counts.newMaterial; i++) {
     const concept = newMaterialConcepts[i % Math.max(newMaterialConcepts.length, 1)];
     if (concept) {
-      conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
-      addItem(concept.id, NEW_MATERIAL_EXERCISES, 'new-material');
+      const added = addItem(concept.id, NEW_MATERIAL_EXERCISES, 'new-material');
+      if (added) {
+        conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
+      }
     }
   }
 
@@ -215,22 +257,21 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     return a;
   }
   // Production guarantee: every session must contain at least one production exercise.
-  // If none exist (e.g. pure recognition session), swap the first recognition item.
+  // Scan items in order; for the first item whose concept has a sentence that supports
+  // a production type, swap it. If no compatible item exists, accept a recognition
+  // session rather than assign an incompatible exercise type.
   const hasProduction = items.some((item) =>
     (PRODUCTION_EXERCISES as string[]).includes(item.exerciseType)
   );
   if (!hasProduction && items.length > 0) {
-    const swapIdx = items.findIndex((item) =>
-      (REVIEW_EXERCISES as string[]).includes(item.exerciseType)
-    );
-    if (swapIdx !== -1) {
-      const target = items[swapIdx];
+    for (let i = 0; i < items.length; i++) {
+      const target = items[i];
       const conceptId = target.conceptIds[0] ?? '';
-      const gap = fingerprint.productionGap[conceptId] ?? 0;
-      items[swapIdx] = {
-        ...target,
-        exerciseType: pickExerciseType(PRODUCTION_EXERCISES, usedExerciseTypes, gap, preference),
-      };
+      const compatibleProductionType = firstEligibleType(conceptId, PRODUCTION_EXERCISES);
+      if (compatibleProductionType !== null) {
+        items[i] = { ...target, exerciseType: compatibleProductionType };
+        break;
+      }
     }
   }
 

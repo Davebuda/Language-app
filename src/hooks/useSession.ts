@@ -149,7 +149,7 @@ export function useSession(
     if (!fingerprint) return;
 
     const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
-    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp });
+    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences });
     contentCache.current.clear();
     sessionStore.startSession(output.session);
 

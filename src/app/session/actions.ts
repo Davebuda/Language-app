@@ -2,6 +2,7 @@
 
 import { loadContentSentences } from '@/lib/content-loader'
 import { checkAnswer } from '@/lib/answer'
+import { deriveCorrectAnswer } from '@/lib/grade-utils'
 import type { ExerciseType } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
 
@@ -9,29 +10,6 @@ interface GradeResult {
   correct: boolean
   correctAnswer: string
   errorTag: ErrorTag | undefined
-}
-
-function deriveCorrectAnswer(
-  exerciseType: ExerciseType,
-  norwegian: string,
-  english: string,
-  notes: string | undefined,
-): string {
-  switch (exerciseType) {
-    case 'translation-to-norwegian':
-    case 'sentence-transformation':
-    case 'word-order':
-    case 'listening-comprehension':
-    case 'dictation':
-      return norwegian
-    case 'translation-to-english':
-    case 'speed-round':
-      return english
-    case 'fill-in-blank':
-      return notes ?? ''
-    default:
-      return norwegian
-  }
 }
 
 // Pick the most relevant error tag from those the sentence declares detectable.

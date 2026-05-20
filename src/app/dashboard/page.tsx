@@ -14,7 +14,7 @@ import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
 import { getStreak } from '@/lib/streak'
-import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
@@ -102,6 +102,7 @@ export default function DashboardPage() {
       fingerprint,
       graph: activeGraph,
       availableSentenceIds: MOCK_SENTENCE_IDS,
+      sentences: MOCK_SENTENCES,
     })
     setPlan(output)
   }, [fingerprint, status, activeGraph])
