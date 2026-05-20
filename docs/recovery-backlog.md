@@ -7,6 +7,18 @@ The walkthrough found that the session loop — the single most important surfac
 
 ---
 
+## No-silent-substitution — architectural principle confirmed during P0 recovery
+
+Three items during P0 recovery were fundamentally the same class of bug: the system silently did something other than what the user expected, with no visible signal. The fixes share a pattern: **honest visible state over silent fallback.**
+
+1. **Item 4 (AI badge):** Model loaded but generations returned null. The badge showed "AI ready." Fix: show "AI unavailable" when generation consistently fails. Honest state over silent lie.
+2. **Items 5 and 7 (error tag derivation):** Exercise components hardcoded wrong error tags. The fingerprint silently recorded `'verb-conjugation'` or `'word-order'` for errors that were nothing of the kind. Fix: derive from `sentence.errorTagsDetectable[0]`. Correct data over silently wrong data.
+3. **Item 8 (session auto-skip):** An exercise with no resolved content silently advanced the session counter after 3 seconds. The user's progress jumped without interaction. Fix: remove the silent skip; show LoadingSkeleton and let the user exit via X if needed. Honest state over silent advancement.
+
+This is the same principle stated in CLAUDE.md ("honest banners over silent fallbacks") applied at three distinct layers — AI status, fingerprint data, and session progression. Future items at any layer should default to honest visibility when in doubt.
+
+---
+
 ## Repair loop principle — durable context for items 3, 7, 8
 
 The repair loop has three layers with three distinct jobs. Future items must respect this division:
@@ -32,6 +44,22 @@ These jobs are non-interchangeable. Putting varied practice in the retry step mu
 | `WordOrderExercise` | `sentence.errorTagsDetectable[0]` (fallback `'word-order'`) | Fixed item 7 |
 | `SpeedRound` | `gradeAnswer` → fallback `sentence.errorTagsDetectable[0]` (fallback `'spelling'`) | Fixed item 7 |
 | `ListeningExercise` | `gradeAnswer` → fallback `'listening-recognition'` | Deliberate exemption |
+
+---
+
+## P0 item 8 — CLOSED 2026-05-21
+
+**Acceptance test: passed.** Session progression is gate-controlled. `advanceItem()` is only reachable from `submitResult` (user submits an answer) and `continueAfterRepair` (user clicks "Prøv igjen"). No silent advancement path remains.
+
+**What shipped:**
+- `src/hooks/useSession.ts` — removed the 3-second auto-skip `useEffect` (lines 297–310). The loading skeleton was always the honest state; the timer was the silent substitution.
+- `tests/hooks/useSession.test.ts` — test asserting `advanceItem` is only called from user-initiated paths
+
+**Root cause:** An `useEffect` fired whenever `currentContent` was null. After 3 seconds it called `sessionStore.advanceItem()` with no user interaction and no result recorded. This is what produced the Q5→Q7 jump in the walkthrough. The comment even said "silently skipping."
+
+**After item 1+2's scheduler guard:** All queued items have eligible seeds, so `resolveItem` should always find content. The auto-skip was a fallback for a case that item 1+2 prevents. Removing it trusts the guard and makes the edge case visible (LoadingSkeleton + X-exit) rather than hiding it.
+
+**No-silent-substitution principle — third instance:** This is the same class of fix as item 4 (AI badge lying about model state) and items 5+7 (error tags lying about error type). The pattern across P0 recovery: honest visible state over silent wrong-state advancement. See the architectural principle section at the top of this backlog.
 
 ---
 

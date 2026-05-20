@@ -294,20 +294,12 @@ export function useSession(
     lastErrorRef.current = null;
   }, [sessionStore, resolveItem]);
 
-  // Auto-advance items whose content can't be resolved (no seed, no generation)
-  useEffect(() => {
-    if (!session || !currentItem || currentContent || isInRepair) return;
-    const isComplete = currentItemIndex >= session.items.length;
-    if (isComplete) return;
-    // Give resolution 3 s before silently skipping — do NOT record a result
-    // to avoid inflating mastery scores for content that was never shown
-    const timer = setTimeout(() => {
-      if (contentCache.current.has(currentItem.id)) return;
-      sessionStore.advanceItem();
-    }, 3000);
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentItem?.id, currentContent, isInRepair, session?.id]);
+  // NOTE: The 3-second auto-skip useEffect was removed here (P0 item 8).
+  // The scheduler guard (item 1+2) ensures all queued items have eligible seeds,
+  // so resolveItem always finds content. If content is somehow null, the
+  // LoadingSkeleton is the honest visible state — the user can exit via X.
+  // Silently advancing the counter without user interaction is a no-silent-
+  // substitution violation (same class as the AI badge and error tag bugs).
 
   return {
     session,

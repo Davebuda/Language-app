@@ -122,6 +122,54 @@ describe('useSessionStore', () => {
   });
 });
 
+// ── Session progression gate — P0 item 8 ────────────────────────────────────
+// The 3-second auto-skip useEffect was removed from useSession.ts.
+// advanceItem() must only be called via submitResult (correct answer) or
+// continueAfterRepair (user clicked "Prøv igjen"). No other path may advance
+// the session index automatically. These tests document and lock that contract.
+describe('Session progression gate (P0 item 8)', () => {
+  beforeEach(() => {
+    useSessionStore.setState({
+      session: null, currentItemIndex: 0, results: [],
+      isInRepair: false, repairPlan: null,
+    });
+  });
+
+  it('currentItemIndex does not change without an explicit advanceItem() call', () => {
+    useSessionStore.getState().startSession(makeSession([makeItem(), makeItem({ id: 'item-2' })]));
+    expect(useSessionStore.getState().currentItemIndex).toBe(0);
+    // After no action at all, index is still 0 — no automatic advancement
+    expect(useSessionStore.getState().currentItemIndex).toBe(0);
+  });
+
+  it('recordResult alone does not advance the index', () => {
+    useSessionStore.getState().startSession(makeSession([makeItem(), makeItem({ id: 'item-2' })]));
+    useSessionStore.getState().recordResult(makeResult());
+    expect(useSessionStore.getState().currentItemIndex).toBe(0);
+  });
+
+  it('enterRepair alone does not advance the index', () => {
+    useSessionStore.getState().startSession(makeSession([makeItem(), makeItem({ id: 'item-2' })]));
+    useSessionStore.getState().enterRepair({
+      explanation: 'test', microDrillExerciseTypes: ['fill-in-blank'],
+      retryExerciseType: 'fill-in-blank', reviewIntervalDays: 1,
+    });
+    expect(useSessionStore.getState().currentItemIndex).toBe(0);
+  });
+
+  it('only an explicit advanceItem() call increments the index', () => {
+    useSessionStore.getState().startSession(makeSession([makeItem(), makeItem({ id: 'item-2' })]));
+    useSessionStore.getState().recordResult(makeResult());
+    useSessionStore.getState().enterRepair({
+      explanation: 'test', microDrillExerciseTypes: ['fill-in-blank'],
+      retryExerciseType: 'fill-in-blank', reviewIntervalDays: 1,
+    });
+    expect(useSessionStore.getState().currentItemIndex).toBe(0); // unchanged by all of the above
+    useSessionStore.getState().advanceItem(); // only this advances
+    expect(useSessionStore.getState().currentItemIndex).toBe(1);
+  });
+});
+
 describe('useExercise answer validation', () => {
   it('checkAnswer returns true for matching answers (case/punct insensitive)', () => {
     expect(checkAnswer('Jeg spiser.', 'jeg spiser')).toBe(true);
