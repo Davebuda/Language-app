@@ -1,24 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  TouchSensor,
-  useSensor,
-  useSensors,
-  type DragEndEvent,
-} from '@dnd-kit/core';
-import {
-  SortableContext,
-  sortableKeyboardCoordinates,
-  horizontalListSortingStrategy,
-  useSortable,
-  arrayMove,
-} from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import { normalizeAnswer } from '@/lib/answer';
@@ -44,55 +27,31 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function WordTile({ id, word }: { id: string; word: string }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id });
-  return (
-    <div
-      ref={setNodeRef}
-      style={{
-        transform: CSS.Transform.toString(transform),
-        transition,
-        opacity: isDragging ? 0.4 : 1,
-      }}
-      {...attributes}
-      {...listeners}
-      className="cursor-grab touch-none select-none rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-white active:cursor-grabbing hover:border-nc-green/50 hover:bg-nc-green/10 hover:text-nc-green transition-colors"
-    >
-      {word}
-    </div>
-  );
-}
-
 export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordOrderExerciseProps) {
   const correctWords = sentence.norwegian.split(' ');
-  const [tiles, setTiles] = useState<Tile[]>(() =>
+  const [sourceTiles, setSourceTiles] = useState<Tile[]>(() =>
     shuffle(correctWords.map((w, i) => ({ id: `tile-${i}`, word: w })))
   );
+  const [answerTiles, setAnswerTiles] = useState<Tile[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const startRef = useRef(Date.now());
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 150, tolerance: 5 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
-  );
+  function moveToAnswer(tile: Tile) {
+    if (submitted) return;
+    setSourceTiles((t) => t.filter((x) => x.id !== tile.id));
+    setAnswerTiles((t) => [...t, tile]);
+  }
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (over && active.id !== over.id) {
-      setTiles((t) => {
-        const oldIndex = t.findIndex((tile) => tile.id === active.id);
-        const newIndex = t.findIndex((tile) => tile.id === over.id);
-        return arrayMove(t, oldIndex, newIndex);
-      });
-    }
+  function returnToSource(tile: Tile) {
+    if (submitted) return;
+    setAnswerTiles((t) => t.filter((x) => x.id !== tile.id));
+    setSourceTiles((t) => [...t, tile]);
   }
 
   function submit() {
-    if (submitted) return;
+    if (submitted || sourceTiles.length > 0) return;
     setSubmitted(true);
-    const userWords = tiles.map((t) => t.word);
+    const userWords = answerTiles.map((t) => t.word);
     const correct =
       userWords.length === correctWords.length &&
       userWords.every((w, i) => normalizeAnswer(w) === normalizeAnswer(correctWords[i] ?? ''));
@@ -109,22 +68,80 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
   }
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
+      {/* English instruction — demoted to small label per aesthetic direction */}
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
         {sentence.english}
       </p>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={tiles.map((t) => t.id)} strategy={horizontalListSortingStrategy}>
-          <div className="flex flex-wrap gap-3 rounded-xl border border-white/12 bg-[rgba(255,255,255,0.02)] p-4">
-            {tiles.map((tile) => (
-              <WordTile key={tile.id} id={tile.id} word={tile.word} />
+
+      {/* Answer zone — where tiles are placed in order */}
+      <div
+        aria-label="Your answer"
+        className={[
+          'min-h-[64px] flex flex-wrap items-center gap-2 rounded-xl border p-3 transition-colors',
+          answerTiles.length > 0
+            ? 'border-nc-green/30 bg-nc-green/5'
+            : 'border-white/10 bg-[rgba(255,255,255,0.01)]',
+        ].join(' ')}
+      >
+        {answerTiles.length === 0 ? (
+          <span className="text-[12px] text-white/20 select-none px-1">
+            Trykk på ordene nedenfor for å bygge setningen
+          </span>
+        ) : (
+          <AnimatePresence mode="popLayout">
+            {answerTiles.map((tile) => (
+              <motion.button
+                key={tile.id}
+                type="button"
+                onClick={() => returnToSource(tile)}
+                disabled={submitted}
+                aria-label={`Fjern "${tile.word}" fra svaret`}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.12 }}
+                className="rounded-xl border border-nc-green/50 bg-nc-green/14 px-5 py-2.5 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-nc-green transition-colors hover:border-nc-green/80 hover:bg-nc-green/20 disabled:cursor-default"
+              >
+                {tile.word}
+              </motion.button>
             ))}
-          </div>
-        </SortableContext>
-      </DndContext>
+          </AnimatePresence>
+        )}
+      </div>
+
+      {/* Source zone — scrambled tiles not yet placed */}
+      <div
+        aria-label="Available words"
+        className="flex flex-wrap gap-3 rounded-xl border border-white/8 bg-[rgba(255,255,255,0.02)] p-4"
+      >
+        <AnimatePresence mode="popLayout">
+          {sourceTiles.map((tile) => (
+            <motion.button
+              key={tile.id}
+              type="button"
+              onClick={() => moveToAnswer(tile)}
+              disabled={submitted}
+              aria-label={`Legg til "${tile.word}"`}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.12 }}
+              className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-white transition-colors hover:border-nc-green/50 hover:bg-nc-green/10 hover:text-nc-green disabled:cursor-default"
+            >
+              {tile.word}
+            </motion.button>
+          ))}
+        </AnimatePresence>
+        {sourceTiles.length === 0 && !submitted && (
+          <span className="text-[12px] text-white/20 select-none px-1">Alle ord er plassert</span>
+        )}
+      </div>
+
       <button
+        type="button"
         onClick={submit}
-        disabled={submitted}
+        disabled={submitted || sourceTiles.length > 0}
         className="min-h-[48px] w-full rounded-xl nc-button-primary px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk rekkefølge
