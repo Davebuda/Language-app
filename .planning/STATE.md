@@ -65,7 +65,7 @@ All 8 P0 items closed. Session loop is completable end-to-end.
 
 ## Active parallel streams
 
-- **P1:** P1-12 (conversation end summary), P1-13 (session complete screen) — 2 items remain
+- **P1:** P1-13 (session complete screen) — 1 item remains
 - **Stream 4:** Daily Learning Card → Daily Word Pack → Progress Reassurance Strip
 
 ## Deferred (resumes after P1 + Stream 4 clear)
