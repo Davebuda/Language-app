@@ -1,7 +1,7 @@
 project: NorskCoach
 constitution: CLAUDE.md
-roadmap: ROADMAP.md
-state: STATE.md
+roadmap: .planning/ROADMAP.md
+state: .planning/STATE.md
 review: REVIEW.md
 
 routing:

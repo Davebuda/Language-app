@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "council:verify": "playwright test tests/council/ --reporter=json,list && node .council/scripts/format-report.js"
+    "council:verify": "playwright test tests/council/ && node .council/scripts/format-report.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.1",
