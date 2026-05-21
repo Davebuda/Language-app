@@ -54,10 +54,10 @@ export default function RecalibratePage() {
           >
             <div>
               <div className="nc-label mb-3">Sjekk-inn</div>
-              <h1 className="text-[2rem] font-bold leading-tight text-nc-text">
+              <h1 className="text-balance text-[2rem] font-bold leading-tight text-nc-text">
                 Tid for en liten repetisjon
               </h1>
-              <p className="mt-3 text-sm leading-relaxed text-nc-text-muted">
+              <p className="mt-3 text-pretty text-sm leading-relaxed text-nc-text-muted">
                 Noen konsepter har ikke blitt øvd på en stund. En rask sjekk hjelper oss å oppdatere profilen din.
               </p>
             </div>

@@ -1,5 +1,5 @@
 # Task Brief
-**Task:** P1-11 — Wire waitlist form to Supabase + fix mobile success overflow
+**Task:** P1-12 — Conversation end: add summary state before returning to setup
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
@@ -7,119 +7,119 @@
 
 ## What
 
-Two files to change, one new file:
+`src/app/conversation/page.tsx` — when "Avslutt" is clicked, `persistSessionEnd()` is called and then phase is immediately set back to `'setup'`. There is no summary, no acknowledgement that the session was saved, and no moment for the user to know what they accomplished.
 
-1. **NEW** `src/app/actions/waitlist.ts` — server action that inserts email into `waitlist` table
-2. **EDIT** `src/components/landing/waitlist-form.tsx` — call the action, add loading state, fix mobile overflow in success state
-
-The `waitlist` table exists in Supabase (`id`, `email`, `created_at`). The form currently has a `// Phase 1A — UI only, no backend yet` comment and silently discards emails. Per no-silent-substitution principle, showing "You're on the list" with no data stored is dishonest.
+**One file to change:** `src/app/conversation/page.tsx`
 
 ---
 
 ## How
 
-### 1. Create `src/app/actions/waitlist.ts`
-
-```ts
-'use server'
-
-import { createClient } from '@/lib/supabase/server'
-import { z } from 'zod'
-
-const emailSchema = z.string().email()
-
-export async function submitWaitlist(
-  email: string
-): Promise<{ success: boolean; error?: string }> {
-  const result = emailSchema.safeParse(email)
-  if (!result.success) {
-    return { success: false, error: 'Please enter a valid email address.' }
-  }
-
-  try {
-    const supabase = await createClient()
-    const { error } = await supabase
-      .from('waitlist')
-      .insert({ email: result.data })
-
-    if (error) {
-      // Duplicate email — treat as success (already on the list)
-      if (error.code === '23505') return { success: true }
-      return { success: false, error: 'Something went wrong. Please try again.' }
-    }
-
-    return { success: true }
-  } catch {
-    return { success: false, error: 'Something went wrong. Please try again.' }
-  }
-}
-```
-
-**Note on `createClient`:** Check `src/lib/supabase/server.ts` — the function may or may not be async. If it's `async`, use `await createClient()`. If it's synchronous, just call `createClient()`. Read the file first.
-
-### 2. Edit `src/components/landing/waitlist-form.tsx`
-
 **Read the file first.**
 
-Add `submitWaitlist` import:
+### Step 1 — Extend the phase type
+
+Find:
 ```ts
-import { submitWaitlist } from '@/app/actions/waitlist'
+const [phase, setPhase] = useState<'setup' | 'chat'>('setup')
 ```
 
-Add a `loading` state:
+Change to:
 ```ts
-const [loading, setLoading] = useState(false)
+const [phase, setPhase] = useState<'setup' | 'chat' | 'summary'>('setup')
 ```
 
-Replace the `handleSubmit` function:
-```ts
-async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault()
-  setError(null)
+### Step 2 — Change "Avslutt" to go to summary, not setup
 
-  const result = emailSchema.safeParse(email)
-  if (!result.success) {
-    setError('Please enter a valid email address.')
-    return
-  }
-
-  setLoading(true)
-  try {
-    const response = await submitWaitlist(email)
-    if (response.success) {
-      setSubmitted(true)
-    } else {
-      setError(response.error ?? 'Something went wrong.')
-    }
-  } finally {
-    setLoading(false)
-  }
-}
-```
-
-Fix the mobile overflow in the success state. The `<span>` inside the success div needs `min-w-0` and `text-wrap` to prevent overflow on 375px. Change the success div's `<span>`:
+Find the Avslutt button click handler (approximately line 405):
 ```tsx
-<span className="min-w-0 text-foreground">
-  You&apos;re on the list. We&apos;ll reach out when early access opens.
-</span>
+onClick={() => { void persistSessionEnd(); setPhase('setup'); window.speechSynthesis?.cancel() }}
 ```
 
-Update the submit button to show loading state:
+Change to:
 ```tsx
-<button
-  type="submit"
-  disabled={loading}
-  className="group flex shrink-0 items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
-  style={{ background: 'var(--nc-red)' }}
->
-  {loading ? 'Joining…' : 'Join waitlist'}
-  {!loading && <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
-</button>
+onClick={() => { void persistSessionEnd(); window.speechSynthesis?.cancel(); setPhase('summary') }}
 ```
 
-Remove the `// Phase 1A — UI only, no backend yet` comment.
+### Step 3 — Add summary phase ref data
 
-Also mark the `handleSubmit` function as async: `async function handleSubmit(...)`.
+Near the top of the component, after the existing `useRef` declarations, add three refs to snapshot the session data at end time:
+```tsx
+const summaryTurnCountRef = useRef(0)
+const summaryErrorCountRef = useRef(0)
+const summaryTopicRef = useRef<string>('')
+```
+
+In the Avslutt handler, populate these refs BEFORE changing phase:
+```tsx
+onClick={() => {
+  summaryTurnCountRef.current = turnIndexRef.current
+  summaryErrorCountRef.current = errorCountRef.current
+  summaryTopicRef.current = selectedTopic
+  void persistSessionEnd()
+  window.speechSynthesis?.cancel()
+  setPhase('summary')
+}}
+```
+
+### Step 4 — Add summary phase render block
+
+In the AnimatePresence / phase conditional section, find where `phase === 'chat'` is rendered (approximately line 390). After that block's closing tag, add a new `phase === 'summary'` block:
+
+```tsx
+{phase === 'summary' && (
+  <motion.div
+    key="summary"
+    initial={{ opacity: 0, y: 12 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -12 }}
+    transition={{ duration: 0.25 }}
+    className="flex flex-1 flex-col items-center justify-center gap-6 px-2"
+  >
+    <div className="nc-glass w-full max-w-sm p-6 text-center">
+      <div className="nc-label mb-4">Samtale fullført</div>
+      <p className="text-2xl font-bold text-nc-text">
+        {TOPICS.find((t) => t.id === summaryTopicRef.current)?.emoji}{' '}
+        {TOPICS.find((t) => t.id === summaryTopicRef.current)?.label ?? 'Samtale'}
+      </p>
+      <div className="mt-5 flex justify-center gap-8 text-sm text-nc-text-muted">
+        <div className="text-center">
+          <div className="text-2xl font-bold text-nc-text">{summaryTurnCountRef.current}</div>
+          <div className="mt-1 text-[11px] uppercase tracking-wider">utvekslinger</div>
+        </div>
+        {summaryErrorCountRef.current > 0 && (
+          <div className="text-center">
+            <div className="text-2xl font-bold text-nc-text">{summaryErrorCountRef.current}</div>
+            <div className="mt-1 text-[11px] uppercase tracking-wider">rettelser</div>
+          </div>
+        )}
+      </div>
+      {user && (
+        <p className="mt-4 text-[12px] text-nc-text-dim">Fremgangen din er lagret.</p>
+      )}
+    </div>
+
+    <div className="flex w-full max-w-sm flex-col gap-3">
+      <button
+        onClick={() => setPhase('setup')}
+        className="nc-button-primary w-full py-3 text-sm font-medium"
+      >
+        Ny samtale
+      </button>
+      <button
+        onClick={() => router.push('/dashboard')}
+        className="w-full py-3 text-sm font-medium text-nc-text-dim transition-colors hover:text-nc-text"
+      >
+        Til dashboard
+      </button>
+    </div>
+  </motion.div>
+)}
+```
+
+**Note on `user`:** The conversation page already imports `user` from Supabase auth — check how it's accessed in the existing code and use the same variable. If `user` is a local state variable from a `useSupabaseUser` hook or similar, use it directly.
+
+**Note on `TOPICS` and `selectedTopic`:** Both are already in scope in the component. Use them as-is.
 
 ---
 
@@ -128,26 +128,25 @@ sonnet
 
 ## Acceptance Criteria
 
-1. Submitting a valid email makes a Supabase insert call (no longer silently discards)
-2. Success state appears after successful submission
-3. Duplicate email submissions show success (not an error)
-4. Invalid email shows the validation error message
-5. Submit button shows "Joining…" and is disabled while the request is in-flight
-6. Success state text does not overflow on 375px mobile (min-w-0 fix)
-7. No TypeScript errors introduced
+1. Clicking "Avslutt" shows a summary screen (not immediate return to setup)
+2. Summary shows: topic name + emoji, turn count ("N utvekslinger"), corrections count if > 0
+3. Summary shows "Fremgangen din er lagret." if user is authenticated
+4. "Ny samtale" button returns to setup phase
+5. "Til dashboard" button navigates to `/dashboard`
+6. No TypeScript errors introduced
 
 ## Blocking Flags
 
 Stop and write `BLOCKED: [reason]` to this file if:
-- `createClient` from `@/lib/supabase/server` has a different signature than expected — note the actual signature and adjust
-- The `waitlist` table insert fails with an RLS error during local testing — note the error code
+- `user` is not in scope in the component — note how auth is accessed
+- `nc-button-primary` class does not exist (check globals.css)
 - Any TypeScript error is introduced
 
 ## Playwright Checkpoint
 yes
 
 What to test:
-- Navigate to `/` (landing page)
-- Scroll to / find the waitlist form
-- Submit a valid email — confirm the success state appears
-- Check no console errors after submit
+- Navigate to `/conversation`, start a conversation, click Avslutt
+- Verify summary screen appears with topic, turn count, buttons
+- Verify "Til dashboard" navigates to /dashboard
+- Verify "Ny samtale" returns to setup phase

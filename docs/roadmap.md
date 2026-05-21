@@ -149,7 +149,45 @@ See `docs/muntlig/architecture.md` for the full spec.
 
 ---
 
-## v2 / Deferred Backlog
+## Stream 4 — Ambient Learning (parallel with P1, added 2026-05-21)
+
+Three lightweight features that create daily learning moments outside of full sessions. Added by explicit user direction after architect review — architect concerns (moat trace, deferred backlog adjacency) are logged in `.council/log.md`. These are display/reassurance surfaces; they do not feed the adaptive engine in v1.
+
+### 4.1 Daily Learning Card
+
+One grammar rule + Norwegian example sentence + reveal interaction. Rotates daily via `new Date().getDate() % 7`. Appears on landing page and dashboard.
+
+**Files:** `src/components/DailyLearningCard.tsx`, `src/lib/dailyContent.ts`, `src/app/page.tsx`, `src/app/dashboard/page.tsx`
+
+**Seed:** 7 grammar rules (V2 word order, noun gender, definite forms, adjective agreement, prepositions, reflexive verbs, question formation).
+
+**UX decisions locked:** translation always visible on landing, tap-to-reveal on dashboard.
+
+**Acceptance:** Renders on `/` and `/dashboard` with same content on a given day. Norwegian sentence is T1 dominant element. Accessible (ARIA, keyboard). No new dependencies.
+
+### 4.2 Daily Word Pack
+
+4–6 Norwegian words with meaning + example sentence. Same date-based rotation. Dashboard only. Display-only in v1 (no "mark as learned" interaction — deferred to v2 with vocab SRS).
+
+**Files:** `src/components/DailyWordPack.tsx`, `src/lib/dailyContent.ts` (words added), `src/app/dashboard/page.tsx`
+
+**Seed:** 42 words (7 days × 6 words) covering daily routines, common verbs, emotions, food, travel. Bokmål.
+
+**Acceptance:** 4–6 words render daily, no horizontal scroll on mobile, screen-reader friendly.
+
+### 4.3 Progress Reassurance Strip
+
+Small strip reading from fingerprint — concepts practiced, speaking minutes, grammar themes improved. Reads only, writes nothing. Falls back to "Start your first session to see progress." for new users.
+
+**Files:** `src/components/ProgressReassuranceStrip.tsx`, `src/app/dashboard/page.tsx`
+
+**Note:** This strip is the closest to the engine (reads fingerprint). It belongs inside UI-1.3 dashboard long-term — once UI-1.3 runs, fold this component in rather than building a parallel version.
+
+**Acceptance:** Renders with real fingerprint data or fallback. Layout holds on 375px and 1280px. No layout shift.
+
+---
+
+## Stream 3 — Muntlig Module (next major build after UI-1 converges)
 
 Things that are real, designed or discussed, and correctly parked until the working system is whole.
 

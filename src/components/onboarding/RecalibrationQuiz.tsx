@@ -39,7 +39,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
   if (!currentQuestion) {
     return (
       <div className="nc-glass p-6 text-center">
-        <p className="text-sm text-nc-text-muted">
+        <p className="text-pretty text-sm text-nc-text-muted">
           No recalibration questions available — all concepts are up to date.
         </p>
         <button onClick={onSkip} className="nc-button-dark mt-4 px-5 py-3 text-sm font-medium">
@@ -83,7 +83,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
         <div>
           <div className="nc-label">Recalibration</div>
           <h1 className="sr-only">Recalibration quiz</h1>
-          <p className="mt-1 text-[13px] text-nc-text-muted">
+          <p className="mt-1 text-pretty text-[13px] text-nc-text-muted">
             A short check on concepts you have not practiced recently.
           </p>
         </div>
@@ -122,7 +122,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
           initial={{ x: 48, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -48, opacity: 0 }}
-          transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] as const }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
           aria-live="polite"
           aria-atomic="true"
           className="nc-glass-dark p-5"
@@ -185,7 +185,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
             exit={{ opacity: 0 }}
             className="nc-glass p-4"
           >
-            <p className="text-sm leading-7 text-nc-text-muted">
+            <p className="text-pretty text-sm leading-7 text-nc-text-muted">
               {currentQuestion.explanation}
             </p>
             <button
@@ -203,7 +203,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
             animate={{ opacity: 1, y: 0 }}
             className="nc-glass p-4 text-center"
           >
-            <p className="text-sm font-medium text-nc-text">Updating your profile…</p>
+            <p className="text-pretty text-sm font-medium text-nc-text">Updating your profile…</p>
             <div className="mt-3 flex justify-center gap-1">
               {[0, 0.15, 0.3].map((d) => (
                 <motion.div

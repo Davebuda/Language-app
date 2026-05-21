@@ -118,6 +118,19 @@ Screenshot: `p1-10-dashboard-no-bell.png`
 P1 closed so far: 1–10 (10 of 13)
 Next: P1-11 — Waitlist form cosmetic — no data captured
 
+## 2026-05-21 RESTRUCTURE — Stream 4 Ambient Learning added
+
+**What changed:** Stream 4 (Daily Learning Card, Daily Word Pack, Progress Reassurance Strip) added to ROADMAP.md as a parallel stream alongside P1. STATE.md updated to reflect 11/13 P1 closed and both active streams.
+
+**Why:** Explicit user direction after council ESCALATE and architect review. P1 has only 2 items remaining (P1-12, P1-13) — low-risk point to add a parallel feature stream.
+
+**Architect concerns (on record, not blocking):**
+- None of the three features trace to the moat (diagnosis/scheduling/remediation)
+- Daily Word Pack is adjacent to deferred vocab SRS — building shell before engine inverts dependency
+- Progress Strip's correct long-term home is UI-1.3 dashboard — should be folded in at that point, not rebuilt
+
+**Sequencing locked:** Stream 4 executes after P1-12 and P1-13 close (or interleaved at user discretion). Progress Strip (4.3) to be folded into UI-1.3 dashboard rather than left as a standalone component long-term.
+
 ## 2026-05-21 APPROVE — P1-11 Waitlist form wired to Supabase
 
 Criteria met:
@@ -133,5 +146,20 @@ Screenshot: `p1-11-waitlist-success.png`
 
 P1 closed so far: 1–11 (11 of 13)
 Next: P1-12 — Conversation end no summary or save confirmation
+
+## 2026-05-21 APPROVE — P1-12 Conversation end summary screen
+
+Criteria met:
+- Avslutt → summary phase (not immediate setup reset) ✅
+- Summary shows topic emoji + name, turn count, corrections if > 0 ✅
+- "Ny samtale" returns to setup ✅
+- "Til dashboard" navigates to /dashboard ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — report at `.council/reports/2026-05-21-p1-12-conversation-summary.md`
+Screenshot: `p1-12-conversation-summary.png`
+
+P1 closed so far: 1–12 (12 of 13)
+Next: P1-13 — Session complete screen untestable
 
 ---

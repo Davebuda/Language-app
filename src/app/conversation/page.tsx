@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, MicOff, Send, X } from 'lucide-react'
 import { aiService } from '@/ai'
@@ -96,7 +97,8 @@ interface DisplayMessage {
 }
 
 export default function ConversationPage() {
-  const [phase, setPhase] = useState<'setup' | 'chat'>('setup')
+  const router = useRouter()
+  const [phase, setPhase] = useState<'setup' | 'chat' | 'summary'>('setup')
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
   const [level, setLevel] = useState<CEFRLevel>('A1')
   const [messages, setMessages] = useState<DisplayMessage[]>([])
@@ -113,6 +115,9 @@ export default function ConversationPage() {
   const turnIndexRef = useRef(0)
   const errorCountRef = useRef(0)
   const sessionStartRef = useRef<number>(0)
+  const summaryTurnCountRef = useRef(0)
+  const summaryErrorCountRef = useRef(0)
+  const summaryTopicRef = useRef<string>('')
   const micStartRef = useRef<number>(0)
   const [activeConstraint, setActiveConstraint] = useState<ResponseConstraint | null>(null)
   const [constraintResult, setConstraintResult] = useState<{ met: boolean; feedback?: string } | null>(null)
@@ -319,7 +324,7 @@ export default function ConversationPage() {
     <div className="nc-gradient-page flex flex-col min-h-dvh">
       <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pt-5 pb-4 overflow-hidden relative z-10">
         <AnimatePresence mode="wait">
-          {phase === 'setup' ? (
+          {phase === 'setup' && (
             <motion.div
               key="setup"
               initial={{ opacity: 0, y: 10 }}
@@ -385,7 +390,9 @@ export default function ConversationPage() {
                 Start samtale →
               </button>
             </motion.div>
-          ) : (
+          )}
+
+          {phase === 'chat' && (
             <motion.div
               key="chat"
               initial={{ opacity: 0 }}
@@ -402,7 +409,14 @@ export default function ConversationPage() {
                 <div className="flex items-center gap-2">
                   <AIStatusBadge />
                   <button
-                    onClick={() => { void persistSessionEnd(); setPhase('setup'); window.speechSynthesis?.cancel() }}
+                    onClick={() => {
+                      summaryTurnCountRef.current = turnIndexRef.current
+                      summaryErrorCountRef.current = errorCountRef.current
+                      summaryTopicRef.current = selectedTopic ?? ''
+                      void persistSessionEnd()
+                      window.speechSynthesis?.cancel()
+                      setPhase('summary')
+                    }}
                     className="nc-glass flex items-center gap-1 px-3 py-1 text-[11px] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
                   >
                     <X size={12} /> Avslutt
@@ -536,6 +550,55 @@ export default function ConversationPage() {
                   className="nc-button-primary flex size-11 items-center justify-center rounded-full disabled:opacity-40"
                 >
                   <Send size={18} />
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {phase === 'summary' && (
+            <motion.div
+              key="summary"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+              className="flex flex-1 flex-col items-center justify-center gap-6 px-2"
+            >
+              <div className="nc-glass w-full max-w-sm p-6 text-center">
+                <div className="nc-label mb-4">Samtale fullført</div>
+                <p className="text-2xl font-bold text-nc-text">
+                  {TOPICS.find((t) => t.id === summaryTopicRef.current)?.emoji}{' '}
+                  {TOPICS.find((t) => t.id === summaryTopicRef.current)?.label ?? 'Samtale'}
+                </p>
+                <div className="mt-5 flex justify-center gap-8 text-sm text-nc-text-muted">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-nc-text">{summaryTurnCountRef.current}</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-wider">utvekslinger</div>
+                  </div>
+                  {summaryErrorCountRef.current > 0 && (
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-nc-text">{summaryErrorCountRef.current}</div>
+                      <div className="mt-1 text-[11px] uppercase tracking-wider">rettelser</div>
+                    </div>
+                  )}
+                </div>
+                {user && (
+                  <p className="mt-4 text-[12px] text-nc-text-dim">Fremgangen din er lagret.</p>
+                )}
+              </div>
+
+              <div className="flex w-full max-w-sm flex-col gap-3">
+                <button
+                  onClick={() => setPhase('setup')}
+                  className="nc-button-primary w-full py-3 text-sm font-medium"
+                >
+                  Ny samtale
+                </button>
+                <button
+                  onClick={() => router.push('/dashboard')}
+                  className="w-full py-3 text-sm font-medium text-nc-text-dim transition-colors hover:text-nc-text"
+                >
+                  Til dashboard
                 </button>
               </div>
             </motion.div>
