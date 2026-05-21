@@ -179,7 +179,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
     conceptId: 'preterite-regular',
     difficulty: 0.6,
     prompt: 'Choose the correct past tense of "å kjøre" (to drive): "Vi ___ til Bergen i går."',
-    options: ['kjørte', 'kjøret', 'kjørte', 'kjørde'],
+    options: ['kjørte', 'kjøret', 'kjørt', 'kjørde'],
     correctIndex: 0,
     explanation: '"Kjøre" is a short-stem verb that takes -te in the past: kjørte.',
   },

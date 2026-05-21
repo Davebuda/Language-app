@@ -88,8 +88,15 @@ export function selectNextQuestion(state: DiagnosticState): DiagnosticQuestion |
 
 // ── State machine ─────────────────────────────────────────────────────────
 
-export function createDiagnosticState(): DiagnosticState {
-  return { estimate: 0.5, history: [], askedIds: new Set(), answers: [] }
+export function createDiagnosticState(seedAskedIds?: readonly string[]): DiagnosticState {
+  // P0.5-07 (F015): seed with previously-asked question IDs so a recalibration
+  // or repeat onboarding does not re-ask the same questions.
+  return {
+    estimate: 0.5,
+    history: [],
+    askedIds: new Set(seedAskedIds ?? []),
+    answers: [],
+  }
 }
 
 export function recordAnswer(
@@ -130,23 +137,29 @@ export function computeResult(state: DiagnosticState): DiagnosticResult {
     const existing = conceptSeeds[question.conceptId]
     const prevCorrect = existing?.correctCount ?? 0
     const prevAttempts = existing?.attemptCount ?? 0
+    const prevOutcomes = existing?.recentOutcomes ?? []
 
     const nextCorrect = prevCorrect + (correct ? 1 : 0)
     const nextAttempts = prevAttempts + 1
-    const seedScore = correct ? 60 : 20
+    // P0.5-07 (F017): rawScore is purely accuracy-weighted now. The earlier
+    // `Math.max(seedScore=correct?60:20, rawScore)` floor meant a single wrong
+    // answer on a concept never dropped below 20, so wrong answers were
+    // silently swallowed by the seed floor. Diagnostic now reports true
+    // accuracy; the engine's normal updateConceptMastery EMA takes over later.
     const rawScore = Math.round((nextCorrect / nextAttempts) * 100)
+    const nextOutcomes = [...prevOutcomes, correct]
 
     conceptSeeds[question.conceptId] = {
-      rawScore: Math.max(seedScore, rawScore),
+      rawScore,
       attemptCount: nextAttempts,
       correctCount: nextCorrect,
       uniqueDaysActive: 1,
       confidenceScore: 0.4,
-      decayedScore: Math.max(seedScore, rawScore),
-      streak: correct ? 1 : 0,
+      decayedScore: rawScore,
+      streak: correct ? (existing?.streak ?? 0) + 1 : 0,
       lastAttemptAt: now,
-      lastCorrectAt: correct ? now : null,
-      recentOutcomes: [correct],
+      lastCorrectAt: correct ? now : (existing?.lastCorrectAt ?? null),
+      recentOutcomes: nextOutcomes,
     }
   }
 

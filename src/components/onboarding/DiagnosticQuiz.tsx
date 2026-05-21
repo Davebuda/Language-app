@@ -13,6 +13,7 @@ import {
 import type { DiagnosticState, DiagnosticResult } from '@/lib/diagnostic/engine'
 import type { DiagnosticQuestion } from '@/lib/diagnostic/questions'
 import type { CEFRLevel } from '@/types/fingerprint'
+import { useFingerprintStore } from '@/stores/fingerprint-store'
 
 interface DiagnosticQuizProps {
   onComplete: (result: DiagnosticResult) => void
@@ -34,7 +35,11 @@ const slideVariants = {
 const transition = { duration: 0.22, ease: [0.32, 0.72, 0, 1] as const }
 
 export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
-  const [diagState, setDiagState] = useState<DiagnosticState>(createDiagnosticState)
+  // P0.5-07 (F015): seed askedIds from any existing fingerprint so the
+  // diagnostic does not re-ask questions the user has already answered.
+  const fingerprint = useFingerprintStore.getState().fingerprint
+  const priorAskedIds = fingerprint?.askedDiagnosticQuestionIds ?? []
+  const [diagState, setDiagState] = useState<DiagnosticState>(() => createDiagnosticState(priorAskedIds))
   const [currentQuestion, setCurrentQuestion] = useState<DiagnosticQuestion | null>(null)
   const [selected, setSelected] = useState<number | null>(null)
   const [revealed, setRevealed] = useState(false)

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { createEmptyFingerprint } from '@/types/fingerprint'
-import { saveFingerprint } from '@/storage/indexeddb'
+import type { MistakeFingerprint } from '@/types/fingerprint'
+import { saveFingerprint, loadFingerprint } from '@/storage/indexeddb'
 import { DiagnosticQuiz } from './DiagnosticQuiz'
 import type { DiagnosticResult } from '@/lib/diagnostic/engine'
 import type { CEFRLevel } from '@/types/fingerprint'
@@ -78,42 +79,78 @@ function getOrCreateUserId(): string {
   return id
 }
 
-function seedFingerprintFromDiagnostic(
+async function seedFingerprintFromDiagnostic(
   result: DiagnosticResult,
-  setFingerprint: (fp: ReturnType<typeof createEmptyFingerprint>) => void,
+  setFingerprint: (fp: MistakeFingerprint) => void,
 ) {
   const userId = getOrCreateUserId()
-  const fp = createEmptyFingerprint(userId)
   const now = new Date().toISOString()
+
+  // P0.5-07 (F031): preserve any existing fingerprint state. Earlier behavior
+  // built a fresh createEmptyFingerprint on every diagnostic completion, which
+  // wiped recentErrors and conceptMastery the user had accumulated through
+  // session play. Now we load the existing fingerprint and merge the
+  // diagnostic seeds on top.
+  const existing = await loadFingerprint(userId).catch(() => null)
+  const fp: MistakeFingerprint = existing ?? createEmptyFingerprint(userId)
 
   // Cap displayed level at A2 until B1/B2 graphs exist
   fp.currentLevel = result.rawScore >= 0.55 ? 'A2' : result.cefrLevel
   fp.levelSetByUser = true
 
-  // Seed concept mastery from diagnostic answers
+  // P0.5-07 (F017): merge diagnostic seeds with any existing mastery rather
+  // than overwriting. Prior attempt counts and lastCorrectAt are preserved;
+  // the diagnostic adds the new attempts on top.
   for (const [conceptId, seed] of Object.entries(result.conceptSeeds)) {
-    fp.conceptMastery[conceptId] = {
-      conceptId,
-      rawScore: seed.rawScore,
-      confidenceScore: seed.confidenceScore,
-      decayedScore: seed.decayedScore,
-      attemptCount: seed.attemptCount,
-      correctCount: seed.correctCount,
-      uniqueDaysActive: seed.uniqueDaysActive,
-      lastAttemptAt: seed.lastAttemptAt ?? now,
-      lastCorrectAt: seed.lastCorrectAt,
-      streak: seed.streak,
-      recentOutcomes: seed.recentOutcomes,
-      srsLevel: 0,
-      nextReviewAt: new Date(Date.now() + 86400000).toISOString(),
+    const existingMastery = fp.conceptMastery[conceptId]
+    if (existingMastery) {
+      const totalAttempts = existingMastery.attemptCount + seed.attemptCount
+      const totalCorrect = existingMastery.correctCount + seed.correctCount
+      const blendedRawScore = Math.round((totalCorrect / totalAttempts) * 100)
+      fp.conceptMastery[conceptId] = {
+        ...existingMastery,
+        conceptId,
+        attemptCount: totalAttempts,
+        correctCount: totalCorrect,
+        rawScore: blendedRawScore,
+        decayedScore: blendedRawScore,
+        confidenceScore: Math.min(1, existingMastery.confidenceScore + 0.1),
+        lastAttemptAt: seed.lastAttemptAt ?? now,
+        lastCorrectAt: seed.lastCorrectAt ?? existingMastery.lastCorrectAt,
+        streak: seed.streak > 0 ? existingMastery.streak + seed.streak : 0,
+        recentOutcomes: [...existingMastery.recentOutcomes, ...seed.recentOutcomes].slice(-10),
+      }
+    } else {
+      fp.conceptMastery[conceptId] = {
+        conceptId,
+        rawScore: seed.rawScore,
+        confidenceScore: seed.confidenceScore,
+        decayedScore: seed.decayedScore,
+        attemptCount: seed.attemptCount,
+        correctCount: seed.correctCount,
+        uniqueDaysActive: seed.uniqueDaysActive,
+        lastAttemptAt: seed.lastAttemptAt ?? now,
+        lastCorrectAt: seed.lastCorrectAt,
+        streak: seed.streak,
+        recentOutcomes: seed.recentOutcomes,
+        srsLevel: 0,
+        nextReviewAt: new Date(Date.now() + 86400000).toISOString(),
+      }
     }
   }
 
-  // Record which questions were asked so recalibration doesn't repeat them
-  fp.askedDiagnosticQuestionIds = result.askedQuestionIds ?? []
+  // P0.5-07 (F015): UNION new asked-question ids with any existing list so a
+  // repeat diagnostic does not re-ask. (The diagnostic engine also seeds from
+  // these via createDiagnosticState now.)
+  const askedIdSet = new Set([
+    ...(fp.askedDiagnosticQuestionIds ?? []),
+    ...(result.askedQuestionIds ?? []),
+  ])
+  fp.askedDiagnosticQuestionIds = [...askedIdSet]
 
+  fp.updatedAt = now
   setFingerprint(fp)
-  saveFingerprint(fp).catch(console.warn)
+  await saveFingerprint(fp).catch(console.warn)
   localStorage.setItem('norskcoach_onboarded', '1')
 }
 
@@ -159,9 +196,18 @@ export function OnboardingFlow() {
     advanceTo(steps.findIndex((s) => s.kind === 'ready'))
   }
 
+  // P0.5-07 (F016): persist diagnostic seed as soon as the result is ready,
+  // not on the navigation click. If the user closes the tab on the result
+  // screen, the answers no longer evaporate.
+  useEffect(() => {
+    if (!diagnosticResult) return
+    seedFingerprintFromDiagnostic(diagnosticResult, setFingerprint).catch(console.warn)
+  }, [diagnosticResult, setFingerprint])
+
   function commit(destination: '/session' | '/dashboard') {
     if (!diagnosticResult) return
-    seedFingerprintFromDiagnostic(diagnosticResult, setFingerprint)
+    // Persistence already handled by the useEffect above. This function is
+    // navigation only now.
     router.push(destination)
   }
 
