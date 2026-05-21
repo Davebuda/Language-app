@@ -6,6 +6,7 @@ import { Mic, MicOff, Send, X } from 'lucide-react'
 import { aiService } from '@/ai'
 import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
 import { BottomNav } from '@/components/layout/BottomNav'
+import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
@@ -216,17 +217,8 @@ export default function ConversationPage() {
     }
   }, [messages, isThinking])
 
-  // Auto-activate mic when chat phase opens (voice-first default)
-  useEffect(() => {
-    if (phase === 'chat' && hasSpeechAPI && messages.length > 0 && !isListening && !isThinking) {
-      // Small delay so tutor greeting finishes before mic opens
-      const timer = setTimeout(() => {
-        if (!isListening && !isThinking) toggleListening()
-      }, 800)
-      return () => clearTimeout(timer)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, messages.length])
+  // Mic activation is explicit — user taps the mic button.
+  // No auto-activation: recording without consent is a violation in any context.
 
   const addTutorMessage = useCallback(async (history: ConversationMessage[], isUserTurn = true) => {
     setIsThinking(true)
@@ -407,12 +399,15 @@ export default function ConversationPage() {
                   {TOPICS.find((t) => t.id === selectedTopic)?.emoji}{' '}
                   {TOPICS.find((t) => t.id === selectedTopic)?.label}
                 </div>
-                <button
-                  onClick={() => { void persistSessionEnd(); setPhase('setup'); window.speechSynthesis?.cancel() }}
-                  className="nc-glass flex items-center gap-1 px-3 py-1 text-[11px] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
-                >
-                  <X size={12} /> Avslutt
-                </button>
+                <div className="flex items-center gap-2">
+                  <AIStatusBadge />
+                  <button
+                    onClick={() => { void persistSessionEnd(); setPhase('setup'); window.speechSynthesis?.cancel() }}
+                    className="nc-glass flex items-center gap-1 px-3 py-1 text-[11px] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
+                  >
+                    <X size={12} /> Avslutt
+                  </button>
+                </div>
               </div>
 
               {/* Message list */}

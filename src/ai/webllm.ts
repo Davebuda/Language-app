@@ -295,8 +295,13 @@ export class WebLLMService implements AIService {
     topic: string,
     constraintEvalSuffix?: string,
   ): Promise<ConversationTurnResult> {
+    const fallbackResponse = (msgs: ConversationMessage[]): string =>
+      msgs.length === 0
+        ? `Hei! La oss snakke om ${topic}. Hva tenker du på?`
+        : 'Bra! Kan du fortelle mer?'
+
     if (!this.isReady()) {
-      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' }
+      return { tutorResponse: fallbackResponse(messages), source: 'template' }
     }
     try {
       const { system, messages: chatMessages } = buildConversationPrompt(
@@ -335,7 +340,7 @@ export class WebLLMService implements AIService {
 
       return { tutorResponse, correction, constraintMet, constraintFeedback, source: 'ai' }
     } catch {
-      return { tutorResponse: 'Bra! Kan du fortelle mer?', source: 'template' }
+      return { tutorResponse: fallbackResponse(messages), source: 'template' }
     }
   }
 }

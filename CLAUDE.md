@@ -84,6 +84,8 @@ Out of scope right now: vocab SRS, listening module, B1/B2 content authoring, FS
 
 7. **Scope discipline on prompts.** If asked to fix X, fix X. Do not also refactor Y, restyle Z, or build the thing you think should come next. Note adjacent issues; don't act on them without approval.
 
+8. **Pipeline honesty.** If a surface claims to contribute to the fingerprint, mastery, or repair loop, that contribution must be traced end-to-end before the surface ships. A UI that shows a correction card is making a claim about the learning engine, not just about pixels. Five separate surfaces during P0 recovery were found to silently contribute nothing: the AI badge, error tags, session progression, journal correction, and conversation grammar logging. Before any "feeds the engine" feature ships, trace the write: confirm an entry lands in the error log, the mastery score changes, or the SRS state updates — in a real session, not in theory.
+
 ## The Architect Subagent
 
 This project has an architect subagent at `.claude/agents/architect.md`. Its job is direction, sequencing, and pushback — NOT writing code. Consult it before starting any phase, when a request might be breadth-not-depth, when scope is unclear, or when a decision has architectural weight. The architect proposes and challenges; the main session executes after approval. Treat its scope/direction flags as blocking until resolved with the user.
