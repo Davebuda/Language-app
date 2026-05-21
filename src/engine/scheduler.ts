@@ -47,20 +47,6 @@ function resolvePool(
   return defaultPool;
 }
 
-function pickExerciseType(
-  pool: ExerciseType[],
-  recentlyUsed: ExerciseType[],
-  productionGap = 0,
-  preference: InputProductionPreference = 'balanced',
-): ExerciseType {
-  const adjusted = resolvePool(pool, productionGap, preference);
-  // Avoid repeating the same type more than twice in a row
-  const lastTwo = recentlyUsed.slice(-2);
-  const filtered = adjusted.filter((t) => !lastTwo.includes(t));
-  const source = filtered.length > 0 ? filtered : adjusted;
-  return source[Math.floor(Math.random() * source.length)];
-}
-
 function makeItem(
   id: string,
   conceptId: string,

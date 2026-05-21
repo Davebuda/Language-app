@@ -347,14 +347,30 @@ export default function DashboardPage() {
               <Mic size={18} className="text-[var(--nc-text-muted)]" aria-hidden="true" />
             </div>
           </div>
-          <Link
-            href="/conversation"
-            aria-label="Start norsk samtale"
-            className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border-strong)] bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.10)]"
-          >
-            <Play size={13} aria-hidden="true" />
-            Start samtale
-          </Link>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link
+              href="/conversation"
+              aria-label="Start norsk samtale"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border-strong)] bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.10)]"
+            >
+              <Play size={13} aria-hidden="true" />
+              Start samtale
+            </Link>
+            <Link
+              href="/shadow"
+              aria-label="Øv på skygging"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+            >
+              Skygging
+            </Link>
+            <Link
+              href="/drills"
+              aria-label="Øv på uttale"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+            >
+              Uttaleøvelser
+            </Link>
+          </div>
         </motion.div>
 
         {/* ── Write — Skrivejournal ── */}

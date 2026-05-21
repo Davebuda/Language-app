@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: muntlig
 milestone_name: Muntlig module build
 status: executing
-stopped_at: Shadowing mode (Step 2) complete. Pronunciation drills (Step 3) is next.
+stopped_at: Pronunciation drills (Step 3) complete. Listen-and-respond (Step 4) is next.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — Shadowing mode shipped. A3/A4/UI-1.3/TS all done this session.
+last_activity: 2026-05-21 — Drills mode verified (+ scheduler dead code fix + dashboard nav links).
 progress:
   p0_items: 8/8 complete
   p1_items_closed: 13
   p1_items_total: 13
   stream4_items: 3/3 complete
   engine_corrections: A2 ✅ A3 ✅ A4 ✅
-  muntlig_modes: shadowing ✅ | drills → | listen-respond → | roleplay →
+  muntlig_modes: shadowing ✅ | drills ✅ | listen-respond → | roleplay →
 ---
 
 # Project State
@@ -25,9 +25,9 @@ progress:
 
 ## Current Position
 
-Phase: Muntlig module build (Step 3 — pronunciation drills)
+Phase: Muntlig module build (Step 4 — listen-and-respond)
 Status: Executing
-Last activity: 2026-05-21 — Shadowing mode shipped with word-level match, speech recognition, fingerprint integration
+Last activity: 2026-05-21 — Pronunciation drills verified + scheduler dead code removed + dashboard muntlig nav fixed
 
 Progress: [████████████████████] P0 ✅ P1 ✅ Stream 4 ✅ Engine corrections ✅ Shadowing ✅
 
@@ -48,8 +48,8 @@ Progress: [████████████████████] P0 ✅ 
 |------|------|--------|
 | 1 | Audio infrastructure | ✅ Proven by shadowing (seed sentences, audioUrl field, static assets ready) |
 | 2 | Shadowing | ✅ Working — idle→listen→result, word match, fingerprint, honest text-mode fallback |
-| 3 | Pronunciation drills | ▶ NEXT |
-| 4 | Listen-and-respond | Queued |
+| 3 | Pronunciation drills | ✅ Verified — 4 sets, heuristics, fingerprint, dashboard nav |
+| 4 | Listen-and-respond | ▶ NEXT |
 | 5 | Scripted roleplay | Queued |
 
 ## Decisions
