@@ -143,7 +143,7 @@ The full speaking-practice system. Designed, costed, and validated as zero-cost-
 - Self-listening playback + rule-based heuristics for pronunciation feedback (not phoneme-level scoring, which is impossible at zero cost — and that's research-supported as pedagogically fine)
 - Visible JavaScript countdown for listen-and-respond timing
 
-Do not start muntlig until NB-Llama is in place — there's no point building local-AI content variation on a model that produces bad Norwegian.
+**NB-Llama dependency is scoped:** Audio infrastructure (chatterbox-tts-norwegian), NoCoLA content seeding, and all four mode UIs do not require NB-Llama. Only the _batch content generation_ step (generating variety beyond the NoCoLA corpus) needs NB-Llama. Those two workstreams are now decoupled. Build order: audio infra → shadowing UI → pronunciation drills → listen-and-respond → scripted roleplay → NB-Llama content generation (when model swap completes).
 
 See `docs/muntlig/architecture.md` for the full spec.
 
