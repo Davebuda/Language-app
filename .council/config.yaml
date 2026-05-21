@@ -1,8 +1,8 @@
 project: NorskCoach
 constitution: CLAUDE.md
-roadmap: .planning/ROADMAP.md
-state: .planning/STATE.md
-review: REVIEW.md
+roadmap: docs/roadmap.md
+state: docs/project-state.md
+review: docs/recovery-backlog.md
 
 routing:
   ui: sonnet
