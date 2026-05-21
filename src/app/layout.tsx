@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
   ),
+  robots: { index: false, follow: false },
   openGraph: {
     title: 'NorskCoach',
     description:
