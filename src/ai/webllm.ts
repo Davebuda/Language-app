@@ -10,7 +10,7 @@ import {
   buildConversationPrompt, buildWritingFeedbackPrompt,
   buildErrorDetectionPrompt,
 } from './prompts'
-import { validateGenerated } from './validate'
+import { validateGenerated, validateNorwegianOutput } from './validate'
 
 const MODEL_ID = 'Llama-3.2-3B-Instruct-q4f16_1-MLC'
 const MAX_RETRIES = 2
@@ -237,7 +237,16 @@ export class WebLLMService implements AIService {
     try {
       const { system, user } = buildExplanationPrompt(params)
       const text = await this.complete(system, user, false, 200)
-      return { text: text.trim(), source: 'ai' }
+      const trimmed = text.trim()
+      // P0.5-06: validate Norwegian validity before shipping AI prose to the
+      // learner. Repair-card explanations are often partly English (rule
+      // description) and partly Norwegian (examples); skip Norwegian gate here
+      // but still drop fabricated compounds and very long words.
+      if (trimmed.split(/\s+/).some((w) => w.length > 22)) {
+        console.warn('[WebLLM.explainMistake] suspected fabricated word; falling back to template')
+        return { text: templateExplanation(params), source: 'template' }
+      }
+      return { text: trimmed, source: 'ai' }
     } catch {
       return { text: templateExplanation(params), source: 'template' }
     }
@@ -272,16 +281,35 @@ export class WebLLMService implements AIService {
         praise?: string
         suggestion?: string
       }
+      // P0.5-06: validate praise + suggestion (both shown to learner) and drop
+      // any individual error whose correct field is not coherent Norwegian.
+      // The third walkthrough captured fabricated words like "døvreslekkende"
+      // appearing in praise, and corrected versions that flipped negation
+      // meaning. The gate filters those before they reach the journal UI.
+      const safePraise = parsed.praise && validateNorwegianOutput(parsed.praise, { minWords: 3 }).valid
+        ? parsed.praise
+        : 'Bra innsats! Fortsett å skrive på norsk.'
+      const safeSuggestion = parsed.suggestion && validateNorwegianOutput(parsed.suggestion, { minWords: 3 }).valid
+        ? parsed.suggestion
+        : 'Fokuser på verbalplasseringen — V2-regelen gjelder i helsetninger.'
+      const safeErrors = (parsed.errors ?? []).filter((e) => {
+        // The correct field must be coherent Norwegian (it's what the rettet versjon uses).
+        const v = validateNorwegianOutput(e.correct, { minWords: 2 })
+        if (!v.valid) {
+          console.warn(`[WebLLM.reviewWriting] dropping error with invalid correction (${v.reason}): ${e.correct}`)
+        }
+        return v.valid
+      })
       return {
-        errors: (parsed.errors ?? []).map((e) => ({
+        errors: safeErrors.map((e) => ({
           tag: e.tag as TaggedError['tag'],
           wrong: e.wrong,
           correct: e.correct,
           briefWhy: e.why,
           span: e.start != null && e.end != null ? { start: e.start, end: e.end } : undefined,
         })),
-        praise: parsed.praise ?? 'Good attempt!',
-        suggestion: parsed.suggestion ?? 'Keep practising!',
+        praise: safePraise,
+        suggestion: safeSuggestion,
         source: 'ai',
       }
     } catch {
@@ -337,6 +365,15 @@ export class WebLLMService implements AIService {
         .replace(/\nCONSTRAINT_MET/, '')
         .replace(/\nCONSTRAINT_MISSED:.*/, '')
         .trim()
+
+      // P0.5-06: validate Norwegian validity. Kari's responses MUST be
+      // imitable Norwegian — fall back to template if the model produced
+      // gibberish, English drift, or fabricated compounds.
+      const validity = validateNorwegianOutput(tutorResponse, { minWords: 3 })
+      if (!validity.valid) {
+        console.warn(`[WebLLM.conversationTurn] dropping invalid Norwegian (${validity.reason}): ${tutorResponse.slice(0, 80)}`)
+        return { tutorResponse: fallbackResponse(messages), source: 'template' }
+      }
 
       return { tutorResponse, correction, constraintMet, constraintFeedback, source: 'ai' }
     } catch {

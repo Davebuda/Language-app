@@ -71,6 +71,103 @@ function checkContent(norwegian: string, exerciseType: ExerciseType): string | n
   return null;
 }
 
+// ──────────────────────────────────────────────────────────────────────────
+// P0.5-06 — AI language-validity gate
+//
+// Used by explainMistake, conversationTurn, reviewWriting (and defence-in-depth
+// before updateRepairExplanation) to drop AI prose that is not coherent
+// Norwegian before it reaches the learner. The third walkthrough captured
+// Kari emitting "Det lunter for å ikke væreatraftet tidlig oglanda!" — a
+// string with several non-words — and the repair card teaching reversed
+// gender rules. Both surfaces had no validity check between the model output
+// and the rendered string. This gate covers that gap with three cheap heuristics
+// run on every AI surface.
+// ──────────────────────────────────────────────────────────────────────────
+
+// Telltale English function words that don't normally appear in plain Norwegian
+// prose. Mid-paragraph English drift is the failure mode this catches.
+const ENGLISH_DRIFT_WORDS = new Set([
+  'is', 'are', 'was', 'were', 'the', 'of', 'with', 'and', 'or', 'but',
+  'this', 'that', 'these', 'those', 'have', 'has', 'had', 'will',
+  'should', 'would', 'could', 'because', 'about', 'between', 'through',
+  'because', 'before', 'after', 'instead', 'however', 'therefore',
+])
+
+// Norwegian function words we expect to see at least one of in any
+// non-trivial Norwegian sentence. If none appear, the text is suspect.
+const NORWEGIAN_FUNCTION_WORDS = new Set([
+  'er', 'har', 'ikke', 'jeg', 'du', 'vi', 'de', 'det', 'den', 'en', 'et',
+  'og', 'eller', 'men', 'å', 'i', 'på', 'til', 'fra', 'med', 'av', 'for',
+  'om', 'som', 'hva', 'hvor', 'hvem', 'når', 'hvorfor', 'kan', 'vil',
+  'skal', 'må', 'meg', 'deg', 'oss', 'dem', 'min', 'din', 'sin',
+])
+
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[.,!?;:«»"'()/\-–%]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length > 0)
+}
+
+export interface NorwegianValidityResult {
+  valid: boolean
+  reason?: 'non-norwegian-chars' | 'synthetic-compound' | 'english-drift' | 'no-norwegian-markers'
+  detail?: string
+}
+
+/**
+ * Validate that an AI-generated Norwegian string is actually Norwegian and
+ * not gibberish, English drift, or fabricated compounds.
+ *
+ * Returns valid=true for normal Norwegian prose. valid=false with a reason
+ * tells the caller why; the caller should fall back to its deterministic
+ * template instead of displaying the AI text.
+ *
+ * Tuning: this is a coarse filter. False positives ought to be rare for
+ * normal A1–B2 sentences; false negatives are acceptable since the gate is
+ * defence-in-depth on top of the prompt design itself.
+ */
+export function validateNorwegianOutput(text: string, opts?: { minWords?: number }): NorwegianValidityResult {
+  const trimmed = text.trim()
+  if (!trimmed) return { valid: false, reason: 'no-norwegian-markers', detail: 'empty text' }
+
+  // 1. Character set — letters/digits/Norwegian-allowed punctuation only.
+  if (!NORWEGIAN_CHARS.test(trimmed)) {
+    return { valid: false, reason: 'non-norwegian-chars', detail: 'unexpected characters' }
+  }
+
+  const words = tokenize(trimmed)
+  const minWords = opts?.minWords ?? 3
+  if (words.length < minWords) {
+    // Very short fragments can't be reliably classified; pass through.
+    return { valid: true }
+  }
+
+  // 2. Synthetic compound — any word longer than 18 chars after stripping
+  // punctuation is almost always a fabrication for A1–B2 content.
+  const tooLong = words.find((w) => w.length > 18)
+  if (tooLong) {
+    return { valid: false, reason: 'synthetic-compound', detail: tooLong }
+  }
+
+  // 3. English drift — if 25%+ of tokens are common English function words,
+  // the model has drifted off Norwegian.
+  const englishHits = words.filter((w) => ENGLISH_DRIFT_WORDS.has(w)).length
+  if (englishHits / words.length > 0.25) {
+    return { valid: false, reason: 'english-drift', detail: `${englishHits}/${words.length} English function words` }
+  }
+
+  // 4. Norwegian markers — every real Norwegian sentence has at least one of
+  // these. Missing them suggests gibberish or pure-loanword text.
+  const norwegianHits = words.filter((w) => NORWEGIAN_FUNCTION_WORDS.has(w)).length
+  if (norwegianHits === 0) {
+    return { valid: false, reason: 'no-norwegian-markers', detail: 'zero Norwegian function words' }
+  }
+
+  return { valid: true }
+}
+
 export function validateGenerated(
   raw: unknown,
   params: GenerateParams
