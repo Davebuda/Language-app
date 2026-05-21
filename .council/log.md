@@ -1,5 +1,27 @@
 # Council Decision Log
 
+## 2026-05-22T00:40 APPROVE — Stream 5 Phase 5a (open-week orchestration) + autonomous loop pause
+
+**Commit:** `b73cb35` feat(engine): Stream 5 Phase 5a — open-week orchestration.
+
+**Diff (verified `git show HEAD --stat`):** exactly 5 files (engine/weekly-sprint.ts +42, engine/index.ts +2/-1, hooks/useFingerprint.ts +62/-13, hooks/useSession.ts +7, tests/engine/weekly-sprint.test.ts +106). Matches in-scope list precisely.
+
+**Verification:** typecheck clean. `npm test` 141/141 passing (134 before + 7 new).
+
+**No deviations.** One implementation note from the implementer about preserving the original "push to Supabase if migration produced no changes" intent inside the new `withWeek !== reconciled` guard — confirmed correct by inspection.
+
+**Autonomous loop summary (Phases 1 → 3 → 5a):**
+- Phase 1 (commit `0821e75`): data model + `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`, `migrateWeeklySprintFields`. 23 tests.
+- Phase 3 (commit `4fbd654`): scheduler remediation-pool bias toward `weeklyFocus`. 5 tests.
+- Phase 5a (commit `b73cb35`): `openWeek` + `ensureWeekOpen` + wiring across 6 bootstrap paths + `ensureWeekOpenAndPersist` helper called from `useSession.startNewSession`. 7 tests.
+- Total: 3 phases / 6 commits including approval commits / 35 new tests / 141/141 passing throughout.
+
+**Result:** the Weekly Sprint cycle is now fully live in the engine layer. A user starting a session after this change automatically gets `weeklyFocus` populated and `weekStartedAt` set. The scheduler's remediation pool biases toward focus concepts. The week resets honestly after >7 days of absence. No UI exists yet (Phase 6) and no weekly check route exists yet (Phase 4).
+
+**Pause point reached.** Phase 4 (weekly check `/uke` route) is the next phase that adds value. It introduces the `learning_events_log` write — a new Supabase write path that has not been exercised in any walkthrough. Phase 2 (authenticated walkthrough) requires the user to click a magic link in their email and is the engineering-hygiene gate before Phase 4 ships.
+
+Council is stopping the autonomous loop here. Surfacing the user prompt: click magic link → run Phase 2 walkthrough → proceed to Phase 4 → Phase 6 (dashboard week-strip ships with the check CTA) → Phase 5b (graduation rule) → Phase 7 (audit).
+
 ## 2026-05-22T00:30 APPROVE — Stream 5 Phase 3 (scheduler bias toward weeklyFocus)
 
 **Commit:** `4fbd654` feat(engine): Stream 5 Phase 3 — scheduler bias toward weeklyFocus.
