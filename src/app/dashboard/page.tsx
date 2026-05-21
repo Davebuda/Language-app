@@ -16,7 +16,6 @@ import { DailyLearningCard } from '@/components/DailyLearningCard'
 import { DailyWordPack } from '@/components/DailyWordPack'
 import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
-import { getDailyRule } from '@/lib/dailyContent'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
@@ -190,8 +189,6 @@ export default function DashboardPage() {
   // Read card — texts at learner's level
   const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
 
-  const dailyRule = getDailyRule()
-
   // Write card — today's prompt teaser (first 38 chars + ellipsis)
   const todayPrompt = DASHBOARD_PROMPTS[new Date().getDay() % DASHBOARD_PROMPTS.length]
   const promptTeaser = todayPrompt.length > 38 ? todayPrompt.slice(0, 38) + '…' : todayPrompt
@@ -346,15 +343,6 @@ export default function DashboardPage() {
             )}
           </div>
 
-          {/* ── Grammar moment ── */}
-          <div className="mt-4 border-t border-[rgba(4,14,8,0.12)] pt-4">
-            <p className="font-display text-[1.35rem] font-bold leading-tight text-[var(--nc-cream-text)] text-balance">
-              {dailyRule.norwegianExample}
-            </p>
-            <p className="mt-1.5 text-[11px] text-[var(--nc-cream-muted)] leading-relaxed text-pretty">
-              {dailyRule.ruleExplanation}
-            </p>
-          </div>
         </motion.div>
 
         {/* ── Speak — Muntlig ── */}
