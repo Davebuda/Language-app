@@ -50,7 +50,12 @@ export function useAuth(): UseAuthReturn {
 
   const signIn = useCallback(async (email: string): Promise<{ error: string | null }> => {
     const supabase = createClient()
-    const origin = window.location.origin
+    // Prefer the canonical site URL (set in production env) over window.location.origin.
+    // Without this, magic-link emails sent from a deployed build redirect users to
+    // whatever origin the email-send happened from — which can be localhost during
+    // a dev session or a staging URL when production is intended. NEXT_PUBLIC_APP_URL
+    // is baked at build time and is the source of truth for the canonical site URL.
+    const origin = process.env.NEXT_PUBLIC_APP_URL || window.location.origin
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
