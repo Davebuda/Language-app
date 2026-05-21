@@ -104,6 +104,8 @@ function seedFingerprintFromDiagnostic(
       lastCorrectAt: seed.lastCorrectAt,
       streak: seed.streak,
       recentOutcomes: seed.recentOutcomes,
+      srsLevel: 0,
+      nextReviewAt: new Date(Date.now() + 86400000).toISOString(),
     }
   }
 

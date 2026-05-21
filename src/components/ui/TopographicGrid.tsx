@@ -24,6 +24,7 @@ export function TopographicGrid() {
     const orb = { scale: 0, r1: 0, r2: 0 }
 
     function resize() {
+      if (!canvas) return
       canvas.width  = window.innerWidth
       canvas.height = window.innerHeight
       orb.scale = Math.min(canvas.width, canvas.height)
@@ -32,6 +33,7 @@ export function TopographicGrid() {
     }
 
     function draw(elapsed: number) {
+      if (!canvas || !ctx) return
       const t = elapsed * 0.001 * 0.42
       const { width: W, height: H } = canvas
       ctx.clearRect(0, 0, W, H)
