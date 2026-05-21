@@ -195,4 +195,23 @@ Playwright: PASS on dashboard. Report at `.council/reports/2026-05-21-stream-4-1
 Stream 4 progress: 1/3 complete
 Next: Stream 4.2 — Daily Word Pack
 
+## 2026-05-21 APPROVE — Stream 4.2 Daily Word Pack
+
+Criteria met:
+- `region "Dagens ordliste"` present with correct aria-label ✅
+- 6 word rows render (stå opp, frokost, jobbe, trøtt, dusje, kveld) ✅
+- Per-word `aria-label` on each toggle button ✅
+- Individual expand/collapse works independently ✅
+- "Skjul" + `aria-expanded` updates on toggle ✅
+- English + example sentence revealed correctly ✅
+- 0 console errors ✅
+- No new dependencies ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — report at `.council/reports/2026-05-21-stream-4-2-daily-word-pack.md`
+Screenshot: `stream-4-2-wordpack-reveal.png`
+
+Stream 4 progress: 2/3 complete
+Next: Stream 4.3 — Progress Reassurance Strip
+
 ---

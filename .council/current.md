@@ -1,84 +1,137 @@
 # Task Brief
-**Task:** Stream 4.1 — Daily Learning Card
+**Task:** Stream 4.2 — Daily Word Pack
 **Date:** 2026-05-21
-**Status:** APPROVED — 2026-05-21
+**Status:** IN PROGRESS
 
 ---
 
 ## What
 
-Three files to create, two files to modify:
+Two files to create, one file to modify:
 
 **Create:**
-- `src/lib/dailyContent.ts` — rotation logic + 7 grammar rules seed + 42 words seed (used by 4.1 and 4.2)
-- `src/components/DailyLearningCard.tsx` — card component with tap-to-reveal (dashboard) and always-visible (landing) modes
+- `src/components/DailyWordPack.tsx` — word pack component (dashboard only, tap-to-reveal each word)
 
 **Modify:**
-- `src/app/page.tsx` — add DailyLearningCard with `alwaysVisible` prop after hero / before waitlist
-- `src/app/dashboard/page.tsx` — add DailyLearningCard (default tap-to-reveal) after the greeting section
+- `src/lib/dailyContent.ts` — add 42-word seed (7 days × 6 words) and `getDailyWords()` function
+- `src/app/dashboard/page.tsx` — add `<DailyWordPack />` after DailyLearningCard, before Stats grid
 
 ---
 
 ## How
 
-### `src/lib/dailyContent.ts`
+### Add to `src/lib/dailyContent.ts`
 
-Export a `getDailyRule()` function:
+Add a `DailyWord` type and `getDailyWords()` function:
 
 ```ts
-export type GrammarRule = {
-  title: string         // short rule name in English (for screen readers / admin)
-  norwegianExample: string   // the Norwegian sentence — T1 element
-  englishTranslation: string // literal translation
-  ruleExplanation: string    // 1–2 sentences, in English, explaining the rule
+export type DailyWord = {
+  norwegian: string
+  english: string
+  exampleSentence: string   // Norwegian sentence using the word
+  wordClass: string          // noun / verb / adjective / adverb
 }
 
-const RULES: GrammarRule[] = [
-  // 7 entries, one per weekday index
+const WORD_PACKS: DailyWord[][] = [
+  // 7 groups, one per date index (0-6)
+  // Each group: 6 words
 ]
 
-export function getDailyRule(): GrammarRule {
-  return RULES[new Date().getDate() % 7]
+export function getDailyWords(): DailyWord[] {
+  return WORD_PACKS[new Date().getDate() % 7]
 }
 ```
 
-Seed 7 grammar rules covering: V2 word order, noun gender (en/et), definite forms (-en/-et suffix), adjective agreement (stor/stort/store), prepositions (i/på/til), reflexive verbs (vaske seg), question formation (hva/hvor/hvem).
+Seed 42 words across 7 daily packs covering: daily routines, common verbs, emotions, food, travel, common adjectives. All Norwegian must be correct Bokmål.
 
-Norwegian examples must be complete, grammatically correct Bokmål sentences. English translations must be literal. Rule explanations must be 1–2 sentences max.
+**Word pack content (7 packs × 6 words):**
 
-### `src/components/DailyLearningCard.tsx`
+Pack 0 — Daily routines:
+- stå opp / get up / verb / "Jeg står opp klokken syv."
+- frokost / breakfast / noun / "Vi spiser frokost sammen."
+- jobbe / work / verb / "Han jobber hjemmefra i dag."
+- trøtt / tired / adjective / "Jeg er veldig trøtt om morgenen."
+- dusje / shower / verb / "Hun dusjer alltid før jobb."
+- kveld / evening / noun / "Vi slapper av om kvelden."
+
+Pack 1 — Common verbs:
+- snakke / speak / verb / "Kan du snakke saktere?"
+- forstå / understand / verb / "Jeg forstår ikke alt ennå."
+- hjelpe / help / verb / "Vil du hjelpe meg?"
+- lære / learn / verb / "Vi lærer norsk sammen."
+- huske / remember / verb / "Husker du det?"
+- glemme / forget / verb / "Jeg glemmer alltid nøklene mine."
+
+Pack 2 — Emotions:
+- glad / happy / adjective / "Hun er veldig glad i dag."
+- lei seg / sad / adjective / "Han er lei seg for det."
+- overrasket / surprised / adjective / "Jeg er overrasket over nyheten."
+- nervøs / nervous / adjective / "Er du nervøs for prøven?"
+- rolig / calm / adjective / "Prøv å være rolig."
+- spent / excited / adjective / "Barna er spent på ferien."
+
+Pack 3 — Food:
+- middag / dinner / noun / "Vi lager middag klokken seks."
+- grønnsaker / vegetables / noun / "Spis flere grønnsaker!"
+- drikke / drink / verb / "Vil du drikke noe?"
+- sulten / hungry / adjective / "Jeg er veldig sulten nå."
+- smake / taste / verb / "Kan jeg smake?"
+- matbutikk / grocery store / noun / "Jeg går i matbutikken i dag."
+
+Pack 4 — Travel:
+- reise / travel / verb / "Vi reiser til Bergen neste uke."
+- flyplass / airport / noun / "Er flypassen langt unna?"
+- hotell / hotel / noun / "Hotellet er i sentrum."
+- kart / map / noun / "Har du et kart?"
+- billett / ticket / noun / "Jeg har to billetter."
+- fin / nice/beautiful / adjective / "Det er et fint land."
+
+Pack 5 — Common adjectives:
+- stor / big / adjective / "Det er et stort hus."
+- liten / small / adjective / "Katten er liten og søt."
+- ny / new / adjective / "Jeg har en ny bil."
+- gammel / old / adjective / "Det er et gammelt hus."
+- viktig / important / adjective / "Det er viktig å øve."
+- enkel / simple / adjective / "Det er en enkel oppgave."
+
+Pack 6 — Describing people/things:
+- hyggelig / friendly / adjective / "Han er veldig hyggelig."
+- flink / good at / adjective / "Du er flink til å snakke norsk."
+- interessant / interesting / adjective / "Det er en interessant bok."
+- morsom / funny / adjective / "Hun er veldig morsom."
+- kjent / famous/known / adjective / "Oslo er en kjent by."
+- vanlig / common/usual / adjective / "Det er en vanlig norsk rett."
+
+### `src/components/DailyWordPack.tsx`
 
 ```tsx
 'use client'
-
-interface Props {
-  alwaysVisible?: boolean  // landing page: always show translation; dashboard: tap to reveal
-}
+import { useState } from 'react'
+import { getDailyWords } from '@/lib/dailyContent'
 ```
 
 Card structure:
-1. Small label chip: `"Dagens grammatikk"` (Schibsted Grotesk, text-sm, muted)
-2. Norwegian sentence — T1 element: `text-2xl font-bold` minimum, Schibsted Grotesk
-3. Rule explanation line below the sentence (text-sm, muted)
-4. Translation reveal:
-   - `alwaysVisible=true`: show `englishTranslation` inline, no interaction needed
-   - default: "Vis oversettelse" button → reveals translation; button text changes to "Skjul oversettelse"
-5. Card styling: `nc-glass` or `bg-[var(--nc-card)]` border radius matching existing cards
+1. `role="region"` with `aria-label="Dagens ordliste"`
+2. Label chip: `"Dagens ord"` — use `nc-label` class
+3. Heading: count + topic hint, e.g. `"6 ord for i dag"` — small, muted
+4. Word list: each word rendered as a card row with:
+   - Norwegian word — bold, `text-[var(--nc-text)]`
+   - Word class chip — tiny badge (noun/verb/adj), muted
+   - "Vis" toggle button to reveal English + example sentence
+   - When revealed: English translation in muted text, then example sentence in italic
+5. Card container: `nc-glass p-4 border-l-2 border-[var(--nc-red-border)]`
 
-**Accessibility:**
-- `aria-expanded` on reveal button
-- `role="region"` on card with `aria-label="Dagens grammatikk"`
-- Keyboard: Space/Enter on reveal button toggles translation
+Each word item should use local toggle state. A simple approach: `useState<Set<number>>` tracking which indices are expanded. Alternatively, each word can be its own small component with its own `useState`. Use whichever is cleaner.
 
-**No Framer Motion.** This is a static card with a simple CSS transition for the translation reveal (`transition-all duration-200 ease-out`). Framer Motion is for interactive/complex animations; this is a one-state toggle.
+Accessibility:
+- Each reveal button: `aria-expanded={isExpanded}`, `aria-label={Vis ${word.norwegian}}`
+- Word container: keyboard accessible (button handles Enter/Space)
 
-### Landing page (`src/app/page.tsx`)
+**No Framer Motion** — simple `max-h` CSS transition for the reveal, same pattern as `DailyLearningCard`.
 
-Read the file first to understand current structure. Place `<DailyLearningCard alwaysVisible />` after the hero/intro section and before the waitlist/CTA section. If there is a container/section pattern, match it.
+### Modify `src/app/dashboard/page.tsx`
 
-### Dashboard (`src/app/dashboard/page.tsx`)
-
-Read the file first. Place `<DailyLearningCard />` (no props — tap-to-reveal mode) after the greeting + level section and before the session CTA or progress strip. Match existing card spacing and container width.
+Import `DailyWordPack` at top. Add `<DailyWordPack />` immediately after `<DailyLearningCard />` (the card already placed at line 384).
 
 ---
 
@@ -87,28 +140,28 @@ sonnet
 
 ## Acceptance Criteria
 
-1. DailyLearningCard renders on `/` with translation always visible — no tap required
-2. DailyLearningCard renders on `/dashboard` with translation hidden by default; tap/click reveals it
-3. Both show the same grammar rule on a given day (same `getDailyRule()` call, same date)
-4. Norwegian sentence is the visually dominant element — larger and bolder than the explanation text
-5. Card is keyboard accessible: reveal button responds to Enter/Space; `aria-expanded` updates
-6. No new npm dependencies introduced
+1. 6 words render on `/dashboard` for the current day — no horizontal scroll on mobile
+2. Each word row shows a toggle button; click reveals English translation + example sentence
+3. All 6 words can be individually expanded/collapsed independently
+4. `role="region"` with `aria-label="Dagens ordliste"` on the container
+5. Each reveal button has `aria-expanded` and `aria-label` with the Norwegian word
+6. No new npm dependencies
 7. No TypeScript errors
-8. Landing page and dashboard load without console errors
+8. 0 console errors on dashboard (scheduler warnings are pre-existing and acceptable)
 
 ## Blocking Flags
 
-Stop immediately and write `BLOCKED: [reason]` to this file if:
-- `src/app/page.tsx` or `src/app/dashboard/page.tsx` is a Server Component that cannot directly use `useState` for the reveal — if so, extract the reveal toggle into a small `DailyLearningCardClient.tsx` wrapper
-- Any TypeScript error is introduced
-- The `nc-glass` class or `--nc-card` token is not found in the project (check globals.css before using)
+Stop and write `BLOCKED: [reason]` to this file if:
+- The `getDailyWords()` import from `@/lib/dailyContent` fails (check for export)
+- Any TypeScript error is introduced that you cannot fix correctly
+- The component tree nesting causes a React key warning or hydration mismatch
 
 ## Playwright Checkpoint
 yes
 
 What to test:
-- Navigate to `/` — confirm DailyLearningCard renders with Norwegian sentence visible and translation visible (alwaysVisible mode)
-- Navigate to `/dashboard` (as guest) — confirm card renders; translation hidden initially; click "Vis oversettelse" — translation appears
-- Confirm same grammar rule appears on both pages on same day
-- Snapshot accessibility tree on dashboard to confirm `role="region"` and `aria-label` present
-- No console errors on either page
+- Navigate to `/dashboard` — confirm DailyWordPack renders below DailyLearningCard
+- Confirm 6 word rows are visible
+- Click first word's toggle — translation + example sentence appears
+- Snapshot accessibility tree — confirm `region "Dagens ordliste"` present
+- No console errors
