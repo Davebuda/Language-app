@@ -147,8 +147,9 @@ export default function SessionCompletePage() {
   const wrongResults = results.filter((r) => !r.correct)
   const repairMap = new Map<string, Set<string>>()
   for (const r of wrongResults) {
-    if (!repairMap.has(r.conceptId)) repairMap.set(r.conceptId, new Set())
-    if (r.errorTag) repairMap.get(r.conceptId)!.add(r.errorTag)
+    const set = repairMap.get(r.conceptId) ?? new Set<string>()
+    if (r.errorTag) set.add(r.errorTag)
+    repairMap.set(r.conceptId, set)
   }
   const repairEntries: RepairEntry[] = Array.from(repairMap.entries()).map(([conceptId, tagSet]) => ({
     conceptId,

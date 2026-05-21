@@ -105,7 +105,7 @@ export function ListenRespondExercise({
       const elapsed = (Date.now() - start) / 1000
       setProgress(Math.min(elapsed / LISTEN_SECONDS, 1))
       if (elapsed >= LISTEN_SECONDS) {
-        clearInterval(timerRef.current!)
+        if (timerRef.current) clearInterval(timerRef.current)
         if (!hasResolved.current) {
           hasResolved.current = true
           resolveResult(transcriptRef.current)

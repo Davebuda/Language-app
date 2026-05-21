@@ -166,7 +166,7 @@ function RoleplayTurnExercise({
       const elapsed = (Date.now() - startTime) / 1000
       setProgress(Math.min(elapsed / LISTEN_SECONDS, 1))
       if (elapsed >= LISTEN_SECONDS) {
-        clearInterval(timerRef.current!)
+        if (timerRef.current) clearInterval(timerRef.current)
         if (!hasResolved.current) {
           hasResolved.current = true
           resolveResult(transcriptRef.current)
@@ -616,15 +616,19 @@ export function RoleplayScreen() {
                 </p>
               </div>
 
-              {activeScenario.turns[turnIndex] && (
-                <RoleplayTurnExercise
-                  scenario={activeScenario}
-                  turn={activeScenario.turns[turnIndex]!}
-                  turnIndex={turnIndex}
-                  totalTurns={activeScenario.turns.length}
-                  onComplete={handleTurnComplete}
-                />
-              )}
+              {(() => {
+                const currentTurn = activeScenario.turns[turnIndex]
+                if (!currentTurn) return null
+                return (
+                  <RoleplayTurnExercise
+                    scenario={activeScenario}
+                    turn={currentTurn}
+                    turnIndex={turnIndex}
+                    totalTurns={activeScenario.turns.length}
+                    onComplete={handleTurnComplete}
+                  />
+                )
+              })()}
             </motion.div>
           )}
 
