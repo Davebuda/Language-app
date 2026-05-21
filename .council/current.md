@@ -1,7 +1,7 @@
 # Task Brief
 **Task:** Session completion screen — make the moat visible
 **Date:** 2026-05-21
-**Status:** IN PROGRESS
+**Status:** APPROVED — 2026-05-21T11:10
 
 ---
 

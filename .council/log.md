@@ -16,3 +16,13 @@
 ## 2026-05-21 RESTRUCTURE — session completion elevated above P1-7 through P1-12
 **What changed:** Session completion build added as next task, before remaining P1 items.
 **Why:** Feature-challenger analysis elevated it based on frequency (every session) and moat visibility (repair loop, phase, SRS all invisible at highest-stakes moment).
+
+## 2026-05-21T11:10 APPROVE — session completion: make the moat visible
+**Criteria met:**
+- Repair loop summary renders conditionally on wrong answers (absent on perfect session ✅)
+- Phase chips replace "◌" and "New" badge ✅
+- SRS next review date computed from earliest nextReviewAt across repaired concepts ✅
+- All existing sections untouched ✅
+- Zero TypeScript errors ✅
+**Playwright:** PARTIAL PASS — structure, zero-wrong-answers case, guard confirmed. Repair section with real data requires live session traversal (NOT_TESTED, low risk).
+**File changed:** `src/app/session/complete/page.tsx`
