@@ -104,4 +104,18 @@ Screenshot: `p1-9-diagnostic-counter.png`
 P1 closed so far: 1–9 (9 of 13)
 Next: P1-10 — Dashboard notifications bell dead
 
+## 2026-05-21 APPROVE — P1-10 Dead notifications bell removed
+
+Criteria met:
+- Bell button absent from dashboard — not rendered anywhere ✅
+- `Bell` import removed from lucide-react (unused) ✅
+- Header layout intact: date, greeting, level badge all render ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — no "Notifications" button in accessibility tree
+Screenshot: `p1-10-dashboard-no-bell.png`
+
+P1 closed so far: 1–10 (10 of 13)
+Next: P1-11 — Waitlist form cosmetic — no data captured
+
 ---

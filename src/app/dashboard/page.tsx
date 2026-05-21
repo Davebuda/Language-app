@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Bell, Play, Mic, ArrowRight } from 'lucide-react'
+import { Play, Mic, ArrowRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -206,13 +206,6 @@ export default function DashboardPage() {
               <LevelBadge />
             </div>
           </div>
-          <button
-            type="button"
-            aria-label="Notifications"
-            className="nc-glass flex size-10 shrink-0 items-center justify-center text-[var(--nc-text-muted)]"
-          >
-            <Bell size={16} />
-          </button>
         </div>
 
         {/* ── Level-up toast ── */}

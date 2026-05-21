@@ -1,5 +1,5 @@
 # Task Brief
-**Task:** P1-9 — Diagnostic counter shows misleading "/ 12" when quiz terminates early
+**Task:** P1-10 — Remove dead notifications bell from dashboard
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
@@ -7,51 +7,53 @@
 
 ## What
 
-`src/components/onboarding/DiagnosticQuiz.tsx` line 100 shows `{answered} / {MAX_Q}` where `MAX_Q = 12`. The IRT engine (`isDiagnosticComplete`) can exit early when confidence converges — typically at 5 questions. The user sees "5/12" and terminates to results, expecting 12 questions but only seeing 5. The "12" is misleading because it implies a fixed-length quiz.
+`src/app/dashboard/page.tsx` — the notifications bell button (lines ~209–215) has no `onClick` handler. Clicking it registers a brief active state then does nothing. Notifications as a feature are not built. Per the no-silent-substitution principle (CLAUDE.md), a tappable button that does nothing is silent wrong-state. The roadmap (UI-1.3) explicitly notes this button will be "wired or removed" during the dashboard pass. P1-10 moves the removal forward before UI-1.3 reaches it.
 
-**One file to change:** `src/components/onboarding/DiagnosticQuiz.tsx`
+**One file to change:** `src/app/dashboard/page.tsx`
 
 ## How
 
-**Read the file first.**
+**Read the file first.** Find and delete these lines (approximately 209–215):
 
-Find line 100 (approximately):
 ```tsx
-<span className="text-[11px] font-bold uppercase tracking-[0.08em] text-nc-text-dim">{answered} / {MAX_Q}</span>
+<button
+  type="button"
+  aria-label="Notifications"
+  className="nc-glass flex size-10 shrink-0 items-center justify-center text-[var(--nc-text-muted)]"
+>
+  <Bell size={16} />
+</button>
 ```
 
-Replace with:
+After removal, check whether `Bell` is still imported anywhere else in the file. If `Bell` is no longer referenced, remove it from the lucide-react import line at the top:
+
 ```tsx
-<span className="text-[11px] font-bold uppercase tracking-[0.08em] text-nc-text-dim">{answered}</span>
+import { Bell, Play, Mic, ArrowRight } from 'lucide-react'
 ```
+→ remove `Bell,` from this import.
 
-The progress bar already communicates visual position via `scaleX: progress`. The text counter only needs to show how many questions have been answered — the denominator commits to a total that the adaptive engine does not guarantee.
-
-**Also remove the unused `MAX_Q` constant** on the line above if it is no longer referenced anywhere else in the file. Check whether `MAX_Q` is used in the `progressbar` `aria-valuemax` attribute — if so, keep the constant but remove only the text reference.
-
-Check the `aria-valuemax` attribute on the progressbar div. It likely reads `aria-valuemax={MAX_Q}` — that should remain. So keep the `const MAX_Q = 12` declaration; only remove `/ {MAX_Q}` from the text span.
+Do not change any other part of the file.
 
 ## Model
 sonnet
 
 ## Acceptance Criteria
 
-1. The text counter next to the progress bar shows only `{answered}` — no denominator, no `/12`
-2. The progress bar `aria-valuemax` and `aria-valuenow` attributes are unchanged
-3. The visual progress bar animation is unchanged (still animates `scaleX: answered / 12`)
+1. The bell button is absent from the dashboard — not rendered, not hidden, not disabled
+2. No unused `Bell` import remains (remove it if no other references exist)
+3. The header layout around where the bell was still renders correctly — the level badge and heading remain
 4. No TypeScript errors introduced
-5. The `const MAX_Q = 12` constant is retained in the file (used by aria-valuemax and progress calculation)
 
 ## Blocking Flags
 
 Stop and write `BLOCKED: [reason]` to this file if:
-- `MAX_Q` is used in more than `progressbar aria-valuemax` and `progress = answered / MAX_Q` — list all usages before changing
-- Any TypeScript error is introduced
+- `Bell` is referenced elsewhere in the file (not just the button) — list usages
+- Removing the button breaks surrounding layout structure in an unexpected way — describe what broke
 
 ## Playwright Checkpoint
 yes
 
 What to test:
-- Navigate to `/onboarding` — start the diagnostic quiz
-- Answer questions — confirm the counter shows `1`, `2`, `3`, etc. with no `/12`
-- Progress bar should still animate correctly
+- Navigate to `/dashboard` — confirm no bell button in the header area
+- Confirm "Notifications" button is absent from the accessibility tree
+- Confirm the dashboard header (greeting, level badge) still renders correctly
