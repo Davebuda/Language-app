@@ -214,4 +214,23 @@ Screenshot: `stream-4-2-wordpack-reveal.png`
 Stream 4 progress: 2/3 complete
 Next: Stream 4.3 — Progress Reassurance Strip
 
+## 2026-05-21 APPROVE — Stream 4.3 Progress Reassurance Strip
+
+Criteria met:
+- Guest (0 sessions): "Start your first session to see your progress here." renders as muted `<p>` ✅
+- `status === 'loading'` returns null — no flash ✅
+- Returning user branch: `role="region"` + `aria-label="Din fremgang"` on chip strip ✅
+- Speaking minutes chip gated on > 0 ✅
+- 0 console errors ✅
+- TypeScript: zero new errors ✅
+- No new dependencies ✅
+
+Note: Component is self-contained (reads `useFingerprintStore` directly) — ready to be folded into UI-1.3 dashboard without threading props.
+
+Playwright: PASS — full-page screenshot confirms clean placement
+Report at `.council/reports/2026-05-21-stream-4-3-progress-strip.md`
+
+**STREAM 4 COMPLETE — all 3 items shipped.**
+Next: Deferred stream work — UI-1.3 dashboard, A2 decay half-life, A3 calibration window, A4 event log, muntlig module (per roadmap sequencing)
+
 ---

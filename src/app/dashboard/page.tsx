@@ -14,6 +14,7 @@ import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { DailyLearningCard } from '@/components/DailyLearningCard'
 import { DailyWordPack } from '@/components/DailyWordPack'
+import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
@@ -386,6 +387,9 @@ export default function DashboardPage() {
 
         {/* ── Daily Word Pack ── */}
         <DailyWordPack />
+
+        {/* ── Progress Reassurance Strip ── */}
+        <ProgressReassuranceStrip />
 
         {/* ── Stats — compact 4-column ── */}
         <div className="grid grid-cols-4 gap-2.5">
