@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { selectWeeklyFocus, shouldResetWeek, closeWeek, migrateWeeklySprintFields } from '@/engine/weekly-sprint';
+import { selectWeeklyFocus, shouldResetWeek, closeWeek, migrateWeeklySprintFields, openWeek, ensureWeekOpen } from '@/engine/weekly-sprint';
 import type { MistakeFingerprint, ConceptMastery, WeeklySprintRecord } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
 
@@ -414,5 +414,109 @@ describe('migrateWeeklySprintFields', () => {
     const { migrated } = migrateWeeklySprintFields(legacy);
     expect(migrated.conceptMastery['c1']).toEqual(mastery);
     expect(migrated.recentErrors[0]).toEqual(error);
+  });
+});
+
+// ── openWeek + ensureWeekOpen ─────────────────────────────────────────────────
+
+describe('openWeek + ensureWeekOpen', () => {
+  it('openWeek on weekStartedAt: null populates weeklyFocus and sets weekStartedAt', () => {
+    const ids = ['c1', 'c2', 'c3'];
+    const conceptMastery = Object.fromEntries(
+      ids.map((id, i) => [id, makeMastery({ conceptId: id, decayedScore: (i + 1) * 10 })]),
+    );
+    const fp = makeFingerprint({ weekStartedAt: null, conceptMastery });
+    const graph = makeGraph(ids);
+    const now = new Date('2026-01-15T10:00:00.000Z');
+    const result = openWeek(fp, graph, now);
+
+    expect(result.weeklyFocus.length).toBeGreaterThan(0);
+    expect(result.weekStartedAt).toBe(now.toISOString());
+    expect(result.updatedAt).toBe(now.toISOString());
+  });
+
+  it('openWeek is idempotent when week already open', () => {
+    const alreadyStarted = '2026-01-10T10:00:00.000Z';
+    const fp = makeFingerprint({
+      weekStartedAt: alreadyStarted,
+      weeklyFocus: ['c1'],
+    });
+    const graph = makeGraph(['c1', 'c2']);
+    const result = openWeek(fp, graph, new Date());
+
+    expect(result).toBe(fp); // same reference — unchanged
+  });
+
+  it('openWeek with empty conceptMastery returns fp with weeklyFocus: [] and non-null weekStartedAt', () => {
+    const fp = makeFingerprint({ weekStartedAt: null, conceptMastery: {} });
+    const graph = makeGraph([]);
+    const now = new Date('2026-01-15T10:00:00.000Z');
+    const result = openWeek(fp, graph, now);
+
+    expect(result.weeklyFocus).toEqual([]);
+    expect(result.weekStartedAt).toBe(now.toISOString());
+  });
+
+  it('ensureWeekOpen with weekStartedAt: null behaves as openWeek', () => {
+    const ids = ['c1', 'c2'];
+    const conceptMastery = Object.fromEntries(
+      ids.map((id, i) => [id, makeMastery({ conceptId: id, decayedScore: (i + 1) * 20 })]),
+    );
+    const fp = makeFingerprint({ weekStartedAt: null, conceptMastery });
+    const graph = makeGraph(ids);
+    const now = new Date('2026-01-15T10:00:00.000Z');
+    const result = ensureWeekOpen(fp, graph, now);
+
+    expect(result.weekStartedAt).toBe(now.toISOString());
+    expect(result.weeklyFocus.length).toBeGreaterThan(0);
+  });
+
+  it('ensureWeekOpen with stale week (>7d) closes as abandoned and opens a fresh week', () => {
+    const staleStart = new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString();
+    const fp = makeFingerprint({
+      weekStartedAt: staleStart,
+      weeklyFocus: ['c1'],
+      conceptMastery: { c1: makeMastery({ conceptId: 'c1', decayedScore: 40 }) },
+    });
+    const graph = makeGraph(['c1']);
+    const now = new Date();
+    const result = ensureWeekOpen(fp, graph, now);
+
+    // History gains one record with 'abandoned' status
+    expect(result.weeklySprintHistory.length).toBe(1);
+    expect(result.weeklySprintHistory[0]?.status).toBe('abandoned');
+    // A new week is open
+    expect(result.weekStartedAt).not.toBeNull();
+    expect(result.weekStartedAt).not.toBe(staleStart);
+  });
+
+  it('ensureWeekOpen with fresh week (≤7d) returns fp unchanged', () => {
+    const recentStart = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
+    const fp = makeFingerprint({
+      weekStartedAt: recentStart,
+      weeklyFocus: ['c1'],
+    });
+    const graph = makeGraph(['c1']);
+    const result = ensureWeekOpen(fp, graph);
+
+    expect(result).toBe(fp); // same reference — no change
+  });
+
+  it('ensureWeekOpen close→open atomicity: history[0] is abandoned AND new weekStartedAt > old', () => {
+    const staleStart = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString();
+    const fp = makeFingerprint({
+      weekStartedAt: staleStart,
+      weeklyFocus: ['c1'],
+      conceptMastery: { c1: makeMastery({ conceptId: 'c1' }) },
+    });
+    const graph = makeGraph(['c1']);
+    const now = new Date();
+    const result = ensureWeekOpen(fp, graph, now);
+
+    const record = result.weeklySprintHistory[0];
+    expect(record?.status).toBe('abandoned');
+    expect(result.weekStartedAt).not.toBeNull();
+    // New weekStartedAt must be strictly later than the old one
+    expect(new Date(result.weekStartedAt!).getTime()).toBeGreaterThan(new Date(staleStart).getTime());
   });
 });

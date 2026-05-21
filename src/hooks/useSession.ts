@@ -70,7 +70,7 @@ export function useSession(
   availableSentenceIdsProp: Record<string, string[]> = {},
 ) {
   const sessionStore = useSessionStore();
-  const { recordResult: recordFingerprintResult } = useFingerprint();
+  const { recordResult: recordFingerprintResult, ensureWeekOpenAndPersist } = useFingerprint();
 
   // itemId → resolved content (AI-generated or seed fallback)
   const contentCache = useRef<Map<string, ResolvedContent>>(new Map());
@@ -145,7 +145,8 @@ export function useSession(
   );
 
   const startNewSession = useCallback(async () => {
-    const { fingerprint } = useFingerprintStore.getState();
+    ensureWeekOpenAndPersist();
+    const { fingerprint } = useFingerprintStore.getState(); // re-read after potential update
     if (!fingerprint) return;
 
     const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
@@ -176,7 +177,7 @@ export function useSession(
     });
 
     prefetch(output.session.items, 0);
-  }, [sessionStore, prefetch, availableSentenceIdsProp]);
+  }, [sessionStore, prefetch, availableSentenceIdsProp, ensureWeekOpenAndPersist]);
 
   // Keep the prefetch window moving as the learner progresses
   useEffect(() => {

@@ -12,6 +12,7 @@ import {
   refreshDecay,
   logError,
   aggregateErrorPatterns,
+  ensureWeekOpen,
 } from '@/engine';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
@@ -181,37 +182,70 @@ export function useFingerprint() {
           const migrated = await migrateAnonFingerprintToUser(user).catch(() => null);
           if (migrated) {
             const reconciled = await applyMigration(migrated, 'local+remote');
-            setFingerprint(refreshDecay(reconciled));
+            const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+            const withWeek = ensureWeekOpen(reconciled, graph);
+            setFingerprint(refreshDecay(withWeek));
+            if (withWeek !== reconciled) {
+              await saveFingerprint(withWeek);
+              saveFingerprintToSupabase(withWeek).catch(console.warn);
+            }
             return;
           }
         }
         const remote = await loadFingerprintFromSupabase(user.id).catch(() => null);
         if (remote) {
           const reconciled = await applyMigration(remote, 'local+remote');
-          setFingerprint(refreshDecay(reconciled));
+          const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const withWeek = ensureWeekOpen(reconciled, graph);
+          setFingerprint(refreshDecay(withWeek));
+          if (withWeek !== reconciled) {
+            await saveFingerprint(withWeek);
+            saveFingerprintToSupabase(withWeek).catch(console.warn);
+          }
           return;
         }
         const local = await loadFingerprint(user.id).catch(() => null);
         if (local) {
           const reconciled = await applyMigration(local, 'local+remote');
-          setFingerprint(refreshDecay(reconciled));
-          if (reconciled === local) {
+          const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const withWeek = ensureWeekOpen(reconciled, graph);
+          setFingerprint(refreshDecay(withWeek));
+          if (withWeek !== reconciled) {
+            await saveFingerprint(withWeek);
+            saveFingerprintToSupabase(withWeek).catch(console.warn);
+          } else if (reconciled === local) {
             saveFingerprintToSupabase(local).catch(console.warn);
           }
           return;
         }
         const empty = createEmptyFingerprint(user.id);
-        setFingerprint(empty);
+        const graph = empty.currentLevel === 'A2' ? a2Graph : a1Graph;
+        const emptyWithWeek = ensureWeekOpen(empty, graph);
+        setFingerprint(emptyWithWeek);
+        if (emptyWithWeek !== empty) {
+          await saveFingerprint(emptyWithWeek);
+          saveFingerprintToSupabase(emptyWithWeek).catch(console.warn);
+        }
         setStatus('empty');
       } else {
         const anonId = getOrCreateAnonId();
         const local = await loadFingerprint(anonId).catch(() => null);
         if (local) {
           const reconciled = await applyMigration(local, 'local');
-          setFingerprint(refreshDecay(reconciled));
+          const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const withWeek = ensureWeekOpen(reconciled, graph);
+          setFingerprint(refreshDecay(withWeek));
+          if (withWeek !== reconciled) {
+            await saveFingerprint(withWeek);
+          }
         } else {
           const empty = createEmptyFingerprint(anonId);
-          setFingerprint(empty);
+          const graph = empty.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const emptyWithWeek = ensureWeekOpen(empty, graph);
+          setFingerprint(emptyWithWeek);
+          if (emptyWithWeek !== empty) {
+            await saveFingerprint(emptyWithWeek);
+          }
           setStatus('empty');
         }
       }
@@ -285,5 +319,17 @@ export function useFingerprint() {
     if (user) { saveFingerprintToSupabase(refreshed).catch(console.warn); }
   }, [setFingerprint, user]);
 
-  return { fingerprint, status, recordResult, refreshFingerprint };
+  const ensureWeekOpenAndPersist = useCallback(() => {
+    const fp = useFingerprintStore.getState().fingerprint;
+    if (!fp) return;
+    const graph = fp.currentLevel === 'A2' ? a2Graph : a1Graph;
+    const withWeek = ensureWeekOpen(fp, graph);
+    if (withWeek !== fp) {
+      setFingerprint(withWeek);
+      saveFingerprint(withWeek).catch(console.warn);
+      if (user) saveFingerprintToSupabase(withWeek).catch(console.warn);
+    }
+  }, [setFingerprint, user]);
+
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist };
 }

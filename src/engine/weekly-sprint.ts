@@ -143,3 +143,45 @@ export function closeWeek(
     updatedAt: now,
   };
 }
+
+/**
+ * Open a new weekly sprint. Pure: caller persists.
+ * Idempotent if a week is already open — returns fp unchanged.
+ * Populates `weeklyFocus` via selectWeeklyFocus and sets `weekStartedAt`.
+ */
+export function openWeek(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+  now: Date = new Date(),
+): MistakeFingerprint {
+  if (fp.weekStartedAt !== null) return fp; // already open
+  const focus = selectWeeklyFocus(fp, graph, now);
+  return {
+    ...fp,
+    weeklyFocus: focus,
+    weekStartedAt: now.toISOString(),
+    updatedAt: now.toISOString(),
+  };
+}
+
+/**
+ * Idempotent: ensures a current weekly sprint exists.
+ *  - If shouldResetWeek(fp, now), closes the stale week as 'abandoned' and opens a new one.
+ *  - If weekStartedAt is null, opens a new week.
+ *  - Otherwise returns fp unchanged.
+ * Pure: caller persists.
+ */
+export function ensureWeekOpen(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+  now: Date = new Date(),
+): MistakeFingerprint {
+  if (shouldResetWeek(fp, now)) {
+    const closed = closeWeek(fp, { status: 'abandoned', checkResult: null, now });
+    return openWeek(closed, graph, now);
+  }
+  if (fp.weekStartedAt === null) {
+    return openWeek(fp, graph, now);
+  }
+  return fp;
+}
