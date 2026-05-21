@@ -26,5 +26,5 @@ optional_models:
   gemini: disabled
 
 escalation:
-  require_alternatives: 2
-  require_research_attempt: true
+  correct_cap: 3
+  triggers: any_one_of [corrections_cap, blocked_no_fix, no_viable_approach, product_decision_outside_docs]
