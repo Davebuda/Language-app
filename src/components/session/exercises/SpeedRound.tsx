@@ -21,6 +21,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   const [resultAnnouncement, setResultAnnouncement] = useState('');
   const startRef = useRef(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
+  const userInputRef = useRef('');
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -32,7 +33,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       setSecondsLeft((s) => {
         if (s <= 1) {
           clearInterval(interval);
-          submitAnswer(userInput);
+          submitAnswer(userInputRef.current);
           return 0;
         }
         return s - 1;
@@ -97,7 +98,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         ref={inputRef}
         type="text"
         value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
+        onChange={(e) => { setUserInput(e.target.value); userInputRef.current = e.target.value; }}
         onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(userInput); }}
         disabled={submitted}
         placeholder="Engelsk oversettelse…"
