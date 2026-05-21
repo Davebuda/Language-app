@@ -1,201 +1,151 @@
 # Task Brief
-**Task:** P0.5-02 — Concept-id reconciliation (graph as source of truth)
-**Date:** 2026-05-21T19:00
-**Status:** IN PROGRESS (correction 1/3)
-**corrections:** 1
-
----
-
-## Correction Required — 2026-05-21T20:00
-
-**Problem:** The previous run reported renames across `questions.ts`, `conversation/page.tsx`, `WritingEditor.tsx`, `prompts.ts`, and `useFingerprint.ts` BUT none of the edits actually landed in the working tree. `git status -s` is clean. `git diff HEAD` is empty. `WritingEditor.tsx` line 26 still reads `'verb-conjugation': 'present-tense-verbs'`. The Write/Edit operations either silently failed or were never invoked. The report file:line counts were not verified against actual file state. The agent's surface-drift section was the most useful output — those four files DO contain legacy concept-IDs that must be in scope.
-
-**Fix:**
-1. **Do the rename in the working tree, then immediately commit it** before reporting completion. That makes "claim work is done" auditable via `git log`.
-2. **Expanded scope** — the four files the previous run flagged as surface drift are now in-scope. They contain LIVE runtime concept-ID lookups (constraints.ts is conversation-path; dashboard's CONCEPT_TO_TOPIC is dashboard topic suggestions). Plus three additional files my fresh Grep found.
-3. **Distinguish concept-IDs (RENAME) from ErrorTag taxonomy entries (KEEP).** `negation-placement` appears as BOTH — it is a legacy concept-ID (rename to `negation`) AND a current ErrorTag in `src/types/taxonomy.ts` (keep as-is in taxonomy and in places that reference the taxonomy entry). The brief below identifies which occurrences are which.
-
-**Do not:** Report completion without first running the verification Grep yourself AND committing the work to git. Self-verification before claiming done is now mandatory.
+**Task:** P0.5-03 — Wire production corpus to client scheduler + fix orphan-sentence placeholder
+**Date:** 2026-05-21T20:25
+**Status:** IN PROGRESS
+**corrections:** 0
 
 ---
 
 ## What
 
-The P0.5-01 audit proved that NorskCoach has FOUR divergent concept-id schemes living in parallel: (1) diagnostic questions, (2) fingerprint write paths (conversation/journal), (3) the curriculum graph, and (4) the seed corpus. For 5 of the 12 diagnostic concepts the IDs mismatch the graph, so fingerprint writes land on keys the progress page never reads, AND the scheduler cannot find sentences for those concepts because the corpus uses graph IDs the diagnostic doesn't write.
+The corpus audit during P0.5-02 verification surfaced that this task's original framing ("corpus retag") was misdiagnosed. The corpus is well-formed: 44 concepts × 9 sentences each × all 6 exercise types, all using canonical graph IDs. The walkthrough's F010 symptom (all errors tagged `word-order`) was sample bias from a fingerprint heavily concentrated on word-order-related concepts (question-formation, v2-word-order), each of which legitimately first-tags `word-order`.
 
-This single defect is the root cause of F036 (progress page shows 0% / Locked everywhere), F019 (36+ "no eligible sentence" scheduler warnings on every dashboard load), and a large fraction of F018/F021 dashboard symptoms (the scheduler degrades to "Norwegian Foundations" because most concepts have no eligible sentence).
+The actual residual defects are:
 
-**Decision: graph IDs are the canonical scheme.** The curriculum graph defines prerequisites, thresholds, attempts, and days — it is the natural source of truth. Diagnostic questions, fingerprint mastery keys, conversation/journal mappings, AI prompt labels, and seed corpus IDs all migrate to graph IDs.
+**A — `src/lib/mock-sentences.ts` is the client scheduler's seed pool.** `src/app/dashboard/page.tsx:104-109` calls `generateSession({ ..., availableSentenceIds: MOCK_SENTENCE_IDS, sentences: MOCK_SENTENCES })`. `MOCK_SENTENCES` is a tiny test fixture (~10 sentences total). The real corpus (`content/sentences/a1.json` + `a2.json`, 397 sentences across 44 concepts) is loaded server-side only — `src/lib/content-loader.ts` uses `fs.readFileSync`, runs in `src/app/session/actions.ts`. The schedulers never see the real corpus. Result: F019 scheduler emits "no eligible sentence" warnings for concepts that DO have sentences in the disk corpus.
 
-This task is the rename + migration. P0.5-03 follows up with the corpus retag (now possible because the ID scheme is settled).
+**B — `src/app/session/actions.ts:61-64` fails open with a literal placeholder.** When a sentence ID is unknown to both the disk corpus and Supabase, the grader returns `{ correct: false, correctAnswer: '[unavailable]', errorTag: undefined }`. The placeholder string propagates into `recentErrors[].correct`, where the walkthrough found 12/24 stored errors literally containing the string `"[unavailable]"`. This is the F011 root cause — orphan sentence IDs the disk corpus doesn't know.
 
-**Files in scope (EXPANDED after correction):**
-- `src/lib/diagnostic/questions.ts` — `conceptId` field values throughout
-- `src/app/conversation/page.tsx` — `ERROR_TAG_TO_CONCEPT` map VALUES (line ~62-73). The map keys are ErrorTags (taxonomy) — DO NOT rename keys.
-- `src/components/journal/WritingEditor.tsx` — `WRITING_TAG_TO_CONCEPT` map VALUES (line ~22-34). Keys are ErrorTags — DO NOT rename keys.
-- `src/ai/prompts.ts` — `CONCEPT_LABELS` keys (concept IDs); also any concept-ID references inside prompt template strings.
-- `src/hooks/useFingerprint.ts` — NEW migration in bootstrap (see Step 3 of How).
-- `src/app/dashboard/page.tsx` — `CONCEPT_TO_TOPIC` map keys (concept IDs). Lines ~33, 34, 42, 43, 44.
-- `src/lib/constraints.ts` — `conceptToConstraint()` internal map keys (concept IDs). Lines ~19, 24, 29, 34, 54. **THIS IS A LIVE RUNTIME PATH** — without the rename, a fingerprint with canonical IDs will silently get no constraints in conversation. CLAUDE.md operating rule 6 violation if missed.
-- `src/lib/concept-colors.ts` — `CONCEPT_COLORS` keys. Line ~13 (`modal-verbs`).
-- `src/app/eval/page.tsx` — test conceptId params at lines ~42, 89, 98.
-- Plus check via Grep for any usage of the legacy IDs in: `src/ai/webllm.ts`, `src/ai/stub.ts`, `src/engine/repair-loop.ts`, `src/app/session/complete/page.tsx`. For each occurrence, determine: is this a concept-ID (RENAME) or an ErrorTag taxonomy entry (KEEP)? See the disambiguation table below.
+The two are linked: when the client scheduler queues a mock sentence ID (e.g. `mock-s11`), the server grader doesn't find it in the disk corpus, falls open, returns `[unavailable]`. Wiring the real corpus to the client also reduces orphan-ID incidence dramatically.
 
-**Disambiguation table — concept ID vs ErrorTag:**
+**Files in scope:**
+- NEW `src/lib/seed-pool.ts` — client-safe production-corpus wrapper. Imports `a1.json` and `a2.json` via standard ES import (Next.js bundles JSON statically), maps them to the `Sentence` shape, exports `SEED_SENTENCES` (Record<id, Sentence>) and `SEED_SENTENCE_IDS` (Record<conceptId, string[]>).
+- `src/app/dashboard/page.tsx` — replace `MOCK_SENTENCES`/`MOCK_SENTENCE_IDS` import + usage with `SEED_SENTENCES`/`SEED_SENTENCE_IDS`.
+- `src/hooks/useSession.ts` — find where `availableSentenceIdsProp` and `sentences` are sourced; wire to the new seed-pool if currently mock-based.
+- `src/app/session/actions.ts` — replace the line 61-64 fail-open `'[unavailable]'` placeholder with a discriminated-union return that callers handle without persisting placeholder data.
+- `src/components/session/exercises/TranslationExercise.tsx` (and similar callers of `gradeAnswer`) — handle the new discriminated-union from the server grader: when the grader can't resolve the sentence, do NOT call `onResult` (drop the answer silently to telemetry/console.warn rather than persisting `[unavailable]`).
 
-| String | As concept-ID (RENAME to) | As ErrorTag (KEEP) | How to tell |
-|---|---|---|---|
-| `present-tense-verbs` | `present-tense-regular` | NOT an ErrorTag — always rename | Field is `conceptId`, map key in CONCEPT_COLORS/CONCEPT_TO_TOPIC/CONCEPT_LABELS, or map value in TAG_TO_CONCEPT |
-| `negation-placement` | `negation` | `'negation-placement'` (taxonomy) | If used in `src/types/taxonomy.ts` ErrorTag union, or as a KEY in TAG_TO_CONCEPT maps, KEEP. If used as conceptId value, RENAME. |
-| `past-tense-regular` | `preterite-regular` | NOT an ErrorTag — always rename | (same) |
-| `modal-verbs` | `common-modal-verbs` | `'modal-verb'` (singular — different) is an ErrorTag, KEEP. `modal-verbs` (plural) is the concept-ID. | Plural form = concept-ID = RENAME. |
-| `prepositions-place` | `common-prepositions` | NOT an ErrorTag — always rename | (same) |
-
-**Out of scope (do NOT touch):**
-- `content/sentences/*.json` (corpus retag is P0.5-03)
-- `content/concepts/*-graph.json` (graph is the canon — don't edit)
-- `src/types/taxonomy.ts` (ErrorTag definitions stay)
-- Files only used in tests that aren't broken by the rename (don't go on a cleanup hunt)
+**Out of scope:**
+- `src/lib/mock-sentences.ts` itself — leave intact for any unit tests that reference it. Just stop importing from it on the dashboard.
+- `src/lib/content-loader.ts` server-side path — keep as-is.
+- Supabase `sentences` table — out of scope for this task.
 
 ---
 
 ## How
 
-### Step 1 — Migration map
+### Step 1 — Build the client-safe seed pool
 
-From the P0.5-01 audit (`.council/reports/2026-05-21-1830-source-verification.md` § F036), the rename table is:
-
-| Legacy diagnostic ID | Canonical graph ID |
-|---|---|
-| `present-tense-verbs` | `present-tense-regular` |
-| `negation-placement` | `negation` |
-| `past-tense-regular` | `preterite-regular` |
-| `modal-verbs` | `common-modal-verbs` |
-| `prepositions-place` | `common-prepositions` |
-
-The other 7 diagnostic IDs already match the graph (`noun-gender`, `personal-pronouns`, `svo-word-order`, `definite-articles-singular`, `v2-word-order`, `adjective-agreement`, `question-formation`) — no rename needed.
-
-### Step 2 — Rename in code
-
-For each of the five legacy IDs, replace every occurrence with the canonical graph ID across the in-scope files. Use Grep with `output_mode: files_with_matches` to find every reference; do not assume.
-
-Special instructions per file:
-
-- **`src/lib/diagnostic/questions.ts`**: The audit notes lines 15-313. Each question object has a `conceptId` field. Rename the five legacy values. Verify post-rename that every `conceptId` in the array appears as a node in either `content/concepts/a1-graph.json` or `content/concepts/a2-graph.json`.
-
-- **`src/app/conversation/page.tsx:62-73`** (`ERROR_TAG_TO_CONCEPT`): The map values are the rename target. Rename the five legacy values. Note this task does NOT extend the map for completeness — that's P0.5-04 (extract to shared module). Touch only the values that need renaming; do not introduce new keys.
-
-- **`src/components/journal/WritingEditor.tsx:22-34`** (`WRITING_TAG_TO_CONCEPT`): Same shape as above. Rename values only.
-
-- **`src/ai/prompts.ts:5-20`** (`CONCEPT_LABELS`): If the keys are the diagnostic IDs, rename them. If the keys are already graph IDs, no change. Read the file to verify.
-
-### Step 3 — Migration in fingerprint bootstrap
-
-In `src/hooks/useFingerprint.ts`, the bootstrap path runs on app load and on auth change. Existing users have fingerprints with the legacy diagnostic keys. Without a migration, their mastery data orphans.
-
-Add a one-shot migration that runs once during bootstrap (idempotent — must be safe to run multiple times):
+Create `src/lib/seed-pool.ts`. Pattern (verify against Next.js 15 JSON-import behaviour):
 
 ```ts
-// Conceptual sketch; place inside bootstrap or in a dedicated migrateFingerprint() called from bootstrap
-const LEGACY_KEY_RENAMES: Record<string, string> = {
-  'present-tense-verbs': 'present-tense-regular',
-  'negation-placement': 'negation',
-  'past-tense-regular': 'preterite-regular',
-  'modal-verbs': 'common-modal-verbs',
-  'prepositions-place': 'common-prepositions',
-};
+import a1Raw from '@content/sentences/a1.json'
+import a2Raw from '@content/sentences/a2.json'
+import type { Sentence } from '@/types/content'
 
-function migrateConceptIds(fp: MistakeFingerprint): { migrated: MistakeFingerprint; changed: boolean } {
-  let changed = false;
-  const conceptMastery = { ...fp.conceptMastery };
-  for (const [oldKey, newKey] of Object.entries(LEGACY_KEY_RENAMES)) {
-    if (conceptMastery[oldKey]) {
-      // If the new key already exists (e.g. user re-ran diagnostic post-update), merge
-      const existing = conceptMastery[newKey];
-      if (existing) {
-        // Merge by taking the more recent / higher-attempt entry — defer the actual merge
-        // policy decision to the implementer; document it inline. Simplest: prefer the
-        // newer lastAttemptAt. Fall back to keeping the legacy entry if the new is null.
-        // ...
-      } else {
-        conceptMastery[newKey] = { ...conceptMastery[oldKey], conceptId: newKey };
-      }
-      delete conceptMastery[oldKey];
-      changed = true;
-    }
+// Re-implement the mapping from content-loader.ts:20-35 here (client-safe — no fs).
+function mapRow(raw: {...same fields as RawSentence...}): Sentence {
+  return {
+    id: raw.id,
+    norwegian: raw.norwegian,
+    english: raw.english,
+    conceptIds: raw.concept_ids ?? [],
+    vocabularyClusters: raw.vocab_clusters ?? [],
+    errorTagsDetectable: (raw.error_tags_detectable ?? []) as Sentence['errorTagsDetectable'],
+    cefrLevel: (raw.cefr_level ?? 'A1') as Sentence['cefrLevel'],
+    difficulty: (raw.difficulty ?? 1) as Sentence['difficulty'],
+    exerciseTypes: (raw.exercise_types ?? []) as Sentence['exerciseTypes'],
+    notes: raw.notes,
+    audioUrl: raw.audio_url,
+    scenarioId: raw.scenario_id,
   }
-  // Also rewrite recentErrors[].conceptId by the same map
-  const recentErrors = fp.recentErrors.map((e) =>
-    LEGACY_KEY_RENAMES[e.conceptId]
-      ? { ...e, conceptId: LEGACY_KEY_RENAMES[e.conceptId] }
-      : e
-  );
-  // Same for askedDiagnosticQuestionIds — these are question IDs, NOT concept IDs, so DO NOT touch them
-  if (changed) {
-    return { migrated: { ...fp, conceptMastery, recentErrors, updatedAt: new Date().toISOString() }, changed: true };
+}
+
+const RAW: Array<Parameters<typeof mapRow>[0]> = [...(a1Raw as any), ...(a2Raw as any)]
+
+export const SEED_SENTENCES: Record<string, Sentence> = {}
+export const SEED_SENTENCE_IDS: Record<string, string[]> = {}
+for (const raw of RAW) {
+  const s = mapRow(raw)
+  SEED_SENTENCES[s.id] = s
+  for (const conceptId of s.conceptIds) {
+    if (!SEED_SENTENCE_IDS[conceptId]) SEED_SENTENCE_IDS[conceptId] = []
+    SEED_SENTENCE_IDS[conceptId].push(s.id)
   }
-  return { migrated: fp, changed: false };
 }
 ```
 
-The bootstrap should:
-1. Load the fingerprint from IndexedDB (existing flow).
-2. Run `migrateConceptIds(fp)`.
-3. If `changed === true`, persist the migrated fingerprint (save to IndexedDB + fire-and-forget Supabase sync if auth).
-4. Use the migrated fingerprint for the rest of bootstrap.
+Check the existing `@content` path alias in `tsconfig.json` — if it doesn't exist for JSON imports, either use a relative path or add the alias.
 
-The migration MUST be idempotent: running twice on the same fingerprint should be a no-op the second time. The implementation above is idempotent because legacy keys disappear after first run.
+### Step 2 — Replace MOCK imports
 
-### Step 4 — Verify (MANDATORY before reporting done)
+`src/app/dashboard/page.tsx`:
+- Find the import `import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'` (or similar).
+- Replace with `import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'`.
+- Update the `generateSession` call site (line ~104-109) to pass the new identifiers.
 
-Run these commands in this exact order. Do NOT report completion until all four pass:
+`src/hooks/useSession.ts`:
+- Find the source of `availableSentenceIdsProp` and `sentences` at line ~164.
+- If they currently default to or import the MOCK_*, replace with the SEED_* equivalents.
+- If they come from props passed by a parent component, find the parent and update there.
 
-1. **Re-grep for residual concept-IDs.** Use Grep tool:
-   - pattern: `present-tense-verbs|negation-placement|past-tense-regular|modal-verbs|prepositions-place`
-   - path: `src/`
-   - output_mode: `content` with `-n: true` and `-C: 1`
-   
-   Every remaining match must be EITHER (a) the migration map inside `useFingerprint.ts` (which deliberately mentions legacy strings), OR (b) an ErrorTag taxonomy reference per the disambiguation table — verify each remaining match against that table inline before claiming done.
+### Step 3 — Replace the placeholder grader fail-open
 
-2. **TypeScript check:** Run `npx tsc --noEmit`. Zero errors required.
+In `src/app/session/actions.ts`, the current shape is:
 
-3. **Tests:** Run `npm test`. All existing tests must still pass. If any test references a legacy concept-ID, rename it.
+```ts
+if (!sentence) {
+  return { correct: false, correctAnswer: '[unavailable]', errorTag: undefined }
+}
+```
 
-4. **Git commit the work.** After verification passes:
-   ```
-   git add src/
-   git commit -m "fix(engine): concept-id reconciliation — graph as canonical source (P0.5-02)"
-   ```
-   Then run `git log --oneline -1` and `git diff HEAD~1 --stat` and include the output in your final report. This is the proof the changes landed.
+Replace with a discriminated-union return. The grader's return type today is `{ correct: boolean; correctAnswer: string; errorTag: ErrorTag | undefined }` — change to:
 
-### Step 5 — Tests
+```ts
+type GraderResult =
+  | { ok: true; correct: boolean; correctAnswer: string; errorTag: ErrorTag | undefined }
+  | { ok: false; reason: 'unknown-sentence'; sentenceId: string }
+```
 
-Find tests touching the legacy IDs. Likely candidates:
-- `tests/lib/diagnostic/*`
-- `tests/hooks/useFingerprint.test.ts`
-- `tests/engine/scheduler.test.ts`
+Update the return at lines 61-64 to `{ ok: false, reason: 'unknown-sentence', sentenceId }` and the success return to `{ ok: true, ... }`.
 
-Rename IDs in tests so they pass.
+### Step 4 — Update callers
+
+`src/components/session/exercises/TranslationExercise.tsx` (and any other component that calls `gradeAnswer`):
+- After `await gradeAnswer(...)`, check `if (!result.ok)` — when not ok, `console.warn` with the sentenceId, DO NOT call `onResult`, and surface an honest UI banner (text suggestion: "Kunne ikke vurdere svaret — vi har notert det og går videre."). User clicks "Next" to advance without persisting.
+
+There may be 1–3 caller components; find them via:
+```
+Grep `gradeAnswer\(` src/components/session/exercises/
+```
+
+### Step 5 — Verify
+
+1. `npx tsc --noEmit` — zero errors.
+2. `npm test` — all existing tests pass. If a test depended on the `'[unavailable]'` placeholder string, update it to assert `ok: false`.
+3. Manual Grep:
+   - `grep -rn "'\\[unavailable\\]'" src/` — should return zero matches except any in pure documentation/comments.
+   - `grep -rn "MOCK_SENTENCES\\|MOCK_SENTENCE_IDS" src/app/dashboard src/hooks/useSession.ts` — should return zero matches.
+4. `git commit` with a clear message that lists files changed and the link to this brief.
 
 ---
 
 ## Model
 
-opus — migration touches user data; the merge policy in the bootstrap when both old and new keys are present needs architectural judgement. Risk profile is "small bug breaks every existing user".
+opus — the discriminated-union change ripples through several callers; the JSON-import for a client-side seed pool may need a bundler config tweak. Architectural touch required.
 
 ---
 
 ## Acceptance Criteria
 
-1. `grep -rn "present-tense-verbs\|negation-placement\|past-tense-regular\|modal-verbs\|prepositions-place"` returns matches ONLY inside the migration map in `useFingerprint.ts` (the migration deliberately mentions the legacy strings).
-2. `src/lib/diagnostic/questions.ts` — every `conceptId` value appears in either `content/concepts/a1-graph.json` or `content/concepts/a2-graph.json`.
-3. `src/app/conversation/page.tsx` and `src/components/journal/WritingEditor.tsx` — every value in the tag-to-concept maps is a graph ID.
-4. `src/ai/prompts.ts` `CONCEPT_LABELS` — keys are graph IDs.
-5. `src/hooks/useFingerprint.ts` — migration is present, idempotent, runs on bootstrap, persists when it changes the fingerprint, also rewrites `recentErrors[].conceptId`.
-6. `askedDiagnosticQuestionIds` is NOT touched by migration (those are question IDs, not concept IDs).
-7. No TypeScript errors. (`npm run typecheck` clean — but also build:  `npm run build` if a clean baseline exists.)
-8. Existing tests pass.
-9. Walkthrough manual: load app fresh, navigate `/dashboard` → `/progress`. The progress page should now correctly show concepts with rawScore data (not all at 0%/Locked). Some may remain Locked because the corpus retag is P0.5-03 — that's expected.
+1. New file `src/lib/seed-pool.ts` exports `SEED_SENTENCES` (Record<id, Sentence>) and `SEED_SENTENCE_IDS` (Record<conceptId, string[]>). Source is `a1.json` + `a2.json` (397 sentences).
+2. `src/app/dashboard/page.tsx` imports from `seed-pool` instead of `mock-sentences`. Same for `src/hooks/useSession.ts`.
+3. `src/app/session/actions.ts` no longer returns the literal string `'[unavailable]'`. The return shape is a discriminated union.
+4. All `gradeAnswer` callers handle the `ok: false` branch by NOT persisting a placeholder error.
+5. `npx tsc --noEmit` is clean.
+6. `npm test` passes (or has targeted updates if a test asserted the old placeholder).
+7. After deployment to the running dev server: load `/dashboard` as a fresh user. The scheduler warning count for canonical concepts (`personal-pronouns`, `to-be-verb`, `numbers-basic`, `common-prepositions`) measurably drops or hits zero. (Some warnings may persist for concepts not in the corpus at all.)
+8. Git commit lands. `git log --oneline -1` and `git status -s` confirm the work is in the tree.
 
 ---
 
@@ -203,10 +153,10 @@ opus — migration touches user data; the merge policy in the bootstrap when bot
 
 Stop and write `BLOCKED: [reason]` to this file if:
 
-- A graph ID rename target does not exist as a node in the graph JSON (the audit's table is wrong — fix the audit, do not invent IDs).
-- The merge policy when both old and new keys exist cannot be decided cleanly. (Stop, surface the question, do not guess.)
-- The migration would touch `askedDiagnosticQuestionIds`, `errorPatterns`, or any field outside `conceptMastery` and `recentErrors`. Those are out of scope.
-- Any file outside the in-scope list above would need to be changed beyond the migration's Grep-find targets.
+- Next.js 15 cannot statically import the JSON files at the required path (would need a runtime fetch approach instead — surface and stop).
+- A test asserts the literal `'[unavailable]'` and rewriting it would require a much larger test refactor than this task's scope.
+- The discriminated-union return breaks a caller that's hard to update without ripple changes outside `src/components/session/exercises/`.
+- A bundler error appears for the corpus import that requires changing `next.config.ts` significantly.
 
 ---
 
@@ -215,11 +165,9 @@ Stop and write `BLOCKED: [reason]` to this file if:
 **FULL**
 
 Tests:
-1. Load `/dashboard` as a guest. Verify no console errors at first paint. The scheduler "no eligible sentence" warning count should be measurably lower than the 36+ recorded in the third walkthrough (some concepts will still warn — that's P0.5-03).
-2. Load `/progress`. Verify rawScore-bearing concepts (those in the fingerprint with rawScore > 0) now render their actual scores, not 0%/Locked. If the page still shows everything Locked, the cascade in `getConceptPhase` may need to be checked — flag if so.
-3. Critical-path regression: `/dashboard` → Start session → answer one correctly → answer one incorrectly → repair → next exercise. Verify no console errors, repair card still fires.
-4. Pre-existing fingerprint test: before running migration, inject a synthetic fingerprint into IndexedDB with one legacy key (e.g. `prepositions-place: { rawScore: 88, attemptCount: 3, ... }`). Reload `/dashboard`. Verify the key migrates to `common-prepositions` and the rawScore is preserved.
+1. Reload `/dashboard` as a fresh user. Capture the scheduler warning count. Compare to the post-P0.5-02 baseline (14 warnings). Expect: warnings for the four named concepts (`personal-pronouns`, `to-be-verb`, `numbers-basic`, `common-prepositions`) DISAPPEAR or drop substantially. Any remaining warnings should be for concepts genuinely outside the A1/A2 corpus.
+2. Start a session, complete at least one item correctly. Verify the session continues normally — no broken cards, no `[unavailable]` in the repair card.
+3. Inspect IndexedDB: after an answer, the new `recentErrors` entry should never have `correct: "[unavailable]"`. If the grader couldn't resolve, the error should NOT have been logged at all.
+4. Repair-card path: submit a wrong answer; the repair card should show a real correct answer, never the placeholder string.
 
-Save screenshots to `.council/reports/screenshots/[timestamp]-concept-id-reconciliation/`.
-
-Report at `.council/reports/[timestamp]-concept-id-reconciliation.md`.
+Report at `.council/reports/[YYYY-MM-DD-HHMM]-corpus-wiring.md`.
