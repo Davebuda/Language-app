@@ -10,6 +10,8 @@ import { saveFingerprint } from '@/storage/indexeddb'
 import { ScoreCircle } from '@/components/session/ScoreCircle'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { emitEvent } from '@/lib/events'
+import { logSessionResults } from '@/lib/logEvents'
+import { createClient } from '@/lib/supabase/client'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
@@ -52,6 +54,14 @@ export default function SessionCompletePage() {
           itemCount: results.length,
           level: session.level,
         },
+      })
+
+      // Fire-and-forget: anonymized event log for aggregate analysis.
+      // Auth users only — guests are skipped inside logSessionResults.
+      void createClient().auth.getSession().then(({ data: { session: authSession } }) => {
+        if (authSession?.user) {
+          logSessionResults(authSession.user.id, results)
+        }
       })
 
       // Write session counter and timestamp — these were never updated before this fix,

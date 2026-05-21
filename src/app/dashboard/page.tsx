@@ -265,6 +265,9 @@ export default function DashboardPage() {
           </div>
         )}
 
+        {/* ── Progress Reassurance Strip — what you've built ── */}
+        <ProgressReassuranceStrip />
+
         {/* ── TODAY'S SESSION — primary action ── */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -275,16 +278,18 @@ export default function DashboardPage() {
           <div className="font-display text-[1.5rem] font-bold text-white text-balance mt-1">
             {sessionTitle}
           </div>
-          <p className="mt-2 text-[12px] text-white/55">
+          <p className="mt-2 text-[12px] text-white/55 text-pretty">
             Estimated: {estimatedMin} min
           </p>
-          <button
+          <motion.button
             onClick={() => router.push('/session')}
+            whileTap={{ scale: 0.97 }}
             className="mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[var(--radius)] bg-white/14 backdrop-blur border border-white/20 px-5 py-3 text-sm font-bold text-white hover:bg-white/20"
+            aria-label="Start today's session"
           >
-            <Play size={14} />
+            <Play size={14} aria-hidden="true" />
             Start session
-          </button>
+          </motion.button>
 
           {/* Session composition badges */}
           <div className="mt-4 flex flex-wrap gap-2">
@@ -306,20 +311,38 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
+        {/* ── Daily Learning Card — today's grammar rule ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.04 }}
+        >
+          <DailyLearningCard />
+        </motion.div>
+
+        {/* ── Daily Word Pack — vocabulary above secondary CTAs ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.08 }}
+        >
+          <DailyWordPack />
+        </motion.div>
+
         {/* ── Speak — Muntlig ── */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05 }}
+          transition={{ delay: 0.12 }}
           className="nc-glass-elevated p-5"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
               <div className="nc-label mb-2 text-[var(--nc-text-dim)]">MUNTLIG</div>
-              <div className="font-display text-[1.2rem] font-bold leading-tight text-[var(--nc-text)]">
+              <div className="font-display text-[1.2rem] font-bold leading-tight text-[var(--nc-text)] text-balance">
                 Snakk med Kari
               </div>
-              <p className="mt-1 text-[12px] text-[var(--nc-text-muted)]">
+              <p className="mt-1 text-[14px] text-[var(--nc-text-muted)] text-pretty">
                 Foreslått tema:{' '}
                 <span className="font-semibold text-[var(--nc-text)]">{suggestedTopic}</span>
               </p>
@@ -330,14 +353,15 @@ export default function DashboardPage() {
               )}
             </div>
             <div className="nc-glass flex size-11 shrink-0 items-center justify-center rounded-full">
-              <Mic size={18} className="text-[var(--nc-text-muted)]" />
+              <Mic size={18} className="text-[var(--nc-text-muted)]" aria-hidden="true" />
             </div>
           </div>
           <Link
             href="/conversation"
-            className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border-strong)] bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.10)] transition-colors"
+            aria-label="Start norsk samtale"
+            className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border-strong)] bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.10)]"
           >
-            <Play size={13} />
+            <Play size={13} aria-hidden="true" />
             Start samtale
           </Link>
         </motion.div>
@@ -346,18 +370,19 @@ export default function DashboardPage() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.10 }}
+          transition={{ delay: 0.16 }}
           className="nc-glass p-4"
         >
           <div className="nc-label mb-2 text-[var(--nc-text-dim)]">SKRIVEJOURNAL</div>
-          <p className="text-[13px] italic text-[var(--nc-text-muted)]">
+          <p className="text-[14px] italic text-[var(--nc-text-muted)] text-pretty">
             &ldquo;{promptTeaser}&rdquo;
           </p>
           <Link
             href="/journal"
-            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)] transition-colors"
+            aria-label="Skriv i journalen i dag"
+            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)]"
           >
-            Skriv i dag <ArrowRight size={12} />
+            Skriv i dag <ArrowRight size={12} aria-hidden="true" />
           </Link>
         </motion.div>
 
@@ -365,31 +390,23 @@ export default function DashboardPage() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
+          transition={{ delay: 0.20 }}
           className="nc-glass p-4"
         >
           <div className="nc-label mb-2 text-[var(--nc-text-dim)]">LESESTUDIO</div>
-          <p className="text-[13px] text-[var(--nc-text-muted)]">
+          <p className="text-[14px] text-[var(--nc-text-muted)] text-pretty">
             {textsAtLevel > 0
               ? `${textsAtLevel} tekster på ditt ${levelLabel}-nivå`
               : 'Tekster tilgjengelig for lesing'}
           </p>
           <Link
             href="/reading"
-            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)] transition-colors"
+            aria-label="Bla gjennom lesetekster"
+            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)]"
           >
-            Bla gjennom <ArrowRight size={12} />
+            Bla gjennom <ArrowRight size={12} aria-hidden="true" />
           </Link>
         </motion.div>
-
-        {/* ── Daily Learning Card ── */}
-        <DailyLearningCard />
-
-        {/* ── Daily Word Pack ── */}
-        <DailyWordPack />
-
-        {/* ── Progress Reassurance Strip ── */}
-        <ProgressReassuranceStrip />
 
         {/* ── Stats — compact 4-column ── */}
         <div className="grid grid-cols-4 gap-2.5">
@@ -423,6 +440,7 @@ export default function DashboardPage() {
               <div
                 className="size-2 shrink-0 rounded-full"
                 style={{ background: activeConcepts[0]?.color ?? 'var(--nc-text-dim)' }}
+                aria-hidden="true"
               />
               <span className="truncate text-[12px] text-[var(--nc-text-muted)]">
                 {activeConcepts.length === 1 ? '1 concept in focus' : `${activeConcepts.length} concepts in focus`}
@@ -432,7 +450,8 @@ export default function DashboardPage() {
             </div>
             <Link
               href="/progress"
-              className="shrink-0 text-[11px] font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text)] transition-colors"
+              aria-label="View all concepts"
+              className="shrink-0 text-[11px] font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text)]"
             >
               View all →
             </Link>
@@ -450,16 +469,18 @@ export default function DashboardPage() {
             >
               <div>
                 <p className="text-[13px] font-semibold text-[var(--nc-text)]">Been a while?</p>
-                <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)]">
+                <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)] text-pretty">
                   Quick 7-question check to recalibrate your profile.
                 </p>
               </div>
-              <button
+              <motion.button
                 onClick={() => router.push('/recalibrate')}
+                whileTap={{ scale: 0.97 }}
+                aria-label="Start recalibration quiz"
                 className="nc-button-primary shrink-0 px-3 py-2 text-[12px] font-bold"
               >
                 Start
-              </button>
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { getDailyRule } from '@/lib/dailyContent'
-import { cn } from '@/lib/utils'
 
 interface Props {
   alwaysVisible?: boolean
@@ -24,28 +24,40 @@ export function DailyLearningCard({ alwaysVisible = false }: Props) {
         {rule.norwegianExample}
       </p>
 
-      <p className="text-sm text-[var(--nc-text-muted)] mt-2 leading-relaxed">
+      <p className="text-[14px] text-[var(--nc-text-muted)] mt-2 leading-relaxed text-pretty">
         {rule.ruleExplanation}
       </p>
 
       {alwaysVisible ? (
-        <p className="mt-3 text-sm text-[var(--nc-text-dim)] italic">
+        <p className="mt-3 text-pretty text-[14px] text-[var(--nc-text-dim)] italic">
           {rule.englishTranslation}
         </p>
       ) : (
         <div className="mt-3">
-          <button
+          <motion.button
             onClick={() => setIsVisible((v) => !v)}
             aria-expanded={isVisible}
-            className="text-xs font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text-muted)] transition-colors underline-offset-2 hover:underline"
+            aria-label={isVisible ? 'Skjul oversettelse' : 'Vis oversettelse'}
+            whileTap={{ scale: 0.97 }}
+            className="text-xs font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text-muted)] underline-offset-2 hover:underline"
           >
             {isVisible ? 'Skjul oversettelse' : 'Vis oversettelse'}
-          </button>
-          <div className={cn('overflow-hidden', isVisible ? 'max-h-20 mt-2' : 'max-h-0')}>
-            <p className={cn('text-sm text-[var(--nc-text-dim)] italic transition-opacity duration-200', isVisible ? 'opacity-100' : 'opacity-0')}>
-              {rule.englishTranslation}
-            </p>
-          </div>
+          </motion.button>
+          <AnimatePresence initial={false}>
+            {isVisible && (
+              <motion.div
+                key="translation"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+              >
+                <p className="mt-2 text-pretty text-[14px] text-[var(--nc-text-dim)] italic">
+                  {rule.englishTranslation}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
     </div>

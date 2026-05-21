@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { getDailyWords } from '@/lib/dailyContent'
-import { cn } from '@/lib/utils'
 
 export function DailyWordPack() {
   const words = getDailyWords()
@@ -27,7 +27,7 @@ export function DailyWordPack() {
       className="nc-glass p-4 border-l-2 border-[var(--nc-red-border)]"
     >
       <div className="nc-label mb-2 text-[var(--nc-text-dim)]">DAGENS ORD</div>
-      <div className="text-xs text-[var(--nc-text-dim)] mb-3">{words.length} ord for i dag</div>
+      <div className="text-[11px] text-[var(--nc-text-dim)] mb-3">{words.length} ord for i dag</div>
 
       {words.map((word, i) => {
         const isExpanded = expanded.has(i)
@@ -37,27 +37,41 @@ export function DailyWordPack() {
             className="border-t border-[var(--nc-border)] py-2.5 first:border-t-0"
           >
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-[var(--nc-text)]">
+              <span className="text-[14px] font-semibold text-[var(--nc-text)]">
                 {word.norwegian}
               </span>
               <span className="rounded-full border border-[var(--nc-border)] px-1.5 py-0.5 text-[9px] text-[var(--nc-text-dim)]">
                 {word.wordClass}
               </span>
-              <button
+              <motion.button
                 onClick={() => toggle(i)}
                 aria-expanded={isExpanded}
-                aria-label={`Vis ${word.norwegian}`}
-                className="ml-auto text-xs font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text)] transition-colors"
+                aria-label={`${isExpanded ? 'Skjul' : 'Vis'} oversettelse for ${word.norwegian}`}
+                whileTap={{ scale: 0.95 }}
+                className="ml-auto text-[11px] font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text)]"
               >
                 {isExpanded ? 'Skjul' : 'Vis'}
-              </button>
+              </motion.button>
             </div>
 
-            <div className={cn('overflow-hidden', isExpanded ? 'max-h-16 mt-1.5' : 'max-h-0')}>
-              <span className={cn('text-xs text-[var(--nc-text-muted)] transition-opacity duration-200', isExpanded ? 'opacity-100' : 'opacity-0')}>{word.english}</span>
-              {' · '}
-              <span className={cn('text-xs italic text-[var(--nc-text-dim)] transition-opacity duration-200', isExpanded ? 'opacity-100' : 'opacity-0')}>{word.exampleSentence}</span>
-            </div>
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  key={`word-${i}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-1.5 text-[12px] text-[var(--nc-text-muted)]">
+                    {word.english}
+                    {' · '}
+                    <span className="italic text-[var(--nc-text-dim)]">{word.exampleSentence}</span>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )
       })}
