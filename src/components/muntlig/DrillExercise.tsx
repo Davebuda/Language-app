@@ -3,35 +3,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, Volume2, ArrowRight, RotateCcw } from 'lucide-react'
-import type { Sentence } from '@/types/content'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
-import {
-  computeWordMatches,
-  computeMatchScore,
-  type WordMatch,
-} from '@/lib/speechMatchUtils'
+import { getHeuristicHint } from '@/lib/pronunciationHeuristics'
+import { computeMatchScore } from '@/lib/speechMatchUtils'
+import type { DrillWord } from '@/lib/drillContent'
 
 // ── Sub-components ───────────────────────────────────────────────────────────
-
-function WordColorDisplay({ matches }: { matches: WordMatch[] }) {
-  return (
-    <p className="text-[1.1rem] leading-relaxed">
-      {matches.map((m, i) => (
-        <span
-          key={i}
-          className={
-            m.matched
-              ? 'text-[var(--nc-green)] font-semibold'
-              : 'text-[var(--nc-text-muted)]'
-          }
-        >
-          {i > 0 ? ' ' : ''}
-          {m.word}
-        </span>
-      ))}
-    </p>
-  )
-}
 
 function PulsingDot() {
   return (
@@ -48,8 +25,8 @@ function PulsingDot() {
 
 type Phase = 'idle' | 'listening' | 'result'
 
-interface ShadowingExerciseProps {
-  sentence: Sentence
+interface DrillExerciseProps {
+  word: DrillWord
   index: number
   total: number
   onComplete: (matchScore: number, transcript: string) => void
@@ -57,15 +34,16 @@ interface ShadowingExerciseProps {
 
 // ── Main component ───────────────────────────────────────────────────────────
 
-export function ShadowingExercise({
-  sentence,
+export function DrillExercise({
+  word,
   index,
   total,
   onComplete,
-}: ShadowingExerciseProps) {
+}: DrillExerciseProps) {
   const [phase, setPhase] = useState<Phase>('idle')
   const [finalTranscript, setFinalTranscript] = useState('')
   const [matchScore, setMatchScore] = useState(0)
+  const [heuristicHint, setHeuristicHint] = useState<string | null>(null)
 
   const {
     transcript,
@@ -77,10 +55,33 @@ export function ShadowingExercise({
     reset,
   } = useSpeechRecognition()
 
-  // When transcript lands after recording ends, compute score and show result
+  // Reset local state when the word changes
+  useEffect(() => {
+    reset()
+    setFinalTranscript('')
+    setMatchScore(0)
+    setHeuristicHint(null)
+    setPhase('idle')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [word.norwegian])
+
+  const resolveResult = useCallback(
+    (captured: string) => {
+      const score = computeMatchScore(word.norwegian, captured)
+      const hint = getHeuristicHint(word.norwegian, captured)
+      setFinalTranscript(captured)
+      setMatchScore(score)
+      setHeuristicHint(hint)
+      setPhase('result')
+    },
+    [word.norwegian]
+  )
+
   const handleStartRecording = useCallback(() => {
     reset()
     setFinalTranscript('')
+    setMatchScore(0)
+    setHeuristicHint(null)
     setPhase('listening')
     start()
   }, [reset, start])
@@ -90,28 +91,21 @@ export function ShadowingExercise({
     // Give the browser 200ms to fire a final result event before falling back
     setTimeout(() => {
       const captured = transcript || interimTranscript
-      const score = computeMatchScore(sentence.norwegian, captured)
-      setFinalTranscript(captured)
-      setMatchScore(score)
-      setPhase('result')
+      resolveResult(captured)
     }, 200)
-  }, [stop, transcript, interimTranscript, sentence.norwegian])
+  }, [stop, transcript, interimTranscript, resolveResult])
 
-  // When the speech API fires a final result, isListening goes false and transcript is set.
-  // Use an effect (not render-body setState) to auto-advance from listening → result.
+  // Auto-advance from listening → result when speech API fires final result
   useEffect(() => {
     if (!isListening && phase === 'listening' && transcript) {
-      const score = computeMatchScore(sentence.norwegian, transcript)
-      setFinalTranscript(transcript)
-      setMatchScore(score)
-      setPhase('result')
+      resolveResult(transcript)
     }
-  }, [isListening, phase, transcript, sentence.norwegian])
+  }, [isListening, phase, transcript, resolveResult])
 
   function playAudio() {
-    if (!sentence.audioUrl) return
+    if (!word.audioUrl) return
     try {
-      const audio = new Audio(sentence.audioUrl)
+      const audio = new Audio(word.audioUrl)
       void audio.play()
     } catch {
       // audio playback failed silently — no fallback needed for v1
@@ -122,6 +116,7 @@ export function ShadowingExercise({
     reset()
     setFinalTranscript('')
     setMatchScore(0)
+    setHeuristicHint(null)
     setPhase('idle')
   }
 
@@ -129,16 +124,12 @@ export function ShadowingExercise({
     onComplete(matchScore, finalTranscript)
   }
 
-  const wordMatches = phase === 'result'
-    ? computeWordMatches(sentence.norwegian, finalTranscript)
-    : []
-
   const scorePercent = Math.round(matchScore * 100)
   const passed = matchScore >= 0.7
 
   return (
     <motion.div
-      key={sentence.id}
+      key={word.norwegian}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
@@ -161,27 +152,19 @@ export function ShadowingExercise({
       {/* Main card */}
       <div className="nc-glass-elevated p-6 flex flex-col gap-4">
 
-        {/* No-audio banner */}
-        {!sentence.audioUrl && (
-          <div
-            className="nc-label rounded-md px-3 py-1.5 text-center"
-            style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.09)',
-            }}
-          >
-            Tekst-modus — les setningen høyt
-          </div>
-        )}
-
-        {/* Norwegian sentence — T1 dominant */}
+        {/* Norwegian word — T1 dominant */}
         <div>
           <h2 className="text-balance text-[1.75rem] md:text-[2rem] font-bold leading-tight text-[var(--nc-text)]">
-            {sentence.norwegian}
+            {word.norwegian}
           </h2>
           <p className="text-pretty mt-2 text-[0.875rem] text-[var(--nc-text-muted)]">
-            {sentence.english}
+            {word.english}
           </p>
+
+          {/* Target phoneme label */}
+          <span className="nc-label mt-3 inline-block">
+            Målfonem: <span className="font-bold">{word.targetPhoneme}</span>
+          </span>
         </div>
 
         {/* Phase-specific content */}
@@ -203,10 +186,10 @@ export function ShadowingExercise({
               )}
 
               <div className="flex gap-2">
-                {sentence.audioUrl && (
+                {word.audioUrl && (
                   <button
                     onClick={playAudio}
-                    aria-label="Spill av norsk lyd"
+                    aria-label="Spill av norsk uttale"
                     className="nc-button-dark flex items-center gap-2 px-4 py-2.5 text-[0.8125rem] font-semibold"
                   >
                     <Volume2 size={15} aria-hidden="true" />
@@ -269,26 +252,57 @@ export function ShadowingExercise({
               exit={{ opacity: 0 }}
               className="flex flex-col gap-4"
             >
-              {/* Word-level colour match */}
-              <div className="rounded-lg p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.09)' }}>
-                <p className="nc-label mb-2">Dine ord</p>
+              {/* Transcript display */}
+              <div
+                className="rounded-lg p-3"
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.09)',
+                }}
+              >
+                <p className="nc-label mb-2">Hva du sa</p>
                 {finalTranscript ? (
-                  <WordColorDisplay matches={wordMatches} />
+                  <p className="text-[1.1rem] leading-relaxed text-[var(--nc-text)]">
+                    {finalTranscript}
+                  </p>
                 ) : (
-                  <p className="text-pretty text-[0.875rem] text-[var(--nc-text-dim)] italic">
+                  <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-dim)]">
                     Ingen lyd registrert.
                   </p>
                 )}
               </div>
 
-              {/* Score badge */}
+              {/* Heuristic hint — only when a substitution error was detected */}
+              {heuristicHint && (
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.25, delay: 0.1 }}
+                  className="nc-glass rounded-lg p-3"
+                >
+                  <p className="nc-label mb-1.5">Uttale-tips</p>
+                  <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-muted)]">
+                    {heuristicHint}
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Score badge + retry */}
               <div className="flex items-center justify-between">
                 <span
                   className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.75rem] font-bold"
                   style={
                     passed
-                      ? { background: 'var(--nc-green-tint)', border: '1px solid var(--nc-green-border)', color: 'var(--nc-green)' }
-                      : { background: 'var(--nc-red-tint)', border: '1px solid var(--nc-red-border)', color: 'var(--nc-red)' }
+                      ? {
+                          background: 'var(--nc-green-tint)',
+                          border: '1px solid var(--nc-green-border)',
+                          color: 'var(--nc-green)',
+                        }
+                      : {
+                          background: 'rgba(220,38,38,0.12)',
+                          border: '1px solid rgba(220,38,38,0.28)',
+                          color: 'var(--nc-red)',
+                        }
                   }
                 >
                   {passed ? 'Bra! ' : 'Nesten — '}
@@ -298,7 +312,7 @@ export function ShadowingExercise({
                 {!passed && (
                   <button
                     onClick={handleRetry}
-                    aria-label="Prøv setningen igjen"
+                    aria-label="Prøv ordet igjen"
                     className="flex items-center gap-1 text-[0.8125rem] text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
                   >
                     <RotateCcw size={13} aria-hidden="true" />
@@ -310,7 +324,7 @@ export function ShadowingExercise({
               {/* Advance */}
               <button
                 onClick={handleNext}
-                aria-label="Neste setning"
+                aria-label="Neste ord"
                 className="nc-button-primary flex w-full items-center justify-center gap-2 py-3 text-[0.875rem] font-bold"
               >
                 Neste
