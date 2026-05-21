@@ -154,7 +154,7 @@ export default function SessionCompletePage() {
           <h1 className="text-balance font-display text-[2.5rem] font-bold text-[var(--nc-text)]">
             Flott jobb!
           </h1>
-          <p className="mt-2 text-sm text-[var(--nc-text-muted)]">
+          <p className="mt-2 text-pretty text-sm text-[var(--nc-text-muted)]">
             {productionCount > 0
               ? `${productionCount} produksjonsøvelser fullført — det teller.`
               : 'Bra innsats i dag.'}
@@ -233,7 +233,7 @@ export default function SessionCompletePage() {
               <div className="text-[0.6875rem] font-bold uppercase tracking-[0.08em] text-[#111110]/50">
                 Reflekter ett øyeblikk
               </div>
-              <p className="mt-2 text-[14px] font-medium text-[#111110]">{reflectionPrompt}</p>
+              <p className="mt-2 text-pretty text-[14px] font-medium text-[#111110]">{reflectionPrompt}</p>
               <textarea
                 className="mt-3 w-full resize-none rounded-[0.9rem] border border-black/10 bg-white px-4 py-3 text-sm text-[#111110] placeholder-[#111110]/36 focus:border-[#DC2626]/40 focus:outline-none transition-colors"
                 rows={2}
@@ -262,7 +262,7 @@ export default function SessionCompletePage() {
         >
           <div className="relative z-[1]">
             <div className="text-[15px] font-medium text-white">Fortsett å lære!</div>
-            <p className="mt-1 text-sm text-white/70">
+            <p className="mt-1 text-pretty text-sm text-white/70">
               Neste økt er klar.
             </p>
             <div className="mt-3 text-[14px] font-medium text-white">
