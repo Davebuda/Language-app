@@ -16,6 +16,7 @@ import { DailyLearningCard } from '@/components/DailyLearningCard'
 import { DailyWordPack } from '@/components/DailyWordPack'
 import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
+import { WeekStrip } from '@/components/dashboard/WeekStrip'
 import { getStreak } from '@/lib/streak'
 import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
 import { getConceptColor } from '@/lib/concept-colors'
@@ -453,6 +454,9 @@ export default function DashboardPage() {
             Bla gjennom <ArrowRight size={12} aria-hidden="true" />
           </Link>
         </motion.div>
+
+        {/* ── Weekly Sprint strip ── */}
+        {fingerprint ? <WeekStrip fingerprint={fingerprint} /> : null}
 
         {/* ── Daily Learning Card ── */}
         <DailyLearningCard />
