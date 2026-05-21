@@ -305,7 +305,7 @@ export default function HomePage() {
             <span className="h-2 w-2 rounded-full bg-[var(--nc-red)]" />
             NORSKCOACH
           </div>
-          <span>Laer. Forsta. Mestre.</span>
+          <span>Lær. Forstå. Mestre.</span>
         </div>
       </footer>
     </main>

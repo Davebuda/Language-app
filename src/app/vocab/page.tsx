@@ -1,9 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { BottomNav } from '@/components/layout/BottomNav'
 
 export default function VocabPage() {
+  const [notified, setNotified] = useState(false)
+
   return (
     <div className="nc-gradient-page flex flex-col min-h-dvh">
       <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col justify-center gap-4 px-5 pb-24 pt-5">
@@ -36,8 +39,12 @@ export default function VocabPage() {
             ))}
           </div>
 
-          <button className="nc-button-dark w-full px-4 py-3 text-sm font-semibold text-[var(--nc-text)]">
-            Varsle meg når det er klart
+          <button
+            onClick={() => setNotified(true)}
+            disabled={notified}
+            className="nc-button-dark w-full px-4 py-3 text-sm font-semibold text-[var(--nc-text)] disabled:opacity-60"
+          >
+            {notified ? '✓ Notert!' : 'Varsle meg når det er klart'}
           </button>
         </motion.div>
       </main>

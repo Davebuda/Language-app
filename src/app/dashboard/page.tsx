@@ -271,13 +271,13 @@ export default function DashboardPage() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="nc-glass-dark p-5"
+          className="nc-glass-cream p-5"
         >
-          <div className="nc-label mb-2 text-[var(--nc-text-dim)]">{"Today's session · "}{levelLabel}</div>
-          <div className="font-display text-[1.5rem] font-bold text-[var(--nc-text)] text-balance mt-1">
+          <div className="nc-label mb-2 text-[var(--nc-cream-dim)]">{"Today's session · "}{levelLabel}</div>
+          <div className="font-display text-[1.5rem] font-bold text-[var(--nc-cream-text)] text-balance mt-1">
             {sessionTitle}
           </div>
-          <p className="mt-2 text-[12px] text-[var(--nc-text-muted)] text-pretty">
+          <p className="mt-2 text-[12px] text-[var(--nc-cream-muted)] text-pretty">
             Estimated: {estimatedMin} min
           </p>
           <motion.button
@@ -298,7 +298,7 @@ export default function DashboardPage() {
               </span>
             )}
             {review > 0 && (
-              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
+              <span className="rounded-[0.65rem] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-cream-muted)]">
                 {review} review
               </span>
             )}
@@ -310,11 +310,11 @@ export default function DashboardPage() {
           </div>
 
           {/* ── Grammar moment ── */}
-          <div className="mt-4 border-t border-[var(--nc-border)] pt-4">
-            <p className="font-display text-[1.35rem] font-bold leading-tight text-[var(--nc-text)] text-balance">
+          <div className="mt-4 border-t border-[rgba(4,14,8,0.12)] pt-4">
+            <p className="font-display text-[1.35rem] font-bold leading-tight text-[var(--nc-cream-text)] text-balance">
               {dailyRule.norwegianExample}
             </p>
-            <p className="mt-1.5 text-[11px] text-[var(--nc-text-muted)] leading-relaxed text-pretty">
+            <p className="mt-1.5 text-[11px] text-[var(--nc-cream-muted)] leading-relaxed text-pretty">
               {dailyRule.ruleExplanation}
             </p>
           </div>
@@ -325,33 +325,33 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.12 }}
-          className="nc-glass-elevated p-5"
+          className="nc-glass-cream p-5"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
-              <div className="nc-label mb-2 text-[var(--nc-text-dim)]">MUNTLIG</div>
-              <div className="font-display text-[1.2rem] font-bold leading-tight text-[var(--nc-text)] text-balance">
+              <div className="nc-label mb-2 text-[var(--nc-cream-dim)]">MUNTLIG</div>
+              <div className="font-display text-[1.2rem] font-bold leading-tight text-[var(--nc-cream-text)] text-balance">
                 Snakk med Kari
               </div>
-              <p className="mt-1 text-[14px] text-[var(--nc-text-muted)] text-pretty">
+              <p className="mt-1 text-[14px] text-[var(--nc-cream-muted)] text-pretty">
                 Foreslått tema:{' '}
-                <span className="font-semibold text-[var(--nc-text)]">{suggestedTopic}</span>
+                <span className="font-semibold text-[var(--nc-cream-text)]">{suggestedTopic}</span>
               </p>
               {speakingMins > 0 && (
-                <p className="mt-1 text-[11px] text-[var(--nc-text-dim)]">
+                <p className="mt-1 text-[11px] text-[var(--nc-cream-dim)]">
                   {speakingMins} min snakket totalt
                 </p>
               )}
             </div>
-            <div className="nc-glass flex size-11 shrink-0 items-center justify-center rounded-full">
-              <Mic size={18} className="text-[var(--nc-text-muted)]" aria-hidden="true" />
+            <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.06)]">
+              <Mic size={18} className="text-[var(--nc-cream-muted)]" aria-hidden="true" />
             </div>
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link
               href="/conversation"
               aria-label="Start norsk samtale"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border-strong)] bg-[rgba(255,255,255,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.10)]"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.20)] bg-[rgba(4,14,8,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-cream-text)] hover:bg-[rgba(4,14,8,0.10)]"
             >
               <Play size={13} aria-hidden="true" />
               Start samtale
@@ -359,21 +359,21 @@ export default function DashboardPage() {
             <Link
               href="/shadow"
               aria-label="Øv på skygging"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
             >
               Skygging
             </Link>
             <Link
               href="/drills"
               aria-label="Øv på uttale"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
             >
               Uttaleøvelser
             </Link>
             <Link
               href="/listen"
               aria-label="Øv på å lytte og svare"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
             >
               Lytt og svar
             </Link>
@@ -433,7 +433,7 @@ export default function DashboardPage() {
           {[
             { label: 'streak',      value: String(streak),       color: 'var(--nc-red)' },
             { label: 'mins spoken', value: String(speakingMins), color: 'var(--nc-text)' },
-            { label: 'accuracy',    value: `${accuracy}%`,       color: 'var(--nc-green)' },
+            { label: 'accuracy',    value: attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
             { label: 'sessions',    value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-muted)' },
           ].map((s) => (
             <div
