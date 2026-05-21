@@ -172,9 +172,21 @@ export function OnboardingFlow() {
     { kind: 'ready' },
   ]
 
-  const [stepIndex, setStepIndex] = useState(0)
+  // P0.5-12 (F013): persist slide index to sessionStorage so a mid-onboarding
+  // refresh returns the user to where they were rather than slide 1.
+  const [stepIndex, setStepIndex] = useState(() => {
+    if (typeof window === 'undefined') return 0
+    const stored = window.sessionStorage.getItem('onboarding-step-index')
+    const parsed = stored ? Number(stored) : 0
+    return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0
+  })
   const [direction, setDirection] = useState(1)
   const [diagnosticResult, setDiagnosticResult] = useState<DiagnosticResult | null>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.sessionStorage.setItem('onboarding-step-index', String(stepIndex))
+  }, [stepIndex])
 
   const currentStep = steps[stepIndex]
 
@@ -206,8 +218,11 @@ export function OnboardingFlow() {
 
   function commit(destination: '/session' | '/dashboard') {
     if (!diagnosticResult) return
-    // Persistence already handled by the useEffect above. This function is
-    // navigation only now.
+    // P0.5-12: clear the persisted step index so a future onboarding visit
+    // starts fresh.
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.removeItem('onboarding-step-index')
+    }
     router.push(destination)
   }
 
