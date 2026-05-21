@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { ClientAILoader } from '@/components/ai/ClientAILoader'
 import { TopographicGrid } from '@/components/ui/TopographicGrid'
 import { MotionProvider } from '@/components/ui/MotionProvider'
+import { DeployReloadGuard } from '@/components/ui/DeployReloadGuard'
 import './globals.css'
 
 const schibstedDisplay = Schibsted_Grotesk({
@@ -46,6 +47,7 @@ export default function RootLayout({
         <MotionProvider>
           <TopographicGrid />
           {children}
+          <DeployReloadGuard />
           <ClientAILoader />
         </MotionProvider>
       </body>
