@@ -282,9 +282,9 @@ These are ordered by user-impact severity. None may be scheduled until all P0 it
 
 | # | Item | Finding |
 |---|---|---|
-| P1-1 | Diagnostic explanation shows next question's topic, not current | S1 |
-| P1-2 | Conversation mic auto-starts recording without user consent | S5 |
-| P1-3 | Conversation opener is context-free ("Bra! Kan du fortelle mer?") | S4 |
+| ✅ P1-1 | Diagnostic explanation shows next question's topic, not current | S1 — **CLOSED 2026-05-21** |
+| ✅ P1-2 | Conversation mic auto-starts recording without user consent | S5 — **CLOSED 2026-05-21** |
+| ✅ P1-3 | Conversation opener is context-free ("Bra! Kan du fortelle mer?") | S4 — **CLOSED 2026-05-21** |
 | P1-4 | Journal feedback quality — nonsensical praise, wrong explanations, English output | S7 |
 | P1-5 | Profile/Progress SSR hydration flash (A1→A2) | S10 |
 | P1-6 | Progress page shows wrong level's concept graph | S10 |

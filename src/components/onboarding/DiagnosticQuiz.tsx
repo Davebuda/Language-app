@@ -39,6 +39,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
   const [selected, setSelected] = useState<number | null>(null)
   const [revealed, setRevealed] = useState(false)
   const [questionKey, setQuestionKey] = useState(0)
+  const [answeredQuestion, setAnsweredQuestion] = useState<DiagnosticQuestion | null>(null)
 
   useEffect(() => {
     const q = selectNextQuestion(diagState)
@@ -47,6 +48,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
 
   function handleSelect(index: number) {
     if (revealed || !currentQuestion) return
+    setAnsweredQuestion(currentQuestion)
     setSelected(index)
     setRevealed(true)
 
@@ -63,6 +65,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
 
   function advance() {
     if (!isDiagnosticComplete(diagState)) {
+      setAnsweredQuestion(null)
       setSelected(null)
       setRevealed(false)
       setQuestionKey((k) => k + 1)
@@ -74,6 +77,8 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
   const progress = answered / MAX_Q
 
   if (!currentQuestion) return null
+
+  const displayedQuestion = (revealed && answeredQuestion) ? answeredQuestion : currentQuestion
 
   return (
     <div className="flex flex-1 flex-col gap-5">
@@ -108,10 +113,10 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
         >
           <div>
             <div className="nc-label mb-3">
-              {currentQuestion.cefrLevel} · {currentQuestion.conceptId.replace(/-/g, ' ')}
+              {displayedQuestion.cefrLevel} · {displayedQuestion.conceptId.replace(/-/g, ' ')}
             </div>
             <p className="text-balance text-[1.75rem] font-bold leading-[1.2] text-nc-text">
-              {currentQuestion.prompt}
+              {displayedQuestion.prompt}
             </p>
           </div>
         </motion.div>
@@ -119,8 +124,8 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
 
       {/* Options */}
       <div className="flex flex-col gap-2">
-        {currentQuestion.options.map((option, index) => {
-          const isCorrect = index === currentQuestion.correctIndex
+        {displayedQuestion.options.map((option, index) => {
+          const isCorrect = index === displayedQuestion.correctIndex
           const isSelected = selected === index
 
           let borderColor = 'rgba(255,255,255,0.10)'
@@ -164,7 +169,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
             className="nc-glass p-4"
           >
             <p className="text-sm leading-7 text-nc-text-muted">
-              {currentQuestion.explanation}
+              {displayedQuestion.explanation}
             </p>
             <button
               onClick={advance}
