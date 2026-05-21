@@ -262,7 +262,7 @@ export class WebLLMService implements AIService {
 
   async reviewWriting(params: ReviewParams): Promise<WritingFeedback> {
     if (!this.isReady()) {
-      return { errors: [], praise: 'Good attempt! Keep writing in Norwegian.', suggestion: 'Focus on verb placement — V2 rule in main clauses.', source: 'template' }
+      return { errors: [], praise: 'Bra innsats! Fortsett å skrive på norsk.', suggestion: 'Fokuser på verbalplasseringen — V2-regelen gjelder i helsetninger.', source: 'template' }
     }
     try {
       const { system, user } = buildWritingFeedbackPrompt(params.userText, params.level)
@@ -285,7 +285,7 @@ export class WebLLMService implements AIService {
         source: 'ai',
       }
     } catch {
-      return { errors: [], praise: 'Good attempt!', suggestion: 'Focus on verb placement.', source: 'template' }
+      return { errors: [], praise: 'Bra forsøk!', suggestion: 'Fokuser på verbplasseringen.', source: 'template' }
     }
   }
 

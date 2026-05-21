@@ -256,7 +256,7 @@ export function buildWritingFeedbackPrompt(
     system: `You are a Norwegian Bokmål grammar teacher giving constructive feedback.
 Analyze the text and return ONLY valid JSON — no markdown, no prose outside the JSON.
 Focus on the 1–3 most important errors only. Be encouraging.
-IMPORTANT: Any corrected forms you suggest must be valid Norwegian Bokmål. Apply V2 word order rules strictly. Never suggest English words as corrections.`,
+IMPORTANT: Any corrected forms you suggest must be valid Norwegian Bokmål. Apply V2 word order rules strictly. Never suggest English words as corrections. Write the "praise" and "suggestion" fields in Norwegian Bokmål. Do NOT write them in English. The "why" field for each error may be in English — the learner needs to understand the rule clearly.`,
     user: `Norwegian text from a ${level} learner:
 """
 ${text}
@@ -274,8 +274,8 @@ Return JSON with this exact structure:
       "end": <integer char offset in original text>
     }
   ],
-  "praise": "one specific positive observation about the writing",
-  "suggestion": "the single most important thing to work on next"
+  "praise": "en spesifikk positiv kommentar om noe i denne teksten (skriv på norsk)",
+  "suggestion": "det viktigste å øve på videre (skriv på norsk)"
 }`,
   };
 }

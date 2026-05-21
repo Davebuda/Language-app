@@ -1,5 +1,5 @@
 # Task Brief
-**Task:** P1-1 — Diagnostic explanation shows next question's topic, not current
+**Task:** P1-4 — Journal feedback: Norwegian-only praise/suggestion + Norwegian template fallback
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
@@ -7,89 +7,71 @@
 
 ## What
 
-Fix `src/components/onboarding/DiagnosticQuiz.tsx` so that when a user selects an answer, the explanation card shows the **answered question's** explanation, prompt, CEFR label, and concept — not the next question's.
-
-## The Bug (root cause confirmed by code read)
-
-In `handleSelect`, two things happen together:
-1. `setRevealed(true)` — triggers the explanation card to render
-2. `setDiagState(nextState)` — triggers the `useEffect([diagState])` which calls `selectNextQuestion(nextState)` and sets `currentQuestion` to the NEXT question
-
-Because React batches the state update but runs effects after the render, by the time the explanation card actually appears, `currentQuestion` has already been replaced with the next question. So:
-- The question card shows the NEXT question's prompt and label
-- The explanation shows the NEXT question's explanation text
+Fix journal feedback quality issues in two files:
+1. `src/ai/prompts.ts` — `buildWritingFeedbackPrompt`: add Norwegian constraint for praise/suggestion fields
+2. `src/ai/webllm.ts` — `reviewWriting`: change both template fallbacks from English to Norwegian
 
 ## How
 
-**One new state variable: `answeredQuestion`.**
+**In `src/ai/prompts.ts` — `buildWritingFeedbackPrompt`:**
 
-```tsx
-const [answeredQuestion, setAnsweredQuestion] = useState<DiagnosticQuestion | null>(null)
+Append to the system prompt string (after "Never suggest English words as corrections."):
+```
+Write the "praise" and "suggestion" fields in Norwegian Bokmål. Do NOT write them in English. The "why" field for each error may be in English — the learner needs to understand the rule clearly.
 ```
 
-In `handleSelect` — snapshot BEFORE state update:
-```tsx
-function handleSelect(index: number) {
-  if (revealed || !currentQuestion) return
-  setAnsweredQuestion(currentQuestion)   // ← snapshot here, before setDiagState
-  setSelected(index)
-  setRevealed(true)
-  const correct = index === currentQuestion.correctIndex
-  const nextState = recordAnswer(diagState, currentQuestion, correct)
-  setDiagState(nextState)
-  if (isDiagnosticComplete(nextState)) {
-    setTimeout(() => { onComplete(computeResult(nextState)) }, 900)
-  }
-}
+In the user prompt JSON structure description, change:
+```
+"praise": "one specific positive observation about the writing",
+"suggestion": "the single most important thing to work on next"
+```
+to:
+```
+"praise": "en spesifikk positiv kommentar om noe i denne teksten (skriv på norsk)",
+"suggestion": "det viktigste å øve på videre (skriv på norsk)"
 ```
 
-In `advance()` — clear snapshot:
-```tsx
-function advance() {
-  if (!isDiagnosticComplete(diagState)) {
-    setAnsweredQuestion(null)
-    setSelected(null)
-    setRevealed(false)
-    setQuestionKey((k) => k + 1)
-  }
-}
+**In `src/ai/webllm.ts` — `reviewWriting`:**
+
+Change the `!isReady()` template fallback (line ~265) from:
+```ts
+return { errors: [], praise: 'Good attempt! Keep writing in Norwegian.', suggestion: 'Focus on verb placement — V2 rule in main clauses.', source: 'template' }
+```
+to:
+```ts
+return { errors: [], praise: 'Bra innsats! Fortsett å skrive på norsk.', suggestion: 'Fokuser på verbalplasseringen — V2-regelen gjelder i helsetninger.', source: 'template' }
 ```
 
-Add a derived `displayedQuestion` above the return:
-```tsx
-const displayedQuestion = (revealed && answeredQuestion) ? answeredQuestion : currentQuestion
+Change the `catch` fallback (line ~288) from:
+```ts
+return { errors: [], praise: 'Good attempt!', suggestion: 'Focus on verb placement.', source: 'template' }
 ```
-
-Replace ALL `currentQuestion.` references in the rendered output with `displayedQuestion.` — specifically:
-- Question card label: `displayedQuestion.cefrLevel` · `displayedQuestion.conceptId`
-- Question card prompt: `displayedQuestion.prompt`
-- Options map: `displayedQuestion.options.map(...)` and `displayedQuestion.correctIndex`
-- Explanation text: `displayedQuestion.explanation`
-
-The guard at `if (!currentQuestion) return null` stays on `currentQuestion` (it's the null-safety guard for initial load before any question is selected).
+to:
+```ts
+return { errors: [], praise: 'Bra forsøk!', suggestion: 'Fokuser på verbplasseringen.', source: 'template' }
+```
 
 ## Model
 sonnet
 
 ## Acceptance Criteria
-1. Answer Q1 (any option) → the explanation card shows Q1's CEFR level, concept label, and explanation text
-2. The question card continues to show Q1's prompt while the explanation is visible
-3. Click "Next question" → Q2's prompt appears with Q2's label; explanation is hidden
-4. Answer Q2 → explanation shows Q2's text, not Q3's
-5. This holds regardless of which CEFR level the IRT engine selects next
+1. When the AI model is unavailable (template path), praise and suggestion are in Norwegian
+2. The prompt now instructs the model to write praise/suggestion in Norwegian Bokmål
+3. The `why` field in errors is still English (intentional — learner understanding)
+4. No TypeScript errors introduced
 
 ## Blocking Flags
 Stop immediately and write `BLOCKED: [reason]` to this file if:
 - Any TypeScript error is introduced
-- The options no longer show correct/incorrect coloring after selection
-- The `computeResult` hint at the bottom breaks (it reads `diagState`, not `displayedQuestion` — leave it unchanged)
+- You cannot locate the exact lines described (ask me to re-read the file)
 
 ## Playwright Checkpoint
 yes
 
 What to test:
-- Load `/onboarding` → get to the diagnostic quiz
-- Answer question 1 (pick any option) → verify explanation text matches the concept shown in the question card label (NOT the label that would appear after advancing)
-- Click "Next question" → verify a new question appears with a different prompt
-- Answer question 2 → verify explanation text matches question 2's concept
-- Console: no errors during the above flow
+- Navigate to `/journal`
+- Type at least 5 Norwegian words in the text area
+- Check that the Analyser tekst button appears
+- If the model is unavailable: click Analyser tekst → feedback panel appears with Norwegian praise/suggestion text
+- Check that no visible English appears in praise or suggestion (other than the `why` explanations in error cards)
+- Console: no errors

@@ -40,4 +40,21 @@ Fix: 5-line change in `src/components/onboarding/DiagnosticQuiz.tsx` — `answer
 
 Next task: P1-4 — Journal feedback quality (plan exists in git history, needs execution)
 
+## 2026-05-21 APPROVE — P1-4 Journal feedback Norwegian language
+
+Criteria met:
+- Template fallback (catch path) now returns Norwegian praise/suggestion ✅
+- `!isReady()` template also now Norwegian ✅
+- Prompt now instructs model to write praise/suggestion in Bokmål ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — report at `.council/reports/2026-05-21-p1-4-journal-norwegian-feedback.md`
+Screenshot: `.council/reports/p1-4-journal-norwegian-feedback.png`
+
+Known limitation: Model quality (wrong explanations, generic praise) requires Stream 1.1 model swap. Template path fix is certain; model path improvement is best-effort until A1 lands.
+
+Side finding: Pre-existing SSR hydration mismatch in `WritingEditor.tsx` — `getSpeechCtor()` returns different values on server vs client. Server renders textarea, client renders voice buttons. This is the same class as P1-5 (SSR hydration). Next task addresses it.
+
+Next task: P1-5 — Profile/Progress SSR hydration flash (and WritingEditor SSR fix found in same session)
+
 ---
