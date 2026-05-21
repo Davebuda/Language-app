@@ -188,10 +188,28 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     return added;
   }
 
-  // Remediation — weak spots first; fall back to unlocked concepts for cold-start users
-  const remediationPool = weakConcepts.length > 0
-    ? weakConcepts
-    : unlockedConcepts.map((c) => c.id);
+  // Remediation — when a weekly sprint is active, prefer focus concepts;
+  // otherwise fall back to weak spots, then to unlocked concepts for cold-start.
+  // Bias preserves backwards compatibility: empty weeklyFocus → unchanged behaviour.
+  const focusIds = new Set(fingerprint.weeklyFocus ?? []);
+  const remediationPool =
+    focusIds.size > 0
+      ? Array.from(
+          new Set([
+            // 1. focus concepts that are also in weakConcepts — highest priority
+            ...weakConcepts.filter((id) => focusIds.has(id)),
+            // 2. focus concepts that are SRS-due but not weak enough to be in top-5 weak
+            ...Array.from(focusIds).filter((id) => !weakConcepts.includes(id)),
+            // 3. weak concepts not in focus — secondary
+            ...weakConcepts.filter((id) => !focusIds.has(id)),
+            // 4. unlocked-concepts fallback (only if pools above run dry)
+            ...unlockedConcepts.map((c) => c.id),
+          ]),
+        )
+      : weakConcepts.length > 0
+        ? weakConcepts
+        : unlockedConcepts.map((c) => c.id);
+
   for (let i = 0; i < counts.remediation; i++) {
     const conceptId = remediationPool[i % Math.max(remediationPool.length, 1)];
     if (conceptId) addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool);
