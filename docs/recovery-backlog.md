@@ -15,8 +15,8 @@ Tasks are dependency-ordered. P0.5-01 (source verification) ran first. **Re-sequ
 | # | Task | Findings addressed | Playwright | Status |
 |---|---|---|---|---|
 | 01 | Verify walkthrough findings against source code | All Criticals | n/a — audit | ✅ complete |
-| 02 | Concept-id reconciliation (graph as source of truth) | F036 + sets up F010, F019 | FULL | ▶ NEXT |
-| 03 | Corpus retag + orphan-sentence cleanup | F010, F011 | FULL | pending |
+| 02 | Concept-id reconciliation (graph as source of truth) | F036 + sets up F010, F019 | FULL | ✅ complete |
+| 03 | Corpus retag + orphan-sentence cleanup | F010, F011 | FULL | ▶ NEXT |
 | 04 | Shared error-tag → concept-id module | enables F030, F034 | none — read-only refactor | pending |
 | 05 | Conversation + Journal fingerprint write-through | F030, F034, F028 | FULL | pending |
 | 06 | AI language-validity gate (one module, four call sites) | F022, F029, F033 | FULL | pending |

@@ -1,5 +1,19 @@
 # Council Decision Log
 
+## 2026-05-21T20:18 APPROVE — P0.5-02 concept-id reconciliation complete
+
+**Code-level acceptance:** all 8 code-criteria pass (Grep clean, types clean, 106/106 tests, migration present and idempotent, askedDiagnosticQuestionIds untouched). Commit `dacccb4`.
+
+**Playwright FULL gate:** all four tests PASS on the freshly restarted dev server (now on :3001 because the prior process did not release :3000).
+- Dashboard scheduler warnings 36+ → 14 (the four named legacy concepts no longer appear; remaining are P0.5-03 corpus scope).
+- `/progress` renders clean for fresh fingerprint (5 Intro, 17 Locked).
+- Synthetic-migration test: seeded mixed legacy+canonical fingerprint, reloaded → all 5 legacy keys removed, rawScores preserved on rename, merge policy executed correctly (legacy `modal-verbs` 72 won over older canonical `common-modal-verbs` 40), recentErrors rewritten, askedDiagnosticQuestionIds untouched.
+- Critical-path: start session → submit wrong translation → repair card fires with graph-ID "Noun gender" label and correct answer shown. 0 console errors.
+
+**Report:** `.council/reports/2026-05-21-2015-concept-id-reconciliation.md`.
+
+**Next:** P0.5-03 corpus retag + orphan-sentence cleanup. Concept-id scheme now settled, so retagging seed corpus and removing orphan `item-0`/`item-1` placeholders can proceed without rework.
+
 ## 2026-05-21T20:05 PARTIAL APPROVE — P0.5-02 code complete; Playwright gate blocked on dev-server restart
 
 **Code-level acceptance:**

@@ -8,7 +8,7 @@ last_updated: "2026-05-21"
 last_activity: 2026-05-21 — Third stress walkthrough complete (39 findings). Roadmap restructured per CLAUDE.md operating rule 8.
 progress:
   walkthrough_iterations: 3 of (target 4 to seal)
-  p0.5_tasks_complete: 1/15
+  p0.5_tasks_complete: 2/15
   p0.5_tasks_total: 15
   p0.5_task_re_sequenced_at: "2026-05-21T18:55 — source verification surfaced corpus-vs-code distinction; tasks re-ordered, two new tasks split out"
   blocking_finding_count: 10 critical
@@ -75,8 +75,8 @@ Full inventory: `test-reports/stress-walkthrough-2026-05-21/report.md`.
 | Step | Task | Status |
 |------|------|--------|
 | 01 | Verify findings against source | ✅ complete |
-| 02 | Concept-id reconciliation (graph as source of truth) | ▶ NEXT |
-| 03 | Corpus retag + orphan-sentence cleanup | pending |
+| 02 | Concept-id reconciliation (graph as source of truth) | ✅ complete |
+| 03 | Corpus retag + orphan-sentence cleanup | ▶ NEXT |
 | 04 | Shared error-tag → concept-id module | pending |
 | 05 | Conversation + Journal write-through | pending |
 | 06 | AI language-validity gate | pending |
