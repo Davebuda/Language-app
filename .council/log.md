@@ -289,4 +289,29 @@ Playwright: PASS — screenshot at `.council/reports/dashboard-session-grammar-f
 
 Next: A4 — learning_events_log Supabase table
 
+## 2026-05-21 RESTRUCTURE (out-of-band) — Muntlig shadowing mode shipped
+
+Commit 1943584 built the /shadow exercise outside of council scope. Assessment:
+- Roadmap updated: NB-Llama dependency scoped to content-generation only; audio infra + mode UIs proceed in parallel. Valid restructure — shadowing uses Web Speech API + seed sentences, no AI required.
+- Build is clean: state machine, word-level color match, honest fallbacks (text-mode banner, browser unsupported copy), recordResult feeds fingerprint.
+- Baseline-ui fixes applied in the same commit.
+- Shadowing mode: ACCEPTED as done. No further council action needed on this commit.
+
+## 2026-05-21 APPROVE — A4 Event log (learning_events_log)
+
+Pre-existing: table already created with exact roadmap schema, RLS INSERT-only policy, and client-side write already implemented in src/lib/logEvents.ts. No migration needed.
+
+Criteria met:
+- Table `learning_events_log` exists: id, event_type, concept_id, correct_bool, timestamp, anonymous_session_id ✅
+- No PII: anonymous_session_id = sha256(userId)[0:16] ✅
+- RLS: INSERT-only for authenticated users, no SELECT/UPDATE/DELETE policies ✅
+- `logSessionResults()` wired in session/complete/page.tsx behind `authSession?.user` guard ✅
+- Guests produce no rows ✅
+- Fire-and-forget — never throws, never blocks ✅
+- 0 rows currently (correct — no sessions fired since wiring)
+
+Playwright: not required (no UI surface)
+
+Next: UI-1.3 dashboard (new phase — requires architect review before starting)
+
 ---
