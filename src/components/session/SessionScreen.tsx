@@ -120,7 +120,9 @@ export function SessionScreen({
                   : 'Session'}
               </div>
               <div className="mt-1 tabular-nums text-sm text-nc-text-muted">
-                {progressValue} / {totalItems || '-'}
+                {/* P0.5-08 (F026): show "Laster…" while the session is loading
+                    rather than "0 / -", which read as broken to users. */}
+                {session ? `${progressValue} / ${totalItems || '-'}` : 'Laster…'}
               </div>
             </div>
             <AIStatusBadge />

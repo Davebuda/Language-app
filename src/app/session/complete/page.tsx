@@ -215,6 +215,13 @@ export default function SessionCompletePage() {
     router.push('/dashboard')
   }
 
+  // P0.5-08 (F023): pre-render guard. The useEffect above also redirects,
+  // but renders this null FIRST so the celebration UI never flashes when the
+  // user lands here without a real session (direct nav, refresh after exit).
+  if (!session && results.length === 0) {
+    return null
+  }
+
   return (
     <div className="nc-gradient-page flex flex-col">
       <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
