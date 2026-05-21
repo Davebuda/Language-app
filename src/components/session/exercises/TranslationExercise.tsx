@@ -57,9 +57,18 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
     setSubmitted(true);
 
     // Grade server-side: correct answer is not exposed to the client before submission.
-    const { correct: serverCorrect, correctAnswer: serverAnswer, errorTag } =
-      await gradeAnswer(sentence.id, item.exerciseType, userInput);
+    const graded = await gradeAnswer(sentence.id, item.exerciseType, userInput);
 
+    if (!graded) {
+      // Server grader could not resolve the sentence id (F011).
+      // Surface honestly rather than persist a "[unavailable]" placeholder.
+      console.warn(`[TranslationExercise] gradeAnswer returned null for sentence ${sentence.id}`);
+      setSubmitted(false);
+      setFeedbackTone('idle');
+      return;
+    }
+
+    const { correct: serverCorrect, correctAnswer: serverAnswer, errorTag } = graded;
     let correct = serverCorrect;
 
     // Semantic upgrade for Norwegian translations when AI model is loaded.

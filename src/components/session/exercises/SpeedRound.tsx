@@ -46,7 +46,14 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   function submitAnswer(answer: string) {
     if (submitted) return;
     setSubmitted(true);
-    void gradeAnswer(sentence.id, item.exerciseType, answer).then(({ correct, correctAnswer, errorTag }) => {
+    void gradeAnswer(sentence.id, item.exerciseType, answer).then((graded) => {
+      if (!graded) {
+        console.warn(`[SpeedRound] gradeAnswer returned null for sentence ${sentence.id}`);
+        setSubmitted(false);
+        setResultAnnouncement('Kunne ikke vurdere svaret.');
+        return;
+      }
+      const { correct, correctAnswer, errorTag } = graded;
       onResult({
         sessionId,
         itemId: item.id,

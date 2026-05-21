@@ -77,7 +77,13 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
   async function submit() {
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
-    const { correct, correctAnswer, errorTag } = await gradeAnswer(sentence.id, item.exerciseType, userInput);
+    const graded = await gradeAnswer(sentence.id, item.exerciseType, userInput);
+    if (!graded) {
+      console.warn(`[ListeningExercise] gradeAnswer returned null for sentence ${sentence.id}`);
+      setSubmitted(false);
+      return;
+    }
+    const { correct, correctAnswer, errorTag } = graded;
     onResult({
       sessionId,
       itemId: item.id,

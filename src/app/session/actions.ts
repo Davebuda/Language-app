@@ -12,6 +12,12 @@ interface GradeResult {
   errorTag: ErrorTag | undefined
 }
 
+// Returned when the sentence id cannot be resolved against either the local
+// JSON corpus or Supabase. Callers must check for this null and NOT persist
+// a placeholder result — storing "[unavailable]" as the correct answer was the
+// F011 corruption observed in the third walkthrough.
+export type GradeResponse = GradeResult | null
+
 // Pick the most relevant error tag from those the sentence declares detectable.
 // Returns undefined when the list is empty — callers must handle that case.
 function pickErrorTag(tags: ErrorTag[]): ErrorTag | undefined {
@@ -22,7 +28,7 @@ export async function gradeAnswer(
   sentenceId: string,
   exerciseType: ExerciseType,
   userAnswer: string,
-): Promise<GradeResult> {
+): Promise<GradeResponse> {
   // 1. Try local JSON content first (fast, no network)
   const { sentences: localSentences } = loadContentSentences()
   let sentence = localSentences[sentenceId]
@@ -59,8 +65,11 @@ export async function gradeAnswer(
   }
 
   if (!sentence) {
-    // Sentence not found — fail open so the session is not blocked
-    return { correct: false, correctAnswer: '[unavailable]', errorTag: undefined }
+    // Sentence not found in either local JSON or Supabase. Return null so
+    // callers can drop the result instead of persisting the literal
+    // "[unavailable]" placeholder string into recentErrors (F011).
+    console.warn(`[gradeAnswer] unknown sentence id: ${sentenceId}`)
+    return null
   }
 
   const correctAnswer = deriveCorrectAnswer(
