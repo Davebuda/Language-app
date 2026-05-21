@@ -233,4 +233,20 @@ Report at `.council/reports/2026-05-21-stream-4-3-progress-strip.md`
 **STREAM 4 COMPLETE — all 3 items shipped.**
 Next: Deferred stream work — UI-1.3 dashboard, A2 decay half-life, A3 calibration window, A4 event log, muntlig module (per roadmap sequencing)
 
+## 2026-05-21 APPROVE — A2 Decay half-life 46 → 25 days
+
+Criteria met:
+- `DECAY_HALF_LIFE_DAYS = 25` in `src/engine/fingerprint.ts` ✅
+- Three-point trace validated before and after change ✅
+  - rawScore=85 at 30d: 67 → 57 (materially lower, above floor)
+  - rawScore=60 at 45d: 48 → 42 (materially lower, above floor)
+  - rawScore=50 at 60d: 41 → 38 (materially lower, above floor)
+- `DECAY_FLOOR = 35` unchanged ✅
+- SRS ladder, all other constants unchanged ✅
+- TypeScript: zero errors in fingerprint.ts ✅
+
+Playwright: not required (pure engine constant, no UI surface)
+
+Next: A3 — Calibration window (analysis-first — 3 questions must be answered before coding)
+
 ---

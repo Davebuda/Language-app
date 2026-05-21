@@ -1,81 +1,43 @@
 # Task Brief
-**Task:** Stream 4.3 — Progress Reassurance Strip
+**Task:** A2 — Shorten decay half-life from 46 → 25 days
 **Date:** 2026-05-21
-**Status:** DONE — 2026-05-21
+**Status:** APPROVED — 2026-05-21
 
 ---
 
 ## What
 
-One file to create, one file to modify:
+One-constant change in `src/engine/fingerprint.ts` line 12:
 
-**Create:**
-- `src/components/ProgressReassuranceStrip.tsx` — reads fingerprint, shows reassurance stats
+```ts
+// BEFORE
+const DECAY_HALF_LIFE_DAYS = 46;  // ~6.5 weeks — research-backed forgetting curve
 
-**Modify:**
-- `src/app/dashboard/page.tsx` — add `<ProgressReassuranceStrip />` between DailyWordPack and the Stats grid
+// AFTER
+const DECAY_HALF_LIFE_DAYS = 25;  // ~3.5 weeks — forgetting-curve research shows steepest decay in first month
+```
+
+No other changes. The floor (`DECAY_FLOOR = 35`) stays at 35. The formula, the SRS ladder, and all other constants are untouched.
 
 ---
 
 ## How
 
-### `src/components/ProgressReassuranceStrip.tsx`
+1. Open `src/engine/fingerprint.ts`
+2. Change line 12: `DECAY_HALF_LIFE_DAYS = 46` → `DECAY_HALF_LIFE_DAYS = 25`
+3. Update the inline comment to explain the new value
+4. Run `npx tsc --noEmit` — confirm no TypeScript errors
+5. Trace three acceptance points manually:
 
-```tsx
-'use client'
-import { useFingerprintStore } from '@/stores/fingerprint-store'
-import { getConceptPhase, isMastered } from '@/engine'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
+```
+formula: decayed = 35 + (rawScore - 35) * e^(-ln2/25 * days)
+
+rawScore=85, days=30: 35 + 50 * e^(-0.832) = 35 + 21.8 = 57  (was 67 at 46 days)
+rawScore=60, days=45: 35 + 25 * e^(-1.247) = 35 + 7.2  = 42  (was 48 at 46 days)
+rawScore=50, days=60: 35 + 15 * e^(-1.663) = 35 + 2.9  = 38  (was 41 at 46 days)
 ```
 
-The component reads the fingerprint from `useFingerprintStore()` directly — this makes it self-contained so it can be folded into UI-1.3 later without needing props threaded through.
-
-**Two states:**
-
-**New user state** (fingerprint null, or `totalSessionsCompleted === 0`, or `status === 'loading'`):
-- Do NOT render anything during loading (avoid flash)
-- When fingerprint is loaded but no sessions: show a small encouraging prompt:
-  ```
-  "Start your first session to see your progress here."
-  ```
-  — styled as a single muted line, text-xs, not a card
-
-**Returning user state** (fingerprint exists + at least 1 session):
-- Show a horizontal chip strip with 2-3 stat chips:
-  1. **Concepts practiced**: count of concepts with `attemptCount > 0` (from `fingerprint.conceptMastery`)
-  2. **Speaking minutes**: `fingerprint.speakingMinutesTotal` rounded (show only if > 0)
-  3. **Strongest theme**: the concept at the highest phase that isn't locked — show its label + phase (e.g., "Personal pronouns · consolidation")
-
-Chip styling: `rounded-full border border-[var(--nc-border)] px-3 py-1 text-xs text-[var(--nc-text-muted)]` — small pills in a `flex flex-wrap gap-2` row
-
-For the concept graph: select based on `fingerprint.currentLevel` (same pattern used in progress/page.tsx and session/complete/page.tsx — A2 → a2Graph, else a1Graph).
-
-For "Strongest theme": iterate `activeGraph.concepts`, compute mastery phase for each using `getConceptPhase(mastery, concept.prerequisites, masteredIds)`, find the one at `consolidation` or `maintenance` with the highest `decayedScore`. If none, show "Ingen emner i vedlikehold ennå" or omit the chip.
-
-**No animation, no Framer Motion.** This is a static display strip.
-
-**Accessibility:** `role="region"` with `aria-label="Din fremgang"` on the outer wrapper.
-
-### Modify `src/app/dashboard/page.tsx`
-
-Read the file first. Import `ProgressReassuranceStrip` at the top:
-```tsx
-import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
-```
-
-Find the DailyWordPack placement:
-```tsx
-        {/* ── Daily Word Pack ── */}
-        <DailyWordPack />
-```
-
-Add immediately BELOW the `<DailyWordPack />` line:
-```tsx
-        {/* ── Progress Reassurance Strip ── */}
-        <ProgressReassuranceStrip />
-```
+All three: materially lower than the old values, none below the floor of 35.
 
 ---
 
@@ -84,27 +46,20 @@ sonnet
 
 ## Acceptance Criteria
 
-1. New/guest user: a single muted line "Start your first session to see your progress here." — no card, no flash during loading
-2. Returning user: chip strip with at least "X concepts practiced" chip visible
-3. Speaking minutes chip only renders when `speakingMinutesTotal > 0`
-4. `role="region"` with `aria-label="Din fremgang"` on the wrapper
-5. No layout shift on `/dashboard` — strip renders stably whether loading or loaded
-6. Layout holds at 375px — chips wrap to new lines, never overflow horizontally
-7. No new npm dependencies
-8. No TypeScript errors
+1. `DECAY_HALF_LIFE_DAYS` is 25 in `src/engine/fingerprint.ts`
+2. Comment updated to reflect the new value
+3. Three-point trace confirmed (see How section above)
+4. No TypeScript errors introduced
+5. `DECAY_FLOOR`, SRS ladder, and all other constants unchanged
 
 ## Blocking Flags
 
 Stop and write `BLOCKED: [reason]` to this file if:
-- `useFingerprintStore` import path is wrong (check `@/stores/fingerprint-store`)
-- `getConceptPhase` or `isMastered` imports fail (check `@/engine`)
-- Any TypeScript error that can't be fixed without `as any`
+- Any other constant changes alongside `DECAY_HALF_LIFE_DAYS`
+- Any TypeScript error is introduced
+- The trace points do not match the expected values
 
 ## Playwright Checkpoint
-yes
+no
 
-What to test:
-- Navigate to `/dashboard` as guest — confirm strip shows the "Start your first session" muted line (or renders nothing if loading state hides it during test)
-- Snapshot accessibility tree — confirm `region "Din fremgang"` present
-- No console errors
-- No horizontal overflow at default viewport
+This is a pure engine constant — no UI surface to test. The change takes effect on the next session's `recordFingerprintResult` call. No visual regression to check.

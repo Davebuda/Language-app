@@ -9,7 +9,7 @@ import type { ExerciseType } from '@/types/session';
 
 // ── Mastery Scoring ────────────────────────────────────────────────────
 
-const DECAY_HALF_LIFE_DAYS = 46;  // ~6.5 weeks — research-backed forgetting curve
+const DECAY_HALF_LIFE_DAYS = 25;  // ~3.5 weeks — steepest forgetting in first month; floor prevents total loss
 const DECAY_FLOOR = 35;           // cold-start midpoint: users don't forget everything
 
 // SRS review intervals in days, indexed by srsLevel (0–4)
