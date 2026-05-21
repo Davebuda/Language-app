@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: muntlig
 milestone_name: Muntlig module build
 status: executing
-stopped_at: Listen-and-respond (Step 4) complete. Scripted roleplay (Step 5) is next.
+stopped_at: P1 accessibility bundle complete. Scripted roleplay (Step 5) is next.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — Listen-and-respond verified. Dashboard has all 4 muntlig links.
+last_activity: 2026-05-21 — P1 accessibility bundle: MotionConfig reducedMotion, 12px labels, aria-live on all exercises.
 progress:
   p0_items: 8/8 complete
   p1_items_closed: 13
