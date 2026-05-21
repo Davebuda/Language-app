@@ -218,7 +218,7 @@ export default function DashboardPage() {
             {[
               { label: 'streak',   value: String(streak),       color: streak > 0 ? 'var(--nc-red)' : 'var(--nc-text-muted)' },
               { label: 'min talt', value: String(speakingMins), color: 'var(--nc-text-muted)' },
-              { label: 'accuracy', value: attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
+              { label: 'accuracy', value: (fingerprint?.totalSessionsCompleted ?? 0) > 0 && attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
               { label: 'sessions', value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-dim)' },
             ].map((v) => (
               <div key={v.label} className="flex flex-col items-center py-2">
@@ -299,7 +299,7 @@ export default function DashboardPage() {
           animate={{ opacity: 1, y: 0 }}
           className="nc-glass-cream p-5"
         >
-          <div className="nc-label mb-2 text-[var(--nc-cream-dim)]">{"Today's session · "}{levelLabel}</div>
+          <div className="nc-label mb-2 text-[var(--nc-cream-dim)]">{"Anbefalt økt · "}{levelLabel}</div>
           <div className="font-display text-[1.5rem] font-bold text-[var(--nc-cream-text)] text-balance mt-1">
             {sessionTitle}
           </div>
