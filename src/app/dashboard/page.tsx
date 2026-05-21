@@ -133,6 +133,7 @@ export default function DashboardPage() {
   const remediation = plan?.session.items.filter((i) => i.purpose === 'remediation').length ?? 0
   const review      = plan?.session.items.filter((i) => i.purpose === 'review').length ?? 0
   const newMaterial = plan?.session.items.filter((i) => i.purpose === 'new-material').length ?? 0
+  const topDiagnosis = plan?.diagnosisResults?.[0] ?? null
 
   // Compact stats
   const attemptedMastery = Object.values(fingerprint?.conceptMastery ?? {}).filter(
@@ -308,6 +309,14 @@ export default function DashboardPage() {
           <p className="mt-2 text-[12px] text-[var(--nc-cream-muted)] text-pretty">
             Estimated: {estimatedMin} min
           </p>
+          {topDiagnosis && (
+            <div className="mt-3 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-2.5">
+              <div className="nc-label mb-1 text-[var(--nc-cream-dim)]">Why this</div>
+              <p className="text-[12px] leading-relaxed text-[var(--nc-cream-text)] text-pretty">
+                {topDiagnosis.reasoning}
+              </p>
+            </div>
+          )}
           <motion.button
             onClick={() => router.push('/session')}
             whileTap={{ scale: 0.97 }}
