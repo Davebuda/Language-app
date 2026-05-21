@@ -338,12 +338,12 @@ export function useFingerprint() {
       const fp = useFingerprintStore.getState().fingerprint;
       if (!fp) return;
       const moment = now ?? new Date();
-      const closed = closeWeek(fp, {
+      const graph = fp.currentLevel === 'A2' ? a2Graph : a1Graph;
+      const closed = closeWeek(fp, graph, {
         status: 'completed',
         checkResult: { takenAt: moment.toISOString(), score, items },
         now: moment,
       });
-      const graph = closed.currentLevel === 'A2' ? a2Graph : a1Graph;
       const reopened = openWeek(closed, graph, moment);
       setFingerprint(reopened);
       saveFingerprint(reopened).catch(console.warn);

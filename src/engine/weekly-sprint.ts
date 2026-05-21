@@ -1,4 +1,4 @@
-import type { MistakeFingerprint, WeeklySprintRecord } from '@/types/fingerprint';
+import type { ConceptMastery, MistakeFingerprint, WeeklySprintRecord } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
 import { getConceptPhase, isMastered } from './fingerprint';
 
@@ -98,12 +98,34 @@ export function shouldResetWeek(
 }
 
 /**
+ * A focus concept graduates this week if it hits the curriculum threshold
+ * for mastery AND minimum attempts. If a weekly check was taken with a low
+ * score (<50), graduation is demoted regardless — the user didn't retain.
+ * Skipping the check is NOT punished (checkResult === null leaves graduation
+ * to mastery alone).
+ */
+function isGraduated(
+  mastery: ConceptMastery | undefined,
+  node: ConceptGraph['concepts'][number] | undefined,
+  checkResult: WeeklySprintRecord['checkResult'],
+): boolean {
+  if (!mastery || !node) return false;
+  const meetsBar =
+    mastery.rawScore >= node.masteryThreshold &&
+    mastery.attemptCount >= node.minAttempts;
+  if (!meetsBar) return false;
+  if (checkResult && checkResult.score < 50) return false;
+  return true;
+}
+
+/**
  * Close the current week into a WeeklySprintRecord and return an updated
  * fingerprint. Pure: caller persists. status='abandoned' if shouldResetWeek
  * fired without a checkResult; 'completed' otherwise.
  */
 export function closeWeek(
   fp: MistakeFingerprint,
+  graph: ConceptGraph,
   options: {
     status: 'completed' | 'abandoned';
     checkResult: WeeklySprintRecord['checkResult'];
@@ -117,10 +139,12 @@ export function closeWeek(
   for (const conceptId of fp.weeklyFocus) {
     const m = fp.conceptMastery[conceptId];
     if (!m) continue;
+    const node = graph.concepts.find((c) => c.id === conceptId);
     focusOutcomes[conceptId] = {
       startScore: 0,           // Phase 5 will capture startScore at week-open
       endScore: m.decayedScore,
       attempts: m.attemptCount,
+      graduated: isGraduated(m, node, options.checkResult),
     };
   }
 
@@ -177,7 +201,7 @@ export function ensureWeekOpen(
   now: Date = new Date(),
 ): MistakeFingerprint {
   if (shouldResetWeek(fp, now)) {
-    const closed = closeWeek(fp, { status: 'abandoned', checkResult: null, now });
+    const closed = closeWeek(fp, graph, { status: 'abandoned', checkResult: null, now });
     return openWeek(closed, graph, now);
   }
   if (fp.weekStartedAt === null) {

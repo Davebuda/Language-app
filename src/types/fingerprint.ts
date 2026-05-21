@@ -12,6 +12,7 @@ export interface WeeklySprintRecord {
     startScore: number;              // decayedScore at week start
     endScore: number;                // decayedScore at week end
     attempts: number;                // count of practice events during the week
+    graduated: boolean;              // true if concept hit mastery threshold + minAttempts this week
   }>;
   checkResult: {
     takenAt: string;

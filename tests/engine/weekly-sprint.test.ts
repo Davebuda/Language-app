@@ -70,6 +70,9 @@ function makeGraph(conceptIds: string[], options: { lockedIds?: string[] } = {})
   };
 }
 
+/** Minimal graph with no concepts — closeWeek gracefully returns graduated: false for all. */
+const minimalGraph: ConceptGraph = { version: '1.0', language: 'no', concepts: [] };
+
 function daysAgo(n: number): string {
   const d = new Date();
   d.setTime(d.getTime() - n * 24 * 60 * 60 * 1000);
@@ -214,7 +217,7 @@ describe('shouldResetWeek', () => {
 describe('closeWeek', () => {
   it('returns fp unchanged when weekStartedAt is null', () => {
     const fp = makeFingerprint({ weekStartedAt: null });
-    const result = closeWeek(fp, { status: 'completed', checkResult: null });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
     expect(result).toBe(fp);
   });
 
@@ -225,7 +228,7 @@ describe('closeWeek', () => {
       conceptMastery: { c1: makeMastery({ conceptId: 'c1', decayedScore: 60, attemptCount: 8 }) },
     });
     const now = new Date();
-    const result = closeWeek(fp, { status: 'completed', checkResult: null, now });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null, now });
     expect(result.weeklySprintHistory[0]?.status).toBe('completed');
   });
 
@@ -236,7 +239,7 @@ describe('closeWeek', () => {
       conceptMastery: { c1: makeMastery({ conceptId: 'c1', decayedScore: 55, attemptCount: 5 }) },
     });
     const now = new Date();
-    const result = closeWeek(fp, { status: 'abandoned', checkResult: null, now });
+    const result = closeWeek(fp, minimalGraph, { status: 'abandoned', checkResult: null, now });
     expect(result.weeklySprintHistory[0]?.status).toBe('abandoned');
   });
 
@@ -255,7 +258,7 @@ describe('closeWeek', () => {
       weeklySprintHistory: existingHistory,
       conceptMastery: { c1: makeMastery({ conceptId: 'c1' }) },
     });
-    const result = closeWeek(fp, { status: 'completed', checkResult: null });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
     expect(result.weeklySprintHistory.length).toBe(26);
     // The newest record is at index 0
     expect(result.weeklySprintHistory[0]?.weekStartedAt).toBe(fp.weekStartedAt);
@@ -267,7 +270,7 @@ describe('closeWeek', () => {
       weeklyFocus: ['c1'],
       conceptMastery: { c1: makeMastery({ conceptId: 'c1' }) },
     });
-    const result = closeWeek(fp, { status: 'completed', checkResult: null });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
     expect(result.weeklyFocus).toEqual([]);
     expect(result.weekStartedAt).toBeNull();
   });
@@ -278,7 +281,7 @@ describe('closeWeek', () => {
       weekStartedAt: '2026-01-08T10:00:00.000Z',
       weeklyFocus: [],
     });
-    const result = closeWeek(fp, { status: 'completed', checkResult: null, now });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null, now });
     expect(result.updatedAt).toBe(now.toISOString());
   });
 
@@ -288,7 +291,7 @@ describe('closeWeek', () => {
       weeklyFocus: ['c1'],
       conceptMastery: { c1: makeMastery({ conceptId: 'c1' }) },
     });
-    const result = closeWeek(fp, { status: 'abandoned', checkResult: null });
+    const result = closeWeek(fp, minimalGraph, { status: 'abandoned', checkResult: null });
     expect(result.weeklySprintHistory[0]?.checkResult).toBeNull();
   });
 
@@ -299,7 +302,7 @@ describe('closeWeek', () => {
       conceptMastery: { c1: makeMastery({ conceptId: 'c1' }) },
     });
     const checkResult = { takenAt: new Date().toISOString(), score: 80, items: 10 };
-    const result = closeWeek(fp, { status: 'completed', checkResult });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult });
     expect(result.weeklySprintHistory[0]?.checkResult).toEqual(checkResult);
   });
 
@@ -311,11 +314,12 @@ describe('closeWeek', () => {
         c1: makeMastery({ conceptId: 'c1', decayedScore: 72, attemptCount: 12 }),
       },
     });
-    const result = closeWeek(fp, { status: 'completed', checkResult: null });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
     const outcome = result.weeklySprintHistory[0]?.focusOutcomes['c1'];
     expect(outcome?.endScore).toBe(72);
     expect(outcome?.attempts).toBe(12);
     expect(outcome?.startScore).toBe(0); // Phase 5 will fill this in
+    expect(outcome?.graduated).toBe(false); // minimalGraph has no nodes, so no graduation
   });
 });
 
@@ -518,5 +522,120 @@ describe('openWeek + ensureWeekOpen', () => {
     expect(result.weekStartedAt).not.toBeNull();
     // New weekStartedAt must be strictly later than the old one
     expect(new Date(result.weekStartedAt!).getTime()).toBeGreaterThan(new Date(staleStart).getTime());
+  });
+});
+
+// ── graduation rule ───────────────────────────────────────────────────────────
+
+describe('graduation rule', () => {
+  function makeGradGraph(conceptId: string, masteryThreshold: number, minAttempts: number): ConceptGraph {
+    return {
+      version: '1.0',
+      language: 'no',
+      concepts: [
+        {
+          id: conceptId,
+          label: conceptId,
+          description: `Concept ${conceptId}`,
+          cefrLevel: 'A1',
+          prerequisites: [],
+          masteryThreshold,
+          minAttempts,
+          minDays: 3,
+          errorTags: [],
+        },
+      ],
+    };
+  }
+
+  it('concept that meets threshold AND minAttempts → graduated: true', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', rawScore: 80, attemptCount: 10 }),
+      },
+    });
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult: null });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']?.graduated).toBe(true);
+  });
+
+  it('concept below threshold → graduated: false', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', rawScore: 60, attemptCount: 10 }),
+      },
+    });
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult: null });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']?.graduated).toBe(false);
+  });
+
+  it('concept below minAttempts → graduated: false', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', rawScore: 80, attemptCount: 3 }),
+      },
+    });
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult: null });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']?.graduated).toBe(false);
+  });
+
+  it('low check score (<50) demotes graduation', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', rawScore: 80, attemptCount: 10 }),
+      },
+    });
+    const checkResult = { takenAt: new Date().toISOString(), score: 40, items: 6 };
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']?.graduated).toBe(false);
+  });
+
+  it('high check score keeps graduation', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', rawScore: 80, attemptCount: 10 }),
+      },
+    });
+    const checkResult = { takenAt: new Date().toISOString(), score: 80, items: 6 };
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']?.graduated).toBe(true);
+  });
+
+  it('skipped check (checkResult === null) does not punish graduation', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', rawScore: 80, attemptCount: 10 }),
+      },
+    });
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult: null });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']?.graduated).toBe(true);
+  });
+
+  it('concept missing from mastery → outcome not recorded (no crash)', () => {
+    const graph = makeGradGraph('c1', 70, 5);
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {}, // c1 not in mastery
+    });
+    const result = closeWeek(fp, graph, { status: 'completed', checkResult: null });
+    expect(result.weeklySprintHistory[0]?.focusOutcomes['c1']).toBeUndefined();
   });
 });
