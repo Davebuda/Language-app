@@ -114,11 +114,11 @@ export default function RecalibratePage() {
         <button
           onClick={() => router.push('/dashboard')}
           className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
-          aria-label="Back"
+          aria-label="Tilbake"
         >
           <ArrowLeft size={14} />
         </button>
-        <span className="text-[13px] font-medium text-[var(--nc-text-muted)]">Back to dashboard</span>
+        <span className="text-[13px] font-medium text-[var(--nc-text-muted)]">Tilbake til oversikten</span>
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pb-10 pt-6">

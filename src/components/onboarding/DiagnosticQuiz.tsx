@@ -97,7 +97,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
             transition={{ duration: 0.4 }}
           />
         </div>
-        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-nc-text-dim">{answered}</span>
+        <span className="text-[11px] font-bold tabular-nums uppercase tracking-[0.08em] text-nc-text-dim" aria-hidden="true">Sp. {answered}</span>
       </div>
 
       {/* Question card */}
