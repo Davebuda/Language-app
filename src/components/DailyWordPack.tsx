@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { getDailyWords } from '@/lib/dailyContent'
+import { cn } from '@/lib/utils'
 
 export function DailyWordPack() {
   const words = getDailyWords()
@@ -52,15 +53,10 @@ export function DailyWordPack() {
               </button>
             </div>
 
-            <div
-              className={[
-                'overflow-hidden transition-all duration-200',
-                isExpanded ? 'max-h-16 opacity-100 mt-1.5' : 'max-h-0 opacity-0',
-              ].join(' ')}
-            >
-              <span className="text-xs text-[var(--nc-text-muted)]">{word.english}</span>
+            <div className={cn('overflow-hidden', isExpanded ? 'max-h-16 mt-1.5' : 'max-h-0')}>
+              <span className={cn('text-xs text-[var(--nc-text-muted)] transition-opacity duration-200', isExpanded ? 'opacity-100' : 'opacity-0')}>{word.english}</span>
               {' · '}
-              <span className="text-xs italic text-[var(--nc-text-dim)]">{word.exampleSentence}</span>
+              <span className={cn('text-xs italic text-[var(--nc-text-dim)] transition-opacity duration-200', isExpanded ? 'opacity-100' : 'opacity-0')}>{word.exampleSentence}</span>
             </div>
           </div>
         )

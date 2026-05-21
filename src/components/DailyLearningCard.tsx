@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { getDailyRule } from '@/lib/dailyContent'
+import { cn } from '@/lib/utils'
 
 interface Props {
   alwaysVisible?: boolean
@@ -19,7 +20,7 @@ export function DailyLearningCard({ alwaysVisible = false }: Props) {
     >
       <div className="nc-label mb-3 text-[var(--nc-text-muted)]">{rule.title}</div>
 
-      <p className="text-2xl font-bold font-display text-[var(--nc-text)] leading-tight">
+      <p className="text-2xl font-bold font-display text-[var(--nc-text)] leading-tight text-balance">
         {rule.norwegianExample}
       </p>
 
@@ -40,13 +41,8 @@ export function DailyLearningCard({ alwaysVisible = false }: Props) {
           >
             {isVisible ? 'Skjul oversettelse' : 'Vis oversettelse'}
           </button>
-          <div
-            className={[
-              'overflow-hidden transition-all duration-200',
-              isVisible ? 'max-h-20 opacity-100 mt-2' : 'max-h-0 opacity-0',
-            ].join(' ')}
-          >
-            <p className="text-sm text-[var(--nc-text-dim)] italic">
+          <div className={cn('overflow-hidden', isVisible ? 'max-h-20 mt-2' : 'max-h-0')}>
+            <p className={cn('text-sm text-[var(--nc-text-dim)] italic transition-opacity duration-200', isVisible ? 'opacity-100' : 'opacity-0')}>
               {rule.englishTranslation}
             </p>
           </div>
