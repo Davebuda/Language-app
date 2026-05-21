@@ -12,6 +12,7 @@ import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
 import { getConceptPhase, isMastered } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
+import { DailyLearningCard } from '@/components/DailyLearningCard'
 import { DailyWordPack } from '@/components/DailyWordPack'
 import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
@@ -196,22 +197,49 @@ export default function DashboardPage() {
 
   return (
     <div className="nc-gradient-page flex min-h-dvh flex-col">
-      <main className="relative mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
 
-        {/* ── Header ── */}
-        <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
-              {todayFormatted()}
-            </div>
-            <div className="mt-1 flex flex-wrap items-center gap-2.5">
-              <h1 className="text-balance font-display text-[2rem] font-bold leading-tight tracking-tight text-[var(--nc-text)]">
-                God kveld, {displayName}!
-              </h1>
-              <LevelBadge />
+      {/* ── STICKY ZONE — greeting + vitals bar, always visible ── */}
+      <div className="sticky top-0 z-10 border-b border-[rgba(0,220,180,0.08)] bg-[rgba(8,14,16,0.78)] backdrop-blur-xl">
+        <div className="mx-auto w-full max-w-lg px-5 pb-3 pt-5">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
+                {todayFormatted()}
+              </div>
+              <div className="mt-1 flex flex-wrap items-center gap-2.5">
+                <h1 className="text-balance font-display text-[1.75rem] font-bold leading-tight tracking-tight text-[var(--nc-text)]">
+                  God kveld, {displayName}!
+                </h1>
+                <LevelBadge />
+              </div>
             </div>
           </div>
+
+          {/* Vitals bar */}
+          <div className="mt-3 grid grid-cols-4 divide-x divide-[rgba(255,255,255,0.07)]">
+            {[
+              { label: 'streak',   value: String(streak),       color: streak > 0 ? 'var(--nc-red)' : 'var(--nc-text-muted)' },
+              { label: 'min talt', value: String(speakingMins), color: 'var(--nc-text-muted)' },
+              { label: 'accuracy', value: attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
+              { label: 'sessions', value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-dim)' },
+            ].map((v) => (
+              <div key={v.label} className="flex flex-col items-center py-2">
+                <span
+                  className="font-display tabular-nums text-[1.3rem] font-bold leading-none"
+                  style={{ color: v.color }}
+                >
+                  {v.value}
+                </span>
+                <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
+                  {v.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
+
+      <main className="relative mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-4">
 
         {/* ── Level-up toast ── */}
         <AnimatePresence>
@@ -233,6 +261,21 @@ export default function DashboardPage() {
           )}
         </AnimatePresence>
 
+        {/* ── Guest banner — between vitals and session card ── */}
+        {!user && (
+          <div className="nc-surface flex items-center justify-between gap-3 px-4 py-2.5">
+            <p className="text-[12px] text-[#111110]/60">
+              Logg inn for å synkronisere fremgangen din
+            </p>
+            <Link
+              href="/login"
+              className="nc-button-primary shrink-0 px-3 py-1.5 text-[12px] font-bold"
+            >
+              Logg inn
+            </Link>
+          </div>
+        )}
+
         {/* ── B1/B2 graph notice ── */}
         <AnimatePresence>
           {(fingerprint?.currentLevel === 'B1' || fingerprint?.currentLevel === 'B2') && (
@@ -251,21 +294,6 @@ export default function DashboardPage() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* ── Guest banner — white surface ── */}
-        {!user && (
-          <div className="nc-surface flex items-center justify-between gap-3 px-4 py-2.5">
-            <p className="text-[12px] text-[#111110]/60">
-              Logg inn for å synkronisere fremgangen din
-            </p>
-            <Link
-              href="/login"
-              className="nc-button-primary shrink-0 px-3 py-1.5 text-[12px] font-bold"
-            >
-              Logg inn
-            </Link>
-          </div>
-        )}
 
         {/* ── TODAY'S SESSION — primary action ── */}
         <motion.div
@@ -429,36 +457,14 @@ export default function DashboardPage() {
           </Link>
         </motion.div>
 
+        {/* ── Daily Learning Card ── */}
+        <DailyLearningCard />
+
         {/* ── Daily Word Pack ── */}
         <DailyWordPack />
 
         {/* ── Progress Reassurance Strip ── */}
         <ProgressReassuranceStrip />
-
-        {/* ── Stats — compact 4-column ── */}
-        <div className="grid grid-cols-4 gap-2.5">
-          {[
-            { label: 'streak',      value: String(streak),       color: 'var(--nc-red)' },
-            { label: 'mins spoken', value: String(speakingMins), color: 'var(--nc-text)' },
-            { label: 'accuracy',    value: attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
-            { label: 'sessions',    value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-muted)' },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="nc-glass-stat px-2.5 py-2 text-center"
-            >
-              <div
-                className="font-display tabular-nums text-[1.25rem] font-bold leading-none tracking-tight"
-                style={{ color: s.color }}
-              >
-                {s.value}
-              </div>
-              <div className="mt-1.5 text-[9px] font-medium leading-tight text-[var(--nc-text-dim)]">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
 
         {/* ── Concepts in focus ── */}
         {activeConcepts.length > 0 && (

@@ -62,7 +62,6 @@ export default function LoginPage() {
                   Koble læringsprofilen din til e-post og fortsett sømløst på tvers av enheter.
                 </p>
               </div>
-              <div className="hidden h-20 w-20 rounded-[1rem] border border-[var(--nc-border)] bg-white/5 md:block" />
             </div>
           </div>
 
