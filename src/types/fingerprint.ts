@@ -3,6 +3,23 @@ import type { ExerciseType } from './session';
 
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2';
 
+export interface WeeklySprintRecord {
+  weekStartedAt: string;             // ISO date — the Monday this sprint started
+  weekEndedAt: string;               // ISO date — when the record was closed
+  focus: string[];                   // concept IDs that were the focus that week
+  status: 'completed' | 'abandoned'; // completed = honored the cadence; abandoned = absence reset
+  focusOutcomes: Record<string, {    // per-concept progress during the week
+    startScore: number;              // decayedScore at week start
+    endScore: number;                // decayedScore at week end
+    attempts: number;                // count of practice events during the week
+  }>;
+  checkResult: {
+    takenAt: string;
+    score: number;                   // 0–100, accuracy on the weekly check
+    items: number;                   // number of items in the check
+  } | null;                          // null if learner skipped the check
+}
+
 export interface ErrorLogEntry {
   id: string;
   conceptId: string;
@@ -68,6 +85,9 @@ export interface MistakeFingerprint {
   inputProductionPreference: InputProductionPreference;
   lastRecalibrationAt: string | null;
   askedDiagnosticQuestionIds: string[]; // prevents question repetition across diagnostic+recalibration
+  weeklyFocus: string[];                       // concept IDs, ≤5; the current week's focus
+  weekStartedAt: string | null;                // ISO date; null before first sprint
+  weeklySprintHistory: WeeklySprintRecord[];   // newest first, capped at 26 entries (~6 months)
 }
 
 // Factory: create a new empty fingerprint
@@ -90,5 +110,8 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     inputProductionPreference: 'balanced',
     lastRecalibrationAt: null,
     askedDiagnosticQuestionIds: [],
+    weeklyFocus: [],
+    weekStartedAt: null,
+    weeklySprintHistory: [],
   };
 }

@@ -13,6 +13,7 @@ import {
   logError,
   aggregateErrorPatterns,
 } from '@/engine';
+import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
 import type { ExerciseResult } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
@@ -131,7 +132,9 @@ async function applyMigration(
   fp: MistakeFingerprint,
   persist: 'local' | 'local+remote',
 ): Promise<MistakeFingerprint> {
-  const { migrated, changed } = migrateConceptIds(fp);
+  const { migrated: afterConceptIds, changed: conceptIdsChanged } = migrateConceptIds(fp);
+  const { migrated, changed: weeklySprintChanged } = migrateWeeklySprintFields(afterConceptIds);
+  const changed = conceptIdsChanged || weeklySprintChanged;
   if (changed) {
     await saveFingerprint(migrated);
     if (persist === 'local+remote') {
