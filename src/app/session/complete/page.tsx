@@ -72,6 +72,7 @@ export default function SessionCompletePage() {
         const updated = {
           ...fp,
           totalSessionsCompleted: (fp.totalSessionsCompleted ?? 0) + 1,
+          calibrationSessionsRemaining: Math.max(0, (fp.calibrationSessionsRemaining ?? 0) - 1),
           lastSessionAt: now,
           updatedAt: now,
         }

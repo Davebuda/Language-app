@@ -1,43 +1,91 @@
 # Task Brief
-**Task:** A2 — Shorten decay half-life from 46 → 25 days
+**Task:** A3 — Calibration window for first 5 sessions
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
 ---
 
+## Architectural decisions (approved)
+
+- Q1: Counter lives in **fingerprint blob** — `calibrationSessionsRemaining?: number`
+- Q2: Existing users default to **0** (`?? 0` = post-calibration, no backfill)
+- Q3: Scheduler receives **recipe override from caller** (`useSession.ts`) — engine stays pure
+
+---
+
 ## What
 
-One-constant change in `src/engine/fingerprint.ts` line 12:
+Four files to change:
 
-```ts
-// BEFORE
-const DECAY_HALF_LIFE_DAYS = 46;  // ~6.5 weeks — research-backed forgetting curve
-
-// AFTER
-const DECAY_HALF_LIFE_DAYS = 25;  // ~3.5 weeks — forgetting-curve research shows steepest decay in first month
-```
-
-No other changes. The floor (`DECAY_FLOOR = 35`) stays at 35. The formula, the SRS ladder, and all other constants are untouched.
+1. `src/types/fingerprint.ts` — add field to type + default
+2. `src/engine/fingerprint.ts` — decrement counter on session completion
+3. Diagnostic completion path — initialize counter to 5 when fingerprint is seeded after diagnostic
+4. `src/app/session/page.tsx` or `src/hooks/useSession.ts` — compute recipe override when counter > 0
 
 ---
 
 ## How
 
-1. Open `src/engine/fingerprint.ts`
-2. Change line 12: `DECAY_HALF_LIFE_DAYS = 46` → `DECAY_HALF_LIFE_DAYS = 25`
-3. Update the inline comment to explain the new value
-4. Run `npx tsc --noEmit` — confirm no TypeScript errors
-5. Trace three acceptance points manually:
+### 1. `src/types/fingerprint.ts`
 
-```
-formula: decayed = 35 + (rawScore - 35) * e^(-ln2/25 * days)
+**Read the file first.** Find the `MistakeFingerprint` interface and add the field alongside `totalSessionsCompleted`:
 
-rawScore=85, days=30: 35 + 50 * e^(-0.832) = 35 + 21.8 = 57  (was 67 at 46 days)
-rawScore=60, days=45: 35 + 25 * e^(-1.247) = 35 + 7.2  = 42  (was 48 at 46 days)
-rawScore=50, days=60: 35 + 15 * e^(-1.663) = 35 + 2.9  = 38  (was 41 at 46 days)
+```ts
+calibrationSessionsRemaining: number;  // counts down 5→0 after diagnostic; 0 = standard behavior
 ```
 
-All three: materially lower than the old values, none below the floor of 35.
+Find `DEFAULT_FINGERPRINT` (the initial value object) and add:
+```ts
+calibrationSessionsRemaining: 5,
+```
+
+The default of 5 means new users who get a fresh fingerprint (from diagnostic) start in calibration mode.
+
+### 2. `src/engine/fingerprint.ts`
+
+**Read the file first.** Find the function that handles session completion and increments `totalSessionsCompleted`. In that same function, decrement `calibrationSessionsRemaining` if > 0:
+
+```ts
+calibrationSessionsRemaining: Math.max(0, (prev.calibrationSessionsRemaining ?? 0) - 1),
+```
+
+The `?? 0` handles existing users who don't have the field yet — they skip calibration silently.
+
+### 3. Diagnostic seeding path
+
+**Find where the fingerprint is first seeded from diagnostic results.** This is likely in `src/components/onboarding/PlacementQuiz.tsx` or a similar onboarding component. Find where `createFingerprint` or the initial `MistakeFingerprint` object is constructed after the diagnostic completes.
+
+The `DEFAULT_FINGERPRINT` already has `calibrationSessionsRemaining: 5`, so if the diagnostic path uses `DEFAULT_FINGERPRINT` as the base, this is automatically handled. Verify this is the case — if so, no change needed here. If a custom object is constructed without spreading `DEFAULT_FINGERPRINT`, add the field explicitly.
+
+### 4. `src/hooks/useSession.ts` — calibration recipe override
+
+**Read the file first.** Find where `generateSession` is called (look for the `generateSession({...})` call). Add a calibration recipe override:
+
+```ts
+// Calibration: wider variety for first 5 sessions
+const isCalibrating = (fingerprint.calibrationSessionsRemaining ?? 0) > 0
+
+const calibrationRecipe: Partial<SessionRecipe> = isCalibrating
+  ? {
+      newMaterialRatio: 0.30,   // up from 0.20 — wider concept exposure
+      remediationRatio: 0.30,   // down from 0.40 — less drilling of early errors
+      reviewRatio: 0.30,        // keep review present
+      interleavingRatio: 0.10,  // unchanged
+    }
+  : {}
+
+const output = generateSession({
+  fingerprint,
+  graph: activeGraph,
+  availableSentenceIds,
+  sentences,
+  recipe: calibrationRecipe,
+})
+```
+
+Import `SessionRecipe` if not already imported from `@/types/session`.
+
+**Important:** Only add the `isCalibrating` logic where `generateSession` is called from within the session flow. Do not add it to the dashboard preview call.
 
 ---
 
@@ -46,20 +94,23 @@ sonnet
 
 ## Acceptance Criteria
 
-1. `DECAY_HALF_LIFE_DAYS` is 25 in `src/engine/fingerprint.ts`
-2. Comment updated to reflect the new value
-3. Three-point trace confirmed (see How section above)
-4. No TypeScript errors introduced
-5. `DECAY_FLOOR`, SRS ladder, and all other constants unchanged
+1. `calibrationSessionsRemaining` field added to `MistakeFingerprint` type with default 5
+2. Field decrements by 1 on each session completion, floors at 0
+3. Existing users without the field (`?? 0`) behave as post-calibration — no disruption
+4. `generateSession` receives calibration recipe override when counter > 0: `newMaterialRatio: 0.30`
+5. Standard recipe (`newMaterialRatio: 0.20`) resumes when counter reaches 0
+6. TypeScript: zero new errors — run `npx tsc --noEmit`
+7. No changes to `DECAY_FLOOR`, SRS ladder, or any other constants
 
 ## Blocking Flags
 
 Stop and write `BLOCKED: [reason]` to this file if:
-- Any other constant changes alongside `DECAY_HALF_LIFE_DAYS`
-- Any TypeScript error is introduced
-- The trace points do not match the expected values
+- `generateSession` is called in more than 2 places — identify all call sites before choosing where to add the override
+- The session completion function that increments `totalSessionsCompleted` cannot be found
+- The diagnostic seeding path constructs a custom fingerprint object that bypasses `DEFAULT_FINGERPRINT`
+- Any TypeScript error that cannot be resolved correctly
 
 ## Playwright Checkpoint
 no
 
-This is a pure engine constant — no UI surface to test. The change takes effect on the next session's `recordFingerprintResult` call. No visual regression to check.
+Pure engine + type change. No UI surface — the recipe ratios don't render visibly. Behavior verification happens via `npx tsc --noEmit` + code review.

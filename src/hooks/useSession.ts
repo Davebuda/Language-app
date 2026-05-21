@@ -7,7 +7,7 @@ import { useFingerprint } from '@/hooks/useFingerprint';
 import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
 import { emitEvent } from '@/lib/events';
-import type { ExerciseResult, SessionItem, ExerciseType } from '@/types/session';
+import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe } from '@/types/session';
 import type { Sentence, ResolvedContent } from '@/types/content';
 import type { ConceptGraph } from '@/types/concepts';
 import a1GraphJson from '@content/concepts/a1-graph.json';
@@ -149,7 +149,19 @@ export function useSession(
     if (!fingerprint) return;
 
     const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
-    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences });
+
+    const isCalibrating = (fingerprint.calibrationSessionsRemaining ?? 0) > 0;
+
+    const calibrationRecipe: Partial<SessionRecipe> = isCalibrating
+      ? {
+          newMaterialRatio: 0.30,
+          remediationRatio: 0.30,
+          reviewRatio: 0.30,
+          interleavingRatio: 0.10,
+        }
+      : {};
+
+    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences, recipe: calibrationRecipe });
     contentCache.current.clear();
     sessionStore.startSession(output.session);
 

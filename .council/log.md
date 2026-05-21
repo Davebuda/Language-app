@@ -249,4 +249,23 @@ Playwright: not required (pure engine constant, no UI surface)
 
 Next: A3 — Calibration window (analysis-first — 3 questions must be answered before coding)
 
+## 2026-05-21 APPROVE — A3 Calibration window for first 5 sessions
+
+Architectural decisions approved:
+- Counter in fingerprint blob (no migration, `?? 0` for existing users)
+- Existing users default to 0 = post-calibration, no backfill
+- Recipe override in caller (useSession.ts), engine stays pure
+
+Criteria met:
+- `calibrationSessionsRemaining: number` in MistakeFingerprint, default 5 ✅
+- Decrement at session complete with Math.max(0, ...) floor ✅
+- Diagnostic path inherits via createEmptyFingerprint automatically ✅
+- isCalibrating + calibrationRecipe override in useSession.ts ✅
+- `?? 0` handles existing users without field ✅
+- TypeScript: zero new errors ✅
+
+Playwright: not required (no UI surface)
+
+Next: A4 — Event log (new learning_events_log Supabase table)
+
 ---

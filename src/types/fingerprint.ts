@@ -62,6 +62,7 @@ export interface MistakeFingerprint {
   vocabularyMastery: Record<string, VocabularyClusterMastery>; // keyed by cluster ID
   productionGap: Record<string, number>; // conceptId → gap between recognition and production (0–100)
   totalSessionsCompleted: number;
+  calibrationSessionsRemaining: number;  // counts down 5→0 after diagnostic; 0 = standard behavior
   lastSessionAt: string | null;
   speakingMinutesTotal: number; // cumulative minutes of spoken Norwegian produced via mic
   inputProductionPreference: InputProductionPreference;
@@ -83,6 +84,7 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     vocabularyMastery: {},
     productionGap: {},
     totalSessionsCompleted: 0,
+    calibrationSessionsRemaining: 5,
     lastSessionAt: null,
     speakingMinutesTotal: 0,
     inputProductionPreference: 'balanced',
