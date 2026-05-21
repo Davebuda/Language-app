@@ -33,7 +33,7 @@ The adaptive engine is complete and the session loop is now end-to-end verified:
 - **Decay:** Exponential with floor of 35. Half-life ~46 days (shortening to ~25 is deferred to post-P0 A2 correction).
 - **Phase model:** locked → intro → practice → consolidation → maintenance.
 - **Scheduler:** Recipe 40/30/20/10 with `firstEligibleType` guard, concept-repeat cap, production guarantee, Fisher-Yates shuffle.
-- **Diagnosis engine:** 4 root-cause rules.
+- **Diagnosis engine:** 4 root-cause rules. Output now surfaced on the dashboard session card as a conditional "Why this" block (2026-05-21) — silent when no rule fires, learner-facing `reasoning` when one does.
 - **Repair loop:** template explanation + 2 micro-drills + retry + SRS scheduling (1→3→7→14→30 day ladder).
 
 ---

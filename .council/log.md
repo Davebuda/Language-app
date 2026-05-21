@@ -1,6 +1,36 @@
 # Council Decision Log
 
-## 2026-05-21 BRAINSTORM — sequence conflict: P1-7 vs session completion elevation
+## 2026-05-21T17:45 APPROVE — diagnosis visibility on dashboard session card
+**Criteria met:**
+- Only `src/app/dashboard/page.tsx` changed (9 insertions, 1 file) ✅
+- `topDiagnosis = plan?.diagnosisResults?.[0] ?? null` derived alongside existing remediation/review/newMaterial counts ✅
+- "Why this" block inserted between estimated-time paragraph and Start button ✅
+- Renders only when `topDiagnosis` truthy; silent absence otherwise ✅
+- Displays `topDiagnosis.reasoning` from the highest-confidence diagnosis ✅
+- No engine, scheduler, or type files touched ✅
+- Zero TypeScript errors; dev server compiled clean ✅
+- Visual at 1280 and 375: layout intact, no overflow, cream tones match ✅
+**Playwright:** PASS — silent-absence path verified live on cold-start guest; critical-path regression (Start → wrong answer → repair → next exercise) passes; 0 console errors on tested pages.
+**Present-branch:** Not exercised by guest state (no fingerprint history triggers any of the 4 diagnosis rules). Mechanically guaranteed by diff parity with the brief's verbatim JSX template + null-safe optional chaining.
+**File changed:** `src/app/dashboard/page.tsx`
+**Report:** `.council/reports/2026-05-21-1745-diagnosis-visibility.md`
+**Outside-scope observation (for REVIEW.md, not blocking):** Sentence-transformation repair card shows `Correct answer: [unavailable]` rather than the actual target. Pre-existing surface defect on the repair card data binding, unrelated to dashboard scope.
+
+## 2026-05-21T12:00 RETHINK — diagnosis visibility inserted before remaining P1 batch
+
+**Trigger:** Feature-challenger scout pass (4 features) surfaced a pipeline-honesty defect via code grep: `runDiagnosis` runs on every session generation, returns `DiagnosisResult[]` with a learner-facing `reasoning` string, but `diagnosisResults` is never consumed in `src/`. The moat is computed and silently discarded.
+
+**Searched:** No external search. Internal evidence: `grep runDiagnosis src/` → only `engine/scheduler.ts`, `engine/index.ts`, `engine/diagnosis.ts`. `grep generateSession src/` → consumed in `hooks/useSession.ts:164` and `app/dashboard/page.tsx:105`, neither reads `diagnosisResults`.
+
+**Options:**
+1. Insert small diagnosis-visibility task before resuming P1 — surface `diagnosisResults[0].reasoning` on the dashboard session card. ~30-line change, one file, one acceptance criterion.
+2. Defer to a future engine-upgrade pass — keep the moat invisible until then; resume P1 verbatim.
+3. Continue per roadmap, no change — same as option 2 but without queuing the fix.
+
+**Chosen:** Option 1.
+**Why:** CLAUDE.md operating rule 8 (pipeline honesty) is constitutional: "if a surface claims to contribute to the fingerprint, mastery, or repair loop, that contribution must be traced end-to-end before the surface ships. Five separate surfaces during P0 recovery were found to silently contribute nothing." The diagnosis engine claim is in CLAUDE.md and project-state.md — its current invisibility is the same defect pattern as the AI-badge / error-tag / session-auto-skip P0 issues. The constitution mandates the fix; this is not an open product question. Scope is one file, one insert, established design tokens. Consistent with the recent session-complete approve (2026-05-21T11:10) which had the explicit goal "make the moat visible" on a different surface.
+
+
 
 **Options considered:**
 1. Follow P1 order — do P1-7 (recalibration trigger banner) first

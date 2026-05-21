@@ -1,211 +1,111 @@
 # Task Brief
-**Task:** Muntlig Step 5 — Scripted Roleplay
+**Task:** Diagnosis visibility — surface `runDiagnosis` output on the dashboard session card
 **Date:** 2026-05-21
-**Status:** APPROVED — 2026-05-21T11:32
+**Status:** COMPLETED — APPROVED 2026-05-21T17:45
+**corrections:** 0
 
 ---
 
 ## What
 
-Three new files. No changes to any existing file except a route link on the dashboard (already has a "Start samtale" button under MUNTLIG — the `/roleplay` route needs to exist so the "Skygging" / "Uttaleøvelser" / "Lytt og svar" / "Skripted samtale" entry on the dashboard resolves).
+The diagnosis engine (`src/engine/diagnosis.ts`) runs four root-cause rules on every session generation. `runDiagnosis(fingerprint)` returns `DiagnosisResult[]` with a learner-facing `reasoning` string — the visible piece of the moat. The scheduler attaches the result to `SchedulerOutput` as `diagnosisResults`.
 
-### Files to create:
-1. `src/lib/roleplayContent.ts` — scenario definitions (3 scenarios, branching turns)
-2. `src/components/muntlig/RoleplayScreen.tsx` — full UI (selection → conversation → complete)
-3. `src/app/roleplay/page.tsx` — server component page wrapper
+**Verified pipeline-honesty defect:** `diagnosisResults` is never consumed in any UI. `src/hooks/useSession.ts:164` and `src/app/dashboard/page.tsx:105` both call `generateSession(...)` but neither reads the `diagnosisResults` field. The moat is computed and silently discarded. This is the same class as the P0 "no silent substitution" finds (AI badge, error tags, session auto-skip).
+
+This task surfaces the highest-confidence diagnosis on the dashboard session card so the learner sees *why* today's session is what it is. No new engine logic, no new rules, no schema changes — only render an existing string when present.
+
+**Files in scope:**
+- `src/app/dashboard/page.tsx` (only)
+
+That is the entire scope. If the implementer is about to touch any other file (including diagnosis.ts, scheduler.ts, types, components), STOP and write BLOCKED.
 
 ---
 
 ## How
 
-### Content structure (`src/lib/roleplayContent.ts`)
+In `src/app/dashboard/page.tsx`:
 
-```ts
-export interface RoleplayTurn {
-  id: string
-  character: string          // Norwegian line spoken by the character
-  characterEnglish: string   // English subtitle
-  expectedKeywords: string[] // normalised lowercase — any one match = pass at default threshold
-  hint: string               // coaching tip shown on fallback
-  modelAnswer: string        // "Try saying: ..." shown on retry
-}
+1. Extract the highest-confidence diagnosis from the existing `plan` state. `plan.diagnosisResults` is already part of `SchedulerOutput` — no import or type change needed.
 
-export interface RoleplayScenario {
-  id: string
-  title: string              // Norwegian
-  titleEnglish: string
-  setting: string            // English context sentence shown before start
-  characterName: string
-  turns: RoleplayTurn[]
-}
-```
+   ```tsx
+   const topDiagnosis = plan?.diagnosisResults?.[0] ?? null
+   ```
 
-Three scenarios. Exact content:
+   Place this after the existing `remediation / review / newMaterial` derivations (around line ~135).
 
-**Scenario 1 — "Bestille kaffe" (Ordering coffee)**
-- characterName: "Barista"
-- setting: "You're at a café in Oslo. The barista greets you."
-- turns (4):
-  1. `{ id: 'greet', character: 'Hei! Hva kan jeg hjelpe deg med?', characterEnglish: 'Hi! What can I help you with?', expectedKeywords: ['kaffe','latte','cappuccino','espresso','vil','ha','gjerne'], hint: 'Order something to drink.', modelAnswer: 'Jeg vil gjerne ha en kaffe, takk.' }`
-  2. `{ id: 'size', character: 'Stor eller liten?', characterEnglish: 'Large or small?', expectedKeywords: ['stor','liten','medium'], hint: 'Choose a size.', modelAnswer: 'Stor, takk.' }`
-  3. `{ id: 'name', character: 'Hva er navnet ditt?', characterEnglish: 'What is your name?', expectedKeywords: ['heter','navn','jeg','er'], hint: 'Tell them your name.', modelAnswer: 'Jeg heter [ditt navn].' }`
-  4. `{ id: 'thanks', character: 'Det blir femti kroner. Ha en fin dag!', characterEnglish: "That's fifty kroner. Have a nice day!", expectedKeywords: ['takk','tusen','deg','også','ha'], hint: 'Say thank you.', modelAnswer: 'Takk! Ha det bra.' }`
+2. Inside the "TODAY'S SESSION" card (the `nc-glass-cream` block that starts at line ~298, currently containing label / title / estimated time / Start button / composition badges / grammar moment), insert a new conditional block **between the "Estimated: X min" paragraph (line ~308–310) and the Start button (line ~311)**:
 
-**Scenario 2 — "Be om veibeskrivelse" (Asking for directions)**
-- characterName: "Forbipasserende"
-- setting: "You're lost in the city. You stop a passerby."
-- turns (4):
-  1. `{ id: 'excuse', character: 'Hei, kan jeg hjelpe deg?', characterEnglish: 'Hi, can I help you?', expectedKeywords: ['unnskyld','hjelp','stasjon','togstasjon','buss','veien','hvor'], hint: 'Ask for directions to somewhere.', modelAnswer: 'Unnskyld, hvor er togstasjonen?' }`
-  2. `{ id: 'understand', character: 'Togstasjonen er rett frem og til venstre ved lyskrysset.', characterEnglish: 'The train station is straight ahead and to the left at the traffic light.', expectedKeywords: ['forstår','ok','takk','skjønner','frem','venstre'], hint: 'Confirm you understand.', modelAnswer: 'Ok, rett frem og til venstre. Takk!' }`
-  3. `{ id: 'howfar', character: 'Det tar omtrent fem minutter å gå.', characterEnglish: "It's about a five minute walk.", expectedKeywords: ['takk','minutter','langt','greit','bra'], hint: 'Respond to the time estimate.', modelAnswer: 'Fem minutter — perfekt, takk så mye.' }`
-  4. `{ id: 'bye', character: 'Bare hyggelig! God tur!', characterEnglish: "You're welcome! Safe travels!", expectedKeywords: ['takk','ha','det','bra','hyggelig'], hint: 'Say goodbye.', modelAnswer: 'Takk! Ha det bra!' }`
+   ```tsx
+   {topDiagnosis && (
+     <div className="mt-3 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-2.5">
+       <div className="nc-label mb-1 text-[var(--nc-cream-dim)]">Why this</div>
+       <p className="text-[12px] leading-relaxed text-[var(--nc-cream-text)] text-pretty">
+         {topDiagnosis.reasoning}
+       </p>
+     </div>
+   )}
+   ```
 
-**Scenario 3 — "Introdusere deg selv" (Introducing yourself)**
-- characterName: "Kollega"
-- setting: "First day at a new job. A colleague introduces themselves."
-- turns (4):
-  1. `{ id: 'meet', character: 'Hei! Jeg heter Kari. Er du ny her?', characterEnglish: "Hi! I'm Kari. Are you new here?", expectedKeywords: ['heter','hei','ja','ny','navn','jeg'], hint: 'Introduce yourself.', modelAnswer: 'Hei! Jeg heter [ditt navn]. Ja, jeg er ny.' }`
-  2. `{ id: 'from', character: 'Hyggelig å møte deg! Hvor er du fra?', characterEnglish: 'Nice to meet you! Where are you from?', expectedKeywords: ['fra','bor','land','england','usa','norge','australia'], hint: 'Say where you are from.', modelAnswer: 'Jeg er fra England.' }`
-  3. `{ id: 'work', character: 'Spennende! Hva jobber du med her?', characterEnglish: 'Interesting! What will you be doing here?', expectedKeywords: ['jobber','arbeider','avdeling','prosjekt','design','kode','salg'], hint: 'Describe your role.', modelAnswer: 'Jeg jobber med design.' }`
-  4. `{ id: 'coffee', character: 'Kjempebra! Vil du ha en kopp kaffe?', characterEnglish: 'Great! Would you like a cup of coffee?', expectedKeywords: ['ja','takk','gjerne','kaffe','vil','ha'], hint: 'Accept or politely decline.', modelAnswer: 'Ja, gjerne! Tusen takk.' }`
+   - Use exactly the styling above — it matches the existing `nc-glass-cream` card's tone (cream surface, subtle inner border, label-then-body pattern, established `nc-label` class).
+   - `text-pretty` is already used elsewhere in this card; keep it for consistency.
+   - The "Why this" label is English. This is consistent with the dashboard's existing English-prefix pattern ("Today's session ·", "Estimated:") — the dashboard is an orientation surface, not a learning surface per CLAUDE.md's Norwegian-dominates principle.
 
-Export:
-```ts
-export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [ /* three scenarios above */ ]
-```
+3. Render absolutely nothing when `topDiagnosis` is null. Do not show a placeholder, fallback string, or empty state. If diagnosis hasn't fired yet (cold start, sparse error log), the surface is silent — that's correct.
 
----
+### Constraints — do NOT do any of these
 
-### Screen component (`src/components/muntlig/RoleplayScreen.tsx`)
-
-`'use client'` component. Three phases managed with `useState<'selection' | 'turn' | 'complete'>`.
-
-**Imports to reuse:**
-- `useSpeechRecognition` from `@/hooks/useSpeechRecognition`
-- `computeMatchScore` from `@/lib/speechMatchUtils`
-- `useFingerprint` from `@/hooks/useFingerprint`
-- `useFingerprintStore` from `@/stores/fingerprint-store`
-- `BottomNav` from `@/components/layout/BottomNav`
-- `motion`, `AnimatePresence` from `framer-motion`
-- `ROLEPLAY_SCENARIOS`, types from `@/lib/roleplayContent`
-
-**State:**
-```ts
-const [phase, setPhase] = useState<'selection' | 'turn' | 'complete'>('selection')
-const [activeScenario, setActiveScenario] = useState<RoleplayScenario | null>(null)
-const [turnIndex, setTurnIndex] = useState(0)
-const [turnPhase, setTurnPhase] = useState<'prompt' | 'listening' | 'result' | 'fallback'>('prompt')
-const [transcript, setTranscript] = useState('')
-const [retried, setRetried] = useState(false)      // true after first failed attempt
-const [scores, setScores] = useState<boolean[]>([]) // per-turn pass/fail
-```
-
-**Turn flow (per-turn state machine inside the 'turn' phase):**
-- `prompt`: show character line + mic button. Pressing mic → `listening`
-- `listening`: useSpeechRecognition active, 5-second countdown bar (same pattern as ListenRespondExercise). On transcript or timeout → `result`
-- `result`: show transcript + pass/fail. If pass → advance turn (or → `complete`). If fail and not retried → `fallback`
-- `fallback`: show hint + modelAnswer ("Prøv å si: ...") + two buttons: "Prøv igjen" (→ `listening`, sets `retried=true`) and "Fortsett" (advance turn, mark as fail)
-- If fail and already retried → advance directly
-
-**Match threshold:** `computeMatchScore(expectedKeywords.join(' '), transcript) >= 0.3` — since keywords are sparse (2–7 words), any single matching keyword in a normalised transcript counts as a reasonable attempt. For stronger validation: at least 1 keyword must match (score > 0).
-
-Actually use: `const matched = turn.expectedKeywords.some(kw => normaliseWord(transcript).includes(kw) || tokenise(normaliseWord(transcript)).includes(kw))` — same pattern as ListenRespondExercise's `getMatchedKeywords`. This is already the established pattern.
-
-**Fingerprint integration:**
-On each completed turn (pass or skip):
-```ts
-recordResult({
-  sessionId: 'roleplay',
-  itemId: `roleplay-${scenario.id}-${turn.id}`,
-  correct: passed,
-  userAnswer: transcript,
-  correctAnswer: turn.modelAnswer,
-  timeTakenSeconds: 5,
-  conceptId: 'speaking-production',
-  errorTag: passed ? undefined : 'listening-recognition',
-})
-```
-
-On scenario complete: increment `speakingMinutesTotal` by `turns.length * (5 / 60)`.
-
-**Selection phase UI:**
-- Page heading "Rollespill"
-- Subtitle "Øv på hverdagslige samtaler på norsk"
-- Feature chips: `['Samtalesimulator', 'Talegjenkjenning', 'Fingeravtrykk']`
-- Three scenario cards — `nc-glass`, clickable, show title + titleEnglish + setting + characterName
-- Pattern: identical to ListenRespondScreen's question cards
-
-**Turn phase UI:**
-- Heading showing scenario title
-- Progress indicator: `{turnIndex + 1} / {turns.length}` with a progress bar
-- Character card (`nc-glass-dark`):
-  - Small label: characterName
-  - Large Norwegian line: `text-[1.5rem] font-bold text-[var(--nc-text)]`
-  - English subtitle below
-- Learner area below (varies by turnPhase):
-  - `prompt`: large mic button `nc-button-primary` with mic icon + "Svar" label
-  - `listening`: pulsing red dot + countdown bar + interim transcript + "Hopp over" button
-  - `result`: show transcript, pass/fail badge (same chips as ListenRespondExercise), "Neste" button
-  - `fallback`: hint text + `"Prøv å si: ${turn.modelAnswer}"` in teal tint box + "Prøv igjen" + "Fortsett"
-
-**Complete phase UI:**
-- Same pattern as ListenRespondScreen's complete phase
-- Show pass count, per-turn bar, summary message
-- "Prøv et annet scenario" → back to selection
-- "Tilbake til dashboard" → router.push('/dashboard')
-
----
-
-### Page wrapper (`src/app/roleplay/page.tsx`)
-
-```tsx
-import { RoleplayScreen } from '@/components/muntlig/RoleplayScreen'
-export const metadata = { title: 'Rollespill — NorskCoach' }
-export default function RoleplayPage() {
-  return (
-    <main className="min-h-dvh">
-      <RoleplayScreen />
-    </main>
-  )
-}
-```
-
-No server-side data loading needed (content is in-memory, not from Supabase).
+- Do not modify `src/engine/diagnosis.ts`, `src/engine/scheduler.ts`, or any engine file.
+- Do not change the `DiagnosisResult` type or add fields.
+- Do not add a "loading" / "we're learning your patterns" placeholder. Silent absence is the intended state.
+- Do not surface diagnosis on the repair card, session-complete screen, or any other surface — that's a separate decision for a future task.
+- Do not introduce any new dependencies, hooks, or stores.
+- Do not refactor the dashboard layout. Insert the block in place.
+- Do not change the existing "Grammar moment" block at the bottom of the session card.
 
 ---
 
 ## Model
-sonnet (well-specified UI, established patterns)
+
+sonnet — mechanical insert into an established UI surface, established patterns, established design tokens.
 
 ---
 
 ## Acceptance Criteria
 
-1. `src/app/roleplay/page.tsx` exists and resolves at `/roleplay` without errors.
-2. `ROLEPLAY_SCENARIOS` exports 3 scenarios, each with 4 turns, correct Norwegian/English content.
-3. Scenario selection screen: 3 cards render with title, English subtitle, setting, and character name.
-4. Turn flow works end-to-end for at least one scenario: character line shown → mic button → speech input (or skip) → pass/fail → next turn → complete screen.
-5. Complete screen shows pass count and two buttons (try another, dashboard).
-6. `recordResult` is called once per completed turn. `speakingMinutesTotal` incremented on scenario complete.
-7. No TypeScript errors.
-8. No new npm dependencies — uses only existing hooks, utilities, and design system.
+1. `src/app/dashboard/page.tsx` is the only file changed in the diff.
+2. The "Why this" block renders inside the "Today's session" card on the dashboard, between the estimated-time line and the Start button.
+3. The block renders only when `plan?.diagnosisResults?.[0]` is present; renders nothing otherwise.
+4. The block displays the `reasoning` string from the highest-confidence diagnosis result.
+5. No TypeScript errors.
+6. No existing tests broken.
+7. Visual: at 375px and 1280px, the block sits cleanly inside the session card without breaking the existing rhythm; the cream tones match.
+8. No new console errors on page load.
 
 ---
 
 ## Blocking Flags
-Stop and write `BLOCKED: [reason]` to this file if:
-- `useSpeechRecognition` or `computeMatchScore` import fails
-- Any TypeScript error is introduced
-- You are about to add a new npm dependency
-- You are about to change any existing file other than optionally adding `/roleplay` to the dashboard nav link
+
+Stop immediately and write `BLOCKED: [reason]` to this file if:
+
+- Any TypeScript error is introduced.
+- The diagnosis surface requires importing the `DiagnosisResult` type (it should not — the `plan` state is already typed `SchedulerOutput`).
+- Any file outside `src/app/dashboard/page.tsx` would need to be changed to satisfy the brief.
+- You are about to modify the engine, scheduler, type definitions, or any component file.
+- You are about to add a non-silent fallback when diagnosis is absent.
 
 ---
 
 ## Playwright Checkpoint
-yes
-Test flows:
-1. Navigate to `/roleplay` — verify selection screen renders with 3 scenario cards
-2. Click first scenario — verify turn 1 character line appears
-3. Verify mic button is present and labelled
-4. Verify layout at 375px and 1280px
-5. Verify no console errors
+
+FULL
+
+Tests:
+1. Navigate to `/dashboard` — verify the page renders without error.
+2. Take a screenshot at 375px (mobile) and 1280px (desktop) of the dashboard.
+3. Inspect the DOM for the "Why this" block:
+   - If the learner has no recent errors (likely default mock state), block should be absent.
+   - If a diagnosis result is present, the `reasoning` text should be visible inside the session card.
+4. Critical-path regression: navigate to `/`, start a session (or `/session` if dashboard Start button is the entry), submit one wrong answer, verify repair loop still appears, finish session.
+5. No new console errors anywhere on the tested pages.
+
+Save screenshots to `.council/reports/screenshots/[timestamp]-diagnosis-visibility/`.
