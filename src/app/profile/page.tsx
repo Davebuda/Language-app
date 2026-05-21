@@ -102,7 +102,7 @@ export default function ProfilePage() {
 
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Nivå', value: status === 'loading' ? '–' : (fingerprint?.currentLevel ?? 'A1'), tone: 'text-[var(--nc-red)]' },
+            { label: 'Nivå', value: fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1'), tone: 'text-[var(--nc-red)]' },
             { label: 'Streak', value: String(streak), tone: 'text-[var(--nc-text)]' },
             {
               label: 'Økter',
@@ -124,7 +124,7 @@ export default function ProfilePage() {
         <div className="nc-glass-cream p-4">
           <div className="nc-label text-nc-cream-dim">Nåværende nivå</div>
           <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-cream-text)]">
-            {status === 'loading' ? '–' : (LEVEL_LABELS[fingerprint?.currentLevel ?? 'A1'] ?? 'A1')}
+            {fingerprint?.currentLevel ? (LEVEL_LABELS[fingerprint.currentLevel] ?? fingerprint.currentLevel) : (status === 'loading' ? '–' : 'A1')}
           </div>
           <div className="mt-4 h-2 w-full overflow-hidden rounded-[0.4rem] bg-[rgba(4,14,8,0.12)]">
             <div
@@ -185,6 +185,7 @@ export default function ProfilePage() {
                 <button
                   key={opt.value}
                   type="button"
+                  aria-pressed={isActive}
                   onClick={() => {
                     if (!fingerprint) return
                     const updated = { ...fingerprint, inputProductionPreference: opt.value, updatedAt: new Date().toISOString() }
