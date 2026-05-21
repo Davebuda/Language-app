@@ -343,4 +343,23 @@ Screenshots: `drills-exercise-kjlyd.png`, `drills-dashboard-muntlig-links.png`
 Muntlig progress: shadowing ✅ | drills ✅ | listen-respond → | roleplay →
 Next: Listen-and-respond (Muntlig Step 4)
 
+## 2026-05-21 APPROVE — Listen-and-respond mode (Muntlig Step 4)
+
+Criteria met:
+- `/listen` renders 7 question cards with Norwegian question + English translation ✅
+- Selection → exercise transition: h2 "Hva gjør du om morgenen?" as T1 dominant element ✅
+- "Start lytting og svar på spørsmålet" button present ✅
+- 5-second countdown via `scaleX` transform + `hasResolved` ref race-condition guard ✅
+- Keyword chip matching (green/dim) + pass/fail badge ✅
+- `speakingMinutesTotal` incremented at session complete via `useFingerprintStore` ✅
+- Dashboard: "Lytt og svar" link → /listen (4th muntlig link) ✅
+- TypeScript: 0 errors ✅
+- 0 console errors on /listen ✅
+
+Playwright: PASS — report at `.council/reports/2026-05-21-listen-respond-mode.md`
+Screenshots: `listen-respond-selection.png`, `listen-respond-questions.png`
+
+Muntlig progress: shadowing ✅ | drills ✅ | listen-respond ✅ | roleplay →
+Next: Scripted roleplay (Muntlig Step 5 — most complex)
+
 ---

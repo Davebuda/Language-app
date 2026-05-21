@@ -370,6 +370,13 @@ export default function DashboardPage() {
             >
               Uttaleøvelser
             </Link>
+            <Link
+              href="/listen"
+              aria-label="Øv på å lytte og svare"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+            >
+              Lytt og svar
+            </Link>
           </div>
         </motion.div>
 
