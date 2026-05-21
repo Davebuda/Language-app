@@ -221,7 +221,11 @@ export default function ConversationPage() {
         ? buildConstraintEvalPrompt(activeConstraint)
         : undefined
 
-      const result = await aiService.conversationTurn(history, level, selectedTopic ?? 'daily-routine', constraintSuffix)
+      // P0.5-05 (F028): pass the Norwegian topic label, not the English slug, so
+      // the template fallback opener reads "La oss snakke om daglig rutine" not
+      // "La oss snakke om daily-routine".
+      const topicLabel = TOPICS.find((t) => t.id === selectedTopic)?.label ?? 'daglig rutine'
+      const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix)
       setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
