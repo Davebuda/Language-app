@@ -8,9 +8,8 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
 import { getConceptColor } from '@/lib/concept-colors'
 import type { ConceptGraph, ConceptNode } from '@/types/concepts'
-import conceptGraphJson from '@content/concepts/a1-graph.json'
-
-const conceptGraph = conceptGraphJson as ConceptGraph
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
 
 const PHASE_META: Record<ConceptPhase, { label: string; badgeTone: string; description: string }> = {
   maintenance: {
@@ -51,7 +50,21 @@ function getPrereqLabel(concept: ConceptNode, allConcepts: ConceptNode[]): strin
 
 export default function ProgressPage() {
   useFingerprint()
-  const { fingerprint } = useFingerprintStore()
+  const { fingerprint, status } = useFingerprintStore()
+  const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
+  const levelLabel = fingerprint?.currentLevel ?? 'A1'
+
+  if (status === 'loading') {
+    return (
+      <div className="nc-gradient-page flex flex-col min-h-dvh">
+        <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
+          <div className="h-8 w-48 animate-pulse rounded-lg bg-white/5" />
+          <div className="h-4 w-64 animate-pulse rounded bg-white/5" />
+        </main>
+        <BottomNav active="progress" />
+      </div>
+    )
+  }
 
   const masteredIds = new Set(
     conceptGraph.concepts
@@ -94,7 +107,7 @@ export default function ProgressPage() {
             Progress
           </h1>
           <p className="mt-1 text-sm text-[var(--nc-text-muted)]">
-            A1 — {masteredCount} of {totalCount} in maintenance or consolidation
+            {levelLabel} — {masteredCount} of {totalCount} in maintenance or consolidation
           </p>
         </div>
 

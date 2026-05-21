@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, MicOff } from 'lucide-react'
 import { aiService } from '@/ai'
@@ -81,10 +81,17 @@ export function WritingEditor() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showCorrected, setShowCorrected] = useState(false)
   // Voice mode: 'voice' is default when API is available, 'text' is explicit fallback
-  const hasSpeechAPI = !!getSpeechCtor()
-  const [inputMode, setInputMode] = useState<'voice' | 'text'>(hasSpeechAPI ? 'voice' : 'text')
+  const [hasSpeechAPI, setHasSpeechAPI] = useState(false)
+  const [inputMode, setInputMode] = useState<'voice' | 'text'>('text')
   const [isListening, setIsListening] = useState(false)
   const recognitionRef = useRef<SpeechRecA | null>(null)
+  useEffect(() => {
+    const ctor = getSpeechCtor()
+    if (ctor) {
+      setHasSpeechAPI(true)
+      setInputMode('voice')
+    }
+  }, [])
 
   const { user } = useAuth()
   const { fingerprint, setFingerprint } = useFingerprintStore()

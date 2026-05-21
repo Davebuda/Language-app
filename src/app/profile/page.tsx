@@ -12,15 +12,14 @@ import { getStreak } from '@/lib/streak'
 import { BottomNav } from '@/components/layout/BottomNav'
 import type { InputProductionPreference } from '@/types/fingerprint'
 import type { ConceptGraph } from '@/types/concepts'
-import conceptGraphJson from '@content/concepts/a1-graph.json'
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
 
 const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
   { value: 'input_heavy', label: 'Input-heavy', desc: 'More reading & listening' },
   { value: 'balanced', label: 'Balanced', desc: 'Mix of both' },
   { value: 'production_heavy', label: 'Production', desc: 'More writing & speaking' },
 ]
-
-const conceptGraph = conceptGraphJson as ConceptGraph
 
 const LEVEL_LABELS: Record<string, string> = {
   A1: 'A1 - Nybegynner',
@@ -33,7 +32,8 @@ export default function ProfilePage() {
   const router = useRouter()
   const { user, signOut, loading: authLoading } = useAuth()
   useFingerprint()
-  const { fingerprint, setFingerprint } = useFingerprintStore()
+  const { fingerprint, setFingerprint, status } = useFingerprintStore()
+  const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
   const streak = getStreak()
 
   const masteredCount = conceptGraph.concepts.filter((concept) => {
@@ -102,7 +102,7 @@ export default function ProfilePage() {
 
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: 'Nivå', value: fingerprint?.currentLevel ?? 'A1', tone: 'text-[var(--nc-red)]' },
+            { label: 'Nivå', value: status === 'loading' ? '–' : (fingerprint?.currentLevel ?? 'A1'), tone: 'text-[var(--nc-red)]' },
             { label: 'Streak', value: String(streak), tone: 'text-[var(--nc-text)]' },
             {
               label: 'Økter',
@@ -124,7 +124,7 @@ export default function ProfilePage() {
         <div className="nc-glass-cream p-4">
           <div className="nc-label">Nåværende nivå</div>
           <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-text)]">
-            {LEVEL_LABELS[fingerprint?.currentLevel ?? 'A1']}
+            {status === 'loading' ? '–' : (LEVEL_LABELS[fingerprint?.currentLevel ?? 'A1'] ?? 'A1')}
           </div>
           <div className="mt-4 h-2 w-full overflow-hidden rounded-[0.4rem] bg-[var(--nc-border)]">
             <div

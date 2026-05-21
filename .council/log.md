@@ -57,4 +57,21 @@ Side finding: Pre-existing SSR hydration mismatch in `WritingEditor.tsx` — `ge
 
 Next task: P1-5 — Profile/Progress SSR hydration flash (and WritingEditor SSR fix found in same session)
 
+## 2026-05-21 APPROVE — P1-5 + P1-6 SSR hydration flash + wrong concept graph
+
+Criteria met:
+- Progress page: skeleton guard renders during status=loading; no A1 flash ✅
+- Progress page: graph selects a2Graph for A2 users ✅
+- Profile page: Nivå stat shows "–" during loading (no A1 flash) ✅
+- Profile page: Nåværende nivå shows "–" during loading ✅
+- Journal: 0 console errors (hydration mismatch eliminated, bonus fix) ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — report at `.council/reports/2026-05-21-p1-5-p1-6-hydration-graph.md`
+
+Files changed: `progress/page.tsx`, `profile/page.tsx`, `WritingEditor.tsx`
+
+P1 closed so far: 1, 2, 3, 4, 5, 6 (6 of 13)
+Next: P1-7 — Recalibration starts without trigger banner or opt-in
+
 ---

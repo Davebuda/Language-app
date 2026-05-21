@@ -286,8 +286,8 @@ These are ordered by user-impact severity. None may be scheduled until all P0 it
 | ✅ P1-2 | Conversation mic auto-starts recording without user consent | S5 — **CLOSED 2026-05-21** |
 | ✅ P1-3 | Conversation opener is context-free ("Bra! Kan du fortelle mer?") | S4 — **CLOSED 2026-05-21** |
 | ✅ P1-4 | Journal feedback quality — English praise/suggestion fixed; template path now Norwegian; prompt constrained | S7 — **CLOSED 2026-05-21** (model quality ceiling noted — requires A1 model swap for full resolution) |
-| P1-5 | Profile/Progress SSR hydration flash (A1→A2) | S10 |
-| P1-6 | Progress page shows wrong level's concept graph | S10 |
+| ✅ P1-5 | Profile/Progress SSR hydration flash (A1→A2) | S10 — **CLOSED 2026-05-21** |
+| ✅ P1-6 | Progress page shows wrong level's concept graph | S10 — **CLOSED 2026-05-21** |
 | P1-7 | Recalibration starts without trigger banner or opt-in | S12 |
 | P1-8 | Recalibration accessibility tree empty (screen reader gets nothing) | S12 |
 | P1-9 | Diagnostic terminates at 5/12 with "12" visible in counter | S11 |
