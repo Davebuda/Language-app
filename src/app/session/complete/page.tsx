@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Share2 } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSessionStore } from '@/stores/session-store'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -11,7 +11,8 @@ import { ScoreCircle } from '@/components/session/ScoreCircle'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { emitEvent } from '@/lib/events'
 import type { ConceptGraph } from '@/types/concepts'
-import conceptGraphJson from '@content/concepts/a1-graph.json'
+import a1GraphJson from '@content/concepts/a1-graph.json'
+import a2GraphJson from '@content/concepts/a2-graph.json'
 
 const REFLECTION_PROMPTS = [
   'Hva føltes vanskeligst akkurat nå?',
@@ -19,8 +20,6 @@ const REFLECTION_PROMPTS = [
   'Hvilken øvelse overrasket deg?',
   'Hva vil du huske til neste økt?',
 ] as const
-
-const conceptGraph = conceptGraphJson as ConceptGraph
 
 function formatDuration(startedAt: string): string {
   const ms = Date.now() - new Date(startedAt).getTime()
@@ -34,6 +33,7 @@ export default function SessionCompletePage() {
   const router = useRouter()
   const { session, results, endSession } = useSessionStore()
   const { fingerprint, setFingerprint } = useFingerprintStore()
+  const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
 
   useEffect(() => {
     if (!session && results.length === 0) {
@@ -142,13 +142,6 @@ export default function SessionCompletePage() {
           >
             <ArrowLeft size={18} />
           </button>
-          <button
-            type="button"
-            className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
-            aria-label="Del"
-          >
-            <Share2 size={17} />
-          </button>
         </div>
 
         {/* Heading */}
@@ -207,7 +200,7 @@ export default function SessionCompletePage() {
           <div className="relative z-[1]">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-[15px] font-medium text-[var(--nc-text)]">What you mastered</div>
+                <div className="text-[15px] font-medium text-[var(--nc-text)]">Hva du øvde på</div>
                 <div className="mt-3 space-y-3 text-sm text-[var(--nc-text-muted)]">
                   {practicedConceptIds.slice(0, 3).map((id) => {
                     const node = conceptGraph.concepts.find((concept) => concept.id === id)

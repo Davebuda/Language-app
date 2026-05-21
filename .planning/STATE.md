@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: P1-recovery
 milestone_name: P1 bug fix batch
 status: executing
-stopped_at: P1-12 closed. P1-13 (session complete screen) is last P1 item.
+stopped_at: P1 COMPLETE — all 13 items closed. Stream 4 (ambient learning) is next.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — P1-12 (conversation summary screen) fixed and playwright-verified
+last_activity: 2026-05-21 — P1-13 (session complete fixes) closed. P1 batch complete.
 progress:
   p0_items: 8/8 complete
-  p1_items_closed: 12
+  p1_items_closed: 13
   p1_items_total: 13
   p2_items_closed: 0
   p2_items_total: 9
@@ -50,7 +50,7 @@ All 8 P0 items closed. Session loop is completable end-to-end.
 | P1-10 Dashboard notifications bell dead | ✅ CLOSED 2026-05-21 |
 | P1-11 Waitlist form cosmetic — no data captured | ✅ CLOSED 2026-05-21 |
 | P1-12 Conversation end no summary or save confirmation | ✅ CLOSED 2026-05-21 |
-| P1-13 Session complete screen untestable | Open |
+| P1-13 Session complete screen untestable | ✅ CLOSED 2026-05-21 |
 
 ## Decisions
 

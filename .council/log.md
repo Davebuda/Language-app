@@ -162,4 +162,19 @@ Screenshot: `p1-12-conversation-summary.png`
 P1 closed so far: 1–12 (12 of 13)
 Next: P1-13 — Session complete screen untestable
 
+## 2026-05-21 APPROVE — P1-13 Session complete screen fixes
+
+Criteria met:
+- Dead `Share2`/Del button removed; `Share2` import cleaned up ✅
+- "What you mastered" → "Hva du øvde på" ✅
+- Concept graph now level-aware (A1/A2 selection, identical pattern to P1-6) ✅
+- Guard redirect confirmed: `/session/complete` → `/dashboard` when no session ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — snapshot confirmed all 3 fixes; dashboard regression clear
+Screenshot: `p1-13-session-complete.png`
+
+**P1 BATCH COMPLETE — all 13 items closed.**
+Next: Stream 4 — Ambient Learning (Daily Learning Card → Daily Word Pack → Progress Strip)
+
 ---
