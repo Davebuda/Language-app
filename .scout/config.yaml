@@ -1,0 +1,15 @@
+project: NorskCoach
+category: adaptive-language-learning
+detected_needs:
+  - auth
+  - database
+  - AI
+  - spaced-repetition
+  - speech-recognition
+  - content-delivery
+brief_max_age_hours: 48
+default_mode: fast
+exclude_lanes: []
+focus_lanes:
+  - AI Integration
+  - OSS Repositories

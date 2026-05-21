@@ -3,3 +3,7 @@ node_modules/
 .env.local
 .env.*.local
 *.tsbuildinfo
+
+# Scout working files (lane temp files — keep briefs and config)
+.scout/lane-*.md
+.scout/planner.md
