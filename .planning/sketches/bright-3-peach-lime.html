@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 3 — Peach & Lime Bloom ⭐</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --base:#FDF6EE;
+  --card:rgba(255,250,243,0.82);
+  --dark:#181526;
+  --coral:#FF6B6B;
+  --teal:#4ECDC4;
+  --lime:#C8FF00;
+  --violet:#A78BFA;
+  --text:#181526;
+  --text2:#7A6E8A;
+  --muted:#B8ADC8;
+  --border:rgba(255,200,160,0.40);
+  --shadow:0 4px 28px rgba(24,21,38,0.09);
+}
+body{font-family:'Outfit',sans-serif;background:var(--base);color:var(--text);width:390px;min-height:844px;position:relative;overflow-x:hidden}
+
+/* Organic warm blob background */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 75% 55% at 5% 85%, rgba(255,180,150,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 50% at 95% 10%, rgba(200,255,0,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(167,139,250,0.05) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+/* SVG noise texture layer */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:1;pointer-events:none;z-index:0;
+}
+
+.screen{position:relative;z-index:1;display:flex;flex-direction:column;padding:56px 18px 80px;gap:14px;min-height:844px}
+
+/* Peach glass card with noise */
+.card{
+  background:var(--card);
+  backdrop-filter:blur(12px) saturate(1.6);
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+/* Top bar */
+.topbar{position:fixed;top:0;left:0;right:0;width:390px;background:rgba(253,246,238,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 18px 10px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.topbar-dir{font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#FF6B6B}
+.topbar-rec{font-size:10px;font-weight:700;color:var(--lime);background:var(--dark);padding:2px 8px;border-radius:9999px;letter-spacing:0.06em}
+
+/* Header */
+.header{display:flex;align-items:flex-start;justify-content:space-between}
+.header-left{display:flex;flex-direction:column;gap:2px}
+.date{font-size:11px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--muted)}
+.greeting{font-size:26px;font-weight:800;line-height:1.15;color:var(--text)}
+.avatar{width:44px;height:44px;border-radius:9999px;background:var(--dark);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;flex-shrink:0;box-shadow:0 4px 16px rgba(24,21,38,0.20)}
+
+/* Dark hero session card — the ONE dark element */
+.hero-card{
+  background:var(--dark);
+  border-radius:22px;
+  padding:22px 20px;
+  display:flex;flex-direction:column;gap:14px;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 32px rgba(24,21,38,0.22);
+}
+.hero-glow-lime{position:absolute;top:-50px;right:-50px;width:160px;height:160px;background:radial-gradient(circle,rgba(200,255,0,0.18),transparent 65%);border-radius:50%}
+.hero-glow-coral{position:absolute;bottom:-30px;left:-20px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,107,107,0.16),transparent 65%);border-radius:50%}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(200,255,0,0.55);position:relative}
+.hero-title{font-size:22px;font-weight:800;color:#fff;position:relative;line-height:1.2}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;position:relative}
+.chip{padding:6px 14px;border-radius:9999px;font-size:10px;font-weight:700;border:1px solid;letter-spacing:0.02em}
+.chip-coral{background:rgba(255,107,107,0.18);border-color:rgba(255,107,107,0.40);color:#FF8080}
+.chip-ghost{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.14);color:rgba(255,255,255,0.45)}
+
+/* Coach insight */
+.insight-card{padding:15px 17px;display:flex;flex-direction:column;gap:5px;border-left:3px solid var(--lime)}
+.insight-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(24,21,38,0.35)}
+.insight-text{font-size:13px;color:var(--text2);line-height:1.65}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.stat-val{font-size:32px;font-weight:900;letter-spacing:-0.02em;color:var(--text)}
+.stat-val.co{color:var(--coral)}
+.stat-val.te{color:var(--teal)}
+.stat-val.li{color:var(--dark)}
+.stat-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+
+.section-hd{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:-6px}
+
+/* Mode grid — each card has its accent tint */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-card{border-radius:22px;padding:18px 14px;display:flex;flex-direction:column;gap:10px;cursor:pointer;box-shadow:0 2px 16px rgba(24,21,38,0.06)}
+.mode-card.vi{background:rgba(167,139,250,0.10);border:1px solid rgba(167,139,250,0.22)}
+.mode-card.te{background:rgba(78,205,196,0.10);border:1px solid rgba(78,205,196,0.22)}
+.mode-card.li{background:rgba(200,255,0,0.09);border:1px solid rgba(200,255,0,0.20)}
+.mode-card.dm{background:rgba(24,21,38,0.04);border:1px solid rgba(24,21,38,0.08)}
+.mode-emoji-wrap{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.mode-emoji-wrap.vi{background:rgba(167,139,250,0.16)}
+.mode-emoji-wrap.te{background:rgba(78,205,196,0.16)}
+.mode-emoji-wrap.li{background:rgba(200,255,0,0.14)}
+.mode-emoji-wrap.dm{background:rgba(24,21,38,0.07)}
+.mode-name{font-size:14px;font-weight:800;margin-top:2px}
+.mode-name.vi{color:var(--violet)}
+.mode-name.te{color:var(--teal)}
+.mode-name.li{color:var(--dark)}
+.mode-name.dm{color:var(--muted)}
+.mode-desc{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* Streak */
+.streak-row{display:flex;align-items:center;gap:12px;padding:14px 17px}
+.streak-fire{font-size:24px}
+.streak-num{font-size:28px;font-weight:900;color:var(--coral);letter-spacing:-0.02em}
+.streak-lbl{font-size:12px;color:var(--text2)}
+
+/* CTA */
+.cta{
+  background:var(--dark);
+  color:var(--lime);
+  border:none;
+  border-radius:9999px;
+  padding:17px;
+  font-family:'Outfit',sans-serif;
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:0.01em;
+  cursor:pointer;
+  width:100%;
+  text-align:center;
+  box-shadow:0 6px 24px rgba(24,21,38,0.22);
+}
+
+/* Nav */
+.nav{position:fixed;bottom:0;left:0;right:0;width:390px;background:rgba(253,246,238,0.92);backdrop-filter:blur(18px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 0 20px;z-index:10}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.nav-pill{padding:5px 14px;border-radius:9999px;font-size:16px;background:transparent}
+.nav-pill.on{background:var(--dark)}
+.nav-label{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+.nav-label.on{color:var(--dark)}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="topbar-dir">3 — Peach & Lime Bloom</span>
+  <span class="topbar-rec">⭐ Anbefalt</span>
+</div>
+<div class="screen">
+  <div class="header">
+    <div class="header-left">
+      <span class="date">Mandag, 11. mai</span>
+      <span class="greeting">Hei, David! 👋</span>
+    </div>
+    <div class="avatar">D</div>
+  </div>
+
+  <!-- DARK hero — the one dark block in a warm world -->
+  <div class="hero-card">
+    <div class="hero-glow-lime"></div>
+    <div class="hero-glow-coral"></div>
+    <span class="hero-eyebrow">I dag · ~12 min</span>
+    <div class="hero-title">V2 Word Order</div>
+    <div class="chip-row">
+      <span class="chip chip-coral">3 reparasjoner</span>
+      <span class="chip chip-ghost">5 repetisjon</span>
+      <span class="chip chip-ghost">2 nytt</span>
+    </div>
+  </div>
+
+  <!-- Coach insight — glass card with lime left border -->
+  <div class="card insight-card">
+    <span class="insight-eyebrow">🎯 Trener-innsikt · 94% sikker</span>
+    <span class="insight-text">Du gjør feil på V2-regelen etter adverb 3 av 4 ganger. Engine setter dette som fokus i dag.</span>
+  </div>
+
+  <!-- Stats — three glass cards -->
+  <div class="stats-row">
+    <div class="card stat"><span class="stat-val">87</span><span class="stat-label">Fremgang %</span></div>
+    <div class="card stat"><span class="stat-val co">14</span><span class="stat-label">Streak</span></div>
+    <div class="card stat"><span class="stat-val te">A2</span><span class="stat-label">Nivå</span></div>
+  </div>
+
+  <span class="section-hd">Læringsverktøy</span>
+  <!-- Mode grid — tinted glass cards -->
+  <div class="mode-grid">
+    <div class="mode-card vi">
+      <div class="mode-emoji-wrap vi">💬</div>
+      <div><div class="mode-name vi">Samtale</div><div class="mode-desc">AI-tutor, norsk</div></div>
+    </div>
+    <div class="mode-card te">
+      <div class="mode-emoji-wrap te">📖</div>
+      <div><div class="mode-name te">Les</div><div class="mode-desc">4 tekster klare</div></div>
+    </div>
+    <div class="mode-card li">
+      <div class="mode-emoji-wrap li">✍️</div>
+      <div><div class="mode-name li">Skriv</div><div class="mode-desc">Journal + AI-analyse</div></div>
+    </div>
+    <div class="mode-card dm">
+      <div class="mode-emoji-wrap dm">🎙️</div>
+      <div><div class="mode-name dm">Uttale</div><div class="mode-desc">Snart</div></div>
+    </div>
+  </div>
+
+  <div class="card streak-row">
+    <span class="streak-fire">🔥</span>
+    <span class="streak-num">14</span>
+    <span class="streak-lbl">dagers streak</span>
+  </div>
+
+  <button class="cta">Start dagens økt →</button>
+</div>
+
+<nav class="nav">
+  <div class="nav-item"><div class="nav-pill on">🏠</div><span class="nav-label on">Hjem</span></div>
+  <div class="nav-item"><div class="nav-pill">📚</div><span class="nav-label">Økt</span></div>
+  <div class="nav-item"><div class="nav-pill">💬</div><span class="nav-label">Samtale</span></div>
+  <div class="nav-item"><div class="nav-pill">📊</div><span class="nav-label">Fremgang</span></div>
+  <div class="nav-item"><div class="nav-pill">👤</div><span class="nav-label">Profil</span></div>
+</nav>
+</body>
+</html>

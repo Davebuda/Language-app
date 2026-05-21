@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 1 — Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --base: #070810;
+    --card: #0f1019;
+    --card-hi: #141520;
+    --border: rgba(255,255,255,0.05);
+    --border-active: rgba(200,255,0,0.25);
+    --lime: #C8FF00;
+    --ember: #FF5E45;
+    --teal: #00E5CC;
+    --text: #F0F0F0;
+    --text-2: rgba(240,240,240,0.40);
+    --text-label: rgba(240,240,240,0.22);
+  }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--base);
+    color: var(--text);
+    width: 390px;
+    min-height: 844px;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .screen {
+    display: flex;
+    flex-direction: column;
+    min-height: 844px;
+    padding: 52px 20px 80px;
+    gap: 16px;
+  }
+
+  /* Header */
+  .header { display: flex; flex-direction: column; gap: 2px; margin-bottom: 4px; }
+  .eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-label); }
+  .greeting { font-size: 22px; font-weight: 800; color: var(--text); }
+
+  /* Session card */
+  .session-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .session-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,255,0,0.35), transparent);
+  }
+  .session-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-label); }
+  .session-title { font-size: 17px; font-weight: 800; color: var(--text); }
+  .session-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .chip-lime { background: rgba(200,255,0,0.08); border-color: rgba(200,255,0,0.2); color: var(--lime); }
+  .chip-ember { background: rgba(255,94,69,0.08); border-color: rgba(255,94,69,0.2); color: var(--ember); }
+  .chip-dim { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: var(--text-2); }
+
+  /* Insight */
+  .insight-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 2px solid rgba(200,255,0,0.4);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .insight-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,255,0,0.45); }
+  .insight-text { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .stat-val { font-size: 28px; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
+  .stat-val.lime { color: var(--lime); }
+  .stat-val.teal { color: var(--teal); }
+  .stat-val.ember { color: var(--ember); }
+  .stat-label { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-label); }
+
+  /* Mode grid */
+  .section-label { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-label); margin-bottom: -8px; }
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mode-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .mode-icon { font-size: 18px; }
+  .mode-name { font-size: 13px; font-weight: 800; color: var(--text); }
+  .mode-desc { font-size: 10px; color: var(--text-label); line-height: 1.4; }
+  .mode-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .badge-lime { background: rgba(200,255,0,0.1); color: var(--lime); }
+  .badge-teal { background: rgba(0,229,204,0.1); color: var(--teal); }
+  .badge-ember { background: rgba(255,94,69,0.1); color: var(--ember); }
+  .badge-dim { background: rgba(255,255,255,0.05); color: var(--text-2); }
+
+  /* CTA */
+  .cta {
+    background: var(--lime);
+    color: #070810;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    width: 390px;
+    background: var(--base);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 16px;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .nav-icon { font-size: 16px; opacity: 0.25; }
+  .nav-icon.active { opacity: 1; filter: drop-shadow(0 0 6px var(--lime)); }
+  .nav-label { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-label); }
+  .nav-label.active { color: var(--lime); }
+
+  /* Direction label */
+  .dir-label {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 390px;
+    background: rgba(200,255,0,0.08);
+    border-bottom: 1px solid rgba(200,255,0,0.15);
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dir-name { font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: 0.08em; text-transform: uppercase; }
+  .dir-sub { font-size: 10px; color: var(--text-label); }
+</style>
+</head>
+<body>
+  <div class="dir-label">
+    <span class="dir-name">Direction 1 — Signal</span>
+    <span class="dir-sub">Diagnostic instrument</span>
+  </div>
+
+  <div class="screen">
+    <div class="header">
+      <span class="eyebrow">Mandag, 11. mai 2026</span>
+      <span class="greeting">Hei, David.</span>
+    </div>
+
+    <div class="session-card">
+      <span class="session-label">I dag · 12 min</span>
+      <div class="session-title">V2 Word Order</div>
+      <div class="session-chips">
+        <span class="chip chip-ember">3 reparasjoner</span>
+        <span class="chip chip-dim">5 repetisjon</span>
+        <span class="chip chip-dim">2 nytt</span>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-label">🎯 Trener-innsikt</span>
+      <span class="insight-text">Du gjør feil på V2-regelen etter adverb 3 av 4 ganger. Engine prioriterer dette i dag.</span>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-val lime">87</span>
+        <span class="stat-label">Fremgang %</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">14</span>
+        <span class="stat-label">Dagers streak</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val teal">A2</span>
+        <span class="stat-label">Nivå</span>
+      </div>
+    </div>
+
+    <span class="section-label">Læringsverktøy</span>
+    <div class="mode-grid">
+      <div class="mode-card">
+        <span class="mode-icon">💬</span>
+        <div>
+          <div class="mode-name">Samtale</div>
+          <div class="mode-desc">Snakk med AI-tutor</div>
+        </div>
+        <span class="mode-badge badge-lime">AI aktiv</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">✍️</span>
+        <div>
+          <div class="mode-name">Skriv</div>
+          <div class="mode-desc">Journalskriving</div>
+        </div>
+        <span class="mode-badge badge-dim">Fritt</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">📖</span>
+        <div>
+          <div class="mode-name">Les</div>
+          <div class="mode-desc">Lesestudio</div>
+        </div>
+        <span class="mode-badge badge-teal">4 tekster</span>
+      </div>
+      <div class="mode-card">
+        <span class="mode-icon">🎙️</span>
+        <div>
+          <div class="mode-name">Uttale</div>
+          <div class="mode-desc">Skygging & uttale</div>
+        </div>
+        <span class="mode-badge badge-ember">Snart</span>
+      </div>
+    </div>
+
+    <button class="cta">Start dagens økt →</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="nav-item">
+      <span class="nav-icon active">⊞</span>
+      <span class="nav-label active">Hjem</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">◈</span>
+      <span class="nav-label">Økt</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">◎</span>
+      <span class="nav-label">Samtale</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">▦</span>
+      <span class="nav-label">Fremgang</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">◯</span>
+      <span class="nav-label">Profil</span>
+    </div>
+  </nav>
+</body>
+</html>

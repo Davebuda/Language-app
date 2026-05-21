@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 1 — Warm Cream & Coral Dusk</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --base:#FAF7F2;
+  --card:rgba(255,252,248,0.82);
+  --dark:#1C1A2E;
+  --coral:#FF6B6B;
+  --mint:#4ECDC4;
+  --lime:#C8FF00;
+  --text:#1C1A2E;
+  --text2:#6B6478;
+  --muted:#B0A8B9;
+  --border:rgba(255,220,200,0.50);
+  --shadow:0 4px 24px rgba(28,26,46,0.08);
+}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--base);
+  color:var(--text);
+  width:390px;
+  min-height:844px;
+  position:relative;
+  overflow-x:hidden;
+}
+/* Warm gradient wash */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 85%, rgba(255,107,107,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 10%, rgba(255,230,200,0.20) 0%, transparent 55%);
+  pointer-events:none;
+  z-index:0;
+}
+.screen{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  padding:56px 18px 80px;
+  gap:14px;
+  min-height:844px;
+}
+/* Glass card base */
+.card{
+  background:var(--card);
+  backdrop-filter:blur(14px) saturate(1.4);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  /* dot grid pattern */
+  background-image:
+    radial-gradient(circle,rgba(200,180,160,0.18) 1px,transparent 1px),
+    linear-gradient(rgba(255,252,248,0.82),rgba(255,252,248,0.82));
+  background-size:18px 18px, 100% 100%;
+}
+
+/* Top bar */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;width:390px;
+  background:rgba(250,247,242,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,220,200,0.30);
+  padding:12px 18px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:10;
+}
+.topbar-dir{font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral)}
+.topbar-sub{font-size:10px;color:var(--muted)}
+
+/* Header */
+.header{display:flex;align-items:flex-start;justify-content:space-between}
+.header-left{display:flex;flex-direction:column;gap:2px}
+.date{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+.greeting{font-size:24px;font-weight:800;color:var(--text);line-height:1.15}
+.avatar{width:42px;height:42px;border-radius:9999px;background:var(--dark);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0}
+
+/* Hero session card — DARK */
+.hero-card{
+  background:var(--dark);
+  border-radius:20px;
+  padding:20px;
+  display:flex;flex-direction:column;gap:12px;
+  position:relative;overflow:hidden;
+}
+.hero-card::after{
+  content:'';
+  position:absolute;
+  top:-40px;right:-40px;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(200,255,0,0.18),transparent 70%);
+  border-radius:50%;
+}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,255,0,0.55)}
+.hero-title{font-size:20px;font-weight:800;color:#fff}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:5px 12px;border-radius:9999px;font-size:10px;font-weight:700;border:1px solid}
+.chip-coral{background:rgba(255,107,107,0.18);border-color:rgba(255,107,107,0.35);color:#FF6B6B}
+.chip-white{background:rgba(255,255,255,0.10);border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.55)}
+.chip-lime{background:rgba(200,255,0,0.15);border-color:rgba(200,255,0,0.30);color:#C8FF00}
+
+/* Insight card */
+.insight-card{
+  padding:14px 16px;
+  display:flex;flex-direction:column;gap:5px;
+  border-left:3px solid var(--lime);
+  background:rgba(200,255,0,0.05);
+  border-top:1px solid rgba(200,255,0,0.15);
+  border-right:1px solid rgba(200,255,0,0.15);
+  border-bottom:1px solid rgba(200,255,0,0.15);
+  border-radius:0 16px 16px 0;
+  box-shadow:none;
+  background-image:none;
+  backdrop-filter:none;
+}
+.insight-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,26,46,0.4)}
+.insight-text{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{padding:14px 12px;display:flex;flex-direction:column;gap:3px}
+.stat-val{font-size:30px;font-weight:900;letter-spacing:-0.02em;color:var(--text)}
+.stat-val.c{color:var(--coral)}
+.stat-val.m{color:var(--mint)}
+.stat-label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+/* Section */
+.section-hd{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:-6px}
+
+/* Mode grid */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-card{border-radius:20px;padding:16px 14px;display:flex;flex-direction:column;gap:8px;cursor:pointer}
+.mode-card.v{background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.20);box-shadow:0 2px 16px rgba(167,139,250,0.06)}
+.mode-card.m{background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.20);box-shadow:0 2px 16px rgba(78,205,196,0.06)}
+.mode-card.l{background:rgba(200,255,0,0.07);border:1px solid rgba(200,255,0,0.18);box-shadow:0 2px 16px rgba(200,255,0,0.05)}
+.mode-card.d{background:rgba(28,26,46,0.04);border:1px solid rgba(28,26,46,0.08)}
+.mode-emoji{font-size:22px}
+.mode-name{font-size:14px;font-weight:800}
+.mode-name.v{color:#A78BFA}
+.mode-name.m{color:#4ECDC4}
+.mode-name.l{color:#1C1A2E}
+.mode-name.d{color:var(--muted)}
+.mode-desc{font-size:11px;color:var(--muted)}
+
+/* Streak */
+.streak-row{display:flex;align-items:center;gap:10px;padding:13px 16px;background-image:none;backdrop-filter:none}
+.streak-fire{font-size:22px}
+.streak-num{font-size:26px;font-weight:900;color:var(--coral)}
+.streak-lbl{font-size:12px;color:var(--text2)}
+
+/* CTA */
+.cta{background:var(--dark);color:var(--lime);border:none;border-radius:9999px;padding:16px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;cursor:pointer;width:100%;text-align:center}
+
+/* Nav */
+.nav{position:fixed;bottom:0;left:0;right:0;width:390px;background:rgba(250,247,242,0.92);backdrop-filter:blur(16px);border-top:1px solid rgba(255,220,200,0.30);display:flex;justify-content:space-around;padding:10px 0 18px;z-index:10}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
+.nav-icon{width:34px;height:34px;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.nav-icon.on{background:var(--dark)}
+.nav-label{font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.nav-label.on{color:var(--dark)}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="topbar-dir">1 — Warm Cream & Coral</span><span class="topbar-sub">Warmth: ████ 4/5</span></div>
+<div class="screen">
+  <div class="header">
+    <div class="header-left">
+      <span class="date">Mandag, 11. mai</span>
+      <span class="greeting">Hei, David. 👋</span>
+    </div>
+    <div class="avatar">D</div>
+  </div>
+
+  <div class="hero-card">
+    <span class="hero-eyebrow">I dag · 12 min</span>
+    <div class="hero-title">V2 Word Order</div>
+    <div class="chip-row">
+      <span class="chip chip-coral">3 reparasjoner</span>
+      <span class="chip chip-white">5 repetisjon</span>
+      <span class="chip chip-white">2 nytt</span>
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <span class="insight-label">🎯 Trener-innsikt</span>
+    <span class="insight-text">Du gjør feil på V2-regelen etter adverb 3 av 4 ganger. Engine prioriterer dette i dag.</span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat card"><span class="stat-val">87</span><span class="stat-label">Fremgang %</span></div>
+    <div class="stat card"><span class="stat-val c">14</span><span class="stat-label">Streak dager</span></div>
+    <div class="stat card"><span class="stat-val m">A2</span><span class="stat-label">Nivå</span></div>
+  </div>
+
+  <span class="section-hd">Læringsverktøy</span>
+  <div class="mode-grid">
+    <div class="mode-card v"><span class="mode-emoji">💬</span><div><div class="mode-name v">Samtale</div><div class="mode-desc">AI-tutor, norsk</div></div></div>
+    <div class="mode-card m"><span class="mode-emoji">📖</span><div><div class="mode-name m">Les</div><div class="mode-desc">4 tekster klare</div></div></div>
+    <div class="mode-card l"><span class="mode-emoji">✍️</span><div><div class="mode-name l">Skriv</div><div class="mode-desc">Journal + AI-analyse</div></div></div>
+    <div class="mode-card d"><span class="mode-emoji">🎙️</span><div><div class="mode-name d">Uttale</div><div class="mode-desc">Snart tilgjengelig</div></div></div>
+  </div>
+
+  <div class="streak-row card"><span class="streak-fire">🔥</span><span class="streak-num">14</span><span class="streak-lbl">dagers streak</span></div>
+  <button class="cta">Start dagens økt →</button>
+</div>
+<nav class="nav">
+  <div class="nav-item"><div class="nav-icon on">🏠</div><span class="nav-label on">Hjem</span></div>
+  <div class="nav-item"><div class="nav-icon">📚</div><span class="nav-label">Økt</span></div>
+  <div class="nav-item"><div class="nav-icon">💬</div><span class="nav-label">Samtale</span></div>
+  <div class="nav-item"><div class="nav-icon">📊</div><span class="nav-label">Fremgang</span></div>
+  <div class="nav-item"><div class="nav-icon">👤</div><span class="nav-label">Profil</span></div>
+</nav>
+</body>
+</html>

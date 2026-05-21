@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NorskCoach — Direction 3: Nordic Glass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --nc-bg:           #0E0E12;
+      --nc-red:          #DC2626;
+      --nc-green:        #4ade80;
+      --nc-text:         #EDE8E3;
+      --nc-text-muted:   rgba(237,232,227,0.58);
+      --nc-text-dim:     rgba(237,232,227,0.36);
+      --nc-border-cool:  rgba(140,160,255,0.10);
+      --nc-border-warm:  rgba(255,220,160,0.16);
+      --radius:          0.75rem;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--nc-bg);
+      color: var(--nc-text);
+      font-family: 'Schibsted Grotesk', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nc-gradient-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 52% 48% at  8% 16%, rgba(200,20,20,0.50)   0%, transparent 52%),
+        radial-gradient(ellipse 40% 36% at 88%  6%, rgba(20,120,100,0.22)  0%, transparent 48%),
+        radial-gradient(ellipse 38% 32% at 80% 72%, rgba(110,8,24,0.42)    0%, transparent 50%),
+        radial-gradient(ellipse 28% 22% at 58%  4%, rgba(200,50,10,0.26)   0%, transparent 48%),
+        #0E0E12;
+    }
+
+    .nc-glass-session {
+      background: rgba(220,38,38,0.07);
+      backdrop-filter: blur(32px) saturate(1.9);
+      -webkit-backdrop-filter: blur(32px) saturate(1.9);
+      border: 1px solid rgba(220,38,38,0.30);
+      box-shadow:
+        0 0 32px rgba(220,38,38,0.12) inset,
+        0 8px 40px rgba(0,0,0,0.28);
+      border-radius: var(--radius);
+    }
+
+    .nc-glass-exercise {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(36px) saturate(2.0);
+      -webkit-backdrop-filter: blur(36px) saturate(2.0);
+      border: 1px solid var(--nc-border-warm);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,230,180,0.12);
+      border-radius: var(--radius);
+    }
+
+    .nc-glass-stat {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      border: 1px solid var(--nc-border-cool);
+      border-radius: var(--radius);
+    }
+
+    .app-shell {
+      max-width: 390px; margin: 0 auto;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+
+    .session-header {
+      display: flex; align-items: center;
+      padding: 20px 20px 14px; gap: 12px;
+    }
+
+    .close-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(140,160,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--nc-text-muted); flex-shrink: 0;
+    }
+    .close-btn svg { width: 14px; height: 14px; }
+
+    .progress-track {
+      flex: 1; height: 6px;
+      background: rgba(140,160,255,0.08);
+      border-radius: 9999px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 45%;
+      background: var(--nc-red); border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(220,38,38,0.55);
+    }
+
+    .session-meta { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--nc-text-dim); flex-shrink: 0; }
+
+    main { flex: 1; padding: 4px 20px 0; display: flex; flex-direction: column; gap: 14px; }
+
+    .exercise-label { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--nc-text-dim); margin-bottom: 14px; }
+
+    .no-prompt { font-size: 28px; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--nc-text); margin-bottom: 6px; }
+
+    .en-hint { font-size: 13px; color: var(--nc-text-dim); margin-bottom: 20px; }
+
+    .nc-input {
+      width: 100%; min-height: 52px; border-radius: var(--radius);
+      border: 1.5px solid rgba(140,160,255,0.14);
+      background: rgba(255,255,255,0.05);
+      padding: 14px 16px; color: var(--nc-text);
+      font-family: 'Schibsted Grotesk', sans-serif; font-size: 15px; outline: none;
+      transition: border-color 150ms, box-shadow 150ms;
+    }
+    .nc-input::placeholder { color: rgba(237,232,227,0.28); }
+    .nc-input:focus {
+      border-color: rgba(220,38,38,0.50);
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.10);
+    }
+
+    .nc-button-primary {
+      width: 100%; min-height: 52px; border-radius: var(--radius);
+      background: var(--nc-red); color: #fff;
+      font-family: 'Schibsted Grotesk', sans-serif;
+      font-size: 15px; font-weight: 700; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 2px 16px rgba(220,38,38,0.46); margin-top: 14px;
+    }
+
+    .session-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(220,38,38,0.68); margin-bottom: 8px; }
+    .session-card-title { font-size: 22px; font-weight: 700; color: var(--nc-text); margin-bottom: 4px; }
+    .session-card-meta { font-size: 12px; color: var(--nc-text-muted); margin-bottom: 16px; }
+
+    .session-start-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 44px; padding: 0 20px; border-radius: var(--radius);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(140,160,255,0.18);
+      color: var(--nc-text);
+      font-family: 'Schibsted Grotesk', sans-serif;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: background 150ms;
+    }
+    .session-start-btn:hover { background: rgba(255,255,255,0.13); }
+
+    .session-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .session-chip {
+      padding: 5px 12px; border-radius: calc(var(--radius) - 2px);
+      border: 1px solid rgba(140,160,255,0.14);
+      background: rgba(140,160,255,0.06);
+      font-size: 10px; font-weight: 600; color: rgba(237,232,227,0.65);
+    }
+
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .stat-tile { padding: 10px 8px; text-align: center; }
+    .stat-value { font-size: 20px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .stat-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--nc-text-dim); margin-top: 5px; }
+
+    .bottom-nav {
+      position: sticky; bottom: 0;
+      background: rgba(14,14,18,0.86);
+      backdrop-filter: blur(28px) saturate(1.6);
+      -webkit-backdrop-filter: blur(28px) saturate(1.6);
+      border-top: 1px solid rgba(140,160,255,0.10);
+      display: flex; padding: 0 4px 20px;
+    }
+
+    .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 8px 4px; cursor: pointer; text-decoration: none; }
+    .nav-icon { width: 22px; height: 22px; color: var(--nc-text-dim); }
+    .nav-label { font-size: 10px; font-weight: 600; color: var(--nc-text-dim); }
+    .nav-item.active .nav-icon { color: var(--nc-text); }
+    .nav-item.active .nav-label { color: var(--nc-text); }
+    .nav-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--nc-red); box-shadow: 0 0 6px rgba(220,38,38,0.60); }
+    .nav-item:not(.active) .nav-dot { display: none; }
+
+    .direction-badge {
+      position: fixed; top: 16px; right: 16px; padding: 6px 12px;
+      border-radius: 9999px;
+      background: rgba(20,120,100,0.18);
+      border: 1px solid rgba(20,120,100,0.35);
+      font-size: 11px; font-weight: 700; color: #4eb8a0;
+      letter-spacing: 0.04em; z-index: 100;
+    }
+  </style>
+</head>
+<body>
+<div class="nc-gradient-page">
+  <div class="app-shell">
+
+    <div class="direction-badge">Direction 3 — Nordic Glass</div>
+
+    <div class="session-header">
+      <button class="close-btn" aria-label="Avslutt økt">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="1" y1="1" x2="13" y2="13"/>
+          <line x1="13" y1="1" x2="1" y2="13"/>
+        </svg>
+      </button>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <span class="session-meta">5 / 11</span>
+    </div>
+
+    <main>
+
+      <!-- Session card: red glass on cool ground -->
+      <div class="nc-glass-session" style="padding: 20px;">
+        <div class="session-card-label">Today's session · A2</div>
+        <div class="session-card-title">Setningsbygning</div>
+        <div class="session-card-meta">Estimated: 14 min</div>
+        <button class="session-start-btn">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+            <path d="M3 2l8 4.5L3 11V2z"/>
+          </svg>
+          Start session
+        </button>
+        <div class="session-chips">
+          <span class="session-chip">3 repairs</span>
+          <span class="session-chip">4 review</span>
+          <span class="session-chip">4 new</span>
+        </div>
+      </div>
+
+      <!-- Exercise card: warm border — content is the temperature contrast -->
+      <div class="nc-glass-exercise" style="padding: 24px;">
+        <div class="exercise-label">Translate to Norwegian</div>
+        <div class="no-prompt">Hva gjør du i helgen?</div>
+        <div class="en-hint">What do you do on the weekend?</div>
+        <input class="nc-input" type="text" placeholder="Skriv svaret ditt på norsk…" />
+        <button class="nc-button-primary">
+          Sjekk svar
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="2" y1="7" x2="12" y2="7"/>
+            <polyline points="8 3 12 7 8 11"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Stats: cool-tinted glass tiles -->
+      <div class="stats-row">
+        <div class="nc-glass-stat stat-tile">
+          <div class="stat-value" style="color: var(--nc-red)">7</div>
+          <div class="stat-label">streak</div>
+        </div>
+        <div class="nc-glass-stat stat-tile">
+          <div class="stat-value" style="color: var(--nc-text)">23</div>
+          <div class="stat-label">mins spoken</div>
+        </div>
+        <div class="nc-glass-stat stat-tile">
+          <div class="stat-value" style="color: var(--nc-green)">78%</div>
+          <div class="stat-label">accuracy</div>
+        </div>
+        <div class="nc-glass-stat stat-tile">
+          <div class="stat-value" style="color: var(--nc-text-muted)">12</div>
+          <div class="stat-label">sessions</div>
+        </div>
+      </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+      <a class="nav-item active" href="#">
+        <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L11 3l8 6.5V20H14v-5H8v5H3V9.5z"/>
+        </svg>
+        <span class="nav-label">Hjem</span>
+        <span class="nav-dot"></span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <polyline points="11 7 11 11 14 13"/>
+        </svg>
+        <span class="nav-label">Øving</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 20 9 4 6 12 2 12"/>
+        </svg>
+        <span class="nav-label">Fremgang</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg class="nav-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="8" r="4"/>
+          <path d="M3 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span class="nav-label">Profil</span>
+      </a>
+    </nav>
+
+  </div>
+</div>
+</body>
+</html>

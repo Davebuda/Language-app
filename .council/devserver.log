@@ -1,0 +1,168 @@
+
+> norskcoach@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.18 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.7:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Compiled middleware in 298ms
+ ✓ Ready in 1926ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 4.8s
+ GET /dashboard 200 in 5365ms
+ GET /dashboard 200 in 259ms
+ GET /dashboard 200 in 215ms
+ ○ Compiling /icon ...
+ ✓ Compiled /icon in 1048ms
+ GET /icon?6a53a0258eecf67b 200 in 1305ms
+ GET /dashboard 200 in 197ms
+ GET /icon?6a53a0258eecf67b 200 in 104ms
+ GET /dashboard 200 in 210ms
+ GET /icon?6a53a0258eecf67b 200 in 119ms
+ ○ Compiling /session ...
+ ✓ Compiled /session in 792ms
+ GET /session 200 in 2150ms
+ POST /session 200 in 306ms
+ POST /session 200 in 344ms
+ ○ Compiling / ...
+ ✓ Compiled / in 586ms
+ GET / 200 in 829ms
+ GET /dashboard 200 in 180ms
+ GET /session 200 in 1205ms
+ POST /session 200 in 288ms
+ GET / 200 in 178ms
+ GET / 200 in 449ms
+ POST / 200 in 769ms
+ GET / 200 in 354ms
+ POST / 200 in 293ms
+ GET / 200 in 297ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 834ms
+ GET /login 200 in 1233ms
+ GET /login?next=https://evil.com 200 in 230ms
+ ✓ Compiled /auth/callback in 482ms
+ GET /auth/callback?next=https://evil.com 307 in 858ms
+ GET /login?error=auth_failed 200 in 250ms
+ GET /dashboard 200 in 257ms
+ GET /login?next=/../etc/passwd 200 in 226ms
+ ○ Compiling /onboarding ...
+ ✓ Compiled /onboarding in 586ms
+ GET /onboarding 200 in 896ms
+ GET /onboarding 200 in 224ms
+ GET /dashboard 200 in 118ms
+ GET /dashboard 200 in 328ms
+ GET /session 200 in 1179ms
+ POST /session 200 in 112ms
+ POST /session 200 in 96ms
+ GET /dashboard 200 in 123ms
+ GET /session 200 in 598ms
+ GET /session 200 in 643ms
+ ○ Compiling /session/complete ...
+ ✓ Compiled /session/complete in 618ms
+ GET /session/complete 200 in 838ms
+ GET /dashboard 200 in 263ms
+ ○ Compiling /conversation ...
+ ✓ Compiled /conversation in 645ms
+ GET /conversation 200 in 822ms
+ ○ Compiling /journal ...
+ ✓ Compiled /journal in 612ms
+ GET /journal 200 in 784ms
+ ○ Compiling /reading ...
+ ✓ Compiled /reading in 533ms
+ GET /reading 200 in 699ms
+ ○ Compiling /progress ...
+ ✓ Compiled /progress in 608ms
+ GET /progress 200 in 790ms
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 639ms
+ GET /profile 200 in 800ms
+ GET /profile 200 in 219ms
+ ○ Compiling /recalibrate ...
+ ✓ Compiled /recalibrate in 543ms
+ GET /recalibrate 200 in 709ms
+ GET /dashboard 200 in 158ms
+ ○ Compiling /shadow ...
+ ✓ Compiled /shadow in 532ms
+ GET /shadow 200 in 716ms
+ ○ Compiling /drills ...
+ ✓ Compiled /drills in 518ms
+ GET /drills 200 in 677ms
+ ○ Compiling /listen ...
+ ✓ Compiled /listen in 601ms
+ GET /listen 200 in 770ms
+ ○ Compiling /roleplay ...
+ ✓ Compiled /roleplay in 618ms
+ GET /roleplay 200 in 798ms
+ ○ Compiling /vocab ...
+ ✓ Compiled /vocab in 516ms
+ GET /vocab 200 in 670ms
+ ✓ Compiled /eval in 419ms
+ GET /eval 200 in 575ms
+ ✓ Compiled in 125ms
+ ✓ Compiled / in 34ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1336ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\static\development\_buildManifest.js.tmp.wls02a15jn7'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\static\\development\\_buildManifest.js.tmp.wls02a15jn7'
+}
+[Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\static\development\_buildManifest.js.tmp.usmw6ggjyp'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\static\\development\\_buildManifest.js.tmp.usmw6ggjyp'
+}
+[Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\static\development\_buildManifest.js.tmp.39xndrxmbj7'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\static\\development\\_buildManifest.js.tmp.39xndrxmbj7'
+}
+ ✓ Compiled /dashboard in 28ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\server\app\dashboard\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\server\\app\\dashboard\\page\\app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\static\development\_buildManifest.js.tmp.7qib8vpb4aq'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\static\\development\\_buildManifest.js.tmp.7qib8vpb4aq'
+}
+[Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\server\app\dashboard\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\server\\app\\dashboard\\page\\app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\static\development\_buildManifest.js.tmp.x58gp7vrzeg'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\static\\development\\_buildManifest.js.tmp.x58gp7vrzeg'
+}
+[Error: ENOENT: no such file or directory, open 'C:\Users\daveb\Documents\GitHub\Language-app\.next\static\development\_buildManifest.js.tmp.wu4ypv5owhi'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\daveb\\Documents\\GitHub\\Language-app\\.next\\static\\development\\_buildManifest.js.tmp.wu4ypv5owhi'
+}

@@ -16,11 +16,11 @@ Tasks are dependency-ordered. P0.5-01 (source verification) ran first. **Re-sequ
 |---|---|---|---|---|
 | 01 | Verify walkthrough findings against source code | All Criticals | n/a — audit | ✅ complete |
 | 02 | Concept-id reconciliation (graph as source of truth) | F036 + sets up F010, F019 | FULL | ✅ complete |
-| 03 | Corpus retag + orphan-sentence cleanup | F010, F011 | FULL | ▶ NEXT |
-| 04 | Shared error-tag → concept-id module | enables F030, F034 | none — read-only refactor | pending |
-| 05 | Conversation + Journal fingerprint write-through | F030, F034, F028 | FULL | pending |
-| 06 | AI language-validity gate (one module, four call sites) | F022, F029, F033 | FULL | pending |
-| 07 | Diagnostic semantics rewrite (OnboardingFlow + engine) | F014, F015, F016, F017, F031 | FULL | pending |
+| 03 | Corpus wiring + orphan placeholder cleanup | F011 + closes F019 | FULL | ✅ complete |
+| 04 | Shared error-tag → concept-id module | enables F030, F034 | none — read-only refactor | ✅ complete |
+| 05 | Conversation + Journal fingerprint write-through | F030, F034, F028 | FULL | ✅ partial (F028 ✅; F030/F034 AI-quality half rolls into 06) |
+| 06 | AI language-validity gate + correction fallback | F022, F029, F033, F030/F034-residual | FULL (deferred to P0.5-15) | ✅ complete |
+| 07 | Diagnostic semantics rewrite (OnboardingFlow + engine) | F014, F015, F016, F017, F031 | FULL | ▶ NEXT |
 | 08 | Session lifecycle — immediate guards | F023, F026 | SMOKE | pending |
 | 09 | Session lifecycle — completion semantics | F012, F024, F025, F027 | FULL | pending |
 | 10 | Dashboard stat honesty | F018, F020, F021 | SMOKE | pending |

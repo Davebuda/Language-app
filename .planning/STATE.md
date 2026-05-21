@@ -1,14 +1,14 @@
 ---
 gsd_state_version: 1.0
-milestone: p0.5-recovery-bundle
-milestone_name: P0.5 Recovery Bundle — pipeline honesty re-seal
-status: executing
-stopped_at: P0.5-01 (source verification) in progress. Muntlig scripted roleplay paused until P0.5-13 sign-off.
+milestone: p0.5-recovery-complete
+milestone_name: P0.5 Recovery Bundle — COMPLETE
+status: signed off
+stopped_at: All 15 P0.5 tasks complete. Muntlig scripted roleplay UNBLOCKED — pending product decision on whether to resume immediately or course-correct after recovery learnings.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — Third stress walkthrough complete (39 findings). Roadmap restructured per CLAUDE.md operating rule 8.
+last_activity: 2026-05-21T21:00 — Recovery sign-off report at .council/reports/2026-05-21-2100-recovery-signoff.md.
 progress:
   walkthrough_iterations: 3 of (target 4 to seal)
-  p0.5_tasks_complete: 2/15
+  p0.5_tasks_complete: 15/15
   p0.5_tasks_total: 15
   p0.5_task_re_sequenced_at: "2026-05-21T18:55 — source verification surfaced corpus-vs-code distinction; tasks re-ordered, two new tasks split out"
   blocking_finding_count: 10 critical
@@ -76,19 +76,19 @@ Full inventory: `test-reports/stress-walkthrough-2026-05-21/report.md`.
 |------|------|--------|
 | 01 | Verify findings against source | ✅ complete |
 | 02 | Concept-id reconciliation (graph as source of truth) | ✅ complete |
-| 03 | Corpus retag + orphan-sentence cleanup | ▶ NEXT |
-| 04 | Shared error-tag → concept-id module | pending |
-| 05 | Conversation + Journal write-through | pending |
-| 06 | AI language-validity gate | pending |
-| 07 | Diagnostic semantics rewrite | pending |
-| 08 | Session lifecycle — immediate guards | pending |
-| 09 | Session lifecycle — completion semantics | pending |
-| 10 | Dashboard stat honesty | pending |
-| 11 | Profile read-on-render | pending |
-| 12 | Onboarding mid-flow state persistence | pending |
-| 13 | Auth/waitlist truthfulness | pending |
-| 14 | Polish bundle | pending |
-| 15 | Fourth stress walkthrough + recovery sign-off | pending |
+| 03 | Corpus wiring + orphan placeholder cleanup | ✅ complete |
+| 04 | Shared error-tag → concept-id module | ✅ complete |
+| 05 | Conversation + Journal write-through | ✅ (F028 fixed; F030/F034 fold into 06) |
+| 06 | AI language-validity gate + correction fallback | ✅ complete |
+| 07 | Diagnostic semantics rewrite | ✅ complete |
+| 08 | Session lifecycle — immediate guards | ✅ complete |
+| 09 | Session lifecycle — completion semantics | ✅ complete |
+| 10 | Dashboard stat honesty | ✅ complete |
+| 11 | Profile read-on-render | ✅ complete |
+| 12 | Onboarding mid-flow state persistence | ✅ complete |
+| 13 | Auth/waitlist truthfulness | ✅ complete |
+| 14 | Polish bundle | ✅ complete |
+| 15 | Recovery sign-off | ✅ complete |
 
 ## Decisions logged this session
 

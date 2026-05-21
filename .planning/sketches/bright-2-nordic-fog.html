@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 2 — Nordic Fog & Amber</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --base:#F3F4F0;
+  --card:rgba(255,255,254,0.75);
+  --dark:#1A2030;
+  --amber:#FF7A5C;
+  --emerald:#00D68F;
+  --lime:#C8FF00;
+  --text:#1A2030;
+  --text2:#5A6170;
+  --muted:#9AA0AE;
+  --border:rgba(210,215,225,0.55);
+  --shadow:0 2px 20px rgba(26,32,48,0.09);
+}
+body{font-family:'Outfit',sans-serif;background:var(--base);color:var(--text);width:390px;min-height:844px;position:relative;overflow-x:hidden}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 10%, rgba(200,255,0,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,214,143,0.06) 0%, transparent 55%);
+  pointer-events:none;z-index:0;
+}
+.screen{position:relative;z-index:1;display:flex;flex-direction:column;padding:56px 18px 80px;gap:14px;min-height:844px}
+
+/* Diagonal hatch glass card */
+.card{
+  background:var(--card);
+  backdrop-filter:blur(16px) brightness(1.04);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  background-image:
+    repeating-linear-gradient(135deg,rgba(180,190,200,0.09) 0px,rgba(180,190,200,0.09) 1px,transparent 1px,transparent 9px),
+    linear-gradient(rgba(255,255,254,0.75),rgba(255,255,254,0.75));
+  background-size:9px 9px, 100% 100%;
+}
+
+.topbar{position:fixed;top:0;left:0;right:0;width:390px;background:rgba(243,244,240,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 18px 10px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.topbar-dir{font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber)}
+.topbar-sub{font-size:10px;color:var(--muted)}
+
+.header{display:flex;align-items:flex-start;justify-content:space-between}
+.header-left{display:flex;flex-direction:column;gap:2px}
+.date{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+.greeting{font-size:24px;font-weight:700;line-height:1.15}
+.avatar{width:42px;height:42px;border-radius:9999px;background:var(--dark);color:var(--lime);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0}
+
+/* Hero dark card */
+.hero-card{background:var(--dark);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-50px;right:-30px;width:130px;height:130px;background:radial-gradient(circle,rgba(200,255,0,0.14),transparent 65%);border-radius:50%}
+.hero-card::after{content:'';position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;background:radial-gradient(circle,rgba(255,122,92,0.15),transparent 65%);border-radius:50%}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+.eyebrow-lime{color:rgba(200,255,0,0.50)}
+.hero-title{font-size:20px;font-weight:700;color:#fff}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:5px 12px;border-radius:9999px;font-size:10px;font-weight:600;border:1px solid}
+.chip-amber{background:rgba(255,122,92,0.18);border-color:rgba(255,122,92,0.35);color:#FF7A5C}
+.chip-ghost{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.45)}
+.chip-emerald{background:rgba(0,214,143,0.14);border-color:rgba(0,214,143,0.28);color:#00D68F}
+
+/* insight */
+.insight-wrap{padding:13px 15px;display:flex;flex-direction:column;gap:4px}
+.insight-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.insight-text{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* stats */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{padding:14px 12px;display:flex;flex-direction:column;gap:3px}
+.stat-val{font-size:30px;font-weight:900;letter-spacing:-0.02em}
+.stat-val.a{color:var(--amber)}
+.stat-val.e{color:var(--emerald)}
+.stat-label{font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+.section-hd{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:-6px}
+
+/* mode grid */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-card{border-radius:18px;padding:16px 14px;display:flex;flex-direction:column;gap:8px;cursor:pointer}
+.mode-card.v{background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.18)}
+.mode-card.e{background:rgba(0,214,143,0.07);border:1px solid rgba(0,214,143,0.18)}
+.mode-card.a{background:rgba(255,122,92,0.06);border:1px solid rgba(255,122,92,0.16)}
+.mode-card.g{background:rgba(26,32,48,0.04);border:1px solid rgba(26,32,48,0.07)}
+.mode-emoji{font-size:22px}
+.mode-name{font-size:14px;font-weight:700}
+.mode-name.v{color:#6366F1}
+.mode-name.e{color:#00D68F}
+.mode-name.a{color:#FF7A5C}
+.mode-name.g{color:var(--muted)}
+.mode-desc{font-size:11px;color:var(--muted)}
+
+/* streak */
+.streak-row{display:flex;align-items:center;gap:10px;padding:13px 16px}
+.streak-fire{font-size:22px}
+.streak-num{font-size:26px;font-weight:900;color:var(--amber)}
+.streak-lbl{font-size:12px;color:var(--text2)}
+
+/* CTA */
+.cta{background:var(--dark);color:var(--lime);border:none;border-radius:12px;padding:15px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.03em;cursor:pointer;width:100%;text-align:center}
+
+/* nav */
+.nav{position:fixed;bottom:0;left:0;right:0;width:390px;background:rgba(243,244,240,0.90);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 0 18px;z-index:10}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
+.nav-pip{width:4px;height:4px;border-radius:50%;background:var(--amber);margin:0 auto 2px;opacity:0}
+.nav-pip.on{opacity:1}
+.nav-icon-w{width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:17px;opacity:0.3}
+.nav-icon-w.on{opacity:1;background:rgba(26,32,48,0.08);border-radius:9999px}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.nav-label.on{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="topbar-dir">2 — Nordic Fog & Amber</span><span class="topbar-sub">Warmth: ██░░ 2/5</span></div>
+<div class="screen">
+  <div class="header">
+    <div class="header-left">
+      <span class="date">Mandag, 11. mai</span>
+      <span class="greeting">Hei, David.</span>
+    </div>
+    <div class="avatar">D</div>
+  </div>
+
+  <div class="hero-card">
+    <span class="eyebrow eyebrow-lime">I dag · 12 min</span>
+    <div class="hero-title">V2 Word Order</div>
+    <div class="chip-row">
+      <span class="chip chip-amber">3 reparasjoner</span>
+      <span class="chip chip-ghost">5 repetisjon</span>
+      <span class="chip chip-emerald">2 nytt</span>
+    </div>
+  </div>
+
+  <div class="card"><div class="insight-wrap">
+    <span class="insight-label">🎯 Diagnose · 94% sikker</span>
+    <span class="insight-text">V2-feil etter adverb oppdaget 3/4 forsøk. Engine prioriterer adverbial-inversjon.</span>
+  </div></div>
+
+  <div class="stats-row">
+    <div class="stat card"><span class="stat-val">87</span><span class="stat-label">Fremgang %</span></div>
+    <div class="stat card"><span class="stat-val a">14</span><span class="stat-label">Streak</span></div>
+    <div class="stat card"><span class="stat-val e">A2</span><span class="stat-label">Nivå</span></div>
+  </div>
+
+  <span class="section-hd">Læringsverktøy</span>
+  <div class="mode-grid">
+    <div class="mode-card v"><span class="mode-emoji">💬</span><div><div class="mode-name v">Samtale</div><div class="mode-desc">AI · Norsk tutor</div></div></div>
+    <div class="mode-card e"><span class="mode-emoji">📖</span><div><div class="mode-name e">Les</div><div class="mode-desc">4 tekster klare</div></div></div>
+    <div class="mode-card a"><span class="mode-emoji">✍️</span><div><div class="mode-name a">Skriv</div><div class="mode-desc">Journal + AI-analyse</div></div></div>
+    <div class="mode-card g"><span class="mode-emoji">🎙️</span><div><div class="mode-name g">Uttale</div><div class="mode-desc">Snart</div></div></div>
+  </div>
+
+  <div class="streak-row card"><span class="streak-fire">🔥</span><span class="streak-num">14</span><span class="streak-lbl">dagers streak</span></div>
+  <button class="cta">Start dagens økt →</button>
+</div>
+<nav class="nav">
+  <div class="nav-item"><div class="nav-pip on"></div><div class="nav-icon-w on">🏠</div><span class="nav-label on">Hjem</span></div>
+  <div class="nav-item"><div class="nav-pip"></div><div class="nav-icon-w">📚</div><span class="nav-label">Økt</span></div>
+  <div class="nav-item"><div class="nav-pip"></div><div class="nav-icon-w">💬</div><span class="nav-label">Samtale</span></div>
+  <div class="nav-item"><div class="nav-pip"></div><div class="nav-icon-w">📊</div><span class="nav-label">Fremgang</span></div>
+  <div class="nav-item"><div class="nav-pip"></div><div class="nav-icon-w">👤</div><span class="nav-label">Profil</span></div>
+</nav>
+</body>
+</html>

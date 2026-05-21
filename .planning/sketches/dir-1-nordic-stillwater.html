@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 1 — Nordic Stillwater</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --base:#f4ede3;
+  --card:#fdfaf5;
+  --card-border:rgba(24,21,38,0.07);
+  --card-shadow:0 2px 14px rgba(24,21,38,0.05);
+  --dark:#1a1826;
+  --sage:#6f9e68;
+  --sage-mid:#a8c8a2;
+  --sage-light:#c8ddc4;
+  --sage-bg:rgba(127,168,120,0.12);
+  --sage-border:rgba(127,168,120,0.22);
+  --warm:#b87d4e;
+  --text:#1a1826;
+  --text-muted:rgba(26,24,38,0.52);
+  --text-dim:rgba(26,24,38,0.34);
+  --r:14px;
+}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--base);
+  color:var(--text);
+  width:390px;
+  min-height:844px;
+  overflow-x:hidden;
+  position:relative;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 5%,rgba(200,221,196,0.38) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 20%,rgba(200,221,196,0.22) 0%,transparent 50%);
+  pointer-events:none;z-index:0;
+}
+.screen{position:relative;z-index:1;display:flex;flex-direction:column;padding:56px 18px 86px;gap:11px;min-height:844px;}
+
+/* Top bar */
+.topbar{
+  position:fixed;top:0;left:0;right:0;width:390px;
+  background:rgba(244,237,227,0.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(24,21,38,0.05);
+  padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:20;
+}
+.brand{display:flex;align-items:center;gap:8px;}
+.brand-mark{
+  width:28px;height:28px;border-radius:8px;
+  background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+}
+.brand-mark svg{opacity:0.7;}
+.brand-name{font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.01em;}
+.level-pill{
+  font-size:10px;font-weight:700;letter-spacing:0.06em;
+  background:var(--sage-bg);color:var(--sage);
+  border:1px solid var(--sage-border);
+  padding:3px 9px;border-radius:9999px;
+}
+
+/* Header */
+.header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.date-line{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);}
+.greeting{font-size:25px;font-weight:800;line-height:1.18;color:var(--text);letter-spacing:-0.03em;margin-top:3px;}
+.sub-line{font-size:13px;color:var(--text-muted);margin-top:3px;}
+.icon-btn{
+  flex-shrink:0;width:38px;height:38px;border-radius:11px;
+  border:1px solid var(--card-border);background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);box-shadow:var(--card-shadow);
+}
+
+/* Session card — dark with constellation */
+.session-card{
+  background:var(--dark);
+  border-radius:18px;padding:20px;
+  position:relative;overflow:hidden;
+}
+.constellation{position:absolute;inset:0;pointer-events:none;}
+.session-label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(200,221,196,0.50);margin-bottom:9px;}
+.session-title{font-size:27px;font-weight:800;letter-spacing:-0.03em;color:#fff;line-height:1.12;}
+.session-meta{font-size:12px;color:rgba(255,255,255,0.40);margin-top:6px;}
+.start-btn{
+  display:inline-flex;align-items:center;gap:7px;margin-top:18px;
+  background:var(--sage-light);color:var(--dark);
+  border-radius:12px;padding:10px 18px;
+  font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;
+  letter-spacing:-0.01em;border:none;
+}
+.chips{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap;}
+.chip{padding:4px 10px;border-radius:8px;font-size:10px;font-weight:600;border:1px solid;}
+.chip-r{background:rgba(255,185,145,0.10);border-color:rgba(255,185,145,0.20);color:rgba(255,200,165,0.75);}
+.chip-d{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.10);color:rgba(255,255,255,0.40);}
+
+/* Stats 2x2 */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.stat{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:13px 14px;
+  box-shadow:var(--card-shadow);
+}
+.stat-val{font-size:28px;font-weight:800;letter-spacing:-0.04em;line-height:1;}
+.stat-lbl{font-size:10px;font-weight:500;color:var(--text-dim);margin-top:4px;letter-spacing:0.01em;}
+.c-sage{color:var(--sage);}
+.c-warm{color:var(--warm);}
+.c-muted{color:var(--text-muted);}
+
+/* Concept mastery */
+.panel{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r);padding:16px;box-shadow:var(--card-shadow);}
+.panel-header{display:flex;justify-content:space-between;align-items:flex-start;}
+.lbl{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);}
+.panel-sub{font-size:12px;color:var(--text-muted);margin-top:3px;}
+.view-all{font-size:11px;color:var(--text-dim);font-weight:500;}
+.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;}
+.ct{border-radius:10px;border:1px solid;padding:9px 6px;text-align:center;}
+.ct-n{font-size:13px;font-weight:700;}
+.ct-p{font-size:9px;color:var(--text-dim);margin-top:3px;}
+
+/* Modes */
+.modes{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.mode{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:13px;padding:12px 8px;
+  box-shadow:var(--card-shadow);
+  display:flex;flex-direction:column;gap:5px;
+}
+.m-ico{font-size:17px;}
+.m-lbl{font-size:11px;font-weight:600;color:var(--text-muted);}
+
+/* CTA footer strip */
+.cta-strip{
+  border-radius:var(--r);
+  border:1px solid var(--sage-border);
+  background:linear-gradient(135deg,rgba(127,168,120,0.15) 0%,rgba(244,237,227,0.88) 72%);
+  padding:16px;
+}
+.cta-strip-title{font-size:13px;font-weight:700;color:var(--text);}
+.cta-strip-sub{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.cta-btn{
+  margin-top:14px;background:var(--dark);color:var(--sage-light);
+  border:none;border-radius:11px;padding:11px 20px;
+  font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;
+  letter-spacing:-0.01em;
+}
+
+/* Bottom nav */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;width:390px;
+  background:rgba(244,237,227,0.96);
+  border-top:1px solid rgba(24,21,38,0.06);
+  display:flex;justify-content:space-around;
+  padding:10px 4px 20px;z-index:20;
+}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 10px;}
+.ni-lbl{font-size:9px;font-weight:600;letter-spacing:0.01em;}
+.ni.active .ni-lbl{color:var(--sage);}
+.ni.inactive .ni-lbl{color:var(--text-dim);}
+.ni-dot{width:4px;height:4px;border-radius:50%;background:var(--sage);margin-top:2px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <circle cx="4" cy="4" r="2" fill="rgba(200,221,196,0.85)"/>
+        <circle cx="8.5" cy="3" r="1.5" fill="rgba(200,221,196,0.65)"/>
+        <circle cx="6.5" cy="8" r="2.5" fill="rgba(200,221,196,0.95)"/>
+      </svg>
+    </div>
+    <span class="brand-name">NorskCoach</span>
+  </div>
+  <span class="level-pill">A1</span>
+</div>
+
+<div class="screen">
+
+  <div class="header">
+    <div>
+      <div class="date-line">Tirsdag 14. mai 2026</div>
+      <div class="greeting">God kveld, David!</div>
+      <div class="sub-line">A1 · Klar for å lære i dag?</div>
+    </div>
+    <div class="icon-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+    </div>
+  </div>
+
+  <div class="session-card">
+    <!-- Mastery constellation -->
+    <svg class="constellation" viewBox="0 0 350 190" preserveAspectRatio="xMidYMid slice">
+      <line x1="265" y1="25" x2="302" y2="58" stroke="rgba(200,221,196,0.14)" stroke-width="0.9"/>
+      <line x1="302" y1="58" x2="328" y2="44" stroke="rgba(200,221,196,0.11)" stroke-width="0.9"/>
+      <line x1="302" y1="58" x2="290" y2="98" stroke="rgba(200,221,196,0.10)" stroke-width="0.9"/>
+      <line x1="290" y1="98" x2="318" y2="128" stroke="rgba(200,221,196,0.08)" stroke-width="0.8"/>
+      <line x1="318" y1="128" x2="340" y2="148" stroke="rgba(200,221,196,0.07)" stroke-width="0.8"/>
+      <line x1="318" y1="128" x2="300" y2="155" stroke="rgba(200,221,196,0.06)" stroke-width="0.8"/>
+      <!-- Mastered = solid -->
+      <circle cx="265" cy="25" r="4" fill="rgba(200,221,196,0.72)"/>
+      <circle cx="302" cy="58" r="5" fill="rgba(200,221,196,0.78)"/>
+      <circle cx="328" cy="44" r="3.5" fill="rgba(200,221,196,0.62)"/>
+      <!-- In progress = hollow -->
+      <circle cx="290" cy="98" r="4.5" fill="none" stroke="rgba(200,221,196,0.42)" stroke-width="1.3"/>
+      <circle cx="318" cy="128" r="4" fill="none" stroke="rgba(200,221,196,0.30)" stroke-width="1.1"/>
+      <!-- Locked = very faint hollow -->
+      <circle cx="340" cy="148" r="3" fill="none" stroke="rgba(200,221,196,0.16)" stroke-width="0.9"/>
+      <circle cx="300" cy="155" r="3.5" fill="none" stroke="rgba(200,221,196,0.14)" stroke-width="0.9"/>
+      <circle cx="338" cy="85" r="2.5" fill="none" stroke="rgba(200,221,196,0.12)" stroke-width="0.8"/>
+    </svg>
+
+    <div style="position:relative;z-index:1;">
+      <div class="session-label">Today's session · A1</div>
+      <div class="session-title">V2 Word Order</div>
+      <div class="session-meta">Estimated time: 18 min</div>
+      <button class="start-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Start session
+      </button>
+      <div class="chips">
+        <span class="chip chip-r">3 repairs</span>
+        <span class="chip chip-d">5 review</span>
+        <span class="chip chip-d">4 new</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-val c-warm">7</div><div class="stat-lbl">day streak</div></div>
+    <div class="stat"><div class="stat-val c-sage">24</div><div class="stat-lbl">mins spoken</div></div>
+    <div class="stat"><div class="stat-val c-sage">72%</div><div class="stat-lbl">accuracy</div></div>
+    <div class="stat"><div class="stat-val c-muted">8</div><div class="stat-lbl">concepts</div></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div><div class="lbl">Concept mastery</div><div class="panel-sub">A1 — 16 concepts</div></div>
+      <span class="view-all">View all</span>
+    </div>
+    <div class="cg">
+      <div class="ct" style="background:rgba(111,158,104,0.18);border-color:rgba(111,158,104,0.30);">
+        <div class="ct-n" style="color:#5c9055;">1</div><div class="ct-p">88%</div>
+      </div>
+      <div class="ct" style="background:rgba(111,158,104,0.12);border-color:rgba(111,158,104,0.22);">
+        <div class="ct-n" style="color:#6f9e68;">2</div><div class="ct-p">74%</div>
+      </div>
+      <div class="ct" style="background:rgba(184,125,78,0.12);border-color:rgba(184,125,78,0.22);">
+        <div class="ct-n" style="color:#b87d4e;">3</div><div class="ct-p">52%</div>
+      </div>
+      <div class="ct" style="background:rgba(184,125,78,0.08);border-color:rgba(184,125,78,0.16);">
+        <div class="ct-n" style="color:#c4936a;">4</div><div class="ct-p">41%</div>
+      </div>
+      <div class="ct" style="background:rgba(24,21,38,0.03);border-color:rgba(24,21,38,0.08);">
+        <div class="ct-n" style="color:var(--text-dim);">5</div><div class="ct-p">Locked</div>
+      </div>
+      <div class="ct" style="background:rgba(24,21,38,0.03);border-color:rgba(24,21,38,0.08);">
+        <div class="ct-n" style="color:var(--text-dim);">6</div><div class="ct-p">Locked</div>
+      </div>
+      <div class="ct" style="background:rgba(24,21,38,0.03);border-color:rgba(24,21,38,0.08);">
+        <div class="ct-n" style="color:var(--text-dim);">7</div><div class="ct-p">Locked</div>
+      </div>
+      <div class="ct" style="background:rgba(24,21,38,0.03);border-color:rgba(24,21,38,0.08);">
+        <div class="ct-n" style="color:var(--text-dim);">8</div><div class="ct-p">Locked</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modes">
+    <div class="mode"><div class="m-ico">💬</div><div class="m-lbl">Speak</div></div>
+    <div class="mode"><div class="m-ico">📖</div><div class="m-lbl">Read</div></div>
+    <div class="mode"><div class="m-ico">✍️</div><div class="m-lbl">Write</div></div>
+    <div class="mode"><div class="m-ico">🔄</div><div class="m-lbl">Check</div></div>
+  </div>
+
+  <div class="cta-strip">
+    <div class="cta-strip-title">Keep going</div>
+    <div class="cta-strip-sub">Your next session is ready.</div>
+    <button class="cta-btn">Continue learning</button>
+  </div>
+
+</div>
+
+<div class="bnav">
+  <div class="ni active">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f9e68" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="ni-lbl">Home</span>
+    <div class="ni-dot"></div>
+  </div>
+  <div class="ni inactive">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(26,24,38,0.28)" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    <span class="ni-lbl">Learn</span>
+  </div>
+  <div class="ni inactive">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(26,24,38,0.28)" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="ni-lbl">Practice</span>
+  </div>
+  <div class="ni inactive">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(26,24,38,0.28)" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    <span class="ni-lbl">Progress</span>
+  </div>
+  <div class="ni inactive">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(26,24,38,0.28)" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span class="ni-lbl">Profile</span>
+  </div>
+</div>
+
+</body>
+</html>

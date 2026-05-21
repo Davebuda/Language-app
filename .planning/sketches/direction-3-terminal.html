@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 3 — Terminal</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --base: #080909;
+    --card: #0e0f10;
+    --border: rgba(255,255,255,0.08);
+    --lime: #C8FF00;
+    --red: #FF4D4D;
+    --mint: #00FF87;
+    --text: #E8E8E8;
+    --text-2: rgba(232,232,232,0.45);
+    --text-ghost: rgba(232,232,232,0.22);
+  }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--base);
+    color: var(--text);
+    width: 390px;
+    min-height: 844px;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .screen {
+    display: flex;
+    flex-direction: column;
+    min-height: 844px;
+    padding: 52px 20px 80px;
+    gap: 12px;
+  }
+
+  /* System bar */
+  .sys-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .sys-id {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--text-ghost);
+    text-transform: uppercase;
+  }
+  .sys-status {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .sys-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--lime);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .user-line {
+    display: flex; flex-direction: column; gap: 1px;
+    margin-bottom: 8px;
+  }
+  .user-id { font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-ghost); font-variant-numeric: tabular-nums; }
+  .user-name { font-size: 24px; font-weight: 900; letter-spacing: -0.01em; }
+
+  /* Session block */
+  .data-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .data-block-header {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .block-id { font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-ghost); font-variant-numeric: tabular-nums; }
+  .block-status-ok { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); }
+  .block-status-warn { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+  .data-block-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .concept-line { font-size: 17px; font-weight: 800; }
+  .tag-row { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+  .tag-red { background: rgba(255,77,77,0.08); border-color: rgba(255,77,77,0.2); color: var(--red); }
+  .tag-ghost { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: var(--text-ghost); }
+  .tag-lime { background: rgba(200,255,0,0.08); border-color: rgba(200,255,0,0.18); color: var(--lime); }
+
+  /* Insight — log style */
+  .log-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 2px solid rgba(200,255,0,0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .log-prefix { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,255,0,0.5); font-variant-numeric: tabular-nums; }
+  .log-text { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+  /* Stats */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 10px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat-val { font-size: 30px; font-weight: 900; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat-val.lime { color: var(--lime); }
+  .stat-val.mint { color: var(--mint); }
+  .stat-val.red { color: var(--red); }
+  .stat-key { font-size: 8px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-ghost); }
+
+  /* Mode list */
+  .block-label { font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-ghost); }
+  .mode-list { display: flex; flex-direction: column; gap: 1px; }
+  .mode-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer;
+  }
+  .mode-row:first-child { border-radius: 6px 6px 0 0; margin-bottom: 0; }
+  .mode-row:last-child { border-radius: 0 0 6px 6px; }
+  .mode-row + .mode-row { border-top: none; border-radius: 0; }
+  .mode-row:last-child { border-radius: 0 0 6px 6px; }
+
+  .mode-left { display: flex; align-items: center; gap: 10px; }
+  .mode-icon-box {
+    width: 28px; height: 28px;
+    border-radius: 4px;
+    border: 1px solid;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .icon-lime { border-color: rgba(200,255,0,0.25); background: rgba(200,255,0,0.06); }
+  .icon-mint { border-color: rgba(0,255,135,0.25); background: rgba(0,255,135,0.06); }
+  .icon-red { border-color: rgba(255,77,77,0.25); background: rgba(255,77,77,0.06); }
+  .icon-dim { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); }
+  .mode-info { display: flex; flex-direction: column; gap: 1px; }
+  .mode-name { font-size: 13px; font-weight: 700; }
+  .mode-meta { font-size: 9px; font-weight: 500; letter-spacing: 0.06em; color: var(--text-ghost); text-transform: uppercase; }
+  .mode-arrow { font-size: 12px; color: var(--text-ghost); }
+
+  /* CTA */
+  .cta {
+    background: var(--lime);
+    color: #080909;
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    width: 390px;
+    background: var(--base);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 16px;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+  .nav-ico { font-size: 16px; opacity: 0.2; }
+  .nav-ico.on { opacity: 1; }
+  .nav-lbl { font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-ghost); }
+  .nav-lbl.on { color: var(--lime); }
+
+  /* Direction label */
+  .dir-label {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 390px;
+    background: rgba(200,255,0,0.05);
+    border-bottom: 1px solid rgba(200,255,0,0.12);
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dir-name { font-size: 11px; font-weight: 800; color: var(--lime); letter-spacing: 0.1em; text-transform: uppercase; }
+  .dir-sub { font-size: 10px; color: var(--text-ghost); }
+</style>
+</head>
+<body>
+  <div class="dir-label">
+    <span class="dir-name">Direction 3 — Terminal</span>
+    <span class="dir-sub">Intelligence made visible</span>
+  </div>
+
+  <div class="screen">
+    <div class="sys-bar">
+      <span class="sys-id">NorskCoach v0.3.0</span>
+      <span class="sys-status"><span class="sys-dot"></span>Engine aktiv</span>
+    </div>
+
+    <div class="user-line">
+      <span class="user-id">[BRUKER: DAVID_B]</span>
+      <span class="user-name">Mandag, 11. mai</span>
+    </div>
+
+    <div class="data-block">
+      <div class="data-block-header">
+        <span class="block-id">[SESSION: 001] · 12 MIN</span>
+        <span class="block-status-warn">3 REPARASJONER</span>
+      </div>
+      <div class="data-block-body">
+        <div class="concept-line">V2 Word Order</div>
+        <div class="tag-row">
+          <span class="tag tag-red">3 repair</span>
+          <span class="tag tag-ghost">5 review</span>
+          <span class="tag tag-lime">2 new</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-block">
+      <span class="log-prefix">[DIAGNOSE: 94% conf]</span>
+      <span class="log-text">V2-feil etter adverb oppdaget 3/4 forsøk. Engine prioriterer adverbial-inversjon i dag.</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <span class="stat-val lime">87</span>
+        <span class="stat-key">Mastery %</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val">14</span>
+        <span class="stat-key">Streak</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-val mint">A2</span>
+        <span class="stat-key">Nivå</span>
+      </div>
+    </div>
+
+    <span class="block-label">[LÆRINGSMODULER]</span>
+    <div class="mode-list">
+      <div class="mode-row">
+        <div class="mode-left">
+          <div class="mode-icon-box icon-lime">💬</div>
+          <div class="mode-info">
+            <span class="mode-name" style="color:var(--lime)">Samtale</span>
+            <span class="mode-meta">AI · Norsk tutor</span>
+          </div>
+        </div>
+        <span class="mode-arrow">→</span>
+      </div>
+      <div class="mode-row">
+        <div class="mode-left">
+          <div class="mode-icon-box icon-mint">📖</div>
+          <div class="mode-info">
+            <span class="mode-name" style="color:var(--mint)">Les</span>
+            <span class="mode-meta">Lesestudio · 4 tekster</span>
+          </div>
+        </div>
+        <span class="mode-arrow">→</span>
+      </div>
+      <div class="mode-row">
+        <div class="mode-left">
+          <div class="mode-icon-box" style="border-color:rgba(200,255,0,0.2);background:rgba(200,255,0,0.05)">✍️</div>
+          <div class="mode-info">
+            <span class="mode-name">Skriv</span>
+            <span class="mode-meta">Journal · AI-analyse</span>
+          </div>
+        </div>
+        <span class="mode-arrow">→</span>
+      </div>
+      <div class="mode-row">
+        <div class="mode-left">
+          <div class="mode-icon-box icon-dim">🎙️</div>
+          <div class="mode-info">
+            <span class="mode-name" style="color:var(--text-ghost)">Uttale</span>
+            <span class="mode-meta" style="color:rgba(232,232,232,0.15)">Snart · Skygging</span>
+          </div>
+        </div>
+        <span class="mode-arrow" style="opacity:0.2">→</span>
+      </div>
+    </div>
+
+    <button class="cta">→ START SESSION_001</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="nav-item">
+      <span class="nav-ico on">⊞</span>
+      <span class="nav-lbl on">Hjem</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-ico">◈</span>
+      <span class="nav-lbl">Økt</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-ico">◎</span>
+      <span class="nav-lbl">Samtale</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-ico">▦</span>
+      <span class="nav-lbl">Fremgang</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-ico">◯</span>
+      <span class="nav-lbl">Profil</span>
+    </div>
+  </nav>
+</body>
+</html>

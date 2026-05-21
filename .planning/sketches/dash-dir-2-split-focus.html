@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 2 — Split Focus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050a0c;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Schibsted Grotesk', sans-serif;
+    padding: 24px;
+  }
+
+  .label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 16px; text-align: center; }
+
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: #080E10;
+    border-radius: 44px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aurora {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 58% 50% at 2% 10%, rgba(0,200,160,0.72) 0%, transparent 52%),
+      radial-gradient(ellipse 46% 40% at 92% 18%, rgba(160,255,60,0.58) 0%, transparent 48%),
+      radial-gradient(ellipse 44% 38% at 88% 82%, rgba(255,40,40,0.68) 0%, transparent 48%),
+      radial-gradient(ellipse 36% 30% at 8% 78%, rgba(0,160,180,0.52) 0%, transparent 46%);
+    pointer-events: none;
+  }
+
+  .tag {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,229,196,0.15);
+    border: 1px solid rgba(0,229,196,0.30);
+    border-radius: 999px;
+    padding: 3px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #00E5C4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 20;
+  }
+
+  /* HERO — top 52% */
+  .hero {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    height: 430px;
+    padding: 56px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .hero-card {
+    background: rgba(244,255,250,0.88);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(0,220,180,0.30);
+    border-radius: 16px;
+    padding: 22px 22px 18px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.30), inset 0 1px 0 rgba(0,220,180,0.18);
+    color: #040E08;
+    position: relative;
+  }
+
+  .streak-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,51,51,0.14);
+    border: 1px solid rgba(255,51,51,0.28);
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF3333;
+  }
+
+  .date-small {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(4,14,8,0.36);
+    margin-bottom: 6px;
+  }
+
+  .hero-greeting {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(4,14,8,0.52);
+    margin-bottom: 2px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #040E08;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .hero-meta {
+    font-size: 11px;
+    color: rgba(4,14,8,0.45);
+    margin-bottom: 16px;
+  }
+
+  .btn-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FF3333;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 16px rgba(255,51,51,0.45);
+    font-family: inherit;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .badges-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 7px;
+  }
+  .badge-red { background: rgba(255,51,51,0.12); border: 1px solid rgba(255,51,51,0.28); color: #FF3333; }
+  .badge-teal { background: rgba(0,229,196,0.12); border: 1px solid rgba(0,229,196,0.28); color: #00E5C4; }
+  .badge-grey { background: rgba(4,14,8,0.06); border: 1px solid rgba(4,14,8,0.14); color: rgba(4,14,8,0.52); }
+
+  /* CAROUSEL — bottom zone */
+  .carousel-zone {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    padding: 16px 20px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .carousel-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(240,255,248,0.28);
+  }
+
+  .carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+
+  .carousel-tile {
+    flex: 0 0 130px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,220,180,0.12);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90px;
+  }
+
+  .tile-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(240,255,248,0.36);
+    margin-bottom: 4px;
+  }
+
+  .tile-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F0FFF8;
+  }
+
+  .tile-sub {
+    font-size: 10px;
+    color: rgba(240,255,248,0.45);
+    margin-top: 6px;
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    background: rgba(18,14,14,0.92);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 24px;
+    position: relative;
+    z-index: 10;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 56px; font-size: 9px; font-weight: 600; color: rgba(240,255,248,0.45); padding: 4px 8px; }
+  .nav-item.active { color: #FF3333; }
+  .nav-icon { font-size: 16px; margin-bottom: 1px; }
+  .nav-dot { width: 3px; height: 3px; border-radius: 50%; background: #FF3333; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div style="text-align:center">
+  <div class="label">Direction 2 — Split Focus</div>
+  <div class="label" style="color:rgba(255,255,255,0.18); margin-top:-12px">Top 52% hero · Streak badge on card · Horizontal carousel bottom</div>
+
+  <div class="phone">
+    <div class="aurora"></div>
+    <div class="tag">Dir 2</div>
+
+    <!-- HERO ZONE -->
+    <div class="hero">
+      <div class="hero-card">
+        <div class="streak-badge">🔥 7</div>
+        <div class="date-small">Torsdag 21. mai</div>
+        <div class="hero-greeting">God kveld, David!</div>
+        <div class="hero-title">Personal pronouns</div>
+        <div class="hero-meta">Today's session · A1 · ~3 min</div>
+        <button class="btn-red">▶ Start session</button>
+        <div class="badges-row">
+          <span class="badge badge-red">2 repairs</span>
+          <span class="badge badge-grey">5 review</span>
+          <span class="badge badge-teal">1 new</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAROUSEL ZONE -->
+    <div class="carousel-zone">
+      <div class="carousel-label">More ways to practice</div>
+      <div class="carousel">
+        <div class="carousel-tile">
+          <div>
+            <div class="tile-label">Muntlig</div>
+            <div class="tile-title">Snakk med Kari</div>
+          </div>
+          <div class="tile-sub">daglig rutine →</div>
+        </div>
+        <div class="carousel-tile">
+          <div>
+            <div class="tile-label">Skrivejournal</div>
+            <div class="tile-title">Skriv i dag</div>
+          </div>
+          <div class="tile-sub">"Din ideelle…" →</div>
+        </div>
+        <div class="carousel-tile">
+          <div>
+            <div class="tile-label">Lesestudio</div>
+            <div class="tile-title">2 tekster</div>
+          </div>
+          <div class="tile-sub">A1-nivå →</div>
+        </div>
+        <div class="carousel-tile">
+          <div>
+            <div class="tile-label">Daglig ord</div>
+            <div class="tile-title">6 nye ord</div>
+          </div>
+          <div class="tile-sub">stå opp · jobb →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom nav -->
+    <div class="bottom-nav">
+      <div class="nav-item active"><div class="nav-icon">⌂</div>Home<div class="nav-dot"></div></div>
+      <div class="nav-item"><div class="nav-icon">📖</div>Learn</div>
+      <div class="nav-item"><div class="nav-icon">💬</div>Practice</div>
+      <div class="nav-item"><div class="nav-icon">📊</div>Progress</div>
+      <div class="nav-item"><div class="nav-icon">👤</div>Profile</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

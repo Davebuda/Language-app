@@ -1,5 +1,61 @@
 # Council Decision Log
 
+## 2026-05-21T20:50 APPROVE — P0.5-06 AI language-validity gate complete
+
+**Commit:** `validateNorwegianOutput` in `src/ai/validate.ts` + 3 call-site wirings in `webllm.ts`.
+
+**Heuristics:** char-set match, ≤18-char words, English-drift cap (25%), at least one Norwegian function word. Each AI surface falls back to its existing per-surface template on failure.
+
+**Verification:** typecheck clean, 106/106 tests pass.
+
+**Playwright FULL:** not run this turn — the gate is heuristic and the wired call sites are templates-only-on-failure. End-to-end Playwright verification of the gate firing live (i.e., catching real gibberish from the model in a session) will happen in P0.5-15 fourth walkthrough.
+
+**Why this also closes F030/F034 residual:** when conversationTurn or reviewWriting fail validation, they fall back to a template that does NOT include a CORRECTION block, so the conversation/journal surfaces won't try to log invalid AI tags. The shared map from P0.5-04 already handles the silent-drop on unmapped tags. Together: AI says nothing bad OR AI says something validated and the write path is wired.
+
+**Next:** P0.5-07 — diagnostic semantics rewrite (F014/F015/F016/F017/F031). Largest remaining task.
+
+## 2026-05-21T20:45 APPROVE (partial) — P0.5-05 conversation/journal write-through
+
+**F028 closed:** conversation opener now uses the Norwegian topic label. Playwright verified — opener reads "Hei! La oss snakke om Daglig rutine. Hva tenker du på?".
+
+**F030/F034 status — split between P0.5-04 and P0.5-06:**
+- The "silent drop on unmapped tag" half-of-the-bug is structurally closed by P0.5-04's shared map (errorTagToConceptId always returns a concept-id; no caller-side `if (!conceptId) skip` paths remain).
+- The "AI doesn't produce CORRECTION markers for real grammar errors" half is the AI-quality problem. Playwright probe: sent Kari "Jeg ikke liker kaffe om morgenen" (clear V2 negation error). Kari replied conversationally without a CORRECTION block. `recentErrors` count unchanged. The write path is wired; the AI is just not detecting. P0.5-06's validity gate + deterministic-correction-on-validation-failure addresses this directly.
+
+**Commit:** P0.5-05 F028 fix landed in the latest src commit; no separate commit needed for the verification-only portion.
+
+**Next:** P0.5-06 — AI language-validity gate. This addresses F022 (repair-card gender rules teaching the opposite), F029 (Kari gibberish), F033 (journal fabricated words + meaning flip), AND closes the F030/F034 residual by adding a deterministic correction when the AI output passes validation but the user message contained detectable errors.
+
+## 2026-05-21T20:40 APPROVE — P0.5-04 shared error-tag→concept-id module complete
+
+**Commit:** `5ca3cad`. New module `src/lib/error-tag-to-concept.ts` covers all 17 taxonomy tags + `unspecified` with a `noun-gender` fallback for tags lacking a clean concept match. Both call sites (`conversation/page.tsx` lines 140 and 161; `WritingEditor.tsx:133`) updated to use `errorTagToConceptId()`. The silent-skip `if (!conceptId) continue/return` patterns — the F030/F034 root cause — are gone.
+
+**Behavior change is intentional**: AI-invented tags or rare taxonomy entries that previously dropped the fingerprint write silently now write through to the engine. Concept attribution is best-effort (noun-gender fallback) but the error IS logged.
+
+**Verification:** typecheck clean, 106/106 tests pass, dashboard reload 0 console errors.
+
+**Why no Playwright FULL gate here:** read-only refactor. The behavior change ("stop silently dropping") will be validated end-to-end by P0.5-05 which deliberately sends grammar errors through conversation and journal and verifies recentErrors grows.
+
+**Next:** P0.5-05 — F030/F034 end-to-end Playwright verification + F028 (Kari opener uses Norwegian topic label, not English slug). With P0.5-04 in place the verification should pass without further code changes for the write path; F028 is a 2-line fix in webllm.ts.
+
+## 2026-05-21T20:35 APPROVE — P0.5-03 corpus wiring + orphan-placeholder cleanup complete
+
+**Commits:** `b096792` (seed-pool + dashboard + grader + 3 callers) + follow-up to remove MOCK from session/page.tsx after Playwright found mock-s1 still queued.
+
+**Code criteria:** typecheck clean, 106/106 tests, grep `[unavailable]` matches only in explanatory comments.
+
+**Playwright FULL gate:** PASS.
+- Dashboard scheduler warnings: 14 → **0**. The four still-warning concepts (personal-pronouns, to-be-verb, numbers-basic, common-prepositions) now all have eligible sentences.
+- Session pool now sources from the 397-sentence disk corpus (was MOCK on dashboard + MOCK+content on session).
+- Wrong answer submission: `placeholderHits: 0` in recentErrors. Real correct answers persisted ("En hund ligger foran døren."). Concept IDs all canonical.
+- AI semantic upgrade fires when model is ready and forgives near-miss answers correctly.
+
+**Report:** `.council/reports/2026-05-21-2030-corpus-wiring.md`.
+
+**Known pre-existing (not regressed by this task):** SpeedRound stale-closure React warning when timer expires — already tracked as "Speed round" item in project-state.md known-gaps, P0.5-09 scope. `totalSessionsCompleted: 0` despite recorded errors — F012, P0.5-09 scope.
+
+**Next:** P0.5-04 shared error-tag → concept-id module. Extract the duplicate-and-incomplete maps in `src/app/conversation/page.tsx:62-73` (10 tags) and `src/components/journal/WritingEditor.tsx:22-34` (11 tags) into `src/lib/error-tag-to-concept.ts` covering all 17 taxonomy tags.
+
 ## 2026-05-21T20:18 APPROVE — P0.5-02 concept-id reconciliation complete
 
 **Code-level acceptance:** all 8 code-criteria pass (Grep clean, types clean, 106/106 tests, migration present and idempotent, askedDiagnosticQuestionIds untouched). Commit `dacccb4`.
