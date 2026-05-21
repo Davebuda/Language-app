@@ -1,6 +1,6 @@
 # Task Brief
-**Task:** P0.5-01 — Verify the third-walkthrough Critical findings against source code
-**Date:** 2026-05-21T18:30
+**Task:** P0.5-02 — Concept-id reconciliation (graph as source of truth)
+**Date:** 2026-05-21T19:00
 **Status:** IN PROGRESS
 **corrections:** 0
 
@@ -8,88 +8,152 @@
 
 ## What
 
-Before scheduling any code fixes, confirm each of the 10 Critical findings from `test-reports/stress-walkthrough-2026-05-21/report.md` is reproducible from the current source tree. The walkthrough captured observable behaviour (network, IndexedDB, DOM) — this task maps each observed defect back to the code that causes it, so subsequent P0.5-02..12 tasks have precise file:line targets.
+The P0.5-01 audit proved that NorskCoach has FOUR divergent concept-id schemes living in parallel: (1) diagnostic questions, (2) fingerprint write paths (conversation/journal), (3) the curriculum graph, and (4) the seed corpus. For 5 of the 12 diagnostic concepts the IDs mismatch the graph, so fingerprint writes land on keys the progress page never reads, AND the scheduler cannot find sentences for those concepts because the corpus uses graph IDs the diagnostic doesn't write.
 
-**No code changes.** Read-only audit. Output is a structured verification doc.
+This single defect is the root cause of F036 (progress page shows 0% / Locked everywhere), F019 (36+ "no eligible sentence" scheduler warnings on every dashboard load), and a large fraction of F018/F021 dashboard symptoms (the scheduler degrades to "Norwegian Foundations" because most concepts have no eligible sentence).
 
-The 10 Critical findings (from `report.md` § Critical and `_findings.md`):
+**Decision: graph IDs are the canonical scheme.** The curriculum graph defines prerequisites, thresholds, attempts, and days — it is the natural source of truth. Diagnostic questions, fingerprint mastery keys, conversation/journal mappings, AI prompt labels, and seed corpus IDs all migrate to graph IDs.
 
-| ID | Symptom (observable) | Verification goal |
-|---|---|---|
-| F010 | Every recentErrors entry tagged `word-order` regardless of mistake type | Locate every site that writes `errorTag` to the fingerprint. Determine whether this is (a) code regression of items 5+7 [exercise components hardcoding the tag again], (b) content-corpus issue [every sentence has `errorTagsDetectable: ['word-order']`], (c) grader override post-derivation, or (d) some other mechanism |
-| F011 | Half of stored errors have `correct: "[unavailable]"` | Find the call site that builds the error record. Identify why the `correct` field falls back to the literal string `"[unavailable]"` for sentence-transformation and translation-to-english types |
-| F012 | `totalSessionsCompleted: 0` despite 24 logged errors | Locate the increment site for `totalSessionsCompleted`. Determine why it never fires. Likely candidate: session-complete handler not reached, or fingerprint mutation not persisted |
-| F017 | Diagnostic seeds rawScore=100 even when answer was wrong | Read the diagnostic completion handler (likely `src/lib/diagnostic/engine.ts` or `src/engine/diagnostic.ts`). Identify the function that maps diagnostic answers → fingerprint rawScores. Confirm whether it sets-to-100 or aggregates correctly |
-| F016 | Diagnostic write happens on navigation, not on result-screen completion | Find the diagnostic finalize flow. Identify where the write to IndexedDB is invoked — is it tied to a router event rather than the completion handler? |
-| F022 | AI repair-card explanation: "et is for masculine, ei is for neuter" (wrong) | Find the AI explanation render site for the repair card. Confirm: is there any validation pass between `aiService.generate*` and the rendered explanation string? |
-| F029 | Kari (conversation AI) produces non-Norwegian strings | Find the conversation AI reply render path. Same validation-gate question |
-| F030 | Conversation message with grammar error: no fingerprint write | Find the conversation grammar-check write path. Trace from message-send to `recordError`/equivalent. Identify the gap |
-| F033 | Journal AI corrections invent words; meaning-flip on negation | Find the journal AI feedback path. Identify whether the corrections are aggregated into the rewrite without validation (likely the cause of the meaning flip) |
-| F034 | Journal entry: no fingerprint writes despite 3 surfaced corrections | Find the journal correction → fingerprint write path. Trace from "Analyser tekst" success to `recordError`. Identify the gap |
-| F036 | /progress shows 0% / Locked for concepts the fingerprint has at rawScore 100 | Identify two concept-id schemes. Find the canonical scheme (if one exists) and the divergent IDs. Likely: `prepositions-place` (fingerprint) vs `common-prepositions` (progress curriculum) |
-| F023 | /session/complete directly accessible with no guard | Locate `src/app/session/complete/page.tsx`. Identify whether there is any guard (state check, route protection, redirect) |
+This task is the rename + migration. P0.5-03 follows up with the corpus retag (now possible because the ID scheme is settled).
 
-**Files in scope:** Read-only access to the entire `src/` tree. No file mutations. Output is one new file: `.council/reports/2026-05-21-1830-source-verification.md`.
+**Files in scope:**
+- `src/lib/diagnostic/questions.ts` (rewrite conceptIds)
+- `src/app/conversation/page.tsx` (ERROR_TAG_TO_CONCEPT map values)
+- `src/components/journal/WritingEditor.tsx` (WRITING_TAG_TO_CONCEPT map values)
+- `src/ai/prompts.ts` (CONCEPT_LABELS keys)
+- `src/hooks/useFingerprint.ts` (NEW migration in bootstrap)
+- Any test files referencing the legacy diagnostic IDs (find via Grep)
+
+**Out of scope (do NOT touch):**
+- `content/sentences/*.json` (corpus retag is P0.5-03; corpus already uses graph IDs)
+- `src/lib/mock-sentences.ts` (already uses graph IDs per audit)
+- `content/concepts/*-graph.json` (graph is the canon — don't edit)
+- Any unrelated cleanup
 
 ---
 
 ## How
 
-1. **Read the walkthrough report and _findings.md.** Both live at `test-reports/stress-walkthrough-2026-05-21/`. The IndexedDB inspections and screenshots are the evidence base.
+### Step 1 — Migration map
 
-2. **For each Critical finding, find the source.** Use Grep to locate:
-   - errorTag write sites: `errorTag:`, `recordError`, `logError`
-   - rawScore write sites: `rawScore`, `applyDiagnostic`
-   - totalSessionsCompleted: `totalSessionsCompleted`, session-complete handlers
-   - Diagnostic finalize: `applyDiagnosticToFingerprint`, `finalize`, completion handlers
-   - AI explanation render: `aiService.explainMistake`, RepairCard component
-   - Conversation grammar-check: `useConversation`, `conversationStore`, gradeMessage
-   - Journal grammar-check: `useJournal`, `analyseText`, `journalStore`
-   - Concept-id schemes: `conceptId`, concept-graph definitions, fingerprint key names
-   - /session/complete guard: `src/app/session/complete/page.tsx`, any layout guard, any redirect
+From the P0.5-01 audit (`.council/reports/2026-05-21-1830-source-verification.md` § F036), the rename table is:
 
-3. **For each finding, produce a structured entry:**
+| Legacy diagnostic ID | Canonical graph ID |
+|---|---|
+| `present-tense-verbs` | `present-tense-regular` |
+| `negation-placement` | `negation` |
+| `past-tense-regular` | `preterite-regular` |
+| `modal-verbs` | `common-modal-verbs` |
+| `prepositions-place` | `common-prepositions` |
 
-   ```markdown
-   ### F0XX — [finding headline]
-   **Symptom (from walkthrough):** [observable behaviour]
-   **Source location:** [file:line] (one or more)
-   **Current code behaviour:** [what the code actually does]
-   **Why the symptom manifests:** [the gap between intent and actual]
-   **Intended behaviour:** [what should happen]
-   **Likely scope of fix:** [single file / multi-file / requires new module / requires content edit]
-   **Dependencies on other findings:** [e.g. F010 fix needs F011 fix first because…]
-   **Confidence:** high / medium / low
-   ```
+The other 7 diagnostic IDs already match the graph (`noun-gender`, `personal-pronouns`, `svo-word-order`, `definite-articles-singular`, `v2-word-order`, `adjective-agreement`, `question-formation`) — no rename needed.
 
-4. **Special focus areas:**
-   - **F010 is the most important** because everything downstream of the fingerprint depends on correct error tagging. If F010 is content-corpus (sentences mis-tagged), the fix is data, not code. If it's code regression of items 5+7, the fix is exercise components. Determine which.
-   - **F022/F029/F033 share a root cause hypothesis** (no AI validity gate). Verify the hypothesis by grep — is there ANY function that validates AI output before display? If yes, identify why it doesn't fire. If no, that confirms the P0.5-04 design.
-   - **F030/F034 share a root cause hypothesis** (the surface doesn't call into the fingerprint write API). Confirm whether `recordError` (or equivalent) is invoked at all from conversation and journal paths.
-   - **F036 concept-id scheme:** produce a comprehensive mismatch table (every fingerprint concept-id → corresponding progress-graph concept-id). This becomes the migration map for P0.5-07.
+### Step 2 — Rename in code
 
-5. **Read REVIEW.md's WARNING items** and flag whether any are likely still live (e.g., the auto-skip false-correct may have regressed alongside F012).
+For each of the five legacy IDs, replace every occurrence with the canonical graph ID across the in-scope files. Use Grep with `output_mode: files_with_matches` to find every reference; do not assume.
 
-6. **Output location:** `.council/reports/2026-05-21-1830-source-verification.md`. Use the structure from step 3 for each finding. Open with a one-paragraph executive summary; close with a "Suggested ordering revisions" section noting if any of the 12 P0.5 task buckets should be split, merged, or reordered based on what the source actually reveals.
+Special instructions per file:
+
+- **`src/lib/diagnostic/questions.ts`**: The audit notes lines 15-313. Each question object has a `conceptId` field. Rename the five legacy values. Verify post-rename that every `conceptId` in the array appears as a node in either `content/concepts/a1-graph.json` or `content/concepts/a2-graph.json`.
+
+- **`src/app/conversation/page.tsx:62-73`** (`ERROR_TAG_TO_CONCEPT`): The map values are the rename target. Rename the five legacy values. Note this task does NOT extend the map for completeness — that's P0.5-04 (extract to shared module). Touch only the values that need renaming; do not introduce new keys.
+
+- **`src/components/journal/WritingEditor.tsx:22-34`** (`WRITING_TAG_TO_CONCEPT`): Same shape as above. Rename values only.
+
+- **`src/ai/prompts.ts:5-20`** (`CONCEPT_LABELS`): If the keys are the diagnostic IDs, rename them. If the keys are already graph IDs, no change. Read the file to verify.
+
+### Step 3 — Migration in fingerprint bootstrap
+
+In `src/hooks/useFingerprint.ts`, the bootstrap path runs on app load and on auth change. Existing users have fingerprints with the legacy diagnostic keys. Without a migration, their mastery data orphans.
+
+Add a one-shot migration that runs once during bootstrap (idempotent — must be safe to run multiple times):
+
+```ts
+// Conceptual sketch; place inside bootstrap or in a dedicated migrateFingerprint() called from bootstrap
+const LEGACY_KEY_RENAMES: Record<string, string> = {
+  'present-tense-verbs': 'present-tense-regular',
+  'negation-placement': 'negation',
+  'past-tense-regular': 'preterite-regular',
+  'modal-verbs': 'common-modal-verbs',
+  'prepositions-place': 'common-prepositions',
+};
+
+function migrateConceptIds(fp: MistakeFingerprint): { migrated: MistakeFingerprint; changed: boolean } {
+  let changed = false;
+  const conceptMastery = { ...fp.conceptMastery };
+  for (const [oldKey, newKey] of Object.entries(LEGACY_KEY_RENAMES)) {
+    if (conceptMastery[oldKey]) {
+      // If the new key already exists (e.g. user re-ran diagnostic post-update), merge
+      const existing = conceptMastery[newKey];
+      if (existing) {
+        // Merge by taking the more recent / higher-attempt entry — defer the actual merge
+        // policy decision to the implementer; document it inline. Simplest: prefer the
+        // newer lastAttemptAt. Fall back to keeping the legacy entry if the new is null.
+        // ...
+      } else {
+        conceptMastery[newKey] = { ...conceptMastery[oldKey], conceptId: newKey };
+      }
+      delete conceptMastery[oldKey];
+      changed = true;
+    }
+  }
+  // Also rewrite recentErrors[].conceptId by the same map
+  const recentErrors = fp.recentErrors.map((e) =>
+    LEGACY_KEY_RENAMES[e.conceptId]
+      ? { ...e, conceptId: LEGACY_KEY_RENAMES[e.conceptId] }
+      : e
+  );
+  // Same for askedDiagnosticQuestionIds — these are question IDs, NOT concept IDs, so DO NOT touch them
+  if (changed) {
+    return { migrated: { ...fp, conceptMastery, recentErrors, updatedAt: new Date().toISOString() }, changed: true };
+  }
+  return { migrated: fp, changed: false };
+}
+```
+
+The bootstrap should:
+1. Load the fingerprint from IndexedDB (existing flow).
+2. Run `migrateConceptIds(fp)`.
+3. If `changed === true`, persist the migrated fingerprint (save to IndexedDB + fire-and-forget Supabase sync if auth).
+4. Use the migrated fingerprint for the rest of bootstrap.
+
+The migration MUST be idempotent: running twice on the same fingerprint should be a no-op the second time. The implementation above is idempotent because legacy keys disappear after first run.
+
+### Step 4 — Verify
+
+- Run `grep -rn "present-tense-verbs\|negation-placement\|past-tense-regular\|modal-verbs\|prepositions-place" src/` — the only matches should be inside the migration map itself.
+- Run TypeScript check: `npm run typecheck` (or equivalent). Zero new errors.
+- Visual: load the app. /dashboard for a fresh user should show no "no eligible sentence" warnings for the formerly-orphaned concepts (some may remain for concepts genuinely missing from the corpus — that's P0.5-03's scope).
+- IndexedDB: a fingerprint with `prepositions-place` from a prior session should migrate to `common-prepositions` on next bootstrap, preserving rawScore / attemptCount / etc.
+
+### Step 5 — Tests
+
+Find tests touching the legacy IDs. Likely candidates:
+- `tests/lib/diagnostic/*` (if exists)
+- `tests/hooks/useFingerprint.test.ts`
+- `tests/engine/scheduler.test.ts`
+
+Rename IDs in tests so they pass. Do NOT introduce new test cases in this task — keep scope tight.
 
 ---
 
 ## Model
 
-opus — this is a cross-file analysis with judgement calls about whether observed behaviour matches intent. Not mechanical.
+opus — migration touches user data; the merge policy in the bootstrap when both old and new keys are present needs architectural judgement. Risk profile is "small bug breaks every existing user".
 
 ---
 
 ## Acceptance Criteria
 
-1. The verification doc exists at `.council/reports/2026-05-21-1830-source-verification.md`.
-2. Each of the 10 Critical findings (F010, F011, F012, F016, F017, F022, F023, F029, F030, F033, F034, F036) has a structured entry with file:line, current behaviour, gap, intended behaviour, and confidence rating. (Yes — twelve IDs total; F022 is one entry though the issue spans surfaces.)
-3. F010 has a definitive answer on code-vs-content (or both).
-4. F022/F029/F033 has a definitive answer on whether any AI validity gate exists in source.
-5. F030/F034 has a definitive answer on whether the conversation/journal surfaces invoke `recordError` (or equivalent) at all.
-6. F036 has a concept-id mismatch table.
-7. The doc closes with a "Suggested ordering revisions" section.
-8. No source files modified. (Verify with `git status` → only `.council/reports/...` is new.)
+1. `grep -rn "present-tense-verbs\|negation-placement\|past-tense-regular\|modal-verbs\|prepositions-place"` returns matches ONLY inside the migration map in `useFingerprint.ts` (the migration deliberately mentions the legacy strings).
+2. `src/lib/diagnostic/questions.ts` — every `conceptId` value appears in either `content/concepts/a1-graph.json` or `content/concepts/a2-graph.json`.
+3. `src/app/conversation/page.tsx` and `src/components/journal/WritingEditor.tsx` — every value in the tag-to-concept maps is a graph ID.
+4. `src/ai/prompts.ts` `CONCEPT_LABELS` — keys are graph IDs.
+5. `src/hooks/useFingerprint.ts` — migration is present, idempotent, runs on bootstrap, persists when it changes the fingerprint, also rewrites `recentErrors[].conceptId`.
+6. `askedDiagnosticQuestionIds` is NOT touched by migration (those are question IDs, not concept IDs).
+7. No TypeScript errors. (`npm run typecheck` clean — but also build:  `npm run build` if a clean baseline exists.)
+8. Existing tests pass.
+9. Walkthrough manual: load app fresh, navigate `/dashboard` → `/progress`. The progress page should now correctly show concepts with rawScore data (not all at 0%/Locked). Some may remain Locked because the corpus retag is P0.5-03 — that's expected.
 
 ---
 
@@ -97,12 +161,23 @@ opus — this is a cross-file analysis with judgement calls about whether observ
 
 Stop and write `BLOCKED: [reason]` to this file if:
 
-- Source-code reading reveals the walkthrough report contains a misinterpretation that invalidates the finding (e.g., a Critical turns out to be working-as-designed). Write the correction inline.
-- Any of the 12 findings cannot be located in source (likely indicates the symptom is content/corpus rather than code — note this, do not block).
-- The task scope expands beyond the 12 findings into a general code review (it should not — stay tight to the walkthrough findings).
+- A graph ID rename target does not exist as a node in the graph JSON (the audit's table is wrong — fix the audit, do not invent IDs).
+- The merge policy when both old and new keys exist cannot be decided cleanly. (Stop, surface the question, do not guess.)
+- The migration would touch `askedDiagnosticQuestionIds`, `errorPatterns`, or any field outside `conceptMastery` and `recentErrors`. Those are out of scope.
+- Any file outside the in-scope list above would need to be changed beyond the migration's Grep-find targets.
 
 ---
 
 ## Playwright Checkpoint
 
-**none** — this is a source-code audit with no UI changes.
+**FULL**
+
+Tests:
+1. Load `/dashboard` as a guest. Verify no console errors at first paint. The scheduler "no eligible sentence" warning count should be measurably lower than the 36+ recorded in the third walkthrough (some concepts will still warn — that's P0.5-03).
+2. Load `/progress`. Verify rawScore-bearing concepts (those in the fingerprint with rawScore > 0) now render their actual scores, not 0%/Locked. If the page still shows everything Locked, the cascade in `getConceptPhase` may need to be checked — flag if so.
+3. Critical-path regression: `/dashboard` → Start session → answer one correctly → answer one incorrectly → repair → next exercise. Verify no console errors, repair card still fires.
+4. Pre-existing fingerprint test: before running migration, inject a synthetic fingerprint into IndexedDB with one legacy key (e.g. `prepositions-place: { rawScore: 88, attemptCount: 3, ... }`). Reload `/dashboard`. Verify the key migrates to `common-prepositions` and the rawScore is preserved.
+
+Save screenshots to `.council/reports/screenshots/[timestamp]-concept-id-reconciliation/`.
+
+Report at `.council/reports/[timestamp]-concept-id-reconciliation.md`.
