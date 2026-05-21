@@ -10,6 +10,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import type { ErrorTag } from '@/types/taxonomy'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
@@ -17,21 +18,6 @@ import a2GraphJson from '@content/concepts/a2-graph.json'
 
 const a1Graph = a1GraphJson as ConceptGraph
 const a2Graph = a2GraphJson as ConceptGraph
-
-// Best-effort: map writing feedback error tags to concept IDs
-const WRITING_TAG_TO_CONCEPT: Partial<Record<string, string>> = {
-  'word-order': 'v2-word-order',
-  'noun-gender': 'noun-gender',
-  'article-use': 'indefinite-articles',
-  'verb-conjugation': 'present-tense-regular',
-  'verb-tense': 'preterite-regular',
-  'modal-verb': 'common-modal-verbs',
-  'adjective-agreement': 'adjective-agreement',
-  'pronoun-choice': 'personal-pronouns',
-  'preposition': 'common-prepositions',
-  'negation-placement': 'negation',
-  'spelling': 'noun-gender',
-}
 
 const PROMPTS = [
   'Beskriv din ideelle norske helg',
@@ -142,8 +128,9 @@ export function WritingEditor() {
     const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
     let updated = fingerprint
     for (const err of result.errors) {
-      const conceptId = WRITING_TAG_TO_CONCEPT[err.tag]
-      if (!conceptId) continue
+      // P0.5-04: errorTagToConceptId always returns a concept-id (fallback to
+      // noun-gender), so unmapped AI tags no longer silently drop the error.
+      const conceptId = errorTagToConceptId(err.tag)
       const node = activeGraph.concepts.find((c) => c.id === conceptId)
       // logError first (only touches recentErrors/updatedAt), then mastery
       updated = logError(updated, {

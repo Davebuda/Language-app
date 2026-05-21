@@ -10,6 +10,7 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
+import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -57,20 +58,6 @@ const TOPICS = [
 ] as const
 
 const LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2']
-
-// Best-effort mapping: error tag → most relevant concept ID for fingerprint logging
-const ERROR_TAG_TO_CONCEPT: Partial<Record<string, string>> = {
-  'word-order': 'v2-word-order',
-  'noun-gender': 'noun-gender',
-  'article-use': 'indefinite-articles',
-  'verb-conjugation': 'present-tense-regular',
-  'verb-tense': 'preterite-regular',
-  'modal-verb': 'common-modal-verbs',
-  'adjective-agreement': 'adjective-agreement',
-  'pronoun-choice': 'personal-pronouns',
-  'preposition': 'common-prepositions',
-  'negation-placement': 'negation',
-}
 
 function getSpeechRecognitionCtor(): SpeechRecCtor | null {
   if (typeof window === 'undefined') return null
@@ -148,7 +135,7 @@ export default function ConversationPage() {
         content,
         corrected_content: correction ? correction.corrected : null,
         error_tags: correction ? [correction.errorTag] : [],
-        concept_ids: correction ? [ERROR_TAG_TO_CONCEPT[correction.errorTag] ?? ''].filter(Boolean) : [],
+        concept_ids: correction ? [errorTagToConceptId(correction.errorTag)] : [],
         turn_index: turnIndexRef.current++,
       })
     } catch { /* silent */ }
@@ -169,8 +156,9 @@ export default function ConversationPage() {
 
   function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>): void {
     if (!fingerprint) return
-    const conceptId = ERROR_TAG_TO_CONCEPT[correction.errorTag]
-    if (!conceptId) return
+    // P0.5-04: shared map returns a concept-id with a sensible fallback,
+    // so unmapped tags from the AI no longer silently drop the write.
+    const conceptId = errorTagToConceptId(correction.errorTag)
 
     // Update mastery (wrong answer) — same pattern as recordConstraintResult
     const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
