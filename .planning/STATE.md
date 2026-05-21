@@ -5,15 +5,18 @@ milestone_name: Stream 5 — Weekly Sprint (Curriculum Cohesion Layer)
 status: in progress
 stopped_at: Phase 1 (data model + selection logic) APPROVED. Phase 2 (authenticated walkthrough) requires user magic-link click OR can be reordered to between Phase 3 and Phase 4.
 last_updated: "2026-05-22"
-last_activity: 2026-05-22T00:00 — Phase 1 commit 0821e75; 23 new tests added; 129/129 passing.
+last_activity: 2026-05-22T00:27 — Phase 3 commit 4fbd654; 5 new tests; 134/134 passing.
+stopped_at_phase_2_reason: Phase 2 = authenticated walkthrough requires the user to click a Supabase magic link in their email. Council ran Phases 3 and 5a autonomously while preserving the dependency chain (Phase 4 still depends on Phase 2).
 progress:
   stream_5_phase: 1 of 7 complete
+  stream_5_phase: 2 of 7 complete (with 5a additionally in-flight)
   stream_5_phases:
     - "1: data model + selection logic — COMPLETE (0821e75)"
-    - "2: authenticated walkthrough — PENDING USER INPUT"
-    - "3: scheduler bias pass — pending"
-    - "4: weekly check route — pending"
-    - "5: graduation job — pending"
+    - "3: scheduler bias toward weeklyFocus — COMPLETE (4fbd654)"
+    - "5a: open-week orchestration — NEXT (autonomous, pure logic + 1 wiring point)"
+    - "2: authenticated walkthrough — PENDING USER (magic-link click); slots before Phase 4"
+    - "4: weekly check route /uke — pending Phase 2"
+    - "5b: graduation rule — pending Phase 4 checkResults"
     - "6: dashboard week-strip — pending"
     - "7: aesthetic guard + audit — pending"
   p0.5_tasks_complete: 15/15

@@ -1,5 +1,24 @@
 # Council Decision Log
 
+## 2026-05-22T00:30 APPROVE — Stream 5 Phase 3 (scheduler bias toward weeklyFocus)
+
+**Commit:** `4fbd654` feat(engine): Stream 5 Phase 3 — scheduler bias toward weeklyFocus.
+
+**Diff (verified `git show HEAD --stat`):** exactly 2 files — `src/engine/scheduler.ts` (+26/-4) and `tests/engine/scheduler.test.ts` (+243/-0). Matches in-scope list precisely.
+
+**Verification:** `npx tsc --noEmit` clean. `npm test` 134/134 passing (129 before + 5 new tests in `describe('weekly focus bias')`).
+
+**Three in-scope test-fixture corrections, not deviations from spec intent:**
+1. Test 1 fixture: spec said 5 concepts but `getPrimaryWeakConcepts(fp, 5)` returns all 5 when each has `attemptCount > 0`. Implementer used 8 concepts (c6-c8 with `attemptCount: 0`) to isolate the top-5 weak. Backwards-compatibility assertion now reads "c6/c7/c8 never appear in remediation" — same intent, correct construction.
+2. Test 4 fixture: spec assumed 6 remediation slots; default recipe (`targetDurationSeconds: 750`) produces 17. Used `targetDurationSeconds: 270` (6×45s) plus 6 concepts to honour the cap test correctly.
+3. Static import of `DEFAULT_SESSION_RECIPE` was added (Test 5 originally had `await import()` inside sync `it()` — parse error).
+
+All three are honest test-construction details, not silent spec drift.
+
+**Sequence note:** Phase 2 (auth walkthrough) was originally scheduled between Phase 1 and Phase 3. With Phase 3 done before Phase 2, the dependency chain still holds — Phase 3 doesn't add Supabase writes (it rides the existing fingerprint sync), so the auth walkthrough's actual purpose (verify new Supabase write paths) is unchanged when slotted before Phase 4 where new write paths actually appear. Roadmap updated to reflect the re-sequencing.
+
+**Next:** Phase 5a (open-week orchestration) — pure logic + one wiring point. Can ship autonomously. After 5a: Phase 2 requires user input (magic-link click).
+
 ## 2026-05-22T00:00 APPROVE — Stream 5 Phase 1 (data model + selection logic)
 
 **Commit:** `0821e75` feat(engine): Stream 5 Phase 1 — weekly sprint data model + selection logic.

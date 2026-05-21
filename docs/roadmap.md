@@ -236,13 +236,15 @@ Learner's mental model: *"I have 5 concepts to lock in this week. The app picks 
 - 23 new tests in `tests/engine/weekly-sprint.test.ts`. Test suite: 129 passing (was 106).
 - typecheck clean.
 
-**Phase 2 — Authenticated-user walkthrough + Supabase sync verification.** One session. Slotted between Phase 1 and Phase 3 because Weekly Sprint adds new Supabase write paths that have never been exercised.
+**Phase 3 — Scheduler bias pass.** ✅ COMPLETE 2026-05-22T00:27 (commit `4fbd654`). `generateSession` now biases the 40% remediation pool toward `weeklyFocus` while preserving existing `firstEligibleType` guard, concept-repeat cap, and recipe 40/30/20/10. Empty-`weeklyFocus` path is backwards-compatible (all pre-Phase-3 tests pass unchanged). 5 new tests in `describe('weekly focus bias')`; 134 passing.
 
-**Phase 3 — Scheduler bias pass.** Adjust `generateSession` so the 40% remediation pool prefers `weeklyFocus` concepts while honouring existing `firstEligibleType` guard and concept-repeat cap. Recipe stays 40/30/20/10. Tests: existing scheduler invariants preserved; focus bias measurable.
+**Phase 5a — Open-week orchestration.** Pure logic + one wiring point. `openWeek(fp, graph, now?)` calls `selectWeeklyFocus`, sets `weekStartedAt: now`, populates `weeklyFocus`. Wired into the fingerprint-bootstrap path so that on each session start: if `shouldResetWeek(fp)` → `closeWeek({status: 'abandoned'})` then `openWeek`; if `weekStartedAt === null` → `openWeek`. No Supabase writes added beyond the existing fingerprint sync. Slotted now because pure-logic and unblocks the bias's data dependency (Phase 3 reads `weeklyFocus`; without 5a, every user has `weeklyFocus: []`).
+
+**Phase 2 — Authenticated-user walkthrough + Supabase sync verification.** RE-SEQUENCED to slot between Phase 5a and Phase 4 (was originally "between Phase 1 and Phase 3"). Reasoning: Phase 4 is where new Supabase write paths first appear (`learning_events_log` write from weekly-check route). Phase 3 + Phase 5a do not add Supabase write paths — they ride the existing fingerprint sync. So the auth walkthrough sensibly precedes Phase 4 where the new write paths land, not Phase 3. The "engineering hygiene before new surface" intent is preserved.
 
 **Phase 4 — Weekly Check surface.** `/uke` route + `WeeklyCheckScreen` component. Reuses `ExerciseCard`. 6–8 adaptive items drawn from focus + previous-week graduates. Result writes to fingerprint via normal `recordResult` AND a new `learning_events_log` event type `weekly_check_complete`. AlertDialog primitive installed (deferred from P0.5) for "Skip weekly check" confirmation.
 
-**Phase 5 — Sunday graduation job.** Runs on first session of any new week (no cron, no server cost). Closes previous week into `weeklySprintHistory`, picks new focus, writes new `weekStartedAt`. Tests: simulated learner across 3 consecutive weeks.
+**Phase 5b — Graduation rule.** Depends on Phase 4 producing `checkResult` data. Concepts that hit `masteryThreshold` AND cleared the weekly check graduate to next phase; misses re-queue into next week's focus. Pure rule over fingerprint state.
 
 **Phase 6 — Dashboard week-strip.** Composition into UI-1.3 dashboard (queued anyway). 375px compact horizontal bar showing focus-concept progress dots; 1280px+ expanded card with rawScore deltas. Folds with UI-1.3 instead of being built parallel.
 
