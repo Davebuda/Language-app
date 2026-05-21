@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 
-export default function LoginPage() {
+function LoginForm() {
   const { signIn } = useAuth()
   const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
@@ -167,5 +167,15 @@ export default function LoginPage() {
         </motion.section>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  // Suspense boundary required by Next.js 15 because useSearchParams() inside
+  // LoginForm causes a CSR bailout during static prerender otherwise.
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   )
 }
