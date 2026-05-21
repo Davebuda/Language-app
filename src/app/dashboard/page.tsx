@@ -377,6 +377,13 @@ export default function DashboardPage() {
             >
               Lytt og svar
             </Link>
+            <Link
+              href="/roleplay"
+              aria-label="Øv på rollespill"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
+            >
+              Rollespill
+            </Link>
           </div>
         </motion.div>
 
