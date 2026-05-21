@@ -52,7 +52,7 @@ function MultipleChoice({
 
   return (
     <div className="space-y-5">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">Fyll inn</p>
+      <p className="text-[12px] font-bold uppercase tracking-widest text-nc-cream-dim">Fyll inn</p>
 
       <motion.div
         className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-nc-cream-text"
@@ -96,6 +96,13 @@ function MultipleChoice({
           );
         })}
       </div>
+      <div aria-live="polite" className="sr-only">
+        {selected !== null
+          ? selected.trim().toLowerCase() === correct.trim().toLowerCase()
+            ? 'Riktig svar.'
+            : 'Feil svar.'
+          : ''}
+      </div>
     </div>
   );
 }
@@ -109,12 +116,14 @@ function FreeText({
 }) {
   const [userInput, setUserInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [resultAnnouncement, setResultAnnouncement] = useState('');
   const startRef = useRef(Date.now());
 
   function submit() {
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
     const isCorrect = checkAnswer(userInput, correct);
+    setResultAnnouncement(isCorrect ? 'Riktig svar.' : 'Feil svar.');
     onResult({
       sessionId,
       itemId: item.id,
@@ -129,7 +138,7 @@ function FreeText({
 
   return (
     <div className="space-y-5">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">Fyll inn</p>
+      <p className="text-[12px] font-bold uppercase tracking-widest text-nc-cream-dim">Fyll inn</p>
       <motion.div
         className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-nc-cream-text"
         initial={{ opacity: 0, y: 8 }}
@@ -156,6 +165,7 @@ function FreeText({
       >
         Sjekk svar
       </button>
+      <div aria-live="polite" className="sr-only">{resultAnnouncement}</div>
     </div>
   );
 }

@@ -18,6 +18,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   const [userInput, setUserInput] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
   const [submitted, setSubmitted] = useState(false);
+  const [resultAnnouncement, setResultAnnouncement] = useState('');
   const startRef = useRef(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -55,6 +56,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'spelling'),
         conceptId: item.conceptIds[0] ?? '',
       });
+      setResultAnnouncement(correct ? 'Riktig svar.' : 'Feil svar.');
     });
   }
 
@@ -108,6 +110,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       >
         Sjekk svar
       </button>
+      <div aria-live="polite" className="sr-only">{resultAnnouncement}</div>
     </div>
   );
 }

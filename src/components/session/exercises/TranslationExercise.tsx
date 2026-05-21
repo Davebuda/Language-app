@@ -130,6 +130,9 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
         <span>Sjekk svar</span>
         <ArrowRight size={16} />
       </button>
+      <div aria-live="polite" className="sr-only">
+        {feedbackTone === 'correct' ? 'Riktig svar.' : feedbackTone === 'wrong' ? 'Feil svar.' : ''}
+      </div>
     </div>
   );
 }

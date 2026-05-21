@@ -1,118 +1,113 @@
 # Task Brief
-**Task:** Session completion screen — make the moat visible
+**Task:** P1 Accessibility Bundle — reduced-motion, text size, aria-live
 **Date:** 2026-05-21
-**Status:** APPROVED — 2026-05-21T11:10
+**Status:** APPROVED — 2026-05-21T11:20
 
 ---
 
 ## What
 
-Enhance `src/app/session/complete/page.tsx` to surface the engine's diagnostic intelligence at the end of every session. The screen exists and has a solid foundation — this is an additive enhancement, not a rebuild.
+Three surgical accessibility fixes that touch the core session loop. All three are P1 from the `/audit` report. No new features, no scope creep.
 
-**Add these three things:**
+### Fix 1 — MotionConfig reducedMotion="user" (systemic)
+**File:** `src/app/layout.tsx` + new `src/components/ui/MotionProvider.tsx`
+- Create `MotionProvider.tsx` as a `'use client'` wrapper around `MotionConfig reducedMotion="user"` from framer-motion
+- In `layout.tsx`, import and wrap `{children}` with `<MotionProvider>` (layout stays a Server Component)
+- This fixes ALL Framer Motion animations in one line — every exercise, every page entrance, every transition will respect the OS "reduce motion" preference
 
-### 1. Repair loop summary section (new section, after the "what you practiced" card)
-- Count wrong answers from `results.filter(r => !r.correct)` — these are repair loop triggers
-- Group by `conceptId`, collect `errorTag` values
-- Show: "X mønstre reparert" heading with a list of concept labels + error tag chips
-- If zero wrong answers: do not render this section at all (clean session, no noise)
-- Use `nc-glass` surface, teal border accent for the chip labels
+```tsx
+// src/components/ui/MotionProvider.tsx
+'use client';
+import { MotionConfig } from 'framer-motion';
+export function MotionProvider({ children }: { children: React.ReactNode }) {
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+}
+```
 
-### 2. Phase indicators on the concept list (replace "◌" and remove "New" badge)
-- For each practiced concept, call `getConceptPhase(mastery, concept.prerequisites, masteredIds)` — same pattern as `dashboard/page.tsx:161`
-- Import `getConceptPhase` from `@/engine/fingerprint`
-- Show phase as a small chip next to concept label: `intro` (muted), `practice` (teal tint), `consolidation` (green tint), `maintenance` (green)
-- Remove the hardcoded `<span>New</span>` badge entirely
+```tsx
+// layout.tsx — add MotionProvider import, wrap children:
+<MotionProvider>
+  <TopographicGrid />
+  {children}
+  <ClientAILoader />
+</MotionProvider>
+```
 
-### 3. SRS next review pill on the repair card (append to repair section)
-- For concepts that got wrong answers: find the earliest `fingerprint.conceptMastery[id]?.nextReviewAt`
-- If found: show "Første gjennomgang: [relative date — 'om 3 dager' / 'i morgen' / 'om X dager']"
-- Compute the relative date: `Math.ceil((new Date(nextReviewAt).getTime() - Date.now()) / 86400000)` days
-- If 0 or past: show "I dag"
-- If 1: "I morgen"
-- If >1: "Om X dager"
+### Fix 2 — Text size 10px → 12px (two files)
+**Files:** `WordOrderExercise.tsx:73`, `FillInBlankExercise.tsx:55`
+
+Both have `text-[10px]` instruction labels. Audit called out WordOrderExercise only, but FillInBlankExercise has the identical pattern (discovered during file read). Fix both:
+- `WordOrderExercise.tsx:73` — `text-[10px]` → `text-[12px]`
+- `FillInBlankExercise.tsx:55` (MultipleChoice "Fyll inn" label) — `text-[10px]` → `text-[12px]`
+
+### Fix 3 — aria-live feedback region (four exercise components)
+**Files:** `TranslationExercise.tsx`, `FillInBlankExercise.tsx`, `WordOrderExercise.tsx`, `SpeedRound.tsx`
+
+Add a visually-hidden `aria-live="polite"` region to each exercise component that announces the result when an answer is submitted. Pattern:
+
+```tsx
+// Add state in each component:
+const [resultAnnouncement, setResultAnnouncement] = useState('');
+
+// Set in the submit/choose function when result is known:
+setResultAnnouncement(correct ? 'Riktig svar.' : `Feil. Riktig svar er: ${correctAnswer}`);
+
+// Render (after the submit button, inside the return):
+<div aria-live="polite" className="sr-only">{resultAnnouncement}</div>
+```
+
+**Per-component specifics:**
+
+- **TranslationExercise** — already has `feedbackTone` state. Derive: `feedbackTone === 'correct' ? 'Riktig svar.' : feedbackTone === 'wrong' ? 'Feil svar.' : ''`. Render inline from existing state — NO new useState needed.
+- **FillInBlankExercise MCQ (MultipleChoice sub-component)** — `selected` state already tracks chosen option. Derive: `selected !== null ? (selected.trim().toLowerCase() === correct.trim().toLowerCase() ? 'Riktig svar.' : 'Feil svar.') : ''`. No new useState needed.
+- **FillInBlankExercise FreeText** — add `resultAnnouncement` useState, set in the submit handler after `isCorrect` is computed.
+- **WordOrderExercise** — add `resultAnnouncement` useState, set in `submit()` after `correct` is computed.
+- **SpeedRound** — add `resultAnnouncement` useState, set inside the `.then()` callback after `correct` arrives from `gradeAnswer`.
+
+**ListeningExercise** — skip for now (audio-focused, separate channel; not in audit P1 list).
 
 ---
 
 ## How
 
-- Single file change: `src/app/session/complete/page.tsx`
-- No new files unless a helper function exceeds 20 lines
-- Import `getConceptPhase` from `@/engine/fingerprint` (already used in dashboard/page.tsx)
+- Total files changed: 6 (MotionProvider.tsx new, layout.tsx, WordOrderExercise.tsx, FillInBlankExercise.tsx, TranslationExercise.tsx, SpeedRound.tsx)
 - No new dependencies
-- Build the repair section ONLY if `wrongResults.length > 0` — no empty state needed
-- Keep all existing sections: score circle, stats grid, concept list, reflection, next-session card
-- Use existing design tokens only: `nc-glass`, `nc-glass-elevated`, `nc-label`, `nc-teal`, `nc-green`, `nc-red`
-- Framer Motion is already imported — entrance animation on the repair section: `initial={{ opacity: 0, y: 8 }}` with `delay: 0.20` (between the concept list and reflection card delays)
-- No `cn` needed — inline class logic consistent with the rest of the file
-
-**Error tag display map (inline const in the file):**
-```ts
-const ERROR_TAG_LABELS: Partial<Record<ErrorTag, string>> = {
-  'word-order': 'Ordstilling',
-  'verb-tense': 'Verbtid',
-  'verb-conjugation': 'Verbform',
-  'noun-gender': 'Substantivkjønn',
-  'article-use': 'Artikkelbruk',
-  'adjective-agreement': 'Adjektivsamsvar',
-  'pronoun-choice': 'Pronomen',
-  'preposition': 'Preposisjon',
-  'modal-verb': 'Modalverb',
-  'negation-placement': 'Negasjon',
-  'compound-word': 'Sammensatt ord',
-  'spelling': 'Stavefeil',
-  'wrong-word-same-category': 'Feil ord',
-  'unspecified': 'Grammatikk',
-}
-```
-
-**Phase chip color map (inline):**
-```ts
-const PHASE_STYLES = {
-  locked:        'bg-[rgba(255,255,255,0.04)] text-[var(--nc-text-dim)]',
-  intro:         'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-muted)]',
-  practice:      'bg-[var(--nc-teal-tint)] text-[var(--nc-teal)]',
-  consolidation: 'bg-[var(--nc-green-tint)] text-[var(--nc-green)]',
-  maintenance:   'bg-[var(--nc-green-tint)] text-[var(--nc-green)]',
-}
-const PHASE_LABELS = {
-  locked: 'Låst', intro: 'Intro', practice: 'Øving',
-  consolidation: 'Konsolidering', maintenance: 'Vedlikehold',
-}
-```
+- No new Zustand state
+- `className="sr-only"` is already in globals.css (verify before assuming; if absent add `.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }` to globals.css)
+- Framer Motion `MotionConfig` is already installed (used everywhere)
+- Keep all existing exercise logic untouched — aria-live is additive only
 
 ---
 
 ## Model
-sonnet (UI enhancement, well-specified)
+sonnet (three mechanical fixes, well-specified)
 
 ---
 
 ## Acceptance Criteria
 
-1. After a session with ≥1 wrong answer: a repair section appears between the concept list card and the reflection card. It shows the count of repairs, which concepts triggered repair (by label), and the earliest SRS next review date formatted as "om X dager" / "i morgen" / "i dag".
-2. After a perfect session (0 wrong answers): the repair section does NOT render. The screen is quieter — no empty state shown.
-3. The concept list ("Hva du øvde på") shows a phase chip next to each concept label. The hardcoded "New" badge is gone.
-4. All existing sections still render correctly: ScoreCircle, stats grid, reflection prompt, next-session card.
-5. No TypeScript errors. No new test failures.
-6. Layout holds at 375px and 1280px (the two critical breakpoints).
+1. `MotionProvider.tsx` exists with `'use client'` and `MotionConfig reducedMotion="user"`. Layout wraps children with it. Layout itself has no `'use client'` directive.
+2. `WordOrderExercise.tsx:73` reads `text-[12px]` not `text-[10px]`.
+3. `FillInBlankExercise.tsx:55` (the "Fyll inn" label) reads `text-[12px]` not `text-[10px]`.
+4. All four exercise components (`TranslationExercise`, `FillInBlankExercise`, `WordOrderExercise`, `SpeedRound`) have a `<div aria-live="polite" className="sr-only">` that is populated with a Norwegian result string on answer submission. Empty string before submission.
+5. No TypeScript errors introduced.
+6. All existing exercise logic (onResult callback, state management, tile movement) is unchanged.
 
 ---
 
 ## Blocking Flags
 Stop immediately and write `BLOCKED: [reason]` to this file if:
 - Any TypeScript error is introduced
-- `getConceptPhase` import does not resolve
-- The repair section interferes with the reflection card layout
-- You are about to make a change not specified in this brief
+- `sr-only` class is absent from globals.css and you can't confirm where to add it
+- `MotionConfig` import fails (would mean framer-motion version change)
+- You are about to change any exercise logic beyond the three fixes listed
 
 ---
 
 ## Playwright Checkpoint
 yes
 Test flows:
-1. Navigate to `/session/complete` via completing a real session — verify repair section present/absent based on wrong answer count
-2. Verify concept phase chips render correctly
-3. Verify "New" badge is gone
-4. Verify existing sections (ScoreCircle, stats, reflection, next-session card) still render
-5. Check 375px mobile layout — no overflow
+1. Navigate to a live session exercise (or `/session` if accessible) — verify no blank screens
+2. Confirm existing exercises still render and submit normally
+3. Verify layout renders without visual regression at 375px and 1280px
+4. Check console for TypeScript compilation errors

@@ -2,6 +2,7 @@ import { Schibsted_Grotesk } from 'next/font/google'
 import type { Metadata } from 'next'
 import { ClientAILoader } from '@/components/ai/ClientAILoader'
 import { TopographicGrid } from '@/components/ui/TopographicGrid'
+import { MotionProvider } from '@/components/ui/MotionProvider'
 import './globals.css'
 
 const schibstedDisplay = Schibsted_Grotesk({
@@ -41,9 +42,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${schibstedDisplay.variable} ${schibstedBody.variable} dark`}>
       <body className="font-sans antialiased bg-[var(--nc-bg)]">
-        <TopographicGrid />
-        {children}
-        <ClientAILoader />
+        <MotionProvider>
+          <TopographicGrid />
+          {children}
+          <ClientAILoader />
+        </MotionProvider>
       </body>
     </html>
   )

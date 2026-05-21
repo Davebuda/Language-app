@@ -34,6 +34,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
   );
   const [answerTiles, setAnswerTiles] = useState<Tile[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [resultAnnouncement, setResultAnnouncement] = useState('');
   const startRef = useRef(Date.now());
 
   function moveToAnswer(tile: Tile) {
@@ -55,6 +56,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
     const correct =
       userWords.length === correctWords.length &&
       userWords.every((w, i) => normalizeAnswer(w) === normalizeAnswer(correctWords[i] ?? ''));
+    setResultAnnouncement(correct ? 'Riktig svar.' : 'Feil svar.');
     onResult({
       sessionId,
       itemId: item.id,
@@ -70,7 +72,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
   return (
     <div className="space-y-4">
       {/* English instruction — demoted to small label per aesthetic direction */}
-      <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">
+      <p className="text-[12px] font-bold uppercase tracking-widest text-nc-cream-dim">
         {sentence.english}
       </p>
 
@@ -146,6 +148,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       >
         Sjekk rekkefølge
       </button>
+      <div aria-live="polite" className="sr-only">{resultAnnouncement}</div>
     </div>
   );
 }
