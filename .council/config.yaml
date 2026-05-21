@@ -1,0 +1,30 @@
+project: NorskCoach
+constitution: CLAUDE.md
+roadmap: ROADMAP.md
+state: STATE.md
+review: REVIEW.md
+
+routing:
+  ui: sonnet
+  engine: sonnet
+  backend: sonnet
+  research: opus
+  architecture: opus
+
+research_gate:
+  provider: exa
+  fires_on: [approach_decision, architecture_choice, new_phase_start]
+  skips_on: [mechanical_task, criteria_defined_in_roadmap]
+
+playwright:
+  enabled: true
+  fires_on: [ui_change, significant_logic, phase_completion, checkpoint]
+  critical_path: true
+
+optional_models:
+  codex: disabled
+  gemini: disabled
+
+escalation:
+  require_alternatives: 2
+  require_research_attempt: true
