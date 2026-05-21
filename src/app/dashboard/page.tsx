@@ -314,7 +314,7 @@ export default function DashboardPage() {
             <p className="font-display text-[1.35rem] font-bold leading-tight text-white text-balance">
               {dailyRule.norwegianExample}
             </p>
-            <p className="mt-1.5 text-[11px] text-white/55 leading-relaxed">
+            <p className="mt-1.5 text-[11px] text-white/55 leading-relaxed text-pretty">
               {dailyRule.ruleExplanation}
             </p>
           </div>
