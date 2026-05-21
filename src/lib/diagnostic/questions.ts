@@ -37,7 +37,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'a1-q3',
     cefrLevel: 'A1',
-    conceptId: 'present-tense-verbs',
+    conceptId: 'present-tense-regular',
     difficulty: 0.2,
     prompt: 'Fill in: "Jeg ___ norsk." (speak)',
     options: ['snakke', 'snakker', 'snakket', 'snakkes'],
@@ -94,7 +94,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'a2-q2',
     cefrLevel: 'A2',
-    conceptId: 'negation-placement',
+    conceptId: 'negation',
     difficulty: 0.4,
     prompt: 'Translate: "I do not speak Norwegian."',
     options: [
@@ -109,7 +109,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'a2-q3',
     cefrLevel: 'A2',
-    conceptId: 'past-tense-regular',
+    conceptId: 'preterite-regular',
     difficulty: 0.4,
     prompt: 'Put "å jobbe" (to work) in the past tense: "I går ___ jeg hjemme."',
     options: ['jobber', 'jobbet', 'jobb', 'har jobbet'],
@@ -129,7 +129,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'a2-q5',
     cefrLevel: 'A2',
-    conceptId: 'modal-verbs',
+    conceptId: 'common-modal-verbs',
     difficulty: 0.5,
     prompt: 'Which sentence is correct?',
     options: [
@@ -176,7 +176,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b1-q2',
     cefrLevel: 'B1',
-    conceptId: 'past-tense-regular',
+    conceptId: 'preterite-regular',
     difficulty: 0.6,
     prompt: 'Choose the correct past tense of "å kjøre" (to drive): "Vi ___ til Bergen i går."',
     options: ['kjørte', 'kjøret', 'kjørte', 'kjørde'],
@@ -196,7 +196,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b1-q4',
     cefrLevel: 'B1',
-    conceptId: 'prepositions-place',
+    conceptId: 'common-prepositions',
     difficulty: 0.6,
     prompt: 'Complete: "Jeg bor ___ Oslo." (I live in Oslo.)',
     options: ['på', 'i', 'til', 'fra'],
@@ -206,7 +206,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b1-q5',
     cefrLevel: 'B1',
-    conceptId: 'modal-verbs',
+    conceptId: 'common-modal-verbs',
     difficulty: 0.7,
     prompt: '"Du ___ gjøre det." means "You must do it." Which modal is correct?',
     options: ['kan', 'vil', 'skal', 'må'],
@@ -216,7 +216,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b1-q6',
     cefrLevel: 'B1',
-    conceptId: 'negation-placement',
+    conceptId: 'negation',
     difficulty: 0.75,
     prompt: 'Translate: "I know that she does not live here."',
     options: [
@@ -248,7 +248,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b2-q2',
     cefrLevel: 'B2',
-    conceptId: 'past-tense-regular',
+    conceptId: 'preterite-regular',
     difficulty: 0.8,
     prompt: 'Which sentence uses the present perfect correctly?',
     options: [
@@ -273,7 +273,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b2-q4',
     cefrLevel: 'B2',
-    conceptId: 'negation-placement',
+    conceptId: 'negation',
     difficulty: 0.85,
     prompt: 'Translate: "I doubt that he has not been honest."',
     options: [
@@ -288,7 +288,7 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
     id: 'b2-q5',
     cefrLevel: 'B2',
-    conceptId: 'modal-verbs',
+    conceptId: 'common-modal-verbs',
     difficulty: 0.8,
     prompt: '"Han ___ ha gjort det." — which modal fits "must have done"?',
     options: ['kan', 'skal', 'må', 'vil'],

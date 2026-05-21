@@ -10,7 +10,7 @@ const CONCEPT_COLORS: Record<string, string> = {
   'negation': '#7eefb8',
   'interrogatives': '#c4ef7e',
   'adjective-agreement': '#7ec4ef',
-  'modal-verbs': '#ef7ec4',
+  'common-modal-verbs': '#ef7ec4',
 }
 
 const PALETTE = Object.values(CONCEPT_COLORS)

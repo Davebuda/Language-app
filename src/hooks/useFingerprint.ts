@@ -69,6 +69,78 @@ async function saveFingerprintToSupabase(fp: MistakeFingerprint): Promise<void> 
   );
 }
 
+// Legacy diagnostic concept-id → canonical graph concept-id (P0.5-02).
+// Existing user fingerprints carry these legacy keys; rename them on bootstrap
+// so the keys match the curriculum graph and downstream lookups succeed.
+const LEGACY_CONCEPT_ID_RENAMES: Record<string, string> = {
+  'present-tense-verbs': 'present-tense-regular',
+  'negation-placement': 'negation',
+  'past-tense-regular': 'preterite-regular',
+  'modal-verbs': 'common-modal-verbs',
+  'prepositions-place': 'common-prepositions',
+};
+
+// Idempotent: a second call on the migrated fingerprint is a no-op because
+// legacy keys disappear after the first run.
+function migrateConceptIds(fp: MistakeFingerprint): { migrated: MistakeFingerprint; changed: boolean } {
+  let changed = false;
+  const conceptMastery = { ...fp.conceptMastery };
+
+  for (const [oldKey, newKey] of Object.entries(LEGACY_CONCEPT_ID_RENAMES)) {
+    const legacy = conceptMastery[oldKey];
+    if (!legacy) continue;
+    const existing = conceptMastery[newKey];
+    if (existing) {
+      // Merge policy: prefer the entry with the newer lastAttemptAt.
+      // If existing.lastAttemptAt is null, keep legacy (carries diagnostic seed signal).
+      // Ties and both-null cases prefer legacy for determinism.
+      const legacyNewer =
+        !existing.lastAttemptAt ||
+        (legacy.lastAttemptAt != null && legacy.lastAttemptAt >= existing.lastAttemptAt);
+      conceptMastery[newKey] = legacyNewer
+        ? { ...legacy, conceptId: newKey }
+        : existing;
+    } else {
+      conceptMastery[newKey] = { ...legacy, conceptId: newKey };
+    }
+    delete conceptMastery[oldKey];
+    changed = true;
+  }
+
+  // Rewrite recentErrors[].conceptId; leave askedDiagnosticQuestionIds alone
+  // (those are question IDs, not concept IDs).
+  const recentErrors = fp.recentErrors.map((e) => {
+    const remap = LEGACY_CONCEPT_ID_RENAMES[e.conceptId];
+    if (remap) {
+      changed = true;
+      return { ...e, conceptId: remap };
+    }
+    return e;
+  });
+
+  if (changed) {
+    return {
+      migrated: { ...fp, conceptMastery, recentErrors, updatedAt: new Date().toISOString() },
+      changed: true,
+    };
+  }
+  return { migrated: fp, changed: false };
+}
+
+async function applyMigration(
+  fp: MistakeFingerprint,
+  persist: 'local' | 'local+remote',
+): Promise<MistakeFingerprint> {
+  const { migrated, changed } = migrateConceptIds(fp);
+  if (changed) {
+    await saveFingerprint(migrated);
+    if (persist === 'local+remote') {
+      saveFingerprintToSupabase(migrated).catch(console.warn);
+    }
+  }
+  return migrated;
+}
+
 async function migrateAnonFingerprintToUser(user: User): Promise<MistakeFingerprint | null> {
   const anonId = localStorage.getItem(ANON_ID_KEY);
   if (!anonId || anonId === user.id) return null;
@@ -96,14 +168,25 @@ export function useFingerprint() {
         const wasAnon = prevUserRef.current === null;
         if (wasAnon) {
           const migrated = await migrateAnonFingerprintToUser(user).catch(() => null);
-          if (migrated) { setFingerprint(refreshDecay(migrated)); return; }
+          if (migrated) {
+            const reconciled = await applyMigration(migrated, 'local+remote');
+            setFingerprint(refreshDecay(reconciled));
+            return;
+          }
         }
         const remote = await loadFingerprintFromSupabase(user.id).catch(() => null);
-        if (remote) { setFingerprint(refreshDecay(remote)); return; }
+        if (remote) {
+          const reconciled = await applyMigration(remote, 'local+remote');
+          setFingerprint(refreshDecay(reconciled));
+          return;
+        }
         const local = await loadFingerprint(user.id).catch(() => null);
         if (local) {
-          setFingerprint(refreshDecay(local));
-          saveFingerprintToSupabase(local).catch(console.warn);
+          const reconciled = await applyMigration(local, 'local+remote');
+          setFingerprint(refreshDecay(reconciled));
+          if (reconciled === local) {
+            saveFingerprintToSupabase(local).catch(console.warn);
+          }
           return;
         }
         const empty = createEmptyFingerprint(user.id);
@@ -113,7 +196,8 @@ export function useFingerprint() {
         const anonId = getOrCreateAnonId();
         const local = await loadFingerprint(anonId).catch(() => null);
         if (local) {
-          setFingerprint(refreshDecay(local));
+          const reconciled = await applyMigration(local, 'local');
+          setFingerprint(refreshDecay(reconciled));
         } else {
           const empty = createEmptyFingerprint(anonId);
           setFingerprint(empty);

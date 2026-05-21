@@ -63,13 +63,13 @@ const ERROR_TAG_TO_CONCEPT: Partial<Record<string, string>> = {
   'word-order': 'v2-word-order',
   'noun-gender': 'noun-gender',
   'article-use': 'indefinite-articles',
-  'verb-conjugation': 'present-tense-verbs',
-  'verb-tense': 'past-tense-regular',
-  'modal-verb': 'modal-verbs',
+  'verb-conjugation': 'present-tense-regular',
+  'verb-tense': 'preterite-regular',
+  'modal-verb': 'common-modal-verbs',
   'adjective-agreement': 'adjective-agreement',
   'pronoun-choice': 'personal-pronouns',
-  'preposition': 'prepositions-place',
-  'negation-placement': 'negation-placement',
+  'preposition': 'common-prepositions',
+  'negation-placement': 'negation',
 }
 
 function getSpeechRecognitionCtor(): SpeechRecCtor | null {

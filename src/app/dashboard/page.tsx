@@ -29,19 +29,19 @@ const a2Graph = a2GraphJson as ConceptGraph
 
 // Maps concept IDs to suggested conversation topics (Norwegian display labels)
 const CONCEPT_TO_TOPIC: Record<string, string> = {
-  'v2-word-order':        'daglig rutine',
-  'present-tense-verbs':  'daglig rutine',
-  'negation-placement':   'daglig rutine',
-  'days-of-week':         'daglig rutine',
-  'common-questions':     'daglig rutine',
-  'noun-gender':          'mat og drikke',
-  'indefinite-articles':  'mat og drikke',
-  'basic-numbers':        'mat og drikke',
-  'personal-pronouns':    'familie',
-  'adjective-agreement':  'Norge',
-  'prepositions-place':   'Norge',
-  'past-tense-regular':   'Norge',
-  'modal-verbs':          'jobb',
+  'v2-word-order':            'daglig rutine',
+  'present-tense-regular':    'daglig rutine',
+  'negation':                 'daglig rutine',
+  'days-of-week':             'daglig rutine',
+  'common-questions':         'daglig rutine',
+  'noun-gender':              'mat og drikke',
+  'indefinite-articles':      'mat og drikke',
+  'basic-numbers':            'mat og drikke',
+  'personal-pronouns':        'familie',
+  'adjective-agreement':      'Norge',
+  'common-prepositions':      'Norge',
+  'preterite-regular':        'Norge',
+  'common-modal-verbs':       'jobb',
 }
 
 // Texts available per CEFR level (from SEED_TEXTS in reading/page.tsx)

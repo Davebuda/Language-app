@@ -39,7 +39,7 @@ const TASKS: EvalTask[] = [
     category: 'generate',
     description: 'Generate translation-to-norwegian (A1)',
     run: async () => {
-      const result = await aiService.generateContent({ conceptId: 'present-tense-verbs', exerciseType: 'translation-to-norwegian', level: 'A1', purpose: 'new-material', scenario: 'food' })
+      const result = await aiService.generateContent({ conceptId: 'present-tense-regular', exerciseType: 'translation-to-norwegian', level: 'A1', purpose: 'new-material', scenario: 'food' })
       return JSON.stringify(result, null, 2)
     },
   },
@@ -86,7 +86,7 @@ const TASKS: EvalTask[] = [
     category: 'explain',
     description: 'Explain modal-verb error (jeg kan å snakke → jeg kan snakke)',
     run: async () => {
-      const result = await aiService.explainMistake({ wrong: 'Jeg kan å snakke norsk.', correct: 'Jeg kan snakke norsk.', errorTag: 'modal-verb', conceptId: 'modal-verbs', level: 'A2', errorCount: 3 })
+      const result = await aiService.explainMistake({ wrong: 'Jeg kan å snakke norsk.', correct: 'Jeg kan snakke norsk.', errorTag: 'modal-verb', conceptId: 'common-modal-verbs', level: 'A2', errorCount: 3 })
       return result.text
     },
   },
@@ -95,7 +95,7 @@ const TASKS: EvalTask[] = [
     category: 'explain',
     description: 'Explain negation-placement error (ikke jeg → jeg ikke)',
     run: async () => {
-      const result = await aiService.explainMistake({ wrong: 'Ikke jeg liker det.', correct: 'Jeg liker ikke det.', errorTag: 'negation-placement', conceptId: 'negation-placement', level: 'A2' })
+      const result = await aiService.explainMistake({ wrong: 'Ikke jeg liker det.', correct: 'Jeg liker ikke det.', errorTag: 'negation-placement', conceptId: 'negation', level: 'A2' })
       return result.text
     },
   },
