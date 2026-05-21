@@ -1,21 +1,24 @@
 ---
 gsd_state_version: 1.0
-milestone: p0.5-recovery-complete
-milestone_name: P0.5 Recovery Bundle — COMPLETE
-status: signed off
-stopped_at: All 15 P0.5 tasks complete. Muntlig scripted roleplay UNBLOCKED — pending product decision on whether to resume immediately or course-correct after recovery learnings.
-last_updated: "2026-05-21"
-last_activity: 2026-05-21T21:00 — Recovery sign-off report at .council/reports/2026-05-21-2100-recovery-signoff.md.
+milestone: stream-5-weekly-sprint
+milestone_name: Stream 5 — Weekly Sprint (Curriculum Cohesion Layer)
+status: in progress
+stopped_at: Phase 1 (data model + selection logic) APPROVED. Phase 2 (authenticated walkthrough) requires user magic-link click OR can be reordered to between Phase 3 and Phase 4.
+last_updated: "2026-05-22"
+last_activity: 2026-05-22T00:00 — Phase 1 commit 0821e75; 23 new tests added; 129/129 passing.
 progress:
-  walkthrough_iterations: 3 of (target 4 to seal)
+  stream_5_phase: 1 of 7 complete
+  stream_5_phases:
+    - "1: data model + selection logic — COMPLETE (0821e75)"
+    - "2: authenticated walkthrough — PENDING USER INPUT"
+    - "3: scheduler bias pass — pending"
+    - "4: weekly check route — pending"
+    - "5: graduation job — pending"
+    - "6: dashboard week-strip — pending"
+    - "7: aesthetic guard + audit — pending"
   p0.5_tasks_complete: 15/15
-  p0.5_tasks_total: 15
-  p0.5_task_re_sequenced_at: "2026-05-21T18:55 — source verification surfaced corpus-vs-code distinction; tasks re-ordered, two new tasks split out"
-  blocking_finding_count: 10 critical
-  significant_count: 20
-  minor_count: 9
-  edge_case_count: 4
-  prior_p0_patterns_regressed: 4 of 5
+  walkthrough_iterations: 3 of (target 4 to seal)
+  test_count: 129 passing (was 106 pre-Stream-5)
 ---
 
 # Project State

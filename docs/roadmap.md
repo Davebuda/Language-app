@@ -228,12 +228,13 @@ Learner's mental model: *"I have 5 concepts to lock in this week. The app picks 
 
 ### Phased plan
 
-**Phase 1 — Data model + selection logic.** No UI. Mechanical.
-- `MistakeFingerprint` gains: `weeklyFocus: ConceptId[] (≤5)`, `weekStartedAt: ISODate | null`, `weeklySprintHistory: WeeklySprintRecord[]`.
-- `WeeklySprintRecord` = `{ weekStartedAt, focus, status: 'active'|'completed'|'abandoned', focusOutcomes: Record<ConceptId, {startScore, endScore, attempts}>, checkResult?: {takenAt, score, items} }`.
-- New module `src/engine/weekly-sprint.ts`: `selectWeeklyFocus(fingerprint, conceptGraph): ConceptId[]` — union of (a) weakest 3 by `decayedScore`, (b) up to 2 SRS-due where `nextReviewAt <= weekEnd`, capped at 5, deduped, respecting phase model (no locked concepts).
-- Idempotent migration in `useFingerprint.ts` (same pattern as P0.5-02 concept-id migration).
-- Tests: focus selection deterministic; migration idempotent; absence-reset triggers correctly at >7 days.
+**Phase 1 — Data model + selection logic.** ✅ COMPLETE 2026-05-22T00:00 (commit `0821e75`).
+- `MistakeFingerprint` extended with `weeklyFocus`, `weekStartedAt`, `weeklySprintHistory`.
+- `WeeklySprintRecord` interface added; `createEmptyFingerprint` seeds new fields.
+- New module `src/engine/weekly-sprint.ts` with three pure functions: `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`. Plus `migrateWeeklySprintFields` (placed here instead of `useFingerprint.ts` due to vitest path-alias resolution; architecturally net-positive — pure logic in engine layer).
+- Idempotent migration wired into `useFingerprint.ts:applyMigration`.
+- 23 new tests in `tests/engine/weekly-sprint.test.ts`. Test suite: 129 passing (was 106).
+- typecheck clean.
 
 **Phase 2 — Authenticated-user walkthrough + Supabase sync verification.** One session. Slotted between Phase 1 and Phase 3 because Weekly Sprint adds new Supabase write paths that have never been exercised.
 

@@ -1,5 +1,28 @@
 # Council Decision Log
 
+## 2026-05-22T00:00 APPROVE — Stream 5 Phase 1 (data model + selection logic)
+
+**Commit:** `0821e75` feat(engine): Stream 5 Phase 1 — weekly sprint data model + selection logic.
+
+**Diff scope (verified via `git diff HEAD~1 --name-only`):**
+- In-scope (5 files, matches brief): src/engine/index.ts, src/engine/weekly-sprint.ts, src/hooks/useFingerprint.ts, src/types/fingerprint.ts, tests/engine/weekly-sprint.test.ts.
+- Incidental (2 files, not regressions): .council/devserver.log (runtime artifact), .council/research.md (parallel deploy-stability research entry added by the user; got swept into the commit). Noted, not blocking.
+
+**Acceptance criteria — all 7 met:**
+1. ✅ `npx tsc --noEmit` zero errors.
+2. ✅ `npm test` 129/129 (existing 106 + 23 new).
+3. ✅ Test file covers all four targets (selectWeeklyFocus, shouldResetWeek, closeWeek, migration).
+4. ✅ File list matches "Files in scope".
+5. ✅ Three core functions are pure (optional `now` param; no I/O).
+6. ✅ Migration idempotent.
+7. ✅ Commit message follows convention.
+
+**One deviation (justified):** `migrateWeeklySprintFields` was placed in `src/engine/weekly-sprint.ts` instead of `src/hooks/useFingerprint.ts` because `useFingerprint.ts` imports `@content/concepts/a2-graph.json` via a Next.js path alias that vitest cannot resolve. Placing the migration helper in the engine layer means tests can import it directly without spinning up the React hook environment. Net-positive: pure migration logic belongs in the pure-function engine layer, not the React hook layer. `useFingerprint.ts` imports it from there (one import line; `applyMigration` wiring unchanged).
+
+**Brief correction handled cleanly:** brief called `getConceptPhase(mastery, node)` but real signature is `getConceptPhase(mastery, prerequisites, masteredIds)`. Implementer computed `masteredIds` set via `isMastered()` over the graph and threaded prerequisites correctly. No BLOCKED needed; brief was off but adaptable.
+
+**Next:** Phase 2 (authenticated walkthrough) requires user magic-link interaction. Two paths possible: (a) user clicks magic link now and I run the walk; (b) reorder Phase 2 to between Phase 3 and Phase 4 (where Supabase writes actually appear) and proceed to Phase 3 (scheduler bias — pure logic, no user input needed). Surfacing the choice to user.
+
 ## 2026-05-21T21:35 RESTRUCTURE — Weekly Sprint locked in as Stream 5 (next phase)
 
 **What changed:** docs/roadmap.md gains Stream 5 — Weekly Sprint (Curriculum Cohesion Layer). The "Now unblocked — product decision required" section in roadmap is replaced with the committed plan. Muntlig roleplay deepening (option A), model swap (C), auth walkthrough (D), B1/B2 (E) are explicitly held as follow-ups, with rationale.
