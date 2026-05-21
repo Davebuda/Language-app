@@ -1,91 +1,62 @@
 # Task Brief
-**Task:** A3 — Calibration window for first 5 sessions
+**Task:** Dashboard — merge DailyLearningCard into Today's Session card
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
 ---
 
-## Architectural decisions (approved)
-
-- Q1: Counter lives in **fingerprint blob** — `calibrationSessionsRemaining?: number`
-- Q2: Existing users default to **0** (`?? 0` = post-calibration, no backfill)
-- Q3: Scheduler receives **recipe override from caller** (`useSession.ts`) — engine stays pure
+## Council decision (logged)
+Unified "Today" block: grammar sentence embedded as secondary section of the session card. DailyLearningCard removed from dashboard (stays for landing page). Eliminates content duplication; preserves scheduler signal; Norwegian sentence visible before the user clicks Start.
 
 ---
 
 ## What
 
-Four files to change:
-
-1. `src/types/fingerprint.ts` — add field to type + default
-2. `src/engine/fingerprint.ts` — decrement counter on session completion
-3. Diagnostic completion path — initialize counter to 5 when fingerprint is seeded after diagnostic
-4. `src/app/session/page.tsx` or `src/hooks/useSession.ts` — compute recipe override when counter > 0
+**Modify:** `src/app/dashboard/page.tsx`
+- Add a grammar sentence section at the bottom of the TODAY'S SESSION card
+- Remove the standalone `<DailyLearningCard />` and its import from the dashboard
+- `src/components/DailyLearningCard.tsx` is NOT deleted — still used on the landing page
 
 ---
 
 ## How
 
-### 1. `src/types/fingerprint.ts`
+Read `src/app/dashboard/page.tsx` first.
 
-**Read the file first.** Find the `MistakeFingerprint` interface and add the field alongside `totalSessionsCompleted`:
+### Step 1 — Add grammar data
 
-```ts
-calibrationSessionsRemaining: number;  // counts down 5→0 after diagnostic; 0 = standard behavior
+At the top of the component body (after existing hooks), add:
+
+```tsx
+const dailyRule = getDailyRule()
 ```
 
-Find `DEFAULT_FINGERPRINT` (the initial value object) and add:
-```ts
-calibrationSessionsRemaining: 5,
+Import at top of file:
+```tsx
+import { getDailyRule } from '@/lib/dailyContent'
 ```
 
-The default of 5 means new users who get a fresh fingerprint (from diagnostic) start in calibration mode.
+### Step 2 — Extend the session card
 
-### 2. `src/engine/fingerprint.ts`
+Find the TODAY'S SESSION `motion.div` (className includes `nc-gradient-red`). After the composition badges block (`flex flex-wrap gap-2` with remediation/review/new chips), add inside the same div:
 
-**Read the file first.** Find the function that handles session completion and increments `totalSessionsCompleted`. In that same function, decrement `calibrationSessionsRemaining` if > 0:
-
-```ts
-calibrationSessionsRemaining: Math.max(0, (prev.calibrationSessionsRemaining ?? 0) - 1),
+```tsx
+{/* ── Grammar moment ── */}
+<div className="mt-4 border-t border-white/15 pt-4">
+  <p className="font-display text-[1.35rem] font-bold leading-tight text-white text-balance">
+    {dailyRule.norwegianExample}
+  </p>
+  <p className="mt-1.5 text-[11px] text-white/55 leading-relaxed">
+    {dailyRule.ruleExplanation}
+  </p>
+</div>
 ```
 
-The `?? 0` handles existing users who don't have the field yet — they skip calibration silently.
+### Step 3 — Remove standalone DailyLearningCard from dashboard
 
-### 3. Diagnostic seeding path
-
-**Find where the fingerprint is first seeded from diagnostic results.** This is likely in `src/components/onboarding/PlacementQuiz.tsx` or a similar onboarding component. Find where `createFingerprint` or the initial `MistakeFingerprint` object is constructed after the diagnostic completes.
-
-The `DEFAULT_FINGERPRINT` already has `calibrationSessionsRemaining: 5`, so if the diagnostic path uses `DEFAULT_FINGERPRINT` as the base, this is automatically handled. Verify this is the case — if so, no change needed here. If a custom object is constructed without spreading `DEFAULT_FINGERPRINT`, add the field explicitly.
-
-### 4. `src/hooks/useSession.ts` — calibration recipe override
-
-**Read the file first.** Find where `generateSession` is called (look for the `generateSession({...})` call). Add a calibration recipe override:
-
-```ts
-// Calibration: wider variety for first 5 sessions
-const isCalibrating = (fingerprint.calibrationSessionsRemaining ?? 0) > 0
-
-const calibrationRecipe: Partial<SessionRecipe> = isCalibrating
-  ? {
-      newMaterialRatio: 0.30,   // up from 0.20 — wider concept exposure
-      remediationRatio: 0.30,   // down from 0.40 — less drilling of early errors
-      reviewRatio: 0.30,        // keep review present
-      interleavingRatio: 0.10,  // unchanged
-    }
-  : {}
-
-const output = generateSession({
-  fingerprint,
-  graph: activeGraph,
-  availableSentenceIds,
-  sentences,
-  recipe: calibrationRecipe,
-})
-```
-
-Import `SessionRecipe` if not already imported from `@/types/session`.
-
-**Important:** Only add the `isCalibrating` logic where `generateSession` is called from within the session flow. Do not add it to the dashboard preview call.
+1. Remove `import { DailyLearningCard } from '@/components/DailyLearningCard'`
+2. Remove the `{/* ── Daily Learning Card ── */}` section block and `<DailyLearningCard />` element
+3. DailyWordPack and ProgressReassuranceStrip stay in place
 
 ---
 
@@ -94,23 +65,26 @@ sonnet
 
 ## Acceptance Criteria
 
-1. `calibrationSessionsRemaining` field added to `MistakeFingerprint` type with default 5
-2. Field decrements by 1 on each session completion, floors at 0
-3. Existing users without the field (`?? 0`) behave as post-calibration — no disruption
-4. `generateSession` receives calibration recipe override when counter > 0: `newMaterialRatio: 0.30`
-5. Standard recipe (`newMaterialRatio: 0.20`) resumes when counter reaches 0
-6. TypeScript: zero new errors — run `npx tsc --noEmit`
-7. No changes to `DECAY_FLOOR`, SRS ladder, or any other constants
+1. Norwegian sentence (`dailyRule.norwegianExample`) renders inside the red session card, below the composition badges
+2. Rule explanation renders below the sentence in `text-white/55`
+3. No standalone `<DailyLearningCard />` on the dashboard
+4. `DailyLearningCard` import removed from dashboard
+5. `src/components/DailyLearningCard.tsx` file NOT deleted
+6. DailyWordPack and ProgressReassuranceStrip positions unchanged
+7. No TypeScript errors
 
 ## Blocking Flags
 
-Stop and write `BLOCKED: [reason]` to this file if:
-- `generateSession` is called in more than 2 places — identify all call sites before choosing where to add the override
-- The session completion function that increments `totalSessionsCompleted` cannot be found
-- The diagnostic seeding path constructs a custom fingerprint object that bypasses `DEFAULT_FINGERPRINT`
-- Any TypeScript error that cannot be resolved correctly
+Stop and write `BLOCKED: [reason]` if:
+- The session card structure differs from what's described above
+- Any TypeScript error is introduced
+- `getDailyRule` import conflicts with something
 
 ## Playwright Checkpoint
-no
+yes
 
-Pure engine + type change. No UI surface — the recipe ratios don't render visibly. Behavior verification happens via `npx tsc --noEmit` + code review.
+- Navigate to `/dashboard` — confirm Norwegian sentence visible inside the red session card
+- Confirm no standalone DailyLearningCard between Lesestudio and DailyWordPack
+- Confirm DailyWordPack and ProgressReassuranceStrip still render
+- 0 console errors
+- Take screenshot

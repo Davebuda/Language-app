@@ -268,4 +268,25 @@ Playwright: not required (no UI surface)
 
 Next: A4 — Event log (new learning_events_log Supabase table)
 
+## 2026-05-21 BRAINSTORM — Dashboard session card + daily grammar merge
+
+Options evaluated: adjacent strip / replace session title / warm-up inside card / unified Today block.
+Chosen: unified Today block — grammar sentence embedded as secondary section of session card (border-t, white/15), standalone DailyLearningCard removed from dashboard (stays for landing page).
+Reasoning: preserves scheduler signal (concept label = "Noun gender"), gives Norwegian sentence before Start, eliminates duplication.
+CORRECT issued mid-task for ordering bug (ProgressReassuranceStrip at top, DailyWordPack before Muntlig) — fixed directly.
+
+## 2026-05-21 APPROVE — Dashboard session card + daily grammar merge
+
+Criteria met:
+- `I morgen reiser jeg til Bergen.` renders inside the red session card ✅
+- Rule explanation in `text-white/55` below the sentence ✅
+- No standalone DailyLearningCard on dashboard ✅
+- Order: Session → Muntlig → Journal → Reading → DailyWordPack → ProgressStrip → Stats ✅
+- 0 console errors ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — screenshot at `.council/reports/dashboard-session-grammar-final.png`
+
+Next: A4 — learning_events_log Supabase table
+
 ---

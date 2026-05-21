@@ -12,10 +12,10 @@ import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
 import { getConceptPhase, isMastered } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { DailyLearningCard } from '@/components/DailyLearningCard'
 import { DailyWordPack } from '@/components/DailyWordPack'
 import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
+import { getDailyRule } from '@/lib/dailyContent'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { getConceptColor } from '@/lib/concept-colors'
@@ -188,6 +188,8 @@ export default function DashboardPage() {
   // Read card — texts at learner's level
   const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
 
+  const dailyRule = getDailyRule()
+
   // Write card — today's prompt teaser (first 38 chars + ellipsis)
   const todayPrompt = DASHBOARD_PROMPTS[new Date().getDay() % DASHBOARD_PROMPTS.length]
   const promptTeaser = todayPrompt.length > 38 ? todayPrompt.slice(0, 38) + '…' : todayPrompt
@@ -265,9 +267,6 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* ── Progress Reassurance Strip — what you've built ── */}
-        <ProgressReassuranceStrip />
-
         {/* ── TODAY'S SESSION — primary action ── */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -309,24 +308,16 @@ export default function DashboardPage() {
               </span>
             )}
           </div>
-        </motion.div>
 
-        {/* ── Daily Learning Card — today's grammar rule ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.04 }}
-        >
-          <DailyLearningCard />
-        </motion.div>
-
-        {/* ── Daily Word Pack — vocabulary above secondary CTAs ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.08 }}
-        >
-          <DailyWordPack />
+          {/* ── Grammar moment ── */}
+          <div className="mt-4 border-t border-white/15 pt-4">
+            <p className="font-display text-[1.35rem] font-bold leading-tight text-white text-balance">
+              {dailyRule.norwegianExample}
+            </p>
+            <p className="mt-1.5 text-[11px] text-white/55 leading-relaxed">
+              {dailyRule.ruleExplanation}
+            </p>
+          </div>
         </motion.div>
 
         {/* ── Speak — Muntlig ── */}
@@ -407,6 +398,12 @@ export default function DashboardPage() {
             Bla gjennom <ArrowRight size={12} aria-hidden="true" />
           </Link>
         </motion.div>
+
+        {/* ── Daily Word Pack ── */}
+        <DailyWordPack />
+
+        {/* ── Progress Reassurance Strip ── */}
+        <ProgressReassuranceStrip />
 
         {/* ── Stats — compact 4-column ── */}
         <div className="grid grid-cols-4 gap-2.5">
