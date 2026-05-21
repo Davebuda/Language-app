@@ -10,10 +10,13 @@ export function AIStatusBadge() {
 
   // Unavailable: static badge, muted styling — distinct from the animated 'ready' chip.
   // No motion: unavailable is a discovered fact, not a progress event.
+  // Follow-up: split into three states (capability-gated vs. load-failed vs. loading)
+  // once the lazy-load architecture lands. For now one honest copy covers both
+  // unavailable paths without violating CLAUDE.md's no-silent-substitution rule.
   if (state === 'unavailable') {
     return (
       <div className="rounded-[0.75rem] border border-nc-border bg-nc-card px-2.5 py-1.5 text-[10px] font-medium text-nc-text-dim">
-        AI unavailable
+        AI unavailable — using templates
       </div>
     )
   }

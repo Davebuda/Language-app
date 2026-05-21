@@ -308,6 +308,7 @@ export default function HomePage() {
           <nav aria-label="Footer" className="flex items-center gap-5">
             <a href="/privacy" className="hover:text-[var(--nc-text)] transition-colors">Privacy</a>
             <a href="/terms" className="hover:text-[var(--nc-text)] transition-colors">Terms</a>
+            <a href="/help/mobile-reset" className="hover:text-[var(--nc-text)] transition-colors">Mobilfeilretting</a>
             <a href="mailto:hei@pandoai.no" className="hover:text-[var(--nc-text)] transition-colors">Contact</a>
           </nav>
           <span>Lær. Forstå. Mestre.</span>

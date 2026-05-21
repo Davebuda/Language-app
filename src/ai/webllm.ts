@@ -76,10 +76,30 @@ export class WebLLMService implements AIService {
     return this.loadPromise
   }
 
+  // TEMPORARY MITIGATION — pending the lazy-load architecture refactor.
+  // Today aiService.init() runs from the root layout for every page, so a
+  // phone with navigator.gpu present (Android Chrome 113+) OOM-crashes the
+  // renderer trying to compile a 3B model. Chrome Mobile then auto-reloads
+  // the tab 3× and IndexedDB caches enough of the model that the loop
+  // persists across visits. This gate bails before any Worker is spawned.
+  //
+  // The real fix is to move AI loading out of root layout onto the surfaces
+  // that genuinely need it (conversation, journal review, AI explanations)
+  // and rely on a capability check per-surface. Remove this method once
+  // ClientAILoader is no longer mounted in src/app/layout.tsx.
+  private isCapableDevice(): boolean {
+    if (typeof window === 'undefined') return false
+    if (!('gpu' in navigator)) return false
+    const coarsePointer = window.matchMedia?.('(pointer: coarse)').matches ?? false
+    const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+    const lowMemory = deviceMemory != null && deviceMemory < 8
+    return !coarsePointer && !lowMemory
+  }
+
   private async _load(): Promise<void> {
     // Reset health counter on each (re-)load attempt.
     this.consecutiveGenerationFailures = 0
-    if (typeof window === 'undefined' || !('gpu' in navigator)) {
+    if (!this.isCapableDevice()) {
       this.state = 'unavailable'
       this._updateStore('unavailable')
       return
