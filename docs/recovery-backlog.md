@@ -318,22 +318,18 @@ These are ordered by user-impact severity. None may be scheduled until all P0 it
 
 These were surfaced during the walkthrough and the UI-1.2 phase. Both are correctness bugs that corrupt the mistake fingerprint. Neither is cosmetic. They are not yet scheduled in the P0 or P1 batches because they are out of scope for the current critical path (2 → 3 → 7 → 8), but they must not disappear.
 
-**SpeedRound stale-closure timer (correctness bug — fingerprint corruption)**  
+**✅ SpeedRound stale-closure timer — CLOSED 2026-05-21**  
 `src/components/session/exercises/SpeedRound.tsx`  
-The `setInterval` callback captures `userInput` from the `useEffect` closure at mount time. When the timer expires and auto-submits, it calls `submitAnswer(userInput)` with the stale empty string — not the value the user actually typed. A learner who was mid-answer when time ran out is recorded as a wrong answer with `userAnswer: ''`, corrupting the fingerprint with fake failure data. Fix: use a `useRef` to track the live input value alongside `useState`, and reference `inputRef.current` in the timer callback. Also noted in `docs/roadmap.md` integrity follow-ups.  
-**Severity:** Real correctness bug — fingerprint pollution from fake wrong-answer events. Not cosmetic.
+Added `userInputRef` kept in sync via `onChange`. Timer now reads `userInputRef.current` (live value) instead of the stale `userInput` closure. Commit: `462b863`.
 
-**FillInBlank hardcoded `errorTag: 'verb-conjugation'` (correctness bug — same class, also fingerprint corruption)**  
-This is P0 item 5 (numbered entry above). Captured here as a cross-reference to make the pair visible together.  
-**Severity:** Real correctness bug — same pattern as SpeedRound: wrong data flowing into the learning model from a production exercise surface.
+**✅ FillInBlank hardcoded `errorTag: 'verb-conjugation'` — CLOSED (P0 item 5)**  
+Cross-reference only. Fixed during P0 batch.
 
 **`errorTagsDetectable[0]` heuristic — future-item concern:**  
-Item 5 fixes the hardcoded tag by using `sentence.errorTagsDetectable[0]`. This is correct for single-tag sentences and matches the pattern used elsewhere (repair-loop, grader). For multi-tag sentences, it always logs the first declared tag regardless of which specific error the user actually made. Proper per-answer error classification (deriving the tag from the actual user mistake, not the sentence's declared list) is a future improvement — relevant when the content corpus grows to sentences that test multiple concepts simultaneously.
+For multi-tag sentences, always logs the first declared tag. Proper per-answer classification is a v2 improvement.
 
-**FillInBlank blank indicator size mismatch at 1280px+ (UI polish — not a bug)**  
-`src/components/session/exercises/FillInBlankExercise.tsx`  
-At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly smaller than the surrounding sentence text (32px). The hierarchy between prompt and answer buttons still passes the 1.6× rule; this is a cosmetic size inconsistency only. Does not affect correctness, fingerprint, or session traversal.  
-**Severity: Polish. Schedule for UI-3 alongside `nc-*` cleanup — not a bug, not a P0 or P1 issue.**
+**✅ FillInBlank blank indicator size mismatch — CLOSED 2026-05-21**  
+Removed `text-xl` override from blank indicator span; now inherits parent's responsive size. Commit: `162b1f1`.
 
 ---
 
