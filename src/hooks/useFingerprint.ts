@@ -13,6 +13,8 @@ import {
   logError,
   aggregateErrorPatterns,
   ensureWeekOpen,
+  closeWeek,
+  openWeek,
 } from '@/engine';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
@@ -331,5 +333,24 @@ export function useFingerprint() {
     }
   }, [setFingerprint, user]);
 
-  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist };
+  const recordWeeklyCheckResult = useCallback(
+    ({ score, items, now }: { score: number; items: number; now?: Date }) => {
+      const fp = useFingerprintStore.getState().fingerprint;
+      if (!fp) return;
+      const moment = now ?? new Date();
+      const closed = closeWeek(fp, {
+        status: 'completed',
+        checkResult: { takenAt: moment.toISOString(), score, items },
+        now: moment,
+      });
+      const graph = closed.currentLevel === 'A2' ? a2Graph : a1Graph;
+      const reopened = openWeek(closed, graph, moment);
+      setFingerprint(reopened);
+      saveFingerprint(reopened).catch(console.warn);
+      if (user) saveFingerprintToSupabase(reopened).catch(console.warn);
+    },
+    [setFingerprint, user]
+  );
+
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult };
 }
