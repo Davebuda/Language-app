@@ -61,7 +61,7 @@ function MultipleChoice({
         transition={{ duration: 0.25 }}
       >
         {before && <span>{before}</span>}
-        <span className="inline-flex min-w-[80px] items-center justify-center rounded-lg border border-dashed border-nc-green/50 bg-nc-green/10 px-3 py-1 text-xl text-nc-cream-dim">
+        <span className="inline-flex min-w-[80px] items-center justify-center rounded-lg border border-dashed border-nc-green/50 bg-nc-green/10 px-3 py-1 text-nc-cream-dim">
           {selected ?? '___'}
         </span>
         {after && <span>{after}</span>}
