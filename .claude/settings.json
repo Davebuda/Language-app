@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(.council/**)",
+      "Write(.council/**)",
+      "Edit(.planning/ROADMAP.md)",
+      "Edit(.planning/STATE.md)",
+      "Edit(CLAUDE.md)",
+      "Edit(REVIEW.md)"
+    ]
+  }
+}
