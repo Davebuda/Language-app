@@ -90,4 +90,18 @@ Screenshots: `p1-7-8-recalibrate-initial.png`, `p1-7-8-quiz-revealed.png`
 P1 closed so far: 1, 2, 3, 4, 5, 6, 7, 8 (8 of 13)
 Next: P1-9 — Diagnostic terminates at 5/12 with "12" visible in counter
 
+## 2026-05-21 APPROVE — P1-9 Diagnostic counter denominator removed
+
+Criteria met:
+- Counter shows `{answered}` only — no `/12` denominator ✅
+- `const MAX_Q = 12` retained (still used by aria-valuemax and progress calc) ✅
+- Progress bar animation unchanged ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — counter shows "0" then "1" after answer with no "/12"
+Screenshot: `p1-9-diagnostic-counter.png`
+
+P1 closed so far: 1–9 (9 of 13)
+Next: P1-10 — Dashboard notifications bell dead
+
 ---

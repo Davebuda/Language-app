@@ -97,7 +97,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
             transition={{ duration: 0.4 }}
           />
         </div>
-        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-nc-text-dim">{answered} / {MAX_Q}</span>
+        <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-nc-text-dim">{answered}</span>
       </div>
 
       {/* Question card */}
