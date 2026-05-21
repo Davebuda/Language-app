@@ -1,15 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: P1-recovery
-milestone_name: P1 bug fix batch
-status: executing
-stopped_at: P1 COMPLETE — all 13 items closed. Stream 4 (ambient learning) is next.
+milestone: next-phase
+milestone_name: Engine corrections + UI-1.3 dashboard
+status: planning
+stopped_at: P1 + Stream 4 both complete. Next phase not yet started — awaiting direction.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — P1-13 (session complete fixes) closed. P1 batch complete.
+last_activity: 2026-05-21 — Stream 4 complete (4.1+4.2+4.3 shipped). Baseline-ui fixes committed.
 progress:
   p0_items: 8/8 complete
   p1_items_closed: 13
   p1_items_total: 13
+  stream4_items: 3/3 complete
   p2_items_closed: 0
   p2_items_total: 9
 ---
@@ -20,15 +21,15 @@ progress:
 
 **Project:** NorskCoach — diagnostic Norwegian language learning web app
 **Core value:** Diagnosis + Scheduling + Remediation beats lesson-based apps for any motivated learner
-**Current focus:** P1 bug fix batch — significant issues ordered by user-impact severity
+**Current focus:** Next phase — engine corrections (A2/A3/A4) + UI-1.3 dashboard
 
 ## Current Position
 
-Phase: P1 recovery (post-P0) + Stream 4 ambient learning (parallel)
-Status: Executing
-Last activity: 2026-05-21 — P1-12 (conversation summary) closed; Stream 4 restructured into roadmap in parallel
+Phase: Planning — P1 + Stream 4 complete, next phase not started
+Status: Awaiting direction
+Last activity: 2026-05-21 — Stream 4 complete. All planned work for this cycle is done.
 
-Progress: [████████████████████] P0 done. 12/13 P1 closed.
+Progress: [████████████████████] P0 ✅ P1 ✅ Stream 4 ✅
 
 ## P0 Summary (COMPLETE 2026-05-21)
 
