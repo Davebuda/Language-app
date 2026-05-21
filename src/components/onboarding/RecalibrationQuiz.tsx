@@ -77,11 +77,12 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
   const progress = answered / MAX_RECALIBRATION_QUESTIONS
 
   return (
-    <div className="flex flex-1 flex-col gap-5">
+    <main aria-label="Recalibration quiz" className="flex flex-1 flex-col gap-5">
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div>
           <div className="nc-label">Recalibration</div>
+          <h1 className="sr-only">Recalibration quiz</h1>
           <p className="mt-1 text-[13px] text-nc-text-muted">
             A short check on concepts you have not practiced recently.
           </p>
@@ -122,6 +123,8 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -48, opacity: 0 }}
           transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] as const }}
+          aria-live="polite"
+          aria-atomic="true"
           className="nc-glass-dark p-5"
         >
           <div>
@@ -162,6 +165,7 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
               key={index}
               onClick={() => handleSelect(index)}
               disabled={revealed}
+              aria-label={`Alternativ ${index + 1}: ${option}${revealed ? (isCorrect ? ' — riktig' : isSelected ? ' — feil' : '') : ''}`}
               className="rounded-[0.95rem] border px-4 py-3.5 text-left text-[0.9375rem] font-medium transition-all disabled:cursor-default"
               style={{ borderColor, backgroundColor: bgColor, color: textColor }}
             >
@@ -213,6 +217,6 @@ export function RecalibrationQuiz({ fingerprint, graph, onComplete, onSkip }: Re
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </main>
   )
 }

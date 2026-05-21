@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: P1-recovery
 milestone_name: P1 bug fix batch
 status: executing
-stopped_at: P1-1 closed. P1-2 and P1-3 closed (2e32d29). P1-4 plan exists. P1-5 through P1-13 pending.
+stopped_at: P1-8 closed. P1-9 (diagnostic terminates at 5/12) is next.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — P1-1 (diagnostic explanation) fixed and playwright-verified by council
+last_activity: 2026-05-21 — P1-7+P1-8 (recalibration banner + a11y) fixed and playwright-verified by council
 progress:
   p0_items: 8/8 complete
-  p1_items_closed: 3
+  p1_items_closed: 8
   p1_items_total: 13
   p2_items_closed: 0
   p2_items_total: 9
@@ -41,11 +41,11 @@ All 8 P0 items closed. Session loop is completable end-to-end.
 | P1-1 Diagnostic explanation shows wrong topic | ✅ CLOSED 2026-05-21 |
 | P1-2 Conversation mic auto-starts without consent | ✅ CLOSED 2026-05-21 (commit 2e32d29) |
 | P1-3 Conversation opener context-free | ✅ CLOSED 2026-05-21 (commit 2e32d29) |
-| P1-4 Journal feedback quality | Plan exists (commit 9927e25), not executed |
-| P1-5 Profile/Progress SSR hydration flash | Open |
-| P1-6 Progress page shows wrong level's concept graph | Open |
-| P1-7 Recalibration starts without trigger banner | Open |
-| P1-8 Recalibration accessibility tree empty | Open |
+| P1-4 Journal feedback quality | ✅ CLOSED 2026-05-21 (commit 5d98c6b) |
+| P1-5 Profile/Progress SSR hydration flash | ✅ CLOSED 2026-05-21 (commit 196e6ce) |
+| P1-6 Progress page shows wrong level's concept graph | ✅ CLOSED 2026-05-21 (commit 196e6ce) |
+| P1-7 Recalibration starts without trigger banner | ✅ CLOSED 2026-05-21 |
+| P1-8 Recalibration accessibility tree empty | ✅ CLOSED 2026-05-21 |
 | P1-9 Diagnostic terminates at 5/12 with "12" visible | Open |
 | P1-10 Dashboard notifications bell dead | Open |
 | P1-11 Waitlist form cosmetic — no data captured | Open |
@@ -56,7 +56,7 @@ All 8 P0 items closed. Session loop is completable end-to-end.
 
 - P0 → P1 sequence enforced per roadmap. No deferred stream work until P1 is clear.
 - C1 diagnostic placement plan (docs/superpowers/plans/2026-05-19-c1-diagnostic-placement.md) is SCOPE VIOLATION — B1/B2/C1 content is explicitly deferred in roadmap v2 backlog. Council will not execute it.
-- Council handles one P1 item per session. Current: P1-4 (journal feedback quality) is next.
+- Council handles one P1 item per session. Current: P1-7+P1-8 (recalibration banner + a11y) are next (bundled — same surface).
 
 ## Blockers/Concerns
 

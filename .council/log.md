@@ -74,4 +74,20 @@ Files changed: `progress/page.tsx`, `profile/page.tsx`, `WritingEditor.tsx`
 P1 closed so far: 1, 2, 3, 4, 5, 6 (6 of 13)
 Next: P1-7 — Recalibration starts without trigger banner or opt-in
 
+## 2026-05-21 APPROVE — P1-7 + P1-8 Recalibration opt-in banner + accessibility
+
+Criteria met:
+- Intro banner renders on `/recalibrate` before quiz: heading, context text, 7-question count, Start + Hopp over buttons ✅
+- "Hopp over" navigates to `/dashboard` ✅
+- "Start" transitions to quiz (state change, no reload) ✅
+- Accessibility tree after Start: `main "Recalibration quiz"`, `heading [level=1]`, `progressbar`, labelled option buttons (`"Alternativ 1: en"` etc.) ✅
+- Answer reveal flow unchanged: correct/incorrect coloring, explanation card, Next button, counter advances ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — report at `.council/reports/2026-05-21-p1-7-p1-8-recalibration.md`
+Screenshots: `p1-7-8-recalibrate-initial.png`, `p1-7-8-quiz-revealed.png`
+
+P1 closed so far: 1, 2, 3, 4, 5, 6, 7, 8 (8 of 13)
+Next: P1-9 — Diagnostic terminates at 5/12 with "12" visible in counter
+
 ---
