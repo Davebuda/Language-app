@@ -12,9 +12,49 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { emitEvent } from '@/lib/events'
 import { logSessionResults } from '@/lib/logEvents'
 import { createClient } from '@/lib/supabase/client'
+import { getConceptPhase, isMastered } from '@/engine'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
+
+const ERROR_TAG_LABELS: Partial<Record<string, string>> = {
+  'word-order': 'Ordstilling',
+  'verb-tense': 'Verbtid',
+  'verb-conjugation': 'Verbform',
+  'noun-gender': 'Substantivkjønn',
+  'article-use': 'Artikkelbruk',
+  'adjective-agreement': 'Adjektivsamsvar',
+  'pronoun-choice': 'Pronomen',
+  'preposition': 'Preposisjon',
+  'modal-verb': 'Modalverb',
+  'negation-placement': 'Negasjon',
+  'compound-word': 'Sammensatt ord',
+  'spelling': 'Stavefeil',
+  'wrong-word-same-category': 'Feil ord',
+  'unspecified': 'Grammatikk',
+}
+
+const PHASE_STYLES: Record<string, string> = {
+  locked:        'bg-[rgba(255,255,255,0.04)] text-[var(--nc-text-dim)] border border-[rgba(255,255,255,0.08)]',
+  intro:         'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-muted)] border border-[rgba(255,255,255,0.10)]',
+  practice:      'bg-[var(--nc-teal-tint)] text-[var(--nc-teal)] border border-[var(--nc-teal-border)]',
+  consolidation: 'bg-[var(--nc-green-tint)] text-[var(--nc-green)] border border-[var(--nc-green-border)]',
+  maintenance:   'bg-[var(--nc-green-tint)] text-[var(--nc-green)] border border-[var(--nc-green-border)]',
+}
+const PHASE_LABELS: Record<string, string> = {
+  locked: 'Låst', intro: 'Intro', practice: 'Øving',
+  consolidation: 'Konsolidering', maintenance: 'Vedlikehold',
+}
+
+type RepairEntry = { conceptId: string; label: string; tags: string[] }
+
+function formatNextReview(isoDate: string | null | undefined): string {
+  if (!isoDate) return ''
+  const days = Math.ceil((new Date(isoDate).getTime() - Date.now()) / 86400000)
+  if (days <= 0) return 'I dag'
+  if (days === 1) return 'I morgen'
+  return `Om ${days} dager`
+}
 
 const REFLECTION_PROMPTS = [
   'Hva føltes vanskeligst akkurat nå?',
@@ -90,6 +130,40 @@ export default function SessionCompletePage() {
   const duration = session ? formatDuration(session.startedAt) : '0:00'
   const practicedConceptIds = [...new Set(results.map((result) => result.conceptId))]
   const conceptsCount = practicedConceptIds.length
+
+  // masteredIds — matches dashboard/page.tsx pattern using isMastered with node thresholds
+  const masteredIds = new Set(
+    conceptGraph.concepts
+      .filter((c) => isMastered(
+        fingerprint?.conceptMastery[c.id],
+        c.masteryThreshold,
+        c.minAttempts,
+        c.minDays,
+      ))
+      .map((c) => c.id),
+  )
+
+  // Repair loop summary — group wrong results by conceptId, collect tags
+  const wrongResults = results.filter((r) => !r.correct)
+  const repairMap = new Map<string, Set<string>>()
+  for (const r of wrongResults) {
+    if (!repairMap.has(r.conceptId)) repairMap.set(r.conceptId, new Set())
+    if (r.errorTag) repairMap.get(r.conceptId)!.add(r.errorTag)
+  }
+  const repairEntries: RepairEntry[] = Array.from(repairMap.entries()).map(([conceptId, tagSet]) => ({
+    conceptId,
+    label: conceptGraph.concepts.find((c) => c.id === conceptId)?.label ?? conceptId,
+    tags: Array.from(tagSet),
+  }))
+
+  // Earliest nextReviewAt across wrong-answer concepts
+  const earliestNextReview: string | null = repairEntries.reduce<string | null>((earliest, entry) => {
+    const nr = fingerprint?.conceptMastery[entry.conceptId]?.nextReviewAt ?? null
+    if (!nr) return earliest
+    if (!earliest) return nr
+    return nr < earliest ? nr : earliest
+  }, null)
+  const nextReviewLabel = formatNextReview(earliestNextReview)
 
   const productionTypes = new Set([
     'translation-to-norwegian',
@@ -209,27 +283,65 @@ export default function SessionCompletePage() {
           className="nc-glass p-5"
         >
           <div className="relative z-[1]">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="text-[15px] font-medium text-[var(--nc-text)]">Hva du øvde på</div>
-                <div className="mt-3 space-y-3 text-sm text-[var(--nc-text-muted)]">
-                  {practicedConceptIds.slice(0, 3).map((id) => {
-                    const node = conceptGraph.concepts.find((concept) => concept.id === id)
-                    return (
-                      <div key={id} className="flex items-center gap-2">
-                        <span className="text-[var(--nc-text-dim)]">◌</span>
-                        <span>{node?.label ?? id}</span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-              <span className="rounded-[0.8rem] border border-[rgba(74,222,128,0.25)] bg-[rgba(74,222,128,0.12)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--nc-green)]">
-                New
-              </span>
+            <div className="text-[15px] font-medium text-[var(--nc-text)]">Hva du øvde på</div>
+            <div className="mt-3 space-y-3 text-sm text-[var(--nc-text-muted)]">
+              {practicedConceptIds.slice(0, 3).map((id) => {
+                const node = conceptGraph.concepts.find((concept) => concept.id === id)
+                const mastery = fingerprint?.conceptMastery[id]
+                const phase = getConceptPhase(mastery, node?.prerequisites ?? [], masteredIds)
+                const phaseStyle = PHASE_STYLES[phase] ?? PHASE_STYLES.intro
+                const phaseLabel = PHASE_LABELS[phase] ?? phase
+                return (
+                  <div key={id} className="flex items-center gap-2">
+                    <span className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.06em] ${phaseStyle}`}>
+                      {phaseLabel}
+                    </span>
+                    <span>{node?.label ?? id}</span>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </motion.div>
+
+        {/* Repair loop summary — only when there are wrong answers */}
+        {wrongResults.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.20 }}
+            className="nc-glass p-5"
+          >
+            <div className="relative z-[1]">
+              <div className="nc-label-red mb-3">
+                {wrongResults.length} mønstre reparert
+              </div>
+              <div className="space-y-3">
+                {repairEntries.map((entry) => (
+                  <div key={entry.conceptId} className="flex flex-wrap items-center gap-2">
+                    <span className="text-[15px] font-medium text-[var(--nc-text)]">
+                      {entry.label}
+                    </span>
+                    {entry.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full px-2 py-0.5 text-[10px] font-semibold bg-[var(--nc-teal-tint)] text-[var(--nc-teal)]"
+                      >
+                        {ERROR_TAG_LABELS[tag] ?? tag}
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              {nextReviewLabel && (
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="nc-label text-[var(--nc-text-dim)]">Første gjennomgang:</span>
+                  <span className="nc-label text-[var(--nc-text-muted)]">{nextReviewLabel}</span>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
 
         {/* Reflection — nc-surface (white writing surface) */}
         <AnimatePresence>
