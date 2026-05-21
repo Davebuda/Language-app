@@ -323,7 +323,7 @@ export function ShadowingExercise({
                   style={
                     passed
                       ? { background: 'var(--nc-green-tint)', border: '1px solid var(--nc-green-border)', color: 'var(--nc-green)' }
-                      : { background: 'var(--nc-nc-red-tint, rgba(220,38,38,0.12))', border: '1px solid rgba(220,38,38,0.28)', color: 'var(--nc-red)' }
+                      : { background: 'var(--nc-red-tint)', border: '1px solid var(--nc-red-border)', color: 'var(--nc-red)' }
                   }
                 >
                   {passed ? 'Bra! ' : 'Nesten — '}
