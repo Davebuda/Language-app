@@ -8,8 +8,9 @@ last_updated: "2026-05-21"
 last_activity: 2026-05-21 — Third stress walkthrough complete (39 findings). Roadmap restructured per CLAUDE.md operating rule 8.
 progress:
   walkthrough_iterations: 3 of (target 4 to seal)
-  p0.5_tasks_complete: 0/13
-  p0.5_tasks_total: 13
+  p0.5_tasks_complete: 1/15
+  p0.5_tasks_total: 15
+  p0.5_task_re_sequenced_at: "2026-05-21T18:55 — source verification surfaced corpus-vs-code distinction; tasks re-ordered, two new tasks split out"
   blocking_finding_count: 10 critical
   significant_count: 20
   minor_count: 9
@@ -69,23 +70,25 @@ Full inventory: `test-reports/stress-walkthrough-2026-05-21/report.md`.
 | 4 | Listen-and-respond | ✅ |
 | 5 | Scripted roleplay | ⏸ **PAUSED until P0.5-13** |
 
-## P0.5 Build Order
+## P0.5 Build Order (re-sequenced after P0.5-01)
 
 | Step | Task | Status |
 |------|------|--------|
-| 01 | Verify findings against source | ▶ in progress |
-| 02 | errorTag attribution truthfulness | pending |
-| 03 | Conversation + Journal write-through | pending |
-| 04 | AI language-validity gate | pending |
-| 05 | Diagnostic engine semantics | pending |
-| 06 | Session lifecycle integrity | pending |
-| 07 | Mastery visibility — concept-id reconciliation | pending |
-| 08 | Dashboard stat honesty | pending |
-| 09 | Profile read-on-render | pending |
-| 10 | Onboarding integrity | pending |
-| 11 | Auth/waitlist truthfulness | pending |
-| 12 | Polish bundle | pending |
-| 13 | Fourth stress walkthrough + recovery sign-off | pending |
+| 01 | Verify findings against source | ✅ complete |
+| 02 | Concept-id reconciliation (graph as source of truth) | ▶ NEXT |
+| 03 | Corpus retag + orphan-sentence cleanup | pending |
+| 04 | Shared error-tag → concept-id module | pending |
+| 05 | Conversation + Journal write-through | pending |
+| 06 | AI language-validity gate | pending |
+| 07 | Diagnostic semantics rewrite | pending |
+| 08 | Session lifecycle — immediate guards | pending |
+| 09 | Session lifecycle — completion semantics | pending |
+| 10 | Dashboard stat honesty | pending |
+| 11 | Profile read-on-render | pending |
+| 12 | Onboarding mid-flow state persistence | pending |
+| 13 | Auth/waitlist truthfulness | pending |
+| 14 | Polish bundle | pending |
+| 15 | Fourth stress walkthrough + recovery sign-off | pending |
 
 ## Decisions logged this session
 

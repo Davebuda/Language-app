@@ -10,23 +10,25 @@ This document supersedes the prior "P0 batch complete" framing. The third walkth
 
 The third stress walkthrough demonstrated that the moat's three legs (diagnosis, scheduling, remediation) each have at least one Critical regression. Per CLAUDE.md operating rule 8 ("pipeline honesty"), shipping muntlig scripted roleplay on this foundation guarantees the same regression family in the next walkthrough. Recovery is therefore sequenced before any new feature work.
 
-Tasks are dependency-ordered. P0.5-01 (source verification) runs first to confirm each Critical is reproducible from source before scheduling fixes. P0.5-13 (fourth walkthrough) seals the bundle and unblocks muntlig.
+Tasks are dependency-ordered. P0.5-01 (source verification) ran first. **Re-sequenced 2026-05-21T18:55 per P0.5-01 findings**: concept-id reconciliation moved ahead of corpus retag (depends on canonical scheme); shared tag-map module split out before conversation/journal write-through (both surfaces consume it); session lifecycle split into immediate guards and design-decision items. Full reasoning in `.council/log.md` 2026-05-21T18:55 entry. P0.5-15 (fourth walkthrough) seals the bundle and unblocks muntlig.
 
 | # | Task | Findings addressed | Playwright | Status |
 |---|---|---|---|---|
-| 01 | Verify walkthrough findings against source code | All Criticals | n/a — audit | ▶ in progress |
-| 02 | errorTag attribution truthfulness | F010, F011 | FULL | pending |
-| 03 | Conversation + Journal fingerprint write-through | F030, F034, F028 | FULL | pending |
-| 04 | AI language-validity gate | F022, F029, F033 | FULL | pending |
-| 05 | Diagnostic engine semantics | F014, F015, F016, F017, F031 | FULL | pending |
-| 06 | Session lifecycle integrity | F012, F023, F024, F025, F026, F027 | FULL | pending |
-| 07 | Mastery visibility — concept-id reconciliation | F036 | FULL | pending |
-| 08 | Dashboard stat honesty | F018, F020, F021 | SMOKE | pending |
-| 09 | Profile read-on-render | F037, F038 | SMOKE | pending |
-| 10 | Onboarding integrity | F013 | SMOKE | pending |
-| 11 | Auth/waitlist truthfulness | F002, F004, F006, F007 | SMOKE | pending |
-| 12 | Polish bundle | F001, F003, F005, F009, F026, F035 | SMOKE | pending |
-| 13 | Fourth stress walkthrough + recovery sign-off | All | FULL | pending |
+| 01 | Verify walkthrough findings against source code | All Criticals | n/a — audit | ✅ complete |
+| 02 | Concept-id reconciliation (graph as source of truth) | F036 + sets up F010, F019 | FULL | ▶ NEXT |
+| 03 | Corpus retag + orphan-sentence cleanup | F010, F011 | FULL | pending |
+| 04 | Shared error-tag → concept-id module | enables F030, F034 | none — read-only refactor | pending |
+| 05 | Conversation + Journal fingerprint write-through | F030, F034, F028 | FULL | pending |
+| 06 | AI language-validity gate (one module, four call sites) | F022, F029, F033 | FULL | pending |
+| 07 | Diagnostic semantics rewrite (OnboardingFlow + engine) | F014, F015, F016, F017, F031 | FULL | pending |
+| 08 | Session lifecycle — immediate guards | F023, F026 | SMOKE | pending |
+| 09 | Session lifecycle — completion semantics | F012, F024, F025, F027 | FULL | pending |
+| 10 | Dashboard stat honesty | F018, F020, F021 | SMOKE | pending |
+| 11 | Profile read-on-render | F037, F038 | SMOKE | pending |
+| 12 | Onboarding mid-flow state persistence | F013 | SMOKE | pending |
+| 13 | Auth/waitlist truthfulness | F002, F004, F006, F007 | SMOKE | pending |
+| 14 | Polish bundle | F001, F003, F005, F009, F035 | SMOKE | pending |
+| 15 | Fourth stress walkthrough + recovery sign-off | All | FULL | pending |
 
 **Significant findings not yet bucketed** (F008 path-traversal edge case; revisit during 03 or 11) are noted in the live walkthrough report at `test-reports/stress-walkthrough-2026-05-21/_findings.md`.
 

@@ -1,5 +1,28 @@
 # Council Decision Log
 
+## 2026-05-21T18:55 APPROVE — P0.5-01 source verification
+
+**Task:** Verify the 10 Critical findings from the third walkthrough against source.
+**Owner:** debugger agent (opus override).
+**Output:** `.council/reports/2026-05-21-1830-source-verification.md` (424 lines).
+**Diff scope:** read-only audit; only the report file is new under `.council/`; no `src/` mutations confirmed via `git status`.
+
+**Headline findings:**
+- F010 is a **content-corpus** problem, not a code regression. Items 5+7 fix intact (commits `77e54b2`, `bf118fe`). Every exercise component correctly derives errorTag from `sentence.errorTagsDetectable[0]`. The corpus itself tags 9/9 question-formation sentences as `['word-order']`.
+- F036 is the same root cause: five diagnostic concept IDs (`negation-placement`, `past-tense-regular`, `modal-verbs`, `prepositions-place`, `present-tense-verbs`) have ZERO sentences in the corpus because the corpus uses graph IDs (`negation`, `preterite-regular`, `common-modal-verbs`, `common-prepositions`, `present-tense-regular`).
+- F019 scheduler warnings auto-resolve with F036.
+- F022/F029/F033 confirmed: `validateGenerated` exists at `src/ai/validate.ts:74-109` but is only invoked from `generateContent` (webllm.ts:203). No equivalent gate for `explainMistake`, `conversationTurn`, or `reviewWriting`. Confirms P0.5-04 design.
+- F030/F034: conversation and journal DO invoke engine write APIs but silently drop unmapped tags (conversation map: 10 tags, journal map: 11 tags, taxonomy: 17 tags). Shared root cause.
+- F017: one-line bug at `src/lib/diagnostic/engine.ts:140` — `Math.max(seedScore, rawScore)` floors wrong answers at 20, then `OnboardingFlow.tsx:94` destructively overwrites prior mastery.
+- F023: guard exists as a `useEffect` post-render redirect at `complete/page.tsx:80`; the celebration screen renders before the redirect fires.
+
+**Three ordering revisions accepted (applied to recovery-backlog.md):**
+1. Sequence concept-id reconciliation (former P0.5-07) BEFORE corpus retag (former P0.5-02). Renamed accordingly.
+2. Split former P0.5-06 internally: cheap guards (F023, F026) ship as one PR; session-completion semantics (F012, F024, F025, F027) need a design decision.
+3. Add new P0.5-03a — shared `src/lib/error-tag-to-concept.ts` module — before P0.5-04/-05 (the renumbered AI gate / write-through tasks).
+
+**Next:** P0.5-02 = Concept-id reconciliation (graph as source of truth). Brief in `.council/current.md`.
+
 ## 2026-05-21T18:15 ESCALATE — Third stress walkthrough reveals foundation regression; muntlig roleplay is the wrong next move
 
 **Trigger:** Third Playwright walkthrough (report at `test-reports/stress-walkthrough-2026-05-21/report.md`, 39 findings, 10 Critical) plus REVIEW.md (2026-05-11 code audit, 2 CRITICAL, 8 WARNING) plus STATE.md/ROADMAP.md showing "next: scripted roleplay" — three sources of evidence diverging.
