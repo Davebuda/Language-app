@@ -1,5 +1,5 @@
 # Task Brief
-**Task:** P1-13 — Session complete: remove dead share button, fix A1 graph hardcode, fix English text
+**Task:** Stream 4.1 — Daily Learning Card
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
@@ -7,69 +7,78 @@
 
 ## What
 
-`src/app/session/complete/page.tsx` has three issues discovered during code review:
+Three files to create, two files to modify:
 
-1. **Dead Share2 button** — `aria-label="Del"` button with no `onClick`. Same pattern as P1-10 (notifications bell). Remove it.
-2. **Hardcoded `a1-graph.json`** — concept labels always use A1 graph regardless of user level. Same bug as P1-6 (Progress/Profile). Fix: import both graphs, select based on `fingerprint?.currentLevel`.
-3. **English text** — `"What you mastered"` section heading is in English in a Norwegian app. Fix: change to `"Hva du øvde på"`.
+**Create:**
+- `src/lib/dailyContent.ts` — rotation logic + 7 grammar rules seed + 42 words seed (used by 4.1 and 4.2)
+- `src/components/DailyLearningCard.tsx` — card component with tap-to-reveal (dashboard) and always-visible (landing) modes
 
-**One file to change:** `src/app/session/complete/page.tsx`
+**Modify:**
+- `src/app/page.tsx` — add DailyLearningCard with `alwaysVisible` prop after hero / before waitlist
+- `src/app/dashboard/page.tsx` — add DailyLearningCard (default tap-to-reveal) after the greeting section
 
 ---
 
 ## How
 
-**Read the file first.**
+### `src/lib/dailyContent.ts`
 
-### Fix 1 — Remove dead Share2 button
+Export a `getDailyRule()` function:
 
-Find the button with `aria-label="Del"` (approximately lines 145–151):
-```tsx
-<button
-  type="button"
-  className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
-  aria-label="Del"
->
-  <Share2 size={17} />
-</button>
-```
-Delete it entirely. Then check whether `Share2` is still used anywhere else in the file. If not, remove it from the lucide-react import at the top.
+```ts
+export type GrammarRule = {
+  title: string         // short rule name in English (for screen readers / admin)
+  norwegianExample: string   // the Norwegian sentence — T1 element
+  englishTranslation: string // literal translation
+  ruleExplanation: string    // 1–2 sentences, in English, explaining the rule
+}
 
-### Fix 2 — Fix hardcoded a1-graph.json
+const RULES: GrammarRule[] = [
+  // 7 entries, one per weekday index
+]
 
-At the top of the file, find:
-```tsx
-import conceptGraphJson from '@content/concepts/a1-graph.json'
-...
-const conceptGraph = conceptGraphJson as ConceptGraph
+export function getDailyRule(): GrammarRule {
+  return RULES[new Date().getDate() % 7]
+}
 ```
 
-Change to import both graphs:
+Seed 7 grammar rules covering: V2 word order, noun gender (en/et), definite forms (-en/-et suffix), adjective agreement (stor/stort/store), prepositions (i/på/til), reflexive verbs (vaske seg), question formation (hva/hvor/hvem).
+
+Norwegian examples must be complete, grammatically correct Bokmål sentences. English translations must be literal. Rule explanations must be 1–2 sentences max.
+
+### `src/components/DailyLearningCard.tsx`
+
 ```tsx
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
+'use client'
+
+interface Props {
+  alwaysVisible?: boolean  // landing page: always show translation; dashboard: tap to reveal
+}
 ```
 
-Remove the module-level `const conceptGraph = ...` line.
+Card structure:
+1. Small label chip: `"Dagens grammatikk"` (Schibsted Grotesk, text-sm, muted)
+2. Norwegian sentence — T1 element: `text-2xl font-bold` minimum, Schibsted Grotesk
+3. Rule explanation line below the sentence (text-sm, muted)
+4. Translation reveal:
+   - `alwaysVisible=true`: show `englishTranslation` inline, no interaction needed
+   - default: "Vis oversettelse" button → reveals translation; button text changes to "Skjul oversettelse"
+5. Card styling: `nc-glass` or `bg-[var(--nc-card)]` border radius matching existing cards
 
-Inside the component, after the `fingerprint` is read from the store, add:
-```tsx
-const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
-```
+**Accessibility:**
+- `aria-expanded` on reveal button
+- `role="region"` on card with `aria-label="Dagens grammatikk"`
+- Keyboard: Space/Enter on reveal button toggles translation
 
-This follows the exact same pattern used in `progress/page.tsx` and `profile/page.tsx` from P1-6.
+**No Framer Motion.** This is a static card with a simple CSS transition for the translation reveal (`transition-all duration-200 ease-out`). Framer Motion is for interactive/complex animations; this is a one-state toggle.
 
-### Fix 3 — Fix English section heading
+### Landing page (`src/app/page.tsx`)
 
-Find:
-```tsx
-<div className="text-[15px] font-medium text-[var(--nc-text)]">What you mastered</div>
-```
+Read the file first to understand current structure. Place `<DailyLearningCard alwaysVisible />` after the hero/intro section and before the waitlist/CTA section. If there is a container/section pattern, match it.
 
-Change to:
-```tsx
-<div className="text-[15px] font-medium text-[var(--nc-text)]">Hva du øvde på</div>
-```
+### Dashboard (`src/app/dashboard/page.tsx`)
+
+Read the file first. Place `<DailyLearningCard />` (no props — tap-to-reveal mode) after the greeting + level section and before the session CTA or progress strip. Match existing card spacing and container width.
 
 ---
 
@@ -78,23 +87,28 @@ sonnet
 
 ## Acceptance Criteria
 
-1. No "Del" share button rendered on the session complete page
-2. `Share2` import removed if no longer referenced
-3. A2 users see A2 concept labels (conceptGraph selects a2Graph for A2 users)
-4. Section heading reads "Hva du øvde på" not "What you mastered"
-5. No TypeScript errors introduced
+1. DailyLearningCard renders on `/` with translation always visible — no tap required
+2. DailyLearningCard renders on `/dashboard` with translation hidden by default; tap/click reveals it
+3. Both show the same grammar rule on a given day (same `getDailyRule()` call, same date)
+4. Norwegian sentence is the visually dominant element — larger and bolder than the explanation text
+5. Card is keyboard accessible: reveal button responds to Enter/Space; `aria-expanded` updates
+6. No new npm dependencies introduced
+7. No TypeScript errors
+8. Landing page and dashboard load without console errors
 
 ## Blocking Flags
 
-Stop and write `BLOCKED: [reason]` to this file if:
-- `a2GraphJson` import path doesn't exist (check `@content/concepts/a2-graph.json` first)
-- `fingerprint` is not in scope where the conceptGraph selection is needed
+Stop immediately and write `BLOCKED: [reason]` to this file if:
+- `src/app/page.tsx` or `src/app/dashboard/page.tsx` is a Server Component that cannot directly use `useState` for the reveal — if so, extract the reveal toggle into a small `DailyLearningCardClient.tsx` wrapper
 - Any TypeScript error is introduced
+- The `nc-glass` class or `--nc-card` token is not found in the project (check globals.css before using)
 
 ## Playwright Checkpoint
 yes
 
 What to test:
-- Navigate to `/session/complete` — confirm it redirects to `/dashboard` (guard still works)
-- Navigate to `/dashboard` — confirm no regression
-- Note: full session complete screen test requires completing an actual session; accessibility snapshot of dashboard confirms no regressions
+- Navigate to `/` — confirm DailyLearningCard renders with Norwegian sentence visible and translation visible (alwaysVisible mode)
+- Navigate to `/dashboard` (as guest) — confirm card renders; translation hidden initially; click "Vis oversettelse" — translation appears
+- Confirm same grammar rule appears on both pages on same day
+- Snapshot accessibility tree on dashboard to confirm `role="region"` and `aria-label` present
+- No console errors on either page

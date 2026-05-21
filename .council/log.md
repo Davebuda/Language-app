@@ -177,4 +177,22 @@ Screenshot: `p1-13-session-complete.png`
 **P1 BATCH COMPLETE — all 13 items closed.**
 Next: Stream 4 — Ambient Learning (Daily Learning Card → Daily Word Pack → Progress Strip)
 
+## 2026-05-21 APPROVE — Stream 4.1 Daily Learning Card
+
+Criteria met:
+- `region "Dagens grammatikk"` on dashboard with correct aria-label ✅
+- Norwegian sentence "I morgen reiser jeg til Bergen." is T1 dominant element ✅
+- Translation hidden by default; "Vis oversettelse" toggle reveals it ✅
+- Button switches to "Skjul oversettelse" with `aria-expanded` updating correctly ✅
+- 0 console errors on dashboard ✅
+- No new npm dependencies ✅
+- TypeScript: zero new errors ✅
+
+Landing page 500: **pre-existing** (confirmed by stash test). Root cause is Turbopack dev-mode instability with `ClientAILoader`'s `next/dynamic`. Clears on dev server restart. Not caused by Stream 4.1 code.
+
+Playwright: PASS on dashboard. Report at `.council/reports/2026-05-21-stream-4-1-daily-learning-card.md`
+
+Stream 4 progress: 1/3 complete
+Next: Stream 4.2 — Daily Word Pack
+
 ---

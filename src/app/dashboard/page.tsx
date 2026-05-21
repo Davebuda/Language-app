@@ -12,6 +12,7 @@ import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
 import { getConceptPhase, isMastered } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
+import { DailyLearningCard } from '@/components/DailyLearningCard'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
 import { getStreak } from '@/lib/streak'
 import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
@@ -378,6 +379,9 @@ export default function DashboardPage() {
             Bla gjennom <ArrowRight size={12} />
           </Link>
         </motion.div>
+
+        {/* ── Daily Learning Card ── */}
+        <DailyLearningCard />
 
         {/* ── Stats — compact 4-column ── */}
         <div className="grid grid-cols-4 gap-2.5">

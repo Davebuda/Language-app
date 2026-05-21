@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { WaitlistForm } from '@/components/landing/waitlist-form'
+import { DailyLearningCard } from '@/components/DailyLearningCard'
 
 // ── How It Works steps ──────────────────────────────────────────────────────
 const STEPS = [
@@ -263,6 +264,19 @@ export default function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── Daily Learning Card ── */}
+      <section className="relative z-10 mx-auto max-w-7xl px-5 pb-16">
+        <div className="mb-4">
+          <div className="nc-label mb-1">Lær hver dag</div>
+          <h2 className="font-display text-[1.5rem] font-bold text-[var(--nc-text)]">
+            Dagens grammatikk
+          </h2>
+        </div>
+        <div className="max-w-md">
+          <DailyLearningCard alwaysVisible />
         </div>
       </section>
 
