@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useSession } from '@/hooks/useSession'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { useSessionStore } from '@/stores/session-store'
 import { ExerciseCard } from './ExerciseCard'
 import { ExplanationCard } from './ExplanationCard'
 import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
@@ -91,7 +92,14 @@ export function SessionScreen({
       <header className="mx-auto flex w-full max-w-lg items-center gap-3 px-5 pb-1 pt-4">
         <button
           type="button"
-          onClick={() => router.push('/dashboard')}
+          onClick={() => {
+            // P0.5-09 (F024): confirm before bailing mid-session so accidental
+            // clicks don't drop progress. Only confirm if the learner has any
+            // recorded answers; otherwise (zero progress) leave silently.
+            const hasProgress = (useSessionStore.getState().results?.length ?? 0) > 0
+            if (hasProgress && !window.confirm('Avslutte økten? Du mister fremgangen i denne økten.')) return
+            router.push('/dashboard')
+          }}
           className="flex size-10 items-center justify-center rounded-[0.9rem] border border-[var(--nc-border)] bg-[var(--nc-card)] text-[var(--nc-text)]"
           aria-label="Back to dashboard"
         >
