@@ -32,11 +32,11 @@ export function ConceptProgressRow({
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-3">
-          <span className="truncate text-[13px] font-medium text-[var(--nc-cream-text)]">
+          <span className={`truncate text-[13px] font-medium ${locked ? 'text-[var(--nc-text-muted)]' : 'text-[var(--nc-cream-text)]'}`}>
             {name}
           </span>
           {locked ? (
-            <span className="text-[10px] font-medium text-[var(--nc-cream-dim)]">
+            <span className="text-[10px] font-medium text-[var(--nc-text-dim)]">
               {prereqLabel}
             </span>
           ) : (

@@ -283,7 +283,7 @@ export default function DashboardPage() {
           <motion.button
             onClick={() => router.push('/session')}
             whileTap={{ scale: 0.97 }}
-            className="mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[var(--radius)] bg-[rgba(255,255,255,0.10)] backdrop-blur border border-[var(--nc-border-strong)] px-5 py-3 text-sm font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.16)]"
+            className="nc-button-primary mt-4 inline-flex min-h-[48px] items-center gap-2 px-5 py-3 text-sm"
             aria-label="Start today's session"
           >
             <Play size={14} aria-hidden="true" />
@@ -293,17 +293,17 @@ export default function DashboardPage() {
           {/* Session composition badges */}
           <div className="mt-4 flex flex-wrap gap-2">
             {remediation > 0 && (
-              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.08)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
+              <span className="rounded-[0.65rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-red)]">
                 {remediation} repairs
               </span>
             )}
             {review > 0 && (
-              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.08)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
+              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
                 {review} review
               </span>
             )}
             {newMaterial > 0 && (
-              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.08)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
+              <span className="rounded-[0.65rem] border border-[var(--nc-teal-border)] bg-[var(--nc-teal-tint)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-teal)]">
                 {newMaterial} new
               </span>
             )}

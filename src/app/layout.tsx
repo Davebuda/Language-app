@@ -39,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${schibstedDisplay.variable} ${schibstedBody.variable}`}>
+    <html lang="en" className={`${schibstedDisplay.variable} ${schibstedBody.variable} dark`}>
       <body className="font-sans antialiased bg-[var(--nc-bg)]">
         <TopographicGrid />
         {children}

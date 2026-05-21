@@ -74,7 +74,7 @@ export default function ProfilePage() {
           className="nc-glass-elevated p-5"
         >
           <div className="flex items-start gap-4">
-            <div className="flex size-16 items-center justify-center overflow-hidden rounded-[1rem] bg-[var(--nc-dark)] text-lg font-display font-semibold text-white">
+            <div className="flex size-16 items-center justify-center overflow-hidden rounded-[1rem] border border-[var(--nc-teal-border)] bg-[var(--nc-teal-tint)] text-lg font-display font-semibold text-[var(--nc-teal)]">
               <span>{initials}</span>
             </div>
 

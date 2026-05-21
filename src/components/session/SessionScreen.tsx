@@ -106,7 +106,7 @@ export function SessionScreen({
                 <div
                   key={index}
                   className={`h-1.5 flex-1 rounded-full transition-colors ${
-                    isActive ? 'bg-[var(--nc-green)]' : 'bg-[var(--nc-border)]'
+                    isActive ? 'bg-[var(--nc-teal)]' : 'bg-[var(--nc-border)]'
                   }`}
                 />
               )
