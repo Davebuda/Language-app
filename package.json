@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "council:verify": "playwright test tests/council/ --reporter=json,list"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.1",
