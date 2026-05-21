@@ -96,6 +96,11 @@ export function SessionScreen({
             // P0.5-09 (F024): confirm before bailing mid-session so accidental
             // clicks don't drop progress. Only confirm if the learner has any
             // recorded answers; otherwise (zero progress) leave silently.
+            // TODO(baseline-ui): upgrade to AlertDialog primitive once the
+            // project has one — `@radix-ui/react-alert-dialog` is not yet
+            // installed and adding one component+dependency for a single use
+            // site is the wrong shape mid-recovery. native confirm() is
+            // keyboard-accessible and screen-reader compatible.
             const hasProgress = (useSessionStore.getState().results?.length ?? 0) > 0
             if (hasProgress && !window.confirm('Avslutte økten? Du mister fremgangen i denne økten.')) return
             router.push('/dashboard')
