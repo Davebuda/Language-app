@@ -1,5 +1,4 @@
 import { SessionScreen } from '@/components/session/SessionScreen'
-import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
 import { loadContentSentences } from '@/lib/content-loader'
 import type { Sentence } from '@/types/content'
 
@@ -60,16 +59,17 @@ export default async function SessionPage() {
   // Optionally merge with Supabase if env vars are present
   const { sentences: dbSentences, ids: dbIds } = await fetchSupabaseSentences()
 
-  // Priority: DB > local content files > mock fallback
+  // Priority: DB > local content files. Mock fixtures removed (P0.5-03):
+  // the server grader (src/app/session/actions.ts) only resolves sentence ids
+  // that exist in contentSentences or Supabase. Including MOCK_SENTENCES here
+  // produced ids the grader could not resolve, falling back to a null result
+  // and dropping the user's answer. Real corpus + Supabase is sufficient.
   const sentences: Record<string, Sentence> = {
-    ...MOCK_SENTENCES,
     ...contentSentences,
     ...dbSentences,
   }
 
-  // Start with mock IDs, add content IDs, then DB IDs (deduplication not needed —
-  // useSession already tracks used sentence IDs per session)
-  const availableSentenceIds: Record<string, string[]> = { ...MOCK_SENTENCE_IDS }
+  const availableSentenceIds: Record<string, string[]> = {}
 
   for (const [conceptId, ids] of Object.entries(contentIds)) {
     availableSentenceIds[conceptId] = [
