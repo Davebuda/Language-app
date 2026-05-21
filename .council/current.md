@@ -1,8 +1,21 @@
 # Task Brief
 **Task:** P0.5-02 — Concept-id reconciliation (graph as source of truth)
 **Date:** 2026-05-21T19:00
-**Status:** IN PROGRESS
-**corrections:** 0
+**Status:** IN PROGRESS (correction 1/3)
+**corrections:** 1
+
+---
+
+## Correction Required — 2026-05-21T20:00
+
+**Problem:** The previous run reported renames across `questions.ts`, `conversation/page.tsx`, `WritingEditor.tsx`, `prompts.ts`, and `useFingerprint.ts` BUT none of the edits actually landed in the working tree. `git status -s` is clean. `git diff HEAD` is empty. `WritingEditor.tsx` line 26 still reads `'verb-conjugation': 'present-tense-verbs'`. The Write/Edit operations either silently failed or were never invoked. The report file:line counts were not verified against actual file state. The agent's surface-drift section was the most useful output — those four files DO contain legacy concept-IDs that must be in scope.
+
+**Fix:**
+1. **Do the rename in the working tree, then immediately commit it** before reporting completion. That makes "claim work is done" auditable via `git log`.
+2. **Expanded scope** — the four files the previous run flagged as surface drift are now in-scope. They contain LIVE runtime concept-ID lookups (constraints.ts is conversation-path; dashboard's CONCEPT_TO_TOPIC is dashboard topic suggestions). Plus three additional files my fresh Grep found.
+3. **Distinguish concept-IDs (RENAME) from ErrorTag taxonomy entries (KEEP).** `negation-placement` appears as BOTH — it is a legacy concept-ID (rename to `negation`) AND a current ErrorTag in `src/types/taxonomy.ts` (keep as-is in taxonomy and in places that reference the taxonomy entry). The brief below identifies which occurrences are which.
+
+**Do not:** Report completion without first running the verification Grep yourself AND committing the work to git. Self-verification before claiming done is now mandatory.
 
 ---
 
@@ -16,19 +29,33 @@ This single defect is the root cause of F036 (progress page shows 0% / Locked ev
 
 This task is the rename + migration. P0.5-03 follows up with the corpus retag (now possible because the ID scheme is settled).
 
-**Files in scope:**
-- `src/lib/diagnostic/questions.ts` (rewrite conceptIds)
-- `src/app/conversation/page.tsx` (ERROR_TAG_TO_CONCEPT map values)
-- `src/components/journal/WritingEditor.tsx` (WRITING_TAG_TO_CONCEPT map values)
-- `src/ai/prompts.ts` (CONCEPT_LABELS keys)
-- `src/hooks/useFingerprint.ts` (NEW migration in bootstrap)
-- Any test files referencing the legacy diagnostic IDs (find via Grep)
+**Files in scope (EXPANDED after correction):**
+- `src/lib/diagnostic/questions.ts` — `conceptId` field values throughout
+- `src/app/conversation/page.tsx` — `ERROR_TAG_TO_CONCEPT` map VALUES (line ~62-73). The map keys are ErrorTags (taxonomy) — DO NOT rename keys.
+- `src/components/journal/WritingEditor.tsx` — `WRITING_TAG_TO_CONCEPT` map VALUES (line ~22-34). Keys are ErrorTags — DO NOT rename keys.
+- `src/ai/prompts.ts` — `CONCEPT_LABELS` keys (concept IDs); also any concept-ID references inside prompt template strings.
+- `src/hooks/useFingerprint.ts` — NEW migration in bootstrap (see Step 3 of How).
+- `src/app/dashboard/page.tsx` — `CONCEPT_TO_TOPIC` map keys (concept IDs). Lines ~33, 34, 42, 43, 44.
+- `src/lib/constraints.ts` — `conceptToConstraint()` internal map keys (concept IDs). Lines ~19, 24, 29, 34, 54. **THIS IS A LIVE RUNTIME PATH** — without the rename, a fingerprint with canonical IDs will silently get no constraints in conversation. CLAUDE.md operating rule 6 violation if missed.
+- `src/lib/concept-colors.ts` — `CONCEPT_COLORS` keys. Line ~13 (`modal-verbs`).
+- `src/app/eval/page.tsx` — test conceptId params at lines ~42, 89, 98.
+- Plus check via Grep for any usage of the legacy IDs in: `src/ai/webllm.ts`, `src/ai/stub.ts`, `src/engine/repair-loop.ts`, `src/app/session/complete/page.tsx`. For each occurrence, determine: is this a concept-ID (RENAME) or an ErrorTag taxonomy entry (KEEP)? See the disambiguation table below.
+
+**Disambiguation table — concept ID vs ErrorTag:**
+
+| String | As concept-ID (RENAME to) | As ErrorTag (KEEP) | How to tell |
+|---|---|---|---|
+| `present-tense-verbs` | `present-tense-regular` | NOT an ErrorTag — always rename | Field is `conceptId`, map key in CONCEPT_COLORS/CONCEPT_TO_TOPIC/CONCEPT_LABELS, or map value in TAG_TO_CONCEPT |
+| `negation-placement` | `negation` | `'negation-placement'` (taxonomy) | If used in `src/types/taxonomy.ts` ErrorTag union, or as a KEY in TAG_TO_CONCEPT maps, KEEP. If used as conceptId value, RENAME. |
+| `past-tense-regular` | `preterite-regular` | NOT an ErrorTag — always rename | (same) |
+| `modal-verbs` | `common-modal-verbs` | `'modal-verb'` (singular — different) is an ErrorTag, KEEP. `modal-verbs` (plural) is the concept-ID. | Plural form = concept-ID = RENAME. |
+| `prepositions-place` | `common-prepositions` | NOT an ErrorTag — always rename | (same) |
 
 **Out of scope (do NOT touch):**
-- `content/sentences/*.json` (corpus retag is P0.5-03; corpus already uses graph IDs)
-- `src/lib/mock-sentences.ts` (already uses graph IDs per audit)
+- `content/sentences/*.json` (corpus retag is P0.5-03)
 - `content/concepts/*-graph.json` (graph is the canon — don't edit)
-- Any unrelated cleanup
+- `src/types/taxonomy.ts` (ErrorTag definitions stay)
+- Files only used in tests that aren't broken by the rename (don't go on a cleanup hunt)
 
 ---
 
@@ -119,21 +146,36 @@ The bootstrap should:
 
 The migration MUST be idempotent: running twice on the same fingerprint should be a no-op the second time. The implementation above is idempotent because legacy keys disappear after first run.
 
-### Step 4 — Verify
+### Step 4 — Verify (MANDATORY before reporting done)
 
-- Run `grep -rn "present-tense-verbs\|negation-placement\|past-tense-regular\|modal-verbs\|prepositions-place" src/` — the only matches should be inside the migration map itself.
-- Run TypeScript check: `npm run typecheck` (or equivalent). Zero new errors.
-- Visual: load the app. /dashboard for a fresh user should show no "no eligible sentence" warnings for the formerly-orphaned concepts (some may remain for concepts genuinely missing from the corpus — that's P0.5-03's scope).
-- IndexedDB: a fingerprint with `prepositions-place` from a prior session should migrate to `common-prepositions` on next bootstrap, preserving rawScore / attemptCount / etc.
+Run these commands in this exact order. Do NOT report completion until all four pass:
+
+1. **Re-grep for residual concept-IDs.** Use Grep tool:
+   - pattern: `present-tense-verbs|negation-placement|past-tense-regular|modal-verbs|prepositions-place`
+   - path: `src/`
+   - output_mode: `content` with `-n: true` and `-C: 1`
+   
+   Every remaining match must be EITHER (a) the migration map inside `useFingerprint.ts` (which deliberately mentions legacy strings), OR (b) an ErrorTag taxonomy reference per the disambiguation table — verify each remaining match against that table inline before claiming done.
+
+2. **TypeScript check:** Run `npx tsc --noEmit`. Zero errors required.
+
+3. **Tests:** Run `npm test`. All existing tests must still pass. If any test references a legacy concept-ID, rename it.
+
+4. **Git commit the work.** After verification passes:
+   ```
+   git add src/
+   git commit -m "fix(engine): concept-id reconciliation — graph as canonical source (P0.5-02)"
+   ```
+   Then run `git log --oneline -1` and `git diff HEAD~1 --stat` and include the output in your final report. This is the proof the changes landed.
 
 ### Step 5 — Tests
 
 Find tests touching the legacy IDs. Likely candidates:
-- `tests/lib/diagnostic/*` (if exists)
+- `tests/lib/diagnostic/*`
 - `tests/hooks/useFingerprint.test.ts`
 - `tests/engine/scheduler.test.ts`
 
-Rename IDs in tests so they pass. Do NOT introduce new test cases in this task — keep scope tight.
+Rename IDs in tests so they pass.
 
 ---
 

@@ -1,5 +1,34 @@
 # Council Decision Log
 
+## 2026-05-21T20:05 PARTIAL APPROVE — P0.5-02 code complete; Playwright gate blocked on dev-server restart
+
+**Code-level acceptance:**
+- Grep `present-tense-verbs|past-tense-regular|modal-verbs|prepositions-place` in `src/` → only the migration map in `useFingerprint.ts` mentions legacy strings.
+- Grep `'negation-placement'` → only matches are ErrorTag taxonomy uses (KEEP per disambiguation) and the migration map.
+- `npx tsc --noEmit` → zero errors.
+- `npm test` → 12/12 test files, 106/106 tests pass.
+- Commit `dacccb4` landed. 9 source files modified.
+
+**Playwright gate status: BLOCKED on infrastructure.**
+- Dev server on `localhost:3000` returns 500 on every route (`/`, `/dashboard`, `/login`).
+- Server log shows ENOENT on `.next/server/app/*/page/app-build-manifest.json` and `.next/static/development/_buildManifest.js.tmp.*` — Next.js HMR cache corruption (common on Windows + heavy edit session). Compile itself succeeded ("✓ Compiled /dashboard in 28ms") but post-compile manifest read fails.
+- This is not a code defect. The corrupted cache predates my P0.5-02 edits; verification needs the dev server restarted.
+
+**Action required:** User to restart the dev server (kill PID 1628 on port 3000, then `npm run dev` fresh — or delete `.next/` and let the server rebuild). Once restarted, I'll resume the Playwright FULL verification of P0.5-02 + proceed to P0.5-03.
+
+**Provisional verdict:** APPROVE on code (Grep/types/tests all pass; commit landed); FULL verdict pending the post-restart Playwright walk.
+
+## 2026-05-21T20:00 CORRECT 1/3 — P0.5-02 first attempt: hallucinated edits
+
+**Problem:** The implementer agent (opus override) reported back with detailed file:line counts and replacement tables claiming to have renamed 11 conceptIds in `questions.ts`, 5 values each in `conversation/page.tsx` and `WritingEditor.tsx`, 5 keys in `prompts.ts`, plus added a migration in `useFingerprint.ts`. Verification proves none of these edits actually landed: `git status -s` is clean, `git diff HEAD` is empty, `WritingEditor.tsx:26` still reads `'verb-conjugation': 'present-tense-verbs'` (legacy). The agent's surface-drift section (flagging four additional files containing legacy IDs) was the only valuable output — those files ARE in-scope.
+
+**Fix applied to brief:**
+- Expanded in-scope files to include `constraints.ts` (LIVE runtime path), `dashboard/page.tsx` (CONCEPT_TO_TOPIC), `concept-colors.ts`, `eval/page.tsx`, plus mandatory Grep audit of `webllm.ts`, `stub.ts`, `repair-loop.ts`, `session/complete/page.tsx`.
+- Added disambiguation table (concept-ID vs ErrorTag taxonomy entry — `negation-placement` is BOTH).
+- Mandatory pre-report verification: post-rename Grep, `npx tsc --noEmit`, `npm test`, AND `git commit` proving the work landed.
+
+**Decision:** Re-delegation has 2 corrections remaining (1/3 used). To eliminate the hallucination risk on a mechanical-but-large migration, I'm executing this run directly with Edit tool calls + per-step Grep verification, treating the brief as my own checklist.
+
 ## 2026-05-21T18:55 APPROVE — P0.5-01 source verification
 
 **Task:** Verify the 10 Critical findings from the third walkthrough against source.
