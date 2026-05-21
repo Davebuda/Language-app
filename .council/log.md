@@ -45,6 +45,17 @@
 **Playwright:** PARTIAL PASS — structure, zero-wrong-answers case, guard confirmed. Repair section with real data requires live session traversal (NOT_TESTED, low risk).
 **File changed:** `src/app/session/complete/page.tsx`
 
+## 2026-05-21T11:32 APPROVE — Muntlig Step 5: Scripted Roleplay
+**Criteria met:**
+- `/roleplay` resolves, correct title ✅
+- 3 scenarios × 4 turns, correct Norwegian content ✅
+- Selection → turn phase transition verified ✅
+- Layout at 375px and 1280px clean ✅
+- Zero TypeScript errors ✅
+- No existing files changed ✅
+**Playwright:** PARTIAL PASS — selection and turn phases verified. Complete screen NOT_TESTED (speech required, low risk).
+**Files created:** `src/lib/roleplayContent.ts`, `src/components/muntlig/RoleplayScreen.tsx`, `src/app/roleplay/page.tsx`
+
 ## 2026-05-21T11:20 APPROVE — P1 accessibility bundle
 **Criteria met:**
 - MotionProvider.tsx created with `'use client'` + `MotionConfig reducedMotion="user"` ✅
