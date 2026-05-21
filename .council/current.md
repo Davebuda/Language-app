@@ -1,111 +1,108 @@
 # Task Brief
-**Task:** Diagnosis visibility — surface `runDiagnosis` output on the dashboard session card
-**Date:** 2026-05-21
-**Status:** COMPLETED — APPROVED 2026-05-21T17:45
+**Task:** P0.5-01 — Verify the third-walkthrough Critical findings against source code
+**Date:** 2026-05-21T18:30
+**Status:** IN PROGRESS
 **corrections:** 0
 
 ---
 
 ## What
 
-The diagnosis engine (`src/engine/diagnosis.ts`) runs four root-cause rules on every session generation. `runDiagnosis(fingerprint)` returns `DiagnosisResult[]` with a learner-facing `reasoning` string — the visible piece of the moat. The scheduler attaches the result to `SchedulerOutput` as `diagnosisResults`.
+Before scheduling any code fixes, confirm each of the 10 Critical findings from `test-reports/stress-walkthrough-2026-05-21/report.md` is reproducible from the current source tree. The walkthrough captured observable behaviour (network, IndexedDB, DOM) — this task maps each observed defect back to the code that causes it, so subsequent P0.5-02..12 tasks have precise file:line targets.
 
-**Verified pipeline-honesty defect:** `diagnosisResults` is never consumed in any UI. `src/hooks/useSession.ts:164` and `src/app/dashboard/page.tsx:105` both call `generateSession(...)` but neither reads the `diagnosisResults` field. The moat is computed and silently discarded. This is the same class as the P0 "no silent substitution" finds (AI badge, error tags, session auto-skip).
+**No code changes.** Read-only audit. Output is a structured verification doc.
 
-This task surfaces the highest-confidence diagnosis on the dashboard session card so the learner sees *why* today's session is what it is. No new engine logic, no new rules, no schema changes — only render an existing string when present.
+The 10 Critical findings (from `report.md` § Critical and `_findings.md`):
 
-**Files in scope:**
-- `src/app/dashboard/page.tsx` (only)
+| ID | Symptom (observable) | Verification goal |
+|---|---|---|
+| F010 | Every recentErrors entry tagged `word-order` regardless of mistake type | Locate every site that writes `errorTag` to the fingerprint. Determine whether this is (a) code regression of items 5+7 [exercise components hardcoding the tag again], (b) content-corpus issue [every sentence has `errorTagsDetectable: ['word-order']`], (c) grader override post-derivation, or (d) some other mechanism |
+| F011 | Half of stored errors have `correct: "[unavailable]"` | Find the call site that builds the error record. Identify why the `correct` field falls back to the literal string `"[unavailable]"` for sentence-transformation and translation-to-english types |
+| F012 | `totalSessionsCompleted: 0` despite 24 logged errors | Locate the increment site for `totalSessionsCompleted`. Determine why it never fires. Likely candidate: session-complete handler not reached, or fingerprint mutation not persisted |
+| F017 | Diagnostic seeds rawScore=100 even when answer was wrong | Read the diagnostic completion handler (likely `src/lib/diagnostic/engine.ts` or `src/engine/diagnostic.ts`). Identify the function that maps diagnostic answers → fingerprint rawScores. Confirm whether it sets-to-100 or aggregates correctly |
+| F016 | Diagnostic write happens on navigation, not on result-screen completion | Find the diagnostic finalize flow. Identify where the write to IndexedDB is invoked — is it tied to a router event rather than the completion handler? |
+| F022 | AI repair-card explanation: "et is for masculine, ei is for neuter" (wrong) | Find the AI explanation render site for the repair card. Confirm: is there any validation pass between `aiService.generate*` and the rendered explanation string? |
+| F029 | Kari (conversation AI) produces non-Norwegian strings | Find the conversation AI reply render path. Same validation-gate question |
+| F030 | Conversation message with grammar error: no fingerprint write | Find the conversation grammar-check write path. Trace from message-send to `recordError`/equivalent. Identify the gap |
+| F033 | Journal AI corrections invent words; meaning-flip on negation | Find the journal AI feedback path. Identify whether the corrections are aggregated into the rewrite without validation (likely the cause of the meaning flip) |
+| F034 | Journal entry: no fingerprint writes despite 3 surfaced corrections | Find the journal correction → fingerprint write path. Trace from "Analyser tekst" success to `recordError`. Identify the gap |
+| F036 | /progress shows 0% / Locked for concepts the fingerprint has at rawScore 100 | Identify two concept-id schemes. Find the canonical scheme (if one exists) and the divergent IDs. Likely: `prepositions-place` (fingerprint) vs `common-prepositions` (progress curriculum) |
+| F023 | /session/complete directly accessible with no guard | Locate `src/app/session/complete/page.tsx`. Identify whether there is any guard (state check, route protection, redirect) |
 
-That is the entire scope. If the implementer is about to touch any other file (including diagnosis.ts, scheduler.ts, types, components), STOP and write BLOCKED.
+**Files in scope:** Read-only access to the entire `src/` tree. No file mutations. Output is one new file: `.council/reports/2026-05-21-1830-source-verification.md`.
 
 ---
 
 ## How
 
-In `src/app/dashboard/page.tsx`:
+1. **Read the walkthrough report and _findings.md.** Both live at `test-reports/stress-walkthrough-2026-05-21/`. The IndexedDB inspections and screenshots are the evidence base.
 
-1. Extract the highest-confidence diagnosis from the existing `plan` state. `plan.diagnosisResults` is already part of `SchedulerOutput` — no import or type change needed.
+2. **For each Critical finding, find the source.** Use Grep to locate:
+   - errorTag write sites: `errorTag:`, `recordError`, `logError`
+   - rawScore write sites: `rawScore`, `applyDiagnostic`
+   - totalSessionsCompleted: `totalSessionsCompleted`, session-complete handlers
+   - Diagnostic finalize: `applyDiagnosticToFingerprint`, `finalize`, completion handlers
+   - AI explanation render: `aiService.explainMistake`, RepairCard component
+   - Conversation grammar-check: `useConversation`, `conversationStore`, gradeMessage
+   - Journal grammar-check: `useJournal`, `analyseText`, `journalStore`
+   - Concept-id schemes: `conceptId`, concept-graph definitions, fingerprint key names
+   - /session/complete guard: `src/app/session/complete/page.tsx`, any layout guard, any redirect
 
-   ```tsx
-   const topDiagnosis = plan?.diagnosisResults?.[0] ?? null
+3. **For each finding, produce a structured entry:**
+
+   ```markdown
+   ### F0XX — [finding headline]
+   **Symptom (from walkthrough):** [observable behaviour]
+   **Source location:** [file:line] (one or more)
+   **Current code behaviour:** [what the code actually does]
+   **Why the symptom manifests:** [the gap between intent and actual]
+   **Intended behaviour:** [what should happen]
+   **Likely scope of fix:** [single file / multi-file / requires new module / requires content edit]
+   **Dependencies on other findings:** [e.g. F010 fix needs F011 fix first because…]
+   **Confidence:** high / medium / low
    ```
 
-   Place this after the existing `remediation / review / newMaterial` derivations (around line ~135).
+4. **Special focus areas:**
+   - **F010 is the most important** because everything downstream of the fingerprint depends on correct error tagging. If F010 is content-corpus (sentences mis-tagged), the fix is data, not code. If it's code regression of items 5+7, the fix is exercise components. Determine which.
+   - **F022/F029/F033 share a root cause hypothesis** (no AI validity gate). Verify the hypothesis by grep — is there ANY function that validates AI output before display? If yes, identify why it doesn't fire. If no, that confirms the P0.5-04 design.
+   - **F030/F034 share a root cause hypothesis** (the surface doesn't call into the fingerprint write API). Confirm whether `recordError` (or equivalent) is invoked at all from conversation and journal paths.
+   - **F036 concept-id scheme:** produce a comprehensive mismatch table (every fingerprint concept-id → corresponding progress-graph concept-id). This becomes the migration map for P0.5-07.
 
-2. Inside the "TODAY'S SESSION" card (the `nc-glass-cream` block that starts at line ~298, currently containing label / title / estimated time / Start button / composition badges / grammar moment), insert a new conditional block **between the "Estimated: X min" paragraph (line ~308–310) and the Start button (line ~311)**:
+5. **Read REVIEW.md's WARNING items** and flag whether any are likely still live (e.g., the auto-skip false-correct may have regressed alongside F012).
 
-   ```tsx
-   {topDiagnosis && (
-     <div className="mt-3 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-2.5">
-       <div className="nc-label mb-1 text-[var(--nc-cream-dim)]">Why this</div>
-       <p className="text-[12px] leading-relaxed text-[var(--nc-cream-text)] text-pretty">
-         {topDiagnosis.reasoning}
-       </p>
-     </div>
-   )}
-   ```
-
-   - Use exactly the styling above — it matches the existing `nc-glass-cream` card's tone (cream surface, subtle inner border, label-then-body pattern, established `nc-label` class).
-   - `text-pretty` is already used elsewhere in this card; keep it for consistency.
-   - The "Why this" label is English. This is consistent with the dashboard's existing English-prefix pattern ("Today's session ·", "Estimated:") — the dashboard is an orientation surface, not a learning surface per CLAUDE.md's Norwegian-dominates principle.
-
-3. Render absolutely nothing when `topDiagnosis` is null. Do not show a placeholder, fallback string, or empty state. If diagnosis hasn't fired yet (cold start, sparse error log), the surface is silent — that's correct.
-
-### Constraints — do NOT do any of these
-
-- Do not modify `src/engine/diagnosis.ts`, `src/engine/scheduler.ts`, or any engine file.
-- Do not change the `DiagnosisResult` type or add fields.
-- Do not add a "loading" / "we're learning your patterns" placeholder. Silent absence is the intended state.
-- Do not surface diagnosis on the repair card, session-complete screen, or any other surface — that's a separate decision for a future task.
-- Do not introduce any new dependencies, hooks, or stores.
-- Do not refactor the dashboard layout. Insert the block in place.
-- Do not change the existing "Grammar moment" block at the bottom of the session card.
+6. **Output location:** `.council/reports/2026-05-21-1830-source-verification.md`. Use the structure from step 3 for each finding. Open with a one-paragraph executive summary; close with a "Suggested ordering revisions" section noting if any of the 12 P0.5 task buckets should be split, merged, or reordered based on what the source actually reveals.
 
 ---
 
 ## Model
 
-sonnet — mechanical insert into an established UI surface, established patterns, established design tokens.
+opus — this is a cross-file analysis with judgement calls about whether observed behaviour matches intent. Not mechanical.
 
 ---
 
 ## Acceptance Criteria
 
-1. `src/app/dashboard/page.tsx` is the only file changed in the diff.
-2. The "Why this" block renders inside the "Today's session" card on the dashboard, between the estimated-time line and the Start button.
-3. The block renders only when `plan?.diagnosisResults?.[0]` is present; renders nothing otherwise.
-4. The block displays the `reasoning` string from the highest-confidence diagnosis result.
-5. No TypeScript errors.
-6. No existing tests broken.
-7. Visual: at 375px and 1280px, the block sits cleanly inside the session card without breaking the existing rhythm; the cream tones match.
-8. No new console errors on page load.
+1. The verification doc exists at `.council/reports/2026-05-21-1830-source-verification.md`.
+2. Each of the 10 Critical findings (F010, F011, F012, F016, F017, F022, F023, F029, F030, F033, F034, F036) has a structured entry with file:line, current behaviour, gap, intended behaviour, and confidence rating. (Yes — twelve IDs total; F022 is one entry though the issue spans surfaces.)
+3. F010 has a definitive answer on code-vs-content (or both).
+4. F022/F029/F033 has a definitive answer on whether any AI validity gate exists in source.
+5. F030/F034 has a definitive answer on whether the conversation/journal surfaces invoke `recordError` (or equivalent) at all.
+6. F036 has a concept-id mismatch table.
+7. The doc closes with a "Suggested ordering revisions" section.
+8. No source files modified. (Verify with `git status` → only `.council/reports/...` is new.)
 
 ---
 
 ## Blocking Flags
 
-Stop immediately and write `BLOCKED: [reason]` to this file if:
+Stop and write `BLOCKED: [reason]` to this file if:
 
-- Any TypeScript error is introduced.
-- The diagnosis surface requires importing the `DiagnosisResult` type (it should not — the `plan` state is already typed `SchedulerOutput`).
-- Any file outside `src/app/dashboard/page.tsx` would need to be changed to satisfy the brief.
-- You are about to modify the engine, scheduler, type definitions, or any component file.
-- You are about to add a non-silent fallback when diagnosis is absent.
+- Source-code reading reveals the walkthrough report contains a misinterpretation that invalidates the finding (e.g., a Critical turns out to be working-as-designed). Write the correction inline.
+- Any of the 12 findings cannot be located in source (likely indicates the symptom is content/corpus rather than code — note this, do not block).
+- The task scope expands beyond the 12 findings into a general code review (it should not — stay tight to the walkthrough findings).
 
 ---
 
 ## Playwright Checkpoint
 
-FULL
-
-Tests:
-1. Navigate to `/dashboard` — verify the page renders without error.
-2. Take a screenshot at 375px (mobile) and 1280px (desktop) of the dashboard.
-3. Inspect the DOM for the "Why this" block:
-   - If the learner has no recent errors (likely default mock state), block should be absent.
-   - If a diagnosis result is present, the `reasoning` text should be visible inside the session card.
-4. Critical-path regression: navigate to `/`, start a session (or `/session` if dashboard Start button is the entry), submit one wrong answer, verify repair loop still appears, finish session.
-5. No new console errors anywhere on the tested pages.
-
-Save screenshots to `.council/reports/screenshots/[timestamp]-diagnosis-visibility/`.
+**none** — this is a source-code audit with no UI changes.

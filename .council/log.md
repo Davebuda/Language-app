@@ -1,5 +1,27 @@
 # Council Decision Log
 
+## 2026-05-21T18:15 ESCALATE — Third stress walkthrough reveals foundation regression; muntlig roleplay is the wrong next move
+
+**Trigger:** Third Playwright walkthrough (report at `test-reports/stress-walkthrough-2026-05-21/report.md`, 39 findings, 10 Critical) plus REVIEW.md (2026-05-11 code audit, 2 CRITICAL, 8 WARNING) plus STATE.md/ROADMAP.md showing "next: scripted roleplay" — three sources of evidence diverging.
+
+**Evidence summary:**
+- Four of the five P0 patterns CLAUDE.md operating rule 8 explicitly names as "the documented worst-case failure mode" are regressed in the live app: error tags collapse to a single `word-order` value (F010), journal correction writes nothing to fingerprint (F034), conversation grammar logging writes nothing (F030), session progression counter never increments (F012). One pattern (mic auto-activate) holds.
+- New class of AI-quality failures shipping live: in-session repair card teaches the opposite of the noun-gender rule (F022); Kari conversation replies contain non-Norwegian strings (F029); journal AI invents words and silently flips negation, reversing the user's sentence meaning (F033). Three Critical pedagogical-harm findings on three different surfaces — same root cause (no language-validity gate before AI output reaches the learner).
+- Engine correctness: diagnostic rawScore semantics broken — wrong answers on q-formation and adjective-agreement still produced rawScore=100 (F017). Diagnostic write doesn't commit until navigation away from result screen (F016). Diagnostic completion destructively wipes 24 historical recentErrors entries (F031).
+- Guard failures: /session/complete is directly accessible with no guard, congratulates the user with 0/0/0 stats (F023).
+- Mastery visibility broken: /progress shows every concept at 0% or Locked despite fingerprint having rawScore 100 for six concepts (F036, concept-id mismatch).
+- REVIEW.md WARNING items from 2026-05-11 may still be live: race conditions in fingerprint bootstrap, module-level scenarioCursor, auto-skip false-correct insertion. Not re-audited in this walkthrough.
+
+**What this means:**
+- STATE.md milestone "muntlig" is targeting a foundation that's broken at the engine level. Adding more speaking surfaces (roleplay) on top of a journal+conversation pipeline that silently contributes nothing will compound the same regression pattern: more surfaces that "look like they teach" but don't write to the engine.
+- Constitutional emergency per CLAUDE.md operating rule 8. The constitution mandates pipeline honesty before any "feeds the engine" feature ships. This isn't a roadmap nuance — it's the named failure mode.
+- The diagnosis-visibility task approved 2026-05-21T17:45 surfaces data we now know is broken (errorTag collapse, rawScore semantics). The surface fix was correct; the upstream data is the real bug.
+- gsd's continuation logic would propose muntlig roleplay step 5. That answer is wrong given the new evidence. RESTRUCTURE required before gsd can be trusted to advance.
+
+**Searched:** No external search. Constitutional rule (CLAUDE.md operating rule 8) is unambiguous. Internal evidence: walkthrough report + IndexedDB pre/post diffs + screenshots `test-reports/stress-walkthrough-2026-05-21/`.
+
+**Options:** (surfaced to user for decision — see escalation block in conversation)
+
 ## 2026-05-21T17:45 APPROVE — diagnosis visibility on dashboard session card
 **Criteria met:**
 - Only `src/app/dashboard/page.tsx` changed (9 insertions, 1 file) ✅

@@ -2,20 +2,23 @@
 
 The current build sequence with every research-validated priority locked in. This document supersedes earlier scattered planning. If you want to know what's next, what's deferred, and why — start here.
 
-## Current Position — RE-SEQUENCED 2026-05-20
+## Current Position — RE-SEQUENCED 2026-05-21 (third walkthrough)
 
-**A full end-to-end system walkthrough on 2026-05-20 found that the session loop — the single most important surface in the app — is uncompletable for a real user.** Three distinct failure modes block session completion: the English-direction grader always fails (C1), exercises silently render blank (C3), and word-order exercises cannot be solved without drag events (C4). The AI model is non-functional, producing null output for all generation tasks (C2). Details: `test-reports/system-walkthrough-2026-05-20.md`.
+**A third Playwright stress walkthrough on 2026-05-21 (full exhaustive, guest pass, 17 surfaces) produced 39 findings — 10 Critical, 20 Significant, 9 Minor, 4 Edge cases.** Report: `test-reports/stress-walkthrough-2026-05-21/report.md`. Comparison against prior P0 closure: `comparison.md` in the same directory.
 
-**This finding forces a re-sequencing.** The prior next-phase plan (UI-1.3 dashboard, A2 decay half-life, A3 calibration window, A4 event log, muntlig module) is explicitly deferred behind the P0 recovery batch. None of those items may be scheduled until the eight P0 items in `docs/recovery-backlog.md` are verified complete.
+**The third walkthrough demonstrates that four of the five P0 pipeline-honesty patterns CLAUDE.md operating rule 8 names by example are regressed in the live app**, and three new Critical AI-quality bugs are shipping live (in-session repair card teaching reversed gender rules; Kari conversation replies containing non-Norwegian strings; journal AI inventing words and reversing user negation). This forces a second re-sequencing.
 
-**Recovery status (2026-05-20):** UI-1.2 closed cleanly (all exercise surfaces pass 1.6× acceptance test). P0 items 1+2 (scheduler guard + grader mismatch) and item 3 (repair loop retry) are closed. P0 items 4–8 pending. Remaining critical-path chain: item 7 (template targeting) → item 8 (atomic progression). Items 2 (word-order), 4 (AI badge), 5 (FillInBlank error tag), 6 (journal) are distributable independently.
+**The prior next-phase plan (resume muntlig scripted roleplay step 5) is paused.** Muntlig step 5 may not be scheduled until the P0.5 Recovery Bundle (13 tasks) is verified complete via a fourth Playwright walkthrough (P0.5-13).
+
+**Recovery status (2026-05-21):** Original P0 batch (eight items from 2026-05-20 walkthrough) closed during early 2026-05-21 — that foundation holds where it can be measured (critical-path session loop reachable end-to-end). However the third walkthrough proved that several of those P0 fixes have regressed under the load of subsequent work, and three new Critical AI-quality issues now ship live. P0.5 Recovery Bundle inserted to seal the regression set before muntlig resumes.
 
 The prior plan's three streams remain valid and are resumed after recovery:
-- Stream 1 engine corrections (A1 model swap deferred to post-P0; A2–A4 deferred)
-- Stream 2 UI transformation (UI-1.2 done; UI-1.3+ deferred to post-P0)
-- Stream 3 muntlig module (deferred — do not start muntlig until P0 is clear)
+- Stream 1 engine corrections (A1 model swap deferred behind P0.5-04 AI validity gate; A2–A4 status retained from prior closure)
+- Stream 2 UI transformation (UI-1.3 shipped; UI-2 deferred to post-P0.5)
+- Stream 3 muntlig module (steps 1–4 shipped; step 5 scripted roleplay PAUSED until P0.5-13 sign-off)
 
-Recovery backlog: `docs/recovery-backlog.md`
+Recovery backlog: `docs/recovery-backlog.md` (P0.5 task table)
+Walkthrough report: `test-reports/stress-walkthrough-2026-05-21/report.md`
 
 ---
 

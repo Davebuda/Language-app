@@ -1,7 +1,9 @@
 # NorskCoach — Project State Snapshot
 
-**Date:** 2026-05-21  
-**Status:** P0 recovery batch complete. Session loop is completable end-to-end for the first time.
+**Date:** 2026-05-21 (post third walkthrough)  
+**Status:** P0.5 Recovery Bundle in progress. Third Playwright stress walkthrough surfaced 10 Critical findings; four of five named P0 patterns regressed. Muntlig scripted roleplay paused until P0.5-13 sign-off.
+
+> **The earlier line "P0 recovery batch complete. Session loop is completable end-to-end for the first time" is preserved further down as the historical 2026-05-21 morning state.** It remained true for the critical-path session-loop sense but the third walkthrough that afternoon proved that the broader pipeline-honesty contract regressed across journal + conversation + diagnostic semantics, and three new Critical AI-quality bugs are shipping. P0.5 Recovery Bundle in `docs/recovery-backlog.md` seals these before muntlig resumes.
 
 ---
 
