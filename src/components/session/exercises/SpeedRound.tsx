@@ -64,7 +64,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">
           Hurtigrunde
         </p>
         <span className="text-sm font-bold tabular-nums" style={{ color: urgentColor }}>
@@ -73,7 +73,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       </div>
 
       {/* Timer bar */}
-      <div className="h-[3px] overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
+      <div className="h-[3px] overflow-hidden rounded-full bg-[rgba(4,14,8,0.12)]">
         <motion.div
           className="h-full w-full origin-left rounded-full"
           style={{ background: urgentColor }}
@@ -83,13 +83,13 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       </div>
 
       <motion.p
-        className="text-[28px] font-bold text-white"
+        className="text-[28px] font-bold text-nc-cream-text"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
       >
         {sentence.norwegian}
       </motion.p>
-      <p className="text-sm text-white/40">Oversett til engelsk så raskt du kan</p>
+      <p className="text-sm text-nc-cream-muted">Oversett til engelsk så raskt du kan</p>
 
       <input
         ref={inputRef}
@@ -99,7 +99,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(userInput); }}
         disabled={submitted}
         placeholder="Engelsk oversettelse…"
-        className="min-h-[48px] w-full rounded-xl border border-white/12 bg-[rgba(255,255,255,0.04)] px-4 py-3 text-base text-white placeholder:text-white/25 focus:outline-none focus:border-nc-green/50 focus:ring-1 focus:ring-nc-green/15 disabled:opacity-50 transition-colors"
+        className="min-h-[48px] w-full rounded-xl border border-[rgba(0,220,180,0.30)] bg-white/55 px-4 py-3 text-base text-nc-cream-text placeholder:text-nc-cream-dim focus:outline-none focus:border-nc-green/50 focus:ring-1 focus:ring-nc-green/15 disabled:opacity-50 transition-colors"
       />
       <button
         onClick={() => submitAnswer(userInput)}

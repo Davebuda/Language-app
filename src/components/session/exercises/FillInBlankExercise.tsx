@@ -52,22 +52,22 @@ function MultipleChoice({
 
   return (
     <div className="space-y-5">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">Fyll inn</p>
+      <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">Fyll inn</p>
 
       <motion.div
-        className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-white"
+        className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-nc-cream-text"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
       >
         {before && <span>{before}</span>}
-        <span className="inline-flex min-w-[80px] items-center justify-center rounded-lg border border-dashed border-nc-green/40 bg-nc-green/10 px-3 py-1 text-xl text-white/40">
+        <span className="inline-flex min-w-[80px] items-center justify-center rounded-lg border border-dashed border-nc-green/50 bg-nc-green/10 px-3 py-1 text-xl text-nc-cream-dim">
           {selected ?? '___'}
         </span>
         {after && <span>{after}</span>}
       </motion.div>
 
-      <p className="text-sm text-white/40">{englishHint}</p>
+      <p className="text-sm text-nc-cream-muted">{englishHint}</p>
 
       <div className="grid grid-cols-2 gap-3">
         {options.map((opt) => {
@@ -87,7 +87,7 @@ function MultipleChoice({
                   ? 'border-nc-green/50 bg-nc-green/14 text-nc-green'
                   : showWrong
                     ? 'border-nc-red/50 bg-nc-red/10 text-nc-red'
-                    : 'border-white/12 bg-[rgba(255,255,255,0.04)] text-white/70 hover:border-nc-green/35 hover:text-white',
+                    : 'border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] text-nc-cream-muted hover:border-nc-green/50 hover:text-nc-cream-text',
                 selected ? 'cursor-default' : 'cursor-pointer',
               ].join(' ')}
             >
@@ -129,9 +129,9 @@ function FreeText({
 
   return (
     <div className="space-y-5">
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">Fyll inn</p>
+      <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">Fyll inn</p>
       <motion.div
-        className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-white"
+        className="flex flex-wrap items-center gap-2 text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-nc-cream-text"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
@@ -144,11 +144,11 @@ function FreeText({
           onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
           disabled={submitted}
           placeholder="___"
-          className="min-h-[44px] min-w-[120px] rounded-lg border border-nc-green/40 bg-[rgba(255,255,255,0.04)] px-3 py-1 text-xl font-semibold text-white placeholder:text-white/25 focus:outline-none focus:border-nc-green/60 focus:ring-1 focus:ring-nc-green/15 disabled:opacity-50 transition-colors"
+          className="min-h-[44px] min-w-[120px] rounded-lg border border-nc-green/40 bg-white/40 px-3 py-1 text-xl font-semibold text-nc-cream-text placeholder:text-nc-cream-dim focus:outline-none focus:border-nc-green/60 focus:ring-1 focus:ring-nc-green/15 disabled:opacity-50 transition-colors"
         />
         {after && <span>{after}</span>}
       </motion.div>
-      <p className="text-sm text-white/40">{englishHint}</p>
+      <p className="text-sm text-nc-cream-muted">{englishHint}</p>
       <button
         onClick={submit}
         disabled={submitted || !userInput.trim()}

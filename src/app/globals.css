@@ -5,60 +5,72 @@
 @layer base {
   :root {
     /* ─────────────────────────────────────────────────────────────
-       Ember — dark-first, glassmorphic, red gradient accent
-       Derived from user direction: May 19 2026
-       Primary: red #DC2626  |  Base: warm charcoal #120E0E
-       Style: new-york  |  Radius: 0.75rem
+       Aurora + Cream — dark-first, multi-orb aurora canvas, teal accent
+       Derived from user direction: Mixed 3 — Aurora + Cream, May 21 2026
+       Primary: fire red #FF3333  |  Accent: teal #00E5C4
+       Base: deep aurora #080E10  |  Style: default  |  Radius: 0.75rem
        ───────────────────────────────────────────────────────────── */
 
-    /* shadcn/ui tokens — dark mode is canonical */
-    --background: 0 10% 6%;
-    --foreground: 31 18% 91%;
+    /* shadcn/ui tokens — light mode (rarely used; dark is canonical) */
+    --background: 0 0% 98%;
+    --foreground: 200 34% 8%;
 
-    --card: 0 8% 9%;
-    --card-foreground: 31 18% 91%;
+    --card: 0 0% 100%;
+    --card-foreground: 200 34% 8%;
 
-    --popover: 0 8% 10%;
-    --popover-foreground: 31 18% 91%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 34% 8%;
 
-    --primary: 0 72% 51%;
+    --primary: 0 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 6% 13%;
-    --secondary-foreground: 31 18% 85%;
+    --secondary: 200 20% 93%;
+    --secondary-foreground: 200 34% 8%;
 
-    --muted: 0 6% 11%;
-    --muted-foreground: 31 10% 55%;
+    --muted: 200 15% 90%;
+    --muted-foreground: 200 10% 48%;
 
-    --accent: 0 72% 51%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 172 100% 45%;
+    --accent-foreground: 172 100% 8%;
 
-    --destructive: 0 72% 45%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 31 10% 16%;
-    --input: 0 8% 12%;
-    --ring: 0 72% 51%;
+    --border: 200 15% 88%;
+    --input: 200 15% 88%;
+    --ring: 0 100% 60%;
 
     --radius: 0.75rem;
 
-    /* ── NorskCoach brand tokens — Ember dark theme ── */
+    /* ── NorskCoach brand tokens — Aurora + Cream theme ── */
 
     /* Surfaces */
-    --nc-bg:        #120E0E;
-    --nc-paper:     #120E0E;
+    --nc-bg:        #080E10;
+    --nc-paper:     #080E10;
     --nc-card:      rgba(255,255,255,0.06);
     --nc-card-soft: rgba(255,255,255,0.03);
 
     /* Dark anchor (used for deep inset surfaces) */
-    --nc-dark:    #0A0707;
-    --nc-dark-2:  #0D0A0A;
+    --nc-dark:    #040A08;
+    --nc-dark-2:  #060C0A;
 
-    /* Primary brand — red (single system; --nc-violet* removed) */
-    --nc-red:        #DC2626;
-    --nc-red-tint:   rgba(220,38,38,0.14);
-    --nc-red-border: rgba(220,38,38,0.28);
+    /* Primary brand — fire red */
+    --nc-red:        #FF3333;
+    --nc-red-tint:   rgba(255,51,51,0.14);
+    --nc-red-border: rgba(255,51,51,0.28);
     --nc-red-fg:     #FFFFFF;
+
+    /* Teal accent — new */
+    --nc-teal:        #00E5C4;
+    --nc-teal-tint:   rgba(0,229,196,0.14);
+    --nc-teal-border: rgba(0,229,196,0.28);
+    --nc-teal-fg:     #040E08;
+
+    /* Cream surface — new */
+    --nc-cream:       #F4FFF8;
+    --nc-cream-text:  #040E08;
+    --nc-cream-muted: rgba(4,14,8,0.52);
+    --nc-cream-dim:   rgba(4,14,8,0.34);
 
     /* Success */
     --nc-green:        #4ade80;
@@ -70,17 +82,48 @@
     --nc-border:        rgba(255,255,255,0.10);
     --nc-border-subtle: rgba(255,255,255,0.06);
     --nc-border-strong: rgba(255,255,255,0.16);
-    --nc-text:          #EDE8E3;
-    --nc-text-muted:    rgba(237,232,227,0.58);
-    --nc-text-dim:      rgba(237,232,227,0.36);
+    --nc-text:          #F0FFF8;
+    --nc-text-muted:    rgba(240,255,248,0.58);
+    --nc-text-dim:      rgba(240,255,248,0.36);
 
     /* Shadows — deeper on dark */
     --nc-shadow:        0 1px 3px rgba(0,0,0,0.24), 0 4px 16px rgba(0,0,0,0.18);
     --nc-shadow-strong: 0 8px 32px rgba(0,0,0,0.40), 0 2px 8px rgba(0,0,0,0.28);
 
     /* Repair loop */
-    --nc-repair-bg:     rgba(220,38,38,0.10);
-    --nc-repair-border: rgba(220,38,38,0.24);
+    --nc-repair-bg:     rgba(255,51,51,0.10);
+    --nc-repair-border: rgba(255,51,51,0.24);
+  }
+
+  .dark {
+    /* ── shadcn/ui dark tokens — Aurora + Cream canonical dark mode ── */
+    --background: 200 34% 5%;
+    --foreground: 150 100% 97%;
+
+    --card: 200 34% 8%;
+    --card-foreground: 150 100% 97%;
+
+    --popover: 200 34% 9%;
+    --popover-foreground: 150 100% 97%;
+
+    --primary: 0 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 30% 13%;
+    --secondary-foreground: 150 100% 90%;
+
+    --muted: 200 28% 11%;
+    --muted-foreground: 150 20% 60%;
+
+    --accent: 172 100% 45%;
+    --accent-foreground: 172 100% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 172 20% 16%;
+    --input: 200 30% 10%;
+    --ring: 0 100% 60%;
   }
 
   /* Light surface override — for explicit light sections */
@@ -123,8 +166,8 @@
   }
 
   ::selection {
-    background-color: rgba(220,38,38,0.28);
-    color: #EDE8E3;
+    background-color: rgba(0,229,196,0.28);
+    color: #F0FFF8;
   }
 
   ::-webkit-scrollbar { width: 5px; }
@@ -135,33 +178,33 @@
 
 @layer components {
 
-  /* ── Page background — gradient overlays only; dark base comes from body ── */
+  /* ── Page background — Aurora Nordic multi-orb canvas ── */
   .nc-gradient-page {
     position: relative;
     min-height: 100dvh;
-    /* Mobile: two wide, low-intensity glows that don't compress */
+    /* Mobile: two orbs that don't compress — teal top-left, red bottom-right */
     background:
-      radial-gradient(ellipse 220% 38% at 50% 0%, rgba(180,15,15,0.38) 0%, transparent 55%),
-      radial-gradient(ellipse 120% 28% at 75% 105%, rgba(100,5,20,0.30) 0%, transparent 50%);
-    /* No solid fallback — body bg (#120E0E) shows through, revealing canvas terrain */
+      radial-gradient(ellipse 200% 40% at 0% 8%,  rgba(0,200,160,0.55) 0%, transparent 50%),
+      radial-gradient(ellipse 160% 36% at 92% 92%, rgba(255,40,40,0.52) 0%, transparent 50%);
+    /* No solid fallback — body bg (#080E10) shows through */
   }
 
-  /* Desktop: richer layered orbs that have space to breathe */
+  /* Desktop: full four-orb Aurora Nordic composition */
   @media (min-width: 768px) {
     .nc-gradient-page {
       background:
-        radial-gradient(ellipse 55% 50% at 10% 18%, rgba(200,20,20,0.52) 0%, transparent 52%),
-        radial-gradient(ellipse 42% 40% at 82% 68%, rgba(120,10,30,0.46) 0%, transparent 50%),
-        radial-gradient(ellipse 32% 28% at 62% 8%,  rgba(220,60,20,0.32) 0%, transparent 50%),
-        radial-gradient(ellipse 28% 24% at 88% 18%, rgba(180,40,60,0.24) 0%, transparent 50%);
+        radial-gradient(ellipse 58% 50% at  2% 10%, rgba(0,200,160,0.72)  0%, transparent 52%),
+        radial-gradient(ellipse 46% 40% at 92% 18%, rgba(160,255,60,0.58)  0%, transparent 48%),
+        radial-gradient(ellipse 44% 38% at 88% 82%, rgba(255,40,40,0.68)   0%, transparent 48%),
+        radial-gradient(ellipse 36% 30% at  8% 78%, rgba(0,160,180,0.52)   0%, transparent 46%);
     }
   }
 
   /* ::before is reserved — TopographicGrid canvas component handles the mesh texture */
 
-  /* ── Glass card primitives — true frosted glass; background bleeds through ── */
+  /* ── Glass card primitives — Aurora three-surface system ── */
 
-  /* Standard glass: nearly invisible film, background colours smear through blur */
+  /* Standard glass: baseline transparent film — aurora colours bleed through */
   .nc-glass {
     position: relative;
     overflow: hidden;
@@ -169,8 +212,8 @@
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(24px) saturate(1.7);
     -webkit-backdrop-filter: blur(24px) saturate(1.7);
-    border: 1px solid rgba(255,255,255,0.09);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+    border: 1px solid rgba(0,220,180,0.10);
+    box-shadow: inset 0 1px 0 rgba(0,220,180,0.06);
   }
 
   /* Elevated glass: slightly more presence, for featured cards */
@@ -181,50 +224,82 @@
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(36px) saturate(1.9);
     -webkit-backdrop-filter: blur(36px) saturate(1.9);
-    border: 1px solid rgba(255,255,255,0.13);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.10);
+    border: 1px solid rgba(0,220,180,0.16);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(0,220,180,0.10);
   }
 
-  /* Red-tinted glass */
-  .nc-glass-red {
+  /* SURFACE 1 — nc-glass-dark: session summary card, header panels
+     Deep dark film — aurora bleeds through at low intensity.
+     Dark text is WRONG here — always use var(--nc-text) = #F0FFF8 */
+  .nc-glass-dark {
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
-    background: rgba(220,38,38,0.10);
-    backdrop-filter: blur(24px) saturate(1.7);
-    -webkit-backdrop-filter: blur(24px) saturate(1.7);
-    border: 1px solid rgba(220,38,38,0.22);
+    background: rgba(4,10,8,0.54);
+    backdrop-filter: blur(28px) saturate(1.8);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border: 1px solid rgba(0,220,180,0.18);
+    box-shadow: inset 0 1px 0 rgba(0,220,180,0.08);
+    color: var(--nc-text);
   }
 
-  /* "Cream" glass: same transparent glass — warm tone comes from background bleeding through */
+  /* SURFACE 2 — nc-glass-cream: exercise card, main interactive surface.
+     Near-opaque cream panel — dark text mandatory.
+     DO NOT use var(--nc-text) here — use var(--nc-cream-text) = #040E08 */
   .nc-glass-cream {
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(24px) saturate(1.8);
-    -webkit-backdrop-filter: blur(24px) saturate(1.8);
-    border: 1px solid rgba(255,220,160,0.18);
-    box-shadow: inset 0 1px 0 rgba(255,230,180,0.10);
+    background: rgba(244,255,250,0.86);
+    backdrop-filter: blur(40px) saturate(2.0);
+    -webkit-backdrop-filter: blur(40px) saturate(2.0);
+    border: 1px solid rgba(0,220,180,0.30);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.20), inset 0 1px 0 rgba(0,220,180,0.18);
+    color: var(--nc-cream-text);
   }
 
-  /* Stronger frosted — exercise / explanation cards */
+  /* Alias for cream — used in session loop exercise wrapper */
   .nc-glass-cream-strong {
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
-    background: rgba(255,255,255,0.09);
-    backdrop-filter: blur(36px) saturate(2.0);
-    -webkit-backdrop-filter: blur(36px) saturate(2.0);
-    border: 1px solid rgba(255,220,160,0.22);
-    box-shadow: 0 4px 32px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,230,180,0.14);
+    background: rgba(244,255,250,0.86);
+    backdrop-filter: blur(40px) saturate(2.0);
+    -webkit-backdrop-filter: blur(40px) saturate(2.0);
+    border: 1px solid rgba(0,220,180,0.30);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.20), inset 0 1px 0 rgba(0,220,180,0.18);
+    color: var(--nc-cream-text);
+  }
+
+  /* SURFACE 3 — nc-glass-stat: stat tiles, score badges, progress labels
+     Ultra-thin transparent film — aurora dominates. Light text. */
+  .nc-glass-stat {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid rgba(0,220,180,0.14);
+    box-shadow: inset 0 1px 0 rgba(0,220,180,0.06);
+    color: var(--nc-text);
+  }
+
+  /* Red-tinted glass — repair loop, error states */
+  .nc-glass-red {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: rgba(255,51,51,0.10);
+    backdrop-filter: blur(24px) saturate(1.7);
+    -webkit-backdrop-filter: blur(24px) saturate(1.7);
+    border: 1px solid rgba(255,51,51,0.22);
   }
 
   /* Backwards-compat aliases */
   .nc-panel          { @apply nc-glass; }
-  .nc-panel-soft     { background: rgba(255,255,255,0.03); border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.06); }
-  .nc-glass-dark     { @apply nc-glass; }
-  .nc-panel-dark     { @apply nc-glass; }
+  .nc-panel-soft     { background: rgba(255,255,255,0.03); border-radius: var(--radius); border: 1px solid rgba(0,220,180,0.08); }
+  .nc-panel-dark     { @apply nc-glass-dark; }
 
   /* ── White surface — limited to max 2 per page ── */
   .nc-surface {
@@ -278,6 +353,7 @@
   }
 
   /* ── Inputs ── */
+  /* ── Inputs — dark surface (default) ── */
   .nc-input {
     width: 100%;
     min-height: 3rem;
@@ -295,27 +371,68 @@
   .nc-input::placeholder { color: var(--nc-text-dim); }
 
   .nc-input:focus {
-    border-color: rgba(220,38,38,0.55);
-    box-shadow: 0 0 0 3px rgba(220,38,38,0.12);
+    border-color: rgba(0,229,196,0.55);
+    box-shadow: 0 0 0 3px rgba(0,229,196,0.12);
     background: rgba(255,255,255,0.07);
   }
 
+  /* ── Input on cream surface — dark text, red focus ring ── */
+  .nc-input-cream {
+    width: 100%;
+    min-height: 3rem;
+    border-radius: var(--radius);
+    border: 1.5px solid rgba(0,220,180,0.30);
+    background: rgba(255,255,255,0.55);
+    padding: 0.85rem 1rem;
+    color: var(--nc-cream-text);
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .nc-input-cream::placeholder { color: var(--nc-cream-muted); }
+
+  .nc-input-cream:focus {
+    border-color: rgba(255,51,51,0.55);
+    box-shadow: 0 0 0 3px rgba(255,51,51,0.14);
+    background: rgba(255,255,255,0.70);
+  }
+
   /* ── Buttons ── */
+  /* ── Primary CTA — solid red, maximum contrast on both surfaces ── */
   .nc-button-primary {
     border-radius: var(--radius);
     background: var(--nc-red);
     color: #FFFFFF;
     font-weight: 700;
     transition: opacity 150ms ease, transform 150ms ease, box-shadow 150ms ease;
-    box-shadow: 0 2px 12px rgba(220,38,38,0.40);
+    box-shadow: 0 2px 12px rgba(255,51,51,0.40);
   }
 
   .nc-button-primary:hover {
     opacity: 0.92;
     transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(220,38,38,0.50);
+    box-shadow: 0 4px 20px rgba(255,51,51,0.50);
   }
   .nc-button-primary:active { transform: scale(0.97); }
+
+  /* ── Teal accent button — secondary CTA ── */
+  .nc-button-teal {
+    border-radius: var(--radius);
+    background: var(--nc-teal);
+    color: var(--nc-teal-fg);
+    font-weight: 700;
+    transition: opacity 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    box-shadow: 0 2px 12px rgba(0,229,196,0.35);
+  }
+
+  .nc-button-teal:hover {
+    opacity: 0.90;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,229,196,0.45);
+  }
+  .nc-button-teal:active { transform: scale(0.97); }
 
   .nc-button-dark {
     border-radius: var(--radius);
@@ -376,10 +493,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nc-button-primary {
+  .nc-button-primary,
+  .nc-button-teal {
     transition: none;
   }
-  .nc-button-primary:hover { transform: none; }
-  .nc-button-primary:active { transform: none; }
-  .nc-input { transition: none; }
+  .nc-button-primary:hover,
+  .nc-button-teal:hover { transform: none; }
+  .nc-button-primary:active,
+  .nc-button-teal:active { transform: none; }
+  .nc-input,
+  .nc-input-cream { transition: none; }
 }

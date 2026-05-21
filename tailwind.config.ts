@@ -41,21 +41,32 @@ const config: Config = {
           foreground: 'hsl(var(--popover-foreground))',
         },
 
-        // NorskCoach brand tokens — Ember dark theme
-        // Primary: red #DC2626 | Base: warm charcoal #120E0E
+        // NorskCoach brand tokens — Aurora + Cream theme
+        // Primary: fire red #FF3333 | Accent: teal #00E5C4 | Base: deep aurora #080E10
         nc: {
-          bg:              '#120E0E',
+          bg:              '#080E10',
           card:            'rgba(255,255,255,0.06)',
           'card-soft':     'rgba(255,255,255,0.03)',
           'card-hover':    'rgba(255,255,255,0.10)',
-          dark:            '#0A0707',
-          'dark-2':        '#0D0A0A',
+          dark:            '#040A08',
+          'dark-2':        '#060C0A',
 
-          // Primary brand — red (CTA, active states, progress)
-          // --nc-violet* removed; --nc-red* is the single brand system
-          red:             '#DC2626',
-          'red-tint':      'rgba(220,38,38,0.14)',
-          'red-border':    'rgba(220,38,38,0.28)',
+          // Primary brand — fire red (CTA, active states, progress)
+          red:             '#FF3333',
+          'red-tint':      'rgba(255,51,51,0.14)',
+          'red-border':    'rgba(255,51,51,0.28)',
+
+          // Teal accent — secondary CTA, aurora highlight
+          teal:            '#00E5C4',
+          'teal-tint':     'rgba(0,229,196,0.14)',
+          'teal-border':   'rgba(0,229,196,0.28)',
+          'teal-fg':       '#040E08',
+
+          // Cream surface — exercise cards, high-contrast interactive panels
+          cream:           '#F4FFF8',
+          'cream-text':    '#040E08',
+          'cream-muted':   'rgba(4,14,8,0.52)',
+          'cream-dim':     'rgba(4,14,8,0.34)',
 
           // Success state — brighter for dark bg
           green:           '#4ade80',
@@ -63,7 +74,7 @@ const config: Config = {
           'green-border':  'rgba(74,222,128,0.25)',
           'green-fg':      '#052e16',
 
-          // Practice phase accent
+          // Practice phase accent (kept for backwards compat)
           coral:           'rgba(255,255,255,0.08)',
           'coral-tint':    'rgba(255,255,255,0.04)',
           'coral-border':  'rgba(255,255,255,0.10)',
@@ -71,9 +82,9 @@ const config: Config = {
           border:          'rgba(255,255,255,0.10)',
           'border-subtle': 'rgba(255,255,255,0.06)',
           'border-strong': 'rgba(255,255,255,0.16)',
-          text:            '#EDE8E3',
-          'text-muted':    'rgba(237,232,227,0.58)',
-          'text-dim':      'rgba(237,232,227,0.36)',
+          text:            '#F0FFF8',
+          'text-muted':    'rgba(240,255,248,0.58)',
+          'text-dim':      'rgba(240,255,248,0.36)',
         },
       },
 

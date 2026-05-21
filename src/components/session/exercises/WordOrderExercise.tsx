@@ -70,7 +70,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
   return (
     <div className="space-y-4">
       {/* English instruction — demoted to small label per aesthetic direction */}
-      <p className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+      <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">
         {sentence.english}
       </p>
 
@@ -85,7 +85,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
         ].join(' ')}
       >
         {answerTiles.length === 0 ? (
-          <span className="text-[12px] text-white/20 select-none px-1">
+          <span className="text-[12px] text-nc-cream-dim select-none px-1">
             Trykk på ordene nedenfor for å bygge setningen
           </span>
         ) : (
@@ -127,14 +127,14 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-white transition-colors hover:border-nc-green/50 hover:bg-nc-green/10 hover:text-nc-green disabled:cursor-default"
+              className="rounded-xl border border-[rgba(4,14,8,0.16)] bg-[rgba(4,14,8,0.06)] px-5 py-3 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-nc-cream-text transition-colors hover:border-nc-green/50 hover:bg-nc-green/10 hover:text-nc-green disabled:cursor-default"
             >
               {tile.word}
             </motion.button>
           ))}
         </AnimatePresence>
         {sourceTiles.length === 0 && !submitted && (
-          <span className="text-[12px] text-white/20 select-none px-1">Alle ord er plassert</span>
+          <span className="text-[12px] text-nc-cream-dim select-none px-1">Alle ord er plassert</span>
         )}
       </div>
 
@@ -142,7 +142,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
         type="button"
         onClick={submit}
         disabled={submitted || sourceTiles.length > 0}
-        className="min-h-[48px] w-full rounded-xl nc-button-primary px-6 py-3 font-bold text-nc-dark transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="min-h-[48px] w-full rounded-xl nc-button-primary px-6 py-3 font-bold transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk rekkefølge
       </button>

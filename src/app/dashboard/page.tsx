@@ -271,19 +271,19 @@ export default function DashboardPage() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="nc-gradient-red p-5 text-white"
+          className="nc-glass-dark p-5"
         >
-          <div className="text-white/60 nc-label mb-2">{"Today's session · "}{levelLabel}</div>
-          <div className="font-display text-[1.5rem] font-bold text-white text-balance mt-1">
+          <div className="nc-label mb-2 text-[var(--nc-text-dim)]">{"Today's session · "}{levelLabel}</div>
+          <div className="font-display text-[1.5rem] font-bold text-[var(--nc-text)] text-balance mt-1">
             {sessionTitle}
           </div>
-          <p className="mt-2 text-[12px] text-white/55 text-pretty">
+          <p className="mt-2 text-[12px] text-[var(--nc-text-muted)] text-pretty">
             Estimated: {estimatedMin} min
           </p>
           <motion.button
             onClick={() => router.push('/session')}
             whileTap={{ scale: 0.97 }}
-            className="mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[var(--radius)] bg-white/14 backdrop-blur border border-white/20 px-5 py-3 text-sm font-bold text-white hover:bg-white/20"
+            className="mt-4 inline-flex min-h-[48px] items-center gap-2 rounded-[var(--radius)] bg-[rgba(255,255,255,0.10)] backdrop-blur border border-[var(--nc-border-strong)] px-5 py-3 text-sm font-bold text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.16)]"
             aria-label="Start today's session"
           >
             <Play size={14} aria-hidden="true" />
@@ -293,28 +293,28 @@ export default function DashboardPage() {
           {/* Session composition badges */}
           <div className="mt-4 flex flex-wrap gap-2">
             {remediation > 0 && (
-              <span className="rounded-[0.65rem] border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white/80">
+              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.08)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
                 {remediation} repairs
               </span>
             )}
             {review > 0 && (
-              <span className="rounded-[0.65rem] border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white/80">
+              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.08)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
                 {review} review
               </span>
             )}
             {newMaterial > 0 && (
-              <span className="rounded-[0.65rem] border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-semibold text-white/80">
+              <span className="rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.08)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-text-muted)]">
                 {newMaterial} new
               </span>
             )}
           </div>
 
           {/* ── Grammar moment ── */}
-          <div className="mt-4 border-t border-white/15 pt-4">
-            <p className="font-display text-[1.35rem] font-bold leading-tight text-white text-balance">
+          <div className="mt-4 border-t border-[var(--nc-border)] pt-4">
+            <p className="font-display text-[1.35rem] font-bold leading-tight text-[var(--nc-text)] text-balance">
               {dailyRule.norwegianExample}
             </p>
-            <p className="mt-1.5 text-[11px] text-white/55 leading-relaxed text-pretty">
+            <p className="mt-1.5 text-[11px] text-[var(--nc-text-muted)] leading-relaxed text-pretty">
               {dailyRule.ruleExplanation}
             </p>
           </div>
@@ -438,7 +438,7 @@ export default function DashboardPage() {
           ].map((s) => (
             <div
               key={s.label}
-              className="nc-glass-cream px-2.5 py-2 text-center"
+              className="nc-glass-stat px-2.5 py-2 text-center"
             >
               <div
                 className="font-display tabular-nums text-[1.25rem] font-bold leading-none tracking-tight"

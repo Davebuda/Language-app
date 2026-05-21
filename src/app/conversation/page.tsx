@@ -438,7 +438,7 @@ export default function ConversationPage() {
                       className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-[14px] leading-relaxed ${
                         msg.role === 'user'
                           ? 'nc-gradient-red rounded-br-sm text-white'
-                          : 'nc-glass-cream rounded-bl-sm text-[var(--nc-text)]'
+                          : 'nc-glass-cream rounded-bl-sm text-[var(--nc-cream-text)]'
                       }`}
                     >
                       {msg.content}

@@ -32,21 +32,21 @@ export function ConceptProgressRow({
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-3">
-          <span className="truncate text-[13px] font-medium text-[var(--nc-text)]">
+          <span className="truncate text-[13px] font-medium text-[var(--nc-cream-text)]">
             {name}
           </span>
           {locked ? (
-            <span className="text-[10px] font-medium text-[var(--nc-text-dim)]">
+            <span className="text-[10px] font-medium text-[var(--nc-cream-dim)]">
               {prereqLabel}
             </span>
           ) : (
-            <span className="text-[12px] font-semibold text-[var(--nc-text-dim)]">
+            <span className="text-[12px] font-semibold text-[var(--nc-cream-dim)]">
               {score}%
             </span>
           )}
         </div>
 
-        <div className="mt-2 h-[5px] overflow-hidden rounded-full bg-[var(--nc-border)]">
+        <div className="mt-2 h-[5px] overflow-hidden rounded-full bg-[rgba(4,14,8,0.12)]">
           {!locked ? (
             <motion.div
               className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"

@@ -122,11 +122,11 @@ export default function ProfilePage() {
         </div>
 
         <div className="nc-glass-cream p-4">
-          <div className="nc-label">Nåværende nivå</div>
-          <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-text)]">
+          <div className="nc-label text-nc-cream-dim">Nåværende nivå</div>
+          <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-cream-text)]">
             {status === 'loading' ? '–' : (LEVEL_LABELS[fingerprint?.currentLevel ?? 'A1'] ?? 'A1')}
           </div>
-          <div className="mt-4 h-2 w-full overflow-hidden rounded-[0.4rem] bg-[var(--nc-border)]">
+          <div className="mt-4 h-2 w-full overflow-hidden rounded-[0.4rem] bg-[rgba(4,14,8,0.12)]">
             <div
               className="h-full rounded-[0.4rem] bg-[var(--nc-red)]"
               style={{
@@ -134,7 +134,7 @@ export default function ProfilePage() {
               }}
             />
           </div>
-          <div className="mt-2 text-sm text-[var(--nc-text-muted)]">
+          <div className="mt-2 text-sm text-[var(--nc-cream-muted)]">
             {masteredCount} av {totalConcepts} konsepter mestret
           </div>
         </div>

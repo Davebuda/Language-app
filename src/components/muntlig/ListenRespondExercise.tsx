@@ -183,7 +183,7 @@ export function ListenRespondExercise({
     >
       {/* Progress indicator */}
       <div className="flex items-center gap-2">
-        <span className="nc-label">{index + 1} / {total}</span>
+        <span className="nc-label tabular-nums">{index + 1} / {total}</span>
         <div className="flex-1 h-[3px] overflow-hidden rounded-full bg-[var(--nc-border)]">
           <motion.div
             className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"

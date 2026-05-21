@@ -85,7 +85,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
   }
 
   const answerFieldClassName = [
-    'nc-input',
+    'nc-input-cream',
     feedbackTone === 'correct'
       ? 'border-[var(--nc-green-border)] bg-[var(--nc-green-tint)]'
       : feedbackTone === 'wrong'
@@ -100,7 +100,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
         {promptLabel}
       </p>
       <motion.p
-        className="font-display text-[28px] font-bold leading-[1.15] tracking-tight text-nc-text"
+        className="font-display text-[28px] font-bold leading-[1.15] tracking-tight text-nc-cream-text"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
@@ -125,7 +125,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
       <button
         onClick={() => void submit()}
         disabled={submitted || !userInput.trim()}
-        className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[var(--radius)] bg-[var(--nc-red)] px-6 py-3 text-sm font-bold text-white transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[var(--nc-card-soft)] disabled:text-nc-text-dim disabled:shadow-none"
+        className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[var(--radius)] bg-[var(--nc-red)] px-6 py-3 text-sm font-bold text-white transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[rgba(4,14,8,0.06)] disabled:text-nc-cream-dim disabled:shadow-none"
       >
         <span>Sjekk svar</span>
         <ArrowRight size={16} />
