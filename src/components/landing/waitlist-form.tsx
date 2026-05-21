@@ -71,6 +71,7 @@ export function WaitlistForm() {
               <input
                 type="email"
                 value={email}
+                maxLength={254}
                 onChange={(e) => {
                   setEmail(e.target.value)
                   if (error) setError(null)

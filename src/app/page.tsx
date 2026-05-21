@@ -300,11 +300,16 @@ export default function HomePage() {
 
       {/* ── Footer strip ─────────────────────────────────────────────────── */}
       <footer className="relative z-10 border-t border-[var(--nc-border)] px-5 py-6">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 text-[11px] text-[var(--nc-text-dim)]">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 text-[11px] text-[var(--nc-text-dim)]">
           <div className="flex items-center gap-2 font-bold tracking-[0.12em]">
             <span className="h-2 w-2 rounded-full bg-[var(--nc-red)]" />
             NORSKCOACH
           </div>
+          <nav aria-label="Footer" className="flex items-center gap-5">
+            <a href="/privacy" className="hover:text-[var(--nc-text)] transition-colors">Privacy</a>
+            <a href="/terms" className="hover:text-[var(--nc-text)] transition-colors">Terms</a>
+            <a href="mailto:hei@pandoai.no" className="hover:text-[var(--nc-text)] transition-colors">Contact</a>
+          </nav>
           <span>Lær. Forstå. Mestre.</span>
         </div>
       </footer>

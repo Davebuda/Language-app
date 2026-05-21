@@ -162,6 +162,14 @@ export function useFingerprint() {
     if (authLoading) return;
     if (bootstrappingRef.current) return;
 
+    // P0.5-14 (F009): drop the empty `norskcoach-fingerprint` IndexedDB if
+    // it's hanging around in the browser from an older code path. The store
+    // is unused; deleting it removes the two-DB confusion observed in the
+    // third walkthrough.
+    if (typeof indexedDB !== 'undefined') {
+      indexedDB.deleteDatabase('norskcoach-fingerprint');
+    }
+
     async function bootstrap() {
       bootstrappingRef.current = true;
       if (user) {
