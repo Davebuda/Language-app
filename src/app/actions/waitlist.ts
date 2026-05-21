@@ -3,7 +3,10 @@
 import { createClient } from '@/lib/supabase/server'
 import { z } from 'zod'
 
-const emailSchema = z.string().email()
+// P0.5-13 (F004): same permissive regex as the client form — accepts unicode
+// local parts and IDN domains. Server-side mirror of the client schema.
+const emailRegex = /^[\p{L}\p{N}._%+\-]+@[\p{L}\p{N}.\-]+\.[\p{L}]{2,}$/u
+const emailSchema = z.string().refine((v) => emailRegex.test(v), { message: 'invalid email' })
 
 export async function submitWaitlist(
   email: string

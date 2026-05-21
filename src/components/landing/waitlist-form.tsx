@@ -6,7 +6,11 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { z } from 'zod'
 import { submitWaitlist } from '@/app/actions/waitlist'
 
-const emailSchema = z.string().email()
+// P0.5-13 (F004): allow unicode (æøå and IDN domains). zod's .email() rejects
+// non-ASCII per RFC 5321 strict mode; for a Norwegian-first product we accept
+// Norwegian characters and international domains via a permissive regex.
+const emailRegex = /^[\p{L}\p{N}._%+\-]+@[\p{L}\p{N}.\-]+\.[\p{L}]{2,}$/u
+const emailSchema = z.string().refine((v) => emailRegex.test(v), { message: 'invalid email' })
 
 export function WaitlistForm() {
   const [email, setEmail] = useState('')

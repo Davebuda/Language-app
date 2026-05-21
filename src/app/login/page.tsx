@@ -1,17 +1,29 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 
 export default function LoginPage() {
   const { signIn } = useAuth()
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+
+  // P0.5-13 (F006): surface ?error=auth_failed from /auth/callback so users
+  // who clicked an expired/invalid magic link see a real banner rather than
+  // landing silently on the default form.
+  useEffect(() => {
+    const err = searchParams?.get('error')
+    if (err === 'auth_failed') {
+      setErrorMsg('Innloggingslenken er ugyldig eller utløpt. Be om en ny lenke under.')
+    }
+  }, [searchParams])
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
