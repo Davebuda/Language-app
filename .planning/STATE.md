@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: P1-recovery
 milestone_name: P1 bug fix batch
 status: executing
-stopped_at: P1-10 closed. P1-11 (waitlist form cosmetic) is next.
+stopped_at: P1-11 closed. P1-12 (conversation end summary) is next.
 last_updated: "2026-05-21"
-last_activity: 2026-05-21 — P1-10 (dead notifications bell removed from dashboard) fixed and playwright-verified by council
+last_activity: 2026-05-21 — P1-11 (waitlist form wired to Supabase) fixed and playwright-verified by council
 progress:
   p0_items: 8/8 complete
-  p1_items_closed: 10
+  p1_items_closed: 11
   p1_items_total: 13
   p2_items_closed: 0
   p2_items_total: 9
@@ -48,7 +48,7 @@ All 8 P0 items closed. Session loop is completable end-to-end.
 | P1-8 Recalibration accessibility tree empty | ✅ CLOSED 2026-05-21 |
 | P1-9 Diagnostic terminates at 5/12 with "12" visible | ✅ CLOSED 2026-05-21 |
 | P1-10 Dashboard notifications bell dead | ✅ CLOSED 2026-05-21 |
-| P1-11 Waitlist form cosmetic — no data captured | Open |
+| P1-11 Waitlist form cosmetic — no data captured | ✅ CLOSED 2026-05-21 |
 | P1-12 Conversation end no summary or save confirmation | Open |
 | P1-13 Session complete screen untestable | Open |
 

@@ -118,4 +118,20 @@ Screenshot: `p1-10-dashboard-no-bell.png`
 P1 closed so far: 1–10 (10 of 13)
 Next: P1-11 — Waitlist form cosmetic — no data captured
 
+## 2026-05-21 APPROVE — P1-11 Waitlist form wired to Supabase
+
+Criteria met:
+- Server action `src/app/actions/waitlist.ts` created with zod validation + duplicate handling ✅
+- Form calls server action on submit; `POST / → 200 OK` network request confirmed ✅
+- Loading state shows "Joining…" + disabled button while in-flight ✅
+- Success state shows correctly after submission ✅
+- Mobile overflow fixed with `min-w-0` on success span ✅
+- TypeScript: zero new errors ✅
+
+Playwright: PASS — 0 console errors, network request fired, success state rendered
+Screenshot: `p1-11-waitlist-success.png`
+
+P1 closed so far: 1–11 (11 of 13)
+Next: P1-12 — Conversation end no summary or save confirmation
+
 ---

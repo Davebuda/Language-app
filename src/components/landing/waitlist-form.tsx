@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { z } from 'zod'
+import { submitWaitlist } from '@/app/actions/waitlist'
 
 const emailSchema = z.string().email()
 
@@ -11,8 +12,9 @@ export function WaitlistForm() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError(null)
 
@@ -22,8 +24,17 @@ export function WaitlistForm() {
       return
     }
 
-    // Phase 1A — UI only, no backend yet
-    setSubmitted(true)
+    setLoading(true)
+    try {
+      const response = await submitWaitlist(email)
+      if (response.success) {
+        setSubmitted(true)
+      } else {
+        setError(response.error ?? 'Something went wrong.')
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -45,7 +56,7 @@ export function WaitlistForm() {
           }}
         >
           <CheckCircle2 className="h-4 w-4 shrink-0 text-nc-red" />
-          <span className="text-foreground">
+          <span className="min-w-0 text-foreground">
             You&apos;re on the list. We&apos;ll reach out when early access opens.
           </span>
         </motion.div>
@@ -78,13 +89,16 @@ export function WaitlistForm() {
 
             <button
               type="submit"
-              className="group flex shrink-0 items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+              disabled={loading}
+              className="group flex shrink-0 items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
               style={{
                 background: 'var(--nc-red)',
               }}
             >
-              Join waitlist
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              {loading ? 'Joining…' : 'Join waitlist'}
+              {!loading && (
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              )}
             </button>
           </div>
 

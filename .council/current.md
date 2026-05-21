@@ -1,5 +1,5 @@
 # Task Brief
-**Task:** P1-10 — Remove dead notifications bell from dashboard
+**Task:** P1-11 — Wire waitlist form to Supabase + fix mobile success overflow
 **Date:** 2026-05-21
 **Status:** APPROVED — 2026-05-21
 
@@ -7,53 +7,147 @@
 
 ## What
 
-`src/app/dashboard/page.tsx` — the notifications bell button (lines ~209–215) has no `onClick` handler. Clicking it registers a brief active state then does nothing. Notifications as a feature are not built. Per the no-silent-substitution principle (CLAUDE.md), a tappable button that does nothing is silent wrong-state. The roadmap (UI-1.3) explicitly notes this button will be "wired or removed" during the dashboard pass. P1-10 moves the removal forward before UI-1.3 reaches it.
+Two files to change, one new file:
 
-**One file to change:** `src/app/dashboard/page.tsx`
+1. **NEW** `src/app/actions/waitlist.ts` — server action that inserts email into `waitlist` table
+2. **EDIT** `src/components/landing/waitlist-form.tsx` — call the action, add loading state, fix mobile overflow in success state
+
+The `waitlist` table exists in Supabase (`id`, `email`, `created_at`). The form currently has a `// Phase 1A — UI only, no backend yet` comment and silently discards emails. Per no-silent-substitution principle, showing "You're on the list" with no data stored is dishonest.
+
+---
 
 ## How
 
-**Read the file first.** Find and delete these lines (approximately 209–215):
+### 1. Create `src/app/actions/waitlist.ts`
 
+```ts
+'use server'
+
+import { createClient } from '@/lib/supabase/server'
+import { z } from 'zod'
+
+const emailSchema = z.string().email()
+
+export async function submitWaitlist(
+  email: string
+): Promise<{ success: boolean; error?: string }> {
+  const result = emailSchema.safeParse(email)
+  if (!result.success) {
+    return { success: false, error: 'Please enter a valid email address.' }
+  }
+
+  try {
+    const supabase = await createClient()
+    const { error } = await supabase
+      .from('waitlist')
+      .insert({ email: result.data })
+
+    if (error) {
+      // Duplicate email — treat as success (already on the list)
+      if (error.code === '23505') return { success: true }
+      return { success: false, error: 'Something went wrong. Please try again.' }
+    }
+
+    return { success: true }
+  } catch {
+    return { success: false, error: 'Something went wrong. Please try again.' }
+  }
+}
+```
+
+**Note on `createClient`:** Check `src/lib/supabase/server.ts` — the function may or may not be async. If it's `async`, use `await createClient()`. If it's synchronous, just call `createClient()`. Read the file first.
+
+### 2. Edit `src/components/landing/waitlist-form.tsx`
+
+**Read the file first.**
+
+Add `submitWaitlist` import:
+```ts
+import { submitWaitlist } from '@/app/actions/waitlist'
+```
+
+Add a `loading` state:
+```ts
+const [loading, setLoading] = useState(false)
+```
+
+Replace the `handleSubmit` function:
+```ts
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault()
+  setError(null)
+
+  const result = emailSchema.safeParse(email)
+  if (!result.success) {
+    setError('Please enter a valid email address.')
+    return
+  }
+
+  setLoading(true)
+  try {
+    const response = await submitWaitlist(email)
+    if (response.success) {
+      setSubmitted(true)
+    } else {
+      setError(response.error ?? 'Something went wrong.')
+    }
+  } finally {
+    setLoading(false)
+  }
+}
+```
+
+Fix the mobile overflow in the success state. The `<span>` inside the success div needs `min-w-0` and `text-wrap` to prevent overflow on 375px. Change the success div's `<span>`:
+```tsx
+<span className="min-w-0 text-foreground">
+  You&apos;re on the list. We&apos;ll reach out when early access opens.
+</span>
+```
+
+Update the submit button to show loading state:
 ```tsx
 <button
-  type="button"
-  aria-label="Notifications"
-  className="nc-glass flex size-10 shrink-0 items-center justify-center text-[var(--nc-text-muted)]"
+  type="submit"
+  disabled={loading}
+  className="group flex shrink-0 items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+  style={{ background: 'var(--nc-red)' }}
 >
-  <Bell size={16} />
+  {loading ? 'Joining…' : 'Join waitlist'}
+  {!loading && <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
 </button>
 ```
 
-After removal, check whether `Bell` is still imported anywhere else in the file. If `Bell` is no longer referenced, remove it from the lucide-react import line at the top:
+Remove the `// Phase 1A — UI only, no backend yet` comment.
 
-```tsx
-import { Bell, Play, Mic, ArrowRight } from 'lucide-react'
-```
-→ remove `Bell,` from this import.
+Also mark the `handleSubmit` function as async: `async function handleSubmit(...)`.
 
-Do not change any other part of the file.
+---
 
 ## Model
 sonnet
 
 ## Acceptance Criteria
 
-1. The bell button is absent from the dashboard — not rendered, not hidden, not disabled
-2. No unused `Bell` import remains (remove it if no other references exist)
-3. The header layout around where the bell was still renders correctly — the level badge and heading remain
-4. No TypeScript errors introduced
+1. Submitting a valid email makes a Supabase insert call (no longer silently discards)
+2. Success state appears after successful submission
+3. Duplicate email submissions show success (not an error)
+4. Invalid email shows the validation error message
+5. Submit button shows "Joining…" and is disabled while the request is in-flight
+6. Success state text does not overflow on 375px mobile (min-w-0 fix)
+7. No TypeScript errors introduced
 
 ## Blocking Flags
 
 Stop and write `BLOCKED: [reason]` to this file if:
-- `Bell` is referenced elsewhere in the file (not just the button) — list usages
-- Removing the button breaks surrounding layout structure in an unexpected way — describe what broke
+- `createClient` from `@/lib/supabase/server` has a different signature than expected — note the actual signature and adjust
+- The `waitlist` table insert fails with an RLS error during local testing — note the error code
+- Any TypeScript error is introduced
 
 ## Playwright Checkpoint
 yes
 
 What to test:
-- Navigate to `/dashboard` — confirm no bell button in the header area
-- Confirm "Notifications" button is absent from the accessibility tree
-- Confirm the dashboard header (greeting, level badge) still renders correctly
+- Navigate to `/` (landing page)
+- Scroll to / find the waitlist form
+- Submit a valid email — confirm the success state appears
+- Check no console errors after submit
