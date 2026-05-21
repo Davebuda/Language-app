@@ -1,6 +1,6 @@
 # Task Brief
-**Task:** P0.5-03 — Wire production corpus to client scheduler + fix orphan-sentence placeholder
-**Date:** 2026-05-21T20:25
+**Task:** Stream 5 — Weekly Sprint — Phase 1: Data Model + Selection Logic
+**Date:** 2026-05-21T21:40
 **Status:** IN PROGRESS
 **corrections:** 0
 
@@ -8,166 +8,275 @@
 
 ## What
 
-The corpus audit during P0.5-02 verification surfaced that this task's original framing ("corpus retag") was misdiagnosed. The corpus is well-formed: 44 concepts × 9 sentences each × all 6 exercise types, all using canonical graph IDs. The walkthrough's F010 symptom (all errors tagged `word-order`) was sample bias from a fingerprint heavily concentrated on word-order-related concepts (question-formation, v2-word-order), each of which legitimately first-tags `word-order`.
+Add the data model and pure selection logic for the Weekly Sprint. No UI in this phase. No scheduler integration in this phase. No new route. Mechanical extension of the existing fingerprint + engine API.
 
-The actual residual defects are:
+**Files in scope (explicit list — scope creep detection uses this):**
+- `src/types/fingerprint.ts` — add three new fields to `MistakeFingerprint`; update `createEmptyFingerprint`; add `WeeklySprintRecord` interface.
+- `src/engine/weekly-sprint.ts` — NEW. Pure functions: `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`.
+- `src/engine/index.ts` — export the new module's public API.
+- `src/hooks/useFingerprint.ts` — extend the existing migration helper so legacy fingerprints (without the new fields) get them seeded on bootstrap. Use the same idempotent pattern as `migrateConceptIds` from P0.5-02.
+- `tests/engine/weekly-sprint.test.ts` — NEW. Unit tests for the three functions and the migration.
 
-**A — `src/lib/mock-sentences.ts` is the client scheduler's seed pool.** `src/app/dashboard/page.tsx:104-109` calls `generateSession({ ..., availableSentenceIds: MOCK_SENTENCE_IDS, sentences: MOCK_SENTENCES })`. `MOCK_SENTENCES` is a tiny test fixture (~10 sentences total). The real corpus (`content/sentences/a1.json` + `a2.json`, 397 sentences across 44 concepts) is loaded server-side only — `src/lib/content-loader.ts` uses `fs.readFileSync`, runs in `src/app/session/actions.ts`. The schedulers never see the real corpus. Result: F019 scheduler emits "no eligible sentence" warnings for concepts that DO have sentences in the disk corpus.
-
-**B — `src/app/session/actions.ts:61-64` fails open with a literal placeholder.** When a sentence ID is unknown to both the disk corpus and Supabase, the grader returns `{ correct: false, correctAnswer: '[unavailable]', errorTag: undefined }`. The placeholder string propagates into `recentErrors[].correct`, where the walkthrough found 12/24 stored errors literally containing the string `"[unavailable]"`. This is the F011 root cause — orphan sentence IDs the disk corpus doesn't know.
-
-The two are linked: when the client scheduler queues a mock sentence ID (e.g. `mock-s11`), the server grader doesn't find it in the disk corpus, falls open, returns `[unavailable]`. Wiring the real corpus to the client also reduces orphan-ID incidence dramatically.
-
-**Files in scope:**
-- NEW `src/lib/seed-pool.ts` — client-safe production-corpus wrapper. Imports `a1.json` and `a2.json` via standard ES import (Next.js bundles JSON statically), maps them to the `Sentence` shape, exports `SEED_SENTENCES` (Record<id, Sentence>) and `SEED_SENTENCE_IDS` (Record<conceptId, string[]>).
-- `src/app/dashboard/page.tsx` — replace `MOCK_SENTENCES`/`MOCK_SENTENCE_IDS` import + usage with `SEED_SENTENCES`/`SEED_SENTENCE_IDS`.
-- `src/hooks/useSession.ts` — find where `availableSentenceIdsProp` and `sentences` are sourced; wire to the new seed-pool if currently mock-based.
-- `src/app/session/actions.ts` — replace the line 61-64 fail-open `'[unavailable]'` placeholder with a discriminated-union return that callers handle without persisting placeholder data.
-- `src/components/session/exercises/TranslationExercise.tsx` (and similar callers of `gradeAnswer`) — handle the new discriminated-union from the server grader: when the grader can't resolve the sentence, do NOT call `onResult` (drop the answer silently to telemetry/console.warn rather than persisting `[unavailable]`).
-
-**Out of scope:**
-- `src/lib/mock-sentences.ts` itself — leave intact for any unit tests that reference it. Just stop importing from it on the dashboard.
-- `src/lib/content-loader.ts` server-side path — keep as-is.
-- Supabase `sentences` table — out of scope for this task.
+**Out of scope (defer to later phases):**
+- `src/engine/scheduler.ts` — DO NOT modify. Scheduler bias is Phase 3.
+- Any UI files (`src/app/uke/*`, `src/app/dashboard/page.tsx`, components) — Phases 4/6.
+- Graduation job orchestration — Phase 5.
+- `learning_events_log` event writes — Phase 4.
+- Authenticated walkthrough — Phase 2 (separate work).
 
 ---
 
 ## How
 
-### Step 1 — Build the client-safe seed pool
+### Data model — `src/types/fingerprint.ts`
 
-Create `src/lib/seed-pool.ts`. Pattern (verify against Next.js 15 JSON-import behaviour):
+Add new interface above `MistakeFingerprint`:
 
 ```ts
-import a1Raw from '@content/sentences/a1.json'
-import a2Raw from '@content/sentences/a2.json'
-import type { Sentence } from '@/types/content'
+export interface WeeklySprintRecord {
+  weekStartedAt: string;             // ISO date — the Monday this sprint started
+  weekEndedAt: string;               // ISO date — when the record was closed
+  focus: string[];                   // concept IDs that were the focus that week
+  status: 'completed' | 'abandoned'; // completed = honored the cadence; abandoned = absence reset
+  focusOutcomes: Record<string, {    // per-concept progress during the week
+    startScore: number;              // decayedScore at week start
+    endScore: number;                // decayedScore at week end
+    attempts: number;                // count of practice events during the week
+  }>;
+  checkResult: {
+    takenAt: string;
+    score: number;                   // 0–100, accuracy on the weekly check
+    items: number;                   // number of items in the check
+  } | null;                          // null if learner skipped the check
+}
+```
 
-// Re-implement the mapping from content-loader.ts:20-35 here (client-safe — no fs).
-function mapRow(raw: {...same fields as RawSentence...}): Sentence {
+Add to `MistakeFingerprint` interface (group with engine state fields):
+
+```ts
+weeklyFocus: string[];                       // concept IDs, ≤5; the current week's focus
+weekStartedAt: string | null;                // ISO date; null before first sprint
+weeklySprintHistory: WeeklySprintRecord[];   // newest first, capped at 26 entries (~6 months)
+```
+
+Update `createEmptyFingerprint` to seed the three new fields:
+
+```ts
+weeklyFocus: [],
+weekStartedAt: null,
+weeklySprintHistory: [],
+```
+
+### Selection logic — `src/engine/weekly-sprint.ts` (NEW)
+
+Three pure functions, no I/O:
+
+```ts
+import type { MistakeFingerprint, WeeklySprintRecord } from '@/types/fingerprint';
+import type { ConceptGraph } from '@/types/concepts';
+import { getConceptPhase } from './fingerprint';
+
+const MAX_FOCUS_COUNT = 5;
+const WEAK_PICK_COUNT = 3;
+const SRS_PICK_COUNT = 2;
+const WEEK_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
+const HISTORY_CAP = 26;
+
+/**
+ * Pick the focus concepts for a new weekly sprint.
+ * Union of: weakest N by decayedScore + up to M SRS-due concepts where
+ * nextReviewAt <= weekEnd. Locked concepts excluded.
+ * Returns <=5 concept IDs, deduped. Weakest-N takes priority on dedupe.
+ */
+export function selectWeeklyFocus(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+  now: Date = new Date(),
+): string[] {
+  const weekEnd = new Date(now.getTime() + WEEK_DURATION_MS).toISOString();
+
+  // Filter: only concepts that exist in the graph and are NOT locked.
+  const eligible = Object.values(fp.conceptMastery).filter((m) => {
+    const node = graph.concepts.find((c) => c.id === m.conceptId);
+    if (!node) return false;
+    return getConceptPhase(m, node) !== 'locked';
+  });
+
+  // Weakest N by decayedScore (ascending).
+  const weakest = [...eligible]
+    .sort((a, b) => a.decayedScore - b.decayedScore)
+    .slice(0, WEAK_PICK_COUNT)
+    .map((m) => m.conceptId);
+
+  // SRS-due within the week (nextReviewAt <= weekEnd). Earliest-due first.
+  const srsDue = eligible
+    .filter((m) => m.nextReviewAt !== null && m.nextReviewAt <= weekEnd)
+    .sort((a, b) => (a.nextReviewAt ?? '').localeCompare(b.nextReviewAt ?? ''))
+    .slice(0, SRS_PICK_COUNT)
+    .map((m) => m.conceptId);
+
+  // Union, dedupe, cap at MAX_FOCUS_COUNT. Weakest takes priority on dedupe.
+  return Array.from(new Set([...weakest, ...srsDue])).slice(0, MAX_FOCUS_COUNT);
+}
+
+/**
+ * Returns true if the learner has been absent long enough that the current
+ * week should be closed as 'abandoned' and a new week started. Threshold:
+ * >7 days since weekStartedAt.
+ */
+export function shouldResetWeek(
+  fp: MistakeFingerprint,
+  now: Date = new Date(),
+): boolean {
+  if (fp.weekStartedAt === null) return false;
+  const elapsed = now.getTime() - new Date(fp.weekStartedAt).getTime();
+  return elapsed > WEEK_DURATION_MS;
+}
+
+/**
+ * Close the current week into a WeeklySprintRecord and return an updated
+ * fingerprint. Pure: caller persists. status='abandoned' if shouldResetWeek
+ * fired without a checkResult; 'completed' otherwise.
+ */
+export function closeWeek(
+  fp: MistakeFingerprint,
+  options: {
+    status: 'completed' | 'abandoned';
+    checkResult: WeeklySprintRecord['checkResult'];
+    now?: Date;
+  },
+): MistakeFingerprint {
+  if (fp.weekStartedAt === null) return fp;
+
+  const now = (options.now ?? new Date()).toISOString();
+  const focusOutcomes: WeeklySprintRecord['focusOutcomes'] = {};
+  for (const conceptId of fp.weeklyFocus) {
+    const m = fp.conceptMastery[conceptId];
+    if (!m) continue;
+    focusOutcomes[conceptId] = {
+      startScore: 0,           // Phase 5 will capture startScore at week-open
+      endScore: m.decayedScore,
+      attempts: m.attemptCount,
+    };
+  }
+
+  const record: WeeklySprintRecord = {
+    weekStartedAt: fp.weekStartedAt,
+    weekEndedAt: now,
+    focus: fp.weeklyFocus,
+    status: options.status,
+    focusOutcomes,
+    checkResult: options.checkResult,
+  };
+
+  const history = [record, ...fp.weeklySprintHistory].slice(0, HISTORY_CAP);
+
   return {
-    id: raw.id,
-    norwegian: raw.norwegian,
-    english: raw.english,
-    conceptIds: raw.concept_ids ?? [],
-    vocabularyClusters: raw.vocab_clusters ?? [],
-    errorTagsDetectable: (raw.error_tags_detectable ?? []) as Sentence['errorTagsDetectable'],
-    cefrLevel: (raw.cefr_level ?? 'A1') as Sentence['cefrLevel'],
-    difficulty: (raw.difficulty ?? 1) as Sentence['difficulty'],
-    exerciseTypes: (raw.exercise_types ?? []) as Sentence['exerciseTypes'],
-    notes: raw.notes,
-    audioUrl: raw.audio_url,
-    scenarioId: raw.scenario_id,
-  }
-}
-
-const RAW: Array<Parameters<typeof mapRow>[0]> = [...(a1Raw as any), ...(a2Raw as any)]
-
-export const SEED_SENTENCES: Record<string, Sentence> = {}
-export const SEED_SENTENCE_IDS: Record<string, string[]> = {}
-for (const raw of RAW) {
-  const s = mapRow(raw)
-  SEED_SENTENCES[s.id] = s
-  for (const conceptId of s.conceptIds) {
-    if (!SEED_SENTENCE_IDS[conceptId]) SEED_SENTENCE_IDS[conceptId] = []
-    SEED_SENTENCE_IDS[conceptId].push(s.id)
-  }
+    ...fp,
+    weeklySprintHistory: history,
+    weeklyFocus: [],
+    weekStartedAt: null,
+    updatedAt: now,
+  };
 }
 ```
 
-Check the existing `@content` path alias in `tsconfig.json` — if it doesn't exist for JSON imports, either use a relative path or add the alias.
+**Phase boundary note:** `closeWeek` records `endScore` but hardcodes `startScore: 0` in Phase 1. Phase 5 (graduation job) will capture `startScore` at `selectWeeklyFocus` time and thread it through to `closeWeek`. Do not solve this in Phase 1.
 
-### Step 2 — Replace MOCK imports
+### Engine export — `src/engine/index.ts`
 
-`src/app/dashboard/page.tsx`:
-- Find the import `import { MOCK_SENTENCES, MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'` (or similar).
-- Replace with `import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'`.
-- Update the `generateSession` call site (line ~104-109) to pass the new identifiers.
-
-`src/hooks/useSession.ts`:
-- Find the source of `availableSentenceIdsProp` and `sentences` at line ~164.
-- If they currently default to or import the MOCK_*, replace with the SEED_* equivalents.
-- If they come from props passed by a parent component, find the parent and update there.
-
-### Step 3 — Replace the placeholder grader fail-open
-
-In `src/app/session/actions.ts`, the current shape is:
+Append:
 
 ```ts
-if (!sentence) {
-  return { correct: false, correctAnswer: '[unavailable]', errorTag: undefined }
+export { selectWeeklyFocus, shouldResetWeek, closeWeek } from './weekly-sprint';
+```
+
+### Migration — `src/hooks/useFingerprint.ts`
+
+The existing `migrateConceptIds` function uses an idempotent pattern. Add a sibling helper `migrateWeeklySprintFields`:
+
+```ts
+function migrateWeeklySprintFields(fp: MistakeFingerprint): { migrated: MistakeFingerprint; changed: boolean } {
+  const hasFocus = Array.isArray((fp as Partial<MistakeFingerprint>).weeklyFocus);
+  const hasStarted = 'weekStartedAt' in fp;
+  const hasHistory = Array.isArray((fp as Partial<MistakeFingerprint>).weeklySprintHistory);
+  if (hasFocus && hasStarted && hasHistory) return { migrated: fp, changed: false };
+  return {
+    migrated: {
+      ...fp,
+      weeklyFocus: (fp as Partial<MistakeFingerprint>).weeklyFocus ?? [],
+      weekStartedAt: (fp as Partial<MistakeFingerprint>).weekStartedAt ?? null,
+      weeklySprintHistory: (fp as Partial<MistakeFingerprint>).weeklySprintHistory ?? [],
+      updatedAt: new Date().toISOString(),
+    },
+    changed: true,
+  };
 }
 ```
 
-Replace with a discriminated-union return. The grader's return type today is `{ correct: boolean; correctAnswer: string; errorTag: ErrorTag | undefined }` — change to:
+Wire `migrateWeeklySprintFields` into `applyMigration` so it composes with the existing concept-id migration. Order: concept-id migration first, then weekly-sprint-fields migration. Compose the `changed` flags with `||`.
 
-```ts
-type GraderResult =
-  | { ok: true; correct: boolean; correctAnswer: string; errorTag: ErrorTag | undefined }
-  | { ok: false; reason: 'unknown-sentence'; sentenceId: string }
-```
+### Tests — `tests/engine/weekly-sprint.test.ts` (NEW)
 
-Update the return at lines 61-64 to `{ ok: false, reason: 'unknown-sentence', sentenceId }` and the success return to `{ ok: true, ... }`.
+Mirror the style of existing tests in `tests/engine/`. Coverage targets:
 
-### Step 4 — Update callers
+1. `selectWeeklyFocus`:
+   - Returns ≤5 concept IDs.
+   - Excludes locked concepts (mock a graph where one concept's mastery is below the phase threshold).
+   - Prefers weakest 3 by decayedScore.
+   - Includes up to 2 SRS-due concepts when `nextReviewAt <= weekEnd`.
+   - Dedupes when a concept appears in both pools (weakest takes priority).
+   - Empty fingerprint returns `[]`.
 
-`src/components/session/exercises/TranslationExercise.tsx` (and any other component that calls `gradeAnswer`):
-- After `await gradeAnswer(...)`, check `if (!result.ok)` — when not ok, `console.warn` with the sentenceId, DO NOT call `onResult`, and surface an honest UI banner (text suggestion: "Kunne ikke vurdere svaret — vi har notert det og går videre."). User clicks "Next" to advance without persisting.
+2. `shouldResetWeek`:
+   - Returns false when `weekStartedAt === null`.
+   - Returns false when elapsed ≤7 days.
+   - Returns true when elapsed >7 days (test at 7.5 days).
 
-There may be 1–3 caller components; find them via:
-```
-Grep `gradeAnswer\(` src/components/session/exercises/
-```
+3. `closeWeek`:
+   - When `weekStartedAt === null`, returns fp unchanged.
+   - Status `completed` produces a record with that status.
+   - Status `abandoned` produces a record with that status.
+   - History capped at 26 entries (insert 27, assert length 26 with the oldest dropped).
+   - `weeklyFocus` and `weekStartedAt` cleared after close.
+   - `updatedAt` updated to `options.now`.
+   - `checkResult: null` accepted (skipped check).
 
-### Step 5 — Verify
-
-1. `npx tsc --noEmit` — zero errors.
-2. `npm test` — all existing tests pass. If a test depended on the `'[unavailable]'` placeholder string, update it to assert `ok: false`.
-3. Manual Grep:
-   - `grep -rn "'\\[unavailable\\]'" src/` — should return zero matches except any in pure documentation/comments.
-   - `grep -rn "MOCK_SENTENCES\\|MOCK_SENTENCE_IDS" src/app/dashboard src/hooks/useSession.ts` — should return zero matches.
-4. `git commit` with a clear message that lists files changed and the link to this brief.
+4. Migration helper (test the helper directly, not the hook):
+   - Legacy fingerprint without the three new fields gets them seeded.
+   - Idempotent: second call returns `changed: false`.
+   - Existing `conceptMastery` and `recentErrors` untouched.
 
 ---
 
 ## Model
-
-opus — the discriminated-union change ripples through several callers; the JSON-import for a client-side seed pool may need a bundler config tweak. Architectural touch required.
+sonnet — mechanical implementation from complete spec.
 
 ---
 
 ## Acceptance Criteria
 
-1. New file `src/lib/seed-pool.ts` exports `SEED_SENTENCES` (Record<id, Sentence>) and `SEED_SENTENCE_IDS` (Record<conceptId, string[]>). Source is `a1.json` + `a2.json` (397 sentences).
-2. `src/app/dashboard/page.tsx` imports from `seed-pool` instead of `mock-sentences`. Same for `src/hooks/useSession.ts`.
-3. `src/app/session/actions.ts` no longer returns the literal string `'[unavailable]'`. The return shape is a discriminated union.
-4. All `gradeAnswer` callers handle the `ok: false` branch by NOT persisting a placeholder error.
-5. `npx tsc --noEmit` is clean.
-6. `npm test` passes (or has targeted updates if a test asserted the old placeholder).
-7. After deployment to the running dev server: load `/dashboard` as a fresh user. The scheduler warning count for canonical concepts (`personal-pronouns`, `to-be-verb`, `numbers-basic`, `common-prepositions`) measurably drops or hits zero. (Some warnings may persist for concepts not in the corpus at all.)
-8. Git commit lands. `git log --oneline -1` and `git status -s` confirm the work is in the tree.
+1. `npx tsc --noEmit` passes with zero errors.
+2. `npm test` passes 100% (existing 106 tests + the new weekly-sprint suite).
+3. New test file covers all four targets above.
+4. `git diff HEAD --name-only` matches exactly the "Files in scope" list (no incidental files).
+5. `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek` are pure (no I/O, no `Date.now()` without an optional `now` param, no `Math.random()`).
+6. Migration is idempotent — a second `applyMigration` call on the migrated fingerprint returns `changed: false`.
+7. Commit message follows project convention: `feat(engine): Stream 5 Phase 1 — weekly sprint data model + selection logic`.
 
 ---
 
 ## Blocking Flags
 
-Stop and write `BLOCKED: [reason]` to this file if:
-
-- Next.js 15 cannot statically import the JSON files at the required path (would need a runtime fetch approach instead — surface and stop).
-- A test asserts the literal `'[unavailable]'` and rewriting it would require a much larger test refactor than this task's scope.
-- The discriminated-union return breaks a caller that's hard to update without ripple changes outside `src/components/session/exercises/`.
-- A bundler error appears for the corpus import that requires changing `next.config.ts` significantly.
+Stop immediately and write `BLOCKED: [reason]` to this file if:
+- Any TypeScript error is introduced that cannot be resolved within the brief.
+- Any existing test fails.
+- The selection logic produces results inconsistent with the test plan above (specifically, the dedupe-priority test).
+- You are about to modify a file not in the "Files in scope" list.
+- You are about to make a design decision not specified here.
 
 ---
 
 ## Playwright Checkpoint
 
-**FULL**
-
-Tests:
-1. Reload `/dashboard` as a fresh user. Capture the scheduler warning count. Compare to the post-P0.5-02 baseline (14 warnings). Expect: warnings for the four named concepts (`personal-pronouns`, `to-be-verb`, `numbers-basic`, `common-prepositions`) DISAPPEAR or drop substantially. Any remaining warnings should be for concepts genuinely outside the A1/A2 corpus.
-2. Start a session, complete at least one item correctly. Verify the session continues normally — no broken cards, no `[unavailable]` in the repair card.
-3. Inspect IndexedDB: after an answer, the new `recentErrors` entry should never have `correct: "[unavailable]"`. If the grader couldn't resolve, the error should NOT have been logged at all.
-4. Repair-card path: submit a wrong answer; the repair card should show a real correct answer, never the placeholder string.
-
-Report at `.council/reports/[YYYY-MM-DD-HHMM]-corpus-wiring.md`.
+**none** — no UI surface in this phase. Data model + pure functions only. Playwright resumes in Phase 4 (Weekly Check route) and Phase 6 (dashboard week-strip).

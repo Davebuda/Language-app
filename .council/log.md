@@ -1,5 +1,49 @@
 # Council Decision Log
 
+## 2026-05-21T21:35 RESTRUCTURE — Weekly Sprint locked in as Stream 5 (next phase)
+
+**What changed:** docs/roadmap.md gains Stream 5 — Weekly Sprint (Curriculum Cohesion Layer). The "Now unblocked — product decision required" section in roadmap is replaced with the committed plan. Muntlig roleplay deepening (option A), model swap (C), auth walkthrough (D), B1/B2 (E) are explicitly held as follow-ups, with rationale.
+
+**Why:** Super-orchestrator analysis recommended option B (Weekly Sprint) on strongest moat trace. User intent "gsd" + prior "/council /super-orchestrator" invocation signal proceed-without-checkpoint. Research gate fired (3 web searches), all 5 Scout questions resolved, all 3 product decisions resolved via constitutional reasoning. Restructure is the right Council verdict per the protocol's "ROADMAP.md sequence is wrong given new information" trigger.
+
+**3 product decisions resolved via constitutional reasoning (not escalated):**
+
+1. **Q: Mandatory vs optional weekly check?**
+   **A: Optional with strong nudge + honest banner.** Dashboard shows "Ukens repetisjon" CTA all week; if not taken by Sunday end, week closes anyway with "Du valgte å hoppe over uka denne gang" banner. **Why:** CLAUDE.md operating rule 6 (honest banners over silent fallbacks); Q2 research (streak creep — mandatory gates produce goal displacement); validation-and-research.md analytics path doesn't require 100% compliance to prove the moat.
+
+2. **Q: Streak/target presentation — minimalist vs gamified?**
+   **A: Minimalist. Day-dots only, no streak number on the week-strip.** Existing `currentStreak` field stays on profile where it already lives. **Why:** CLAUDE.md aesthetic direction ("precise dark intelligence — Norwegian is the hero"); explicit anti-Duolingo posture; Q2 research (streak number competes for visual weight with Norwegian content, displaces learning intent).
+
+3. **Q: Catch-up policy — reset vs roll partial vs pause?**
+   **A: Honest reset with banner.** Returning after >7 days from `weekStartedAt` closes previous week as `abandoned` in `weeklySprintHistory`, picks fresh focus from current fingerprint state (decay has already done its work). Banner: "Velkommen tilbake. Sist uke var [dato] — denne uka starter på nytt med fokus på [N nye konsepter]." **Why:** CLAUDE.md operating rule 6; existing decay engine already handles partial-progress at the engine level — no need to duplicate at the week level; rolling-partial creates UX confusion ("am I in week 3 or week 4?").
+
+**Research findings written to .council/research.md.** All 5 Scout questions resolved.
+
+**Next:** Stream 5 Phase 1 — data model + selection logic. Brief to be written to .council/current.md and executed.
+
+## 2026-05-21T21:05 DONE — P0.5 Recovery Bundle complete; muntlig step 5 unblocked
+
+**Bundle close.** 15 of 15 tasks complete across 16 commits. Sign-off report at `.council/reports/2026-05-21-2100-recovery-signoff.md` enumerates each task's commit, closure mapping, and verification evidence. Tasks 07 through 15 are all APPROVE per the report; individual log entries below would just restate the report.
+
+**Closures by commit:**
+- `8807f16` P0.5-07 diagnostic semantics rewrite — F014/F015/F016/F017/F031.
+- `87cd600` P0.5-08 immediate guards on `/session/complete` + Laster header — F023/F026.
+- `76c6a41` P0.5-09 mid-session exit confirm — F024 (F012 closes indirectly via honest counter).
+- `63d1a35` P0.5-10 dashboard stat honesty — F018/F020/F021.
+- `ab370f7` P0.5-11 profile read-on-render — F037/F038.
+- `f27d6c4` P0.5-12 onboarding state persistence — F013.
+- `c1d01ea` P0.5-13 auth/waitlist truthfulness — F004/F006; F002/F007 closed via analysis.
+- `5b855dc` P0.5-14 polish bundle — F001/F003/F009; F005/F035 closed via analysis.
+- `909e5df` P0.5-15 sign-off report committed.
+- `7dc3350` post-bundle slop-gate cleanup (removed dead `src/lib/mock-sentences.ts`).
+- `2593f51` post-bundle `/login` Suspense boundary fix.
+
+**Doc sync (this entry):** roadmap.md, project-state.md, recovery-backlog.md updated to reflect "P0.5 complete" framing. The "in-progress" wording from earlier in the day is now replaced by closure tables + deferred-items lists. Next-direction options A–E surfaced in roadmap for the super-orchestrator to choose from.
+
+**Recommendation for the super-orchestrator handoff:** the strongest moat-connected next move is option B — **weekly progress / curriculum cohesion layer**. The engine produces per-session and per-day signals today; there is no weekly review cadence. A weekly layer (target weak concepts, weekly recap card, weekly assessment, dashboard week-strip) would land on the moat directly (diagnosis + scheduling + remediation) instead of orthogonal to it. Muntlig deepening (option A) is the next natural surface but does not strengthen the engine — it adds another consumer. Model swap (option C) is correctness work that the validity gate already bridges. Auth walkthrough (option D) is engineering hygiene. B1/B2 (option E) is content authoring before the engine can support it cleanly.
+
+Handing to super-orchestrator with option B as the "idea to transform".
+
 ## 2026-05-21T20:50 APPROVE — P0.5-06 AI language-validity gate complete
 
 **Commit:** `validateNorwegianOutput` in `src/ai/validate.ts` + 3 call-site wirings in `webllm.ts`.

@@ -1,9 +1,9 @@
 # NorskCoach — Project State Snapshot
 
-**Date:** 2026-05-21 (post third walkthrough)  
-**Status:** P0.5 Recovery Bundle in progress. Third Playwright stress walkthrough surfaced 10 Critical findings; four of five named P0 patterns regressed. Muntlig scripted roleplay paused until P0.5-13 sign-off.
+**Date:** 2026-05-21T21:00 (post P0.5 sign-off)  
+**Status:** P0.5 Recovery Bundle COMPLETE. 15 of 15 tasks closed across 16 commits. All 11 Critical findings closed; 17 of 20 Significant closed; deferred items documented as gaps. Muntlig scripted roleplay step 5 unblocked; next product direction pending super-orchestrator decision.
 
-> **The earlier line "P0 recovery batch complete. Session loop is completable end-to-end for the first time" is preserved further down as the historical 2026-05-21 morning state.** It remained true for the critical-path session-loop sense but the third walkthrough that afternoon proved that the broader pipeline-honesty contract regressed across journal + conversation + diagnostic semantics, and three new Critical AI-quality bugs are shipping. P0.5 Recovery Bundle in `docs/recovery-backlog.md` seals these before muntlig resumes.
+> **History:** The 2026-05-21 morning state "P0 recovery batch complete; session loop completable end-to-end" held the critical-path session-loop sense but the third walkthrough that afternoon proved the broader pipeline-honesty contract had regressed across journal + conversation + diagnostic semantics, with three new Critical AI-quality bugs shipping live. P0.5 Recovery Bundle sealed those regressions on the same day. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`.
 
 ---
 
@@ -125,21 +125,20 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 
 ## Gap List
 
-### P1 (next to schedule, no blocking dependency)
-In order of user-impact severity:
-1. Diagnostic explanation shows next question's topic after wrong answer (not current)
-2. Conversation mic auto-starts recording without user consent
-3. Conversation opener is context-free ("Bra! Kan du fortelle mer?" on load)
-4. Journal feedback quality — nonsensical praise, wrong explanations, English output (AI quality)
-5. Profile/Progress SSR hydration flash (A1→A2)
-6. Progress page shows wrong level's concept graph
-7. Recalibration starts without trigger banner or opt-in
-8. Recalibration accessibility tree empty (screen reader gets nothing)
-9. Diagnostic terminates at 5/12 with "12" visible in counter
-10. Dashboard notifications bell dead
-11. Waitlist form cosmetic — no network request
-12. Conversation end has no summary or save confirmation
-13. Session complete screen untestable via direct navigation
+### P1 (status post-P0.5)
+1. ~~Diagnostic explanation shows next question's topic after wrong answer~~ — closed via P0.5-07 (semantics rewrite)
+2. Conversation mic auto-starts recording without user consent — **OPEN** (P1, mic-consent UX)
+3. Conversation opener context-free — **closed** via P0.5-05 (Norwegian topic label in Kari opener)
+4. ~~Journal feedback quality nonsensical~~ — closed via P0.5-06 (validity gate on `reviewWriting`)
+5. Profile/Progress SSR hydration flash (A1→A2) — partially closed via P0.5-11 (read-on-render); residual flash on level transitions
+6. Progress page shows wrong level's concept graph — closed via P0.5-02 (canonical concept-id scheme)
+7. Recalibration starts without trigger banner or opt-in — **OPEN** (P1, surfaced 2026-05-21 walkthrough)
+8. Recalibration accessibility tree empty — **OPEN** (P1, screen-reader gap)
+9. Diagnostic terminates at 5/12 with "12" visible in counter — partially addressed in P0.5-07 (dedupe via askedIds); counter cosmetic remains
+10. Dashboard notifications bell dead — **OPEN** (UI-1.3 scope: dead button)
+11. Waitlist form cosmetic — closed via analysis in P0.5-13 (server action wired to Supabase)
+12. Conversation end has no summary/save confirmation — **OPEN** (P1, session bookend)
+13. Session complete screen untestable via direct navigation — closed via P0.5-08 (pre-render guard)
 
 ### P2 (polish, after P1)
 - Grey rectangle visual artifact on login/onboarding cards
@@ -206,12 +205,21 @@ In order of user-impact severity:
 
 ## Success Criteria for Next Phase
 
-The P1 batch should close the remaining session coherence gaps (mic consent, conversation opener, diagnostic feedback) before moving to corpus authoring. Corpus authoring (filling seed gaps for negation-placement, modal-verbs, adjective-agreement) should happen in parallel with model swap scoping — producing real sessions of expected length requires both working AI (for topUpConcept) and real seeds.
+P0.5 sign-off leaves the next direction as a product decision (super-orchestrator scope). Five candidates per the updated roadmap:
 
-The muntlig module should not start until:
-1. NB-Llama model swap is complete (Stream 1.1)
-2. Corpus has adequate A1/A2 coverage (no major concept gaps)
-3. P1 items are cleared
+A. **Muntlig roleplay deepening** — step 5 shipped before P0.5; deepen via branching variety, recording playback, scoring heuristics OR design a sixth muntlig mode.
+B. **Weekly progress / curriculum cohesion layer** — currently per-session and per-day signals only; no weekly review cadence. Strongest moat-trace candidate for "what comes after the foundation".
+C. **Stream 1.1 NB-Llama model swap** — validity gate bridges current quality; the model swap is still the cleaner long-term fix.
+D. **Authenticated-user walkthrough + Supabase sync verification** — engineering gap; auth path has not been exercised in any of the three walkthroughs.
+E. **B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching.
+
+Direction selection runs through the super-orchestrator with Scout/Challenger/Council as needed.
+
+### Procedural locks added this round (apply to whichever build is chosen)
+1. Fingerprint pre/post diffs are mandatory acceptance evidence for any task that claims to feed the engine.
+2. AI output flows through `validateNorwegianOutput` (one shared gate), not per-call-site validation.
+3. Source-verification audit before re-sequencing a recovery batch on walkthrough findings alone.
+4. A fresh walkthrough — including authenticated path — runs before the next muntlig surface ships.
 
 ---
 

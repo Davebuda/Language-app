@@ -2,23 +2,31 @@
 
 The current build sequence with every research-validated priority locked in. This document supersedes earlier scattered planning. If you want to know what's next, what's deferred, and why — start here.
 
-## Current Position — RE-SEQUENCED 2026-05-21 (third walkthrough)
+## Current Position — P0.5 RECOVERY COMPLETE 2026-05-21T21:00
 
-**A third Playwright stress walkthrough on 2026-05-21 (full exhaustive, guest pass, 17 surfaces) produced 39 findings — 10 Critical, 20 Significant, 9 Minor, 4 Edge cases.** Report: `test-reports/stress-walkthrough-2026-05-21/report.md`. Comparison against prior P0 closure: `comparison.md` in the same directory.
+**P0.5 Recovery Bundle signed off:** 15 tasks complete across 16 commits in a single session. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`. All 11 Critical findings closed; 17 of 20 Significant closed; 4 of 9 Minor closed via code, the remaining 5 closed via analysis; 4 Edge cases preserved as documented gaps (not regressions).
 
-**The third walkthrough demonstrates that four of the five P0 pipeline-honesty patterns CLAUDE.md operating rule 8 names by example are regressed in the live app**, and three new Critical AI-quality bugs are shipping live (in-session repair card teaching reversed gender rules; Kari conversation replies containing non-Norwegian strings; journal AI inventing words and reversing user negation). This forces a second re-sequencing.
+**Headline closures across the moat:**
+- Diagnosis: F036 (concept-id reconciliation), F017 (diagnostic rawScore floor), F031 (history wipe), F022 (AI explainer correctness) — all closed.
+- Scheduling: F019 (scheduler warnings 36+ → 0), F011 (`[unavailable]` placeholder), F010 (errorTag collapse) — all closed.
+- Remediation: F030/F034 (conversation/journal silent-drop), F029/F033 (Kari + journal AI gibberish), F012/F023 (session lifecycle) — all closed.
 
-**The prior next-phase plan (resume muntlig scripted roleplay step 5) is paused.** Muntlig step 5 may not be scheduled until the P0.5 Recovery Bundle (13 tasks) is verified complete via a fourth Playwright walkthrough (P0.5-13).
+**Muntlig scripted roleplay (step 5) is UNBLOCKED.** Whether to resume immediately, or course-correct based on recovery learnings, is the next product decision.
 
-**Recovery status (2026-05-21):** Original P0 batch (eight items from 2026-05-20 walkthrough) closed during early 2026-05-21 — that foundation holds where it can be measured (critical-path session loop reachable end-to-end). However the third walkthrough proved that several of those P0 fixes have regressed under the load of subsequent work, and three new Critical AI-quality issues now ship live. P0.5 Recovery Bundle inserted to seal the regression set before muntlig resumes.
+**Two procedural locks added this round:**
+1. Fingerprint pre/post diffs are mandatory acceptance evidence for any task claiming to feed the engine.
+2. AI output passes through one shared validity gate (`validateNorwegianOutput`), not per-call-site validation.
 
-The prior plan's three streams remain valid and are resumed after recovery:
-- Stream 1 engine corrections (A1 model swap deferred behind P0.5-04 AI validity gate; A2–A4 status retained from prior closure)
-- Stream 2 UI transformation (UI-1.3 shipped; UI-2 deferred to post-P0.5)
-- Stream 3 muntlig module (steps 1–4 shipped; step 5 scripted roleplay PAUSED until P0.5-13 sign-off)
+The prior plan's three streams resume from a clean foundation:
+- Stream 1 engine corrections (A1 model swap bridged by the validity gate; A2–A4 unchanged status from prior closure)
+- Stream 2 UI transformation (UI-1.3 shipped; UI-2 remaining screens still queued)
+- Stream 3 muntlig module (steps 1–4 shipped; step 5 scripted roleplay shipped before P0.5, now unblocked for the build target decision)
+
+**Deferred from P0.5 (documented gaps, not regressions):** F008 path-traversal tightening, F025 session resume on re-entry, F027 repair-loop cap, F032 journal SSR mismatch, F035 reading visited indicator, AlertDialog primitive upgrade, authenticated-user walkthrough.
 
 Recovery backlog: `docs/recovery-backlog.md` (P0.5 task table)
 Walkthrough report: `test-reports/stress-walkthrough-2026-05-21/report.md`
+Sign-off: `.council/reports/2026-05-21-2100-recovery-signoff.md`
 
 ---
 
@@ -190,6 +198,71 @@ Small strip reading from fingerprint — concepts practiced, speaking minutes, g
 
 ---
 
+## Stream 5 — Weekly Sprint (Curriculum Cohesion Layer)
+
+Added 2026-05-21T21:35 as the next committed phase. Selected by super-orchestrator on strongest moat trace; Council ran research gate (3 web searches), resolved 3 product decisions via constitutional reasoning, and RESTRUCTUREd the roadmap. See `.council/log.md` 2026-05-21T21:35 entry and `.council/research.md` for full reasoning.
+
+### Why this is the next phase
+
+The engine produces per-session and per-day signals today. The SRS ladder already operates on weekly-scale intervals (1→3→7→14→30 days). But the learner has no weekly-scale visibility, no weekly target, and no weekly retention proof. This is the smallest structural change that lands on **all three moat legs** (diagnosis + scheduling + remediation), pushes toward the north star (speaking minutes target), and unlocks the first read use case for `learning_events_log` — answering "is the repair loop accelerating learning week-over-week?"
+
+### The shape — Weekly Sprint
+
+A 7-day cycle with five touchpoints that interlock with existing systems:
+
+| Day | Touchpoint | What changes | Engine integration |
+|---|---|---|---|
+| Mon | **Plan** — "Denne ukens fokus" | Dashboard shows 5 focus concepts the scheduler picks from fingerprint weakest + SRS-due nodes | Writes `weeklyFocus` array + `weekStartedAt` to fingerprint |
+| Tue–Fri | **Practice** — daily sessions | Scheduler biases (not locks) toward week's focus concepts; recipe stays 40/30/20/10 but the 40% remediation pool prefers focus | Scheduler reads `weeklyFocus`; existing repair loop, SRS, decay unchanged |
+| Mid-week | **Reveal** — small strip on dashboard | Shows rawScore delta + attempts on each focus concept this week | Reads existing fingerprint deltas; no new state |
+| Sat | **Ukens repetisjon** — short adaptive retrieval check at `/uke` | 6–8 items drawn from this week's focus + last week's graduates. Functions like a mini-diagnostic | New surface; uses existing exercise components; results flow through normal `recordResult` path |
+| Sun | **Graduation** — automatic | Concepts that hit threshold AND cleared the weekly check graduate; misses re-queue into next week | One snapshot write on first session of new week: closes the week, opens the next |
+
+Learner's mental model: *"I have 5 concepts to lock in this week. The app picks them. I'll know on Saturday if I've actually got them."*
+
+### Product decisions (resolved via constitutional reasoning, not escalated)
+
+1. **Weekly check is OPTIONAL with a strong nudge + honest banner.** No mandatory gate. Week closes whether or not the learner takes it. Honest banner if skipped.
+2. **Minimalist presentation.** No streak number on the week-strip; day-dots only (filled when practiced). Existing `currentStreak` field stays on profile where it already lives. Explicit anti-Duolingo posture.
+3. **Honest reset on absence.** Returning after >7 days from `weekStartedAt` closes the previous week as `abandoned`, picks fresh focus from current fingerprint state. Decay already does its work; no need to duplicate at the week level.
+
+### Phased plan
+
+**Phase 1 — Data model + selection logic.** No UI. Mechanical.
+- `MistakeFingerprint` gains: `weeklyFocus: ConceptId[] (≤5)`, `weekStartedAt: ISODate | null`, `weeklySprintHistory: WeeklySprintRecord[]`.
+- `WeeklySprintRecord` = `{ weekStartedAt, focus, status: 'active'|'completed'|'abandoned', focusOutcomes: Record<ConceptId, {startScore, endScore, attempts}>, checkResult?: {takenAt, score, items} }`.
+- New module `src/engine/weekly-sprint.ts`: `selectWeeklyFocus(fingerprint, conceptGraph): ConceptId[]` — union of (a) weakest 3 by `decayedScore`, (b) up to 2 SRS-due where `nextReviewAt <= weekEnd`, capped at 5, deduped, respecting phase model (no locked concepts).
+- Idempotent migration in `useFingerprint.ts` (same pattern as P0.5-02 concept-id migration).
+- Tests: focus selection deterministic; migration idempotent; absence-reset triggers correctly at >7 days.
+
+**Phase 2 — Authenticated-user walkthrough + Supabase sync verification.** One session. Slotted between Phase 1 and Phase 3 because Weekly Sprint adds new Supabase write paths that have never been exercised.
+
+**Phase 3 — Scheduler bias pass.** Adjust `generateSession` so the 40% remediation pool prefers `weeklyFocus` concepts while honouring existing `firstEligibleType` guard and concept-repeat cap. Recipe stays 40/30/20/10. Tests: existing scheduler invariants preserved; focus bias measurable.
+
+**Phase 4 — Weekly Check surface.** `/uke` route + `WeeklyCheckScreen` component. Reuses `ExerciseCard`. 6–8 adaptive items drawn from focus + previous-week graduates. Result writes to fingerprint via normal `recordResult` AND a new `learning_events_log` event type `weekly_check_complete`. AlertDialog primitive installed (deferred from P0.5) for "Skip weekly check" confirmation.
+
+**Phase 5 — Sunday graduation job.** Runs on first session of any new week (no cron, no server cost). Closes previous week into `weeklySprintHistory`, picks new focus, writes new `weekStartedAt`. Tests: simulated learner across 3 consecutive weeks.
+
+**Phase 6 — Dashboard week-strip.** Composition into UI-1.3 dashboard (queued anyway). 375px compact horizontal bar showing focus-concept progress dots; 1280px+ expanded card with rawScore deltas. Folds with UI-1.3 instead of being built parallel.
+
+**Phase 7 — Anti-Duolingo aesthetic guard + audit.** `/baseline-ui` against week-strip and `/uke`. No bright streak rockets, no XP numbers, no league badges. `/audit` for P0–P3 scored review.
+
+### Acceptance for the whole stream
+- Three consecutive simulated weekly sprints rotate focus correctly per `engine-tester`.
+- Weekly check produces a `learning_events_log` row (first read use case unlocked).
+- 40/30/20/10 scheduler distribution preserved within ±5pp under focus bias.
+- Dashboard week-strip passes `/baseline-ui` and `/baseline-ui` typographic dominance test.
+- Authenticated path fully traced (Phase 2 walkthrough).
+- Honest-reset banner verified via simulated 8-day absence.
+
+### Procedural locks (carried from P0.5)
+- Fingerprint pre/post diffs are mandatory acceptance evidence for every phase touching engine write paths.
+- All AI used in weekly check items (if any — templates primary) flows through `validateNorwegianOutput`.
+- Source-verification audit before any re-sequencing.
+- Fresh Playwright walkthrough before Phase 6 ships.
+
+---
+
 ## Stream 3 — Muntlig Module (next major build after UI-1 converges)
 
 Things that are real, designed or discussed, and correctly parked until the working system is whole.
@@ -230,29 +303,41 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 
 ## Operating Sequence
 
-**Updated 2026-05-20 — recovery batch supersedes prior sequence.** See `docs/recovery-backlog.md` for full item definitions.
+**Updated 2026-05-21T21:00 — P0.5 Recovery Bundle complete.** See `docs/recovery-backlog.md` for the closed task table and `.council/reports/2026-05-21-2100-recovery-signoff.md` for the sign-off report.
 
-### Recovery batch (P0) — current phase
+### Completed phases
+- **P0 batch (2026-05-20):** 8 items closed. Session loop reachable end-to-end.
+- **P0.5 Recovery Bundle (2026-05-21):** 15 items closed. Four-of-five regressed pipeline-honesty patterns re-sealed; three new pedagogical-harm AI bugs closed via shared validity gate; concept-id scheme reconciled to graph as canonical source; corpus wired to client; conversation + journal write paths confirmed through shared error-tag → concept-id module; diagnostic semantics rewritten (merge not overwrite, persist on result-ready, dedupe by askedIds).
 
-Critical-path chain (original 9-item numbering): 2 (and 1) → 4 → 8 → 9. Items 3, 5, 6, 7 distributed independently around the chain. Item 5 (AI badge) runs in parallel — it touches only the AI worker and has no dependency on the critical path.
+### Next phase committed — Stream 5: Weekly Sprint (Curriculum Cohesion Layer)
 
-0. ~~Items 1+2 (scheduler guard + grader mismatch).~~ **CLOSED 2026-05-20.**
-1. ~~Item 4 / doc item 3 (repair loop retry — "Prøv igjen").~~ **CLOSED 2026-05-20.**
-2. **Remaining items in parallel where independent.** Critical path: doc item 7 (template targeting) → doc item 8 (atomic progression). Independent: doc items 2 (word-order), 4 (AI badge), 5 (FillInBlank error tag), 6 (journal). Each goes through architect before building.
-3. **P0 batch verifies** — a real user can complete a full session with no blank cards, no stuck states, correct grading, correct repair loop flow with retry, correct template targeting.
-4. **P1 items** from the recovery backlog, in order of user-impact severity.
+Selected 2026-05-21T21:35 via super-orchestrator + Council restructure. Moat trace: lands directly on diagnosis (focus selection from fingerprint), scheduling (recipe bias), remediation (failures from weekly check feed repair loop), AND unlocks the first read use case for `learning_events_log`. See `.council/log.md` 2026-05-21T21:35 entry for full reasoning; `.council/research.md` for Scout findings on the 5 questions.
 
-### Deferred — resumes after recovery batch clears
+**Options A, C, D, E held as follow-ups in this order:**
+- D. **Authenticated-user walkthrough** — slotted between Weekly Sprint Phase 1 and Phase 2 as a one-session engineering hygiene pass. The auth path has not been exercised across three walkthroughs and Weekly Sprint adds Supabase write paths.
+- C. **Stream 1.1 model swap** — re-evaluated after Weekly Sprint ships. Validity gate continues to bridge current quality.
+- A. **Muntlig roleplay deepening** — re-evaluated after Weekly Sprint Phase 1 ships. Muntlig becomes a tributary to the weekly target rather than a parallel surface.
+- E. **B1/B2 concept graph + corpus authoring** — re-evaluated after Weekly Sprint proves out on A1/A2.
 
-These items were the prior "next moves." They are not cancelled; they resume after P0 verifies.
+### Process locks added this round
+- Fingerprint pre/post diffs are mandatory acceptance evidence for any task that claims to feed the engine.
+- AI output flows through one shared validity gate (`src/ai/validate.ts:validateNorwegianOutput`), not per-call-site validation.
+- Source-verification audit is mandatory before re-sequencing a recovery batch on the strength of walkthrough findings alone (P0.5-01 caught one mis-framed Critical and surfaced three ordering revisions).
+- A fresh walkthrough — including the authenticated path — runs before the next muntlig surface ships.
 
-4. ~~A1 model swap + UI-1.2 scoping pass.~~ **Deferred to post-P0.** A1 (model swap) continues its existing three-step path; the P0 item 5 (AI unavailability badge) ships first as the honest interim. UI-1.2 session loop work already done (WordOrderExercise, SpeedRound, TranslationExercise typography) is preserved; remaining UI-1.2 work resumes post-P0.
-5. ~~A2 (decay half-life).~~ Deferred to post-P0.
-6. ~~A3 (calibration window).~~ Deferred to post-P0.
-7. ~~A4 (event log).~~ Deferred to post-P0.
-8. ~~UI-1.3 dashboard, UI-2 remaining screens, UI-3 cleanup.~~ Deferred to post-P0.
-9. ~~Muntlig module.~~ **Explicitly deferred.** Do not start muntlig until P0 is verified and the AI model swap is complete. Building muntlig on a non-functional AI model is wasted work.
-10. **v2 backlog** when the working app has real users and real data.
+### Deferred (documented gaps, not regressions)
+1. **F008 path-traversal tightening** in `safeRedirectPath` — no exploit confirmed; hygiene.
+2. **F025 session resume on re-entry** — current behaviour is honest; needs session-state persistence layer.
+3. **F027 repair-loop cap** — `isRepairItem` guard prevents worst-case; cap is polish.
+4. **F032 journal SSR mismatch** — cosmetic, no Critical ripple.
+5. **F035 reading visited indicator** — reading does not feed fingerprint by design.
+6. **AlertDialog primitive** — mid-session exit uses `window.confirm()` with a TODO; install `@radix-ui/react-alert-dialog` and migrate in next UI sweep.
+7. **REVIEW.md 2026-05-11 WARNING items** — most re-audited as still-fine in P0.5-01; a few flagged for next-touch refactor.
+8. **v2 backlog** (FSRS, BKT, adaptive decay, vocab SRS) when the working app has real users and real data.
+
+### Phase plan moving forward — sequence TBD by super-orchestrator
+- Whichever build target (A–E above) is chosen, run it under the same procedural locks added this round.
+- Hold the prior plan's Stream 1 engine corrections (A2 decay half-life, A3 calibration window, A4 event log reads) as bounded follow-ups slottable between major builds — they are correctness/observability work, not feature work.
 
 Anything proposed outside this sequence is breadth, and breadth without justification is the failure mode we've already paid for.
 

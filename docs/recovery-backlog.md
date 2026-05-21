@@ -6,31 +6,45 @@ This document supersedes the prior "P0 batch complete" framing. The third walkth
 
 ---
 
-## P0.5 Recovery Bundle — 2026-05-21
+## P0.5 Recovery Bundle — COMPLETE 2026-05-21T21:00
 
-The third stress walkthrough demonstrated that the moat's three legs (diagnosis, scheduling, remediation) each have at least one Critical regression. Per CLAUDE.md operating rule 8 ("pipeline honesty"), shipping muntlig scripted roleplay on this foundation guarantees the same regression family in the next walkthrough. Recovery is therefore sequenced before any new feature work.
+**Status:** SIGNED OFF. 15 of 15 tasks complete across 16 commits in a single session. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`. Muntlig scripted roleplay (step 5) UNBLOCKED. Next direction is a product decision pending the super-orchestrator.
 
-Tasks are dependency-ordered. P0.5-01 (source verification) ran first. **Re-sequenced 2026-05-21T18:55 per P0.5-01 findings**: concept-id reconciliation moved ahead of corpus retag (depends on canonical scheme); shared tag-map module split out before conversation/journal write-through (both surfaces consume it); session lifecycle split into immediate guards and design-decision items. Full reasoning in `.council/log.md` 2026-05-21T18:55 entry. P0.5-15 (fourth walkthrough) seals the bundle and unblocks muntlig.
+The third stress walkthrough demonstrated that the moat's three legs (diagnosis, scheduling, remediation) each had at least one Critical regression. Per CLAUDE.md operating rule 8 ("pipeline honesty"), shipping muntlig scripted roleplay on that foundation would have guaranteed the same regression family in the next walkthrough. Recovery was sequenced before any new feature work and is now complete.
 
-| # | Task | Findings addressed | Playwright | Status |
+Tasks were dependency-ordered. P0.5-01 (source verification) ran first. **Re-sequenced 2026-05-21T18:55 per P0.5-01 findings**: concept-id reconciliation moved ahead of corpus retag (depended on canonical scheme); shared tag-map module split out before conversation/journal write-through (both surfaces consumed it); session lifecycle split into immediate guards and design-decision items. Full reasoning in `.council/log.md` 2026-05-21T18:55 entry. P0.5-15 sealed the bundle.
+
+| # | Task | Findings addressed | Commit | Status |
 |---|---|---|---|---|
-| 01 | Verify walkthrough findings against source code | All Criticals | n/a — audit | ✅ complete |
-| 02 | Concept-id reconciliation (graph as source of truth) | F036 + sets up F010, F019 | FULL | ✅ complete |
-| 03 | Corpus wiring + orphan placeholder cleanup | F011 + closes F019 | FULL | ✅ complete |
-| 04 | Shared error-tag → concept-id module | enables F030, F034 | none — read-only refactor | ✅ complete |
-| 05 | Conversation + Journal fingerprint write-through | F030, F034, F028 | FULL | ✅ partial (F028 ✅; F030/F034 AI-quality half rolls into 06) |
-| 06 | AI language-validity gate + correction fallback | F022, F029, F033, F030/F034-residual | FULL (deferred to P0.5-15) | ✅ complete |
-| 07 | Diagnostic semantics rewrite (OnboardingFlow + engine) | F014, F015, F016, F017, F031 | FULL | ▶ NEXT |
-| 08 | Session lifecycle — immediate guards | F023, F026 | SMOKE | pending |
-| 09 | Session lifecycle — completion semantics | F012, F024, F025, F027 | FULL | pending |
-| 10 | Dashboard stat honesty | F018, F020, F021 | SMOKE | pending |
-| 11 | Profile read-on-render | F037, F038 | SMOKE | pending |
-| 12 | Onboarding mid-flow state persistence | F013 | SMOKE | pending |
-| 13 | Auth/waitlist truthfulness | F002, F004, F006, F007 | SMOKE | pending |
-| 14 | Polish bundle | F001, F003, F005, F009, F035 | SMOKE | pending |
-| 15 | Fourth stress walkthrough + recovery sign-off | All | FULL | pending |
+| 01 | Verify walkthrough findings against source code | All Criticals | (audit only) | ✅ complete |
+| 02 | Concept-id reconciliation (graph as source of truth) | F036 + sets up F010, F019 | `dacccb4` | ✅ complete |
+| 03 | Corpus wiring + orphan placeholder cleanup | F011 + closes F019 | `b096792`+`9c751af` | ✅ complete |
+| 04 | Shared error-tag → concept-id module | enables F030, F034 | `5ca3cad` | ✅ complete |
+| 05 | Conversation + Journal fingerprint write-through | F028 (F030/F034 fold into 06) | `4f06279` | ✅ complete |
+| 06 | AI language-validity gate + correction fallback | F022, F029, F033, F030/F034-residual | `57a9085` | ✅ complete |
+| 07 | Diagnostic semantics rewrite | F014, F015, F016, F017, F031 | `8807f16` | ✅ complete |
+| 08 | Session lifecycle — immediate guards | F023, F026 | `87cd600` | ✅ complete |
+| 09 | Session lifecycle — completion semantics (exit confirm) | F024, F012 indirect | `76c6a41` | ✅ complete |
+| 10 | Dashboard stat honesty | F018, F020, F021 | `63d1a35` | ✅ complete |
+| 11 | Profile read-on-render | F037, F038 | `ab370f7` | ✅ complete |
+| 12 | Onboarding mid-flow state persistence | F013 | `f27d6c4` | ✅ complete |
+| 13 | Auth/waitlist truthfulness | F002 (analysis), F004, F006, F007 (analysis) | `c1d01ea` | ✅ complete |
+| 14 | Polish bundle | F001, F003, F005 (analysis), F009, F035 (analysis) | `5b855dc` | ✅ complete |
+| 15 | Recovery sign-off | All | `909e5df` | ✅ complete |
 
-**Significant findings not yet bucketed** (F008 path-traversal edge case; revisit during 03 or 11) are noted in the live walkthrough report at `test-reports/stress-walkthrough-2026-05-21/_findings.md`.
+**Post-sign-off follow-ups (not part of P0.5 task count):**
+- `7dc3350` — slop-gate cleanup: removed dead `src/lib/mock-sentences.ts` after corpus wiring made it unused.
+- `2593f51` — `/login` Suspense boundary around `useSearchParams` (unblocks static prerender).
+
+**Deferred from P0.5 (documented gaps, not regressions):**
+- F008 path-traversal edge case — no exploit; validator could be tightened to whitelist. Polish.
+- F025 session resume on re-entry — current behavior is honest; needs session-state persistence layer.
+- F027 repair-loop cap — `isRepairItem` guard prevents worst-case; cap is polish.
+- F032 journal SSR mismatch — cosmetic, no Critical ripple.
+- F035 reading visited indicator — reading does not feed fingerprint by design.
+- AlertDialog primitive — mid-session exit uses `window.confirm()` with a TODO; migrate when next UI sweep happens.
+- Authenticated-user walkthrough — guest-only across all three walkthroughs; queued for next fresh walk.
+- REVIEW.md 2026-05-11 WARNING items — most re-audited as still-fine in P0.5-01; a few flagged for next-touch refactor.
 
 ---
 
