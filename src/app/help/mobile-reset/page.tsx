@@ -12,10 +12,10 @@ export default function MobileResetPage() {
       <main className="relative z-10 mx-auto w-full max-w-2xl px-5 py-8">
         <div className="nc-glass-elevated p-6">
           <div className="nc-label">Mobilfeilretting</div>
-          <h1 className="mt-2 font-display text-[1.8rem] font-semibold text-[var(--nc-text)]">
+          <h1 className="mt-2 font-display text-[1.8rem] font-semibold text-balance text-[var(--nc-text)]">
             Tøm appdata én gang
           </h1>
-          <p className="mt-3 text-[14px] leading-relaxed text-[var(--nc-text-muted)]">
+          <p className="mt-3 text-[14px] leading-relaxed text-pretty text-[var(--nc-text-muted)]">
             Hvis nettleseren laster pandoai.no på nytt flere ganger og krasjer, har telefonen
             lagret en stor AI-modell som ikke passer for mobilen din. Vi har slått av nedlastingen
             av modellen på telefoner — men du må fjerne den gamle filen én gang. Etter det vil
@@ -23,7 +23,7 @@ export default function MobileResetPage() {
           </p>
 
           <section className="mt-6">
-            <h2 className="font-display text-[1.15rem] font-semibold text-[var(--nc-text)]">
+            <h2 className="font-display text-[1.15rem] font-semibold text-balance text-[var(--nc-text)]">
               Chrome (Android)
             </h2>
             <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-[13px] text-[var(--nc-text-muted)]">
@@ -36,7 +36,7 @@ export default function MobileResetPage() {
           </section>
 
           <section className="mt-5">
-            <h2 className="font-display text-[1.15rem] font-semibold text-[var(--nc-text)]">
+            <h2 className="font-display text-[1.15rem] font-semibold text-balance text-[var(--nc-text)]">
               Safari (iPhone / iPad)
             </h2>
             <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-[13px] text-[var(--nc-text-muted)]">
@@ -48,17 +48,17 @@ export default function MobileResetPage() {
           </section>
 
           <section className="mt-5">
-            <h2 className="font-display text-[1.15rem] font-semibold text-[var(--nc-text)]">
+            <h2 className="font-display text-[1.15rem] font-semibold text-balance text-[var(--nc-text)]">
               Andre nettlesere
             </h2>
-            <p className="mt-2 text-[13px] leading-relaxed text-[var(--nc-text-muted)]">
+            <p className="mt-2 text-[13px] leading-relaxed text-pretty text-[var(--nc-text-muted)]">
               Generelt: åpne nettleserens innstillinger, finn lagrede data per nettsted, søk opp
               pandoai.no og slett oppføringen. Last deretter inn siden på nytt.
             </p>
           </section>
 
           <section className="mt-6 rounded-[0.75rem] border border-[var(--nc-border)] bg-white/[0.04] p-4">
-            <p className="text-[13px] leading-relaxed text-[var(--nc-text-muted)]">
+            <p className="text-[13px] leading-relaxed text-pretty text-[var(--nc-text-muted)]">
               <span className="font-semibold text-[var(--nc-text)]">Hva skjer etterpå?</span> Telefonen
               kjører NorskCoach med mal-baserte svar i stedet for AI. Diagnosen, øvelsene og repair-
               loopen fungerer som før — de er ikke avhengige av AI. Datamaskiner med nok minne får
