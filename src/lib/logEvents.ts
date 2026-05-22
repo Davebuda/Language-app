@@ -47,3 +47,46 @@ async function _write(userId: string, results: ExerciseResult[]): Promise<void> 
     console.warn('[logEvents] unexpected error:', err)
   }
 }
+
+/**
+ * Fire-and-forget: write a single weekly_check_complete row to learning_events_log.
+ * Auth users only — guests are silently skipped.
+ * `passed` is recorded against a virtual concept_id of "weekly-check" so future
+ * analytics can ask "how often do learners pass the weekly retention check?"
+ * without conflating it with per-concept exercise results.
+ * Never throws; never blocks the caller.
+ */
+export function logWeeklyCheckComplete(
+  userId: string,
+  { score, items }: { score: number; items: number },
+): void {
+  void _writeWeeklyCheck(userId, score, items)
+}
+
+async function _writeWeeklyCheck(
+  userId: string,
+  score: number,
+  items: number,
+): Promise<void> {
+  try {
+    if (items <= 0) return
+
+    const anonymousSessionId = await hashUserId(userId)
+    const supabase = createClient()
+
+    // Threshold for "passed" matches the graduation rule's demote floor (score >= 50).
+    const passed = score >= 50
+
+    const { error } = await supabase.from('learning_events_log').insert({
+      event_type: 'weekly_check_complete' as const,
+      concept_id: 'weekly-check',
+      correct_bool: passed,
+      anonymous_session_id: anonymousSessionId,
+    })
+    if (error) {
+      console.warn('[logEvents] weekly check insert failed:', error.message)
+    }
+  } catch (err) {
+    console.warn('[logEvents] weekly check unexpected error:', err)
+  }
+}

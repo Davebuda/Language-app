@@ -18,6 +18,7 @@ import {
 } from '@/engine';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
+import { logWeeklyCheckComplete } from '@/lib/logEvents';
 import type { ExerciseResult } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
 import a1GraphJson from '@content/concepts/a1-graph.json';
@@ -348,6 +349,8 @@ export function useFingerprint() {
       setFingerprint(reopened);
       saveFingerprint(reopened).catch(console.warn);
       if (user) saveFingerprintToSupabase(reopened).catch(console.warn);
+      // Phase 4b: anonymized telemetry — auth users only, guests skipped inside.
+      if (user) logWeeklyCheckComplete(user.id, { score, items });
     },
     [setFingerprint, user]
   );
