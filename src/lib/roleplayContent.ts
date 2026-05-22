@@ -1,3 +1,5 @@
+import type { ErrorTag } from '@/types/taxonomy'
+
 export interface RoleplayTurn {
   id: string
   character: string          // Norwegian line
@@ -5,6 +7,8 @@ export interface RoleplayTurn {
   expectedKeywords: string[] // normalised lowercase — any one match = pass
   hint: string               // coaching tip on fallback
   modelAnswer: string        // "Prøv å si: ..." shown on retry
+  targetConceptId: string    // Concept this turn exposes — MUST exist in a1/a2-graph.json
+  errorTag: ErrorTag         // Tag used when the user's answer misses
 }
 
 export interface RoleplayScenario {
@@ -31,6 +35,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['kaffe', 'latte', 'cappuccino', 'espresso', 'vil', 'ha', 'gjerne'],
         hint: 'Order something to drink.',
         modelAnswer: 'Jeg vil gjerne ha en kaffe, takk.',
+        targetConceptId: 'common-modal-verbs',
+        errorTag: 'modal-verb',
       },
       {
         id: 'size',
@@ -39,6 +45,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['stor', 'liten', 'medium'],
         hint: 'Choose a size.',
         modelAnswer: 'Stor, takk.',
+        targetConceptId: 'basic-adjectives',
+        errorTag: 'adjective-agreement',
       },
       {
         id: 'name',
@@ -47,6 +55,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['heter', 'navn', 'jeg', 'er'],
         hint: 'Tell them your name.',
         modelAnswer: 'Jeg heter [ditt navn].',
+        targetConceptId: 'personal-pronouns',
+        errorTag: 'pronoun-choice',
       },
       {
         id: 'thanks',
@@ -55,6 +65,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['takk', 'tusen', 'deg', 'også', 'ha'],
         hint: 'Say thank you.',
         modelAnswer: 'Takk! Ha det bra.',
+        targetConceptId: 'to-have-verb',
+        errorTag: 'verb-conjugation',
       },
     ],
   },
@@ -72,6 +84,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['unnskyld', 'hjelp', 'stasjon', 'togstasjon', 'buss', 'veien', 'hvor'],
         hint: 'Ask for directions somewhere.',
         modelAnswer: 'Unnskyld, hvor er togstasjonen?',
+        targetConceptId: 'question-formation',
+        errorTag: 'word-order',
       },
       {
         id: 'understand',
@@ -80,6 +94,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['forstår', 'ok', 'takk', 'skjønner', 'frem', 'venstre'],
         hint: 'Confirm you understand.',
         modelAnswer: 'Ok, rett frem og til venstre. Takk!',
+        targetConceptId: 'common-prepositions',
+        errorTag: 'preposition',
       },
       {
         id: 'howfar',
@@ -88,6 +104,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['takk', 'minutter', 'greit', 'bra', 'perfekt'],
         hint: 'Respond to the time estimate.',
         modelAnswer: 'Fem minutter — perfekt, takk så mye.',
+        targetConceptId: 'numbers-basic',
+        errorTag: 'spelling',
       },
       {
         id: 'bye',
@@ -96,6 +114,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['takk', 'ha', 'det', 'bra', 'hyggelig'],
         hint: 'Say goodbye.',
         modelAnswer: 'Takk! Ha det bra!',
+        targetConceptId: 'to-have-verb',
+        errorTag: 'verb-conjugation',
       },
     ],
   },
@@ -113,6 +133,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['heter', 'hei', 'ja', 'ny', 'navn', 'jeg'],
         hint: 'Introduce yourself.',
         modelAnswer: 'Hei! Jeg heter [ditt navn]. Ja, jeg er ny.',
+        targetConceptId: 'personal-pronouns',
+        errorTag: 'pronoun-choice',
       },
       {
         id: 'from',
@@ -121,6 +143,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['fra', 'bor', 'land', 'england', 'usa', 'norge', 'australia'],
         hint: 'Say where you are from.',
         modelAnswer: 'Jeg er fra England.',
+        targetConceptId: 'common-prepositions',
+        errorTag: 'preposition',
       },
       {
         id: 'work',
@@ -129,6 +153,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['jobber', 'arbeider', 'avdeling', 'prosjekt', 'design', 'kode', 'salg'],
         hint: 'Describe your role.',
         modelAnswer: 'Jeg jobber med design.',
+        targetConceptId: 'common-prepositions',
+        errorTag: 'preposition',
       },
       {
         id: 'coffee',
@@ -137,6 +163,8 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = [
         expectedKeywords: ['ja', 'takk', 'gjerne', 'kaffe', 'vil', 'ha'],
         hint: 'Accept or politely decline.',
         modelAnswer: 'Ja, gjerne! Tusen takk.',
+        targetConceptId: 'common-modal-verbs',
+        errorTag: 'modal-verb',
       },
     ],
   },

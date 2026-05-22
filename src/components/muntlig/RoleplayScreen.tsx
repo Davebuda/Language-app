@@ -509,9 +509,9 @@ export function RoleplayScreen() {
       userAnswer: transcript,
       correctAnswer: turn.modelAnswer,
       timeTakenSeconds: LISTEN_SECONDS,
-      conceptId: 'speaking-production',
+      conceptId: turn.targetConceptId,
       sentenceId: undefined,
-      errorTag: passed ? undefined : 'listening-recognition',
+      errorTag: passed ? undefined : turn.errorTag,
     }
     recordResult(result)
 
