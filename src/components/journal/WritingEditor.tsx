@@ -66,7 +66,7 @@ export function WritingEditor() {
   const [feedback, setFeedback] = useState<WritingFeedback | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showCorrected, setShowCorrected] = useState(false)
-  // Voice mode: 'voice' is default when API is available, 'text' is explicit fallback
+  // Voice mode: 'text' is the stable SSR/first-paint default; user opts into voice via the toggle.
   const [hasSpeechAPI, setHasSpeechAPI] = useState(false)
   const [inputMode, setInputMode] = useState<'voice' | 'text'>('text')
   const [isListening, setIsListening] = useState(false)
@@ -75,7 +75,9 @@ export function WritingEditor() {
     const ctor = getSpeechCtor()
     if (ctor) {
       setHasSpeechAPI(true)
-      setInputMode('voice')
+      // Do NOT auto-switch inputMode to 'voice' — that causes an SSR-vs-CSR
+      // primary-affordance flip (textarea ↔ mic button) on every page load.
+      // The Snakk/Skriv toggle appears below; users opt into voice via click.
     }
   }, [])
 
