@@ -1,5 +1,86 @@
 # Council Decision Log
 
+## 2026-05-22T09:02 RESTRUCTURE — Stream 5.5 ratified (Lanes on a Bar architecture)
+
+**User invocation:** "the weekly learning mode tied up to all features" + explicit pipeline request `/super-orchestrator → /solve → /council → /gsd`. Council reordered to `/super-orchestrator → /council → /solve → /gsd` (Operating Rule 5 — Solve plans against the decided architecture, not against an undecided one). User accepted with "go".
+
+### What was ratified
+
+The Weekly Sprint (Stream 5) becomes the system-wide organizing rhythm. Every feature is a **lane** on the weekly bar, declared by modality + freedom + focus-bias. Features that don't earn a lane are retired or deferred. **No new feature surface.**
+
+Lane map (final):
+
+| Day | Touchpoint | Lane | Surface |
+|---|---|---|---|
+| Mon | Plan | Dashboard surface | WeekStrip + session card |
+| Tue–Fri | Drill | constrained mixed | Session loop |
+| Tue–Fri | Write | free written production | Journal |
+| Tue–Fri | Speak | constrained spoken | `/roleplay` |
+| Tue–Fri | Talk | free spoken/written | Conversation (Kari) |
+| Tue–Fri | Read | passive input | Reading studio |
+| Tue–Fri | Repair | cross-surface SRS queue | Repair loop (externalized) |
+| Mid-week | Reveal | UI delta strip | Dashboard mid-week strip |
+| Sat | Check | adaptive retrieval | `/uke` |
+| Sun | Graduate | engine close | `closeWeek` |
+
+### Retirements decided autonomously
+- `/vocab` notify-button stub → retire surface; honest "Coming in v2" banner. Stub violates Operating Rule 6 (no silent substitution); Stream 6 already defers the feature.
+- `/shadow` notify-button stub → retire surface; honest banner. Same reasoning.
+- Listening "module" placeholder → defer until audio infra ships.
+
+### Retirement gated on user input (Phase 8)
+- Recalibration as standalone surface — Option A (retire, fold into `/uke` + level-switch) or Option B (keep with trigger banner). Phase 8 parked until user decides. Doesn't block Phases 1–7.
+
+### Research finding that shaped the design
+
+Council fired one targeted WebSearch on the open risk flagged by super-orchestrator: **cross-surface micro-drill firing — interruption fatigue or beneficial varied retrieval?**
+
+Finding (cited in 2026 language-app reviews referencing the Immersion Learning Institute): spaced retrieval with authentic content + varied contexts beats single-surface drill 3.2× on retention. Cross-surface concept encounter IS varied retrieval, BUT mid-flow interruption breaks attention.
+
+**Design implication (load-bearing):** Phase 6 repair-loop externalization writes SRS schedule for next-session pickup. It does NOT fire mid-flow drills on free production surfaces (journal, conversation, roleplay). Mid-flow drills remain ONLY in the Session loop where they are the expected interaction. This is now in Stream 5.5 "Procedural locks" #3 in `docs/roadmap.md`.
+
+Research entry logged in `.council/research.md` 2026-05-22 as an extension of the 2026-05-21T21:30 Weekly Sprint research entry.
+
+### Sequencing locked (Phases 1–7 autonomous; Phase 8 user-gated)
+
+1. Reading concept-tagging + exposure logging
+2. Mid-week reveal strip on dashboard
+3. Journal weekly-focus prompt bias
+4. Roleplay weekly-focus scenario selection
+5. Conversation weekly-focus topic bias + correction priority
+6. Repair loop externalization (SRS schedule writes only)
+7. Stub removal (`/vocab`, `/shadow`)
+8. Recalibration retirement — DECISION PENDING USER
+
+### Pre-conditions met
+- ✅ F032 (journal SSR) closed via `9bef843`/`f1c18ef`/`dceb782` 2026-05-22T08:55. Phase 3 unblocked.
+- ✅ Stream 5 (Weekly Sprint) closed 2026-05-22T04:20. Stream 5.5 extends it.
+- ✅ AI validity gate live. All Stream 5.5 AI surfaces flow through it.
+- ✅ Event logging writes live. Phase 1 extends with `logConceptExposure`; Phase 6 reuses for repair SRS writes.
+
+### Procedural locks reinforced
+- Fingerprint pre/post diffs mandatory for Phases 1, 3, 4, 5, 6.
+- All AI flows through `validateNorwegianOutput` — Phases 3, 5.
+- **Repair-loop externalization is queue-only on free surfaces.** Load-bearing.
+- Focus bias is suggestion, not lockout. ±5pp recipe preservation, Stream 5 Phase 3 pattern.
+- No new feature surface. Operating Rule 1.
+- Playwright SMOKE after each phase + FULL after Phase 6.
+
+### What's left
+
+- Hand off to `/solve` for Phases 1–7 execution plan.
+- After `/solve` produces the plan, `/gsd` runs phase-by-phase with the standard Council brief-write → implementer → Playwright SMOKE → review loop.
+- User decides Phase 8 (recalibration retirement) in parallel; can answer any time before Phase 7 completes.
+
+### Files restructured
+- `docs/roadmap.md` — added "Stream 5.5 — Lanes on a Bar" section; updated "Current Position" + "Next phase" + "Further-deferred backlog".
+- `docs/project-state.md` — header Date/Status updated.
+- `.council/current.md` — RESTRUCTURE verdict + handoff details.
+- `.council/research.md` — extension entry on cross-surface micro-drill firing.
+- This file (`.council/log.md`) — this entry.
+
+No production code touched in this restructure pass. Code changes happen inside /solve → /gsd execution.
+
 ## 2026-05-22T08:55 APPROVE — F032 journal SSR mismatch closed
 
 **User invocation:** `/council /gsd` → "start with updating the documentation" → "use /md-sync is needed" → "omc" / "Resume /council loop". Three-step pivot: doc-reconciliation sweep first, then Council picks next move.

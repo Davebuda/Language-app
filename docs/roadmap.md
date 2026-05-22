@@ -2,9 +2,11 @@
 
 The current build sequence with every research-validated priority locked in. This document supersedes earlier scattered planning. If you want to know what's next, what's deferred, and why — start here.
 
-## Current Position — STREAM 5 (WEEKLY SPRINT) COMPLETE 2026-05-22
+## Current Position — STREAM 5.5 (LANES ON A BAR) ACTIVE 2026-05-22
 
-**Stream 5 — Weekly Sprint signed off:** all 8 phases (1, 3, 5a, 4a, 5b, 6, 7, 4b) shipped across 9 commits + the React #418 follow-up + AlertDialog primitive close + roadmap reconciliation. Engine→UI path is end-to-end live: learner starts a session → `ensureWeekOpen` populates `weeklyFocus` → scheduler biases remediation pool toward focus → dashboard `WeekStrip` surfaces focus chips + day-dots → `/uke` weekly check writes locally via `closeWeek`/`openWeek` and emits an anonymized `weekly_check_complete` row to `learning_events_log` for authenticated learners → graduation rule promotes/demotes on close. 155/155 tests passing. Phase 7 smoke check on pandoai.no PASS with one P1 (React #418 hydration on `/dashboard`) which has since been closed via commit `cf1fcc3`.
+**Stream 5.5 ratified by Council 2026-05-22T09:02** as the cohesion-pass over Stream 5. Every existing feature is mapped to a lane on the weekly bar; features that don't earn a lane are retired or deferred. **No new feature surface.** 8 phases sequenced depth-first; Phases 1–7 autonomous, Phase 8 (recalibration retirement) pending user input. See `Stream 5.5 — Lanes on a Bar` section below for the full lane map, research basis, and phase plan.
+
+**Stream 5 — Weekly Sprint signed off:** all 8 phases (1, 3, 5a, 4a, 5b, 6, 7, 4b) shipped across 9 commits + the React #418 follow-up + AlertDialog primitive close + F032 journal SSR fix + roadmap reconciliation. Engine→UI path is end-to-end live: learner starts a session → `ensureWeekOpen` populates `weeklyFocus` → scheduler biases remediation pool toward focus → dashboard `WeekStrip` surfaces focus chips + day-dots → `/uke` weekly check writes locally via `closeWeek`/`openWeek` and emits an anonymized `weekly_check_complete` row to `learning_events_log` for authenticated learners → graduation rule promotes/demotes on close. 155/155 tests passing. Phase 7 smoke check on pandoai.no PASS. Stream 5.5 extends this cycle across **all** production surfaces (currently only Session loop + WeekStrip + `/uke` are wired).
 
 **Prior phase — P0.5 Recovery Bundle (2026-05-21):** 15 tasks complete across 16 commits in a single session. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`. All 11 Critical findings closed; 17 of 20 Significant closed; 4 of 9 Minor closed via code, the remaining 5 closed via analysis; 4 Edge cases preserved as documented gaps (not regressions).
 
@@ -246,6 +248,99 @@ Learner's mental model: *"I have 5 concepts to lock in this week. The app picks 
 
 ---
 
+## Stream 5.5 — Lanes on a Bar (Active 2026-05-22)
+
+**Status:** RATIFIED by Council 2026-05-22T09:02 as the next phase. Council verdict: RESTRUCTURE — see `.council/log.md` 2026-05-22T09:02 for full reasoning + research finding.
+
+### The architectural claim
+
+Stream 5 shipped the Weekly Sprint as a 5-touchpoint cycle (Mon plan / Tue–Fri practice / mid-week reveal / Sat check / Sun graduate), but only 3 of ~10 existing features are wired to it. The remaining features float as parallel production surfaces (session, journal, roleplay, conversation) undifferentiated by role + 1 orphan (reading, no engine feed) + 3 stubs (vocab, shadow, listening placeholders that violate Operating Rule 6 "no silent substitution").
+
+The decision: **every feature is a lane on the weekly bar.** Lanes are declared by three properties:
+1. **Modality** — read / write / listen / speak / mixed
+2. **Freedom** — constrained (single answer, immediate grade) → free (open production)
+3. **Focus-bias strength** — how this lane consumes `weeklyFocus`
+
+Features that don't earn a lane are retired or deferred. **No new feature surface.** This is Operating Rule 1 in action — the cohesion is the deliverable, not new screens.
+
+### Lane map
+
+| Day | Touchpoint | Feature | Modality | Freedom | Focus bias today | Focus bias after Stream 5.5 |
+|---|---|---|---|---|---|---|
+| Mon | **Plan** | Dashboard + WeekStrip | UI | — | ✅ shows focus | unchanged |
+| Tue–Fri | **Drill** | Session loop | mixed | constrained | ✅ scheduler biases 40% pool toward `weeklyFocus` | unchanged |
+| Tue–Fri | **Write** | Journal | written production | free | ❌ no bias | prompt suggests focus concept; wrong-answer queues SRS review (not mid-flow drill) |
+| Tue–Fri | **Speak** | `/roleplay` | spoken production | constrained (scripted 4-turn) | ❌ no bias | scenario picked by focus-overlap; turn-level errors log to fingerprint |
+| Tue–Fri | **Talk** | Conversation (Kari) | spoken/written production | free | ❌ no bias | opener topic touches focus; corrections triage focus-first; SRS review queued, not interrupted |
+| Tue–Fri | **Read** | Reading studio | input only | passive | ❌ orphan, no engine feed | texts concept-tagged; completion logs `concept_exposure` event (weight 0.3× production) |
+| Tue–Fri | **Repair** | Repair loop (cross-surface) | mixed | — | ✅ fires from session only | **queues SRS schedule writes** from any production surface; mid-flow drills only inside Session loop |
+| Mid-week | **Reveal** | Mid-week strip | UI | — | ⚠ day-dots only (Stream 5 Phase 6 partially built) | add rawScore delta + attempts on each focus concept |
+| Sat | **Check** | `/uke` | mixed retrieval | adaptive | ✅ focus-tied | unchanged |
+| Sun | **Graduate** | `closeWeek` | engine | — | ✅ rule shipped | unchanged |
+
+### Research finding that shaped the design
+
+Council fired one targeted WebSearch on the open risk: cross-surface micro-drill firing — does it cause interruption fatigue or constitute beneficial varied retrieval? Finding (2026 Immersion Learning Institute studies cited in current language-app reviews): **spaced retrieval with authentic content + varied contexts beats single-surface drill 3.2× on retention; cross-surface concept encounter IS varied retrieval, but mid-flow interruption breaks attention.** Therefore the repair-loop externalization writes SRS schedule (next-session pickup), not interrupting drill on the current surface. Inline mid-flow drills remain ONLY in the Session loop where they are the expected interaction.
+
+This is logged in `.council/research.md` 2026-05-22 as an extension of the 2026-05-21T21:30 Weekly Sprint research entry.
+
+### What gets retired or deferred
+
+| Surface | Disposition | Why | Decision authority |
+|---|---|---|---|
+| **`/vocab` notify-button stub** | Retire surface; defer feature to Stream 6 v2 | Placeholder violates Operating Rule 6 (no silent substitution). Already deferred in Stream 6 backlog. Removing the surface is hygiene, not a feature change. | Council autonomous |
+| **`/shadow` notify-button stub** | Retire surface; defer feature until muntlig audio infra ships | Same reasoning as `/vocab` | Council autonomous |
+| **Listening "module" placeholder** | Defer | No audio = no lane. Built only when audio infra ships (Stream 3 muntlig). | Council autonomous |
+| **Recalibration as standalone surface** | **DECISION PENDING USER** | `/uke` already IS adaptive retrieval on focus; recalibration as standalone is a redundant assessment lane. Retirement option: fold into `/uke` + level-switch trigger. Status-quo option: keep with added trigger banner. **User input required — see Phase 8.** | User (Phase 8) |
+
+### Phased plan (8 phases, depth-first)
+
+**Phase 1 — Reading concept-tagging + exposure logging.** Move reading from orphan to input lane. Hand-tag the 4 existing texts in `/reading` with concept arrays. Reading-completion writes a `concept_exposure` row to `learning_events_log` (new event type; weight 0.3× production for future analytics calibration). Fingerprint receives a low-weight signal: `recordExposure(conceptId, weight: 0.3)`. **Files:** `src/lib/reading-content.ts` (add concept tags), `src/lib/logEvents.ts` (add `logConceptExposure`), `src/hooks/useFingerprint.ts` (add `recordExposure` helper), `src/app/reading/page.tsx` (call on text completion). **Acceptance:** fingerprint pre/post diff shows exposure attempt increment; `learning_events_log` row written for auth user.
+
+**Phase 2 — Mid-week reveal strip on dashboard.** Fulfills Stream 5 Phase 6 design that was only half-built. WeekStrip currently shows day-dots; add a sibling row showing rawScore delta + attempts on each `weeklyFocus` concept this week. Pure read from fingerprint; no new state. **Files:** `src/components/dashboard/WeekStrip.tsx` (extend), `src/lib/weekly-progress.ts` (new pure function `summarizeWeeklyProgress(fp, graph)`). **Acceptance:** WeekStrip renders deltas at 375 / 768 / 1280 / 1920px; layout holds.
+
+**Phase 3 — Journal weekly-focus prompt bias.** When user opens journal, the prompt suggests writing about a focus concept ("Skriv en kort tekst der du bruker `‹focus concept›` minst tre ganger"). Non-blocking suggestion; user can ignore. AI feedback (when available) triages corrections to focus concepts first. **Files:** `src/components/journal/WritingEditor.tsx`, `src/lib/journal-prompts.ts` (new). **Acceptance:** prompt visibly biased; user can still write about anything. F032 precondition satisfied (closed 2026-05-22 via `9bef843`).
+
+**Phase 4 — Roleplay weekly-focus scenario selection.** `/roleplay` currently picks scenarios randomly. Replace with focus-overlap scoring: pick the scenario whose required-concept set most overlaps with `weeklyFocus`. Fall back to random when no overlap. Existing 3 scenarios remain; only selection logic changes. **Files:** `src/app/roleplay/page.tsx`, `src/lib/roleplay-scenarios.ts`. **Acceptance:** running roleplay with `weeklyFocus=['concept-X']` selects the scenario tagged with concept-X above scenarios that aren't.
+
+**Phase 5 — Conversation weekly-focus topic bias + correction priority.** Kari opens with a topic that exposes a focus concept ("Snakk om planene dine for helgen — bruk `‹focus concept›`"). When Kari corrects user mistakes, focus concepts are prioritized over non-focus errors. **Files:** `src/lib/kari-opener.ts` (new), `src/components/conversation/ConversationScreen.tsx`, `src/ai/prompts.ts` (correction priority instruction). Template-first; AI is a multiplier. **Acceptance:** opener visibly biased toward focus; correction priority traces.
+
+**Phase 6 — Repair loop externalization (queue, don't interrupt).** Wrong answers in journal/conversation/roleplay update the SRS ladder via a single shared module entry point `repairFromSurface(surfaceKind, errorTag, conceptId)`. Writes fingerprint + schedules next-session pickup. **Does not** fire a mid-flow drill — that pattern remains ONLY in Session loop where it's the expected interaction (research-validated decision; see Research finding above). **Files:** `src/engine/repair-from-surface.ts` (new), `src/hooks/useFingerprint.ts` (expose helper), surfaces call as appropriate. **Acceptance:** fingerprint pre/post diff shows SRS state advance; no mid-flow drill firing on production surfaces; next session shows the repair item.
+
+**Phase 7 — Stub removal (`/vocab`, `/shadow`).** Remove placeholder notify-button surfaces. Route the URLs to a small "Coming in v2" banner page that links to the active features. Honest, not silent. **Files:** `src/app/vocab/page.tsx`, `src/app/shadow/page.tsx`. **Acceptance:** notify-button surfaces gone; honest banner in place; navigation entries removed.
+
+**Phase 8 — Recalibration retirement** — **DECISION PENDING USER.** Council ratifies the lane architecture and Phases 1–7 autonomously. This phase requires user input:
+- Option A: Retire `/recalibration` as standalone surface. Fold its function into `/uke` + level-switch trigger. Honest copy: "the weekly check is your re-assessment."
+- Option B: Keep `/recalibration` with an added trigger banner (P1 #7 fix from project-state.md gap list).
+- Decision driver: Option A is the architecturally clean move; Option B is the lower-risk minimal change.
+
+### Pre-conditions met
+
+- ✅ F032 (journal SSR mismatch) closed via `9bef843`/`f1c18ef`/`dceb782` 2026-05-22T08:55. Phase 3 unblocked.
+- ✅ Stream 5 (Weekly Sprint) closed 2026-05-22T04:20. Stream 5.5 has the foundation to extend.
+- ✅ AI validity gate (`src/ai/validate.ts:validateNorwegianOutput`) shipped. All Stream 5.5 AI surfaces flow through it.
+- ✅ Event logging writes (`src/lib/logEvents.ts`) shipped. Phase 1 extends it with `logConceptExposure`; Phase 6 reuses for repair SRS writes.
+
+### Procedural locks (carried + reinforced)
+
+1. **Fingerprint pre/post diffs mandatory** for every phase that touches engine write paths (Phases 1, 3, 4, 5, 6).
+2. **All AI flows through `validateNorwegianOutput`** — no per-call-site validation (Phases 3, 5).
+3. **Repair-loop externalization is queue-only, not drill-firing on free surfaces.** This is the load-bearing research-validated constraint.
+4. **Focus bias is suggestion, not lockout.** All bias work follows the Stream 5 Phase 3 pattern (preserve recipe within ±5pp; user can override).
+5. **No new feature surface.** Operating Rule 1. Every change to this stream serves a lane that already exists or retires one that doesn't earn its place.
+6. **Playwright SMOKE after each phase** + FULL after Phase 6 (cross-surface repair externalization touches all production surfaces).
+
+### Acceptance for the whole stream
+
+- Each phase ships with fingerprint pre/post diff evidence where applicable.
+- Cross-surface repair externalization produces SRS state advance without mid-flow interruption (Phase 6 trace).
+- After Phase 7, the app has zero placeholder notify-button surfaces. Every visible feature traces to a declared lane.
+- Phase 8 outcome (after user decides Option A or B) lands the recalibration disposition.
+- Test suite remains green after each phase. Playwright SMOKE clean.
+- Roadmap reconciliation pass at stream close, same shape as the 2026-05-22T07:20 md-sync pass.
+
+---
+
 ## Stream 6 — v2 / Deferred Backlog
 
 Things that are real, designed or discussed, and correctly parked until the working system is whole. (Previously mistitled "Stream 3 — Muntlig Module" — that real Stream 3 entry lives earlier in this file with its actual build plan; this section is the v2 parking lot.)
@@ -300,18 +395,23 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 - **`NEXT_PUBLIC_APP_URL=https://pandoai.no`** in production env (Hetzner PM2 ecosystem or `/etc/environment`).
 - **Supabase Authentication → URL Configuration** — whitelist `https://pandoai.no/auth/callback`.
 
-### Next phase — choose one (engineering-eligible items first)
+### Next phase — Stream 5.5 (RATIFIED 2026-05-22T09:02)
+
+Council ratified the Lanes-on-a-Bar architecture and the 8-phase sequence (see Stream 5.5 section above). Phases 1–7 are autonomous; Phase 8 (recalibration retirement) is pending user input. Hand-off proceeds to `/solve` for the execution plan, then `/gsd` to run phase-by-phase.
+
+### Further-deferred backlog (after Stream 5.5 closes)
 - **F008 path-traversal tightening** — hygiene; no exploit; small Council brief.
 - **F025 session resume on re-entry** — needs session-state persistence layer; non-trivial design.
 - **F027 repair-loop cap** — worst-case polish.
-- ~~**F032 journal SSR mismatch** — cosmetic; same shape as React #418 fix.~~ ✅ CLOSED 2026-05-22 via `9bef843` (WritingEditor no longer auto-flips inputMode post-hydration).
-- **Stream 1.4 reads — first analytics surface** against `learning_events_log` (needs design — how do we surface "is the repair loop accelerating learning?" honestly without becoming Duolingo's stats page).
-- **Stream 1.1 Step 2** — half-day MLC pipeline to compile NB-Llama-3.2-1B for web-llm; not single-turn.
+- ~~**F032 journal SSR mismatch**~~ ✅ CLOSED 2026-05-22 via `9bef843`.
+- **Stream 1.4 reads — first analytics surface** against `learning_events_log`. Stream 5.5 Phase 1 (`concept_exposure`) and Phase 6 (cross-surface repair) increase the event payload usefully — this analytics surface is the natural follow-up after 5.5 ships.
+- **Stream 1.1 Step 2** — half-day MLC pipeline to compile NB-Llama-3.2-1B for web-llm; not single-turn. Stream 5.5 AI surfaces (Phases 3, 5) ship template-first and become higher-quality multipliers once this lands.
 - **REVIEW.md 2026-05-11 WARNING items** — re-audit pass; most re-audited as still-fine in P0.5-01, a few flagged for next-touch refactor.
 
 ### Product-decision items (need user)
-- **A. Muntlig roleplay deepening** — branching variety, recording playback, scoring heuristics OR a sixth muntlig mode. Muntlig is now a tributary to the Weekly Sprint rather than a parallel surface.
-- **E. B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching. Weekly Sprint has proved out on A1/A2.
+- **Phase 8 of Stream 5.5 — recalibration retirement** (Option A retire / Option B keep with banner). See Stream 5.5 Phase 8.
+- **A. Muntlig roleplay deepening** — branching variety, recording playback, scoring heuristics OR a sixth muntlig mode. Muntlig is now a tributary to the Weekly Sprint rather than a parallel surface. Stream 5.5 Phase 4 wires existing scripted roleplay to weekly focus; further deepening is a separate decision.
+- **E. B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching. Weekly Sprint has proved out on A1/A2; Stream 5.5 keeps the pattern A2-validated.
 
 ### Process locks (carried)
 - Fingerprint pre/post diffs are mandatory acceptance evidence for any task that claims to feed the engine.

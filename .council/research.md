@@ -1,5 +1,19 @@
 # Research Notes
 
+## Research — Stream 5.5 cross-surface micro-drill firing — 2026-05-22T09:02
+
+**Question:** Does forcing every production surface (session, journal, roleplay, conversation) to bias toward weekly focus + fire repair-loop drills on errors cause interruption fatigue, or does it constitute beneficial varied retrieval per the spacing-effect literature?
+
+**Method:** Single targeted WebSearch query: "language learning app cross-surface micro-drill interruption fatigue versus spaced retrieval transfer 2026".
+
+**Finding:** 2026 Immersion Learning Institute studies (cited in current language-app reviews) — platforms integrating authentic content + spaced repetition achieve **3.2× higher retention** than traditional drill-based apps. Learners using real-world varied input reach intermediate comprehension benchmarks **40% faster** than scripted-lesson-only learners. Active recall via varied retrieval contexts improves transfer.
+
+**No direct evidence** on interruption fatigue from cross-surface mid-flow drill firing was surfaced — but the underlying principle is consistent across 2026 sources: spaced retrieval works when the user encounters the same concept in **a different context next time**, not when the current context is interrupted mid-flow.
+
+**Impact on approach:** Repair-loop externalization (Stream 5.5 Phase 6) writes SRS schedule for next-session pickup. It does NOT fire mid-flow drills on free production surfaces (journal, conversation, roleplay). Mid-flow drills remain ONLY in the Session loop where they are the expected interaction pattern.
+
+This decision is load-bearing for Stream 5.5 and is codified in `docs/roadmap.md` "Stream 5.5 — Procedural locks" #3. Extends the 2026-05-21T21:30 Weekly Sprint research entry below — the architectural shape was validated there; this query addressed the specific risk of extending the shape to all surfaces.
+
 ## Research — cross-deploy stability for Next.js 15 on single VPS — 2026-05-21T22:00
 
 **Question:** Production Next.js 15 App Router on Hetzner VPS (no CDN) — how to prevent client-side breakage when users have tabs open across a tar-and-pm2-reload deploy? Symptoms: "Failed to find Server Action" errors + 404s on /_next/static/chunks/*. Comparing generateBuildId vs experimental.useDeploymentId vs service worker.
