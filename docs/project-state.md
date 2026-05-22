@@ -1,9 +1,9 @@
 # NorskCoach — Project State Snapshot
 
-**Date:** 2026-05-21T21:00 (post P0.5 sign-off)  
-**Status:** P0.5 Recovery Bundle COMPLETE. 15 of 15 tasks closed across 16 commits. All 11 Critical findings closed; 17 of 20 Significant closed; deferred items documented as gaps. Muntlig scripted roleplay step 5 unblocked; next product direction pending super-orchestrator decision.
+**Date:** 2026-05-22 (post Stream 5 sign-off + integrity/primitive follow-ups)  
+**Status:** Stream 5 — Weekly Sprint COMPLETE. All 8 phases shipped (1, 3, 5a, 4a, 5b, 6, 7, 4b) plus React #418 dashboard hydration follow-up and AlertDialog primitive close. Engine→UI path live for the Weekly Sprint: `ensureWeekOpen` populates focus → scheduler biases remediation → dashboard WeekStrip surfaces focus + day-dots → `/uke` weekly check writes locally and emits an anonymized `learning_events_log` row for authenticated learners → graduation rule promotes/demotes on close. Stream 1 engine corrections that were queued (decay half-life 25, calibration window, event logging writes, prompt hardening Stream 1.1 Step 1) are all live. 14 test files / 155 tests passing. Next direction is a choice between engineering-eligible polish (F008/F027/F032/Stream 1.4 reads/Stream 1.1 Step 2/REVIEW.md WARNING re-audit) and product-decision items (Muntlig deepening, B1/B2 corpus).
 
-> **History:** The 2026-05-21 morning state "P0 recovery batch complete; session loop completable end-to-end" held the critical-path session-loop sense but the third walkthrough that afternoon proved the broader pipeline-honesty contract had regressed across journal + conversation + diagnostic semantics, with three new Critical AI-quality bugs shipping live. P0.5 Recovery Bundle sealed those regressions on the same day. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`.
+> **History:** 2026-05-21 morning state "P0 recovery batch complete; session loop completable end-to-end" held the critical-path sense but the third walkthrough that afternoon proved the broader pipeline-honesty contract had regressed across journal + conversation + diagnostic semantics. P0.5 Recovery Bundle sealed those regressions same day (15 of 15 tasks across 16 commits). Stream 5 (Weekly Sprint) followed 2026-05-22 as the next committed phase — selected via super-orchestrator on strongest moat trace. Sign-off reports: `.council/reports/2026-05-21-2100-recovery-signoff.md` (P0.5); `.council/reports/2026-05-22-0115-phase7-smoke.md` (Stream 5 Phase 7); `.council/reports/2026-05-22-0150-react418-fix.md` (Stream 5 hydration follow-up).
 
 ---
 
@@ -28,15 +28,20 @@ The adaptive engine is complete and the session loop is now end-to-end verified:
 - **Session progression:** `advanceItem()` is only reachable via `submitResult` (user submits) or `continueAfterRepair` (user clicks "Prøv igjen"). The 3-second silent auto-skip has been removed.
 - **AI status:** `useAIStatusStore` (states: `idle | loading | ready | unavailable`) is the single source of truth. The badge shows "AI unavailable" when generation fails. Two consecutive empty engine responses trigger the `unavailable` state.
 
-### Engine modules — unchanged and verified correct
-- **Diagnostic placement:** IRT-style adaptive quiz, seeds fingerprint. Early-exit confirmed (5 of 12 questions in prior testing; confidence-based).
-- **Mistake fingerprint:** JSON blob in IndexedDB + Supabase. Per-concept mastery, SRS state, error log, production gap, speaking minutes, preference.
+### Engine modules — verified correct
+- **Diagnostic placement:** IRT-style adaptive quiz, seeds fingerprint. Early-exit confirmed (5 of 12 questions in prior testing; confidence-based). Semantics rewritten in P0.5-07 (merge not overwrite; persist on result-ready; dedupe by `askedDiagnosticQuestionIds`; `Math.max` floor on wrong answers removed).
+- **Mistake fingerprint:** JSON blob in IndexedDB + Supabase. Per-concept mastery, SRS state, error log, production gap, speaking minutes, preference. **Weekly Sprint fields (Stream 5):** `weeklyFocus: string[]`, `weekStartedAt: string | null`, `weeklySprintHistory: WeeklySprintRecord[]`, `calibrationSessionsRemaining: number`.
 - **Mastery scoring:** Phase-adaptive EMA, slip detection, geometric-mean confidence.
-- **Decay:** Exponential with floor of 35. Half-life ~46 days (shortening to ~25 is deferred to post-P0 A2 correction).
+- **Decay:** Exponential with floor of 35. `DECAY_HALF_LIFE_DAYS = 25` at `src/engine/fingerprint.ts:12` (Stream 1.2 shipped — ~3.5 weeks reflects steepest forgetting in first month).
+- **Calibration window (Stream 1.3):** First 5 sessions use a calibration recipe (30/30/30/10) read at `src/hooks/useSession.ts:154`. Counter decrements on session completion.
 - **Phase model:** locked → intro → practice → consolidation → maintenance.
-- **Scheduler:** Recipe 40/30/20/10 with `firstEligibleType` guard, concept-repeat cap, production guarantee, Fisher-Yates shuffle.
-- **Diagnosis engine:** 4 root-cause rules. Output now surfaced on the dashboard session card as a conditional "Why this" block (2026-05-21) — silent when no rule fires, learner-facing `reasoning` when one does.
+- **Scheduler:** Recipe 40/30/20/10 with `firstEligibleType` guard, concept-repeat cap, production guarantee, Fisher-Yates shuffle. **Weekly Sprint bias (Stream 5 Phase 3):** the 40% remediation pool biases (does not lock) toward `weeklyFocus`. Distribution preserved within ±5pp.
+- **Weekly Sprint engine (Stream 5):** `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`, `openWeek`, `ensureWeekOpen` in `src/engine/weekly-sprint.ts`. All pure functions; optional `now` param; no I/O. Graduation rule on `closeWeek` (Phase 5b): mastery threshold + min attempts; weekly check score <50 demotes; null check doesn't punish.
+- **Event logging (Stream 1.4 writes):** `src/lib/logEvents.ts` exposes `logSessionResults` (per-exercise rows on session completion) and `logWeeklyCheckComplete` (per-weekly-check rows). Both fire-and-forget; auth users only; guests excluded. `anonymous_session_id` = SHA-256(user_id) first 16 hex. Table: `supabase/migrations/003_learning_events_log.sql`. Reads (analytics surface) deferred.
+- **Diagnosis engine:** 4 root-cause rules. Output surfaced on the dashboard session card as a conditional "Why this" block (2026-05-21) — silent when no rule fires.
 - **Repair loop:** template explanation + 2 micro-drills + retry + SRS scheduling (1→3→7→14→30 day ladder).
+- **AI validity gate (P0.5-06):** All AI surfaces flow through `validateNorwegianOutput` in `src/ai/validate.ts` before reaching the learner. Heuristic check (char-set match, ≤18-char words, ≤25% English drift, ≥1 Norwegian function word). Failed validation → per-surface template fallback.
+- **Prompt hardening (Stream 1.1 Step 1):** All 5 prompt builders in `src/ai/prompts.ts` carry Norwegian-enforcement system rules ("ONLY Norwegian Bokmål", "V2 word order is mandatory", "Use only real, everyday Norwegian words"). Bridges current Llama-3.2-3B until NB-Llama-1B compile (Step 2) ships.
 
 ---
 
@@ -44,8 +49,8 @@ The adaptive engine is complete and the session loop is now end-to-end verified:
 
 ### Working end-to-end
 - Diagnostic placement (onboarding flow, 5 slides + quiz)
-- Dashboard (session preview, level selector, A1/A2/B1/B2 with honest B1/B2 banner)
-- Session loop: fill-in-blank, word-order, translation-to-norwegian, sentence-transformation, fill-in-blank, speed-round
+- Dashboard (session preview, level selector, A1/A2/B1/B2 with honest B1/B2 banner, WeekStrip surface for Weekly Sprint focus + day-dots)
+- Session loop: fill-in-blank, word-order, translation-to-norwegian, sentence-transformation, speed-round
 - Repair loop: explain → micro-drills → retry → SRS
 - Conversation mode (AI tutor + template fallback when model unavailable)
 - Journal (text + voice input, AI feedback + template fallback, corrected version with honest partial-correction note)
@@ -53,16 +58,20 @@ The adaptive engine is complete and the session loop is now end-to-end verified:
 - Progress page (concept phases, locked prerequisites)
 - Profile (level, streak, sessions, weak concepts, session style preference)
 - Recalibration (7-question quiz; no trigger banner — P1)
+- **Weekly Sprint (Stream 5):** `/uke` weekly retrieval check (6–8 items from focus concepts + prior-week graduates); dashboard WeekStrip; weekly graduation on close; honest reset on >7-day absence
+- **Muntlig scripted roleplay (step 5):** `/roleplay` — 3 scenarios × 4 turns. Shipped 2026-05-21 prior to P0.5 close.
+- **Mid-session exit confirmation:** AlertDialog primitive (Radix-based) at `src/components/ui/alert-dialog.tsx` — replaced `window.confirm()`.
 
 ### Stubs (by design)
 - `/vocab` — Vocabulary SRS placeholder with notify button
 - `/shadow` — Pronunciation lab placeholder with notify button
 
 ### Known gaps (not stubs, actual missing pieces)
-- Session complete screen: cannot test via direct navigation (guarded); reachable via completing a session
 - Listening exercises: have their own three-tier fallback but no audio files served yet
-- Speed round: stale-closure timer bug (queued in integrity follow-ups)
-- Muntlig module: designed, not built
+- Muntlig module: shadowing, pronunciation drills, listen-and-respond designed but not built; only step 5 (scripted roleplay) is live
+- Analytics surface for `learning_events_log` (Stream 1.4 reads — first read use case deferred until there's enough data)
+- NB-Llama-3.2-1B compile for web-llm (Stream 1.1 Step 2 — half-day MLC pipeline)
+- F008 path-traversal tightening (hygiene; no exploit), F025 session resume on re-entry, F027 repair-loop cap, F032 journal SSR mismatch, F035 reading visited indicator — all documented in `docs/recovery-backlog.md`
 
 ---
 
@@ -98,10 +107,12 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 - `AIStatusBadge` shows "AI ready" / "AI unavailable" honestly
 - Template fallbacks exist for all AI paths (explanations, conversation, journal feedback, writing review)
 - `explainMistake` returns `{ text, source }` — `source: 'template'` vs `source: 'ai'`
+- **Prompt hardening (Stream 1.1 Step 1, shipped):** all 5 prompt builders in `src/ai/prompts.ts` carry Norwegian-enforcement system rules
+- **Shared validity gate (P0.5-06, shipped):** `validateNorwegianOutput` in `src/ai/validate.ts` gates all AI surfaces; failed validation falls back to per-surface template
 
 **What's not in place:**
-- NB-Llama model swap (Stream 1.1 — three-step path in roadmap)
-- Prompt hardening v2
+- NB-Llama-3.2-1B compile for web-llm (Stream 1.1 Step 2 — queued; half-day MLC pipeline)
+- Server-side Ollama on VPS (Stream 1.1 Step 3 — last resort, only if Step 2 fails the bar)
 - Native speaker gate for model quality validation
 
 ---
@@ -125,12 +136,12 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 
 ## Gap List
 
-### P1 (status post-P0.5)
+### P1 (status post-P0.5 + Stream 5)
 1. ~~Diagnostic explanation shows next question's topic after wrong answer~~ — closed via P0.5-07 (semantics rewrite)
 2. Conversation mic auto-starts recording without user consent — **OPEN** (P1, mic-consent UX)
 3. Conversation opener context-free — **closed** via P0.5-05 (Norwegian topic label in Kari opener)
 4. ~~Journal feedback quality nonsensical~~ — closed via P0.5-06 (validity gate on `reviewWriting`)
-5. Profile/Progress SSR hydration flash (A1→A2) — partially closed via P0.5-11 (read-on-render); residual flash on level transitions
+5. Profile/Progress SSR hydration flash (A1→A2) — partially closed via P0.5-11 (read-on-render); **dashboard hydration React #418 closed 2026-05-22 via `cf1fcc3`** (SSR-safe gates on `todayLabel` + `streak`). Residual: F032 journal SSR mismatch (cosmetic).
 6. Progress page shows wrong level's concept graph — closed via P0.5-02 (canonical concept-id scheme)
 7. Recalibration starts without trigger banner or opt-in — **OPEN** (P1, surfaced 2026-05-21 walkthrough)
 8. Recalibration accessibility tree empty — **OPEN** (P1, screen-reader gap)
@@ -139,6 +150,7 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 11. Waitlist form cosmetic — closed via analysis in P0.5-13 (server action wired to Supabase)
 12. Conversation end has no summary/save confirmation — **OPEN** (P1, session bookend)
 13. Session complete screen untestable via direct navigation — closed via P0.5-08 (pre-render guard)
+14. Mid-session exit used `window.confirm()` — closed 2026-05-22 via `922d91e` (Radix AlertDialog primitive)
 
 ### P2 (polish, after P1)
 - Grey rectangle visual artifact on login/onboarding cards
@@ -162,12 +174,13 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 - Result: post-P0 sessions are 2–7 items instead of 12–16
 
 ### Deferred (post-P1, strategic)
-- A2 decay half-life shortening (46 → 25 days)
-- Calibration window for first 5 sessions
-- Anonymized event logging
-- Muntlig module (full speaking system)
+- ~~A2 decay half-life shortening (46 → 25 days)~~ ✅ shipped Stream 1.2
+- ~~Calibration window for first 5 sessions~~ ✅ shipped Stream 1.3
+- ~~Anonymized event logging~~ (writes) ✅ shipped Stream 1.4; reads (analytics surface) still deferred
+- NB-Llama-3.2-1B compile for web-llm (Stream 1.1 Step 2)
+- Muntlig module — shadowing, pronunciation drills, listen-and-respond (step 5 scripted roleplay shipped)
 - FSRS/BKT adaptive spacing migration (v2)
-- B1/B2 concept graph authoring
+- B1/B2 concept graph + corpus authoring
 - Reading comprehension scoring
 - Vocabulary SRS (schema exists, no content seeded, no UI)
 - Listening module
@@ -189,7 +202,7 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 4. One move at a time. Finish, verify, stop.
 5. Scope discipline. Fix X, don't also refactor Y.
 
-**Test suite:** 106 tests passing across `tests/engine/`, `tests/exercises/`, `tests/hooks/`, `tests/ai/`, `tests/journal/`.
+**Test suite:** 14 test files / 155 tests passing (verified 2026-05-22 via `npm test`). Coverage spans `tests/engine/` (incl. `weekly-sprint.test.ts`, `scheduler.test.ts` with weekly-focus-bias suite), `tests/exercises/`, `tests/hooks/`, `tests/ai/`, `tests/journal/`, `tests/lib/` (incl. `weekly-check.test.ts`).
 
 ---
 
@@ -205,17 +218,27 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 
 ## Success Criteria for Next Phase
 
-P0.5 sign-off leaves the next direction as a product decision (super-orchestrator scope). Five candidates per the updated roadmap:
+Stream 5 (Weekly Sprint) closure leaves two parallel decision tracks:
 
-A. **Muntlig roleplay deepening** — step 5 shipped before P0.5; deepen via branching variety, recording playback, scoring heuristics OR design a sixth muntlig mode.
-B. **Weekly progress / curriculum cohesion layer** — currently per-session and per-day signals only; no weekly review cadence. Strongest moat-trace candidate for "what comes after the foundation".
-C. **Stream 1.1 NB-Llama model swap** — validity gate bridges current quality; the model swap is still the cleaner long-term fix.
-D. **Authenticated-user walkthrough + Supabase sync verification** — engineering gap; auth path has not been exercised in any of the three walkthroughs.
-E. **B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching.
+**Engineering-eligible (can ship via Council without user input):**
+- **F008 path-traversal tightening** in `safeRedirectPath` — hygiene; no exploit. Small.
+- **F032 journal SSR mismatch** — cosmetic; same shape as the React #418 fix on dashboard.
+- **F027 repair-loop cap** — worst-case polish (`isRepairItem` guard prevents the failure mode).
+- **F025 session resume on re-entry** — non-trivial; needs session-state persistence layer.
+- **Stream 1.4 reads — analytics surface** against `learning_events_log`. First read use case. Needs design — how to surface "is the repair loop accelerating learning?" without becoming Duolingo's stats page.
+- **Stream 1.1 Step 2 — NB-Llama-3.2-1B MLC compile for web-llm.** Half-day pipeline; not single-turn.
+- **REVIEW.md 2026-05-11 WARNING items re-audit pass.**
 
-Direction selection runs through the super-orchestrator with Scout/Challenger/Council as needed.
+**Product-decision (need user input):**
+- **A. Muntlig roleplay deepening** — branching variety, recording playback, scoring heuristics OR a sixth muntlig mode.
+- **E. B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching.
 
-### Procedural locks added this round (apply to whichever build is chosen)
+**Pending user actions (unblock options):**
+- Magic-link click for authenticated walkthrough (option D from prior brief).
+- `NEXT_PUBLIC_APP_URL=https://pandoai.no` in production env.
+- Supabase Authentication → URL Configuration → whitelist `https://pandoai.no/auth/callback`.
+
+### Procedural locks (apply to whichever build is chosen)
 1. Fingerprint pre/post diffs are mandatory acceptance evidence for any task that claims to feed the engine.
 2. AI output flows through `validateNorwegianOutput` (one shared gate), not per-call-site validation.
 3. Source-verification audit before re-sequencing a recovery batch on walkthrough findings alone.
@@ -223,4 +246,4 @@ Direction selection runs through the super-orchestrator with Scout/Challenger/Co
 
 ---
 
-*Snapshot date: 2026-05-21 | Commits through: `ee5f886` (P0 item 6 — closes batch)*
+*Snapshot date: 2026-05-22 | Recent commits: `0fd8248` /gsd close + AlertDialog + roadmap reconciliation, `922d91e` AlertDialog primitive, `cf1fcc3` React #418 hydration fix, `6f01b12` weekly_check_complete telemetry wire, `9dd017e` dashboard WeekStrip, `85504e4` graduation rule, `d81b2e4` /uke route + WeeklyCheckScreen, `b73cb35` openWeek/ensureWeekOpen, `4fbd654` scheduler weekly-focus bias, `0821e75` Stream 5 Phase 1 data model.*

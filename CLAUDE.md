@@ -44,27 +44,34 @@ The adaptive engine is built, traced, and verified correct:
 - **Diagnostic placement** — IRT-style adaptive quiz, seeds the fingerprint (rawScore 60 correct / 20 wrong, confidence 0.4, 1 attempt). Cold-start traced and confirmed: new users get real adaptation from session one.
 - **Mistake fingerprint** — JSON blob in IndexedDB + Supabase. Per-concept: rawScore, confidenceScore, decayedScore, attempts, uniqueDaysActive, streak, recentOutcomes, SRS state (nextReviewAt, srsLevel). Plus error log (200 cap), error patterns, production gap, speaking minutes, input/production preference.
 - **Mastery scoring** — phase-adaptive EMA (α: intro 0.40 → practice 0.25 → consolidation 0.15 → maintenance 0.08), slip detection (a wrong answer after 4/5 recent correct counts at 30% weight), geometric-mean confidence.
-- **Decay** — exponential half-life, decays toward floor of 35 (not zero). Half-life is being shortened from 46 → ~25 days based on research (see roadmap).
+- **Decay** — exponential half-life, decays toward floor of 35 (not zero). Half-life is **25 days** (Stream 1.2 shipped); see `src/engine/fingerprint.ts:12`.
+- **Calibration window** — first 5 sessions use a 30/30/30/10 recipe variant (Stream 1.3 shipped); see `src/hooks/useSession.ts:154`.
 - **Phase model** — locked → intro → practice → consolidation → maintenance, computed live.
-- **Scheduler** — recipe 40/30/20/10 (remediation/review/new/interleaving), pulls 5 weak concepts, SRS-driven review pool, repeat cap, production guarantee, shuffle.
-- **Diagnosis engine** — 4 root-cause rules on real error data.
+- **Scheduler** — recipe 40/30/20/10 (remediation/review/new/interleaving), pulls 5 weak concepts, SRS-driven review pool, repeat cap, production guarantee, Fisher-Yates shuffle. **Weekly Sprint bias (Stream 5):** the 40% remediation pool biases toward `weeklyFocus` while preserving the recipe within ±5pp.
+- **Weekly Sprint engine (Stream 5)** — `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`, `openWeek`, `ensureWeekOpen` in `src/engine/weekly-sprint.ts`. Graduation rule promotes/demotes on close.
+- **Diagnosis engine** — 4 root-cause rules on real error data. Output surfaced on dashboard session card.
 - **Repair loop** — template explanation + 2 micro-drills + retry + SRS scheduling on the ladder 1→3→7→14→30 days.
+- **AI validity gate** — all AI surfaces flow through `validateNorwegianOutput` in `src/ai/validate.ts`. Failed validation → per-surface template fallback.
+- **Prompt hardening (Stream 1.1 Step 1)** — all 5 prompt builders in `src/ai/prompts.ts` carry Norwegian-enforcement system rules.
+- **Event logging (Stream 1.4 writes)** — `src/lib/logEvents.ts` writes anonymized per-exercise and per-weekly-check rows to `learning_events_log` for auth users; guests excluded.
 - **Error tagging** — uses sentence's real `error_tags_detectable`, not guessed from exercise type.
 - **Content dedup** — no repeated sentence within a session.
-- **Full pipeline parity** — session, conversation, AND journal all feed the identical mastery + SRS pipeline.
+- **Full pipeline parity** — session, conversation, journal, AND weekly check all feed the identical mastery + SRS pipeline.
 
-Built features: diagnostic, dashboard, session loop, repair loop, recalibration, conversation mode (AI tutor + constraints), journal, reading (hardcoded texts), progress, profile.
+Built features: diagnostic, dashboard (with WeekStrip), session loop, repair loop, recalibration, conversation mode (AI tutor + constraints), journal, reading (hardcoded texts), progress, profile, weekly retrieval check at `/uke`, scripted roleplay at `/roleplay`, AlertDialog primitive for confirmations.
 
-Stubs / not built: muntlig module (designed in `docs/muntlig/architecture.md`), vocab SRS, listening module, reading comprehension scoring, B1/B2 concept graph. Several UI buttons are dead. Landing email form is cosmetic.
+Stubs / not built: muntlig modes (shadowing, pronunciation drills, listen-and-respond — only scripted roleplay step 5 shipped), vocab SRS, listening module, reading comprehension scoring, B1/B2 concept graph, analytics surface for `learning_events_log`. Several UI buttons are dead. Landing email form is cosmetic.
 
 ## Current Phase
 
-Two phases run in parallel until they reconverge:
+Stream 5 (Weekly Sprint) closed 2026-05-22. Engineering work continues on bounded follow-ups and quality items:
 
-- **Engine corrections** (model swap to NB-Llama, decay half-life shortening, calibration window for first 5 sessions, event logging table) — small, surgical, research-driven.
-- **UI transformation** (UI-1.2 session loop next, then UI-1.3 dashboard, then UI-2 remaining screens). Underway: UI-0 done, UI-1.0 typeface done, UI-1.1 onboarding done.
+- **Stream 1 engine corrections** — Steps 1.1 (prompt hardening), 1.2 (decay 25d), 1.3 (calibration), 1.4 writes all shipped. Step 1.1.2 (NB-Llama-1B compile) and Stream 1.4 reads (analytics) still queued.
+- **UI transformation** — UI-0 done, UI-1.0 typeface done, UI-1.1 onboarding done, UI-1.2 session loop done (2026-05-20). UI-1.3 dashboard composition pass and UI-2 remaining screens (conversation, progress, landing) still queued. UI-3 cleanup last.
+- **Deferred polish** — F008 path-traversal, F025 session resume, F027 repair-loop cap, F032 journal SSR. None block ship.
+- **Product decisions** — Muntlig deepening (option A) and B1/B2 corpus authoring (option E) await user direction.
 
-After both converge, the muntlig module is the next major build. See `docs/muntlig/architecture.md` for the full zero-cost architecture.
+Muntlig is now a tributary to the Weekly Sprint rather than a parallel surface. See `docs/muntlig/architecture.md` for the zero-cost architecture when the muntlig deepening direction is chosen.
 
 Out of scope right now: vocab SRS, listening module, B1/B2 content authoring, FSRS/BKT migrations (v2), reading comprehension scoring, native/iOS anything.
 

@@ -42,7 +42,7 @@ Tasks were dependency-ordered. P0.5-01 (source verification) ran first. **Re-seq
 - F027 repair-loop cap — `isRepairItem` guard prevents worst-case; cap is polish.
 - F032 journal SSR mismatch — cosmetic, no Critical ripple.
 - F035 reading visited indicator — reading does not feed fingerprint by design.
-- AlertDialog primitive — mid-session exit uses `window.confirm()` with a TODO; migrate when next UI sweep happens.
+- ~~AlertDialog primitive — mid-session exit uses `window.confirm()` with a TODO; migrate when next UI sweep happens.~~ ✅ CLOSED 2026-05-22 via commit `922d91e` — `@radix-ui/react-alert-dialog` installed, shadcn-flavor primitive at `src/components/ui/alert-dialog.tsx`, mid-session exit migrated.
 - Authenticated-user walkthrough — guest-only across all three walkthroughs; queued for next fresh walk.
 - REVIEW.md 2026-05-11 WARNING items — most re-audited as still-fine in P0.5-01; a few flagged for next-touch refactor.
 

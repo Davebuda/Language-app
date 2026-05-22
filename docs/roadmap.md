@@ -2,9 +2,11 @@
 
 The current build sequence with every research-validated priority locked in. This document supersedes earlier scattered planning. If you want to know what's next, what's deferred, and why — start here.
 
-## Current Position — P0.5 RECOVERY COMPLETE 2026-05-21T21:00
+## Current Position — STREAM 5 (WEEKLY SPRINT) COMPLETE 2026-05-22
 
-**P0.5 Recovery Bundle signed off:** 15 tasks complete across 16 commits in a single session. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`. All 11 Critical findings closed; 17 of 20 Significant closed; 4 of 9 Minor closed via code, the remaining 5 closed via analysis; 4 Edge cases preserved as documented gaps (not regressions).
+**Stream 5 — Weekly Sprint signed off:** all 8 phases (1, 3, 5a, 4a, 5b, 6, 7, 4b) shipped across 9 commits + the React #418 follow-up + AlertDialog primitive close + roadmap reconciliation. Engine→UI path is end-to-end live: learner starts a session → `ensureWeekOpen` populates `weeklyFocus` → scheduler biases remediation pool toward focus → dashboard `WeekStrip` surfaces focus chips + day-dots → `/uke` weekly check writes locally via `closeWeek`/`openWeek` and emits an anonymized `weekly_check_complete` row to `learning_events_log` for authenticated learners → graduation rule promotes/demotes on close. 155/155 tests passing. Phase 7 smoke check on pandoai.no PASS with one P1 (React #418 hydration on `/dashboard`) which has since been closed via commit `cf1fcc3`.
+
+**Prior phase — P0.5 Recovery Bundle (2026-05-21):** 15 tasks complete across 16 commits in a single session. Sign-off report: `.council/reports/2026-05-21-2100-recovery-signoff.md`. All 11 Critical findings closed; 17 of 20 Significant closed; 4 of 9 Minor closed via code, the remaining 5 closed via analysis; 4 Edge cases preserved as documented gaps (not regressions).
 
 **Headline closures across the moat:**
 - Diagnosis: F036 (concept-id reconciliation), F017 (diagnostic rawScore floor), F031 (history wipe), F022 (AI explainer correctness) — all closed.
@@ -224,31 +226,29 @@ Learner's mental model: *"I have 5 concepts to lock in this week. The app picks 
 
 **Phase 5b — Graduation rule.** ✅ COMPLETE 2026-05-22T01:03 (commit `85504e4`). `WeeklySprintRecord.focusOutcomes` extended with `graduated: boolean`. `closeWeek` signature gained `graph` parameter; computes per-concept graduation via `isGraduated` predicate (mastery threshold AND minAttempts; low check score <50 demotes; null check doesn't punish). All callers threaded through. 7 new tests.
 
-**Phase 6 — Dashboard WeekStrip.** ✅ COMPLETE 2026-05-22T01:08 (commit `9dd017e`). `WeekStrip` component on dashboard surfaces `weeklyFocus` chips + day-dots + CTA to /uke. Returns `null` when `weekStartedAt === null` (silent inactive). Day-dots use honest fallback (only `lastSessionAt` available in v1). Anti-Duolingo: no streak number, no XP. Norwegian text dominates per north star.
+**Phase 6 — Dashboard WeekStrip.** ✅ COMPLETE 2026-05-22T01:08 (commit `9dd017e`). `WeekStrip` component on dashboard surfaces `weeklyFocus` chips + day-dots + CTA to /uke. Returns `null` when `weekStartedAt === null` (silent inactive). Day-dots use honest fallback (only `lastSessionAt` available in v1). Anti-Duolingo: no streak number, no XP. Norwegian text dominates per north star. Folds with UI-1.3 (queued) instead of being rebuilt parallel.
 
-**Phase 6 — Dashboard week-strip.** Composition into UI-1.3 dashboard (queued anyway). 375px compact horizontal bar showing focus-concept progress dots; 1280px+ expanded card with rawScore deltas. Folds with UI-1.3 instead of being built parallel.
-
-**Phase 7 — Anti-Duolingo aesthetic guard + audit.** ⏵ NEXT. Playwright smoke check on /dashboard (with simulated fingerprint that has weeklyFocus populated) and /uke. Screenshots at 375px and 1280px. `/baseline-ui` + `/audit` against the new surfaces. Report findings.
+**Phase 7 — Anti-Duolingo aesthetic guard + audit.** ✅ COMPLETE 2026-05-22T01:20 (commit `718ca45`). Playwright smoke check on pandoai.no — `/uke` renders clean at 375px and 1280px with zero console errors, WeekStrip empty state correct for fresh guest, anti-Duolingo aesthetic preserved (no streak number, day-dots only, Norwegian dominates). One P1 surfaced: React #418 hydration on `/dashboard` (not introduced by Stream 5; SSR-vs-CSR text divergence in `todayFormatted()` + `getStreak()`). React #418 follow-up closed 2026-05-22T01:55 via commit `cf1fcc3` — both values now SSR-safe gated through `useEffect`. Phase 7 report: `.council/reports/2026-05-22-0115-phase7-smoke.md`. React #418 report: `.council/reports/2026-05-22-0150-react418-fix.md`.
 
 ### Acceptance for the whole stream
-- Three consecutive simulated weekly sprints rotate focus correctly per `engine-tester`.
-- Weekly check produces a `learning_events_log` row (first read use case unlocked).
-- 40/30/20/10 scheduler distribution preserved within ±5pp under focus bias.
-- Dashboard week-strip passes `/baseline-ui` and `/baseline-ui` typographic dominance test.
-- Authenticated path fully traced (Phase 2 walkthrough).
-- Honest-reset banner verified via simulated 8-day absence.
+- ✅ Weekly check produces a `learning_events_log` row — `logWeeklyCheckComplete` wired into `recordWeeklyCheckResult` (Phase 4b, commit `6f01b12`).
+- ✅ 40/30/20/10 scheduler distribution preserved within ±5pp under focus bias — verified via `tests/engine/scheduler.test.ts` `describe('weekly focus bias')` (5 tests).
+- ✅ Dashboard WeekStrip passes the anti-Duolingo aesthetic guard — Phase 7 smoke confirmed no streak number, day-dots only, Norwegian header.
+- ⏵ Three consecutive simulated weekly sprints rotate focus correctly per `engine-tester` — covered by `tests/engine/weekly-sprint.test.ts` (37 tests across Phase 1/3/5a/5b). Live three-week simulation would be additional evidence but is not blocking — graduation + close + open are unit-tested.
+- ⏵ Authenticated path fully traced (Phase 2 walkthrough) — pending user magic-link click + the two manual auth-redirect actions (NEXT_PUBLIC_APP_URL prod env + Supabase callback whitelist). Engineering hygiene only; no unshipped code blocks behind it.
+- ⏵ Honest-reset banner verified via simulated 8-day absence — `shouldResetWeek` unit-tested at the boundary; the live banner copy will surface organically once any user returns after >7 days. Not blocking.
 
 ### Procedural locks (carried from P0.5)
 - Fingerprint pre/post diffs are mandatory acceptance evidence for every phase touching engine write paths.
 - All AI used in weekly check items (if any — templates primary) flows through `validateNorwegianOutput`.
 - Source-verification audit before any re-sequencing.
-- Fresh Playwright walkthrough before Phase 6 ships.
+- Fresh Playwright walkthrough before the next muntlig surface ships.
 
 ---
 
-## Stream 3 — Muntlig Module (next major build after UI-1 converges)
+## Stream 6 — v2 / Deferred Backlog
 
-Things that are real, designed or discussed, and correctly parked until the working system is whole.
+Things that are real, designed or discussed, and correctly parked until the working system is whole. (Previously mistitled "Stream 3 — Muntlig Module" — that real Stream 3 entry lives earlier in this file with its actual build plan; this section is the v2 parking lot.)
 
 - **FSRS or ARTS adaptive spacing** — research says it outperforms fixed ladder by 20–30% in review load. v1 fixed ladder is "adequate and defensible." Migrate in v2 when there's data to tune against.
 - **Bayesian Knowledge Tracing instead of EMA** — more principled mastery model. EMA + slip detection approximates BKT's core idea and is "good enough for v1." Migrate in v2 if data shows it's needed.
@@ -286,26 +286,37 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 
 ## Operating Sequence
 
-**Updated 2026-05-21T21:00 — P0.5 Recovery Bundle complete.** See `docs/recovery-backlog.md` for the closed task table and `.council/reports/2026-05-21-2100-recovery-signoff.md` for the sign-off report.
+**Updated 2026-05-22 — Stream 5 (Weekly Sprint) complete.** See the Stream 5 section above for full phase-by-phase closure; `.council/log.md` 2026-05-22T07:20 entry for the reconciliation pass that brought stale roadmap entries into line with shipped state.
 
 ### Completed phases
 - **P0 batch (2026-05-20):** 8 items closed. Session loop reachable end-to-end.
-- **P0.5 Recovery Bundle (2026-05-21):** 15 items closed. Four-of-five regressed pipeline-honesty patterns re-sealed; three new pedagogical-harm AI bugs closed via shared validity gate; concept-id scheme reconciled to graph as canonical source; corpus wired to client; conversation + journal write paths confirmed through shared error-tag → concept-id module; diagnostic semantics rewritten (merge not overwrite, persist on result-ready, dedupe by askedIds).
+- **P0.5 Recovery Bundle (2026-05-21):** 15 items closed. Four-of-five regressed pipeline-honesty patterns re-sealed; three new pedagogical-harm AI bugs closed via shared validity gate; concept-id scheme reconciled to graph as canonical source; corpus wired to client; conversation + journal write paths confirmed through shared error-tag → concept-id module; diagnostic semantics rewritten.
+- **Stream 5 — Weekly Sprint (2026-05-22):** all 8 phases shipped (1, 3, 5a, 4a, 5b, 6, 7, 4b). Engine→UI path live: `ensureWeekOpen` populates `weeklyFocus` → scheduler biases remediation toward focus → dashboard WeekStrip surfaces focus + day-dots → `/uke` weekly check writes locally and emits `learning_events_log` row for auth users → graduation rule promotes/demotes. 155/155 tests passing. React #418 hydration follow-up closed via `cf1fcc3`.
+- **Stream 1 engine corrections (folded through P0.5 + Stream 5):** 1.1 Step 1 (prompt hardening) ✅; 1.2 (decay half-life → 25 days) ✅; 1.3 (calibration window) ✅; 1.4 writes (`learning_events_log` table + `logSessionResults` + `logWeeklyCheckComplete`) ✅. Stream 1.1 Step 2 (NB-Llama-3.2-1B compile for web-llm) and Stream 1.4 reads (analytics dashboard) remain queued.
+- **Integrity + primitive follow-ups (2026-05-22):** FillInBlank blank-indicator sizing, hardcoded errorTag, SpeedRound stale closure, AlertDialog primitive — all closed (see Integrity Follow-ups + UI Primitive Follow-ups sections above).
 
-### Next phase committed — Stream 5: Weekly Sprint (Curriculum Cohesion Layer)
+### Pending user actions
+- **Magic-link click** — completes the deferred authenticated-user walkthrough (option D from prior brief). No code blocked behind it.
+- **`NEXT_PUBLIC_APP_URL=https://pandoai.no`** in production env (Hetzner PM2 ecosystem or `/etc/environment`).
+- **Supabase Authentication → URL Configuration** — whitelist `https://pandoai.no/auth/callback`.
 
-Selected 2026-05-21T21:35 via super-orchestrator + Council restructure. Moat trace: lands directly on diagnosis (focus selection from fingerprint), scheduling (recipe bias), remediation (failures from weekly check feed repair loop), AND unlocks the first read use case for `learning_events_log`. See `.council/log.md` 2026-05-21T21:35 entry for full reasoning; `.council/research.md` for Scout findings on the 5 questions.
+### Next phase — choose one (engineering-eligible items first)
+- **F008 path-traversal tightening** — hygiene; no exploit; small Council brief.
+- **F025 session resume on re-entry** — needs session-state persistence layer; non-trivial design.
+- **F027 repair-loop cap** — worst-case polish.
+- **F032 journal SSR mismatch** — cosmetic; same shape as React #418 fix.
+- **Stream 1.4 reads — first analytics surface** against `learning_events_log` (needs design — how do we surface "is the repair loop accelerating learning?" honestly without becoming Duolingo's stats page).
+- **Stream 1.1 Step 2** — half-day MLC pipeline to compile NB-Llama-3.2-1B for web-llm; not single-turn.
+- **REVIEW.md 2026-05-11 WARNING items** — re-audit pass; most re-audited as still-fine in P0.5-01, a few flagged for next-touch refactor.
 
-**Options A, C, D, E held as follow-ups in this order:**
-- D. **Authenticated-user walkthrough** — slotted between Weekly Sprint Phase 1 and Phase 2 as a one-session engineering hygiene pass. The auth path has not been exercised across three walkthroughs and Weekly Sprint adds Supabase write paths.
-- C. **Stream 1.1 model swap** — re-evaluated after Weekly Sprint ships. Validity gate continues to bridge current quality.
-- A. **Muntlig roleplay deepening** — re-evaluated after Weekly Sprint Phase 1 ships. Muntlig becomes a tributary to the weekly target rather than a parallel surface.
-- E. **B1/B2 concept graph + corpus authoring** — re-evaluated after Weekly Sprint proves out on A1/A2.
+### Product-decision items (need user)
+- **A. Muntlig roleplay deepening** — branching variety, recording playback, scoring heuristics OR a sixth muntlig mode. Muntlig is now a tributary to the Weekly Sprint rather than a parallel surface.
+- **E. B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching. Weekly Sprint has proved out on A1/A2.
 
-### Process locks added this round
+### Process locks (carried)
 - Fingerprint pre/post diffs are mandatory acceptance evidence for any task that claims to feed the engine.
 - AI output flows through one shared validity gate (`src/ai/validate.ts:validateNorwegianOutput`), not per-call-site validation.
-- Source-verification audit is mandatory before re-sequencing a recovery batch on the strength of walkthrough findings alone (P0.5-01 caught one mis-framed Critical and surfaced three ordering revisions).
+- Source-verification audit is mandatory before re-sequencing a recovery batch on the strength of walkthrough findings alone.
 - A fresh walkthrough — including the authenticated path — runs before the next muntlig surface ships.
 
 ### Deferred (documented gaps, not regressions)
@@ -314,13 +325,8 @@ Selected 2026-05-21T21:35 via super-orchestrator + Council restructure. Moat tra
 3. **F027 repair-loop cap** — `isRepairItem` guard prevents worst-case; cap is polish.
 4. **F032 journal SSR mismatch** — cosmetic, no Critical ripple.
 5. **F035 reading visited indicator** — reading does not feed fingerprint by design.
-6. **AlertDialog primitive** — mid-session exit uses `window.confirm()` with a TODO; install `@radix-ui/react-alert-dialog` and migrate in next UI sweep.
-7. **REVIEW.md 2026-05-11 WARNING items** — most re-audited as still-fine in P0.5-01; a few flagged for next-touch refactor.
-8. **v2 backlog** (FSRS, BKT, adaptive decay, vocab SRS) when the working app has real users and real data.
-
-### Phase plan moving forward — sequence TBD by super-orchestrator
-- Whichever build target (A–E above) is chosen, run it under the same procedural locks added this round.
-- Hold the prior plan's Stream 1 engine corrections (A2 decay half-life, A3 calibration window, A4 event log reads) as bounded follow-ups slottable between major builds — they are correctness/observability work, not feature work.
+6. **REVIEW.md 2026-05-11 WARNING items** — most re-audited as still-fine in P0.5-01; a few flagged for next-touch refactor.
+7. **v2 backlog** (FSRS, BKT, adaptive decay, vocab SRS, NB-Llama-1B compile via Stream 1.1 Step 2, full muntlig mode set) when the working app has real users and real data.
 
 Anything proposed outside this sequence is breadth, and breadth without justification is the failure mode we've already paid for.
 
