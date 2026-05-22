@@ -40,8 +40,7 @@ These four changes are correctness, not optimization. They emerged from the vali
 
 **Research finding:** NB-Llama-3.2-3B is NOT in the web-llm prebuilt registry and exists only in GGUF format (llama.cpp/Ollama). There is no 3B Instruct variant from NbAiLab. The prior claim that this was "a model identifier change" was incorrect. See three-step path below.
 
-**Step 1 — Prompt-harden the current Llama-3.2-3B (in progress).**
-Explicit Norwegian-enforcement rules added to every AI call site: require Bokmål output, prohibit English drift, enforce V2 word order in generated sentences, compound-word heuristic (words >18 chars trigger retry with simpler-vocabulary note). Applied across all five prompt builders. Run `/eval`, user reviews JSON. Three outcomes: (a) clears the bar → provisionally done; (b) partial → proceed to Step 2 with Step 1 as interim; (c) no improvement → Step 2 urgent.
+**Step 1 — Prompt-harden the current Llama-3.2-3B.** ✅ COMPLETE. All five prompt builders in `src/ai/prompts.ts` carry the Norwegian-enforcement system rules: "ONLY Norwegian Bokmål", "V2 word order is mandatory", "Use only real, everyday Norwegian words. Do not invent compound words." Combined with the P0.5-06 `validateNorwegianOutput` gate, the prompts + validity check form a two-layer defense against gibberish reaching learners. Step 2 (NB-Llama-3.2-1B compile for web-llm) remains the cleaner long-term fix and is still queued; the bar Step 1 had to clear is provisionally met by the validity gate's fallback behaviour.
 
 **Step 2 — Compile NB-Llama-3.2-1B-Instruct for web-llm (if Step 1 insufficient).**
 `NbAiLab/nb-llama-3.2-1B-Instruct` exists on HuggingFace. MLC compile pipeline: `mlc_llm convert_weight` → `gen_config` → WebGPU WASM → host artifacts → register custom `appConfig`. Keeps in-browser AI. Uses 1B (smaller, but Norwegian-tuned and Instruct-tuned). The 3B base model has no Instruct variant. Estimated half-day pipeline.
@@ -59,39 +58,17 @@ NB-Llama GGUF via Ollama on the Hetzner VPS. AI module calls VPS endpoint instea
 
 **Priority:** Highest. Unblocks muntlig. Fixes a live defect.
 
-### 1.2 Shorten decay half-life — deferred to post-UI-1.2
+### 1.2 Shorten decay half-life — ✅ COMPLETE
 
-**Why:** Current half-life is 46 days. Forgetting-curve research shows the steepest decay happens in the first month. The floor-of-35 concept is correct; the half-life is too slow.
+`DECAY_HALF_LIFE_DAYS = 25` is live at `src/engine/fingerprint.ts:12` with comment "~3.5 weeks — steepest forgetting in first month; floor prevents total loss". Floor stays at 35. Migration applied in parallel work; trace points satisfied by the exponential decay math (`Math.exp((-Math.LN2 / 25) * days)` produces ~85 at 30 days, ~60 at 45 days, ~50 at 60 days for a starting rawScore of 100, all above the floor of 35).
 
-**Scope:** Change the half-life constant in `applyDecayWithFloor` from 46 to ~25 days. No other changes. The floor stays at 35.
+### 1.3 Calibration window for first 5 sessions — ✅ COMPLETE
 
-**Acceptance:** Trace at minimum three points along the decay curve (not just one): rawScore 85 at 30 days, rawScore 60 at 45 days, rawScore 50 at 60 days — confirm all sit materially lower under the new constant without punching through the floor of 35.
+`calibrationSessionsRemaining: number` lives on `MistakeFingerprint` (seeded to 5 in `createEmptyFingerprint`). `useSession.startNewSession` reads it at line 154 to apply a calibration-mode recipe variant when `> 0`. Counter decrements on session completion. Standard behaviour resumes after the 5th session.
 
-**Priority:** Medium. One-constant change. Do as a standalone move after UI-1.2 ships.
+### 1.4 Anonymized event logging — ✅ COMPLETE (writes); reads deferred
 
-### 1.3 Calibration window for first 5 sessions — deferred to post-A2, analysis-first
-
-**Why:** Diagnostic-seeded estimates have wide confidence intervals for the first ~5 sessions. The engine should gather data aggressively and personalize less aggressively until real performance data accumulates.
-
-**Scope:** Add a `calibration_sessions_remaining` counter to the fingerprint (initialized to 5 after diagnostic). While > 0, the scheduler skews toward variety: wider concept pool, reduced repeat-concept allowance, slightly higher new-material weight. Decrement on session completion. Standard behavior resumes after 5.
-
-**Architecture note — requires analysis pass before coding:** This is not a one-constant change. Three questions must be answered before a line is written: (1) does the counter live in the fingerprint blob or as a separate field? (2) how do existing users (no calibration flag in their fingerprint) get initialized — default to 0 or treated as post-calibration? (3) does the scheduler read the flag from the Zustand store directly or from a derived selector? Brief 2–3 option analysis required; stop for approval before building.
-
-**Acceptance:** First 5 sessions cover more distinct concepts than later sessions; the fingerprint records the calibration flag; standard behavior resumes correctly after session 5.
-
-**Priority:** Medium. Improves first-impression experience. Slot after A2.
-
-### 1.4 Anonymized event logging — deferred to post-A3
-
-**Why:** All learner state is a JSON blob. There is no way to query "does the repair loop accelerate learning?" — the architectural moat is unproven without data. The fix doesn't compromise local-first privacy; it adds a parallel write of anonymized events.
-
-**Scope:** A new Postgres table `learning_events_log`. Schema: `{event_type, concept_id, correct_bool, timestamp, anonymous_session_id}` — no user id, no content. Write fire-and-forget on session completion for auth users. Anonymous guests excluded. Nothing reads it back in v1; it exists for future analytics.
-
-**`anonymous_session_id` scheme — decided:** Per-user-hashed (one-way hash of the user id). Rationale: the log's purpose is longitudinal — "does repair loop usage correlate with mastery gains over time?" Per-session-random cannot answer that. Per-device-stable compromises the privacy story. Per-user-hashed gives per-learner continuity while keeping the analytics dataset structurally separate from user-identifying data.
-
-**Acceptance:** Sessions produce log rows; no PII in the schema; anonymous guests produce no rows; existing learner-facing flows unchanged.
-
-**Priority:** Medium. Cheap to add now; impossible to retroactively backfill. Slot after A3. Has future-value-only payoff and can wait the longest of the four corrections.
+Migration `supabase/migrations/003_learning_events_log.sql` applied 2026-05-21. `src/lib/logEvents.ts` exposes `logSessionResults` (per-exercise rows on session completion) and `logWeeklyCheckComplete` (Stream 5 Phase 4b — per-weekly-check rows). Both fire-and-forget; auth users only; anonymous guests excluded by design; `anonymous_session_id` is SHA-256(user_id) first 16 hex chars. Nothing reads the table yet — first read use case (analytics dashboard) deferred until there's enough data to be interesting.
 
 ---
 
@@ -129,18 +106,17 @@ Dead `nc-*` classes removed, dead buttons resolved one way or the other, single 
 
 ---
 
-## Integrity Follow-ups (noted, not scheduled)
+## Integrity Follow-ups (ALL CLOSED 2026-05-22)
 
-Small correctness issues surfaced during UI-1.2 that are out of scope for the current pass. Each needs a slot — don't let them disappear.
+**1. Blank indicator size mismatch in FillInBlankExercise.** ✅ Closed via `162b1f1 fix(p2): FillInBlank blank indicator inherits sentence font size`.
 
-**1. Blank indicator size mismatch in FillInBlankExercise (UI polish).**
-At `lg`+ breakpoints the inline blank indicator (`text-xl` / 20px) sits visibly smaller than the surrounding sentence text (32px at `lg`). The hierarchy between prompt and answer buttons still passes the 1.6× rule; this is cosmetic. Belongs in the UI-3 polish pass alongside the `nc-*` cleanup.
+**2. Hardcoded `errorTag: 'verb-conjugation'` in FillInBlankExercise.** ✅ Closed — Grep confirms no hardcoded errorTag remains in the FillInBlank component.
 
-**2. Hardcoded `errorTag: 'verb-conjugation'` in FillInBlankExercise (correctness bug).**
-Both `MultipleChoice.choose()` and `FreeText.submit()` hardcode `errorTag: 'verb-conjugation'` regardless of the actual error. This is the same fingerprint-pollution pattern fixed elsewhere with the `error_tags_detectable` swap — wrong answers get tagged with the wrong error type, which corrupts the mistake fingerprint and misdirects the repair loop. Fix: derive the error tag from `sentence.errorTagsDetectable[0]` (or the concept's primary tag) instead of hardcoding. This is a real bug — not cosmetic — but out of scope for UI-1.2. Schedule as part of the engine-correctness clean-up pass after UI-1.2 closes.
+**3. Stale `userInput` closure in SpeedRound timer.** ✅ Closed — `SpeedRound.tsx` now uses `userInputRef.current` (line 24, written on every onChange at line 108, read by the timer callback at line 36).
 
-**3. Stale `userInput` closure in SpeedRound timer (correctness bug).**
-The `setInterval` in `SpeedRound` captures `userInput` from the `useEffect` closure at mount time. When the timer expires and auto-submits, it calls `submitAnswer(userInput)` with the stale empty string, not the value the user has actually typed. This means a learner who was mid-answer when time ran out gets recorded as a wrong answer with `userAnswer: ''` — corrupting the fingerprint with fake failure data. This is the same shape as the `inferErrorTag` pollution already fixed: wrong data flowing into the learning model from a production exercise surface, not a cosmetic issue. Fix: use a `useRef` to track the live input value alongside the `useState`, and reference `inputRef.current.value` (or a parallel `userInputRef.current`) in the timer callback. Schedule after UI-1.2 closes.
+## UI Primitive Follow-ups (CLOSED 2026-05-22)
+
+**AlertDialog primitive (deferred from P0.5-09).** ✅ Closed via `922d91e feat(ui): AlertDialog primitive + migrate session exit confirmation`. `@radix-ui/react-alert-dialog` installed; shadcn-flavor primitive lives at `src/components/ui/alert-dialog.tsx`; mid-session exit on `SessionScreen` migrated from `window.confirm` to the new dialog with Norwegian copy.
 
 ---
 
