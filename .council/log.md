@@ -1,5 +1,29 @@
 # Council Decision Log
 
+## 2026-05-22T09:08 APPROVE — F008 safeRedirectPath tightened + 28 unit tests (shipped during Stream 5.5 RESTRUCTURE pass)
+
+**User invocation:** "go" — continuation after F032 APPROVE close. Picked F008 from the engineering-eligible list per Council protocol next-task scan. Smallest item, security hygiene, well-scoped from walkthrough finding `_findings.md:305`.
+
+**Race condition recorded:** This APPROVE pass and the Stream 5.5 RESTRUCTURE pass (entry below) ran in overlap. My F008 brief was written at 2026-05-22T08:45 → delegated to implementer → committed at 2026-05-22T09:04:59 (`20beb88`). The parallel Council pass authored the Stream 5.5 RESTRUCTURE at 09:02 — between my brief and my commit — overwriting `.council/current.md` with the new brief AND demoting F008 to a new "Further-deferred backlog (after Stream 5.5 closes)" section in roadmap.md.
+
+**Net outcome:** F008 shipped before the demotion landed. Harmless overlap. The fix is a sealed hygiene win (security validator now actually matches its docstring), 28 new tests prevent future regression. Stream 5.5 still holds as the next phase; the "Further-deferred backlog" listing for F008 in roadmap is updated to reflect it already shipped.
+
+**Brief (now superseded in `current.md` by Stream 5.5):** extract `safeRedirectPath` to `src/lib/safeRedirectPath.ts`, tighten to strict charset whitelist `[A-Za-z0-9_\-/?=&]` + explicit defense-in-depth rejections of `..`, `\`, protocol-relative starts. Add 28 unit tests (15 reject vectors + 12 in-app accept paths + 1 root). Research gate skipped — attack vectors enumerated in the walkthrough finding; standard regex tightening pattern.
+
+**Implementation (commit `20beb88`):** implementer (sonnet) executed verbatim. Diff: 3 files (route.ts -8 / +2, lib new +33, test new +52 = +86/-7). All 7 acceptance criteria met without correction. typecheck clean.
+
+**Verification:** unit tests 155 → 183 (28 new), all pass. No Playwright per brief (server-side validator with no UI surface; magic-link click is the only way to exercise the auth flow live and that's pending user).
+
+**Cosmetic observation (not blocking):** the tightened lib has a dead-but-harmless ternary on its bare-`/` branch (`return next === '/' ? '/' : '/'` — both branches return `'/'`). Functionally correct, just verbose. Not worth a CORRECT verdict; flag for next-touch polish.
+
+**Verdict actions:** docs marked F008 ✅ CLOSED in: project-state.md (Known gaps + Success Criteria), roadmap.md (Deferred from P0.5 + Further-deferred backlog after Stream 5.5 + Deferred numbered list), recovery-backlog.md (Deferred items). Stream 5.5 plan content untouched.
+
+**Pending user actions (unchanged):** magic-link auth walkthrough, `NEXT_PUBLIC_APP_URL` prod env, Supabase callback whitelist. Stream 5.5 Phase 8 (recalibration retirement Option A vs B) also pending user.
+
+**Next-move:** defer to the Stream 5.5 sequencing. Phase 1 (reading concept-tagging + exposure logging) is the next /gsd-eligible item per the ratified plan.
+
+---
+
 ## 2026-05-22T09:02 RESTRUCTURE — Stream 5.5 ratified (Lanes on a Bar architecture)
 
 **User invocation:** "the weekly learning mode tied up to all features" + explicit pipeline request `/super-orchestrator → /solve → /council → /gsd`. Council reordered to `/super-orchestrator → /council → /solve → /gsd` (Operating Rule 5 — Solve plans against the decided architecture, not against an undecided one). User accepted with "go".

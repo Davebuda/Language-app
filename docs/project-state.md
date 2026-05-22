@@ -71,7 +71,7 @@ The adaptive engine is complete and the session loop is now end-to-end verified:
 - Muntlig module: shadowing, pronunciation drills, listen-and-respond designed but not built; only step 5 (scripted roleplay) is live
 - Analytics surface for `learning_events_log` (Stream 1.4 reads — first read use case deferred until there's enough data)
 - NB-Llama-3.2-1B compile for web-llm (Stream 1.1 Step 2 — half-day MLC pipeline)
-- F008 path-traversal tightening (hygiene; no exploit), F025 session resume on re-entry, F027 repair-loop cap, F035 reading visited indicator — all documented in `docs/recovery-backlog.md`. F032 closed 2026-05-22 via `9bef843`.
+- F025 session resume on re-entry, F027 repair-loop cap, F035 reading visited indicator — all documented in `docs/recovery-backlog.md`. F032 closed 2026-05-22 via `9bef843`. F008 closed 2026-05-22 via `20beb88` (safeRedirectPath tightened to strict whitelist + 28 unit tests).
 
 ---
 
@@ -221,7 +221,7 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 Stream 5 (Weekly Sprint) closure leaves two parallel decision tracks:
 
 **Engineering-eligible (can ship via Council without user input):**
-- **F008 path-traversal tightening** in `safeRedirectPath` — hygiene; no exploit. Small.
+- ~~**F008 path-traversal tightening** in `safeRedirectPath` — hygiene; no exploit. Small.~~ ✅ CLOSED 2026-05-22 via `20beb88`.
 - ~~**F032 journal SSR mismatch** — cosmetic; same shape as the React #418 fix on dashboard.~~ ✅ CLOSED 2026-05-22 via `9bef843`.
 - **F027 repair-loop cap** — worst-case polish (`isRepairItem` guard prevents the failure mode).
 - **F025 session resume on re-entry** — non-trivial; needs session-state persistence layer.

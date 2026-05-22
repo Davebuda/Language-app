@@ -37,7 +37,7 @@ Tasks were dependency-ordered. P0.5-01 (source verification) ran first. **Re-seq
 - `2593f51` — `/login` Suspense boundary around `useSearchParams` (unblocks static prerender).
 
 **Deferred from P0.5 (documented gaps, not regressions):**
-- F008 path-traversal edge case — no exploit; validator could be tightened to whitelist. Polish.
+- ~~F008 path-traversal edge case — no exploit; validator could be tightened to whitelist. Polish.~~ ✅ CLOSED 2026-05-22 via commit `20beb88` — `safeRedirectPath` extracted to `src/lib/safeRedirectPath.ts`, tightened to strict charset whitelist `[A-Za-z0-9_\-/?=&]` with explicit defense-in-depth rejections of `..`, `\`, and protocol-relative starts. 28 unit tests cover both attack vectors and in-app accept paths.
 - F025 session resume on re-entry — current behavior is honest; needs session-state persistence layer.
 - F027 repair-loop cap — `isRepairItem` guard prevents worst-case; cap is polish.
 - ~~F032 journal SSR mismatch — cosmetic, no Critical ripple.~~ ✅ CLOSED 2026-05-22 via commit `9bef843` — `WritingEditor` no longer auto-flips `inputMode` to `'voice'` post-hydration; toggle appears additively after hydration, textarea stays as primary affordance.

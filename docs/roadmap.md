@@ -26,7 +26,7 @@ The prior plan's three streams resume from a clean foundation:
 - Stream 2 UI transformation (UI-1.3 shipped; UI-2 remaining screens still queued)
 - Stream 3 muntlig module (steps 1–4 shipped; step 5 scripted roleplay shipped before P0.5, now unblocked for the build target decision)
 
-**Deferred from P0.5 (documented gaps, not regressions):** F008 path-traversal tightening, F025 session resume on re-entry, F027 repair-loop cap, F032 journal SSR mismatch, F035 reading visited indicator, AlertDialog primitive upgrade, authenticated-user walkthrough.
+**Deferred from P0.5 (documented gaps, not regressions):** ~~F008 path-traversal tightening~~ ✅ CLOSED 2026-05-22 via `20beb88`, ~~F032 journal SSR mismatch~~ ✅ CLOSED 2026-05-22 via `9bef843`, ~~AlertDialog primitive upgrade~~ ✅ CLOSED 2026-05-22 via `922d91e`. Still open: F025 session resume on re-entry, F027 repair-loop cap, F035 reading visited indicator, authenticated-user walkthrough.
 
 Recovery backlog: `docs/recovery-backlog.md` (P0.5 task table)
 Walkthrough report: `test-reports/stress-walkthrough-2026-05-21/report.md`
@@ -400,7 +400,7 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 Council ratified the Lanes-on-a-Bar architecture and the 8-phase sequence (see Stream 5.5 section above). Phases 1–7 are autonomous; Phase 8 (recalibration retirement) is pending user input. Hand-off proceeds to `/solve` for the execution plan, then `/gsd` to run phase-by-phase.
 
 ### Further-deferred backlog (after Stream 5.5 closes)
-- **F008 path-traversal tightening** — hygiene; no exploit; small Council brief.
+- ~~**F008 path-traversal tightening** — hygiene; no exploit; small Council brief.~~ ✅ CLOSED 2026-05-22 via `20beb88` — `safeRedirectPath` extracted to `src/lib/safeRedirectPath.ts`, tightened to strict charset whitelist + 28 unit tests. Shipped during the Stream 5.5 RESTRUCTURE pass.
 - **F025 session resume on re-entry** — needs session-state persistence layer; non-trivial design.
 - **F027 repair-loop cap** — worst-case polish.
 - ~~**F032 journal SSR mismatch**~~ ✅ CLOSED 2026-05-22 via `9bef843`.
@@ -420,7 +420,7 @@ Council ratified the Lanes-on-a-Bar architecture and the 8-phase sequence (see S
 - A fresh walkthrough — including the authenticated path — runs before the next muntlig surface ships.
 
 ### Deferred (documented gaps, not regressions)
-1. **F008 path-traversal tightening** in `safeRedirectPath` — no exploit confirmed; hygiene.
+1. ~~**F008 path-traversal tightening** in `safeRedirectPath` — no exploit confirmed; hygiene.~~ ✅ CLOSED 2026-05-22 via `20beb88`.
 2. **F025 session resume on re-entry** — current behaviour is honest; needs session-state persistence layer.
 3. **F027 repair-loop cap** — `isRepairItem` guard prevents worst-case; cap is polish.
 4. ~~**F032 journal SSR mismatch** — cosmetic, no Critical ripple.~~ ✅ CLOSED 2026-05-22 via `9bef843`.
