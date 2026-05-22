@@ -1,0 +1,11 @@
+[     685ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     685ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     686ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     686ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     686ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     687ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     687ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     688ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     688ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     689ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749
+[     689ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_1df87236._.js:749

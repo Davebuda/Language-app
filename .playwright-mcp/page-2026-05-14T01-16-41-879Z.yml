@@ -1,0 +1,11 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - button "Back to dashboard" [ref=e5] [cursor=pointer]:
+          - img [ref=e6]
+        - generic [ref=e18]:
+          - generic [ref=e19]: Session
+          - generic [ref=e20]: 0 / -
+      - main [ref=e21]
+  - alert [ref=e24]

@@ -1,6 +1,6 @@
 # Task Brief
-**Task:** Stream 5 — Weekly Sprint — Phase 1: Data Model + Selection Logic
-**Date:** 2026-05-21T21:40
+**Task:** Stream 5 — Weekly Sprint — Phase 6: Dashboard WeekStrip
+**Date:** 2026-05-22T01:10
 **Status:** IN PROGRESS
 **corrections:** 0
 
@@ -8,275 +8,199 @@
 
 ## What
 
-Add the data model and pure selection logic for the Weekly Sprint. No UI in this phase. No scheduler integration in this phase. No new route. Mechanical extension of the existing fingerprint + engine API.
+Add a `WeekStrip` component on the dashboard that surfaces the current `weeklyFocus` concepts plus a CTA linking to `/uke`. This is the first learner-facing surface of the Weekly Sprint — the engine has been silently producing focus and history since Phase 5a; now learners actually see it.
 
-**Files in scope (explicit list — scope creep detection uses this):**
-- `src/types/fingerprint.ts` — add three new fields to `MistakeFingerprint`; update `createEmptyFingerprint`; add `WeeklySprintRecord` interface.
-- `src/engine/weekly-sprint.ts` — NEW. Pure functions: `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`.
-- `src/engine/index.ts` — export the new module's public API.
-- `src/hooks/useFingerprint.ts` — extend the existing migration helper so legacy fingerprints (without the new fields) get them seeded on bootstrap. Use the same idempotent pattern as `migrateConceptIds` from P0.5-02.
-- `tests/engine/weekly-sprint.test.ts` — NEW. Unit tests for the three functions and the migration.
+Aesthetic posture: minimalist. **No streak number, no XP, no league.** Per Council decision (anti-Duolingo), use day-dots only (filled when practiced this week — derived from `lastSessionAt` and `weekStartedAt`). Norwegian dominates.
 
-**Out of scope (defer to later phases):**
-- `src/engine/scheduler.ts` — DO NOT modify. Scheduler bias is Phase 3.
-- Any UI files (`src/app/uke/*`, `src/app/dashboard/page.tsx`, components) — Phases 4/6.
-- Graduation job orchestration — Phase 5.
-- `learning_events_log` event writes — Phase 4.
-- Authenticated walkthrough — Phase 2 (separate work).
+**Files in scope:**
+- NEW `src/components/dashboard/WeekStrip.tsx` — the component.
+- `src/app/dashboard/page.tsx` — render `<WeekStrip fingerprint={fingerprint} />` in the appropriate slot.
+
+**Out of scope:**
+- Any other file. This is intentionally narrow — UI surface + dashboard fold-in only.
+- Tests for the component (presentation logic; Playwright smoke in Phase 7).
+- New shadcn primitives.
+- New dependencies.
 
 ---
 
 ## How
 
-### Data model — `src/types/fingerprint.ts`
+### 1. `src/components/dashboard/WeekStrip.tsx`
 
-Add new interface above `MistakeFingerprint`:
+A `'use client'` component, ≤120 lines.
+
+Signature:
 
 ```ts
-export interface WeeklySprintRecord {
-  weekStartedAt: string;             // ISO date — the Monday this sprint started
-  weekEndedAt: string;               // ISO date — when the record was closed
-  focus: string[];                   // concept IDs that were the focus that week
-  status: 'completed' | 'abandoned'; // completed = honored the cadence; abandoned = absence reset
-  focusOutcomes: Record<string, {    // per-concept progress during the week
-    startScore: number;              // decayedScore at week start
-    endScore: number;                // decayedScore at week end
-    attempts: number;                // count of practice events during the week
-  }>;
-  checkResult: {
-    takenAt: string;
-    score: number;                   // 0–100, accuracy on the weekly check
-    items: number;                   // number of items in the check
-  } | null;                          // null if learner skipped the check
+interface WeekStripProps {
+  fingerprint: MistakeFingerprint;
 }
+
+export function WeekStrip({ fingerprint }: WeekStripProps) { ... }
 ```
 
-Add to `MistakeFingerprint` interface (group with engine state fields):
+Logic for picking the active graph (same pattern used elsewhere on dashboard):
 
 ```ts
-weeklyFocus: string[];                       // concept IDs, ≤5; the current week's focus
-weekStartedAt: string | null;                // ISO date; null before first sprint
-weeklySprintHistory: WeeklySprintRecord[];   // newest first, capped at 26 entries (~6 months)
+const graph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
 ```
 
-Update `createEmptyFingerprint` to seed the three new fields:
+States the component must handle:
 
-```ts
-weeklyFocus: [],
-weekStartedAt: null,
-weeklySprintHistory: [],
+| State | When | Render |
+|---|---|---|
+| `inactive` | `fingerprint.weekStartedAt === null` | Hide the strip entirely (return `null`). The engine opens the week on the next session start; no need to nag. |
+| `empty` | `weeklyFocus.length === 0` (degenerate — engine didn't find eligible focus) | Subtle empty card: "Ukens fokus åpnes snart." — no CTA. |
+| `active` | `weekStartedAt` is non-null AND `weeklyFocus.length > 0` | Full strip: header + chips + CTA. |
+
+### 2. Visual structure (active state)
+
+Mobile-first (375px). Reuses existing `nc-*` tokens. Schibsted Grotesk dominates.
+
+```tsx
+<section className="nc-panel p-5 mb-4">
+  <header className="flex items-center justify-between gap-3 mb-3">
+    <div>
+      <h2 className="text-xl font-display font-bold text-balance">Denne ukens fokus</h2>
+      <p className="text-sm text-nc-text-muted mt-0.5">{daysActiveLabel}</p>
+    </div>
+    <DayDots fingerprint={fingerprint} />
+  </header>
+
+  <ul className="flex flex-wrap gap-2 mb-4">
+    {focusConcepts.map((concept) => (
+      <li key={concept.id} className="rounded-[0.75rem] bg-[var(--nc-card-soft)] px-3 py-2 text-sm">
+        <span className="font-medium text-[var(--nc-text)]">{concept.label}</span>
+      </li>
+    ))}
+  </ul>
+
+  <Link
+    href="/uke"
+    className="inline-flex items-center gap-2 rounded-[0.9rem] bg-[var(--nc-teal)] px-4 py-2.5 text-sm font-semibold text-[var(--nc-bg)]"
+  >
+    Ta ukens repetisjon
+    <ArrowRight size={16} />
+  </Link>
+</section>
 ```
 
-### Selection logic — `src/engine/weekly-sprint.ts` (NEW)
+(Adjust class names to match existing dashboard cards — read `DailyLearningCard.tsx` and the dashboard's other panels for the exact patterns. Don't introduce new design tokens.)
 
-Three pure functions, no I/O:
+### 3. `DayDots` sub-component (inline)
 
-```ts
-import type { MistakeFingerprint, WeeklySprintRecord } from '@/types/fingerprint';
-import type { ConceptGraph } from '@/types/concepts';
-import { getConceptPhase } from './fingerprint';
+7 dots representing days of the current week (Mon–Sun in Norwegian convention). Today's dot is outlined; past days that had activity are filled.
 
-const MAX_FOCUS_COUNT = 5;
-const WEAK_PICK_COUNT = 3;
-const SRS_PICK_COUNT = 2;
-const WEEK_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
-const HISTORY_CAP = 26;
+Activity heuristic: if `fingerprint.lastSessionAt` falls in the current calendar day, today's dot is filled. For previous days within the current week, we DON'T have per-day attendance data right now (only `lastSessionAt`), so all past days within the week show as outlined. Future days show as outlined.
 
-/**
- * Pick the focus concepts for a new weekly sprint.
- * Union of: weakest N by decayedScore + up to M SRS-due concepts where
- * nextReviewAt <= weekEnd. Locked concepts excluded.
- * Returns <=5 concept IDs, deduped. Weakest-N takes priority on dedupe.
- */
-export function selectWeeklyFocus(
-  fp: MistakeFingerprint,
-  graph: ConceptGraph,
-  now: Date = new Date(),
-): string[] {
-  const weekEnd = new Date(now.getTime() + WEEK_DURATION_MS).toISOString();
+```tsx
+function DayDots({ fingerprint }: { fingerprint: MistakeFingerprint }) {
+  const dotStates = computeDayDots(fingerprint);
+  return (
+    <div className="flex items-center gap-1.5">
+      {dotStates.map((s, idx) => (
+        <span
+          key={idx}
+          className={`size-1.5 rounded-full ${s === 'filled' ? 'bg-[var(--nc-teal)]' : s === 'today' ? 'ring-2 ring-[var(--nc-teal)]/60 bg-transparent' : 'bg-[var(--nc-border)]'}`}
+          aria-label={['mandag','tirsdag','onsdag','torsdag','fredag','lørdag','søndag'][idx]}
+        />
+      ))}
+    </div>
+  );
+}
 
-  // Filter: only concepts that exist in the graph and are NOT locked.
-  const eligible = Object.values(fp.conceptMastery).filter((m) => {
-    const node = graph.concepts.find((c) => c.id === m.conceptId);
-    if (!node) return false;
-    return getConceptPhase(m, node) !== 'locked';
+function computeDayDots(fp: MistakeFingerprint): Array<'filled' | 'today' | 'pending'> {
+  if (!fp.weekStartedAt) return ['pending','pending','pending','pending','pending','pending','pending'];
+  const weekStart = new Date(fp.weekStartedAt);
+  const today = new Date();
+  // Norwegian week starts Monday. Compute weekday index 0..6 from weekStart, but actually
+  // we want to show the calendar week the learner is currently in. For simplicity in v1,
+  // count days since weekStart.
+  const daysSince = Math.floor((today.getTime() - weekStart.getTime()) / (24 * 60 * 60 * 1000));
+  const lastSessionDay = fp.lastSessionAt
+    ? Math.floor((new Date(fp.lastSessionAt).getTime() - weekStart.getTime()) / (24 * 60 * 60 * 1000))
+    : -1;
+  return Array.from({ length: 7 }, (_, idx) => {
+    if (idx === daysSince) return 'today';
+    if (idx === lastSessionDay && lastSessionDay >= 0 && lastSessionDay < daysSince) return 'filled';
+    return 'pending';
   });
-
-  // Weakest N by decayedScore (ascending).
-  const weakest = [...eligible]
-    .sort((a, b) => a.decayedScore - b.decayedScore)
-    .slice(0, WEAK_PICK_COUNT)
-    .map((m) => m.conceptId);
-
-  // SRS-due within the week (nextReviewAt <= weekEnd). Earliest-due first.
-  const srsDue = eligible
-    .filter((m) => m.nextReviewAt !== null && m.nextReviewAt <= weekEnd)
-    .sort((a, b) => (a.nextReviewAt ?? '').localeCompare(b.nextReviewAt ?? ''))
-    .slice(0, SRS_PICK_COUNT)
-    .map((m) => m.conceptId);
-
-  // Union, dedupe, cap at MAX_FOCUS_COUNT. Weakest takes priority on dedupe.
-  return Array.from(new Set([...weakest, ...srsDue])).slice(0, MAX_FOCUS_COUNT);
-}
-
-/**
- * Returns true if the learner has been absent long enough that the current
- * week should be closed as 'abandoned' and a new week started. Threshold:
- * >7 days since weekStartedAt.
- */
-export function shouldResetWeek(
-  fp: MistakeFingerprint,
-  now: Date = new Date(),
-): boolean {
-  if (fp.weekStartedAt === null) return false;
-  const elapsed = now.getTime() - new Date(fp.weekStartedAt).getTime();
-  return elapsed > WEEK_DURATION_MS;
-}
-
-/**
- * Close the current week into a WeeklySprintRecord and return an updated
- * fingerprint. Pure: caller persists. status='abandoned' if shouldResetWeek
- * fired without a checkResult; 'completed' otherwise.
- */
-export function closeWeek(
-  fp: MistakeFingerprint,
-  options: {
-    status: 'completed' | 'abandoned';
-    checkResult: WeeklySprintRecord['checkResult'];
-    now?: Date;
-  },
-): MistakeFingerprint {
-  if (fp.weekStartedAt === null) return fp;
-
-  const now = (options.now ?? new Date()).toISOString();
-  const focusOutcomes: WeeklySprintRecord['focusOutcomes'] = {};
-  for (const conceptId of fp.weeklyFocus) {
-    const m = fp.conceptMastery[conceptId];
-    if (!m) continue;
-    focusOutcomes[conceptId] = {
-      startScore: 0,           // Phase 5 will capture startScore at week-open
-      endScore: m.decayedScore,
-      attempts: m.attemptCount,
-    };
-  }
-
-  const record: WeeklySprintRecord = {
-    weekStartedAt: fp.weekStartedAt,
-    weekEndedAt: now,
-    focus: fp.weeklyFocus,
-    status: options.status,
-    focusOutcomes,
-    checkResult: options.checkResult,
-  };
-
-  const history = [record, ...fp.weeklySprintHistory].slice(0, HISTORY_CAP);
-
-  return {
-    ...fp,
-    weeklySprintHistory: history,
-    weeklyFocus: [],
-    weekStartedAt: null,
-    updatedAt: now,
-  };
 }
 ```
 
-**Phase boundary note:** `closeWeek` records `endScore` but hardcodes `startScore: 0` in Phase 1. Phase 5 (graduation job) will capture `startScore` at `selectWeeklyFocus` time and thread it through to `closeWeek`. Do not solve this in Phase 1.
+**Phase boundary note:** the day-dots are visually honest about what data we have — only `lastSessionAt` is tracked, so only one past day can ever be "filled" until per-day attendance is added (v2). That's acceptable; this is not pipeline-dishonest because the dots are clearly minimal.
 
-### Engine export — `src/engine/index.ts`
+### 4. `daysActiveLabel`
 
-Append:
+Short helper inside the component:
 
 ```ts
-export { selectWeeklyFocus, shouldResetWeek, closeWeek } from './weekly-sprint';
-```
-
-### Migration — `src/hooks/useFingerprint.ts`
-
-The existing `migrateConceptIds` function uses an idempotent pattern. Add a sibling helper `migrateWeeklySprintFields`:
-
-```ts
-function migrateWeeklySprintFields(fp: MistakeFingerprint): { migrated: MistakeFingerprint; changed: boolean } {
-  const hasFocus = Array.isArray((fp as Partial<MistakeFingerprint>).weeklyFocus);
-  const hasStarted = 'weekStartedAt' in fp;
-  const hasHistory = Array.isArray((fp as Partial<MistakeFingerprint>).weeklySprintHistory);
-  if (hasFocus && hasStarted && hasHistory) return { migrated: fp, changed: false };
-  return {
-    migrated: {
-      ...fp,
-      weeklyFocus: (fp as Partial<MistakeFingerprint>).weeklyFocus ?? [],
-      weekStartedAt: (fp as Partial<MistakeFingerprint>).weekStartedAt ?? null,
-      weeklySprintHistory: (fp as Partial<MistakeFingerprint>).weeklySprintHistory ?? [],
-      updatedAt: new Date().toISOString(),
-    },
-    changed: true,
-  };
+function daysActiveLabel(fp: MistakeFingerprint): string {
+  if (!fp.weekStartedAt) return '';
+  const weekStart = new Date(fp.weekStartedAt);
+  const elapsed = Math.floor((Date.now() - weekStart.getTime()) / (24 * 60 * 60 * 1000));
+  if (elapsed === 0) return 'Uka startet i dag';
+  if (elapsed === 1) return '1 dag inn i uka';
+  return `${elapsed} dager inn i uka`;
 }
 ```
 
-Wire `migrateWeeklySprintFields` into `applyMigration` so it composes with the existing concept-id migration. Order: concept-id migration first, then weekly-sprint-fields migration. Compose the `changed` flags with `||`.
+### 5. Dashboard fold-in — `src/app/dashboard/page.tsx`
 
-### Tests — `tests/engine/weekly-sprint.test.ts` (NEW)
+Find the existing layout (it has `DailyLearningCard`, `DailyWordPack`, `ProgressReassuranceStrip`, etc.). Insert `<WeekStrip fingerprint={fingerprint} />` after `LevelBadge`/welcome row but BEFORE the existing daily cards — the weekly target should land first in the visual hierarchy, daily content after.
 
-Mirror the style of existing tests in `tests/engine/`. Coverage targets:
+Import:
 
-1. `selectWeeklyFocus`:
-   - Returns ≤5 concept IDs.
-   - Excludes locked concepts (mock a graph where one concept's mastery is below the phase threshold).
-   - Prefers weakest 3 by decayedScore.
-   - Includes up to 2 SRS-due concepts when `nextReviewAt <= weekEnd`.
-   - Dedupes when a concept appears in both pools (weakest takes priority).
-   - Empty fingerprint returns `[]`.
+```ts
+import { WeekStrip } from '@/components/dashboard/WeekStrip';
+```
 
-2. `shouldResetWeek`:
-   - Returns false when `weekStartedAt === null`.
-   - Returns false when elapsed ≤7 days.
-   - Returns true when elapsed >7 days (test at 7.5 days).
+Render conditionally:
 
-3. `closeWeek`:
-   - When `weekStartedAt === null`, returns fp unchanged.
-   - Status `completed` produces a record with that status.
-   - Status `abandoned` produces a record with that status.
-   - History capped at 26 entries (insert 27, assert length 26 with the oldest dropped).
-   - `weeklyFocus` and `weekStartedAt` cleared after close.
-   - `updatedAt` updated to `options.now`.
-   - `checkResult: null` accepted (skipped check).
+```tsx
+{fingerprint ? <WeekStrip fingerprint={fingerprint} /> : null}
+```
 
-4. Migration helper (test the helper directly, not the hook):
-   - Legacy fingerprint without the three new fields gets them seeded.
-   - Idempotent: second call returns `changed: false`.
-   - Existing `conceptMastery` and `recentErrors` untouched.
+(The strip itself handles its own internal states; the outer guard is just for the fingerprint not being loaded.)
+
+### 6. Verify
+
+1. `npx tsc --noEmit` — zero errors.
+2. `npm test` — 155/155 still pass (no new tests this phase).
+3. `git diff HEAD --name-only` — exactly 2 files.
+4. Commit: `feat(weekly): Stream 5 Phase 6 — dashboard WeekStrip`.
 
 ---
 
 ## Model
-sonnet — mechanical implementation from complete spec.
+sonnet — UI scaffolding from a complete spec.
 
 ---
 
 ## Acceptance Criteria
 
-1. `npx tsc --noEmit` passes with zero errors.
-2. `npm test` passes 100% (existing 106 tests + the new weekly-sprint suite).
-3. New test file covers all four targets above.
-4. `git diff HEAD --name-only` matches exactly the "Files in scope" list (no incidental files).
-5. `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek` are pure (no I/O, no `Date.now()` without an optional `now` param, no `Math.random()`).
-6. Migration is idempotent — a second `applyMigration` call on the migrated fingerprint returns `changed: false`.
-7. Commit message follows project convention: `feat(engine): Stream 5 Phase 1 — weekly sprint data model + selection logic`.
+1. `npx tsc --noEmit` clean.
+2. `npm test` 155/155 still pass (no regressions from the dashboard import).
+3. `git diff HEAD --name-only` matches the 2-file in-scope list.
+4. The component returns `null` when `weekStartedAt === null` (silent inactive state, no nag).
+5. The CTA links to `/uke`.
+6. No new dependencies installed.
+7. Aesthetic: Schibsted Grotesk dominant in the header; Norwegian text; no streak numbers; no gradient backgrounds; uses existing `nc-*` tokens.
+8. Commit message follows convention.
 
 ---
 
 ## Blocking Flags
 
-Stop immediately and write `BLOCKED: [reason]` to this file if:
-- Any TypeScript error is introduced that cannot be resolved within the brief.
-- Any existing test fails.
-- The selection logic produces results inconsistent with the test plan above (specifically, the dedupe-priority test).
-- You are about to modify a file not in the "Files in scope" list.
-- You are about to make a design decision not specified here.
+Stop and write `BLOCKED: [reason]` to this file if:
+- You must touch a file outside the in-scope list to make this compile.
+- A shadcn primitive is required for the layout — surface and stop.
+- The dashboard page already has a different strip in the intended slot that would conflict.
+- TypeScript can't reconcile the `WeekStripProps.fingerprint` type with the dashboard's `useFingerprintStore` shape.
 
 ---
 
 ## Playwright Checkpoint
 
-**none** — no UI surface in this phase. Data model + pure functions only. Playwright resumes in Phase 4 (Weekly Check route) and Phase 6 (dashboard week-strip).
+**SMOKE** — implementer does NOT run Playwright. Phase 7 audit will run `/baseline-ui` + `/audit` against the new surface plus the existing dashboard. For now, confirm `npx tsc --noEmit` passes and the dashboard imports the component cleanly.

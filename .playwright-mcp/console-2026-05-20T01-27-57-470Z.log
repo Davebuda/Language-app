@@ -1,0 +1,7 @@
+[   30433ms] [ERROR] Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://react.dev/link/setstate-in-render Router SpeedRound SpeedRound @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[  138192ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/test-sr?_rsc=FnWVLSSHDiHP2-r3:0
+[  138464ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/test-sr?_rsc=FnWVLSSHDiHP2-r3:0
+[  138793ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/test-sr:0
+[  380491ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/test-sr?_rsc=x9A7NKYFHnGyen90:0
+[  380793ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/test-sr?_rsc=x9A7NKYFHnGyen90:0
+[  381138ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/test-sr:0

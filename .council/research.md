@@ -1,5 +1,19 @@
 # Research Notes
 
+## Research — cross-deploy stability for Next.js 15 on single VPS — 2026-05-21T22:00
+
+**Question:** Production Next.js 15 App Router on Hetzner VPS (no CDN) — how to prevent client-side breakage when users have tabs open across a tar-and-pm2-reload deploy? Symptoms: "Failed to find Server Action" errors + 404s on /_next/static/chunks/*. Comparing generateBuildId vs experimental.useDeploymentId vs service worker.
+
+**Finding (via /cloud-dev skill):** The correct flag is `deploymentId` at the top level of next.config (not `experimental.useDeploymentId` — that name is outdated). `generateBuildId` alone does NOT fix Server Action IDs — it controls asset paths only. Server Action IDs are derived from a per-build secret which is what `deploymentId` pins. Vercel sets this automatically on their platform; self-hosted requires explicit set at build time (it's baked into the build). Service worker / version-polling rejected as over-engineering for a single VPS preview site.
+
+**Standard production posture for Next.js 15 self-hosted without CDN (4 things):**
+1. `deploymentId` at build time, derived from git SHA
+2. Nginx Cache-Control: `no-store, must-revalidate` on HTML, `public, max-age=31536000, immutable` on `/_next/static/*`
+3. Client-side ErrorEvent + unhandledrejection handler that catches `Failed to find Server Action` / `Loading chunk` errors → forces `location.reload()` once per session (sessionStorage sentinel prevents reload loops)
+4. PM2 reload (already in place)
+
+**Impact on approach:** Reject the lightweight-only Option A (generateBuildId solo) — does not address the actual symptom. Implement the cloud-dev recommendation in full: deploymentId + Nginx cache headers + 12-line client reload guard. Free, ~30 min implementation, no new services. Cost-aware: no CDN required, no service worker, no new dependencies.
+
 ## Research — Weekly Sprint phase (new direction) — 2026-05-21T21:30
 
 **Questions (5 from super-orchestrator):**

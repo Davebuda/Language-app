@@ -1,0 +1,8 @@
+[   38032ms] [WARNING] [TranslationExercise] gradeAnswer returned null for sentence mock-s1 @ http://localhost:3001/_next/static/chunks/_f6eed4af._.js:2648
+[   81705ms] ReferenceError: MOCK_SENTENCES is not defined
+    at SessionPage (about://React/Server/C:%5CUsers%5Cdaveb%5CDocuments%5CGitHub%5CLanguage-app%5C.next%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__8d7a42eb._.js?11:326:23)
+    at resolveErrorDev (http://localhost:3001/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4306:48)
+    at processFullStringRow (http://localhost:3001/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4554:29)
+    at processFullBinaryRow (http://localhost:3001/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4513:9)
+    at processBinaryChunk (http://localhost:3001/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4622:98)
+    at progress (http://localhost:3001/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4790:25)

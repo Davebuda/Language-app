@@ -1,0 +1,58 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - main [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e8]: GJ
+        - generic [ref=e9]:
+          - generic [ref=e10]: Profil
+          - generic [ref=e11]: Gjest
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: A1
+          - generic [ref=e15]: Nivå
+        - generic [ref=e16]:
+          - generic [ref=e17]: "0"
+          - generic [ref=e18]: Streak
+        - generic [ref=e19]:
+          - generic [ref=e20]: "0"
+          - generic [ref=e21]: Økter
+      - generic [ref=e22]:
+        - generic [ref=e23]: Nåværende nivå
+        - generic [ref=e24]: A1 - Nybegynner
+        - generic [ref=e26]: 0 av 22 konsepter mestret
+      - generic [ref=e27]:
+        - generic [ref=e28]: Session style
+        - paragraph [ref=e29]: Biases which exercise types appear in your sessions.
+        - generic [ref=e30]:
+          - button "Input-heavy More reading & listening" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: Input-heavy
+            - generic [ref=e33]: More reading & listening
+          - button "Balanced Mix of both" [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: Balanced
+            - generic [ref=e36]: Mix of both
+          - button "Production More writing & speaking" [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: Production
+            - generic [ref=e39]: More writing & speaking
+    - navigation [ref=e40]:
+      - generic [ref=e41]:
+        - link "Home" [ref=e42] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e43]
+          - generic [ref=e46]: Home
+        - link "Learn" [ref=e48] [cursor=pointer]:
+          - /url: /session
+          - img [ref=e49]
+          - generic [ref=e51]: Learn
+        - link "Practice" [ref=e53] [cursor=pointer]:
+          - /url: /conversation
+          - img [ref=e54]
+          - generic [ref=e56]: Practice
+        - link "Progress" [ref=e58] [cursor=pointer]:
+          - /url: /progress
+          - img [ref=e59]
+          - generic [ref=e60]: Progress
+        - link "Profile" [ref=e62] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e63]
+          - generic [ref=e66]: Profile
+  - alert [ref=e68]

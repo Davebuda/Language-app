@@ -1,0 +1,13 @@
+[    1426ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1426ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1426ms] [WARNING] [scheduler] skipping "past-tense-regular" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1427ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1427ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1427ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1427ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1428ms] [WARNING] [scheduler] skipping "question-formation" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1428ms] [WARNING] [scheduler] skipping "past-tense-regular" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1428ms] [WARNING] [scheduler] skipping "personal-pronouns" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1429ms] [WARNING] [scheduler] skipping "to-be-verb" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1430ms] [WARNING] [scheduler] skipping "prepositions-place" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055
+[    1430ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_52348519._.js:1055

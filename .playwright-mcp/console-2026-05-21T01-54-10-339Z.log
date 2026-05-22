@@ -1,0 +1,12 @@
+[   42316ms] [WARNING] Detected `scroll-behavior: smooth` on the `<html>` element. In a future version, Next.js will no longer automatically disable smooth scrolling during route transitions. To prepare for this change, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:1014
+[   42380ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42380ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42381ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42381ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42382ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42382ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42383ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42384ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42384ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42385ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506
+[   42386ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e02d2037._.js:1506

@@ -1,0 +1,232 @@
+[  771311ms] [ERROR] ./src/app/dashboard/page.tsx:12:1
+Module not found: Can't resolve '@/components/layout/BottomNav'
+  10 | import { generateSession } from '@/engine/scheduler'
+  11 | import type { SchedulerOutput } from '@/engine/scheduler'
+> 12 | import { BottomNav } from '@/components/layout/BottomNav'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+  14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+  15 | import { getStreak } from '@/lib/streak'
+
+Import map: aliased to relative './src/components/layout/BottomNav' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[  771312ms] [ERROR] ./src/app/conversation/page.tsx:8:1
+Module not found: Can't resolve '@/components/layout/BottomNav'
+   6 | import { aiService } from '@/ai'
+   7 | import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
+>  8 | import { BottomNav } from '@/components/layout/BottomNav'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
+  11 |
+
+Import map: aliased to relative './src/components/layout/BottomNav' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/conversation/page.tsx [Client Component Browser]
+    ./src/app/conversation/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/conversation/page.tsx [Client Component SSR]
+    ./src/app/conversation/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[  771375ms] [ERROR] ./src/app/dashboard/page.tsx:12:1
+Module not found: Can't resolve '@/components/layout/BottomNav'
+  10 | import { generateSession } from '@/engine/scheduler'
+  11 | import type { SchedulerOutput } from '@/engine/scheduler'
+> 12 | import { BottomNav } from '@/components/layout/BottomNav'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+  14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+  15 | import { getStreak } from '@/lib/streak'
+
+Import map: aliased to relative './src/components/layout/BottomNav' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[  771376ms] [ERROR] ./src/app/conversation/page.tsx:8:1
+Module not found: Can't resolve '@/components/layout/BottomNav'
+   6 | import { aiService } from '@/ai'
+   7 | import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
+>  8 | import { BottomNav } from '@/components/layout/BottomNav'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
+  11 |
+
+Import map: aliased to relative './src/components/layout/BottomNav' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/conversation/page.tsx [Client Component Browser]
+    ./src/app/conversation/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/conversation/page.tsx [Client Component SSR]
+    ./src/app/conversation/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[  791725ms] [ERROR] ./src/app/dashboard/page.tsx:13:1
+Module not found: Can't resolve '@/components/layout/GuestBanner'
+  11 | import type { SchedulerOutput } from '@/engine/scheduler'
+  12 | import { BottomNav } from '@/components/layout/BottomNav'
+> 13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+  15 | import { getStreak } from '@/lib/streak'
+  16 | import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+
+Import map: aliased to relative './src/components/layout/GuestBanner' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[  806423ms] [ERROR] ./src/app/dashboard/page.tsx:14:1
+Module not found: Can't resolve '@/components/progress/ConceptProgressRow'
+  12 | import { BottomNav } from '@/components/layout/BottomNav'
+  13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+> 14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  15 | import { getStreak } from '@/lib/streak'
+  16 | import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+  17 | import { getConceptColor } from '@/lib/concept-colors'
+
+Import map: aliased to relative './src/components/progress/ConceptProgressRow' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[ 2109482ms] [ERROR] ./src/app/layout.tsx:3:1
+Module not found: Can't resolve './globals.css'
+  1 | import type { Metadata } from 'next'
+  2 | import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google'
+> 3 | import './globals.css'
+    | ^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | const plusJakartaSans = Plus_Jakarta_Sans({
+  6 |   subsets: ['latin'],
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[ 2213052ms] [ERROR] ./src/app/conversation/page.tsx:8:1
+Module not found: Can't resolve '@/components/layout/BottomNav'
+   6 | import { aiService } from '@/ai'
+   7 | import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
+>  8 | import { BottomNav } from '@/components/layout/BottomNav'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
+  11 |
+
+Import map: aliased to relative './src/components/layout/BottomNav' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/conversation/page.tsx [Client Component Browser]
+    ./src/app/conversation/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/conversation/page.tsx [Client Component SSR]
+    ./src/app/conversation/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[ 2213053ms] [ERROR] ./src/app/dashboard/page.tsx:12:1
+Module not found: Can't resolve '@/components/layout/BottomNav'
+  10 | import { generateSession } from '@/engine/scheduler'
+  11 | import type { SchedulerOutput } from '@/engine/scheduler'
+> 12 | import { BottomNav } from '@/components/layout/BottomNav'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+  14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+  15 | import { getStreak } from '@/lib/streak'
+
+Import map: aliased to relative './src/components/layout/BottomNav' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[ 2234045ms] [ERROR] ./src/app/dashboard/page.tsx:13:1
+Module not found: Can't resolve '@/components/layout/GuestBanner'
+  11 | import type { SchedulerOutput } from '@/engine/scheduler'
+  12 | import { BottomNav } from '@/components/layout/BottomNav'
+> 13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+  15 | import { getStreak } from '@/lib/streak'
+  16 | import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+
+Import map: aliased to relative './src/components/layout/GuestBanner' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[ 2260391ms] [ERROR] ./src/app/dashboard/page.tsx:14:1
+Module not found: Can't resolve '@/components/progress/ConceptProgressRow'
+  12 | import { BottomNav } from '@/components/layout/BottomNav'
+  13 | import { GuestBanner } from '@/components/layout/GuestBanner'
+> 14 | import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  15 | import { getStreak } from '@/lib/streak'
+  16 | import { MOCK_SENTENCE_IDS } from '@/lib/mock-sentences'
+  17 | import { getConceptColor } from '@/lib/concept-colors'
+
+Import map: aliased to relative './src/components/progress/ConceptProgressRow' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./src/app/dashboard/page.tsx [Client Component Browser]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/dashboard/page.tsx [Client Component SSR]
+    ./src/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:7792/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2405
+[ 3132004ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:7792/conversation:0

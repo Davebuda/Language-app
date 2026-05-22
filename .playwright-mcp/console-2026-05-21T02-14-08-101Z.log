@@ -1,0 +1,69 @@
+[    5088ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5089ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5089ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5089ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5090ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5090ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5091ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5092ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5093ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5093ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5093ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[    5094ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  251113ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[  251291ms] Error: Could not find the module "[project]/node_modules/next/dist/client/components/builtin/global-error.js#default" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>:1:18)
+    at resolveErrorDev (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:371673)
+    at processFullStringRow (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:381519)
+    at <unknown> (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:386767)
+    at processBinaryChunk (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:386839)
+    at progress (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:388367)
+[  254426ms] [WARNING] The resource http://localhost:3000/_next/static/media/31a9145ccb84606d-s.p.fa7e779d.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[  254426ms] [WARNING] The resource http://localhost:3000/_next/static/media/bcd6d1ca18e6bd49-s.p.ec771bc0.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[  256469ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256470ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256470ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256470ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256470ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256471ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256472ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256472ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256473ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256473ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256474ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  256474ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  260185ms] [WARNING] Detected `scroll-behavior: smooth` on the `<html>` element. In a future version, Next.js will no longer automatically disable smooth scrolling during route transitions. To prepare for this change, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:1014
+[  302209ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302210ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302211ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302211ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302211ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302212ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302212ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302213ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302213ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302214ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302217ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302218ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302218ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302219ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302219ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302220ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302220ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302220ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302221ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302221ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302221ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302222ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302305ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302305ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302306ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302306ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302307ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302307ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302308ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302308ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302309ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302309ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302310ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749
+[  302310ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_13d82946._.js:749

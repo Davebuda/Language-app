@@ -1,0 +1,12 @@
+[     981ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     982ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     982ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     983ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     983ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     984ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     984ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     984ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     985ms] [WARNING] [scheduler] skipping "v2-word-order" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     985ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     986ms] [WARNING] [scheduler] skipping "adjective-agreement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
+[     987ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_e16554e6._.js:741
