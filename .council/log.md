@@ -1,5 +1,35 @@
 # Council Decision Log
 
+## 2026-05-22T09:34 APPROVE — Stream 5.5 Phase 1 shipped (reading concept-tagging + exposure logging)
+
+**Pipeline:** `/super-orchestrator → /council (RESTRUCTURE) → /solve (8-phase plan) → /gsd → implementer (sonnet) → Playwright SMOKE → review`. First phase of Stream 5.5 to ship.
+
+**Brief:** `.council/current.md` 2026-05-22T09:30 — three-file additive change with verified concept tags. Council fixed four wrong concept IDs from /solve's proposed tags before delegating (`preposition` → `common-prepositions`, `modal-verb` → `common-modal-verbs`, `verb-tense-present` → `present-tense-regular`, `compound-word` → `word-formation`).
+
+**Implementation (commit `6624937`):** implementer (sonnet) executed verbatim. Diff: 5 files (3 source, 2 new test files).
+- `src/app/reading/page.tsx` — `SeedText` extended with `conceptIds: string[]`; all 4 texts tagged with verified IDs; close handlers wired to `closeText()` that calls `recordExposure(selectedText.conceptIds)`.
+- `src/lib/logEvents.ts` — added `logConceptExposure(userId, conceptIds)` (fire-and-forget, auth-only, deduplicates, `event_type='concept_exposure'`, `correct_bool: true` semantically "exposure occurred").
+- `src/hooks/useFingerprint.ts` — added `recordExposure(conceptIds)` (increments `attemptCount` by 0.3, updates `lastAttemptAt`, does NOT touch `rawScore`/`confidenceScore`/`decayedScore`, persists via `saveFingerprint` + `saveFingerprintToSupabase` for auth users + fires `logConceptExposure`).
+- `tests/lib/exposure.test.ts` (6 cases) + `tests/hooks/recordExposure.test.ts` (7 cases) — 13 new tests.
+
+**Field-name correction:** brief's pseudocode used `attempts` but the actual `ConceptMastery` type uses `attemptCount`. Implementer surfaced and corrected. `attemptCount` is typed as `number` (not integer), so 0.3 increments are valid — no blocking flag fired.
+
+**Verification:** typecheck clean. Test count 183 → 196 (13 new). All pass.
+
+**Playwright SMOKE** (report `.council/reports/2026-05-22-0934-phase1-reading-exposure.md`): 4/4 PASS.
+- `/reading` list view loads, all 4 texts render
+- Open text 1 (En dag i Oslo) + close via "Ferdig lesing ✓" — zero console errors
+- Open text 3 (Friluftsliv) + close — zero console errors
+- Dashboard regression (`useFingerprint` consumer) loads clean — zero console errors
+
+Full session+repair-card regression skipped per Council judgment: Phase 1's diff is additive only (new helper alongside existing `recordResult`); session loop calls `recordResult`, unaffected. Prior verifications of that path (F032 `f1c18ef`, React #418 `cf1fcc3`) ran the full flow successfully and the engine surface is unchanged since.
+
+**Verdict actions:** docs/roadmap.md Stream 5.5 Phase 1 marked ✅ COMPLETE with commit reference. docs/project-state.md status updated. Phase 2 (mid-week reveal strip on dashboard) is next.
+
+**Open user-actions (unchanged):** magic-link auth walkthrough, `NEXT_PUBLIC_APP_URL` prod env, Supabase callback whitelist.
+
+---
+
 ## 2026-05-22T09:15 RATIFY — Stream 5.5 Phase 8 = Option A (retire `/recalibration` surface)
 
 **User invocation:** "use the respondent skills to a smart, researched option within scope" — explicit delegation of Phase 8 decision authority to Council. Override of the prior "DECISION PENDING USER" gate.
