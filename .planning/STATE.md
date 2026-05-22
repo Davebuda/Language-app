@@ -5,8 +5,8 @@ milestone_name: Stream 5 — Weekly Sprint (Curriculum Cohesion Layer)
 status: in progress
 stopped_at: Phase 1 (data model + selection logic) APPROVED. Phase 2 (authenticated walkthrough) requires user magic-link click OR can be reordered to between Phase 3 and Phase 4.
 last_updated: "2026-05-22"
-last_activity: 2026-05-22T04:20 — Phase 4b telemetry wire (6f01b12) + React #418 fix (cf1fcc3). Stream 5 is now 8 of 8 in code; Phase 2 walkthrough is the only remaining gate (UX validation only — no unshipped code blocks behind it).
-stopped_at_phase_2_reason: Stream 5 fully shipped in code (migration 003 was already applied 2026-05-21 in parallel work). Phase 2 (auth walkthrough) is a UX validation pass requiring user to click a magic link.
+last_activity: 2026-05-22T07:20 — AlertDialog primitive ships (922d91e) + roadmap reconciliation (1574d7d). Six 'deferred' items audited as already shipped. Stream 1.1 Step 1, 1.2, 1.3, 1.4 writes, integrity follow-ups #1-3, and AlertDialog all marked COMPLETE in roadmap.
+stopped_at_phase_2_reason: Autonomous backlog mostly polish (F008/F027/F032) or bigger phases (Stream 1.4 reads, NB-Llama compile). Phase 2 (auth walkthrough) still needs user magic-link click.
 progress:
   stream_5_phase: 1 of 7 complete
   stream_5_phase: 8 of 8 complete (1, 3, 5a, 4a, 5b, 6, 7, 4b)

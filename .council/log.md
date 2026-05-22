@@ -1,5 +1,50 @@
 # Council Decision Log
 
+## 2026-05-22T07:20 DONE — AlertDialog upgrade + roadmap reconciliation
+
+**User invocation:** `/council /gsd` — second autonomous pass after Stream 5 close.
+
+### Audit finding
+Council Step 1 read of git/source revealed SIX "deferred" items in `docs/roadmap.md` were actually already shipped:
+- Stream 1.1 Step 1 (prompt hardening — all 5 prompt builders in `src/ai/prompts.ts` carry Norwegian-enforcement system rules)
+- Stream 1.2 (decay half-life — `DECAY_HALF_LIFE_DAYS = 25` at `src/engine/fingerprint.ts:12`)
+- Stream 1.3 (calibration window — `calibrationSessionsRemaining` consumed at `src/hooks/useSession.ts:154`)
+- Stream 1.4 writes (`src/lib/logEvents.ts` + migration 003 + Stream 5 Phase 4b wire)
+- Integrity follow-up #2 (FillInBlank hardcoded errorTag — Grep clean)
+- Integrity follow-up #3 (SpeedRound stale closure — `userInputRef.current` pattern live)
+
+The roadmap was masking shipped work, causing Council to re-discover "next moves" that didn't exist. Truth restored in commit `1574d7d`.
+
+### Real autonomous ship this pass — AlertDialog primitive
+**Commit:** `922d91e` feat(ui): AlertDialog primitive + migrate session exit confirmation.
+**Scope:** Single `window.confirm()` site in the codebase (P0.5-09 TODO at `SessionScreen.tsx:99`).
+**Change:** Installed `@radix-ui/react-alert-dialog@^1.1.15`. Built shadcn-flavor primitive at `src/components/ui/alert-dialog.tsx` reusing `buttonVariants` and project `--nc-*` tokens. Migrated mid-session exit to use proper dialog with Norwegian copy ("Avslutte økten?" / "Du mister fremgangen i denne økten." / Avbryt / Avslutt).
+**Verification:** typecheck clean, 155/155 tests pass.
+
+### Roadmap reconciliation commit
+**Commit:** `1574d7d`. Stream 1.1 Step 1, 1.2, 1.3, 1.4 (writes), all 3 integrity follow-ups, and AlertDialog all marked ✅ COMPLETE with file:line evidence. Stream 1.1 Step 2 (NB-Llama compile) noted as still queued. Stream 1.4 reads (analytics dashboard) noted as deferred.
+
+### What's actually left (audited)
+**Engineering (autonomous-eligible):**
+- F008 path-traversal tightening (hygiene; no exploit)
+- F025 session resume on re-entry (bigger — session-state persistence layer)
+- F027 repair-loop cap (worst-case polish)
+- F032 journal SSR mismatch (cosmetic)
+- Stream 1.4 reads (first analytics query against `learning_events_log`)
+- Stream 1.1 Step 2 (NB-Llama-1B compile for web-llm — half-day MLC pipeline; not single-turn)
+- REVIEW.md WARNING items re-audit pass
+
+**Product decisions (need user):**
+- Muntlig deepening direction (option A from prior Council brief)
+- B1/B2 corpus authoring start (option E)
+
+**Pending user actions (from prior sessions):**
+- Phase 2 auth walkthrough (magic-link click)
+- `NEXT_PUBLIC_APP_URL=https://pandoai.no` in prod env
+- Supabase `https://pandoai.no/auth/callback` whitelist
+
+Council closes this `/gsd` pass. The remaining autonomous items are mostly polish (F008, F027, F032), with Stream 1.4 reads and Stream 1.1 Step 2 as the only substantial next moves — both warrant their own briefs in a future Council invocation.
+
 ## 2026-05-22T04:20 DONE — Stream 5 fully shipped (8 of 8) + React #418 closed
 
 **User invocation:** `/council /gsd` — push remaining items autonomously.
