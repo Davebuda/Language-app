@@ -706,3 +706,33 @@ Handing to super-orchestrator with option B as the "idea to transform".
 - `tests/engine/weekly-sprint.test.ts` — updated line-321 sentinel; added migration-Stream-5-era test, openWeek snapshot tests, closeWeek read+clear tests
 - `tests/lib/weekly-progress.test.ts` (new) — 8 tests
 - `docs/roadmap.md` — Phase 2 marked complete; Stream 5 close honesty note added; Phase 5b carry-over recorded
+
+## 2026-05-22T15:00 APPROVE — Holistic Vision-vs-Shipped Audit + α-path resolution
+**Process:** User direction triggered system-level audit through `super-orchestrator` (background agent `ad56db38f724903d6`, ~32 tool calls, 44 files). Audit produced one synthesized sequenced restructure plan across journal, reading, listening, muntlig. User ratified 4 binary decisions (C1 disposition, listening fix posture, reading wrap, sequence order). Architect blocked the originally-proposed "Phase A2 = full Listening restructure" on 3 procedural + 1 technical grounds:
+  1. "Phase A2 = Listening" was never in the roadmap or Council ratification.
+  2. Stream 5.5 lane map explicitly defers Listening until Stream 3 audio infra ships — full restructure would be a disposition challenge against a Council-ratified deferral, not a phase execution.
+  3. Stream 5.5 Phases 3–7 would be skipped.
+  4. iOS Safari auto-speak silent-fail risk on auto-speak-on-mount — reintroduces the silent-substitution pattern P0.5 closed.
+
+**User picked α** (bug-only sliver, resume ratified Stream 5.5 order).
+
+**Shipped:**
+- α.1 (commit `784e12b`): `fix(listening): route recordResult to real concept ids` — ListenRespondQuestion gains required conceptId + errorTag fields; all 7 questions tagged against verified a1-graph.json + taxonomy; recordResult uses question.conceptId. +17 tests (it.each over 7 × {conceptId-exists, errorTag-exists} + 3 standalone + regression guard against `'speaking-production'` catch-all returning). 226/226.
+- α.2 (commit `1260c22`): `fix(roleplay): route recordResult to real concept ids` — RoleplayTurn gains required targetConceptId + errorTag fields; all 12 turns across 3 scenarios tagged; RoleplayScreen recordResult uses turn.targetConceptId. +28 tests (same shape). 254/254.
+- α.3 (this commit): docs sync + C1 disposition. C1 was never in the codebase (CEFRLevel = `'A1' | 'A2' | 'B1' | 'B2'`; LEVELS array stops at B2 — no UI removal needed). C1 added to Stream 6 backlog with three named dependencies (graph + corpus + upgraded model OR paid-API path). Listening restructure (TTS bridge + question expansion + Lytt og svar UX redesign) explicitly recorded as deferred in Stream 6 backlog — re-opens only on Council ratification OR Stream 3 audio infra landing.
+
+**Deferred:**
+- Listening TTS-wire + 30-question expansion → Stream 6 backlog, re-opens only via Council re-disposition.
+- Mobile cross-cutting pass (5 fixes across 4 surfaces) → re-evaluate post Stream 5.5 close.
+- Muntlig MediaRecorder self-listening + roleplay focus-overlap scenario selection → Stream 5.5 Phase 4 already scoped for the focus-overlap half.
+- Reading comprehension wrap + NoCoLA corpus expansion → Stream 6 (already in backlog as "reading comprehension scoring").
+- Journal weekly archive surface in /uke → folds into Stream 5.5 Phase 3 if scoped, else Stream 6.
+
+**Next:** Resume Stream 5.5 Phase 3 (Journal weekly-focus prompt bias). Architect's earlier D1–D5 rulings (literal spec copy, live-lowest decayedScore focus pick, full prompt replacement + 'ukens fokus' chip, silent error sort, local Norwegian label dict) still stand and were never overridden.
+
+**Procedural note for future audits:** Background `super-orchestrator` audits should write a Council `RESTRUCTURE` entry to this log AS PART OF the audit synthesis, not as a post-hoc doc-sync step. The lag here (audit completed 2026-05-22T14:00; this log entry 2026-05-22T15:00) created a 1-hour window where shipped code (α.1 + α.2) didn't trace to a Council record. Closed by writing the entry retroactively.
+
+**Evidence:**
+- Audit output: super-orchestrator background agent transcript
+- α.1 + α.2 commit messages contain verification details (test counts, gates passed)
+- This log entry + roadmap.md Current Position section (added 2026-05-22T15:00) carry the disposition record
