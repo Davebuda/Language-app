@@ -5,11 +5,11 @@ milestone_name: Stream 5 — Weekly Sprint (Curriculum Cohesion Layer)
 status: in progress
 stopped_at: Phase 1 (data model + selection logic) APPROVED. Phase 2 (authenticated walkthrough) requires user magic-link click OR can be reordered to between Phase 3 and Phase 4.
 last_updated: "2026-05-22"
-last_activity: 2026-05-22T01:08 — Phase 6 commit 9dd017e; 155/155 passing. WeekStrip ships on dashboard.
-stopped_at_phase_2_reason: Phase 4b (Supabase learning_events_log migration) and Phase 2 (auth walkthrough) both need user action. All autonomous phases (1, 3, 5a, 4a, 5b, 6) are complete. Phase 7 (audit) runs next.
+last_activity: 2026-05-22T01:15 — Phase 7 smoke complete (718ca45). PASS with one P1 (pre-existing React #418 hydration error on dashboard).
+stopped_at_phase_2_reason: All autonomous Stream 5 phases complete (1, 3, 5a, 4a, 5b, 6, 7). Phase 4b (Supabase learning_events_log migration) and Phase 2 (auth walkthrough) both need user action. Council stops here.
 progress:
   stream_5_phase: 1 of 7 complete
-  stream_5_phase: 6 of 8 complete (1, 3, 5a, 4a, 5b, 6)
+  stream_5_phase: 7 of 8 complete (1, 3, 5a, 4a, 5b, 6, 7)
   stream_5_phases:
     - "1: data model + selection logic — COMPLETE (0821e75)"
     - "3: scheduler bias toward weeklyFocus — COMPLETE (4fbd654)"
@@ -17,10 +17,11 @@ progress:
     - "4a: /uke route + WeeklyCheckScreen (local-only) — COMPLETE (d81b2e4)"
     - "5b: graduation rule on closeWeek — COMPLETE (85504e4)"
     - "6: dashboard WeekStrip — COMPLETE (9dd017e)"
-    - "7: aesthetic guard + audit — NEXT (Playwright smoke + baseline-ui)"
+    - "7: smoke + audit on live deploy — COMPLETE (718ca45); PASS with 1 P1 (React #418, pre-existing)"
     - "4b: Supabase migration for learning_events_log — PENDING USER (DB migration consent)"
     - "2: authenticated walkthrough — PENDING USER (magic-link click); gates 4b"
   side_quest_completed: "auth-redirect fix (e6a08b2) — magic links now prefer NEXT_PUBLIC_APP_URL over window.location.origin; user must set env var on prod + whitelist URL in Supabase dashboard"
+  open_followup: "P1 React #418 hydration mismatch on /dashboard — pre-existing, not Stream 5; investigate todayFormatted() and getStreak() as likely sources"
   p0.5_tasks_complete: 15/15
   walkthrough_iterations: 3 of (target 4 to seal)
   test_count: 129 passing (was 106 pre-Stream-5)

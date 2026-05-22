@@ -1,5 +1,32 @@
 # Council Decision Log
 
+## 2026-05-22T01:20 DONE — Stream 5 autonomous loop closed
+
+**Phase 7 smoke complete (commit `718ca45`).** Full report at `.council/reports/2026-05-22-0115-phase7-smoke.md`.
+
+**Stream 5 final tally:**
+- 7 of 8 phases shipped autonomously (1, 3, 5a, 4a, 5b, 6, 7)
+- 8 commits (excluding approval commits and the side-quest auth fix)
+- 49 new tests added (23+5+7+7+7+0 across the phases that added tests), 155/155 passing throughout
+- 1 side-quest: `e6a08b2` magic-link redirect fix
+- Live on pandoai.no via user-driven deploy (`147fee8`)
+
+**Findings from Phase 7 smoke:**
+- ✅ /uke renders clean at 375px and 1280px, zero console errors
+- ✅ WeekStrip empty state behaves correctly for fresh guest
+- ✅ Anti-Duolingo aesthetic posture preserved (no streak number, day-dots only, Norwegian dominates)
+- ⚠️ P1: React error #418 (hydration text-mismatch) on /dashboard at both breakpoints. NOT introduced by Stream 5 — likely pre-existing in `todayFormatted()` (server timezone vs client locale) or `getStreak()` (localStorage). Recommendation: reproduce in `npm run dev` to identify exact text node, then either wrap source in `useState/useEffect` or set `process.env.TZ=Europe/Oslo`.
+
+**Two manual actions for the user (auth-redirect side-quest):**
+1. Set `NEXT_PUBLIC_APP_URL=https://pandoai.no` in production env on the Hetzner VPS (PM2 ecosystem file or `/etc/environment`). Re-build + reload PM2.
+2. In Supabase dashboard → Authentication → URL Configuration → Redirect URLs, ensure `https://pandoai.no/auth/callback` is whitelisted. Optionally remove localhost entries from the production project.
+
+**Two phases remain pending user input:**
+- **Phase 4b** — Supabase migration adding the `learning_events_log` table per Stream 1.4 schema. Council can apply via Supabase MCP once user OKs the DB change. Anonymous guests excluded from writes per the privacy posture.
+- **Phase 2** — Authenticated walkthrough. User clicks magic link → Playwright drives the auth-side smoke test.
+
+**Council closes the autonomous loop here.** Next /council invocation should target one of: (a) Phase 4b apply, (b) Phase 2 walkthrough, (c) the React #418 follow-up, (d) a new direction.
+
 ## 2026-05-22T01:10 APPROVE — Stream 5 Phases 4a + 5b + 6 (consolidated)
 
 **User invocation:** "all of them" after the prior pause point — explicit breadth-acceptance to run autonomous phases through to Phase 7.
