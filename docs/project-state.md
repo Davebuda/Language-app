@@ -71,7 +71,7 @@ The adaptive engine is complete and the session loop is now end-to-end verified:
 - Muntlig module: shadowing, pronunciation drills, listen-and-respond designed but not built; only step 5 (scripted roleplay) is live
 - Analytics surface for `learning_events_log` (Stream 1.4 reads — first read use case deferred until there's enough data)
 - NB-Llama-3.2-1B compile for web-llm (Stream 1.1 Step 2 — half-day MLC pipeline)
-- F008 path-traversal tightening (hygiene; no exploit), F025 session resume on re-entry, F027 repair-loop cap, F032 journal SSR mismatch, F035 reading visited indicator — all documented in `docs/recovery-backlog.md`
+- F008 path-traversal tightening (hygiene; no exploit), F025 session resume on re-entry, F027 repair-loop cap, F035 reading visited indicator — all documented in `docs/recovery-backlog.md`. F032 closed 2026-05-22 via `9bef843`.
 
 ---
 
@@ -141,7 +141,7 @@ The local model (Llama-3.2-3B-Instruct) has documented Norwegian quality issues:
 2. Conversation mic auto-starts recording without user consent — **OPEN** (P1, mic-consent UX)
 3. Conversation opener context-free — **closed** via P0.5-05 (Norwegian topic label in Kari opener)
 4. ~~Journal feedback quality nonsensical~~ — closed via P0.5-06 (validity gate on `reviewWriting`)
-5. Profile/Progress SSR hydration flash (A1→A2) — partially closed via P0.5-11 (read-on-render); **dashboard hydration React #418 closed 2026-05-22 via `cf1fcc3`** (SSR-safe gates on `todayLabel` + `streak`). Residual: F032 journal SSR mismatch (cosmetic).
+5. Profile/Progress SSR hydration flash (A1→A2) — partially closed via P0.5-11 (read-on-render); **dashboard hydration React #418 closed 2026-05-22 via `cf1fcc3`** (SSR-safe gates on `todayLabel` + `streak`); **journal SSR mismatch (F032) closed 2026-05-22 via `9bef843`** (`WritingEditor` no longer auto-flips `inputMode` post-hydration). All known SSR hydration mismatches now sealed.
 6. Progress page shows wrong level's concept graph — closed via P0.5-02 (canonical concept-id scheme)
 7. Recalibration starts without trigger banner or opt-in — **OPEN** (P1, surfaced 2026-05-21 walkthrough)
 8. Recalibration accessibility tree empty — **OPEN** (P1, screen-reader gap)
@@ -222,7 +222,7 @@ Stream 5 (Weekly Sprint) closure leaves two parallel decision tracks:
 
 **Engineering-eligible (can ship via Council without user input):**
 - **F008 path-traversal tightening** in `safeRedirectPath` — hygiene; no exploit. Small.
-- **F032 journal SSR mismatch** — cosmetic; same shape as the React #418 fix on dashboard.
+- ~~**F032 journal SSR mismatch** — cosmetic; same shape as the React #418 fix on dashboard.~~ ✅ CLOSED 2026-05-22 via `9bef843`.
 - **F027 repair-loop cap** — worst-case polish (`isRepairItem` guard prevents the failure mode).
 - **F025 session resume on re-entry** — non-trivial; needs session-state persistence layer.
 - **Stream 1.4 reads — analytics surface** against `learning_events_log`. First read use case. Needs design — how to surface "is the repair loop accelerating learning?" without becoming Duolingo's stats page.

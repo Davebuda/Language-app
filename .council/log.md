@@ -1,5 +1,29 @@
 # Council Decision Log
 
+## 2026-05-22T08:55 APPROVE — F032 journal SSR mismatch closed
+
+**User invocation:** `/council /gsd` → "start with updating the documentation" → "use /md-sync is needed" → "omc" / "Resume /council loop". Three-step pivot: doc-reconciliation sweep first, then Council picks next move.
+
+**Doc reconciliation pass (commit `f4ba9c5`):** md-sync audit caught ~36 hours of drift in CLAUDE.md + docs/{roadmap,project-state,recovery-backlog}.md. Test count 106 → 155, decay half-life "deferred" → 25-shipped, calibration + event-logging + prompt-hardening moved Deferred → Live, Stream 5 closure added (was missing from project-state.md entirely), roadmap "Stream 3 — Muntlig" duplicate heading at line 249 renamed to "Stream 6 — v2 / Deferred Backlog". 4 files / +117/-81.
+
+**Next-move selection — F032.** Per Council protocol next-task scan: roadmap's engineering-eligible list contained F008, F025, F027, F032, Stream 1.4 reads, Stream 1.1 Step 2, REVIEW.md WARNING re-audit. Picked F032 because the fix pattern was already proven (React #418 dashboard fix from `cf1fcc3`), single-file diff, user-visible flicker on every page load. Research gate skipped — the proven SSR-safe-gate pattern is established. No external research needed.
+
+**Brief:** `.council/current.md` 2026-05-22T08:45 — single change: remove `setInputMode('voice')` from WritingEditor's mount-effect; preserve `setHasSpeechAPI(true)`. Mathematical reasoning: removing the inputMode mutation means the textarea-vs-mic ternary on line 209 cannot flip from initial render unless the user clicks the toggle. Toggle still appears post-hydration (additive `hasSpeechAPI` flip), but the primary affordance no longer swaps.
+
+**Implementation (commit `9bef843`):** implementer (sonnet) executed verbatim. Diff: 1 file (`src/components/journal/WritingEditor.tsx`), +4/-2 (one line removed, three lines of inline justification added, one comment updated). All 8 acceptance criteria met without correction. typecheck clean, 155/155 tests pass.
+
+**Playwright SMOKE (commit `f1c18ef`):** report at `.council/reports/2026-05-22-0845-f032-journal.md`. All four checks PASS:
+- `/journal` first-paint: textbox visible, no swap (0 console errors)
+- `/journal` post-hydration screenshot: Snakk/Skriv toggle appears additively above textarea, Skriv stays highlighted, textarea remains primary affordance — no mic-button swap. Screenshot at `.council/reports/2026-05-22-0845-f032-journal-no-api.png` (misnamed — actually shows the with-API hydrated state in headless Chrome which exposes `webkitSpeechRecognition`)
+- `/dashboard` (React #418 baseline): zero console errors — fix from `cf1fcc3` still holds
+- Critical path: start session → submit "wrong answer" → repair card with correct answer "Ei jente og en gutt leker i parken." + Prøv igjen retry button fires within ~3s. Zero console errors.
+
+**Verdict actions:** project-state.md P1 #5 updated to note all known SSR hydration mismatches now sealed (R#418 + F032). project-state.md Known gaps + roadmap.md Deferred + recovery-backlog.md Deferred all marked F032 as ✅ CLOSED with commit reference. Roadmap "Next phase" engineering-eligible list shortened to F008/F025/F027/Stream 1.4 reads/Stream 1.1 Step 2/REVIEW.md re-audit. Documented in this entry.
+
+**What's left autonomously:** F008 path-traversal tightening (smallest), F027 repair-loop cap (polish), Stream 1.4 reads (needs design — first analytics surface), Stream 1.1 Step 2 (half-day MLC pipeline), REVIEW.md 2026-05-11 WARNING items re-audit. F025 session resume is the only one that genuinely needs design (session-state persistence layer). Council can pick on next /gsd invocation.
+
+**Pending user actions (unchanged from prior pass):** magic-link click for auth walkthrough, NEXT_PUBLIC_APP_URL prod env, Supabase callback whitelist.
+
 ## 2026-05-22T07:20 DONE — AlertDialog upgrade + roadmap reconciliation
 
 **User invocation:** `/council /gsd` — second autonomous pass after Stream 5 close.

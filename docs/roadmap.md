@@ -304,7 +304,7 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 - **F008 path-traversal tightening** — hygiene; no exploit; small Council brief.
 - **F025 session resume on re-entry** — needs session-state persistence layer; non-trivial design.
 - **F027 repair-loop cap** — worst-case polish.
-- **F032 journal SSR mismatch** — cosmetic; same shape as React #418 fix.
+- ~~**F032 journal SSR mismatch** — cosmetic; same shape as React #418 fix.~~ ✅ CLOSED 2026-05-22 via `9bef843` (WritingEditor no longer auto-flips inputMode post-hydration).
 - **Stream 1.4 reads — first analytics surface** against `learning_events_log` (needs design — how do we surface "is the repair loop accelerating learning?" honestly without becoming Duolingo's stats page).
 - **Stream 1.1 Step 2** — half-day MLC pipeline to compile NB-Llama-3.2-1B for web-llm; not single-turn.
 - **REVIEW.md 2026-05-11 WARNING items** — re-audit pass; most re-audited as still-fine in P0.5-01, a few flagged for next-touch refactor.
@@ -323,7 +323,7 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 1. **F008 path-traversal tightening** in `safeRedirectPath` — no exploit confirmed; hygiene.
 2. **F025 session resume on re-entry** — current behaviour is honest; needs session-state persistence layer.
 3. **F027 repair-loop cap** — `isRepairItem` guard prevents worst-case; cap is polish.
-4. **F032 journal SSR mismatch** — cosmetic, no Critical ripple.
+4. ~~**F032 journal SSR mismatch** — cosmetic, no Critical ripple.~~ ✅ CLOSED 2026-05-22 via `9bef843`.
 5. **F035 reading visited indicator** — reading does not feed fingerprint by design.
 6. **REVIEW.md 2026-05-11 WARNING items** — most re-audited as still-fine in P0.5-01; a few flagged for next-touch refactor.
 7. **v2 backlog** (FSRS, BKT, adaptive decay, vocab SRS, NB-Llama-1B compile via Stream 1.1 Step 2, full muntlig mode set) when the working app has real users and real data.

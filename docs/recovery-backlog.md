@@ -40,7 +40,7 @@ Tasks were dependency-ordered. P0.5-01 (source verification) ran first. **Re-seq
 - F008 path-traversal edge case — no exploit; validator could be tightened to whitelist. Polish.
 - F025 session resume on re-entry — current behavior is honest; needs session-state persistence layer.
 - F027 repair-loop cap — `isRepairItem` guard prevents worst-case; cap is polish.
-- F032 journal SSR mismatch — cosmetic, no Critical ripple.
+- ~~F032 journal SSR mismatch — cosmetic, no Critical ripple.~~ ✅ CLOSED 2026-05-22 via commit `9bef843` — `WritingEditor` no longer auto-flips `inputMode` to `'voice'` post-hydration; toggle appears additively after hydration, textarea stays as primary affordance.
 - F035 reading visited indicator — reading does not feed fingerprint by design.
 - ~~AlertDialog primitive — mid-session exit uses `window.confirm()` with a TODO; migrate when next UI sweep happens.~~ ✅ CLOSED 2026-05-22 via commit `922d91e` — `@radix-ui/react-alert-dialog` installed, shadcn-flavor primitive at `src/components/ui/alert-dialog.tsx`, mid-session exit migrated.
 - Authenticated-user walkthrough — guest-only across all three walkthroughs; queued for next fresh walk.
