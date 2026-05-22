@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"curl -s -o /dev/null -w \\\"%{http_code}\\\\n\\\" --max-time 5 http://localhost:3000/dashboard 2>&1\",\"description\":\"Probe dev server\"}",
+  "error": "Exit code 28\n000",
+  "timestamp": "2026-05-22T15:39:54.977Z",
+  "retry_count": 1
+}

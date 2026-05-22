@@ -99,7 +99,22 @@
       "WebFetch(domain:www.buildmvpfast.com)",
       "WebFetch(domain:costgoat.com)",
       "WebFetch(domain:arxiv.org)",
-      "WebFetch(domain:console.groq.com)"
+      "WebFetch(domain:console.groq.com)",
+      "WebFetch(domain:scandeval.com)",
+      "WebFetch(domain:webkit.org)",
+      "WebFetch(domain:v-chandra.github.io)",
+      "WebFetch(domain:blog.premai.io)",
+      "WebFetch(domain:dev.to)",
+      "WebFetch(domain:tokenmix.ai)",
+      "WebFetch(domain:www.sitepoint.com)",
+      "WebFetch(domain:neuralrouting.io)",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "Bash(command -v omc)",
+      "Bash(date *)",
+      "Bash(ls src/lib/)",
+      "Bash(dir src\\\\lib)",
+      "Read(//mnt/c/Users/daveb/Documents/GitHub/Language-app/tests/**)",
+      "Read(//mnt/c/Users/daveb/Documents/GitHub/Language-app/**)"
     ]
   }
 }

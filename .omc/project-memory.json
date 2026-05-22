@@ -1,0 +1,515 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1779431846543,
+  "projectRoot": "C:\\Users\\daveb\\Documents\\GitHub\\Language-app",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "15.3.2",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.1.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.1.0",
+        "category": "frontend"
+      },
+      {
+        "name": "@playwright/test",
+        "version": "1.59.1",
+        "category": "testing"
+      },
+      {
+        "name": "vitest",
+        "version": "4.1.5",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npx tsc --noEmit 2>&1 | head -10 ; echo \"---tsc done---\" ; npx vitest run 2>&1 | tail -6",
+    "testCommand": "npx tsc --noEmit 2>&1 | head -10 ; echo \"---tsc done---\" ; npx vitest run 2>&1 | tail -6",
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "next dev --turbopack",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint",
+      "test": "vitest run",
+      "test:watch": "vitest",
+      "council:verify": "playwright test tests/council/ && node .council/scripts/format-report.js"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "scripts",
+      "src",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "content": {
+      "path": "content",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1779431846500,
+      "keyFiles": []
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 10,
+      "lastAccessed": 1779431846501,
+      "keyFiles": [
+        "ai-layer-spec.md",
+        "claude-code-environment-prep.md",
+        "norwegian-app-brainstorm-v2.md",
+        "norwegian-app-brainstorm-v3.md",
+        "norwegian-app-brainstorm.md"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 3,
+      "lastAccessed": 1779431846513,
+      "keyFiles": [
+        "generate-content.ts",
+        "seed-content.ts"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 1,
+      "lastAccessed": 1779431846514,
+      "keyFiles": [
+        "middleware.ts"
+      ]
+    },
+    "supabase": {
+      "path": "supabase",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1779431846514,
+      "keyFiles": []
+    },
+    "test-reports": {
+      "path": "test-reports",
+      "purpose": null,
+      "fileCount": 35,
+      "lastAccessed": 1779431846515,
+      "keyFiles": [
+        "01-landing-desktop.png",
+        "01-landing-mobile.png",
+        "02-login-empty.png",
+        "03-dashboard-guest.png",
+        "03b-dashboard-level-picker.png"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 1,
+      "lastAccessed": 1779431846516,
+      "keyFiles": [
+        "setup.ts"
+      ]
+    },
+    "src\\app": {
+      "path": "src\\app",
+      "purpose": "Application code",
+      "fileCount": 4,
+      "lastAccessed": 1779431846517,
+      "keyFiles": [
+        "globals.css",
+        "icon.tsx",
+        "layout.tsx"
+      ]
+    },
+    "src\\components": {
+      "path": "src\\components",
+      "purpose": "UI components",
+      "fileCount": 3,
+      "lastAccessed": 1779431846518,
+      "keyFiles": [
+        "DailyLearningCard.tsx",
+        "DailyWordPack.tsx",
+        "ProgressReassuranceStrip.tsx"
+      ]
+    },
+    "src\\lib": {
+      "path": "src\\lib",
+      "purpose": "Library code",
+      "fileCount": 19,
+      "lastAccessed": 1779431846518,
+      "keyFiles": [
+        "answer.ts",
+        "concept-colors.ts",
+        "constraints.ts"
+      ]
+    },
+    "src\\types": {
+      "path": "src\\types",
+      "purpose": "Type definitions",
+      "fileCount": 6,
+      "lastAccessed": 1779431846521,
+      "keyFiles": [
+        "concepts.ts",
+        "content.ts",
+        "database.ts"
+      ]
+    },
+    "supabase\\migrations": {
+      "path": "supabase\\migrations",
+      "purpose": "Database migrations",
+      "fileCount": 3,
+      "lastAccessed": 1779431846528,
+      "keyFiles": [
+        "001_content_schema.sql",
+        "002_feature_expansion.sql",
+        "003_learning_events_log.sql"
+      ]
+    },
+    "tests\\lib": {
+      "path": "tests\\lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1779431846533,
+      "keyFiles": [
+        "weekly-check.test.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src\\components\\journal\\WritingEditor.tsx",
+      "accessCount": 13,
+      "lastAccessed": 1779464426704,
+      "type": "file"
+    },
+    {
+      "path": "docs\\roadmap.md",
+      "accessCount": 12,
+      "lastAccessed": 1779456198041,
+      "type": "file"
+    },
+    {
+      "path": "tests\\engine\\weekly-sprint.test.ts",
+      "accessCount": 9,
+      "lastAccessed": 1779438135139,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 8,
+      "lastAccessed": 1779456089558,
+      "type": "directory"
+    },
+    {
+      "path": "src\\components\\dashboard\\WeekStrip.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1779439420829,
+      "type": "file"
+    },
+    {
+      "path": "src\\engine\\weekly-sprint.ts",
+      "accessCount": 6,
+      "lastAccessed": 1779450793109,
+      "type": "file"
+    },
+    {
+      "path": "src\\hooks\\useFingerprint.ts",
+      "accessCount": 5,
+      "lastAccessed": 1779457343808,
+      "type": "directory"
+    },
+    {
+      "path": "src\\types\\fingerprint.ts",
+      "accessCount": 4,
+      "lastAccessed": 1779437858727,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\muntlig\\ListenRespondScreen.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1779455688653,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\conversation\\page.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1779455332124,
+      "type": "file"
+    },
+    {
+      "path": "src\\lib\\listenRespondContent.ts",
+      "accessCount": 3,
+      "lastAccessed": 1779455662465,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\muntlig\\RoleplayScreen.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1779455990298,
+      "type": "file"
+    },
+    {
+      "path": ".council\\current.md",
+      "accessCount": 3,
+      "lastAccessed": 1779456276147,
+      "type": "file"
+    },
+    {
+      "path": "docs\\validation-and-research.md",
+      "accessCount": 2,
+      "lastAccessed": 1779454182538,
+      "type": "file"
+    },
+    {
+      "path": "docs\\muntlig\\architecture.md",
+      "accessCount": 2,
+      "lastAccessed": 1779454183216,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\journal\\page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1779454195177,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shadow\\page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1779454248936,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\listen\\page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1779455194532,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\muntlig\\ListenRespondExercise.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1779455331211,
+      "type": "file"
+    },
+    {
+      "path": "vitest.config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779455785571,
+      "type": "file"
+    },
+    {
+      "path": "src\\lib\\roleplayContent.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779455976159,
+      "type": "file"
+    },
+    {
+      "path": "src\\engine\\fingerprint.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779436993043,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1779437981668,
+      "type": "directory"
+    },
+    {
+      "path": "src\\lib\\weekly-progress.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779438260182,
+      "type": "file"
+    },
+    {
+      "path": "tests\\lib\\weekly-progress.test.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779438299121,
+      "type": "file"
+    },
+    {
+      "path": ".council\\reports\\2026-05-22-0934-phase1-reading-exposure.md",
+      "accessCount": 1,
+      "lastAccessed": 1779438506574,
+      "type": "file"
+    },
+    {
+      "path": ".council\\reports\\2026-05-22-phase-a1-fingerprint-diff.md",
+      "accessCount": 1,
+      "lastAccessed": 1779438553631,
+      "type": "file"
+    },
+    {
+      "path": "src\\storage\\indexeddb.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779438699521,
+      "type": "file"
+    },
+    {
+      "path": ".council\\reports\\2026-05-22-phase-a1-smoke.md",
+      "accessCount": 1,
+      "lastAccessed": 1779439138600,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\reading\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454200969,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\uke\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454206932,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\weekly\\WeeklyCheckScreen.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454228519,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\roleplay\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454228963,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\layout",
+      "accessCount": 1,
+      "lastAccessed": 1779454245398,
+      "type": "directory"
+    },
+    {
+      "path": "content\\concepts",
+      "accessCount": 1,
+      "lastAccessed": 1779454246405,
+      "type": "directory"
+    },
+    {
+      "path": "src\\app\\drills\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454257882,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\vocab\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454259161,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\layout\\BottomNav.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454260298,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\muntlig\\ShadowingScreen.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779454261781,
+      "type": "file"
+    },
+    {
+      "path": "content\\concepts\\a1-graph.json",
+      "accessCount": 1,
+      "lastAccessed": 1779455585589,
+      "type": "file"
+    },
+    {
+      "path": "src\\types\\taxonomy.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779455674025,
+      "type": "file"
+    },
+    {
+      "path": "tests\\lib\\listenRespondContent.test.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779455709990,
+      "type": "file"
+    },
+    {
+      "path": "tests",
+      "accessCount": 1,
+      "lastAccessed": 1779455748563,
+      "type": "directory"
+    },
+    {
+      "path": "tests\\lib\\exposure.test.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779455772996,
+      "type": "directory"
+    },
+    {
+      "path": "tests\\lib\\roleplayContent.test.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779456016006,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\dashboard\\LevelSelector.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1779456098172,
+      "type": "file"
+    },
+    {
+      "path": "src\\lib\\journal-prompts.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779456660406,
+      "type": "file"
+    },
+    {
+      "path": "tests\\lib\\journal-prompts.test.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779456710296,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
