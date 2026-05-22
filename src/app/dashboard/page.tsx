@@ -62,12 +62,6 @@ const DASHBOARD_PROMPTS = [
   'Hva er din favorittmat, og hvorfor?',
 ]
 
-function todayFormatted(): string {
-  return new Date().toLocaleDateString('nb-NO', {
-    weekday: 'long', day: 'numeric', month: 'long',
-  })
-}
-
 export default function DashboardPage() {
   useFingerprint()
   const router = useRouter()
@@ -75,7 +69,17 @@ export default function DashboardPage() {
   const { user } = useAuth()
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
   const [showLevelUp, setShowLevelUp] = useState(false)
-  const streak = getStreak()
+  // Defer client-only values until after hydration to prevent SSR/CSR mismatch
+  // (React #418): the server renders in UTC with localStorage unavailable; the
+  // client renders in the user's locale/timezone with localStorage populated.
+  const [streak, setStreak] = useState(0)
+  const [today, setToday] = useState('')
+  useEffect(() => {
+    setStreak(getStreak())
+    setToday(new Date().toLocaleDateString('nb-NO', {
+      weekday: 'long', day: 'numeric', month: 'long',
+    }))
+  }, [])
 
   // Level-up celebration when A1→A2 transition fires
   useEffect(() => {
@@ -203,7 +207,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0 flex-1">
               <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
-                {todayFormatted()}
+                {today}
               </div>
               <div className="mt-1 flex flex-wrap items-center gap-2.5">
                 <h1 className="text-balance font-display text-[1.75rem] font-bold leading-tight tracking-tight text-[var(--nc-text)]">
