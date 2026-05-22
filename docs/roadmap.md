@@ -4,7 +4,7 @@ The current build sequence with every research-validated priority locked in. Thi
 
 ## Current Position — STREAM 5.5 (LANES ON A BAR) ACTIVE 2026-05-22
 
-**Stream 5.5 ratified by Council 2026-05-22T09:02** as the cohesion-pass over Stream 5. Every existing feature is mapped to a lane on the weekly bar; features that don't earn a lane are retired or deferred. **No new feature surface.** 8 phases sequenced depth-first; Phases 1–7 autonomous, Phase 8 (recalibration retirement) pending user input. See `Stream 5.5 — Lanes on a Bar` section below for the full lane map, research basis, and phase plan.
+**Stream 5.5 ratified by Council 2026-05-22T09:02** as the cohesion-pass over Stream 5. Every existing feature is mapped to a lane on the weekly bar; features that don't earn a lane are retired or deferred. **No new feature surface.** 8 phases sequenced depth-first; all 8 autonomous (Phase 8 recalibration retirement ratified Option A by Council 2026-05-22T09:15 via engine-evidence reasoning — see Stream 5.5 Phase 8 below). See `Stream 5.5 — Lanes on a Bar` section below for the full lane map, research basis, and phase plan.
 
 **Stream 5 — Weekly Sprint signed off:** all 8 phases (1, 3, 5a, 4a, 5b, 6, 7, 4b) shipped across 9 commits + the React #418 follow-up + AlertDialog primitive close + F032 journal SSR fix + roadmap reconciliation. Engine→UI path is end-to-end live: learner starts a session → `ensureWeekOpen` populates `weeklyFocus` → scheduler biases remediation pool toward focus → dashboard `WeekStrip` surfaces focus chips + day-dots → `/uke` weekly check writes locally via `closeWeek`/`openWeek` and emits an anonymized `weekly_check_complete` row to `learning_events_log` for authenticated learners → graduation rule promotes/demotes on close. 155/155 tests passing. Phase 7 smoke check on pandoai.no PASS. Stream 5.5 extends this cycle across **all** production surfaces (currently only Session loop + WeekStrip + `/uke` are wired).
 
@@ -309,10 +309,28 @@ This is logged in `.council/research.md` 2026-05-22 as an extension of the 2026-
 
 **Phase 7 — Stub removal (`/vocab`, `/shadow`).** Remove placeholder notify-button surfaces. Route the URLs to a small "Coming in v2" banner page that links to the active features. Honest, not silent. **Files:** `src/app/vocab/page.tsx`, `src/app/shadow/page.tsx`. **Acceptance:** notify-button surfaces gone; honest banner in place; navigation entries removed.
 
-**Phase 8 — Recalibration retirement** — **DECISION PENDING USER.** Council ratifies the lane architecture and Phases 1–7 autonomously. This phase requires user input:
-- Option A: Retire `/recalibration` as standalone surface. Fold its function into `/uke` + level-switch trigger. Honest copy: "the weekly check is your re-assessment."
-- Option B: Keep `/recalibration` with an added trigger banner (P1 #7 fix from project-state.md gap list).
-- Decision driver: Option A is the architecturally clean move; Option B is the lower-risk minimal change.
+**Phase 8 — Recalibration retirement (RATIFIED 2026-05-22T09:15 — Option A).** Retire `/recalibration` as standalone dashboard surface; preserve the internal `recalibrate(level)` function and wire it to two non-standalone triggers: (a) level-switch in the level selector (A1→A2→B1→B2) and (b) a Profile-initiated "I think my level is wrong" escape hatch. Honest banner on `/recalibration` route hits: redirect to `/uke` with copy "Ukens repetisjon er din re-vurdering" / "The weekly check is your re-assessment".
+
+**Decision reasoning (engine + prior research, in-scope per Operating Rule 7):**
+1. Decay (`DECAY_HALF_LIFE_DAYS = 25`, Stream 1.2) degrades any untouched concept toward the floor of 35 automatically — no surface needed to "trigger" re-baselining; it happens continuously.
+2. Scheduler 40% remediation pool already pulls from the full fingerprint's weakest concepts, biased (not locked) toward `weeklyFocus`. Decayed non-focus concepts surface back into rotation actively.
+3. `shouldResetWeek` (Stream 5 Phase 1) handles absence-induced drift: returning after >7 days fires honest banner + fresh focus weighted toward decay-weakened concepts (per the 2026-05-21T21:30 research entry Q4).
+4. Level-switch is the one legitimate trigger requiring a focused re-baseline quiz on the new level's concepts. That's the function preserved.
+5. `/uke` covers the weekly retrieval need (focus + prior-week graduates, the variable-retrieval principle from prior research).
+
+This closes the project-state.md P1 #7 gap ("Recalibration starts without trigger banner or opt-in") not by adding a banner but by removing the surface that needed one.
+
+**Files in scope (Phase 8 execution):**
+- `src/app/recalibration/page.tsx` — replace surface with honest redirect-to-`/uke` page.
+- Wherever the dashboard links to `/recalibration` — remove the link.
+- Level-selector component — wire `onLevelChange` to call the internal `recalibrate(level)` function.
+- Profile page — add an "I think my level is wrong" affordance that triggers `recalibrate(currentLevel)`.
+- `src/lib/recalibration.ts` (or wherever it lives) — extract the standalone-surface logic into a callable function if it isn't already.
+
+**Out of scope (Phase 8):**
+- Re-architecting the recalibration quiz itself (still 7 questions; still writes to fingerprint via `recordResult`).
+- Changing `/uke` behavior.
+- Removing diagnostic placement (onboarding still fires the full diagnostic).
 
 ### Pre-conditions met
 
@@ -397,7 +415,7 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 
 ### Next phase — Stream 5.5 (RATIFIED 2026-05-22T09:02)
 
-Council ratified the Lanes-on-a-Bar architecture and the 8-phase sequence (see Stream 5.5 section above). Phases 1–7 are autonomous; Phase 8 (recalibration retirement) is pending user input. Hand-off proceeds to `/solve` for the execution plan, then `/gsd` to run phase-by-phase.
+Council ratified the Lanes-on-a-Bar architecture and the 8-phase sequence (see Stream 5.5 section above). All 8 phases autonomous (Phase 8 recalibration retirement ratified Option A 2026-05-22T09:15). Hand-off proceeds to `/solve` for the execution plan, then `/gsd` to run phase-by-phase.
 
 ### Further-deferred backlog (after Stream 5.5 closes)
 - ~~**F008 path-traversal tightening** — hygiene; no exploit; small Council brief.~~ ✅ CLOSED 2026-05-22 via `20beb88` — `safeRedirectPath` extracted to `src/lib/safeRedirectPath.ts`, tightened to strict charset whitelist + 28 unit tests. Shipped during the Stream 5.5 RESTRUCTURE pass.
@@ -409,7 +427,7 @@ Council ratified the Lanes-on-a-Bar architecture and the 8-phase sequence (see S
 - **REVIEW.md 2026-05-11 WARNING items** — re-audit pass; most re-audited as still-fine in P0.5-01, a few flagged for next-touch refactor.
 
 ### Product-decision items (need user)
-- **Phase 8 of Stream 5.5 — recalibration retirement** (Option A retire / Option B keep with banner). See Stream 5.5 Phase 8.
+- ~~**Phase 8 of Stream 5.5 — recalibration retirement**~~ ✅ RATIFIED 2026-05-22T09:15 Option A (retire) via Council engine-evidence reasoning. See Stream 5.5 Phase 8.
 - **A. Muntlig roleplay deepening** — branching variety, recording playback, scoring heuristics OR a sixth muntlig mode. Muntlig is now a tributary to the Weekly Sprint rather than a parallel surface. Stream 5.5 Phase 4 wires existing scripted roleplay to weekly focus; further deepening is a separate decision.
 - **E. B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching. Weekly Sprint has proved out on A1/A2; Stream 5.5 keeps the pattern A2-validated.
 

@@ -1,5 +1,44 @@
 # Council Decision Log
 
+## 2026-05-22T09:15 RATIFY — Stream 5.5 Phase 8 = Option A (retire `/recalibration` surface)
+
+**User invocation:** "use the respondent skills to a smart, researched option within scope" — explicit delegation of Phase 8 decision authority to Council. Override of the prior "DECISION PENDING USER" gate.
+
+**Decision:** Option A. Retire `/recalibration` as standalone dashboard surface. Preserve the internal `recalibrate(level)` function and wire it to two non-standalone triggers:
+1. Level-switch in the level selector (A1→A2→B1→B2)
+2. Profile-initiated "I think my level is wrong" escape hatch
+
+The `/recalibration` route hits an honest redirect-to-`/uke` banner page: "Ukens repetisjon er din re-vurdering" / "The weekly check is your re-assessment".
+
+**Reasoning (engine + prior-research, all in-scope per Operating Rule 7 — no new search needed; research gate skipped per "prior research within last 3 tasks" rule):**
+
+1. **Decay handles cross-concept drift passively.** `DECAY_HALF_LIFE_DAYS = 25` (Stream 1.2) degrades any untouched concept toward the floor of 35 automatically. No "trigger" surface is needed.
+
+2. **Scheduler handles cross-concept drift actively.** The 40% remediation pool already pulls from the full fingerprint's weakest concepts, biased (not locked) toward `weeklyFocus`. Decayed non-focus concepts surface back into rotation actively without a separate recalibration event.
+
+3. **`shouldResetWeek` handles absence-induced drift.** Returning after >7 days fires honest banner + fresh focus weighted toward decay-weakened concepts (per 2026-05-21T21:30 research entry Q4).
+
+4. **Level-switch is the one legitimate re-baseline trigger** — going A1→A2→B1→B2 needs a focused quiz on the new level's concepts. Function preserved as an internal call, not a surface.
+
+5. **`/uke` covers the weekly retrieval need** (focus + prior-week graduates per variable-retrieval principle from prior research).
+
+The standalone `/recalibration` surface was conceptually redundant: it asked the user to fire a process the engine already performs continuously. Removing the surface honors Operating Rule 6 ("no silent substitution") — it's also honors a stronger rule: "no redundant substitution that pretends to add value." This also closes the project-state.md P1 #7 ("Recalibration starts without trigger banner or opt-in") and P1 #8 ("Recalibration accessibility tree empty") by retirement instead of by patching surfaces that won't exist.
+
+### Risks considered
+- **Users who expect periodic re-assessment may be surprised.** Mitigated by the honest redirect-to-`/uke` copy + the Profile escape hatch.
+- **B1/B2 users haven't been load-tested.** The level-switch internal call covers this when B1/B2 concept graphs ship (Stream 6 v2 backlog item). Until then, the existing honest banner for B1/B2 ("you are practicing A2 at higher intensity") covers the level-switch case.
+- **Diagnostic placement on onboarding is unchanged.** Only the standalone re-run surface is retired.
+
+### Files restructured
+- `docs/roadmap.md` — Stream 5.5 Phase 8 rewritten with the ratified plan + file scope.
+- `docs/project-state.md` — P1 #7 and #8 marked closed-by-retirement.
+- `.council/log.md` — this entry.
+
+### Net effect on Stream 5.5
+All 8 phases are now autonomous. No user-decision gate remains. `/solve` can plan all 8 in one execution plan; `/gsd` can run them phase-by-phase without pausing.
+
+---
+
 ## 2026-05-22T09:08 APPROVE — F008 safeRedirectPath tightened + 28 unit tests (shipped during Stream 5.5 RESTRUCTURE pass)
 
 **User invocation:** "go" — continuation after F032 APPROVE close. Picked F008 from the engineering-eligible list per Council protocol next-task scan. Smallest item, security hygiene, well-scoped from walkthrough finding `_findings.md:305`.

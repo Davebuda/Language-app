@@ -31,10 +31,10 @@
 - `/shadow` notify-button stub — retired; honest "Coming in v2" banner
 - Listening "module" placeholder — deferred; only built when audio infra ships
 
-**Retirement pending user input (Phase 8):**
-- Recalibration as standalone surface — Option A (retire, fold into `/uke` + level-switch) or Option B (keep with added trigger banner). User must decide before Phase 8 runs.
+**Retirement ratified for Phase 8 (2026-05-22T09:15):**
+- Recalibration as standalone surface — **Option A ratified** by Council via engine-evidence reasoning (decay + scheduler + shouldResetWeek already cover cross-concept drift; level-switch is the one legitimate trigger, preserved as an internal call). Surface retired; `recalibrate(level)` retained as internal function callable from level-switch + Profile escape hatch. Closes project-state.md P1 #7 and #8 by retirement. All 8 phases now autonomous.
 
-**Sequencing locked (Phases 1–7 autonomous):**
+**Sequencing locked (all 8 phases autonomous after Phase 8 ratification 2026-05-22T09:15):**
 1. Reading concept-tagging + exposure logging
 2. Mid-week reveal strip on dashboard
 3. Journal weekly-focus prompt bias
@@ -42,7 +42,7 @@
 5. Conversation weekly-focus topic bias + correction priority
 6. Repair loop externalization — **SRS schedule writes only; no mid-flow drill firing on free surfaces** (research-validated constraint)
 7. Stub removal (`/vocab`, `/shadow`)
-8. Recalibration retirement — DECISION PENDING USER
+8. Recalibration retirement — Option A ratified (surface retired; internal function preserved; wired to level-switch + Profile escape hatch)
 
 ## How (the research finding that shaped the design)
 
@@ -83,6 +83,6 @@ This is now a load-bearing procedural lock for Stream 5.5 (see roadmap Stream 5.
 
 ## Next-step handoff
 
-`/solve` with the brief: "Stream 5.5 is ratified. Produce the execution plan for Phases 1–7 (autonomous) using existing primitives. Phase 8 stays parked until the user answers the recalibration retirement question. Honor the load-bearing constraint: Phase 6 writes SRS state for next-session pickup; it does not fire mid-flow drills on free surfaces."
+`/solve` with the brief: "Stream 5.5 is fully ratified — all 8 phases autonomous. Produce the execution plan for Phases 1–8 using existing primitives. Honor the load-bearing constraint: Phase 6 writes SRS state for next-session pickup; it does not fire mid-flow drills on free surfaces. Phase 8 retires the `/recalibration` route + wires `recalibrate(level)` to level-switch + Profile escape hatch."
 
 After /solve produces the plan, `/gsd` executes phase-by-phase with the standard Council brief-write → implementer → Playwright SMOKE → review loop.
