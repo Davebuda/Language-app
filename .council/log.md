@@ -1,5 +1,34 @@
 # Council Decision Log
 
+## 2026-05-22T04:20 DONE — Stream 5 fully shipped (8 of 8) + React #418 closed
+
+**User invocation:** `/council /gsd` — push remaining items autonomously.
+
+**Two shipped in this pass:**
+
+### Phase 4b — weekly_check_complete telemetry wire
+**Commit:** `6f01b12` feat(weekly): Stream 5 Phase 4b — wire weekly_check_complete telemetry.
+**Discovery:** Migration file `supabase/migrations/003_learning_events_log.sql` already exists and was applied 2026-05-21 (parallel work). `src/lib/logEvents.ts` already had `logSessionResults`. Only the weekly-check write was missing.
+**Change:** Added `logWeeklyCheckComplete(userId, {score, items})` to logEvents.ts (fire-and-forget, auth-only, guests silently skipped). Wired into `recordWeeklyCheckResult` in useFingerprint.ts. `concept_id` set to virtual value `'weekly-check'` to keep the events distinguishable from per-concept exercise results. `correct_bool` set to `score >= 50` matching the graduation rule's demote floor.
+**Diff:** 2 files (src/lib/logEvents.ts +47, src/hooks/useFingerprint.ts +3 incl. one import).
+**Verification:** typecheck clean, 155/155 tests pass, no schema change (table already lives).
+
+### React #418 follow-up — closed
+**Commit:** `cf1fcc3` fix(dashboard): SSR-safe gate todayLabel + streak to clear React #418.
+**Root cause confirmed:** Two SSR-vs-CSR text-content divergences in `src/app/dashboard/page.tsx`:
+1. `todayFormatted()` (line 65-69) rendered `new Date().toLocaleDateString('nb-NO', ...)` directly into JSX. Server in UTC vs client in Europe/Oslo produce different day names near day boundary.
+2. `getStreak()` (returned 0 on server via `typeof window === 'undefined'` guard, returned localStorage value on client). String(streak) into JSX diverges.
+**Fix:** Both values now initialize to stable defaults (`''` and `0`) matching SSR output, then populate via a single `useEffect` on mount. Standalone `todayFormatted()` function deleted (only call site was the one replaced).
+**Diff:** 1 file (src/app/dashboard/page.tsx +12/-8).
+**Verification:** typecheck clean, 155/155 tests pass, dev probe at localhost:3003/dashboard shows zero console errors.
+**Note:** The fix's effect (no React #418 in prod) is not provable from dev alone (dev = same machine, no timezone divergence). Will be verifiable on next production deploy via chrome-devtools probe of pandoai.no.
+
+### What's left
+- **Phase 2 — authenticated walkthrough.** Only remaining Stream 5 item. Requires the user to click a magic link. Engineering hygiene only — no unshipped code blocks behind it.
+- **Two manual auth-redirect actions from the prior session** (still pending): (1) `NEXT_PUBLIC_APP_URL=https://pandoai.no` in prod env, (2) Supabase whitelist `https://pandoai.no/auth/callback`.
+
+Council stops here. Stream 5 is feature-complete in code.
+
 ## 2026-05-22T01:20 DONE — Stream 5 autonomous loop closed
 
 **Phase 7 smoke complete (commit `718ca45`).** Full report at `.council/reports/2026-05-22-0115-phase7-smoke.md`.
