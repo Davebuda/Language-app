@@ -674,3 +674,35 @@ Handing to super-orchestrator with option B as the "idea to transform".
 - No exercise logic changed ✅
 **Playwright:** PASS — session exercise renders at 375px and 1280px, zero console errors.
 **Files changed:** `src/components/ui/MotionProvider.tsx` (new), `src/app/layout.tsx`, `WordOrderExercise.tsx`, `FillInBlankExercise.tsx`, `TranslationExercise.tsx`, `SpeedRound.tsx`
+
+## 2026-05-22T10:15 APPROVE — Stream 5.5 Phase 2 (Mid-week reveal strip) + Stream 5 close honesty note
+**Phase A1 of the super-orchestrator A→G sequence (ratified by user 2026-05-22).**
+
+**Criteria met:**
+- `summarizeWeeklyProgress(fp, graph)` pure read in `src/lib/weekly-progress.ts` — returns per-focus-concept `{conceptId, label, deltaDecayed, attemptsThisWeek}` ✅
+- `WeekStrip` extended with embedded delta + attempts per chip (single-line on ≥768px, wraps gracefully on 375px) ✅
+- New fingerprint field `weekStartSnapshots` populated by `openWeek` for each focus concept; consumed + cleared by `closeWeek` ✅
+- `closeWeek` now writes the real `startScore` and per-week `attempts` into `focusOutcomes` (not lifetime, not zero) ✅
+- `migrateWeeklySprintFields` extended idempotently to seed `weekStartSnapshots` on Stream-5-era fingerprints ✅
+- Anti-Duolingo guard preserved: no streak number, no XP, positive delta `var(--nc-teal)`, negative delta `var(--nc-text-dim)` (not red/warn) ✅
+- 209/209 tests passing (was 196 → +13) ✅
+- `tsc --noEmit` clean, `next lint` on touched dirs clean ✅
+- Playwright SMOKE PASS at 375/768/1280/1920px; 0 console errors ✅
+
+**Spec amendment (user-ratified 2026-05-22T10:00):** Original Phase 2 spec line "Pure read from fingerprint; no new state" was based on a false premise. Stream 5 Phase 5 had carried an unshipped `startScore` TODO in `closeWeek`. Architect ratified Option A: add one fingerprint field. Closes the spec contradiction.
+
+**Honesty note (user-ratified 2026-05-22T10:00, Operating Rule 6):** Stream 5 was claimed closed 2026-05-22T04:20 with all 8 phases shipped. Stream 5.5 Phase 2 investigation surfaced that Phase 5b carried an unshipped TODO in production code (`startScore: 0` hardcoded with comment "Phase 5 will capture startScore at week-open"). Closed retroactively as part of Phase 2. Historical `weeklySprintHistory` records written before this commit retain `startScore: 0` (forward-only fix; no retrofit). The Stream 5 close-receipt and Phase 5b entry in `docs/roadmap.md` have been amended to record this. The roadmap Current Position section now carries the explicit honesty note.
+
+**Evidence:**
+- `.council/reports/2026-05-22-phase-a1-smoke.md` — Playwright SMOKE
+- `.council/reports/2026-05-22-phase-a1-fingerprint-diff.md` — engine write-path pre/post diff
+- `.claude/screenshots/phase-a1/weekstrip-{375,768,1280,1920}.png`
+
+**Files changed:**
+- `src/types/fingerprint.ts` — new `weekStartSnapshots` field + factory seed
+- `src/engine/weekly-sprint.ts` — extended migration; `openWeek` writes snapshots; `closeWeek` reads + clears + writes real startScore + per-week attempts
+- `src/lib/weekly-progress.ts` (new) — `summarizeWeeklyProgress` pure read
+- `src/components/dashboard/WeekStrip.tsx` — embedded `FocusChip` with delta + attempts
+- `tests/engine/weekly-sprint.test.ts` — updated line-321 sentinel; added migration-Stream-5-era test, openWeek snapshot tests, closeWeek read+clear tests
+- `tests/lib/weekly-progress.test.ts` (new) — 8 tests
+- `docs/roadmap.md` — Phase 2 marked complete; Stream 5 close honesty note added; Phase 5b carry-over recorded

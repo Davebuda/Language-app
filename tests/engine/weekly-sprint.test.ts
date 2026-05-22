@@ -46,6 +46,7 @@ function makeFingerprint(overrides: Partial<MistakeFingerprint> = {}): MistakeFi
     weeklyFocus: [],
     weekStartedAt: null,
     weeklySprintHistory: [],
+    weekStartSnapshots: {},
     ...overrides,
   };
 }
@@ -306,27 +307,62 @@ describe('closeWeek', () => {
     expect(result.weeklySprintHistory[0]?.checkResult).toEqual(checkResult);
   });
 
-  it('records focusOutcomes with endScore from current mastery and attempts', () => {
+  it('records focusOutcomes with endScore, per-week attempts, and startScore from snapshot', () => {
     const fp = makeFingerprint({
       weekStartedAt: daysAgo(7),
       weeklyFocus: ['c1'],
       conceptMastery: {
         c1: makeMastery({ conceptId: 'c1', decayedScore: 72, attemptCount: 12 }),
       },
+      weekStartSnapshots: {
+        c1: { rawScore: 40, decayedScore: 42, attemptCount: 4 },
+      },
     });
     const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
     const outcome = result.weeklySprintHistory[0]?.focusOutcomes['c1'];
     expect(outcome?.endScore).toBe(72);
-    expect(outcome?.attempts).toBe(12);
-    expect(outcome?.startScore).toBe(0); // Phase 5 will fill this in
+    expect(outcome?.attempts).toBe(8); // 12 lifetime - 4 snapshot = 8 this week
+    expect(outcome?.startScore).toBe(42); // from snapshot.decayedScore
     expect(outcome?.graduated).toBe(false); // minimalGraph has no nodes, so no graduation
+  });
+
+  it('closeWeek clears weekStartSnapshots after writing focusOutcomes', () => {
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1', 'c2'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1' }),
+        c2: makeMastery({ conceptId: 'c2' }),
+      },
+      weekStartSnapshots: {
+        c1: { rawScore: 50, decayedScore: 50, attemptCount: 5 },
+        c2: { rawScore: 60, decayedScore: 60, attemptCount: 6 },
+      },
+    });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
+    expect(result.weekStartSnapshots).toEqual({});
+  });
+
+  it('closeWeek falls back to startScore: 0 when snapshot is missing (legacy week)', () => {
+    const fp = makeFingerprint({
+      weekStartedAt: daysAgo(7),
+      weeklyFocus: ['c1'],
+      conceptMastery: {
+        c1: makeMastery({ conceptId: 'c1', decayedScore: 55, attemptCount: 10 }),
+      },
+      weekStartSnapshots: {}, // legacy: week open before snapshots existed
+    });
+    const result = closeWeek(fp, minimalGraph, { status: 'completed', checkResult: null });
+    const outcome = result.weeklySprintHistory[0]?.focusOutcomes['c1'];
+    expect(outcome?.startScore).toBe(0);
+    expect(outcome?.attempts).toBe(10); // no snapshot → falls back to lifetime
   });
 });
 
 // ── migrateWeeklySprintFields ─────────────────────────────────────────────────
 
 describe('migrateWeeklySprintFields', () => {
-  it('seeds all three fields on a legacy fingerprint missing them', () => {
+  it('seeds all four weekly-sprint fields on a legacy fingerprint missing them', () => {
     // Cast to bypass TypeScript — simulates a real legacy fingerprint from storage
     const legacy = {
       userId: 'test-user',
@@ -354,6 +390,42 @@ describe('migrateWeeklySprintFields', () => {
     expect(migrated.weeklyFocus).toEqual([]);
     expect(migrated.weekStartedAt).toBeNull();
     expect(migrated.weeklySprintHistory).toEqual([]);
+    expect(migrated.weekStartSnapshots).toEqual({});
+  });
+
+  it('seeds weekStartSnapshots on a fingerprint that has the three older fields but not snapshots', () => {
+    // Simulates a fingerprint that went through the original Stream 5 migration but
+    // predates Stream 5.5 Phase 2 (when weekStartSnapshots was added).
+    const stream5Era = {
+      userId: 'test-user',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      currentLevel: 'A1',
+      levelSetByUser: false,
+      conceptMastery: {},
+      recentErrors: [],
+      errorPatterns: [],
+      vocabularyMastery: {},
+      productionGap: {},
+      totalSessionsCompleted: 1,
+      calibrationSessionsRemaining: 4,
+      lastSessionAt: null,
+      speakingMinutesTotal: 0,
+      inputProductionPreference: 'balanced',
+      lastRecalibrationAt: null,
+      askedDiagnosticQuestionIds: [],
+      weeklyFocus: ['c1'],
+      weekStartedAt: new Date().toISOString(),
+      weeklySprintHistory: [],
+      // weekStartSnapshots intentionally absent
+    } as unknown as MistakeFingerprint;
+
+    const { migrated, changed } = migrateWeeklySprintFields(stream5Era);
+    expect(changed).toBe(true);
+    expect(migrated.weekStartSnapshots).toEqual({});
+    // Other fields preserved
+    expect(migrated.weeklyFocus).toEqual(['c1']);
+    expect(migrated.weekStartedAt).toBe(stream5Era.weekStartedAt);
   });
 
   it('is idempotent — second call returns changed: false', () => {
@@ -459,6 +531,50 @@ describe('openWeek + ensureWeekOpen', () => {
 
     expect(result.weeklyFocus).toEqual([]);
     expect(result.weekStartedAt).toBe(now.toISOString());
+    expect(result.weekStartSnapshots).toEqual({});
+  });
+
+  it('openWeek snapshots {rawScore, decayedScore, attemptCount} for each focus concept', () => {
+    const ids = ['c1', 'c2', 'c3'];
+    const conceptMastery = {
+      c1: makeMastery({ conceptId: 'c1', rawScore: 30, decayedScore: 35, attemptCount: 4 }),
+      c2: makeMastery({ conceptId: 'c2', rawScore: 50, decayedScore: 48, attemptCount: 8 }),
+      c3: makeMastery({ conceptId: 'c3', rawScore: 70, decayedScore: 65, attemptCount: 12 }),
+    };
+    const fp = makeFingerprint({ weekStartedAt: null, conceptMastery });
+    const graph = makeGraph(ids);
+    const now = new Date('2026-01-15T10:00:00.000Z');
+    const result = openWeek(fp, graph, now);
+
+    // Snapshot keys mirror the freshly-selected weeklyFocus exactly.
+    expect(Object.keys(result.weekStartSnapshots).sort()).toEqual([...result.weeklyFocus].sort());
+    // Each snapshot captures the current mastery values verbatim.
+    for (const conceptId of result.weeklyFocus) {
+      const snap = result.weekStartSnapshots[conceptId];
+      const mastery = conceptMastery[conceptId as keyof typeof conceptMastery];
+      expect(snap).toEqual({
+        rawScore: mastery.rawScore,
+        decayedScore: mastery.decayedScore,
+        attemptCount: mastery.attemptCount,
+      });
+    }
+  });
+
+  it('openWeek snapshots zero values for focus concepts that have no existing mastery', () => {
+    // Edge case: selectWeeklyFocus pulls from existing mastery, so a never-practised
+    // concept would only appear in weeklyFocus if injected manually. This test guards
+    // the zero-snapshot fallback so the snapshot map is always well-formed.
+    const fp = makeFingerprint({
+      weekStartedAt: null,
+      conceptMastery: { c1: makeMastery({ conceptId: 'c1', decayedScore: 30 }) },
+    });
+    const graph = makeGraph(['c1']);
+    const now = new Date('2026-01-15T10:00:00.000Z');
+    const result = openWeek(fp, graph, now);
+
+    // weeklyFocus from selectWeeklyFocus picks c1 (only mastered concept).
+    expect(result.weeklyFocus).toContain('c1');
+    expect(result.weekStartSnapshots['c1']).toBeDefined();
   });
 
   it('ensureWeekOpen with weekStartedAt: null behaves as openWeek', () => {

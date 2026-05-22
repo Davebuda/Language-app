@@ -6,20 +6,24 @@ import { getConceptPhase, isMastered } from './fingerprint';
 
 /**
  * Idempotent migration: seed weekly-sprint fields on legacy fingerprints that
- * predate Stream 5. A second call on an already-migrated fingerprint is a
- * no-op (returns changed: false). Pure — caller persists.
+ * predate Stream 5 and Stream 5.5 Phase 2. A second call on an already-migrated
+ * fingerprint is a no-op (returns changed: false). Pure — caller persists.
  */
 export function migrateWeeklySprintFields(fp: MistakeFingerprint): { migrated: MistakeFingerprint; changed: boolean } {
   const hasFocus = Array.isArray((fp as Partial<MistakeFingerprint>).weeklyFocus);
   const hasStarted = 'weekStartedAt' in fp;
   const hasHistory = Array.isArray((fp as Partial<MistakeFingerprint>).weeklySprintHistory);
-  if (hasFocus && hasStarted && hasHistory) return { migrated: fp, changed: false };
+  const hasSnapshots =
+    typeof (fp as Partial<MistakeFingerprint>).weekStartSnapshots === 'object' &&
+    (fp as Partial<MistakeFingerprint>).weekStartSnapshots !== null;
+  if (hasFocus && hasStarted && hasHistory && hasSnapshots) return { migrated: fp, changed: false };
   return {
     migrated: {
       ...fp,
       weeklyFocus: (fp as Partial<MistakeFingerprint>).weeklyFocus ?? [],
       weekStartedAt: (fp as Partial<MistakeFingerprint>).weekStartedAt ?? null,
       weeklySprintHistory: (fp as Partial<MistakeFingerprint>).weeklySprintHistory ?? [],
+      weekStartSnapshots: (fp as Partial<MistakeFingerprint>).weekStartSnapshots ?? {},
       updatedAt: new Date().toISOString(),
     },
     changed: true,
@@ -140,10 +144,11 @@ export function closeWeek(
     const m = fp.conceptMastery[conceptId];
     if (!m) continue;
     const node = graph.concepts.find((c) => c.id === conceptId);
+    const snapshot = fp.weekStartSnapshots[conceptId];
     focusOutcomes[conceptId] = {
-      startScore: 0,           // Phase 5 will capture startScore at week-open
+      startScore: snapshot?.decayedScore ?? 0,
       endScore: m.decayedScore,
-      attempts: m.attemptCount,
+      attempts: m.attemptCount - (snapshot?.attemptCount ?? 0),
       graduated: isGraduated(m, node, options.checkResult),
     };
   }
@@ -164,6 +169,7 @@ export function closeWeek(
     weeklySprintHistory: history,
     weeklyFocus: [],
     weekStartedAt: null,
+    weekStartSnapshots: {},
     updatedAt: now,
   };
 }
@@ -171,7 +177,12 @@ export function closeWeek(
 /**
  * Open a new weekly sprint. Pure: caller persists.
  * Idempotent if a week is already open — returns fp unchanged.
- * Populates `weeklyFocus` via selectWeeklyFocus and sets `weekStartedAt`.
+ * Populates `weeklyFocus` via selectWeeklyFocus, sets `weekStartedAt`, and
+ * snapshots `{rawScore, decayedScore, attemptCount}` for each focus concept
+ * into `weekStartSnapshots`. The snapshot is the baseline that powers the
+ * mid-week reveal strip and the real `startScore` written by closeWeek.
+ * Concepts without existing mastery (never practised) get a zero snapshot
+ * so the diff math is well-defined.
  */
 export function openWeek(
   fp: MistakeFingerprint,
@@ -180,10 +191,20 @@ export function openWeek(
 ): MistakeFingerprint {
   if (fp.weekStartedAt !== null) return fp; // already open
   const focus = selectWeeklyFocus(fp, graph, now);
+  const weekStartSnapshots: MistakeFingerprint['weekStartSnapshots'] = {};
+  for (const conceptId of focus) {
+    const m = fp.conceptMastery[conceptId];
+    weekStartSnapshots[conceptId] = {
+      rawScore: m?.rawScore ?? 0,
+      decayedScore: m?.decayedScore ?? 0,
+      attemptCount: m?.attemptCount ?? 0,
+    };
+  }
   return {
     ...fp,
     weeklyFocus: focus,
     weekStartedAt: now.toISOString(),
+    weekStartSnapshots,
     updatedAt: now.toISOString(),
   };
 }

@@ -89,6 +89,11 @@ export interface MistakeFingerprint {
   weeklyFocus: string[];                       // concept IDs, ≤5; the current week's focus
   weekStartedAt: string | null;                // ISO date; null before first sprint
   weeklySprintHistory: WeeklySprintRecord[];   // newest first, capped at 26 entries (~6 months)
+  weekStartSnapshots: Record<string, {         // per-focus-concept score+attempt snapshot at openWeek;
+    rawScore: number;                          // consumed by closeWeek to write the real startScore;
+    decayedScore: number;                      // cleared on closeWeek. Powers the mid-week reveal strip
+    attemptCount: number;                      // by giving summarizeWeeklyProgress a baseline to diff against.
+  }>;
 }
 
 // Factory: create a new empty fingerprint
@@ -114,5 +119,6 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     weeklyFocus: [],
     weekStartedAt: null,
     weeklySprintHistory: [],
+    weekStartSnapshots: {},
   };
 }

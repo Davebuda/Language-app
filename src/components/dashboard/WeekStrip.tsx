@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { MistakeFingerprint } from '@/types/fingerprint'
 import type { ConceptGraph } from '@/types/concepts'
+import { summarizeWeeklyProgress, type WeeklyProgressEntry } from '@/lib/weekly-progress'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
 
@@ -86,16 +87,10 @@ export function WeekStrip({ fingerprint }: WeekStripProps) {
       ? a2Graph
       : a1Graph
 
-  // Resolve concept IDs → labels
-  const focusConcepts = fingerprint.weeklyFocus
-    .map((id) => {
-      const concept = graph.concepts.find((c) => c.id === id)
-      return concept ? { id, label: concept.label } : null
-    })
-    .filter((c): c is { id: string; label: string } => c !== null)
+  const progressEntries = summarizeWeeklyProgress(fingerprint, graph)
 
   // Empty: sprint opened but no focus concepts found
-  if (focusConcepts.length === 0) {
+  if (progressEntries.length === 0) {
     return (
       <section className="nc-glass px-4 py-3 mb-4" aria-label="Ukens fokus">
         <p className="text-[13px] text-[var(--nc-text-dim)]">Ukens fokus åpnes snart.</p>
@@ -121,13 +116,8 @@ export function WeekStrip({ fingerprint }: WeekStripProps) {
       </header>
 
       <ul className="flex flex-wrap gap-2 mb-4 list-none">
-        {focusConcepts.map((concept) => (
-          <li
-            key={concept.id}
-            className="rounded-[0.75rem] border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.04)] px-3 py-2 text-[13px]"
-          >
-            <span className="font-medium text-[var(--nc-text)]">{concept.label}</span>
-          </li>
+        {progressEntries.map((entry) => (
+          <FocusChip key={entry.conceptId} entry={entry} />
         ))}
       </ul>
 
@@ -140,5 +130,38 @@ export function WeekStrip({ fingerprint }: WeekStripProps) {
         <ArrowRight size={14} aria-hidden="true" />
       </Link>
     </section>
+  )
+}
+
+// ── FocusChip ────────────────────────────────────────────────────────────────
+
+function FocusChip({ entry }: { entry: WeeklyProgressEntry }) {
+  const { label, deltaDecayed, attemptsThisWeek } = entry
+  // Use a real minus sign for negatives; never punitive — the value itself is the signal.
+  const deltaLabel =
+    deltaDecayed > 0 ? `+${deltaDecayed}` : deltaDecayed < 0 ? `−${Math.abs(deltaDecayed)}` : '±0'
+  const deltaColor =
+    deltaDecayed > 0 ? 'var(--nc-teal)' : 'var(--nc-text-dim)'
+  const attemptsLabel = attemptsThisWeek === 1 ? '1 forsøk' : `${attemptsThisWeek} forsøk`
+  return (
+    <li
+      className="rounded-[0.75rem] border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.04)] px-3 py-2 text-[13px] flex items-baseline gap-2 flex-wrap"
+      aria-label={`${label}: ${deltaLabel} poeng, ${attemptsLabel} denne uka`}
+    >
+      <span className="font-medium text-[var(--nc-text)]">{label}</span>
+      <span
+        className="text-[11px] tabular-nums font-semibold"
+        style={{ color: deltaColor }}
+        aria-hidden="true"
+      >
+        {deltaLabel}
+      </span>
+      <span
+        className="text-[11px] tabular-nums text-[var(--nc-text-dim)]"
+        aria-hidden="true"
+      >
+        · {attemptsLabel}
+      </span>
+    </li>
   )
 }
