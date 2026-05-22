@@ -90,3 +90,41 @@ async function _writeWeeklyCheck(
     console.warn('[logEvents] weekly check unexpected error:', err)
   }
 }
+
+/**
+ * Fire-and-forget: write one concept_exposure row per conceptId to learning_events_log.
+ * Auth users only — guests are silently skipped.
+ * Reading text completion produces these rows so future analytics can ask
+ * "are learners getting passive exposure to focus concepts?" alongside the
+ * existing per-exercise rows.
+ * `correct_bool: true` semantically means "exposure occurred" (the column is
+ * NOT NULL per migration 003); it does not imply correctness.
+ * Never throws; never blocks the caller.
+ */
+export function logConceptExposure(userId: string, conceptIds: string[]): void {
+  void _writeExposure(userId, conceptIds)
+}
+
+async function _writeExposure(userId: string, conceptIds: string[]): Promise<void> {
+  try {
+    if (!conceptIds.length) return
+
+    const unique = Array.from(new Set(conceptIds))
+    const anonymousSessionId = await hashUserId(userId)
+    const supabase = createClient()
+
+    const rows = unique.map((conceptId) => ({
+      event_type: 'concept_exposure' as const,
+      concept_id: conceptId,
+      correct_bool: true,
+      anonymous_session_id: anonymousSessionId,
+    }))
+
+    const { error } = await supabase.from('learning_events_log').insert(rows)
+    if (error) {
+      console.warn('[logEvents] exposure insert failed:', error.message)
+    }
+  } catch (err) {
+    console.warn('[logEvents] exposure unexpected error:', err)
+  }
+}

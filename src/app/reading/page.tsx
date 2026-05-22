@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft } from 'lucide-react'
 import { BottomNav } from '@/components/layout/BottomNav'
+import { useFingerprint } from '@/hooks/useFingerprint'
 
 type Genre = 'story' | 'dialogue' | 'recipe' | 'news'
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
@@ -16,6 +17,7 @@ interface SeedText {
   estimatedMinutes: number
   content: string
   contentEn: string
+  conceptIds: string[]  // concepts this text exposes — verified against a1/a2-graph.json
 }
 
 const SEED_TEXTS: SeedText[] = [
@@ -25,6 +27,7 @@ const SEED_TEXTS: SeedText[] = [
     genre: 'story',
     cefrLevel: 'A1',
     estimatedMinutes: 3,
+    conceptIds: ['v2-word-order', 'common-prepositions', 'present-tense-regular'],
     content: 'Kari bor i Oslo. Hun jobber på et kontor i sentrum. Om morgenen tar hun T-banen til jobb. Hun drikker kaffe og leser avisen på toget. Kollegene hennes er hyggelige. Om ettermiddagen går hun en tur i parken. Hun liker å se på fuglene og trærne. Om kvelden lager hun middag hjemme. Hun spiser pasta med tomatsaus. Etter middag ser hun på TV og slapper av. Det er en god dag.',
     contentEn: 'Kari lives in Oslo. She works at an office in the city centre. In the morning she takes the metro to work. She drinks coffee and reads the newspaper on the train. Her colleagues are friendly. In the afternoon she takes a walk in the park. She likes watching the birds and trees. In the evening she cooks dinner at home. She eats pasta with tomato sauce. After dinner she watches TV and relaxes. It is a good day.',
   },
@@ -34,6 +37,7 @@ const SEED_TEXTS: SeedText[] = [
     genre: 'dialogue',
     cefrLevel: 'A1',
     estimatedMinutes: 2,
+    conceptIds: ['question-formation', 'common-modal-verbs', 'noun-gender'],
     content: '— Hei! Hva kan jeg hjelpe deg med?\n— Hei! Jeg vil gjerne ha en kaffe, takk.\n— Vil du ha melk i kaffen?\n— Ja, takk. Og et stykke kake, hvis dere har det.\n— Selvfølgelig! Vi har sjokoladekake og bringebærkake.\n— Sjokoladekake, takk. Hva koster det?\n— Det koster åtti kroner til sammen.\n— Her er et hundrekronestykke.\n— Og her er vekselen. Ha en fin dag!\n— Takk, i like måte!',
     contentEn: '— Hi! What can I help you with?\n— Hi! I\'d like a coffee, please.\n— Would you like milk in your coffee?\n— Yes please. And a piece of cake, if you have it.\n— Of course! We have chocolate cake and raspberry cake.\n— Chocolate cake, please. How much does it cost?\n— It\'s eighty kroner in total.\n— Here\'s a hundred-krone coin.\n— And here\'s the change. Have a nice day!\n— Thanks, you too!',
   },
@@ -43,6 +47,7 @@ const SEED_TEXTS: SeedText[] = [
     genre: 'story',
     cefrLevel: 'A2',
     estimatedMinutes: 4,
+    conceptIds: ['word-formation', 'definite-articles-singular', 'v2-word-order'],
     content: 'Nordmenn elsker naturen. De har et ord for det: friluftsliv. Det betyr "liv i friluft" — å tilbringe tid utendørs. Om sommeren går mange på fjellturer eller svømmer i innsjøer. Om vinteren er det populært å gå på ski. Mange familier har en hytte på fjellet eller ved sjøen. De reiser dit i helgene og i ferien. Der kan de vandre, fiske og nyte naturen. Friluftsliv er mer enn en hobby — det er en del av den norske identiteten.',
     contentEn: 'Norwegians love nature. They have a word for it: friluftsliv. It means "life in the open air" — spending time outdoors. In summer, many go on mountain hikes or swim in lakes. In winter, skiing is popular. Many families have a cabin in the mountains or by the sea. They go there on weekends and during holidays. There they can hike, fish and enjoy nature. Friluftsliv is more than a hobby — it is part of Norwegian identity.',
   },
@@ -52,6 +57,7 @@ const SEED_TEXTS: SeedText[] = [
     genre: 'story',
     cefrLevel: 'A2',
     estimatedMinutes: 3,
+    conceptIds: ['noun-gender', 'common-prepositions', 'word-formation'],
     content: 'Norsk mat er enkel og god. Til frokost spiser mange brød med smør og pålegg. Populære pålegg er ost, skinke og makrell i tomat. Noen spiser havregrøt med bær og honning. Til lunsj er det vanlig med matpakke — brødskiver som man tar med på jobb eller skole. Til middag er det gjerne kjøtt eller fisk med poteter og grønnsaker. Laks er veldig populær i Norge. En klassisk norsk rett er fårikål — lam og kål kokt sammen.',
     contentEn: 'Norwegian food is simple and good. For breakfast, many eat bread with butter and toppings. Popular toppings are cheese, ham and mackerel in tomato. Some eat oatmeal with berries and honey. For lunch, it is common to have a packed lunch — bread slices brought to work or school. For dinner, it is usually meat or fish with potatoes and vegetables. Salmon is very popular in Norway. A classic Norwegian dish is fårikål — lamb and cabbage cooked together.',
   },
@@ -76,6 +82,14 @@ export default function ReadingPage() {
   const [filterLevel, setFilterLevel] = useState<CEFRLevel | 'all'>('all')
   const [showParallel, setShowParallel] = useState(false)
   const [tappedWord, setTappedWord] = useState<string | null>(null)
+  const { recordExposure } = useFingerprint()
+
+  function closeText() {
+    if (selectedText) {
+      recordExposure(selectedText.conceptIds)
+    }
+    setSelectedText(null)
+  }
 
   const filtered = filterLevel === 'all' ? SEED_TEXTS : SEED_TEXTS.filter((t) => t.cefrLevel === filterLevel)
 
@@ -156,7 +170,7 @@ export default function ReadingPage() {
               {/* Header */}
               <div className="flex items-center justify-between">
                 <button
-                  onClick={() => setSelectedText(null)}
+                  onClick={closeText}
                   className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
                   aria-label="Tilbake"
                 >
@@ -245,7 +259,7 @@ export default function ReadingPage() {
               </AnimatePresence>
 
               <button
-                onClick={() => setSelectedText(null)}
+                onClick={closeText}
                 className="nc-button-primary w-full rounded-xl py-3 text-sm font-extrabold transition-transform active:scale-[0.98]"
               >
                 Ferdig lesing ✓

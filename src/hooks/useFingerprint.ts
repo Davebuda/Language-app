@@ -18,7 +18,7 @@ import {
 } from '@/engine';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
-import { logWeeklyCheckComplete } from '@/lib/logEvents';
+import { logWeeklyCheckComplete, logConceptExposure } from '@/lib/logEvents';
 import type { ExerciseResult } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
 import a1GraphJson from '@content/concepts/a1-graph.json';
@@ -355,5 +355,36 @@ export function useFingerprint() {
     [setFingerprint, user]
   );
 
-  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult };
+  const recordExposure = useCallback((conceptIds: string[]) => {
+    if (!conceptIds.length) return
+    const unique = Array.from(new Set(conceptIds))
+    const now = new Date().toISOString()
+
+    const fp = useFingerprintStore.getState().fingerprint
+    if (!fp) return
+
+    const next: typeof fp = { ...fp, conceptMastery: { ...fp.conceptMastery } }
+    for (const conceptId of unique) {
+      const existing = next.conceptMastery[conceptId]
+      if (!existing) continue  // unknown concept — silently skip (defensive)
+      next.conceptMastery[conceptId] = {
+        ...existing,
+        attemptCount: existing.attemptCount + 0.3,
+        lastAttemptAt: now,
+        // rawScore unchanged — exposure is not a mastery signal
+        // confidenceScore unchanged
+        // decayedScore unchanged
+      }
+    }
+    next.updatedAt = now
+
+    setFingerprint(next)
+    saveFingerprint(next).catch(console.warn)
+    if (user) {
+      saveFingerprintToSupabase(next).catch(console.warn)
+      logConceptExposure(user.id, unique)
+    }
+  }, [setFingerprint, user])
+
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure };
 }
