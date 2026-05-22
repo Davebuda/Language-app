@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
@@ -11,6 +11,16 @@ import { ExerciseCard } from './ExerciseCard'
 import { ExplanationCard } from './ExplanationCard'
 import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { incrementStreak } from '@/lib/streak'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 import type { Sentence } from '@/types/content'
 import type { ExerciseResult } from '@/types/session'
 import type { ConceptGraph } from '@/types/concepts'
@@ -57,6 +67,7 @@ export function SessionScreen({
 
   const lastResultRef = useRef<ExerciseResult | null>(null)
   const sessionStartedRef = useRef(false)
+  const [exitDialogOpen, setExitDialogOpen] = useState(false)
   const { fingerprint } = useFingerprintStore()
 
   useEffect(() => {
@@ -93,23 +104,38 @@ export function SessionScreen({
         <button
           type="button"
           onClick={() => {
-            // P0.5-09 (F024): confirm before bailing mid-session so accidental
-            // clicks don't drop progress. Only confirm if the learner has any
-            // recorded answers; otherwise (zero progress) leave silently.
-            // TODO(baseline-ui): upgrade to AlertDialog primitive once the
-            // project has one — `@radix-ui/react-alert-dialog` is not yet
-            // installed and adding one component+dependency for a single use
-            // site is the wrong shape mid-recovery. native confirm() is
-            // keyboard-accessible and screen-reader compatible.
+            // Confirm only when there's mid-session progress to lose; otherwise
+            // exit silently. P0.5-09 (F024) closed the data-loss risk; this is
+            // the AlertDialog upgrade from the deferred follow-up.
             const hasProgress = (useSessionStore.getState().results?.length ?? 0) > 0
-            if (hasProgress && !window.confirm('Avslutte økten? Du mister fremgangen i denne økten.')) return
-            router.push('/dashboard')
+            if (hasProgress) {
+              setExitDialogOpen(true)
+            } else {
+              router.push('/dashboard')
+            }
           }}
           className="flex size-10 items-center justify-center rounded-[0.9rem] border border-[var(--nc-border)] bg-[var(--nc-card)] text-[var(--nc-text)]"
           aria-label="Back to dashboard"
         >
           <X size={18} />
         </button>
+
+        <AlertDialog open={exitDialogOpen} onOpenChange={setExitDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Avslutte økten?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Du mister fremgangen i denne økten.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Avbryt</AlertDialogCancel>
+              <AlertDialogAction onClick={() => router.push('/dashboard')}>
+                Avslutt
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
 
         <div className="flex-1">
           <div className="flex items-center gap-1.5">
