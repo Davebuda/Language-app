@@ -242,13 +242,17 @@ Learner's mental model: *"I have 5 concepts to lock in this week. The app picks 
 
 **Phase 2 — Authenticated-user walkthrough + Supabase sync verification.** RE-SEQUENCED to slot between Phase 5a and Phase 4 (was originally "between Phase 1 and Phase 3"). Reasoning: Phase 4 is where new Supabase write paths first appear (`learning_events_log` write from weekly-check route). Phase 3 + Phase 5a do not add Supabase write paths — they ride the existing fingerprint sync. So the auth walkthrough sensibly precedes Phase 4 where the new write paths land, not Phase 3. The "engineering hygiene before new surface" intent is preserved.
 
-**Phase 4 — Weekly Check surface.** `/uke` route + `WeeklyCheckScreen` component. Reuses `ExerciseCard`. 6–8 adaptive items drawn from focus + previous-week graduates. Result writes to fingerprint via normal `recordResult` AND a new `learning_events_log` event type `weekly_check_complete`. AlertDialog primitive installed (deferred from P0.5) for "Skip weekly check" confirmation.
+**Phase 4a — Weekly Check surface (local-only).** ✅ COMPLETE 2026-05-22T00:56 (commit `d81b2e4`). `/uke` route, `WeeklyCheckScreen` component, pure `buildWeeklyCheckItems` function in `src/lib/weekly-check.ts`, `recordWeeklyCheckResult` helper in `useFingerprint`. 7 new tests. Result writes locally via `closeWeek` then `openWeek` in a single persist. No Supabase writes yet — that's Phase 4b. No AlertDialog (deferred).
 
-**Phase 5b — Graduation rule.** Depends on Phase 4 producing `checkResult` data. Concepts that hit `masteryThreshold` AND cleared the weekly check graduate to next phase; misses re-queue into next week's focus. Pure rule over fingerprint state.
+**Phase 4b — Supabase migration for `learning_events_log`.** PENDING — requires user nod on DB migration. Adds the events log table per the schema in roadmap Stream 1.4. Writes `weekly_check_complete` events from /uke (anon guests excluded per the privacy-as-feature posture). Gated by Phase 2 (auth walkthrough).
+
+**Phase 5b — Graduation rule.** ✅ COMPLETE 2026-05-22T01:03 (commit `85504e4`). `WeeklySprintRecord.focusOutcomes` extended with `graduated: boolean`. `closeWeek` signature gained `graph` parameter; computes per-concept graduation via `isGraduated` predicate (mastery threshold AND minAttempts; low check score <50 demotes; null check doesn't punish). All callers threaded through. 7 new tests.
+
+**Phase 6 — Dashboard WeekStrip.** ✅ COMPLETE 2026-05-22T01:08 (commit `9dd017e`). `WeekStrip` component on dashboard surfaces `weeklyFocus` chips + day-dots + CTA to /uke. Returns `null` when `weekStartedAt === null` (silent inactive). Day-dots use honest fallback (only `lastSessionAt` available in v1). Anti-Duolingo: no streak number, no XP. Norwegian text dominates per north star.
 
 **Phase 6 — Dashboard week-strip.** Composition into UI-1.3 dashboard (queued anyway). 375px compact horizontal bar showing focus-concept progress dots; 1280px+ expanded card with rawScore deltas. Folds with UI-1.3 instead of being built parallel.
 
-**Phase 7 — Anti-Duolingo aesthetic guard + audit.** `/baseline-ui` against week-strip and `/uke`. No bright streak rockets, no XP numbers, no league badges. `/audit` for P0–P3 scored review.
+**Phase 7 — Anti-Duolingo aesthetic guard + audit.** ⏵ NEXT. Playwright smoke check on /dashboard (with simulated fingerprint that has weeklyFocus populated) and /uke. Screenshots at 375px and 1280px. `/baseline-ui` + `/audit` against the new surfaces. Report findings.
 
 ### Acceptance for the whole stream
 - Three consecutive simulated weekly sprints rotate focus correctly per `engine-tester`.

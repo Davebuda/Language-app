@@ -1,5 +1,32 @@
 # Council Decision Log
 
+## 2026-05-22T01:10 APPROVE — Stream 5 Phases 4a + 5b + 6 (consolidated)
+
+**User invocation:** "all of them" after the prior pause point — explicit breadth-acceptance to run autonomous phases through to Phase 7.
+
+**Side quest also handled in this run:** `e6a08b2` fix(auth): magic-link redirect prefers NEXT_PUBLIC_APP_URL over window.location.origin. User flagged that magic links were sending learners to localhost instead of pandoai.no during signed-in flows on the deployed build. Two manual actions surfaced to the user after the autonomous loop completes: (1) set `NEXT_PUBLIC_APP_URL=https://pandoai.no` in production env on the VPS, (2) whitelist `https://pandoai.no/auth/callback` in Supabase Authentication → URL Configuration → Redirect URLs.
+
+### Phase 4a — /uke route + WeeklyCheckScreen (local-only)
+**Commit:** `d81b2e4` feat(weekly): Stream 5 Phase 4a — /uke route + WeeklyCheckScreen (local-only).
+**Diff:** 5 files exactly per scope (src/lib/weekly-check.ts new, src/app/uke/page.tsx new, src/components/weekly/WeeklyCheckScreen.tsx new, src/hooks/useFingerprint.ts +23/-1, tests/lib/weekly-check.test.ts new). 7 new tests in `describe('buildWeeklyCheckItems')`. 148/148 passing. No deviations. Zero new dependencies. No Supabase writes (Phase 4b).
+
+### Phase 5b — Graduation rule on closeWeek
+**Commit:** `85504e4` feat(engine): Stream 5 Phase 5b — graduation rule on closeWeek.
+**Diff:** 4 files exactly per scope. 7 new tests in `describe('graduation rule')`; 9 existing `closeWeek` test sites updated to pass `minimalGraph`. 155/155 passing. One brief correction caught by implementer: `ConceptGraph` shape is `{version, language, concepts}`, not `{concepts, edges}` — handled cleanly.
+
+### Phase 6 — Dashboard WeekStrip
+**Commit:** `9dd017e` feat(weekly): Stream 5 Phase 6 — dashboard WeekStrip.
+**Diff:** 2 files exactly per scope (src/components/dashboard/WeekStrip.tsx new, src/app/dashboard/page.tsx +4). 155/155 still passing. One in-scope adaptation: spec referenced `nc-card-soft` token which doesn't exist; implementer used `bg-[rgba(255,255,255,0.04)]` matching the existing dashboard glass-surface pattern. Anti-Duolingo aesthetic preserved (no streak number, day-dots only, Norwegian header).
+
+### Autonomous loop summary — six phases shipped
+Phases 1, 3, 5a (engine layer), 4a (route), 5b (graduation), 6 (dashboard) — six commits + this approval = full UI-to-engine path live. The Weekly Sprint is end-to-end functional in dev (engine opens week, scheduler biases, learner sees focus on dashboard, takes check on /uke, week closes with graduation flags, new week opens). 155 tests total, all green throughout.
+
+### Phase 7 next
+`/baseline-ui` + `/audit` pass on the new surfaces; chrome-devtools smoke check of /dashboard and /uke with a simulated fingerprint that has `weeklyFocus` populated. Screenshots at 375px and 1280px. Report findings.
+
+### Phase 2 + Phase 4b still pending user
+Phase 4b adds the Supabase `learning_events_log` table migration — needs explicit user consent to apply via Supabase MCP or migration file. Phase 2 (authenticated walkthrough) needs the user to click a magic link.
+
 ## 2026-05-22T00:40 APPROVE — Stream 5 Phase 5a (open-week orchestration) + autonomous loop pause
 
 **Commit:** `b73cb35` feat(engine): Stream 5 Phase 5a — open-week orchestration.
