@@ -81,9 +81,9 @@ export function ListenRespondScreen() {
         userAnswer: transcript,
         correctAnswer: activeQuestion.expectedKeywords.join(', '),
         timeTakenSeconds: 5,
-        conceptId: 'speaking-production',
+        conceptId: activeQuestion.conceptId,
         sentenceId: undefined,
-        errorTag: correct ? undefined : 'listening-recognition',
+        errorTag: correct ? undefined : activeQuestion.errorTag,
       }
       recordResult(result)
     }
