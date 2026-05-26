@@ -37,10 +37,10 @@ function NotYetAvailable({
         Exercise type
       </p>
       <p className="text-[18px] font-bold leading-snug text-nc-text">
-        {type === 'reading-comprehension' ? 'Reading comprehension' : 'Free writing'} is coming soon.
+        {type === 'reading-comprehension' ? 'Leseforståelse' : 'Fri skriving'} kommer snart.
       </p>
       <p className="text-sm text-nc-text-muted">
-        This exercise type is not available yet. Tap continue to skip.
+        Denne øvelsestypen er ikke tilgjengelig ennå. Trykk for å hoppe over.
       </p>
       <button
         onClick={() =>
@@ -56,7 +56,7 @@ function NotYetAvailable({
         }
         className="nc-button-dark min-h-[48px] w-full px-6 py-3 transition-colors"
       >
-        Continue
+        Fortsett
       </button>
     </div>
   )

@@ -32,14 +32,14 @@ interface SessionScreenProps {
 
 function getExerciseTypeLabel(type: string): string {
   const map: Record<string, string> = {
-    'translation-to-norwegian': 'Translate to Norwegian',
-    'translation-to-english': 'Translate to English',
-    'fill-in-blank': 'Fill in the blank',
-    'word-order': 'Word order',
-    'listening-comprehension': 'Listening',
-    'speed-round': 'Speed round',
-    'sentence-transformation': 'Sentence transformation',
-    dictation: 'Dictation',
+    'translation-to-norwegian': 'Oversett til norsk',
+    'translation-to-english': 'Oversett til engelsk',
+    'fill-in-blank': 'Fyll inn',
+    'word-order': 'Ordstilling',
+    'listening-comprehension': 'Lytting',
+    'speed-round': 'Hurtigrunde',
+    'sentence-transformation': 'Setningsomforming',
+    dictation: 'Diktat',
   }
   return map[type] ?? 'Exercise'
 }

@@ -44,7 +44,7 @@ export function ExplanationCard({
 
         <div className="rounded-[0.95rem] border border-[var(--nc-green-border)] bg-[var(--nc-green-tint)] px-4 py-3">
           <div className="nc-label text-nc-cream-dim">
-            Correct answer
+            Riktig svar
           </div>
           <div className="mt-1 text-[15px] font-medium text-nc-cream-text">
             {correctAnswer}
