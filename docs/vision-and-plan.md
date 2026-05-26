@@ -30,7 +30,7 @@ AND:
 11. **No lies** — Zero placeholder surfaces, zero silent substitutions, zero dead buttons
 12. **Tests pass** — Full test suite green, build clean, deployed to pandoai.no
 
-Items 1-8 are DONE. Items 9-12 are the remaining ship blockers.
+Items 1-11 are DONE. Item 12 (deploy + tests green on prod) is the remaining ship blocker.
 
 ---
 
@@ -148,12 +148,12 @@ Audio infrastructure is the single hardest dependency. Everything in the muntlig
 
 | # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
-| 1.1 | **Audio pipeline proof-of-concept** — AudioPlayer component built (browser TTS fallback), batch generation script at `scripts/generate-audio.mjs` (edge-tts + nb-NO-PernilleNeural). Script not yet run — needs `pip install edge-tts` | 1 day | Nothing | ✅ Component + script DONE; generation pending |
-| 1.2 | **Batch audio generation** — generate audio for all A1/A2 corpus sentences via edge-tts, keyed by sentence ID | 1 day | 1.1 | No — feeds 1.3+ |
-| 1.3 | **Listening restructure** — `/listen` plays real audio, focus-biased question selection, proper lane wiring | 1 day | 1.2 | Parallel with 1.4 |
-| 1.4 | **Shadowing mode** — listen → repeat → self-compare with playback | 1-2 days | 1.2 | Parallel with 1.3 |
-| 1.5 | **Pronunciation drills** — targeted audio + heuristic feedback | 1 day | 1.2 | After 1.3 or 1.4 |
-| 1.6 | **Listen-and-respond** — audio prompt → spoken/typed answer with timer | 1-2 days | 1.2, 1.5 | After 1.5 |
+| 1.1 | **Audio pipeline proof-of-concept** — AudioPlayer component + batch script + 784 MP3s generated | 1 day | Nothing | ✅ DONE 2026-05-26 |
+| 1.2 | **Batch audio generation** — 784 MP3s for A1/A2/B1 corpus + listen + drills via edge-tts | 1 day | 1.1 | ✅ DONE 2026-05-26 |
+| 1.3 | **Listening restructure** — `/listen` live with focus-biased question ordering, lane completion | 1 day | 1.2 | ✅ DONE 2026-05-26 |
+| 1.4 | **Shadowing mode** — `/shadow` live with B1 corpus, lane completion | 1-2 days | 1.2 | ✅ DONE 2026-05-26 |
+| 1.5 | **Pronunciation drills** — `/drills` live with 4 sound groups, heuristic feedback, lane completion | 1 day | 1.2 | ✅ DONE 2026-05-26 |
+| 1.6 | **Listen-and-respond** — `/listen` with timer, speech recognition, fingerprint recording | 1-2 days | 1.2, 1.5 | ✅ DONE 2026-05-26 |
 
 ### Wave 2: Prove the Moat (CAN RUN PARALLEL with Wave 1)
 
@@ -172,10 +172,10 @@ These don't depend on audio or analytics. They can run alongside.
 | # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
 | 3.1 | **UI-1.3 dashboard composition** — dead buttons removed, lane strip added, Norwegian text, visual hierarchy reordered | 1-2 days | Nothing | ✅ DONE 2026-05-26 |
-| 3.2 | **UI-2 conversation page** — aesthetic pass matching session loop | 1 day | 3.1 | Queued |
+| 3.2 | **UI-2 conversation page** — aesthetic pass matching session loop | 1 day | 3.1 | ✅ DONE 2026-05-26 |
 | 3.3 | **UI-2 progress page** — phase distribution bar + weekly sprint history, all Norwegian | 1 day | 3.1 | ✅ DONE 2026-05-26 |
-| 3.4 | **UI-2 landing page** — conversion-focused with clear value prop | 1 day | 3.1 | Queued |
-| 3.5 | **UI-3 cleanup** — dead nc-* classes, Lighthouse pass | Half day | 3.4 | Queued |
+| 3.4 | **UI-2 landing page** — Norwegian-first, direct CTA, lane model preview | 1 day | 3.1 | ✅ DONE 2026-05-26 |
+| 3.5 | **UI-3 cleanup** — dead nc-* classes removed, focus-visible rings, Lighthouse pass | Half day | 3.4 | ✅ DONE 2026-05-26 |
 
 ### Wave 4: Content Expansion (AFTER Waves 0-1)
 
@@ -183,8 +183,8 @@ These don't depend on audio or analytics. They can run alongside.
 |---|---|---|---|---|
 | 4.1 | **B1 concept graph** — 12 concepts, CEFR-tagged, with A2 prerequisites. Starter corpus: 25 sentences (5 concepts × 5). 4 pages migrated to `getGraphForLevel`. | 2-3 days | Stable A1/A2 (done) | ✅ DONE 2026-05-26 |
 | 4.2 | **B1 sentence corpus** — 360 sentences (30 per concept × 12), error-tagged, mixed exercise types | 3-5 days | 4.1 | ✅ DONE 2026-05-26 |
-| 4.3 | **B1 audio generation** — edge-tts batch for B1 corpus | 1 day | 4.2, Wave 1 | After 4.2 |
-| 4.4 | **Honest level switching** — B1 selection produces real B1 content | 1 day | 4.2 | After 4.2 |
+| 4.3 | **B1 audio generation** — 360 MP3s via edge-tts for all B1 sentences | 1 day | 4.2, Wave 1 | ✅ DONE 2026-05-26 |
+| 4.4 | **Honest level switching** — B1 selection produces real B1 content | 1 day | 4.2 | ✅ DONE 2026-05-26 |
 
 ### Wave 5: V2 Engine (REQUIRES REAL USERS + DATA)
 

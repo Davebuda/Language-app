@@ -60,9 +60,11 @@ The adaptive engine is built, traced, and verified correct:
 
 Built features: diagnostic, dashboard (with WeekStrip + mid-week reveal + lane strip), session loop, repair loop, conversation mode (AI tutor + constraints + focus bias), journal (focus-biased prompts), reading (concept-tagged texts with exposure logging), progress, profile (with "Feil nivå?" escape hatch), weekly retrieval check at `/uke`, scripted roleplay at `/roleplay` (focus-ranked scenarios), shared repair module (`repairFromSurface`), AudioPlayer component (browser TTS fallback), analytics surface (`/analytics`), AlertDialog primitive.
 
-Retired surfaces: `/vocab` → honest "Kommer i versjon 2" banner. `/shadow` → honest banner, dashboard link muted. `/recalibrate` → redirects to `/uke`. `/listen` and `/drills` → dashboard links muted (pending audio infra).
+Retired surfaces: `/vocab` → honest "Kommer i versjon 2" banner. `/recalibrate` → redirects to `/uke`.
 
-Stubs / not built: muntlig modes (shadowing, pronunciation drills, listen-and-respond), audio batch generation pipeline (script exists at `scripts/generate-audio.mjs`, not yet run), B1/B2 concept graph, vocab SRS, reading comprehension scoring.
+Live muntlig modes: `/shadow` (shadowing — listen + repeat + word matching), `/drills` (pronunciation drills — 4 sound groups + heuristic feedback), `/listen` (listen-and-respond — 7 questions with focus-biased ordering). All three feed the fingerprint and lane completion system. Dashboard "Muntlig" section links to all three.
+
+Stubs / not built: vocab SRS, reading comprehension scoring, B2 concept graph.
 
 ## Current Phase
 
