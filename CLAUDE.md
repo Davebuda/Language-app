@@ -58,22 +58,28 @@ The adaptive engine is built, traced, and verified correct:
 - **Content dedup** — no repeated sentence within a session.
 - **Full pipeline parity** — session, conversation, journal, AND weekly check all feed the identical mastery + SRS pipeline.
 
-Built features: diagnostic, dashboard (with WeekStrip), session loop, repair loop, recalibration, conversation mode (AI tutor + constraints), journal, reading (hardcoded texts), progress, profile, weekly retrieval check at `/uke`, scripted roleplay at `/roleplay`, AlertDialog primitive for confirmations.
+Built features: diagnostic, dashboard (with WeekStrip + mid-week reveal + lane strip), session loop, repair loop, conversation mode (AI tutor + constraints + focus bias), journal (focus-biased prompts), reading (concept-tagged texts with exposure logging), progress, profile (with "Feil nivå?" escape hatch), weekly retrieval check at `/uke`, scripted roleplay at `/roleplay` (focus-ranked scenarios), shared repair module (`repairFromSurface`), AudioPlayer component (browser TTS fallback), analytics surface (`/analytics`), AlertDialog primitive.
 
-Stubs / not built: muntlig modes (shadowing, pronunciation drills, listen-and-respond — only scripted roleplay step 5 shipped), vocab SRS, listening module, reading comprehension scoring, B1/B2 concept graph, analytics surface for `learning_events_log`. Several UI buttons are dead. Landing email form is cosmetic.
+Retired surfaces: `/vocab` → honest "Kommer i versjon 2" banner. `/shadow` → honest banner, dashboard link muted. `/recalibrate` → redirects to `/uke`. `/listen` and `/drills` → dashboard links muted (pending audio infra).
+
+Stubs / not built: muntlig modes (shadowing, pronunciation drills, listen-and-respond), audio batch generation pipeline (script exists at `scripts/generate-audio.mjs`, not yet run), B1/B2 concept graph, vocab SRS, reading comprehension scoring.
 
 ## Current Phase
 
-Stream 5 (Weekly Sprint) closed 2026-05-22. Engineering work continues on bounded follow-ups and quality items:
+**Stream 5.5 + Waves 0-3 COMPLETE 2026-05-26.** See `docs/vision-and-plan.md` for the full dependency-ordered execution plan.
 
-- **Stream 1 engine corrections** — Steps 1.1 (prompt hardening), 1.2 (decay 25d), 1.3 (calibration), 1.4 writes all shipped. Step 1.1.2 (NB-Llama-1B compile) and Stream 1.4 reads (analytics) still queued.
-- **UI transformation** — UI-0 done, UI-1.0 typeface done, UI-1.1 onboarding done, UI-1.2 session loop done (2026-05-20). UI-1.3 dashboard composition pass and UI-2 remaining screens (conversation, progress, landing) still queued. UI-3 cleanup last.
-- **Deferred polish** — F008 path-traversal, F025 session resume, F027 repair-loop cap, F032 journal SSR. None block ship.
-- **Product decisions** — Muntlig deepening (option A) and B1/B2 corpus authoring (option E) await user direction.
+**What's shipped this session:**
+- Stream 5.5 Phases 3-8 (all surfaces laned, repair externalized, stubs retired, recalibration retired)
+- Wave 0: CLAUDE.md sync, `/listen`+`/drills` muted, F027 repair-loop cap (2x session size)
+- Wave 1: AudioPlayer component + batch generation script + reading surface wired
+- Wave 2: Analytics surface v1 (`/analytics` with 3 read-only metrics)
+- Wave 3: Dashboard composition (dead buttons removed, lane strip added, Norwegian text)
 
-Muntlig is now a tributary to the Weekly Sprint rather than a parallel surface. See `docs/muntlig/architecture.md` for the zero-cost architecture when the muntlig deepening direction is chosen.
+**Ship blockers remaining:**
+- Auth completion (3 user actions: magic-link, NEXT_PUBLIC_APP_URL, Supabase callback)
+- Playwright FULL walkthrough on pandoai.no
 
-Out of scope right now: vocab SRS, listening module, B1/B2 content authoring, FSRS/BKT migrations (v2), reading comprehension scoring, native/iOS anything.
+**Next waves (parallel):** Audio batch generation (Wave 1.2+), UI-2 remaining screens (Wave 3.2+), B1 content (Wave 4). V2 engine (Wave 5) blocked on real users.
 
 ## Operating Rules (HARD RAILS — these caused real problems when absent)
 
@@ -99,7 +105,8 @@ This project has an architect subagent at `.claude/agents/architect.md`. Its job
 
 ## Documents That Outrank This File On Their Specific Domains
 
-- `docs/roadmap.md` — the current build sequence, what's in progress, what's deferred, with the research-driven priorities locked in.
+- `docs/vision-and-plan.md` — the unified vision, ship-ready definition, dependency map, and wave-ordered execution plan. The forward-looking source of truth for what to build next.
+- `docs/roadmap.md` — the historical build record with per-phase closure notes, research citations, and procedural locks.
 - `docs/muntlig/architecture.md` — the full muntlig module architecture (audio, pronunciation, content, branching, timing). When muntlig is built, this is the spec.
 - `docs/validation-and-research.md` — the research findings on model quality, SRS, decay, mastery, cold-start, competitive position. The reasoning behind the engine corrections lives here. Read this if you wonder why a decision was made.
 - `docs/ui-1/` — aesthetic direction, token contract, typeface analysis, shadcn audit, type scale. The UI phase's source of truth.
