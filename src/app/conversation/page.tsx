@@ -301,8 +301,8 @@ export default function ConversationPage() {
               className="flex flex-col gap-4 flex-1"
             >
               <div>
-                <h1 className="text-balance text-[22px] font-extrabold text-[var(--nc-text)]">Samtale</h1>
-                <p className="text-[13px] text-[var(--nc-text-muted)]">Snakk norsk med din AI-tutor</p>
+                <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">Samtale</h1>
+                <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">Snakk norsk med din AI-tutor</p>
               </div>
 
               {/* Topic grid */}
