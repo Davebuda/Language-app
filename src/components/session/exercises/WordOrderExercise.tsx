@@ -78,7 +78,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
 
       {/* Answer zone — where tiles are placed in order */}
       <div
-        aria-label="Your answer"
+        aria-label="Ditt svar"
         className={[
           'min-h-[64px] flex flex-wrap items-center gap-2 rounded-xl border p-3 transition-colors',
           answerTiles.length > 0
@@ -114,7 +114,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
 
       {/* Source zone — scrambled tiles not yet placed */}
       <div
-        aria-label="Available words"
+        aria-label="Tilgjengelige ord"
         className="flex flex-wrap gap-3 rounded-xl border border-[rgba(4,14,8,0.10)] bg-[rgba(4,14,8,0.03)] p-4"
       >
         <AnimatePresence mode="popLayout">
