@@ -14,9 +14,9 @@ import type { InputProductionPreference } from '@/types/fingerprint'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
-  { value: 'input_heavy', label: 'Input-heavy', desc: 'More reading & listening' },
-  { value: 'balanced', label: 'Balanced', desc: 'Mix of both' },
-  { value: 'production_heavy', label: 'Production', desc: 'More writing & speaking' },
+  { value: 'input_heavy', label: 'Lytting og lesing', desc: 'Mer input og forståelse' },
+  { value: 'balanced', label: 'Balansert', desc: 'Blanding av begge' },
+  { value: 'production_heavy', label: 'Produksjon', desc: 'Mer skriving og tale' },
 ]
 
 const LEVEL_LABELS: Record<string, string> = {
@@ -101,7 +101,7 @@ export default function ProfilePage() {
         <div className="grid grid-cols-3 gap-3">
           {[
             { label: 'Nivå', value: fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1'), tone: 'text-[var(--nc-red)]' },
-            { label: 'Streak', value: String(streak), tone: 'text-[var(--nc-text)]' },
+            { label: 'Rekke', value: String(streak), tone: 'text-[var(--nc-text)]' },
             {
               label: 'Økter',
               value: String(fingerprint?.totalSessionsCompleted ?? 0),
@@ -171,9 +171,9 @@ export default function ProfilePage() {
 
         {/* Input/production preference */}
         <div className="nc-glass p-4">
-          <div className="nc-label">Session style</div>
+          <div className="nc-label">Øktstil</div>
           <p className="mt-1 text-[12px] text-[var(--nc-text-dim)]">
-            Biases which exercise types appear in your sessions.
+            Påvirker hvilke øvelsestyper som vises i øktene dine.
           </p>
           <div className="mt-4 grid grid-cols-3 gap-2">
             {PREFERENCE_OPTIONS.map((opt) => {
