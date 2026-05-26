@@ -330,6 +330,7 @@
     box-shadow: 0 0 0 3px rgba(0,229,196,0.12);
     background: rgba(255,255,255,0.07);
   }
+  .nc-input:focus-visible { outline: none; }
 
   /* ── Input on cream surface — dark text, red focus ring ── */
   .nc-input-cream {
@@ -353,6 +354,7 @@
     box-shadow: 0 0 0 3px rgba(255,51,51,0.14);
     background: rgba(255,255,255,0.70);
   }
+  .nc-input-cream:focus-visible { outline: none; }
 
   /* ── Buttons ── */
   /* ── Primary CTA — solid red, maximum contrast on both surfaces ── */
@@ -371,6 +373,10 @@
     box-shadow: 0 4px 20px rgba(255,51,51,0.50);
   }
   .nc-button-primary:active { transform: scale(0.97); }
+  .nc-button-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,51,51,0.50), 0 2px 12px rgba(255,51,51,0.40);
+  }
 
   .nc-button-dark {
     border-radius: var(--radius);
@@ -384,6 +390,10 @@
 
   .nc-button-dark:hover {
     background: rgba(255,255,255,0.12);
+  }
+  .nc-button-dark:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,229,196,0.40);
   }
 
 }

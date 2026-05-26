@@ -56,34 +56,23 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
               type="button"
               disabled={selecting}
               onClick={() => void choose(lvl.value)}
-              className="flex flex-col gap-0.5 rounded-[0.875rem] border px-3 py-2.5 text-left transition-colors disabled:opacity-50"
-              style={{
-                background: current === lvl.value ? '#111118' : '#fff',
-                borderColor: current === lvl.value ? '#111118' : 'rgba(17,17,24,0.10)',
-              }}
+              className={`flex flex-col gap-0.5 rounded-[0.875rem] border px-3 py-2.5 text-left transition-colors disabled:opacity-50 ${
+                current === lvl.value
+                  ? 'border-[var(--nc-red)] bg-[var(--nc-red-tint)]'
+                  : 'border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)]'
+              }`}
             >
               <span className="flex items-center gap-1.5">
-                <span
-                  className="text-[13px] font-bold"
-                  style={{ color: current === lvl.value ? '#C8FF00' : '#111118' }}
-                >
+                <span className={`text-[13px] font-bold ${current === lvl.value ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text)]'}`}>
                   {lvl.label}
                 </span>
                 {lvl.comingSoon && (
-                  <span
-                    className="rounded px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wide"
-                    style={{ background: 'rgba(200,255,0,0.12)', color: '#9aac3a' }}
-                  >
+                  <span className="rounded bg-[var(--nc-teal-tint)] px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[var(--nc-teal)]">
                     snart
                   </span>
                 )}
               </span>
-              <span
-                className="text-[11px] leading-snug"
-                style={{
-                  color: current === lvl.value ? 'rgba(255,255,255,0.55)' : 'rgba(17,17,24,0.45)',
-                }}
-              >
+              <span className={`text-[11px] leading-snug ${current === lvl.value ? 'text-[var(--nc-text-muted)]' : 'text-[var(--nc-text-dim)]'}`}>
                 {lvl.desc}
               </span>
             </button>
@@ -102,12 +91,11 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
           type="button"
           disabled={selecting}
           onClick={() => void choose(lvl.value)}
-          className="rounded-full border px-3 py-1 text-[11px] font-bold transition-colors disabled:opacity-50"
-          style={{
-            background: current === lvl.value ? '#111118' : '#fff',
-            borderColor: current === lvl.value ? '#111118' : 'rgba(17,17,24,0.12)',
-            color: current === lvl.value ? '#C8FF00' : 'rgba(17,17,24,0.55)',
-          }}
+          className={`rounded-full border px-3 py-1 text-[11px] font-bold transition-colors disabled:opacity-50 ${
+            current === lvl.value
+              ? 'border-[var(--nc-red)] bg-[var(--nc-red)] text-white'
+              : 'border-[var(--nc-border)] bg-transparent text-[var(--nc-text-muted)] hover:text-[var(--nc-text)]'
+          }`}
         >
           {lvl.label}
         </button>
