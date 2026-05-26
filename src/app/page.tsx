@@ -7,34 +7,34 @@ import { DailyLearningCard } from '@/components/DailyLearningCard'
 const STEPS = [
   {
     number: '1',
-    title: 'We diagnose',
-    body: 'A short placement session maps your exact gaps — not a level, a fingerprint.',
+    title: 'Vi diagnostiserer',
+    body: 'En kort plassering kartlegger dine eksakte hull — ikke et nivå, et fingeravtrykk.',
   },
   {
     number: '2',
-    title: 'You practice',
-    body: 'Every session is built from your mistake history. Wrong answers trigger a repair loop on the spot.',
+    title: 'Du øver',
+    body: 'Hver økt bygges fra feilhistorikken din. Feil svar utløser en reparasjonssløyfe med én gang.',
   },
   {
     number: '3',
-    title: 'You master',
-    body: 'Concepts are unlocked in dependency order. Progress is real — earned by demonstrated mastery.',
+    title: 'Du mestrer',
+    body: 'Konsepter låses opp i avhengighetsrekkefølge. Fremgang er ekte — opptjent gjennom mestring.',
   },
 ] as const
 
 // ── Feature highlights ───────────────────────────────────────────────────────
 const FEATURES = [
   {
-    title: 'Personalized by design',
-    body: 'Lessons adapt to your gaps instead of forcing a fixed curriculum.',
+    title: 'Personlig fra start',
+    body: 'Øktene tilpasser seg dine hull i stedet for å følge en fast læreplan.',
   },
   {
-    title: 'Real conversations',
-    body: 'Speaking, reading, writing, and repair loops share the same memory.',
+    title: 'Ekte samtaler',
+    body: 'Tale, lesing, skriving og reparasjonssløyfer deler samme hukommelse.',
   },
   {
-    title: 'Track every concept',
-    body: 'Mastery stays visible. The system feels intelligent before your second session.',
+    title: 'Spor hvert konsept',
+    body: 'Mestring er synlig. Systemet føles intelligent allerede etter andre økt.',
   },
 ] as const
 
@@ -60,7 +60,7 @@ export default function HomePage() {
         {/* Tagline + nav */}
         <div className="flex items-center gap-6">
           <span className="hidden text-sm text-[var(--nc-text-muted)] md:block">
-            Your AI coach for real Norwegian fluency
+            Din AI-coach for ekte norskferdigheter
           </span>
           <Link
             href="/dashboard"
@@ -78,23 +78,23 @@ export default function HomePage() {
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-1">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--nc-red)]" />
             <span className="text-[11px] font-bold tracking-[0.06em] text-[var(--nc-red)]">
-              EARLY ACCESS OPEN
+              TIDLIG TILGANG ÅPEN
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="text-balance font-display text-[3rem] font-bold leading-[1.0] text-[var(--nc-text)] md:text-[4rem]">
-            Your Norwegian.
+            Din norsk.
             <br />
-            Personalized.
+            Personlig.
             <br />
-            <span className="text-[var(--nc-red)]">Every day.</span>
+            <span className="text-[var(--nc-red)]">Hver dag.</span>
           </h1>
 
           {/* Subtext */}
           <p className="mt-6 max-w-lg text-pretty text-[1.0625rem] leading-7 text-[var(--nc-text-muted)]">
-            A coach that maps your exact gaps, teaches grammar in the right order,
-            and repairs every mistake with targeted practice — not another lesson.
+            En coach som kartlegger dine svakheter, lærer grammatikk i riktig rekkefølge,
+            og reparerer hver feil med målrettet øving — ikke enda en leksjon.
           </p>
 
           {/* CTA row */}
@@ -116,7 +116,7 @@ export default function HomePage() {
           {/* Social proof micro-text */}
           <div className="mt-6 flex items-center gap-2 text-[12px] text-[var(--nc-text-dim)]">
             <CheckCircle2 size={13} className="text-[var(--nc-green)]" />
-            <span>No fixed curriculum &mdash; your syllabus is built daily, just for you.</span>
+            <span>Ingen fast læreplan &mdash; din pensum bygges daglig, bare for deg.</span>
           </div>
         </div>
       </section>
@@ -124,9 +124,9 @@ export default function HomePage() {
       {/* ── How It Works ────────────────────────────────────────────────── */}
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-16">
         <div className="mb-8">
-          <div className="nc-label mb-2">How it works</div>
+          <div className="nc-label mb-2">Slik fungerer det</div>
           <h2 className="text-balance font-display text-[1.75rem] font-bold leading-tight text-[var(--nc-text)] md:text-[2.25rem]">
-            Three steps to fluency.
+            Tre steg til flyt.
           </h2>
         </div>
 
@@ -151,9 +151,9 @@ export default function HomePage() {
       {/* ── Feature cards / preview grid ────────────────────────────────── */}
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-16">
         <div className="mb-8">
-          <div className="nc-label mb-2">What you get</div>
+          <div className="nc-label mb-2">Hva du får</div>
           <h2 className="text-balance font-display text-[1.75rem] font-bold leading-tight text-[var(--nc-text)] md:text-[2.25rem]">
-            The coaching layer, not the content.
+            Coaching-laget, ikke innholdet.
           </h2>
         </div>
 
@@ -285,13 +285,13 @@ export default function HomePage() {
         <div className="nc-surface p-6 md:p-8">
           <div className="max-w-xl">
             <div className="mb-2 text-[0.6875rem] font-bold uppercase tracking-[0.08em]" style={{ color: 'rgba(17,17,16,0.42)' }}>
-              Get early access
+              Få tidlig tilgang
             </div>
             <h2 className="font-display text-[1.75rem] font-extrabold leading-tight md:text-[2rem]" style={{ color: '#111110' }}>
-              Join the waitlist.
+              Bli med på ventelisten.
             </h2>
             <p className="mt-2 text-[14px]" style={{ color: 'rgba(17,17,16,0.52)' }}>
-              Early access. No spam. Unsubscribe any time.
+              Tidlig tilgang. Ingen spam. Meld deg av når som helst.
             </p>
             <WaitlistForm />
           </div>
@@ -306,10 +306,10 @@ export default function HomePage() {
             NORSKCOACH
           </div>
           <nav aria-label="Footer" className="flex items-center gap-5">
-            <a href="/privacy" className="hover:text-[var(--nc-text)] transition-colors">Privacy</a>
-            <a href="/terms" className="hover:text-[var(--nc-text)] transition-colors">Terms</a>
+            <a href="/privacy" className="hover:text-[var(--nc-text)] transition-colors">Personvern</a>
+            <a href="/terms" className="hover:text-[var(--nc-text)] transition-colors">Vilkår</a>
             <a href="/help/mobile-reset" className="hover:text-[var(--nc-text)] transition-colors">Mobilfeilretting</a>
-            <a href="mailto:hei@pandoai.no" className="hover:text-[var(--nc-text)] transition-colors">Contact</a>
+            <a href="mailto:hei@pandoai.no" className="hover:text-[var(--nc-text)] transition-colors">Kontakt</a>
           </nav>
           <span>Lær. Forstå. Mestre.</span>
         </div>
