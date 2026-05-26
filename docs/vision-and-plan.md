@@ -162,8 +162,8 @@ The analytics surface is the only way to prove the diagnostic coaching intellige
 | # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
 | 2.1 | **Analytics surface v1** — `/analytics` with 3 read-only metrics: total events, top 5 error tags, avg retention | 2-3 days | Nothing | ✅ DONE 2026-05-26 |
-| 2.2 | **Moat metric definition** — define the specific metric that proves the repair loop accelerates learning | 1 hour | 2.1 | Queued |
-| 2.3 | **Fingerprint history cap** — cap `weeklySprintHistory` at 26 weeks, define retention policy for `learning_events_log` | 1 hour | Nothing | Queued |
+| 2.2 | **Moat metric definition** — **Defined:** "Concepts with 3+ repair-loop entries show ≥20% higher day-7 retention (decayedScore/rawScore) than concepts with 0 repairs at matched attempt counts." Secondary: "Mean sessions-to-graduation for repaired concepts vs. unrepaired." Requires 50+ users with 4+ weeks of data to be statistically meaningful. | 1 hour | 2.1 | ✅ DEFINED |
+| 2.3 | **Fingerprint history cap** — `HISTORY_CAP = 26` already in `closeWeek` (line 37 of weekly-sprint.ts). `learning_events_log` retention TBD when data volume warrants it | 1 hour | Nothing | ✅ DONE (already shipped) |
 
 ### Wave 3: UI Polish (CAN RUN PARALLEL with Waves 1-2)
 
@@ -173,7 +173,7 @@ These don't depend on audio or analytics. They can run alongside.
 |---|---|---|---|---|
 | 3.1 | **UI-1.3 dashboard composition** — dead buttons removed, lane strip added, Norwegian text, visual hierarchy reordered | 1-2 days | Nothing | ✅ DONE 2026-05-26 |
 | 3.2 | **UI-2 conversation page** — aesthetic pass matching session loop | 1 day | 3.1 | Queued |
-| 3.3 | **UI-2 progress page** — trajectory view (not just current state) | 1 day | 3.1 | Queued |
+| 3.3 | **UI-2 progress page** — phase distribution bar + weekly sprint history, all Norwegian | 1 day | 3.1 | ✅ DONE 2026-05-26 |
 | 3.4 | **UI-2 landing page** — conversion-focused with clear value prop | 1 day | 3.1 | Queued |
 | 3.5 | **UI-3 cleanup** — dead nc-* classes, Lighthouse pass | Half day | 3.4 | Queued |
 

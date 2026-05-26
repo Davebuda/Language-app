@@ -228,21 +228,6 @@
     box-shadow: 0 8px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(0,220,180,0.10);
   }
 
-  /* SURFACE 1 — nc-glass-dark: session summary card, header panels
-     Deep dark film — aurora bleeds through at low intensity.
-     Dark text is WRONG here — always use var(--nc-text) = #F0FFF8 */
-  .nc-glass-dark {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    background: rgba(4,10,8,0.54);
-    backdrop-filter: blur(28px) saturate(1.8);
-    -webkit-backdrop-filter: blur(28px) saturate(1.8);
-    border: 1px solid rgba(0,220,180,0.18);
-    box-shadow: inset 0 1px 0 rgba(0,220,180,0.08);
-    color: var(--nc-text);
-  }
-
   /* SURFACE 2 — nc-glass-cream: exercise card, main interactive surface.
      Near-opaque cream panel — dark text mandatory.
      DO NOT use var(--nc-text) here — use var(--nc-cream-text) = #040E08 */
@@ -261,35 +246,8 @@
   /* Alias for cream — identical to nc-glass-cream; kept for callsite stability */
   .nc-glass-cream-strong { @apply nc-glass-cream; }
 
-  /* SURFACE 3 — nc-glass-stat: stat tiles, score badges, progress labels
-     Ultra-thin transparent film — aurora dominates. Light text. */
-  .nc-glass-stat {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(20px) saturate(1.6);
-    -webkit-backdrop-filter: blur(20px) saturate(1.6);
-    border: 1px solid rgba(0,220,180,0.14);
-    box-shadow: inset 0 1px 0 rgba(0,220,180,0.06);
-    color: var(--nc-text);
-  }
-
-  /* Red-tinted glass — repair loop, error states */
-  .nc-glass-red {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    background: rgba(255,51,51,0.10);
-    backdrop-filter: blur(24px) saturate(1.7);
-    -webkit-backdrop-filter: blur(24px) saturate(1.7);
-    border: 1px solid rgba(255,51,51,0.22);
-  }
-
-  /* Backwards-compat aliases */
+  /* Backwards-compat alias */
   .nc-panel          { @apply nc-glass; }
-  .nc-panel-soft     { background: rgba(255,255,255,0.03); border-radius: var(--radius); border: 1px solid rgba(0,220,180,0.08); }
-  .nc-panel-dark     { @apply nc-glass-dark; }
 
   /* ── White surface — limited to max 2 per page ── */
   .nc-surface {
@@ -320,26 +278,12 @@
   }
 
   /* ── Labels ── */
-  .nc-label,
-  .nc-label-light {
+  .nc-label {
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--nc-text-dim);
-  }
-
-  .nc-label-red {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--nc-red);
-  }
-
-  .nc-subtle-line {
-    height: 1px;
-    background: var(--nc-border);
   }
 
   /* ── Inputs ── */
@@ -366,29 +310,6 @@
     background: rgba(255,255,255,0.07);
   }
 
-  /* ── Input on cream surface — dark text, red focus ring ── */
-  .nc-input-cream {
-    width: 100%;
-    min-height: 3rem;
-    border-radius: var(--radius);
-    border: 1.5px solid rgba(0,220,180,0.30);
-    background: rgba(255,255,255,0.55);
-    padding: 0.85rem 1rem;
-    color: var(--nc-cream-text);
-    outline: none;
-    font-family: inherit;
-    font-size: 0.9375rem;
-    transition: border-color 150ms ease, box-shadow 150ms ease;
-  }
-
-  .nc-input-cream::placeholder { color: var(--nc-cream-muted); }
-
-  .nc-input-cream:focus {
-    border-color: rgba(255,51,51,0.55);
-    box-shadow: 0 0 0 3px rgba(255,51,51,0.14);
-    background: rgba(255,255,255,0.70);
-  }
-
   /* ── Buttons ── */
   /* ── Primary CTA — solid red, maximum contrast on both surfaces ── */
   .nc-button-primary {
@@ -407,23 +328,6 @@
   }
   .nc-button-primary:active { transform: scale(0.97); }
 
-  /* ── Teal accent button — secondary CTA ── */
-  .nc-button-teal {
-    border-radius: var(--radius);
-    background: var(--nc-teal);
-    color: var(--nc-teal-fg);
-    font-weight: 700;
-    transition: opacity 150ms ease, transform 150ms ease, box-shadow 150ms ease;
-    box-shadow: 0 2px 12px rgba(0,229,196,0.35);
-  }
-
-  .nc-button-teal:hover {
-    opacity: 0.90;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(0,229,196,0.45);
-  }
-  .nc-button-teal:active { transform: scale(0.97); }
-
   .nc-button-dark {
     border-radius: var(--radius);
     background: rgba(255,255,255,0.08);
@@ -438,44 +342,6 @@
     background: rgba(255,255,255,0.12);
   }
 
-  /* ── Answer chips ── */
-  .nc-chip {
-    border-radius: 9999px;
-    border: 1.5px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.06);
-    color: var(--nc-text-muted);
-  }
-
-  .nc-chip-soft {
-    border-radius: 9999px;
-    border: 1.5px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.04);
-    color: var(--nc-text-muted);
-  }
-
-  /* ── Dot grid texture (for landing/hero overlays) ── */
-  .nc-pattern-dots,
-  .nc-dot-grid {
-    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  /* DEPRECATED decorative patterns — neutralized */
-  .nc-pattern-orbits,
-  .nc-orbit-grid,
-  .nc-pattern-topography,
-  .nc-topography,
-  .nc-pattern-mesh { background-image: none; }
-
-  .nc-card-grid::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 16px 16px;
-    opacity: 0.7;
-    pointer-events: none;
-  }
 }
 
 @layer utilities {
@@ -484,14 +350,8 @@
 
 
 @media (prefers-reduced-motion: reduce) {
-  .nc-button-primary,
-  .nc-button-teal {
-    transition: none;
-  }
-  .nc-button-primary:hover,
-  .nc-button-teal:hover { transform: none; }
-  .nc-button-primary:active,
-  .nc-button-teal:active { transform: none; }
-  .nc-input,
-  .nc-input-cream { transition: none; }
+  .nc-button-primary { transition: none; }
+  .nc-button-primary:hover { transform: none; }
+  .nc-button-primary:active { transform: none; }
+  .nc-input { transition: none; }
 }
