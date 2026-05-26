@@ -108,13 +108,13 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         onChange={(e) => { setUserInput(e.target.value); userInputRef.current = e.target.value; }}
         onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(userInput); }}
         disabled={submitted}
-        placeholder="Engelsk oversettelse…"
-        className="min-h-[48px] w-full rounded-xl border border-[rgba(0,220,180,0.30)] bg-white/55 px-4 py-3 text-base text-nc-cream-text placeholder:text-nc-cream-dim focus:outline-none focus:border-nc-green/50 focus:ring-1 focus:ring-nc-green/15 disabled:opacity-50 transition-colors"
+        placeholder="Skriv svaret ditt her..."
+        className="nc-input-cream"
       />
       <button
         onClick={() => submitAnswer(userInput)}
         disabled={submitted || !userInput.trim()}
-        className="nc-button-primary flex min-h-[48px] w-full items-center justify-center gap-2 px-6 py-3 transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-white/30 disabled:shadow-none"
+        className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk svar
       </button>

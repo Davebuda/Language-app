@@ -161,7 +161,7 @@ function FreeText({
       <button
         onClick={submit}
         disabled={submitted || !userInput.trim()}
-        className="nc-button-primary flex min-h-[48px] w-full items-center justify-center gap-2 px-6 py-3 transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[rgba(4,14,8,0.06)] disabled:text-[var(--nc-cream-dim)] disabled:shadow-none"
+        className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk svar
       </button>

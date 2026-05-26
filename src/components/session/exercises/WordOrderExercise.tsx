@@ -144,7 +144,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
         type="button"
         onClick={submit}
         disabled={submitted || sourceTiles.length > 0}
-        className="min-h-[48px] w-full rounded-xl nc-button-primary px-6 py-3 font-bold transition-all hover:brightness-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-30"
+        className="nc-button-primary flex min-h-[52px] w-full items-center justify-center py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
       >
         Sjekk rekkefølge
       </button>

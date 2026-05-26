@@ -104,12 +104,14 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
   ].filter(Boolean).join(' ');
 
   return (
-    <div className="space-y-5">
-      <p className="nc-label">
-        {promptLabel}
-      </p>
+    <div className="flex flex-col gap-5">
+      <div className="flex items-center justify-between">
+        <p className="text-[0.6875rem] font-bold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]">
+          {promptLabel}
+        </p>
+      </div>
       <motion.p
-        className="font-display text-[28px] font-bold leading-[1.15] tracking-tight text-nc-cream-text"
+        className="font-display text-[1.75rem] font-bold leading-[1.15] tracking-tight text-[var(--nc-cream-text)]"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
@@ -128,13 +130,13 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
           if (e.key === 'Enter') void submit();
         }}
         disabled={submitted}
-        placeholder="Ditt svar..."
+        placeholder="Skriv svaret ditt her..."
         className={answerFieldClassName}
       />
       <button
         onClick={() => void submit()}
         disabled={submitted || !userInput.trim()}
-        className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[var(--radius)] bg-[var(--nc-red)] px-6 py-3 text-sm font-bold text-white transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[rgba(4,14,8,0.06)] disabled:text-nc-cream-dim disabled:shadow-none"
+        className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
       >
         <span>Sjekk svar</span>
         <ArrowRight size={16} />
