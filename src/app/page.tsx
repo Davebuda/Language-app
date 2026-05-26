@@ -109,7 +109,7 @@ export default function HomePage() {
               href="/dashboard"
               className="nc-button-dark inline-flex min-h-[48px] items-center gap-2 px-6 py-3 text-sm font-bold"
             >
-              Open dashboard <ArrowRight size={15} />
+              Åpne dashboard <ArrowRight size={15} />
             </Link>
           </div>
 
@@ -171,22 +171,22 @@ export default function HomePage() {
             {/* Session card preview */}
             <div className="p-5">
               <div className="nc-surface p-4">
-                <div className="nc-label mb-2" style={{ color: 'rgba(17,17,16,0.42)' }}>{"Today's session · A1"}</div>
+                <div className="nc-label mb-2" style={{ color: 'rgba(17,17,16,0.42)' }}>{"Dagens økt · A1"}</div>
                 <div className="mt-1 inline-flex items-center gap-2 rounded-full bg-[var(--nc-red)] px-3 py-1 text-xs font-bold text-white">
                   V2 Word Order
                 </div>
-                <p className="mt-2 text-[12px]" style={{ color: 'rgba(17,17,16,0.52)' }}>Estimated: 18 min</p>
+                <p className="mt-2 text-[12px]" style={{ color: 'rgba(17,17,16,0.52)' }}>Estimert: 18 min</p>
                 <div className="mt-4 inline-flex min-h-[40px] items-center gap-2 rounded-[var(--radius)] bg-[var(--nc-red)] px-4 py-2 text-sm font-bold text-white">
-                  Start session <ArrowRight size={14} />
+                  Start økt <ArrowRight size={14} />
                 </div>
               </div>
 
               {/* Stats row */}
               <div className="mt-4 grid grid-cols-3 gap-2.5">
                 {[
-                  { value: '12', label: 'day streak' },
-                  { value: '87%', label: 'accuracy' },
-                  { value: '8', label: 'concepts' },
+                  { value: '12', label: 'dager i strekk' },
+                  { value: '87%', label: 'nøyaktighet' },
+                  { value: '8', label: 'konsepter' },
                 ].map(({ value, label }) => (
                   <div
                     key={label}
@@ -212,7 +212,7 @@ export default function HomePage() {
                 <span className="text-[12px] font-semibold">3 / 12</span>
                 <span className="nc-label">Session</span>
               </div>
-              <div className="mt-4 nc-label">Translate to Norwegian</div>
+              <div className="mt-4 nc-label">Oversett til norsk</div>
               <div className="mt-2 font-display text-[1.75rem] font-bold leading-tight text-[var(--nc-text)]">
                 I want to learn Norwegian.
               </div>
@@ -220,17 +220,17 @@ export default function HomePage() {
                 Jeg vil lærer norsk.
               </div>
               <div className="mt-4 nc-button-primary inline-flex min-h-[44px] w-full items-center justify-between px-4 py-3 text-sm font-bold">
-                Check answer <ArrowRight size={15} />
+                Sjekk svar <ArrowRight size={15} />
               </div>
             </div>
 
             {/* Explanation / repair card */}
             <div className="nc-glass p-5">
               <div className="font-display text-[1.35rem] font-bold text-[var(--nc-text)]">
-                Almost there!
+                Nesten riktig!
               </div>
               <p className="mt-1.5 text-[13px] leading-6 text-[var(--nc-text-muted)]">
-                {'In Norwegian, the infinitive comes after "vil" — not the inflected form.'}
+                {'På norsk kommer infinitiven etter «vil» — ikke den bøyde formen.'}
               </p>
               <div className="mt-4 rounded-[var(--radius)] border border-[var(--nc-green-border)] bg-[var(--nc-green-tint)] px-4 py-3 text-[13px] font-semibold text-[var(--nc-text)]">
                 Jeg vil <span className="text-[var(--nc-green)]">lære</span> norsk.

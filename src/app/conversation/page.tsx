@@ -11,13 +11,13 @@ import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
-import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
+import { updateConceptMastery } from '@/engine'
+import { repairFromSurface } from '@/engine/repair-from-surface'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { emitEvent } from '@/lib/events'
 import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
 import type { ResponseConstraint } from '@/lib/constraints'
-import type { ErrorTag } from '@/types/taxonomy'
 import type { ConceptGraph } from '@/types/concepts'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
@@ -155,36 +155,17 @@ export default function ConversationPage() {
   }
 
   function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>): void {
-    if (!fingerprint) return
-    // P0.5-04: shared map returns a concept-id with a sensible fallback,
-    // so unmapped tags from the AI no longer silently drop the write.
-    const conceptId = errorTagToConceptId(correction.errorTag)
-
-    // Update mastery (wrong answer) — same pattern as recordConstraintResult
-    const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
-    const node = activeGraph.concepts.find((c) => c.id === conceptId)
-    const updatedMastery = updateConceptMastery(
-      fingerprint.conceptMastery[conceptId],
-      false,
-      node?.minAttempts ?? 15,
-      node?.minDays ?? 3,
-    )
-    const withMastery = {
-      ...fingerprint,
-      conceptMastery: { ...fingerprint.conceptMastery, [conceptId]: { ...updatedMastery, conceptId } },
-      updatedAt: new Date().toISOString(),
-    }
-
-    const withError = logError(withMastery, {
-      conceptId,
-      errorTag: correction.errorTag as ErrorTag,
-      exerciseType: 'translation-to-norwegian',
+    const fp = useFingerprintStore.getState().fingerprint
+    if (!fp) return
+    const activeGraph = fp.currentLevel === 'A2' ? a2Graph : a1Graph
+    const repaired = repairFromSurface(fp, {
+      surfaceKind: 'conversation',
+      errorTag: correction.errorTag,
       wrong: correction.original,
       correct: correction.corrected,
-    })
-    const withPatterns = { ...withError, errorPatterns: aggregateErrorPatterns(withError) }
-    setFingerprint(withPatterns)
-    saveFingerprint(withPatterns).catch(console.warn)
+    }, activeGraph)
+    setFingerprint(repaired)
+    saveFingerprint(repaired).catch(console.warn)
     errorCountRef.current++
   }
 
@@ -494,11 +475,11 @@ export default function ConversationPage() {
                   >
                     {constraintResult ? (
                       constraintResult.met
-                        ? <span style={{ color: '#4caf50' }}>✓ Challenge met: {activeConstraint.instruction}</span>
-                        : <span style={{ color: '#e57373' }}>Challenge: {constraintResult.feedback ?? activeConstraint.instruction}</span>
+                        ? <span style={{ color: '#4caf50' }}>✓ Utfordring klart: {activeConstraint.instruction}</span>
+                        : <span style={{ color: '#e57373' }}>Utfordring: {constraintResult.feedback ?? activeConstraint.instruction}</span>
                     ) : (
                       <span style={{ color: 'rgba(185,176,255,0.85)' }}>
-                        🎯 Challenge: {activeConstraint.instruction}
+                        🎯 Utfordring: {activeConstraint.instruction}
                       </span>
                     )}
                   </motion.div>
@@ -518,7 +499,7 @@ export default function ConversationPage() {
                 {hasSpeechAPI && (
                   <button
                     onClick={toggleListening}
-                    aria-label={isListening ? 'Stop recording' : 'Start recording'}
+                    aria-label={isListening ? 'Stopp opptak' : 'Start opptak'}
                     className={`flex size-11 items-center justify-center rounded-full transition-colors ${
                       isListening
                         ? 'text-white'
@@ -538,7 +519,7 @@ export default function ConversationPage() {
                 <button
                   onClick={() => void handleSend(inputText)}
                   disabled={!inputText.trim() || isThinking}
-                  aria-label="Send message"
+                  aria-label="Send melding"
                   className="nc-button-primary flex size-11 items-center justify-center rounded-full disabled:opacity-40"
                 >
                   <Send size={18} />

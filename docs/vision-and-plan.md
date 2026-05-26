@@ -134,21 +134,21 @@ Legend: ──▶ hard dependency (must exist before)
 
 These items must complete before inviting real users. Each is small.
 
-| # | Item | Effort | Depends on | Parallel? |
+| # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
-| 0.1 | **CLAUDE.md sync** — update Current Phase to reflect Stream 5.5 complete | 15 min | Nothing | Yes, with everything |
-| 0.2 | **Auth completion** — magic-link click, NEXT_PUBLIC_APP_URL, Supabase callback | User actions | Nothing | Yes, with everything |
-| 0.3 | **Surface disposition** — mute `/listen` and `/drills` on dashboard (same pattern as `/shadow`) | 30 min | Nothing | Yes, with 0.1-0.2 |
-| 0.4 | **F027 repair-loop cap** — cap session at 2x original size (e.g., 22 items for 11-item session) | 30 min | Nothing | Yes, with 0.1-0.3 |
-| 0.5 | **NB-Llama-1B compile** (Stream 1.1 Step 2) — MLC compile pipeline | Half day | Nothing | Yes, with 0.1-0.4 |
+| 0.1 | **CLAUDE.md sync** — update Current Phase to reflect Stream 5.5 complete | 15 min | Nothing | ✅ DONE 2026-05-26 |
+| 0.2 | **Auth completion** — magic-link click, NEXT_PUBLIC_APP_URL, Supabase callback | User actions | Nothing | ⏳ Pending user |
+| 0.3 | **Surface disposition** — mute `/listen` and `/drills` on dashboard | 30 min | Nothing | ✅ DONE 2026-05-26 |
+| 0.4 | **F027 repair-loop cap** — cap session at 2x original size | 30 min | Nothing | ✅ DONE 2026-05-26 |
+| 0.5 | **NB-Llama-1B compile** (Stream 1.1 Step 2) — MLC compile pipeline | Half day | Nothing | Queued |
 
 ### Wave 1: Audio Foundation (THE GATE — one track, depth-first)
 
 Audio infrastructure is the single hardest dependency. Everything in the muntlig module depends on it. Build it as a standalone phase with one test sentence before building any mode UI.
 
-| # | Item | Effort | Depends on | Parallel? |
+| # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
-| 1.1 | **Audio pipeline proof-of-concept** — edge-tts generates 5 test sentences (Opus/WebM), served from VPS Nginx, played in browser | 1 day | Nothing | No — gate for 1.2+ |
+| 1.1 | **Audio pipeline proof-of-concept** — AudioPlayer component built (browser TTS fallback), batch generation script at `scripts/generate-audio.mjs` (edge-tts + nb-NO-PernilleNeural). Script not yet run — needs `pip install edge-tts` | 1 day | Nothing | ✅ Component + script DONE; generation pending |
 | 1.2 | **Batch audio generation** — generate audio for all A1/A2 corpus sentences via edge-tts, keyed by sentence ID | 1 day | 1.1 | No — feeds 1.3+ |
 | 1.3 | **Listening restructure** — `/listen` plays real audio, focus-biased question selection, proper lane wiring | 1 day | 1.2 | Parallel with 1.4 |
 | 1.4 | **Shadowing mode** — listen → repeat → self-compare with playback | 1-2 days | 1.2 | Parallel with 1.3 |
@@ -159,23 +159,23 @@ Audio infrastructure is the single hardest dependency. Everything in the muntlig
 
 The analytics surface is the only way to prove the diagnostic coaching intelligence works. It doesn't depend on audio.
 
-| # | Item | Effort | Depends on | Parallel? |
+| # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
-| 2.1 | **Analytics surface v1** — dashboard reading `learning_events_log`: error distribution, repair-loop effectiveness, concept progression over time | 2-3 days | Nothing (event writes exist) | Parallel with Wave 1 |
-| 2.2 | **Moat metric definition** — define the specific metric that proves the repair loop accelerates learning (e.g., "concepts with 3+ repairs show 20% higher day-7 retention") | 1 hour | 2.1 | After 2.1 |
-| 2.3 | **Fingerprint history cap** — cap `weeklySprintHistory` at 26 weeks, define retention policy for `learning_events_log` | 1 hour | Nothing | Parallel with 2.1 |
+| 2.1 | **Analytics surface v1** — `/analytics` with 3 read-only metrics: total events, top 5 error tags, avg retention | 2-3 days | Nothing | ✅ DONE 2026-05-26 |
+| 2.2 | **Moat metric definition** — define the specific metric that proves the repair loop accelerates learning | 1 hour | 2.1 | Queued |
+| 2.3 | **Fingerprint history cap** — cap `weeklySprintHistory` at 26 weeks, define retention policy for `learning_events_log` | 1 hour | Nothing | Queued |
 
 ### Wave 3: UI Polish (CAN RUN PARALLEL with Waves 1-2)
 
 These don't depend on audio or analytics. They can run alongside.
 
-| # | Item | Effort | Depends on | Parallel? |
+| # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
-| 3.1 | **UI-1.3 dashboard composition** — clean dead buttons, integrate WeekStrip fully, lane visibility strip | 1-2 days | Nothing | Parallel with Waves 1-2 |
-| 3.2 | **UI-2 conversation page** — aesthetic pass matching session loop | 1 day | 3.1 | After 3.1 |
-| 3.3 | **UI-2 progress page** — trajectory view (not just current state) | 1 day | 3.1 | After 3.1 or parallel with 3.2 |
-| 3.4 | **UI-2 landing page** — conversion-focused with clear value prop | 1 day | 3.1 | After 3.2-3.3 |
-| 3.5 | **UI-3 cleanup** — dead nc-* classes, Lighthouse pass | Half day | 3.4 | Last |
+| 3.1 | **UI-1.3 dashboard composition** — dead buttons removed, lane strip added, Norwegian text, visual hierarchy reordered | 1-2 days | Nothing | ✅ DONE 2026-05-26 |
+| 3.2 | **UI-2 conversation page** — aesthetic pass matching session loop | 1 day | 3.1 | Queued |
+| 3.3 | **UI-2 progress page** — trajectory view (not just current state) | 1 day | 3.1 | Queued |
+| 3.4 | **UI-2 landing page** — conversion-focused with clear value prop | 1 day | 3.1 | Queued |
+| 3.5 | **UI-3 cleanup** — dead nc-* classes, Lighthouse pass | Half day | 3.4 | Queued |
 
 ### Wave 4: Content Expansion (AFTER Waves 0-1)
 
