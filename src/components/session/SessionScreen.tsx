@@ -110,7 +110,7 @@ export function SessionScreen({
             }
           }}
           className="flex size-10 items-center justify-center rounded-[0.9rem] border border-[var(--nc-border)] bg-[var(--nc-card)] text-[var(--nc-text)]"
-          aria-label="Back to dashboard"
+          aria-label="Tilbake til dashboard"
         >
           <X size={18} />
         </button>

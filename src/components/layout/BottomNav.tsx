@@ -7,17 +7,17 @@ import { BookOpen, BarChart2, Home, MessageCircle, User } from 'lucide-react'
 export type NavTab = 'home' | 'session' | 'conversation' | 'progress' | 'profile'
 
 const TABS: { id: NavTab; label: string; href: string; Icon: ElementType }[] = [
-  { id: 'home',         label: 'Home',     href: '/dashboard',    Icon: Home },
-  { id: 'session',      label: 'Learn',    href: '/session',      Icon: BookOpen },
-  { id: 'conversation', label: 'Practice', href: '/conversation', Icon: MessageCircle },
-  { id: 'progress',     label: 'Progress', href: '/progress',     Icon: BarChart2 },
-  { id: 'profile',      label: 'Profile',  href: '/profile',      Icon: User },
+  { id: 'home',         label: 'Hjem',      href: '/dashboard',    Icon: Home },
+  { id: 'session',      label: 'Lær',       href: '/session',      Icon: BookOpen },
+  { id: 'conversation', label: 'Øv',        href: '/conversation', Icon: MessageCircle },
+  { id: 'progress',     label: 'Fremgang',  href: '/progress',     Icon: BarChart2 },
+  { id: 'profile',      label: 'Profil',    href: '/profile',      Icon: User },
 ]
 
 export function BottomNav({ active }: { active: NavTab }) {
   return (
     <nav
-      aria-label="Primary navigation"
+      aria-label="Hovednavigasjon"
       className="border-t border-[rgba(255,255,255,0.08)] bg-[rgba(18,14,14,0.88)] pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-lg justify-around px-2 py-2">
