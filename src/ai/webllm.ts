@@ -12,7 +12,7 @@ import {
 } from './prompts'
 import { validateGenerated, validateNorwegianOutput } from './validate'
 
-const MODEL_ID = 'Llama-3.2-3B-Instruct-q4f16_1-MLC'
+const MODEL_ID = 'Llama-3.2-1B-Instruct-q4f16_1-MLC'
 const MAX_RETRIES = 2
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'unavailable'
@@ -76,23 +76,16 @@ export class WebLLMService implements AIService {
     return this.loadPromise
   }
 
-  // TEMPORARY MITIGATION — pending the lazy-load architecture refactor.
-  // Today aiService.init() runs from the root layout for every page, so a
-  // phone with navigator.gpu present (Android Chrome 113+) OOM-crashes the
-  // renderer trying to compile a 3B model. Chrome Mobile then auto-reloads
-  // the tab 3× and IndexedDB caches enough of the model that the loop
-  // persists across visits. This gate bails before any Worker is spawned.
-  //
-  // The real fix is to move AI loading out of root layout onto the surfaces
-  // that genuinely need it (conversation, journal review, AI explanations)
-  // and rely on a capability check per-surface. Remove this method once
-  // ClientAILoader is no longer mounted in src/app/layout.tsx.
+  // Gate: skip AI load on devices that can't handle in-browser LLM.
+  // The 1B model needs ~2GB VRAM; safe on desktop and high-end mobile.
+  // Coarse-pointer heuristic catches most phones; deviceMemory < 4 catches
+  // low-RAM tablets. Template fallbacks cover all gated-out devices.
   private isCapableDevice(): boolean {
     if (typeof window === 'undefined') return false
     if (!('gpu' in navigator)) return false
     const coarsePointer = window.matchMedia?.('(pointer: coarse)').matches ?? false
     const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
-    const lowMemory = deviceMemory != null && deviceMemory < 8
+    const lowMemory = deviceMemory != null && deviceMemory < 4
     return !coarsePointer && !lowMemory
   }
 
