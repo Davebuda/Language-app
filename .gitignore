@@ -10,3 +10,6 @@ public/audio/sentences/
 # Scout working files (lane temp files — keep briefs and config)
 .scout/lane-*.md
 .scout/planner.md
+
+# Harness reports (generated, not committed)
+reports/
