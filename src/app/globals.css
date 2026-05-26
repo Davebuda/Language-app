@@ -246,6 +246,19 @@
   /* Alias for cream — identical to nc-glass-cream; kept for callsite stability */
   .nc-glass-cream-strong { @apply nc-glass-cream; }
 
+  /* Deep dark film — aurora bleeds through at low intensity */
+  .nc-glass-dark {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: rgba(4,10,8,0.54);
+    backdrop-filter: blur(28px) saturate(1.8);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border: 1px solid rgba(0,220,180,0.18);
+    box-shadow: inset 0 1px 0 rgba(0,220,180,0.08);
+    color: var(--nc-text);
+  }
+
   /* Backwards-compat alias */
   .nc-panel          { @apply nc-glass; }
 
@@ -286,6 +299,14 @@
     color: var(--nc-text-dim);
   }
 
+  .nc-label-red {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--nc-red);
+  }
+
   /* ── Inputs ── */
   /* ── Inputs — dark surface (default) ── */
   .nc-input {
@@ -308,6 +329,29 @@
     border-color: rgba(0,229,196,0.55);
     box-shadow: 0 0 0 3px rgba(0,229,196,0.12);
     background: rgba(255,255,255,0.07);
+  }
+
+  /* ── Input on cream surface — dark text, red focus ring ── */
+  .nc-input-cream {
+    width: 100%;
+    min-height: 3rem;
+    border-radius: var(--radius);
+    border: 1.5px solid rgba(0,220,180,0.30);
+    background: rgba(255,255,255,0.55);
+    padding: 0.85rem 1rem;
+    color: var(--nc-cream-text);
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .nc-input-cream::placeholder { color: var(--nc-cream-muted); }
+
+  .nc-input-cream:focus {
+    border-color: rgba(255,51,51,0.55);
+    box-shadow: 0 0 0 3px rgba(255,51,51,0.14);
+    background: rgba(255,255,255,0.70);
   }
 
   /* ── Buttons ── */
