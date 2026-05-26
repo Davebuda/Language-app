@@ -70,6 +70,7 @@ export function buildWeeklyCheckItems(
           estimatedSeconds: SECONDS_PER_ITEM,
           isRepairItem: false,
           purpose: 'review',
+          selectionReason: 'review_due',
         });
         break;
       }

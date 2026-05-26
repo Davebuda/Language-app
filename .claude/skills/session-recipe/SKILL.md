@@ -47,6 +47,30 @@ Long session (exam prep): 1200s (20 min) — about 26 exercises
 
 **Never put 5 of the same concept/exercise type in a row.** The scheduler enforces this via `pickExerciseType()` which avoids repeating the last 2 exercise types. This prevents fatigue and forces the brain to actually parse (not pattern-match).
 
+## Passed-Sentence Filtering
+
+The scheduler consults `fingerprint.passedSentenceIds` before selecting content:
+
+- **Remediation, new-material, interleaving**: exclude passed sentences (`excludePassed: true`). If all sentences for a concept are passed, the concept is skipped entirely — AI top-up generates fresh content for future items.
+- **Review**: allow passed sentences (`excludePassed: false`). Review is intentional spaced repetition — re-showing a passed sentence is the correct behavior.
+- **Repair**: repair items bypass the filter (they need the original failed sentence for retry).
+- **Edge case**: when ALL concepts have ALL sentences passed, the session degrades gracefully to review-only.
+
+## Selection Reason Tracking
+
+Every `SessionItem` carries a required `selectionReason` field justifying its inclusion:
+
+| Reason | When assigned |
+|---|---|
+| `weak_concept` | Concept is in the top-5 weakest by decayedScore |
+| `weekly_focus` | Concept is in the current week's focus set |
+| `review_due` | Concept's `nextReviewAt` has passed (SRS-driven) |
+| `decaying` | rawScore ≥ 70 but decayedScore < 70 |
+| `new_material` | Concept is unlocked and has prior attempts |
+| `cold_start` | Concept is unlocked with zero attempts |
+| `interleaving` | Random mix from in-progress concepts |
+| `repair_target` | Repair item (micro-drill or retry after wrong answer) |
+
 ## Session Structure Rule
 
 The first item in every session is always a warm-up review (something the learner has seen before and likely knows). Never start cold with a new concept or a failure-inducing difficult item.

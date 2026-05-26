@@ -122,6 +122,14 @@ export function useSession(
     const passedIds = useFingerprintStore.getState().fingerprint?.passedSentenceIds ?? {};
     const isReviewOrRepair = item.purpose === 'review' || item.isRepairItem;
     const notPassed = isReviewOrRepair ? pool : pool.filter((s) => !passedIds[s.id]);
+
+    // When all seeds are passed for non-review items, trigger AI generation
+    // instead of silently recycling passed content. The scheduler should have
+    // already filtered this concept out, so this is defense-in-depth.
+    if (notPassed.length === 0 && !isReviewOrRepair && aiService.isReady()) {
+      console.warn(`[useSession] all seeds passed for "${conceptId}" — using passed sentence as fallback, AI top-up queued for future items`);
+      void topUpConcept(conceptId, item.exerciseType, seeds);
+    }
     const effectivePool = notPassed.length > 0 ? notPassed : pool;
 
     // Prefer sentences not yet used in this session; fall back to full pool if exhausted

@@ -23,6 +23,16 @@ export interface RepairContext {
   microDrillConceptId?: string;
 }
 
+export type SelectionReason =
+  | 'weak_concept'
+  | 'review_due'
+  | 'decaying'
+  | 'new_material'
+  | 'interleaving'
+  | 'weekly_focus'
+  | 'repair_target'
+  | 'cold_start';
+
 export interface SessionItem {
   id: string;
   exerciseType: ExerciseType;
@@ -32,6 +42,7 @@ export interface SessionItem {
   isRepairItem: boolean;
   repairContext?: RepairContext;
   purpose: 'remediation' | 'review' | 'new-material' | 'interleaving' | 'new-vocab';
+  selectionReason: SelectionReason;
 }
 
 export interface SessionRecipe {

@@ -27,8 +27,8 @@ The `MistakeFingerprint` is the live model of the learner. It's the most importa
 - A concept with rawScore=75 and confidence=1.0 IS masterable at threshold=75
 
 ### Decay
-- `decayedScore` = rawScore × e^(-ln(2)/30 × daysSincePractice)
-- Half-life: 30 days (score halves after 30 days without practice)
+- `decayedScore` decays toward floor of 35 (not zero): `DECAY_FLOOR + (rawScore - DECAY_FLOOR) × e^(-ln(2)/25 × daysSincePractice)`
+- Half-life: **25 days** (Stream 1.2 correction)
 - `refreshDecay()` is called on app open, not on every attempt
 - The decay is a read-time transform — rawScore is always stored intact
 
@@ -42,6 +42,13 @@ The `MistakeFingerprint` is the live model of the learner. It's the most importa
 - Computed in `computeProductionGap()` from the error log
 - Used by the scheduler to add more production exercises when gap > 40
 
+### Passed Sentence Tracking
+- `passedSentenceIds: Record<string, string>` — sentenceId → ISO timestamp when the learner answered correctly
+- Recorded on every correct answer in `useFingerprint.ts`
+- Used by the scheduler to exclude passed sentences from normal progression (remediation, new-material, interleaving)
+- Review and repair items are exempt — they intentionally re-show passed content
+- When all sentences for a concept are passed, the scheduler skips the concept for non-review purposes and AI generates fresh content
+
 ## Update Flow
 
 ```
@@ -50,7 +57,7 @@ User answers exercise
 ExerciseResult created
   ↓
 If wrong: logError() → adds to recentErrors → updateConceptMastery(correct=false)
-If correct: updateConceptMastery(correct=true)
+If correct: updateConceptMastery(correct=true) + add to passedSentenceIds
   ↓
 saveFingerprint() → IndexedDB
   ↓

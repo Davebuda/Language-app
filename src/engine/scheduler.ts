@@ -1,6 +1,6 @@
 import type { MistakeFingerprint, InputProductionPreference } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
-import type { Session, SessionItem, SessionRecipe, ExerciseType } from '@/types/session';
+import type { Session, SessionItem, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
 import type { Sentence } from '@/types/content';
 import { DEFAULT_SESSION_RECIPE } from '@/types/session';
 import { isMastered } from './fingerprint';
@@ -52,7 +52,8 @@ function makeItem(
   conceptId: string,
   contentId: string,
   exerciseType: ExerciseType,
-  purpose: SessionItem['purpose']
+  purpose: SessionItem['purpose'],
+  selectionReason: SelectionReason,
 ): SessionItem {
   return {
     id,
@@ -62,6 +63,7 @@ function makeItem(
     estimatedSeconds: AVG_EXERCISE_SECONDS,
     isRepairItem: false,
     purpose,
+    selectionReason,
   };
 }
 
@@ -84,6 +86,7 @@ export interface SchedulerOutput {
 export function generateSession(input: SchedulerInput): SchedulerOutput {
   const { fingerprint, graph, availableSentenceIds, sentences } = input;
   const recipe: SessionRecipe = { ...DEFAULT_SESSION_RECIPE, ...input.recipe };
+  const passedIds = fingerprint.passedSentenceIds ?? {};
 
   const masteredIds = new Set(
     Object.entries(fingerprint.conceptMastery)
@@ -117,13 +120,18 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   const preference = fingerprint.inputProductionPreference ?? 'balanced';
 
   // Returns the first exercise type from `candidates` for which at least one
-  // sentence for `conceptId` declares support. Null means no eligible sentence
-  // exists — the item should be skipped rather than queued blank.
+  // sentence for `conceptId` declares support. When `excludePassed` is true,
+  // only unpassed sentences are considered — concepts with all sentences
+  // passed return null and get skipped.
   function firstEligibleType(
     conceptId: string,
     candidates: ExerciseType[],
+    excludePassed: boolean = true,
   ): ExerciseType | null {
-    const ids = availableSentenceIds[conceptId] ?? [];
+    const allIds = availableSentenceIds[conceptId] ?? [];
+    const ids = excludePassed
+      ? allIds.filter((id) => !passedIds[id])
+      : allIds;
     if (ids.length === 0) return null;
     for (const type of candidates) {
       if (ids.some((id) => sentences[id]?.exerciseTypes.includes(type))) {
@@ -136,7 +144,9 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   function addItem(
     conceptId: string,
     exercises: ExerciseType[],
-    purpose: SessionItem['purpose']
+    purpose: SessionItem['purpose'],
+    selectionReason: SelectionReason,
+    excludePassed: boolean = true,
   ): boolean {
     const gap = fingerprint.productionGap[conceptId] ?? 0;
     const adjusted = resolvePool(exercises, gap, preference);
@@ -149,18 +159,16 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
       ? [...deduped, ...adjusted.filter((t) => !deduped.includes(t))]
       : adjusted;
 
-    const exerciseType = firstEligibleType(conceptId, candidates);
+    const exerciseType = firstEligibleType(conceptId, candidates, excludePassed);
     if (exerciseType === null) {
-      // No sentence in the corpus supports any exercise type in this pool for
-      // this concept. Skip rather than queue an item that will render blank.
-      console.warn(`[scheduler] skipping "${conceptId}" — no eligible sentence for any type in pool`);
+      console.warn(`[scheduler] skipping "${conceptId}" — no unpassed sentence for any type in pool`);
       return false;
     }
 
     // Content is resolved at render time by useSession, not at planning time.
     const contentId = `pending:${conceptId}`;
     usedExerciseTypes.push(exerciseType);
-    items.push(makeItem(`item-${itemIndex++}`, conceptId, contentId, exerciseType, purpose));
+    items.push(makeItem(`item-${itemIndex++}`, conceptId, contentId, exerciseType, purpose, selectionReason));
     return true;
   }
 
@@ -174,14 +182,16 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     exercises: ExerciseType[],
     purpose: SessionItem['purpose'],
     fallbackPool: string[],
+    selectionReason: SelectionReason,
+    excludePassed: boolean = true,
   ): boolean {
     const count = conceptRepeatCount.get(conceptId) ?? 0;
     const effectiveId =
       count < MAX_CONCEPT_REPEATS
         ? conceptId
         : (fallbackPool.find((id) => (conceptRepeatCount.get(id) ?? 0) < MAX_CONCEPT_REPEATS) ?? conceptId);
-    const added = addItem(effectiveId, exercises, purpose);
-    // Only charge the repeat counter when an item was actually queued.
+    const effectiveReason = effectiveId !== conceptId ? 'weak_concept' : selectionReason;
+    const added = addItem(effectiveId, exercises, purpose, effectiveReason, excludePassed);
     if (added) {
       conceptRepeatCount.set(effectiveId, (conceptRepeatCount.get(effectiveId) ?? 0) + 1);
     }
@@ -212,10 +222,16 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
 
   for (let i = 0; i < counts.remediation; i++) {
     const conceptId = remediationPool[i % Math.max(remediationPool.length, 1)];
-    if (conceptId) addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool);
+    if (conceptId) {
+      const reason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
+      addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool, reason);
+    }
   }
 
-  // Review — SRS-due concepts first; fall back through decaying → weak → unlocked
+  // Review — SRS-due concepts first; fall back through decaying → weak → unlocked.
+  // Review items are allowed to show passed sentences (intentional spaced repetition).
+  const reviewDueSet = new Set(reviewDueConcepts);
+  const decayingSet = new Set(decayingConcepts);
   const reviewPool = reviewDueConcepts.length > 0
     ? reviewDueConcepts
     : decayingConcepts.length > 0
@@ -225,7 +241,10 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
         : unlockedConcepts.map((c) => c.id);
   for (let i = 0; i < counts.review; i++) {
     const conceptId = reviewPool[i % Math.max(reviewPool.length, 1)];
-    if (conceptId) addItemCapped(conceptId, REVIEW_EXERCISES, 'review', reviewPool);
+    if (conceptId) {
+      const reason: SelectionReason = reviewDueSet.has(conceptId) ? 'review_due' : decayingSet.has(conceptId) ? 'decaying' : 'weak_concept';
+      addItemCapped(conceptId, REVIEW_EXERCISES, 'review', reviewPool, reason, false);
+    }
   }
 
   // New material — spread across the next unlocked concepts, not just the first
@@ -233,7 +252,8 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   for (let i = 0; i < counts.newMaterial; i++) {
     const concept = newMaterialConcepts[i % Math.max(newMaterialConcepts.length, 1)];
     if (concept) {
-      const added = addItem(concept.id, NEW_MATERIAL_EXERCISES, 'new-material');
+      const reason: SelectionReason = (fingerprint.conceptMastery[concept.id]?.attemptCount ?? 0) === 0 ? 'cold_start' : 'new_material';
+      const added = addItem(concept.id, NEW_MATERIAL_EXERCISES, 'new-material', reason);
       if (added) {
         conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
       }
@@ -246,7 +266,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   for (let i = 0; i < counts.interleaving; i++) {
     const conceptId = interleavingPool[Math.floor(Math.random() * interleavingPool.length)];
     if (conceptId)
-      addItem(conceptId, [...REMEDIATION_EXERCISES, ...REVIEW_EXERCISES], 'interleaving');
+      addItem(conceptId, [...REMEDIATION_EXERCISES, ...REVIEW_EXERCISES], 'interleaving', 'interleaving');
   }
 
   // Shuffle: don't let all remediation items cluster at start
@@ -271,7 +291,8 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     for (let i = 0; i < items.length; i++) {
       const target = items[i];
       const conceptId = target.conceptIds[0] ?? '';
-      const compatibleProductionType = firstEligibleType(conceptId, PRODUCTION_EXERCISES);
+      const shouldExclude = target.purpose !== 'review' && !target.isRepairItem;
+      const compatibleProductionType = firstEligibleType(conceptId, PRODUCTION_EXERCISES, shouldExclude);
       if (compatibleProductionType !== null) {
         items[i] = { ...target, exerciseType: compatibleProductionType };
         break;
