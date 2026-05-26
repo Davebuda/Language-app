@@ -7,10 +7,10 @@ import { saveFingerprint } from '@/storage/indexeddb'
 import type { CEFRLevel } from '@/types/fingerprint'
 
 const LEVELS: { value: CEFRLevel; label: string; desc: string; comingSoon?: boolean }[] = [
-  { value: 'A1', label: 'A1', desc: 'Beginner — first words' },
-  { value: 'A2', label: 'A2', desc: 'Elementary — simple conversations' },
-  { value: 'B1', label: 'B1', desc: 'A2 content · B1 graph coming soon', comingSoon: true },
-  { value: 'B2', label: 'B2', desc: 'A2 content · B2 graph coming soon', comingSoon: true },
+  { value: 'A1', label: 'A1', desc: 'Nybegynner — første ord' },
+  { value: 'A2', label: 'A2', desc: 'Grunnleggende — enkle samtaler' },
+  { value: 'B1', label: 'B1', desc: 'Selvstendig — komplekse setninger' },
+  { value: 'B2', label: 'B2', desc: 'B1-innhold · B2 kommer snart', comingSoon: true },
 ]
 
 interface LevelSelectorProps {
@@ -48,7 +48,7 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
         exit={{ opacity: 0, y: -6 }}
         className="nc-glass p-4"
       >
-        <div className="nc-label mb-3">What&apos;s your Norwegian level?</div>
+        <div className="nc-label mb-3">Hva er nivået ditt?</div>
         <div className="grid grid-cols-2 gap-2">
           {LEVELS.map((lvl) => (
             <button
@@ -74,7 +74,7 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
                     className="rounded px-1 py-0.5 text-[9px] font-semibold uppercase tracking-wide"
                     style={{ background: 'rgba(200,255,0,0.12)', color: '#9aac3a' }}
                   >
-                    soon
+                    snart
                   </span>
                 )}
               </span>
@@ -128,7 +128,7 @@ export function LevelBadge() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="rounded-full border border-nc-border bg-nc-dark px-2.5 py-1 text-[11px] font-bold text-nc-green transition-opacity hover:opacity-80"
-        aria-label="Change level"
+        aria-label="Endre nivå"
       >
         {level}
       </button>
@@ -142,7 +142,7 @@ export function LevelBadge() {
             className="absolute right-0 top-9 z-50 rounded-[1rem] border border-nc-border bg-nc-card p-3 shadow-card"
             style={{ minWidth: 220 }}
           >
-            <div className="nc-label mb-2">Change level</div>
+            <div className="nc-label mb-2">Endre nivå</div>
             <LevelSelector variant="picker" onClose={() => setOpen(false)} />
           </motion.div>
         )}
