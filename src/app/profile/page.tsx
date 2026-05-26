@@ -6,6 +6,7 @@ import { ArrowRight, LogOut } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { useAIStatusStore } from '@/stores/ai-status-store'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { isMastered } from '@/engine'
 import { getStreak } from '@/lib/streak'
@@ -169,6 +170,9 @@ export default function ProfilePage() {
           </div>
         ) : null}
 
+        {/* AI status */}
+        <AIStatusSection />
+
         {/* Input/production preference */}
         <div className="nc-glass p-4">
           <div className="nc-label">Øktstil</div>
@@ -226,6 +230,60 @@ export default function ProfilePage() {
       </main>
 
       <BottomNav active="profile" />
+    </div>
+  )
+}
+
+function AIStatusSection() {
+  const { state, aiMode } = useAIStatusStore()
+
+  const modeInfo = {
+    webllm: {
+      label: 'Lokal AI (WebGPU)',
+      desc: 'AI-modellen kjører direkte i nettleseren din. Ingen data sendes til noen server.',
+      color: 'var(--nc-green)',
+      badge: '🔒 Lokal',
+    },
+    server: {
+      label: 'Sky-AI',
+      desc: 'AI-svarene leveres via en skybasert tjeneste. Raskere, men krever nettforbindelse. Ingen personlige data lagres.',
+      color: 'var(--nc-teal)',
+      badge: '☁️ Sky',
+    },
+    none: {
+      label: 'Maler',
+      desc: 'AI er ikke tilgjengelig akkurat nå. Du får faste svar basert på norske grammatikkregler. For bedre AI-opplevelse, bruk Chrome på en datamaskin med WebGPU-støtte.',
+      color: 'var(--nc-text-dim)',
+      badge: '📝 Maler',
+    },
+  }
+
+  const info = modeInfo[aiMode]
+
+  return (
+    <div className="nc-glass p-4">
+      <div className="nc-label">AI-status</div>
+      <div className="mt-3 flex items-start gap-3">
+        <span
+          className="shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold"
+          style={{ background: 'rgba(255,255,255,0.06)', color: info.color }}
+        >
+          {info.badge}
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="text-[13px] font-bold" style={{ color: info.color }}>
+            {info.label}
+            {state === 'loading' && (
+              <span className="ml-2 text-[11px] font-normal text-[var(--nc-text-dim)]">
+                Laster modell…
+              </span>
+            )}
+          </div>
+          <p className="mt-1 text-pretty text-[11px] leading-relaxed text-[var(--nc-text-dim)]">
+            {info.desc}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
