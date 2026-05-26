@@ -3,13 +3,8 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { MistakeFingerprint } from '@/types/fingerprint'
-import type { ConceptGraph } from '@/types/concepts'
 import { summarizeWeeklyProgress, type WeeklyProgressEntry } from '@/lib/weekly-progress'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 // ── Day-dots helpers ────────────────────────────────────────────────────────
 
@@ -80,12 +75,7 @@ export function WeekStrip({ fingerprint }: WeekStripProps) {
   // Inactive: no weekly sprint has started yet — return null, no nag
   if (fingerprint.weekStartedAt === null) return null
 
-  const graph: ConceptGraph =
-    fingerprint.currentLevel === 'A2' ||
-    fingerprint.currentLevel === 'B1' ||
-    fingerprint.currentLevel === 'B2'
-      ? a2Graph
-      : a1Graph
+  const graph = getGraphForLevel(fingerprint.currentLevel)
 
   const progressEntries = summarizeWeeklyProgress(fingerprint, graph)
 

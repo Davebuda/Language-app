@@ -14,12 +14,7 @@ import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import type { ErrorTag } from '@/types/taxonomy'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 function buildCorrectedText(
   original: string,
@@ -151,7 +146,7 @@ export function WritingEditor() {
 
   function pushErrorsToFingerprint(result: WritingFeedback): void {
     if (!fingerprint || result.errors.length === 0) return
-    const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
+    const activeGraph = getGraphForLevel(fingerprint.currentLevel)
     let updated = fingerprint
     for (const err of result.errors) {
       // P0.5-04: errorTagToConceptId always returns a concept-id (fallback to

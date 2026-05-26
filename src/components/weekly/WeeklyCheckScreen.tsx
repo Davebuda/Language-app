@@ -9,12 +9,7 @@ import { ExerciseCard } from '@/components/session/ExerciseCard'
 import { buildWeeklyCheckItems } from '@/lib/weekly-check'
 import type { Sentence, ResolvedContent } from '@/types/content'
 import type { SessionItem, ExerciseResult } from '@/types/session'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 interface WeeklyCheckScreenProps {
   sentences: Record<string, Sentence>
@@ -59,7 +54,7 @@ export function WeeklyCheckScreen({
   const fp = storeFp ?? fingerprint
 
   const graph = useMemo(
-    () => (fp?.currentLevel === 'A2' ? a2Graph : a1Graph),
+    () => getGraphForLevel(fp?.currentLevel ?? 'A1'),
     [fp?.currentLevel],
   )
 

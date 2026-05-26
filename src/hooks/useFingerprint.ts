@@ -20,14 +20,10 @@ import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
 import { logWeeklyCheckComplete, logConceptExposure } from '@/lib/logEvents';
 import type { ExerciseResult } from '@/types/session';
-import type { ConceptGraph } from '@/types/concepts';
-import a1GraphJson from '@content/concepts/a1-graph.json';
-import a2GraphJson from '@content/concepts/a2-graph.json';
+import { getGraphForLevel, a1Graph } from '@/lib/concept-graph-loader';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 
-const a1Graph = a1GraphJson as ConceptGraph;
-const a2Graph = a2GraphJson as ConceptGraph;
 const A1_CONCEPTS = a1Graph.concepts;
 
 const ANON_ID_KEY = 'norsk-coach-anon-id';
@@ -185,7 +181,7 @@ export function useFingerprint() {
           const migrated = await migrateAnonFingerprintToUser(user).catch(() => null);
           if (migrated) {
             const reconciled = await applyMigration(migrated, 'local+remote');
-            const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+            const graph = getGraphForLevel(reconciled.currentLevel);
             const withWeek = ensureWeekOpen(reconciled, graph);
             setFingerprint(refreshDecay(withWeek));
             if (withWeek !== reconciled) {
@@ -198,7 +194,7 @@ export function useFingerprint() {
         const remote = await loadFingerprintFromSupabase(user.id).catch(() => null);
         if (remote) {
           const reconciled = await applyMigration(remote, 'local+remote');
-          const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const graph = getGraphForLevel(reconciled.currentLevel);
           const withWeek = ensureWeekOpen(reconciled, graph);
           setFingerprint(refreshDecay(withWeek));
           if (withWeek !== reconciled) {
@@ -210,7 +206,7 @@ export function useFingerprint() {
         const local = await loadFingerprint(user.id).catch(() => null);
         if (local) {
           const reconciled = await applyMigration(local, 'local+remote');
-          const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const graph = getGraphForLevel(reconciled.currentLevel);
           const withWeek = ensureWeekOpen(reconciled, graph);
           setFingerprint(refreshDecay(withWeek));
           if (withWeek !== reconciled) {
@@ -222,7 +218,7 @@ export function useFingerprint() {
           return;
         }
         const empty = createEmptyFingerprint(user.id);
-        const graph = empty.currentLevel === 'A2' ? a2Graph : a1Graph;
+        const graph = getGraphForLevel(empty.currentLevel);
         const emptyWithWeek = ensureWeekOpen(empty, graph);
         setFingerprint(emptyWithWeek);
         if (emptyWithWeek !== empty) {
@@ -235,7 +231,7 @@ export function useFingerprint() {
         const local = await loadFingerprint(anonId).catch(() => null);
         if (local) {
           const reconciled = await applyMigration(local, 'local');
-          const graph = reconciled.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const graph = getGraphForLevel(reconciled.currentLevel);
           const withWeek = ensureWeekOpen(reconciled, graph);
           setFingerprint(refreshDecay(withWeek));
           if (withWeek !== reconciled) {
@@ -243,7 +239,7 @@ export function useFingerprint() {
           }
         } else {
           const empty = createEmptyFingerprint(anonId);
-          const graph = empty.currentLevel === 'A2' ? a2Graph : a1Graph;
+          const graph = getGraphForLevel(empty.currentLevel);
           const emptyWithWeek = ensureWeekOpen(empty, graph);
           setFingerprint(emptyWithWeek);
           if (emptyWithWeek !== empty) {
@@ -264,7 +260,7 @@ export function useFingerprint() {
       const fp = useFingerprintStore.getState().fingerprint;
       if (!fp) return;
 
-      const activeGraph = fp.currentLevel === 'A2' ? a2Graph : a1Graph;
+      const activeGraph = getGraphForLevel(fp.currentLevel);
       const node = activeGraph.concepts.find((c) => c.id === result.conceptId);
       const minAttempts = node?.minAttempts ?? 15;
       const minDays = node?.minDays ?? 3;
@@ -325,7 +321,7 @@ export function useFingerprint() {
   const ensureWeekOpenAndPersist = useCallback(() => {
     const fp = useFingerprintStore.getState().fingerprint;
     if (!fp) return;
-    const graph = fp.currentLevel === 'A2' ? a2Graph : a1Graph;
+    const graph = getGraphForLevel(fp.currentLevel);
     const withWeek = ensureWeekOpen(fp, graph);
     if (withWeek !== fp) {
       setFingerprint(withWeek);
@@ -339,7 +335,7 @@ export function useFingerprint() {
       const fp = useFingerprintStore.getState().fingerprint;
       if (!fp) return;
       const moment = now ?? new Date();
-      const graph = fp.currentLevel === 'A2' ? a2Graph : a1Graph;
+      const graph = getGraphForLevel(fp.currentLevel);
       const closed = closeWeek(fp, graph, {
         status: 'completed',
         checkResult: { takenAt: moment.toISOString(), score, items },

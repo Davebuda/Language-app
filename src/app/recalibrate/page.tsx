@@ -11,12 +11,7 @@ import { emitEvent } from '@/lib/events'
 import { RecalibrationQuiz } from '@/components/onboarding/RecalibrationQuiz'
 import { MAX_RECALIBRATION_QUESTIONS } from '@/lib/diagnostic/recalibration'
 import type { RecalibrationResult } from '@/lib/diagnostic/recalibration'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 export default function RecalibratePage() {
   const router = useRouter()
@@ -89,7 +84,7 @@ export default function RecalibratePage() {
     )
   }
 
-  const graph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
+  const graph = getGraphForLevel(fingerprint.currentLevel)
 
   function handleComplete(result: RecalibrationResult) {
     setFingerprint(result.fingerprint)

@@ -3,22 +3,12 @@
 import { useMemo } from 'react'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { getConceptPhase, isMastered } from '@/engine'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 export function ProgressReassuranceStrip() {
   const { fingerprint, status } = useFingerprintStore()
 
-  const activeGraph =
-    fingerprint?.currentLevel === 'A2' ||
-    fingerprint?.currentLevel === 'B1' ||
-    fingerprint?.currentLevel === 'B2'
-      ? a2Graph
-      : a1Graph
+  const activeGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
 
   const stats = useMemo(() => {
     if (!fingerprint) return null

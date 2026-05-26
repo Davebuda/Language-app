@@ -23,12 +23,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import type { Sentence } from '@/types/content'
 import type { ExerciseResult } from '@/types/session'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 interface SessionScreenProps {
   sentences: Record<string, Sentence>
@@ -210,7 +205,7 @@ export function SessionScreen({
                     correctAnswer={lastResultRef.current?.correctAnswer ?? ''}
                     conceptId={currentItem.conceptIds[0] ?? 'concept'}
                     conceptLabel={
-                      (fingerprint?.currentLevel === 'A2' ? a2Graph : a1Graph).concepts.find(
+                      getGraphForLevel(fingerprint?.currentLevel ?? 'A1').concepts.find(
                         (concept) => concept.id === currentItem.conceptIds[0],
                       )?.label
                     }

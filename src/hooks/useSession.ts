@@ -9,12 +9,7 @@ import { aiService } from '@/ai';
 import { emitEvent } from '@/lib/events';
 import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe } from '@/types/session';
 import type { Sentence, ResolvedContent } from '@/types/content';
-import type { ConceptGraph } from '@/types/concepts';
-import a1GraphJson from '@content/concepts/a1-graph.json';
-import a2GraphJson from '@content/concepts/a2-graph.json';
-
-const a1Graph = a1GraphJson as ConceptGraph;
-const a2Graph = a2GraphJson as ConceptGraph;
+import { getGraphForLevel } from '@/lib/concept-graph-loader';
 
 const SCENARIOS = [
   'daily-routine', 'food', 'transport', 'family',
@@ -149,7 +144,7 @@ export function useSession(
     const { fingerprint } = useFingerprintStore.getState(); // re-read after potential update
     if (!fingerprint) return;
 
-    const activeGraph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph;
+    const activeGraph = getGraphForLevel(fingerprint.currentLevel);
 
     const isCalibrating = (fingerprint.calibrationSessionsRemaining ?? 0) > 0;
 
