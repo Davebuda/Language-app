@@ -18,7 +18,7 @@ export default function ShadowPage() {
   // Pass A1 + A2 shadowable sentences to the client — client picks 5 based on fingerprint level
   const candidateSentences: Sentence[] = Object.values(sentences).filter(
     (s) =>
-      (s.cefrLevel === 'A1' || s.cefrLevel === 'A2') &&
+      (s.cefrLevel === 'A1' || s.cefrLevel === 'A2' || s.cefrLevel === 'B1') &&
       isShadowableSentence(s)
   )
 

@@ -167,6 +167,9 @@ export default function DashboardPage() {
       journal: dayOfWeek >= 0 ? (JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length].length > 35 ? JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length].slice(0, 35) + '…' : JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length]) : 'Skriv i journalen',
       roleplay: focusLabel ? `Anbefalt for ${focusLabel}` : '3 scenarier tilgjengelig',
       reading: textsAtLevel > 0 ? `${textsAtLevel} tekster på ${levelLabel}-nivå` : 'Tekster tilgjengelig',
+      listen: '7 spørsmål · lytt og svar muntlig',
+      drills: '4 lydgrupper · uttaleøvelser',
+      shadow: 'Gjenta norske setninger',
     } satisfies Record<LaneId, string>
   }, [plan, fingerprint, activeGraph, levelLabel, dayOfWeek])
 
@@ -178,6 +181,9 @@ export default function DashboardPage() {
     journal: focusSet.size > 0,
     roleplay: focusSet.size > 0,
     reading: false,
+    listen: focusSet.size > 0,
+    drills: false,
+    shadow: false,
   }), [fingerprint?.weeklyFocus, focusSet.size])
 
   const uncompletedLanes = (['session', 'conversation', 'journal', 'roleplay', 'reading'] as LaneId[])
@@ -327,6 +333,36 @@ export default function DashboardPage() {
             ))}
           </div>
         )}
+
+        {/* ── MUNTLIG SECTION — listen, drills, shadow ── */}
+        <div className="flex flex-col gap-2">
+          <div className="px-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
+            Muntlig
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {([
+              { icon: '🎧', name: 'Lytt', href: '/listen', done: completedLanes.has('listen') },
+              { icon: '🗣️', name: 'Uttale', href: '/drills', done: completedLanes.has('drills') },
+              { icon: '🪞', name: 'Skygging', href: '/shadow', done: completedLanes.has('shadow') },
+            ] as const).map((m) => (
+              <Link
+                key={m.href}
+                href={m.href}
+                className={[
+                  'flex flex-col items-center gap-1.5 rounded-[var(--radius)] border px-3 py-3 text-center transition-colors',
+                  m.done
+                    ? 'border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] opacity-50'
+                    : 'border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.06)]',
+                ].join(' ')}
+                aria-label={`Åpne ${m.name}`}
+              >
+                <span className="text-lg" aria-hidden="true">{m.icon}</span>
+                <span className="text-[11px] font-bold text-[var(--nc-text)]">{m.name}</span>
+                {m.done && <span className="text-[10px] font-bold text-[var(--nc-green)]">✓</span>}
+              </Link>
+            ))}
+          </div>
+        </div>
 
         {/* ── Weekly check (contextual) ── */}
         {recommendation?.laneId !== 'weekly-check' && (

@@ -9,6 +9,7 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { LISTEN_RESPOND_QUESTIONS } from '@/lib/listenRespondContent'
 import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
+import { markLaneDone } from '@/lib/lane-completion'
 import type { ExerciseResult } from '@/types/session'
 
 // ── Question selection card ───────────────────────────────────────────────────
@@ -62,6 +63,13 @@ export function ListenRespondScreen() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [scores, setScores] = useState<ScoreRecord[]>([])
 
+  const focusSet = new Set(fingerprint?.weeklyFocus ?? [])
+  const sortedQuestions = [...LISTEN_RESPOND_QUESTIONS].sort((a, b) => {
+    const aFocus = focusSet.has(a.conceptId) ? 0 : 1
+    const bFocus = focusSet.has(b.conceptId) ? 0 : 1
+    return aFocus - bFocus
+  })
+
   function handleSelectQuestion(question: ListenRespondQuestion) {
     setActiveQuestion(question)
     setCurrentIndex(0)
@@ -95,8 +103,7 @@ export function ListenRespondScreen() {
     setScores(newScores)
 
     const nextIndex = currentIndex + 1
-    if (nextIndex >= LISTEN_RESPOND_QUESTIONS.length) {
-      // All questions answered — increment speaking minutes
+    if (nextIndex >= sortedQuestions.length) {
       if (fingerprint) {
         const answeredCount = newScores.filter((s) => !s.skipped).length
         const minutesSpoken = answeredCount * (5 / 60)
@@ -106,10 +113,11 @@ export function ListenRespondScreen() {
           updatedAt: new Date().toISOString(),
         })
       }
+      markLaneDone('listen')
       setScreenPhase('complete')
     } else {
       setCurrentIndex(nextIndex)
-      setActiveQuestion(LISTEN_RESPOND_QUESTIONS[nextIndex] ?? null)
+      setActiveQuestion(sortedQuestions[nextIndex] ?? null)
     }
   }
 
@@ -161,7 +169,7 @@ export function ListenRespondScreen() {
 
               {/* Question cards */}
               <div className="flex flex-col gap-3">
-                {LISTEN_RESPOND_QUESTIONS.map((q, i) => (
+                {sortedQuestions.map((q, i) => (
                   <motion.div
                     key={q.id}
                     initial={{ opacity: 0, y: 10 }}

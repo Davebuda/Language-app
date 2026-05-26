@@ -1,9 +1,7 @@
 'use client'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+
+import { DrillsScreen } from '@/components/muntlig/DrillsScreen'
 
 export default function DrillsPage() {
-  const router = useRouter()
-  useEffect(() => { router.replace('/dashboard') }, [router])
-  return null
+  return <DrillsScreen />
 }

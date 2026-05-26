@@ -8,6 +8,7 @@ import { ShadowingExercise } from '@/components/muntlig/ShadowingExercise'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import type { Sentence } from '@/types/content'
+import { markLaneDone } from '@/lib/lane-completion'
 import type { ExerciseResult } from '@/types/session'
 
 const SESSION_SIZE = 5
@@ -80,6 +81,7 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
 
     const nextIndex = currentIndex + 1
     if (nextIndex >= sentences.length) {
+      markLaneDone('shadow')
       setPhase('complete')
     } else {
       setCurrentIndex(nextIndex)

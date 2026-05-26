@@ -23,6 +23,9 @@ const LANE_META: Record<LaneId, { label: string; href: string; ctaLabel: string 
   journal:      { label: 'SKRIVEJOURNAL', href: '/journal',      ctaLabel: 'Skriv i dag' },
   roleplay:     { label: 'ROLLESPILL',   href: '/roleplay',     ctaLabel: 'Start rollespill' },
   reading:      { label: 'LESESTUDIO',   href: '/reading',      ctaLabel: 'Les nå' },
+  listen:       { label: 'LYTT OG SVAR', href: '/listen',       ctaLabel: 'Lytt nå' },
+  drills:       { label: 'UTTALE',       href: '/drills',       ctaLabel: 'Øv uttale' },
+  shadow:       { label: 'SKYGGING',     href: '/shadow',       ctaLabel: 'Start skygging' },
 }
 
 const CONCEPT_TO_TOPIC: Record<string, string> = {

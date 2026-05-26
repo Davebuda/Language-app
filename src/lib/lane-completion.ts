@@ -1,4 +1,4 @@
-export type LaneId = 'session' | 'journal' | 'conversation' | 'roleplay' | 'reading'
+export type LaneId = 'session' | 'journal' | 'conversation' | 'roleplay' | 'reading' | 'listen' | 'drills' | 'shadow'
 
 const STORAGE_KEY = 'norskcoach_lane_completion'
 
@@ -12,7 +12,7 @@ function todayKey(): string {
 }
 
 function emptyLanes(): Record<LaneId, boolean> {
-  return { session: false, journal: false, conversation: false, roleplay: false, reading: false }
+  return { session: false, journal: false, conversation: false, roleplay: false, reading: false, listen: false, drills: false, shadow: false }
 }
 
 function readState(): LaneState {
@@ -55,4 +55,6 @@ export function allLanesDone(): boolean {
   return Object.values(state.lanes).every(Boolean)
 }
 
-export const ALL_LANES: LaneId[] = ['session', 'journal', 'conversation', 'roleplay', 'reading']
+export const CORE_LANES: LaneId[] = ['session', 'journal', 'conversation', 'roleplay', 'reading']
+export const MUNTLIG_LANES: LaneId[] = ['listen', 'drills', 'shadow']
+export const ALL_LANES: LaneId[] = [...CORE_LANES, ...MUNTLIG_LANES]

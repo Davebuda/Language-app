@@ -1,9 +1,7 @@
 'use client'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+
+import { ListenRespondScreen } from '@/components/muntlig/ListenRespondScreen'
 
 export default function ListenPage() {
-  const router = useRouter()
-  useEffect(() => { router.replace('/dashboard') }, [router])
-  return null
+  return <ListenRespondScreen />
 }

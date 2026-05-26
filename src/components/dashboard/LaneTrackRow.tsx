@@ -9,6 +9,9 @@ const LANE_CONFIG: Record<LaneId, { icon: string; name: string; href: string }> 
   conversation: { icon: '🗣️', name: 'Snakk',     href: '/conversation' },
   roleplay:     { icon: '🎭', name: 'Rollespill', href: '/roleplay' },
   reading:      { icon: '📖', name: 'Les',        href: '/reading' },
+  listen:       { icon: '🎧', name: 'Lytt',       href: '/listen' },
+  drills:       { icon: '🗣️', name: 'Uttale',     href: '/drills' },
+  shadow:       { icon: '🪞', name: 'Skygging',   href: '/shadow' },
 }
 
 interface LaneTrackRowProps {

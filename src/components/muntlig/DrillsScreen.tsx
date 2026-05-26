@@ -8,6 +8,7 @@ import { DrillExercise } from '@/components/muntlig/DrillExercise'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { DRILL_SETS } from '@/lib/drillContent'
 import type { DrillSet } from '@/lib/drillContent'
+import { markLaneDone } from '@/lib/lane-completion'
 import type { ExerciseResult } from '@/types/session'
 
 // ── Drill-set selection card ──────────────────────────────────────────────────
@@ -107,6 +108,7 @@ export function DrillsScreen() {
 
     const nextIndex = currentWordIndex + 1
     if (nextIndex >= activeDrillSet.words.length) {
+      markLaneDone('drills')
       setScreenPhase('complete')
     } else {
       setCurrentWordIndex(nextIndex)
