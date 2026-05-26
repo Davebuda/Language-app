@@ -68,6 +68,7 @@ function useTTS(text: string) {
 export function ListeningExercise({ item, sentence, sessionId, onResult }: ListeningExerciseProps) {
   const [userInput, setUserInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [resultAnnouncement, setResultAnnouncement] = useState('');
   const startRef = useRef(Date.now());
 
   const hasAudioFile = !!sentence.audioUrl;
@@ -84,6 +85,7 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
       return;
     }
     const { correct, correctAnswer, errorTag } = graded;
+    setResultAnnouncement(correct ? 'Riktig svar.' : 'Feil svar.');
     onResult({
       sessionId,
       itemId: item.id,
@@ -144,6 +146,7 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
       >
         Sjekk svar
       </button>
+      <div aria-live="polite" className="sr-only">{resultAnnouncement}</div>
     </div>
   );
 }

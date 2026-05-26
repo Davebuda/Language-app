@@ -43,7 +43,7 @@ export function WeeklyCheckScreen({
   availableSentenceIds,
 }: WeeklyCheckScreenProps) {
   const router = useRouter()
-  const { fingerprint, status, recordWeeklyCheckResult } = useFingerprint()
+  const { fingerprint, status, recordResult, recordWeeklyCheckResult } = useFingerprint()
   const { fingerprint: storeFp } = useFingerprintStore()
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -75,12 +75,13 @@ export function WeeklyCheckScreen({
   const sessionId = useMemo(() => `weekly-check-${Date.now()}`, [])
 
   function handleResult(result: ExerciseResult) {
+    recordResult(result)
+
     const correct = result.correct
     const nextCorrect = correct ? correctCount + 1 : correctCount
     const nextIndex = currentIndex + 1
 
     if (nextIndex >= totalItems) {
-      // All items answered — record and show complete screen
       const score = totalItems > 0 ? Math.round((nextCorrect / totalItems) * 100) : 0
       recordWeeklyCheckResult({ score, items: totalItems })
       setCorrectCount(nextCorrect)
