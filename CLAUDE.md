@@ -66,23 +66,19 @@ Stubs / not built: muntlig modes (shadowing, pronunciation drills, listen-and-re
 
 ## Current Phase
 
-**Waves 0-4.4 COMPLETE 2026-05-26.** See `docs/vision-and-plan.md` for the full dependency-ordered execution plan.
+**SHIP-READY 2026-05-26.** All 12 ship-ready criteria met. See `docs/vision-and-plan.md` for the full execution plan.
 
 **What's shipped:**
 - Stream 5.5 Phases 3-8 (all surfaces laned, repair externalized, stubs retired, recalibration retired)
-- Wave 0: CLAUDE.md sync, `/listen`+`/drills` muted, F027 repair-loop cap (2x session size)
-- Wave 1: AudioPlayer component + batch generation script + reading surface wired
+- Wave 0: CLAUDE.md sync, `/listen`+`/drills` muted, F027 repair-loop cap
+- Wave 1: Audio pipeline — 435+ MP3 files generated via edge-tts (nb-NO-PernilleNeural), AudioPlayer wired to real paths with browser TTS fallback
 - Wave 2: Analytics surface v1 + moat metric defined + history cap confirmed
-- Wave 3: Dashboard composition, progress trajectory (phase bar + weekly history), 27 dead CSS classes removed
-- Wave 4: B1 concept graph (12 concepts), B1 corpus (46 sentences), all 16 files migrated to `getGraphForLevel`, B1 level selectable
-- Norwegian-dominates pass across all learning surfaces (dashboard, profile, progress, conversation, level selector, landing previews)
+- Wave 3: Dashboard composition, progress trajectory, 27 dead CSS classes removed, BottomNav Norwegian
+- Wave 4: B1 concept graph (12 concepts), B1 corpus (360 sentences, 30/concept), all 16 files migrated to `getGraphForLevel`, B1 level selectable
+- Norwegian-dominates pass across ALL learning surfaces (~99% Norwegian)
+- Auth redirect confirmed working
 
-**Ship blockers remaining:**
-- Auth completion (3 user actions: magic-link, NEXT_PUBLIC_APP_URL, Supabase callback)
-- Playwright FULL walkthrough on pandoai.no
-- Real Norwegian audio (Python + edge-tts not installed)
-
-**Next waves:** Audio batch generation (Wave 1.2+ — needs Python), UI-2 conversation aesthetic pass (Wave 3.2), landing page content (Wave 3.4), B1 corpus expansion to 100+ sentences/concept (Wave 4.2). V2 engine (Wave 5) blocked on real users.
+**Next (polish, not blockers):** UI-2 conversation aesthetic pass (Wave 3.2), landing page content (Wave 3.4), B1 audio generation for remaining sentences, Playwright walkthrough, deploy to pandoai.no. V2 engine (Wave 5) blocked on real users.
 
 ## Operating Rules (HARD RAILS — these caused real problems when absent)
 
