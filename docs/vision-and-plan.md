@@ -182,7 +182,7 @@ These don't depend on audio or analytics. They can run alongside.
 | # | Item | Effort | Depends on | Parallel? |
 |---|---|---|---|---|
 | 4.1 | **B1 concept graph** — 12 concepts, CEFR-tagged, with A2 prerequisites. Starter corpus: 25 sentences (5 concepts × 5). 4 pages migrated to `getGraphForLevel`. | 2-3 days | Stable A1/A2 (done) | ✅ DONE 2026-05-26 |
-| 4.2 | **B1 sentence corpus** — 100+ sentences per concept, error-tagged | 3-5 days | 4.1 | After 4.1 |
+| 4.2 | **B1 sentence corpus** — 360 sentences (30 per concept × 12), error-tagged, mixed exercise types | 3-5 days | 4.1 | ✅ DONE 2026-05-26 |
 | 4.3 | **B1 audio generation** — edge-tts batch for B1 corpus | 1 day | 4.2, Wave 1 | After 4.2 |
 | 4.4 | **Honest level switching** — B1 selection produces real B1 content | 1 day | 4.2 | After 4.2 |
 
