@@ -288,6 +288,17 @@ export function useFingerprint() {
         updated = { ...updated, errorPatterns: aggregateErrorPatterns(updated) };
       }
 
+      // ── Passed sentence tracking ────────────────────────────────────────
+      if (result.correct && result.sentenceId) {
+        updated = {
+          ...updated,
+          passedSentenceIds: {
+            ...updated.passedSentenceIds,
+            [result.sentenceId]: new Date().toISOString(),
+          },
+        };
+      }
+
       // ── A1 → A2 level progression ────────────────────────────────────────
       if (updated.currentLevel === 'A1' && checkA1Complete(updated)) {
         updated = { ...updated, currentLevel: 'A2', updatedAt: new Date().toISOString() };

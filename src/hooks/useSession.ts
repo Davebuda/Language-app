@@ -118,9 +118,15 @@ export function useSession(
     const compatible = eligible.filter((s) => s.exerciseTypes.includes(item.exerciseType));
     const pool = compatible.length > 0 ? compatible : eligible;
 
+    // Exclude passed sentences from normal progression; allow for review/repair
+    const passedIds = useFingerprintStore.getState().fingerprint?.passedSentenceIds ?? {};
+    const isReviewOrRepair = item.purpose === 'review' || item.isRepairItem;
+    const notPassed = isReviewOrRepair ? pool : pool.filter((s) => !passedIds[s.id]);
+    const effectivePool = notPassed.length > 0 ? notPassed : pool;
+
     // Prefer sentences not yet used in this session; fall back to full pool if exhausted
-    const fresh = pool.filter((s) => !usedIds.has(s.id));
-    const source = fresh.length > 0 ? fresh : pool;
+    const fresh = effectivePool.filter((s) => !usedIds.has(s.id));
+    const source = fresh.length > 0 ? fresh : effectivePool;
     const picked = source[Math.floor(Math.random() * source.length)];
     if (picked) {
       sessionStore.markSentenceUsed(picked.id);

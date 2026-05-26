@@ -94,6 +94,7 @@ export interface MistakeFingerprint {
     decayedScore: number;                      // cleared on closeWeek. Powers the mid-week reveal strip
     attemptCount: number;                      // by giving summarizeWeeklyProgress a baseline to diff against.
   }>;
+  passedSentenceIds: Record<string, string>;   // sentenceId → ISO timestamp when passed; excluded from normal selection
 }
 
 // Factory: create a new empty fingerprint
@@ -120,5 +121,6 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     weekStartedAt: null,
     weeklySprintHistory: [],
     weekStartSnapshots: {},
+    passedSentenceIds: {},
   };
 }
