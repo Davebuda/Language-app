@@ -18,12 +18,7 @@ import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { emitEvent } from '@/lib/events'
 import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
 import type { ResponseConstraint } from '@/lib/constraints'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
@@ -157,7 +152,7 @@ export default function ConversationPage() {
   function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>): void {
     const fp = useFingerprintStore.getState().fingerprint
     if (!fp) return
-    const activeGraph = fp.currentLevel === 'A2' ? a2Graph : a1Graph
+    const activeGraph = getGraphForLevel(fp.currentLevel ?? 'A1')
     const repaired = repairFromSurface(fp, {
       surfaceKind: 'conversation',
       errorTag: correction.errorTag,
@@ -172,7 +167,7 @@ export default function ConversationPage() {
   function recordConstraintResult(constraintConceptId: string, met: boolean): void {
     const fp = useFingerprintStore.getState().fingerprint
     if (!fp) return
-    const activeGraph = fp.currentLevel === 'A2' ? a2Graph : a1Graph
+    const activeGraph = getGraphForLevel(fp.currentLevel ?? 'A1')
     const node = activeGraph.concepts.find((c) => c.id === constraintConceptId)
     const existing = fp.conceptMastery[constraintConceptId]
     const updated = updateConceptMastery(existing, met, node?.minAttempts ?? 15, node?.minDays ?? 3)
@@ -237,7 +232,7 @@ export default function ConversationPage() {
 
     // Select a constraint based on the user's current in-practice concepts
     if (fingerprint) {
-      const graph = fingerprint.currentLevel === 'A2' ? a2Graph : a1Graph
+      const graph = getGraphForLevel(fingerprint.currentLevel ?? 'A1')
       const constraint = selectConstraint(fingerprint, graph)
       setActiveConstraint(constraint)
     }
