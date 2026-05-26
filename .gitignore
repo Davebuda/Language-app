@@ -4,6 +4,9 @@ node_modules/
 .env.*.local
 *.tsbuildinfo
 
+# Generated audio (deploy to VPS, not git)
+public/audio/sentences/
+
 # Scout working files (lane temp files — keep briefs and config)
 .scout/lane-*.md
 .scout/planner.md
