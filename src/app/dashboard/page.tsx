@@ -130,7 +130,7 @@ export default function DashboardPage() {
   const primaryConcept = activeGraph.concepts.find(
     (c) => c.id === (plan?.primaryFocus ?? 'noun-gender'),
   )
-  const sessionTitle = primaryConcept?.label ?? 'Norwegian Foundations'
+  const sessionTitle = primaryConcept?.label ?? 'Norsk grunnlag'
   const estimatedMin = plan
     ? Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))
     : 18
@@ -288,15 +288,44 @@ export default function DashboardPage() {
               exit={{ opacity: 0 }}
               className="nc-glass px-4 py-3"
             >
-              <p className="text-[12px] leading-6 text-[var(--nc-text-muted)]">
+              <p className="text-[12px] leading-6 text-[var(--nc-text-muted)] text-pretty">
                 <span className="font-semibold text-[var(--nc-text)]">
-                  {fingerprint.currentLevel} content is in development.
+                  {fingerprint.currentLevel}-innhold er under utvikling.
                 </span>{' '}
-                You&apos;re practicing A2 material at higher intensity until it ships.
+                Du øver på A2-materiale med høyere intensitet inntil det er klart.
               </p>
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* ── Weekly Sprint strip ── */}
+        {fingerprint ? <WeekStrip fingerprint={fingerprint} /> : null}
+
+        {/* ── Lane progress strip — Dagens fremgang ── */}
+        <div className="nc-glass px-4 py-3">
+          <div className="nc-label mb-2">Dagens fremgang</div>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { id: 'session',      label: 'Økt',        active: (fingerprint?.totalSessionsCompleted ?? 0) > 0 },
+              { id: 'journal',      label: 'Journal',    active: false },
+              { id: 'conversation', label: 'Samtale',    active: false },
+              { id: 'roleplay',     label: 'Rollespill', active: false },
+              { id: 'reading',      label: 'Lesing',     active: false },
+            ].map((lane) => (
+              <span
+                key={lane.id}
+                className="rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold"
+                style={{
+                  background: lane.active ? 'var(--nc-green-tint)' : 'rgba(255,255,255,0.04)',
+                  border: `1px solid ${lane.active ? 'var(--nc-green-border)' : 'rgba(255,255,255,0.08)'}`,
+                  color: lane.active ? 'var(--nc-green)' : 'var(--nc-text-dim)',
+                }}
+              >
+                {lane.label}
+              </span>
+            ))}
+          </div>
+        </div>
 
         {/* ── TODAY'S SESSION — primary action ── */}
         <motion.div
@@ -309,11 +338,11 @@ export default function DashboardPage() {
             {sessionTitle}
           </div>
           <p className="mt-2 text-[12px] text-[var(--nc-cream-muted)] text-pretty">
-            Estimated: {estimatedMin} min
+            Ca. {estimatedMin} min
           </p>
           {topDiagnosis && (
             <div className="mt-3 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-2.5">
-              <div className="nc-label mb-1 text-[var(--nc-cream-dim)]">Why this</div>
+              <div className="nc-label mb-1 text-[var(--nc-cream-dim)]">Hvorfor denne</div>
               <p className="text-[12px] leading-relaxed text-[var(--nc-cream-text)] text-pretty">
                 {topDiagnosis.reasoning}
               </p>
@@ -323,27 +352,27 @@ export default function DashboardPage() {
             onClick={() => router.push('/session')}
             whileTap={{ scale: 0.97 }}
             className="nc-button-primary mt-4 inline-flex min-h-[48px] items-center gap-2 px-5 py-3 text-sm"
-            aria-label="Start today's session"
+            aria-label="Start dagens økt"
           >
             <Play size={14} aria-hidden="true" />
-            Start session
+            Start økt
           </motion.button>
 
           {/* Session composition badges */}
           <div className="mt-4 flex flex-wrap gap-2">
             {remediation > 0 && (
               <span className="rounded-[0.65rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-red)]">
-                {remediation} repairs
+                {remediation} reparasjoner
               </span>
             )}
             {review > 0 && (
               <span className="rounded-[0.65rem] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-cream-muted)]">
-                {review} review
+                {review} repetisjon
               </span>
             )}
             {newMaterial > 0 && (
               <span className="rounded-[0.65rem] border border-[var(--nc-teal-border)] bg-[var(--nc-teal-tint)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-teal)]">
-                {newMaterial} new
+                {newMaterial} nytt
               </span>
             )}
           </div>
@@ -459,9 +488,6 @@ export default function DashboardPage() {
           </Link>
         </motion.div>
 
-        {/* ── Weekly Sprint strip ── */}
-        {fingerprint ? <WeekStrip fingerprint={fingerprint} /> : null}
-
         {/* ── Daily Learning Card ── */}
         <DailyLearningCard />
 
@@ -481,17 +507,17 @@ export default function DashboardPage() {
                 aria-hidden="true"
               />
               <span className="truncate text-[12px] text-[var(--nc-text-muted)]">
-                {activeConcepts.length === 1 ? '1 concept in focus' : `${activeConcepts.length} concepts in focus`}
+                {activeConcepts.length === 1 ? '1 konsept i fokus' : `${activeConcepts.length} konsepter i fokus`}
                 {activeConcepts[0] &&
                   ` — ${activeConcepts[0].label}${activeConcepts.length > 1 ? ` +${activeConcepts.length - 1}` : ''}`}
               </span>
             </div>
             <Link
               href="/progress"
-              aria-label="View all concepts"
+              aria-label="Se alle konsepter"
               className="shrink-0 text-[11px] font-semibold text-[var(--nc-text-dim)] hover:text-[var(--nc-text)]"
             >
-              View all →
+              Se alle →
             </Link>
           </div>
         )}
@@ -506,18 +532,18 @@ export default function DashboardPage() {
               className="nc-glass border-l-4 border-l-[var(--nc-red)] flex items-center justify-between gap-3 px-4 py-3"
             >
               <div>
-                <p className="text-[13px] font-semibold text-[var(--nc-text)]">Been a while?</p>
+                <p className="text-[13px] font-semibold text-[var(--nc-text)]">Lenge siden sist?</p>
                 <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)] text-pretty">
-                  Quick 7-question check to recalibrate your profile.
+                  Din ukentlige sjekk venter — ta den for å oppdatere profilen din.
                 </p>
               </div>
               <motion.button
-                onClick={() => router.push('/recalibrate')}
+                onClick={() => router.push('/uke')}
                 whileTap={{ scale: 0.97 }}
-                aria-label="Start recalibration quiz"
+                aria-label="Gå til ukentlig sjekk"
                 className="nc-button-primary shrink-0 px-3 py-2 text-[12px] font-bold"
               >
-                Start
+                Sjekk
               </motion.button>
             </motion.div>
           )}
