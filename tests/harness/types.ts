@@ -1,4 +1,4 @@
-export type FindingCategory = 'broken' | 'fake' | 'disconnected' | 'a11y-fail' | 'mobile-fail'
+export type FindingCategory = 'broken' | 'fake' | 'disconnected' | 'a11y-fail' | 'mobile-fail' | 'bypassed' | 'random'
 export type FindingStatus = 'pass' | 'fail' | 'warn'
 
 export interface Finding {
