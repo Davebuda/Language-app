@@ -482,7 +482,7 @@ function RoleplayTurnExercise({
 export function RoleplayScreen() {
   const router = useRouter()
   const { recordResult } = useFingerprint()
-  const { fingerprint, setFingerprint } = useFingerprintStore()
+  const { setFingerprint } = useFingerprintStore()
 
   const [screenPhase, setScreenPhase] = useState<ScreenPhase>('selection')
   const [activeScenario, setActiveScenario] = useState<RoleplayScenario | null>(null)

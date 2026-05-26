@@ -158,7 +158,6 @@ export default function DashboardPage() {
     const focusConcept = fingerprint?.weeklyFocus[0]
     const focusLabel = activeGraph.concepts.find((c) => c.id === focusConcept)?.label
     const topic = focusConcept ? (CONCEPT_TO_TOPIC[focusConcept] ?? 'daglig rutine') : 'daglig rutine'
-    const prompt = JOURNAL_PROMPTS[new Date().getDay() % JOURNAL_PROMPTS.length]
     const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
 
     return {

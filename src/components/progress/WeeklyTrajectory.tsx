@@ -71,8 +71,6 @@ export function WeeklyTrajectory({ history }: WeeklyTrajectoryProps) {
         {slices.map((slice) => {
           // Bar height: scale avgEndScore (0–100) to max 80px visual height
           const barHeightPx = Math.max(4, Math.round((slice.avgEndScore / 100) * 80))
-          // Check dot vertical offset: position relative to bar top
-          const checkDotBottomOffset = barHeightPx + 6
 
           return (
             <div
