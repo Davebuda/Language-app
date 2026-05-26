@@ -10,7 +10,7 @@ import { submitWaitlist } from '@/app/actions/waitlist'
 // non-ASCII per RFC 5321 strict mode; for a Norwegian-first product we accept
 // Norwegian characters and international domains via a permissive regex.
 const emailRegex = /^[\p{L}\p{N}._%+\-]+@[\p{L}\p{N}.\-]+\.[\p{L}]{2,}$/u
-const emailSchema = z.string().refine((v) => emailRegex.test(v), { message: 'invalid email' })
+const emailSchema = z.string().refine((v) => emailRegex.test(v), { message: 'Ugyldig e-postadresse' })
 
 export function WaitlistForm() {
   const [email, setEmail] = useState('')
@@ -61,7 +61,7 @@ export function WaitlistForm() {
         >
           <CheckCircle2 className="h-4 w-4 shrink-0 text-nc-red" />
           <span className="min-w-0 text-foreground">
-            You&apos;re on the list. We&apos;ll reach out when early access opens.
+            Du er på listen. Vi tar kontakt når tidlig tilgang åpner.
           </span>
         </motion.div>
       ) : (
@@ -77,7 +77,7 @@ export function WaitlistForm() {
                   if (error) setError(null)
                 }}
                 placeholder="your@email.com"
-                aria-label="Email address"
+                aria-label="E-postadresse"
                 className="w-full rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-foreground-subtle outline-none transition-all duration-200 focus:ring-2 focus:ring-brand-500/50"
                 style={{
                   background: 'rgba(255,255,255,0.04)',
@@ -100,7 +100,7 @@ export function WaitlistForm() {
                 background: 'var(--nc-red)',
               }}
             >
-              {loading ? 'Joining…' : 'Join waitlist'}
+              {loading ? 'Melder på…' : 'Bli med på ventelisten'}
               {!loading && (
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               )}
@@ -108,7 +108,7 @@ export function WaitlistForm() {
           </div>
 
           <p className="mt-3 text-xs text-foreground-subtle">
-            Early access. No spam. Unsubscribe any time.
+            Tidlig tilgang. Ingen spam. Meld deg av når som helst.
           </p>
         </form>
       )}
