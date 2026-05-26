@@ -8,71 +8,80 @@ export interface ListenRespondQuestion {
   hint: string              // Short English coaching tip
   conceptId: string         // Concept this question exposes — MUST exist in a1/a2-graph.json
   errorTag: ErrorTag        // Tag used when the user's answer misses
-  audioUrl?: string         // optional — Stream 3 batch audio pipeline will populate
+  audioUrl?: string
 }
+
+const AUDIO_BASE = '/audio/sentences'
 
 export const LISTEN_RESPOND_QUESTIONS: ListenRespondQuestion[] = [
   {
     id: 'morning',
     question: 'Hva gjør du om morgenen?',
-    questionEnglish: 'What do you do in the morning?',
+    questionEnglish: 'Hva gjør du om morgenen?',
     expectedKeywords: ['stå', 'opp', 'kaffe', 'frokost', 'spiser', 'drikker', 'dusjer'],
-    hint: 'Describe your morning routine.',
+    hint: 'Beskriv morgenrutinen din.',
     conceptId: 'present-tense-regular',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/morning.mp3`,
   },
   {
     id: 'where-live',
     question: 'Hvor bor du?',
-    questionEnglish: 'Where do you live?',
+    questionEnglish: 'Hvor bor du?',
     expectedKeywords: ['bor', 'hus', 'leilighet', 'by', 'oslo', 'norge'],
-    hint: 'Say where you live.',
+    hint: 'Si hvor du bor.',
     conceptId: 'question-formation',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/where-live.mp3`,
   },
   {
     id: 'breakfast',
     question: 'Hva spiser du til frokost?',
-    questionEnglish: 'What do you eat for breakfast?',
+    questionEnglish: 'Hva spiser du til frokost?',
     expectedKeywords: ['spiser', 'brød', 'egg', 'havregrøt', 'frukt', 'yoghurt', 'frokost'],
-    hint: 'Name something you eat in the morning.',
+    hint: 'Nevn noe du spiser om morgenen.',
     conceptId: 'present-tense-regular',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/breakfast.mp3`,
   },
   {
     id: 'name',
     question: 'Hva heter du?',
-    questionEnglish: 'What is your name?',
+    questionEnglish: 'Hva heter du?',
     expectedKeywords: ['heter', 'navn', 'jeg', 'er'],
-    hint: 'Say your name.',
+    hint: 'Si navnet ditt.',
     conceptId: 'personal-pronouns',
     errorTag: 'pronoun-choice',
+    audioUrl: `${AUDIO_BASE}/name.mp3`,
   },
   {
     id: 'how-are-you',
     question: 'Hvordan har du det?',
-    questionEnglish: 'How are you doing?',
+    questionEnglish: 'Hvordan har du det?',
     expectedKeywords: ['bra', 'fint', 'ok', 'godt', 'takk', 'dårlig'],
-    hint: 'Describe how you feel.',
+    hint: 'Beskriv hvordan du har det.',
     conceptId: 'question-formation',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/how-are-you.mp3`,
   },
   {
     id: 'job',
     question: 'Hva jobber du med?',
-    questionEnglish: 'What do you do for work?',
+    questionEnglish: 'Hva jobber du med?',
     expectedKeywords: ['jobber', 'student', 'lærer', 'lege', 'ingeniør', 'kontor', 'skole'],
-    hint: 'Name your job or say you are a student.',
+    hint: 'Si hva du jobber med eller at du er student.',
     conceptId: 'common-prepositions',
     errorTag: 'preposition',
+    audioUrl: `${AUDIO_BASE}/job.mp3`,
   },
   {
     id: 'hobby',
     question: 'Hva liker du å gjøre på fritiden?',
-    questionEnglish: 'What do you like to do in your free time?',
+    questionEnglish: 'Hva liker du å gjøre på fritiden?',
     expectedKeywords: ['liker', 'lese', 'løpe', 'spille', 'se', 'film', 'musikk', 'trene'],
-    hint: 'Name something you enjoy.',
+    hint: 'Nevn noe du liker å gjøre.',
     conceptId: 'infinitive-form',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/hobby.mp3`,
   },
 ]
