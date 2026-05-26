@@ -149,10 +149,13 @@ export function seedInitialMastery(
   fp: MistakeFingerprint,
   graph: ConceptGraph,
 ): MistakeFingerprint {
-  if (Object.keys(fp.conceptMastery).length > 0) return fp;
+  const graphIds = graph.concepts.map((c) => c.id);
+  const alreadyHasGraphConcepts = graphIds.some((id) => fp.conceptMastery[id] !== undefined);
+  if (alreadyHasGraphConcepts) return fp;
 
-  const conceptMastery: Record<string, ConceptMastery> = {};
+  const conceptMastery: Record<string, ConceptMastery> = { ...fp.conceptMastery };
   for (const concept of graph.concepts) {
+    if (concept.prerequisites.length > 0) continue;
     conceptMastery[concept.id] = {
       conceptId: concept.id,
       rawScore: 50,

@@ -193,9 +193,11 @@ export function useSession(
       // capturing early makes the dependency explicit and safe against refactors.
       const currentIndex = useSessionStore.getState().currentItemIndex;
       const item = useSessionStore.getState().session?.items[currentIndex];
+      const resolvedContent = contentCache.current.get(item?.id ?? '');
+      const enrichedResult = { ...result, sentenceId: resolvedContent?.id ?? result.sentenceId };
 
-      sessionStore.recordResult(result);
-      recordFingerprintResult(result);
+      sessionStore.recordResult(enrichedResult);
+      recordFingerprintResult(enrichedResult);
 
       const sessionId = useSessionStore.getState().session?.id;
       emitEvent({

@@ -302,6 +302,10 @@ export function useFingerprint() {
       // ── A1 → A2 level progression ────────────────────────────────────────
       if (updated.currentLevel === 'A1' && checkA1Complete(updated)) {
         updated = { ...updated, currentLevel: 'A2', updatedAt: new Date().toISOString() };
+        const a2Graph = getGraphForLevel('A2');
+        updated = seedInitialMastery(updated, a2Graph);
+        const withWeek = ensureWeekOpen(updated, a2Graph);
+        if (withWeek !== updated) updated = withWeek;
         try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
         emitEvent({
           eventType: 'level_changed',
