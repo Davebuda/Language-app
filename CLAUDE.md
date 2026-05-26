@@ -31,7 +31,7 @@ The "Norwegian dominates the screen" principle applies to learning surfaces (ses
 - **Platform:** Web. Next.js (App Router), TypeScript strict, Tailwind.
 - **Backend:** Supabase (Postgres + Auth + RLS).
 - **State:** Zustand stores; fingerprint persists to IndexedDB, syncs to Supabase fire-and-forget for auth users.
-- **Local AI:** WebLLM in a Web Worker via WebGPU. Model: Llama-3.2-1B-Instruct (~400MB, q4f16 quantized). Used for conversation replies, constraint evaluation, semantic grading. Core engine does NOT depend on it — every AI path has a template/rule fallback. Future upgrade: NB-Llama-1B (Norwegian-fine-tuned) when MLC-compiled.
+- **AI (hybrid):** Desktop: WebLLM in a Web Worker via WebGPU (Llama-3.2-1B-Instruct, ~400MB, client-side). Mobile: Groq API via `/api/ai` server route (Llama 3.1 8B, server-side, requires `GROQ_API_KEY`). Fallback: template/rule responses when neither path is available. Profile page shows current AI mode (Lokal/Sky/Maler). Core engine does NOT depend on AI — every AI path has a non-AI fallback. Future upgrade: NB-Llama (Norwegian-fine-tuned) for both paths.
 - **Typography:** Schibsted Grotesk (single family, display 700 / body 400). Designed by Schibsted (Norwegian media) for Scandinavian digital reading; æ/ø/å are primary design requirements.
 - **Hosting target:** small EU VPS + Supabase EU region. Free per user is a hard constraint.
 
