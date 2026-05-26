@@ -212,10 +212,10 @@ export default function DashboardPage() {
           {/* Vitals bar */}
           <div className="mt-3 grid grid-cols-4 divide-x divide-[rgba(255,255,255,0.07)]">
             {[
-              { label: 'streak',   value: String(streak),       color: streak > 0 ? 'var(--nc-red)' : 'var(--nc-text-muted)' },
-              { label: 'min talt', value: String(speakingMins), color: 'var(--nc-text-muted)' },
-              { label: 'accuracy', value: (fingerprint?.totalSessionsCompleted ?? 0) > 0 && attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
-              { label: 'sessions', value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-dim)' },
+              { label: 'rekke',      value: String(streak),       color: streak > 0 ? 'var(--nc-red)' : 'var(--nc-text-muted)' },
+              { label: 'min talt',  value: String(speakingMins), color: 'var(--nc-text-muted)' },
+              { label: 'treffprosent', value: (fingerprint?.totalSessionsCompleted ?? 0) > 0 && attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
+              { label: 'økter',     value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-dim)' },
             ].map((v) => (
               <div key={v.label} className="flex flex-col items-center py-2">
                 <span
