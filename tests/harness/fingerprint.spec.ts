@@ -415,30 +415,53 @@ test.describe('Fingerprint Contract — Weekly Chain', () => {
     })
   })
 
-  test('empty fingerprint means no weekly adaptation (catches inert state)', async ({ page, emit }) => {
+  test('new user fingerprint is seeded (not inert)', async ({ page, emit }) => {
     await page.evaluate(() => {
       localStorage.removeItem('norsk-coach-anon-id')
-      indexedDB.deleteDatabase('norsk-coach')
+      return new Promise<void>((resolve) => {
+        const req = indexedDB.deleteDatabase('norsk-coach')
+        req.onsuccess = () => resolve()
+        req.onerror = () => resolve()
+        req.onblocked = () => resolve()
+      })
     })
-    await page.waitForTimeout(500)
 
     await page.goto('/dashboard')
     await page.waitForLoadState('networkidle')
     await page.waitForTimeout(3000)
 
-    const fp = await readFingerprintFromIDB(page)
+    const result = await page.evaluate(async () => {
+      const anonId = localStorage.getItem('norsk-coach-anon-id')
+      if (!anonId) return { anonId: null, fp: null }
+      return new Promise<{ anonId: string; fp: Record<string, unknown> | null }>((resolve, reject) => {
+        const request = indexedDB.open('norsk-coach', 1)
+        request.onsuccess = () => {
+          const db = request.result
+          if (!db.objectStoreNames.contains('fingerprints')) { resolve({ anonId, fp: null }); return }
+          const tx = db.transaction('fingerprints', 'readonly')
+          const store = tx.objectStore('fingerprints')
+          const getReq = store.get(anonId)
+          getReq.onsuccess = () => resolve({ anonId, fp: getReq.result as Record<string, unknown> ?? null })
+          getReq.onerror = () => reject(getReq.error)
+        }
+        request.onerror = () => reject(request.error)
+      })
+    })
+
+    const fp = result.fp
     const weeklyFocus = fp ? (fp as Record<string, string[]>).weeklyFocus ?? [] : []
     const mastery = fp ? Object.keys((fp as Record<string, Record<string, unknown>>).conceptMastery ?? {}) : []
 
-    const isInert = mastery.length === 0 && weeklyFocus.length === 0
+    const isSeeded = mastery.length > 0 && weeklyFocus.length > 0
 
     emit({
-      surface: S, check: 'Empty fingerprint produces inert adaptive system',
-      status: isInert ? 'fail' : 'pass',
-      category: isInert ? 'bypassed' : undefined,
-      evidence: isInert
-        ? `New user fingerprint: conceptMastery has ${mastery.length} entries, weeklyFocus has ${weeklyFocus.length} entries. ALL adaptive surfaces fall back to non-personalized behavior. The diagnostic must seed this before the app can adapt.`
-        : `New user fingerprint has ${mastery.length} mastery entries and ${weeklyFocus.length} focus concepts.`,
+      surface: S, check: 'New user fingerprint is seeded with baseline mastery',
+      status: isSeeded ? 'pass' : 'fail',
+      category: isSeeded ? undefined : 'bypassed',
+      evidence: isSeeded
+        ? `New user (${result.anonId?.slice(0, 8)}...) auto-seeded: ${mastery.length} concepts, ${weeklyFocus.length} focus targets. Adaptive system active from session one.`
+        : `New user fingerprint: conceptMastery has ${mastery.length} entries, weeklyFocus has ${weeklyFocus.length} entries. Adaptive system is inert.`,
     })
+    expect(isSeeded).toBe(true)
   })
 })

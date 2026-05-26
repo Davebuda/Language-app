@@ -15,6 +15,7 @@ import {
   ensureWeekOpen,
   closeWeek,
   openWeek,
+  seedInitialMastery,
 } from '@/engine';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
@@ -156,7 +157,7 @@ async function migrateAnonFingerprintToUser(user: User): Promise<MistakeFingerpr
 }
 
 export function useFingerprint() {
-  const { fingerprint, status, setFingerprint, setStatus } = useFingerprintStore();
+  const { fingerprint, status, setFingerprint } = useFingerprintStore();
   const { user, loading: authLoading } = useAuth();
   const prevUserRef = useRef<User | null>(null);
   const bootstrappingRef = useRef(false);
@@ -219,13 +220,11 @@ export function useFingerprint() {
         }
         const empty = createEmptyFingerprint(user.id);
         const graph = getGraphForLevel(empty.currentLevel);
-        const emptyWithWeek = ensureWeekOpen(empty, graph);
-        setFingerprint(emptyWithWeek);
-        if (emptyWithWeek !== empty) {
-          await saveFingerprint(emptyWithWeek);
-          saveFingerprintToSupabase(emptyWithWeek).catch(console.warn);
-        }
-        setStatus('empty');
+        const seeded = seedInitialMastery(empty, graph);
+        const withWeek = ensureWeekOpen(seeded, graph);
+        setFingerprint(withWeek);
+        await saveFingerprint(withWeek);
+        saveFingerprintToSupabase(withWeek).catch(console.warn);
       } else {
         const anonId = getOrCreateAnonId();
         const local = await loadFingerprint(anonId).catch(() => null);
@@ -240,12 +239,10 @@ export function useFingerprint() {
         } else {
           const empty = createEmptyFingerprint(anonId);
           const graph = getGraphForLevel(empty.currentLevel);
-          const emptyWithWeek = ensureWeekOpen(empty, graph);
-          setFingerprint(emptyWithWeek);
-          if (emptyWithWeek !== empty) {
-            await saveFingerprint(emptyWithWeek);
-          }
-          setStatus('empty');
+          const seeded = seedInitialMastery(empty, graph);
+          const withWeek = ensureWeekOpen(seeded, graph);
+          setFingerprint(withWeek);
+          await saveFingerprint(withWeek);
         }
       }
     }

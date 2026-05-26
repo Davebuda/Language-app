@@ -8,6 +8,7 @@ export {
   isMastered,
   computeProductionGap,
   getConceptPhase,
+  seedInitialMastery,
 } from './fingerprint';
 export type { ConceptPhase } from './fingerprint';
 export { runDiagnosis, getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts } from './diagnosis';

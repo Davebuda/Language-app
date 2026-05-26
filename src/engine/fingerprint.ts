@@ -6,6 +6,7 @@ import type {
 } from '@/types/fingerprint';
 import type { ErrorTag } from '@/types/taxonomy';
 import type { ExerciseType } from '@/types/session';
+import type { ConceptGraph } from '@/types/concepts';
 
 // ── Mastery Scoring ────────────────────────────────────────────────────
 
@@ -135,6 +136,41 @@ export function updateConceptMastery(
     srsLevel: nextSrsLevel,
     nextReviewAt: srsNextReviewAt(nextSrsLevel),
   };
+}
+
+// ── Progressive Seeding ───────────────────────────────────────────────
+// Seeds all graph concepts with neutral baseline mastery so the adaptive
+// system is active from session one — no diagnostic required.
+// Scores start at 50 (neutral), confidence at 0.15 (untested).
+// Intro-phase EMA (α=0.40) shifts scores rapidly: after 5-8 exercises,
+// weak concepts separate from strong ones and weekly focus becomes meaningful.
+
+export function seedInitialMastery(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+): MistakeFingerprint {
+  if (Object.keys(fp.conceptMastery).length > 0) return fp;
+
+  const conceptMastery: Record<string, ConceptMastery> = {};
+  for (const concept of graph.concepts) {
+    conceptMastery[concept.id] = {
+      conceptId: concept.id,
+      rawScore: 50,
+      confidenceScore: 0.15,
+      decayedScore: 50,
+      attemptCount: 0,
+      correctCount: 0,
+      uniqueDaysActive: 0,
+      lastAttemptAt: null,
+      lastCorrectAt: null,
+      streak: 0,
+      recentOutcomes: [],
+      srsLevel: 0,
+      nextReviewAt: null,
+    };
+  }
+
+  return { ...fp, conceptMastery, updatedAt: new Date().toISOString() };
 }
 
 // ── Decay Refresh ──────────────────────────────────────────────────────
