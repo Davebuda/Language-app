@@ -11,9 +11,7 @@ import { isMastered } from '@/engine'
 import { getStreak } from '@/lib/streak'
 import { BottomNav } from '@/components/layout/BottomNav'
 import type { InputProductionPreference } from '@/types/fingerprint'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
   { value: 'input_heavy', label: 'Input-heavy', desc: 'More reading & listening' },
@@ -33,7 +31,7 @@ export default function ProfilePage() {
   const { user, signOut, loading: authLoading } = useAuth()
   useFingerprint()
   const { fingerprint, setFingerprint, status } = useFingerprintStore()
-  const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
+  const conceptGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
   const streak = getStreak()
 
   const masteredCount = conceptGraph.concepts.filter((concept) => {

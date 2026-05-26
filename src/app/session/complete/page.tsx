@@ -13,9 +13,7 @@ import { emitEvent } from '@/lib/events'
 import { logSessionResults } from '@/lib/logEvents'
 import { createClient } from '@/lib/supabase/client'
 import { getConceptPhase, isMastered } from '@/engine'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 const ERROR_TAG_LABELS: Partial<Record<string, string>> = {
   'word-order': 'Ordstilling',
@@ -75,7 +73,7 @@ export default function SessionCompletePage() {
   const router = useRouter()
   const { session, results, endSession } = useSessionStore()
   const { fingerprint, setFingerprint } = useFingerprintStore()
-  const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
+  const conceptGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
 
   useEffect(() => {
     if (!session && results.length === 0) {

@@ -20,12 +20,7 @@ import { WeekStrip } from '@/components/dashboard/WeekStrip'
 import { getStreak } from '@/lib/streak'
 import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
 import { getConceptColor } from '@/lib/concept-colors'
-import type { ConceptGraph } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
-
-const a1Graph = a1GraphJson as ConceptGraph
-const a2Graph = a2GraphJson as ConceptGraph
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 
 // Maps concept IDs to suggested conversation topics (Norwegian display labels)
@@ -98,11 +93,7 @@ export default function DashboardPage() {
     }
   }, [])
 
-  const activeGraph =
-    fingerprint?.currentLevel === 'A2' ||
-    fingerprint?.currentLevel === 'B1' ||
-    fingerprint?.currentLevel === 'B2'
-      ? a2Graph : a1Graph
+  const activeGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
 
   useEffect(() => {
     if (status === 'loading' || !fingerprint) return

@@ -7,9 +7,8 @@ import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
 import { getConceptColor } from '@/lib/concept-colors'
-import type { ConceptGraph, ConceptNode } from '@/types/concepts'
-import a1GraphJson from '@content/concepts/a1-graph.json'
-import a2GraphJson from '@content/concepts/a2-graph.json'
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import type { ConceptNode } from '@/types/concepts'
 
 const PHASE_META: Record<ConceptPhase, { label: string; badgeTone: string; description: string }> = {
   maintenance: {
@@ -59,7 +58,7 @@ function getPrereqLabel(concept: ConceptNode, allConcepts: ConceptNode[]): strin
 export default function ProgressPage() {
   useFingerprint()
   const { fingerprint, status } = useFingerprintStore()
-  const conceptGraph = (fingerprint?.currentLevel === 'A2' ? a2GraphJson : a1GraphJson) as ConceptGraph
+  const conceptGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
   const levelLabel = fingerprint?.currentLevel ?? 'A1'
 
   if (status === 'loading') {
