@@ -16,14 +16,22 @@ import { join } from 'path'
 const VOICE = 'nb-NO-PernilleNeural'
 const OUTPUT_DIR = join(process.cwd(), 'public', 'audio', 'sentences')
 const CONTENT_DIR = join(process.cwd(), 'content', 'sentences')
+const PYTHON = process.env.PYTHON_PATH || 'python'
 
-// Ensure output directory exists
 if (!existsSync(OUTPUT_DIR)) mkdirSync(OUTPUT_DIR, { recursive: true })
 
-// Read sentence files
-const levels = ['a1.json', 'a2.json']
+function cleanTextForTTS(text) {
+  return text
+    .replace(/_____\s*\([^)]+\)/g, '') // remove _____ (hint)
+    .replace(/_{2,}/g, '')              // remove bare ___
+    .replace(/\s{2,}/g, ' ')           // collapse whitespace
+    .trim()
+}
+
+const levels = ['a1.json', 'a2.json', 'b1.json']
 let generated = 0
 let skipped = 0
+let failed = 0
 
 for (const file of levels) {
   const filePath = join(CONTENT_DIR, file)
@@ -31,27 +39,31 @@ for (const file of levels) {
 
   const data = JSON.parse(readFileSync(filePath, 'utf-8'))
   const sentences = Array.isArray(data) ? data : data.sentences ?? []
+  console.log(`Processing ${file}: ${sentences.length} sentences`)
 
   for (const sentence of sentences) {
     const id = sentence.id
-    const text = sentence.norwegian
-    if (!id || !text) continue
+    const raw = sentence.norwegian
+    if (!id || !raw) continue
+
+    const text = cleanTextForTTS(raw)
+    if (!text) { skipped++; continue }
 
     const outPath = join(OUTPUT_DIR, `${id}.mp3`)
     if (existsSync(outPath)) { skipped++; continue }
 
     try {
-      // edge-tts CLI: pip install edge-tts
       execSync(
-        `edge-tts --voice "${VOICE}" --text "${text.replace(/"/g, '\\"')}" --write-media "${outPath}"`,
+        `"${PYTHON}" -m edge_tts --voice "${VOICE}" --text "${text.replace(/"/g, '\\"')}" --write-media "${outPath}"`,
         { stdio: 'pipe', timeout: 30000 }
       )
       generated++
-      if (generated % 10 === 0) console.log(`Generated ${generated} audio files...`)
+      if (generated % 20 === 0) console.log(`  Generated ${generated} audio files...`)
     } catch (err) {
-      console.error(`Failed: ${id} — ${err.message}`)
+      console.error(`  Failed: ${id} — ${err.message?.slice(0, 80)}`)
+      failed++
     }
   }
 }
 
-console.log(`Done. Generated: ${generated}, Skipped (already exist): ${skipped}`)
+console.log(`\nDone. Generated: ${generated}, Skipped: ${skipped}, Failed: ${failed}`)
