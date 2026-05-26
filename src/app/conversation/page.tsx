@@ -19,6 +19,7 @@ import { emitEvent } from '@/lib/events'
 import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
 import type { ResponseConstraint } from '@/lib/constraints'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { markLaneDone } from '@/lib/lane-completion'
 
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
@@ -301,8 +302,9 @@ export default function ConversationPage() {
               className="flex flex-col gap-4 flex-1"
             >
               <div>
-                <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">Samtale</h1>
-                <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">Snakk norsk med din AI-tutor</p>
+                <div className="nc-label mb-1">SAMTALE MED KARI</div>
+                <h1 className="text-balance font-display text-[1.5rem] font-bold text-[var(--nc-text)]">Snakk norsk</h1>
+                <p className="text-pretty mt-1 text-[0.8125rem] text-[var(--nc-text-muted)]">Velg et tema og begynn å øve</p>
               </div>
 
               {/* Topic grid */}
@@ -369,10 +371,15 @@ export default function ConversationPage() {
               className="flex flex-1 flex-col gap-3 overflow-hidden"
             >
               {/* Chat header */}
-              <div className="flex items-center justify-between shrink-0">
-                <div className="text-[15px] font-bold text-[var(--nc-text)]">
-                  {TOPICS.find((t) => t.id === selectedTopic)?.emoji}{' '}
-                  {TOPICS.find((t) => t.id === selectedTopic)?.label}
+              <div className="flex items-center justify-between shrink-0 nc-glass px-4 py-2.5 rounded-[var(--radius)]">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{TOPICS.find((t) => t.id === selectedTopic)?.emoji}</span>
+                  <div>
+                    <div className="text-[13px] font-bold text-[var(--nc-text)]">
+                      {TOPICS.find((t) => t.id === selectedTopic)?.label}
+                    </div>
+                    <div className="text-[9px] font-semibold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">med Kari · {level}</div>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <AIStatusBadge />
@@ -383,6 +390,7 @@ export default function ConversationPage() {
                       summaryTopicRef.current = selectedTopic ?? ''
                       void persistSessionEnd()
                       window.speechSynthesis?.cancel()
+                      markLaneDone('conversation')
                       setPhase('summary')
                     }}
                     className="nc-glass flex items-center gap-1 px-3 py-1 text-[11px] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
@@ -482,7 +490,7 @@ export default function ConversationPage() {
               </AnimatePresence>
 
               {/* Input area */}
-              <div className="shrink-0 nc-glass border-t border-[var(--nc-border)] px-4 py-3 flex items-center gap-3">
+              <div className="shrink-0 nc-glass rounded-[var(--radius)] px-4 py-3 flex items-center gap-3">
                 <input
                   type="text"
                   value={inputText}
@@ -532,39 +540,39 @@ export default function ConversationPage() {
               transition={{ duration: 0.25 }}
               className="flex flex-1 flex-col items-center justify-center gap-6 px-2"
             >
-              <div className="nc-glass w-full max-w-sm p-6 text-center">
+              <div className="nc-glass-elevated w-full max-w-sm p-6 text-center">
                 <div className="nc-label mb-4">Samtale fullført</div>
-                <p className="text-2xl font-bold text-nc-text">
+                <p className="text-2xl font-bold text-[var(--nc-text)]">
                   {TOPICS.find((t) => t.id === summaryTopicRef.current)?.emoji}{' '}
                   {TOPICS.find((t) => t.id === summaryTopicRef.current)?.label ?? 'Samtale'}
                 </p>
-                <div className="mt-5 flex justify-center gap-8 text-sm text-nc-text-muted">
+                <div className="mt-5 flex justify-center gap-8 text-sm text-[var(--nc-text-muted)]">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-nc-text">{summaryTurnCountRef.current}</div>
-                    <div className="mt-1 text-[11px] uppercase tracking-wider">utvekslinger</div>
+                    <div className="font-display text-2xl font-bold text-[var(--nc-text)]">{summaryTurnCountRef.current}</div>
+                    <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">utvekslinger</div>
                   </div>
                   {summaryErrorCountRef.current > 0 && (
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-nc-text">{summaryErrorCountRef.current}</div>
-                      <div className="mt-1 text-[11px] uppercase tracking-wider">rettelser</div>
+                      <div className="font-display text-2xl font-bold text-[var(--nc-red)]">{summaryErrorCountRef.current}</div>
+                      <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">rettelser</div>
                     </div>
                   )}
                 </div>
                 {user && (
-                  <p className="mt-4 text-[12px] text-nc-text-dim">Fremgangen din er lagret.</p>
+                  <p className="mt-4 text-[12px] text-[var(--nc-text-dim)]">Fremgangen din er lagret.</p>
                 )}
               </div>
 
               <div className="flex w-full max-w-sm flex-col gap-3">
                 <button
                   onClick={() => setPhase('setup')}
-                  className="nc-button-primary w-full py-3 text-sm font-medium"
+                  className="nc-button-primary w-full rounded-[var(--radius)] py-3 text-sm font-bold"
                 >
                   Ny samtale
                 </button>
                 <button
                   onClick={() => router.push('/dashboard')}
-                  className="w-full py-3 text-sm font-medium text-nc-text-dim transition-colors hover:text-nc-text"
+                  className="w-full py-3 text-sm font-semibold text-[var(--nc-text-dim)] transition-colors hover:text-[var(--nc-text)]"
                 >
                   Til dashboard
                 </button>

@@ -15,6 +15,7 @@ import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import type { ErrorTag } from '@/types/taxonomy'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { markLaneDone } from '@/lib/lane-completion'
 
 function buildCorrectedText(
   original: string,
@@ -187,6 +188,7 @@ export function WritingEditor() {
       setFeedback(result)
       void persistSubmission(result)
       pushErrorsToFingerprint(result)
+      markLaneDone('journal')
     } finally {
       setIsAnalyzing(false)
     }

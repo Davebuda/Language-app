@@ -1,11 +1,9 @@
-import { ListenRespondScreen } from '@/components/muntlig/ListenRespondScreen'
-
-export const metadata = { title: 'Lytt og svar — NorskCoach' }
+'use client'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function ListenPage() {
-  return (
-    <main className="min-h-dvh">
-      <ListenRespondScreen />
-    </main>
-  )
+  const router = useRouter()
+  useEffect(() => { router.replace('/dashboard') }, [router])
+  return null
 }

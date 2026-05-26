@@ -12,6 +12,7 @@ import { normaliseWord, tokenise } from '@/lib/speechMatchUtils'
 import { ROLEPLAY_SCENARIOS } from '@/lib/roleplayContent'
 import type { RoleplayScenario, RoleplayTurn } from '@/lib/roleplayContent'
 import type { ExerciseResult } from '@/types/session'
+import { markLaneDone } from '@/lib/lane-completion'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -521,14 +522,16 @@ export function RoleplayScreen() {
     const nextIndex = turnIndex + 1
     if (nextIndex >= activeScenario.turns.length) {
       // Scenario complete — increment speaking minutes
-      if (fingerprint) {
+      const fp = useFingerprintStore.getState().fingerprint
+      if (fp) {
         const minutesSpoken = activeScenario.turns.length * (LISTEN_SECONDS / 60)
         setFingerprint({
-          ...fingerprint,
-          speakingMinutesTotal: (fingerprint.speakingMinutesTotal ?? 0) + minutesSpoken,
+          ...fp,
+          speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + minutesSpoken,
           updatedAt: new Date().toISOString(),
         })
       }
+      markLaneDone('roleplay')
       setScreenPhase('complete')
     } else {
       setTurnIndex(nextIndex)

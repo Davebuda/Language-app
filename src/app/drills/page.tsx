@@ -1,11 +1,9 @@
-import { DrillsScreen } from '@/components/muntlig/DrillsScreen'
-
-export const metadata = { title: 'Uttaleøvelser — NorskCoach' }
+'use client'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function DrillsPage() {
-  return (
-    <main className="min-h-dvh">
-      <DrillsScreen />
-    </main>
-  )
+  const router = useRouter()
+  useEffect(() => { router.replace('/dashboard') }, [router])
+  return null
 }

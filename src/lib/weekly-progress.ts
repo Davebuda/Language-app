@@ -36,7 +36,7 @@ export function summarizeWeeklyProgress(
     out.push({
       conceptId,
       label: node.label,
-      deltaDecayed: mastery.decayedScore - baselineDecayed,
+      deltaDecayed: Math.round(mastery.decayedScore - baselineDecayed),
       attemptsThisWeek: Math.round(mastery.attemptCount - baselineAttempts),
     });
   }

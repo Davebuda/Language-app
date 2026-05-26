@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Play, Mic, ArrowRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -12,50 +11,43 @@ import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
 import { getConceptPhase, isMastered } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { DailyLearningCard } from '@/components/DailyLearningCard'
-import { DailyWordPack } from '@/components/DailyWordPack'
-import { ProgressReassuranceStrip } from '@/components/ProgressReassuranceStrip'
 import { LevelBadge } from '@/components/dashboard/LevelSelector'
-import { WeekStrip } from '@/components/dashboard/WeekStrip'
+import { WeekTimeline } from '@/components/dashboard/WeekTimeline'
+import { CoachHeroCard } from '@/components/dashboard/CoachHeroCard'
+import { LaneTrackRow } from '@/components/dashboard/LaneTrackRow'
 import { getStreak } from '@/lib/streak'
 import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
 import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { getCoachRecommendation } from '@/lib/coach-recommendation'
+import { getCompletedLanes, type LaneId } from '@/lib/lane-completion'
+import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 
-
-// Maps concept IDs to suggested conversation topics (Norwegian display labels)
 const CONCEPT_TO_TOPIC: Record<string, string> = {
-  'v2-word-order':            'daglig rutine',
-  'present-tense-regular':    'daglig rutine',
-  'negation':                 'daglig rutine',
-  'days-of-week':             'daglig rutine',
-  'common-questions':         'daglig rutine',
-  'noun-gender':              'mat og drikke',
-  'indefinite-articles':      'mat og drikke',
-  'basic-numbers':            'mat og drikke',
-  'personal-pronouns':        'familie',
-  'adjective-agreement':      'Norge',
-  'common-prepositions':      'Norge',
-  'preterite-regular':        'Norge',
-  'common-modal-verbs':       'jobb',
+  'v2-word-order':         'daglig rutine',
+  'present-tense-regular': 'daglig rutine',
+  'negation':              'daglig rutine',
+  'days-of-week':          'daglig rutine',
+  'common-questions':      'daglig rutine',
+  'noun-gender':           'mat og drikke',
+  'indefinite-articles':   'mat og drikke',
+  'basic-numbers':         'mat og drikke',
+  'personal-pronouns':     'familie',
+  'adjective-agreement':   'Norge',
+  'common-prepositions':   'Norge',
+  'preterite-regular':     'Norge',
+  'common-modal-verbs':    'jobb',
 }
 
-// Texts available per CEFR level (from SEED_TEXTS in reading/page.tsx)
-const READING_TEXT_COUNTS: Record<string, number> = {
-  A1: 2,
-  A2: 2,
-  B1: 0,
-  B2: 0,
-}
-
-// Journal prompts (mirrors PROMPTS in WritingEditor — must stay in sync)
-const DASHBOARD_PROMPTS = [
+const JOURNAL_PROMPTS = [
   'Beskriv din ideelle norske helg',
   'Hva liker du best med vinteren?',
   'Skriv om et sted du vil besøke i Norge',
   'Beskriv deg selv på norsk',
   'Hva er din favorittmat, og hvorfor?',
 ]
+
+const READING_TEXT_COUNTS: Record<string, number> = { A1: 2, A2: 2, B1: 0, B2: 0 }
 
 export default function DashboardPage() {
   useFingerprint()
@@ -64,19 +56,20 @@ export default function DashboardPage() {
   const { user } = useAuth()
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
   const [showLevelUp, setShowLevelUp] = useState(false)
-  // Defer client-only values until after hydration to prevent SSR/CSR mismatch
-  // (React #418): the server renders in UTC with localStorage unavailable; the
-  // client renders in the user's locale/timezone with localStorage populated.
   const [streak, setStreak] = useState(0)
   const [today, setToday] = useState('')
+  const [completedLanes, setCompletedLanes] = useState<Set<LaneId>>(new Set())
+  const [dayOfWeek, setDayOfWeek] = useState(-1)
+
   useEffect(() => {
     setStreak(getStreak())
     setToday(new Date().toLocaleDateString('nb-NO', {
       weekday: 'long', day: 'numeric', month: 'long',
     }))
+    setCompletedLanes(getCompletedLanes())
+    setDayOfWeek(new Date().getDay())
   }, [])
 
-  // Level-up celebration when A1→A2 transition fires
   useEffect(() => {
     try {
       if (localStorage.getItem('norskcoach_levelup_pending') === '1') {
@@ -106,11 +99,10 @@ export default function DashboardPage() {
     setPlan(output)
   }, [fingerprint, status, activeGraph])
 
-  // Recalibration: only show if user has an actual session history (avoids the "always show" bug)
   const showRecalibrationSuggestion = (() => {
     if (!fingerprint) return false
     const lastSession = fingerprint.lastSessionAt
-    if (!lastSession) return false // never shown to brand-new users
+    if (!lastSession) return false
     const daysSince = (Date.now() - new Date(lastSession).getTime()) / 86_400_000
     return daysSince > 7
   })()
@@ -118,19 +110,11 @@ export default function DashboardPage() {
   const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
   const levelLabel = fingerprint?.currentLevel ?? 'A1'
 
-  const primaryConcept = activeGraph.concepts.find(
-    (c) => c.id === (plan?.primaryFocus ?? 'noun-gender'),
-  )
-  const sessionTitle = primaryConcept?.label ?? 'Norsk grunnlag'
-  const estimatedMin = plan
-    ? Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))
-    : 18
-  const remediation = plan?.session.items.filter((i) => i.purpose === 'remediation').length ?? 0
-  const review      = plan?.session.items.filter((i) => i.purpose === 'review').length ?? 0
-  const newMaterial = plan?.session.items.filter((i) => i.purpose === 'new-material').length ?? 0
-  const topDiagnosis = plan?.diagnosisResults?.[0] ?? null
+  const recommendation = useMemo(() => {
+    if (!fingerprint) return null
+    return getCoachRecommendation(fingerprint, activeGraph, plan)
+  }, [fingerprint, activeGraph, plan])
 
-  // Compact stats
   const attemptedMastery = Object.values(fingerprint?.conceptMastery ?? {}).filter(
     (m) => m.attemptCount > 0,
   )
@@ -139,7 +123,6 @@ export default function DashboardPage() {
     : 0
   const speakingMins = Math.round(fingerprint?.speakingMinutesTotal ?? 0)
 
-  // "Currently learning" — named concepts, non-locked only, max 5
   const activeConcepts = useMemo(() => {
     const masteredIds = new Set(
       activeGraph.concepts
@@ -151,15 +134,12 @@ export default function DashboardPage() {
         ))
         .map((c) => c.id),
     )
-
     return activeGraph.concepts
       .map((c, i) => {
         const mastery = fingerprint?.conceptMastery[c.id]
         const phase = getConceptPhase(mastery, c.prerequisites, masteredIds)
         return {
-          id: c.id,
-          label: c.label,
-          phase,
+          id: c.id, label: c.label, phase,
           score: mastery ? Math.round(mastery.decayedScore) : 0,
           color: getConceptColor(c.id, i),
         }
@@ -174,25 +154,46 @@ export default function DashboardPage() {
       .slice(0, 5)
   }, [fingerprint, activeGraph])
 
-  // Speak card — suggest a topic based on the learner's weakest active concept
-  const suggestedTopic = useMemo(() => {
-    const target = activeConcepts.find(
-      (c) => c.phase === 'practice' || c.phase === 'consolidation',
-    )
-    return target ? (CONCEPT_TO_TOPIC[target.id] ?? 'daglig rutine') : 'daglig rutine'
-  }, [activeConcepts])
+  const laneHints = useMemo(() => {
+    const focusConcept = fingerprint?.weeklyFocus[0]
+    const focusLabel = activeGraph.concepts.find((c) => c.id === focusConcept)?.label
+    const topic = focusConcept ? (CONCEPT_TO_TOPIC[focusConcept] ?? 'daglig rutine') : 'daglig rutine'
+    const prompt = JOURNAL_PROMPTS[new Date().getDay() % JOURNAL_PROMPTS.length]
+    const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
 
-  // Read card — texts at learner's level
-  const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
+    return {
+      session: plan ? `${plan.session.items.length} oppgaver · ca. ${Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))} min` : 'Anbefalt økt',
+      conversation: `Samtale med Kari · ${topic}`,
+      journal: dayOfWeek >= 0 ? (JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length].length > 35 ? JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length].slice(0, 35) + '…' : JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length]) : 'Skriv i journalen',
+      roleplay: focusLabel ? `Anbefalt for ${focusLabel}` : '3 scenarier tilgjengelig',
+      reading: textsAtLevel > 0 ? `${textsAtLevel} tekster på ${levelLabel}-nivå` : 'Tekster tilgjengelig',
+    } satisfies Record<LaneId, string>
+  }, [plan, fingerprint, activeGraph, levelLabel, dayOfWeek])
 
-  // Write card — today's prompt teaser (first 38 chars + ellipsis)
-  const todayPrompt = DASHBOARD_PROMPTS[new Date().getDay() % DASHBOARD_PROMPTS.length]
-  const promptTeaser = todayPrompt.length > 38 ? todayPrompt.slice(0, 38) + '…' : todayPrompt
+  const focusSet = new Set(fingerprint?.weeklyFocus ?? [])
+
+  const laneFocusMap: Record<LaneId, boolean> = useMemo(() => ({
+    session: true,
+    conversation: (fingerprint?.weeklyFocus ?? []).some((cid) => CONCEPT_TO_TOPIC[cid]),
+    journal: focusSet.size > 0,
+    roleplay: focusSet.size > 0,
+    reading: false,
+  }), [fingerprint?.weeklyFocus, focusSet.size])
+
+  const uncompletedLanes = (['session', 'conversation', 'journal', 'roleplay', 'reading'] as LaneId[])
+    .filter((l) => !completedLanes.has(l) && recommendation?.laneId !== l)
+  const doneLanes = (['session', 'conversation', 'journal', 'roleplay', 'reading'] as LaneId[])
+    .filter((l) => completedLanes.has(l))
+
+  const progressEntries = useMemo(() => {
+    if (!fingerprint) return []
+    return summarizeWeeklyProgress(fingerprint, activeGraph)
+  }, [fingerprint, activeGraph])
 
   return (
     <div className="nc-gradient-page flex min-h-dvh flex-col">
 
-      {/* ── STICKY ZONE — greeting + vitals bar, always visible ── */}
+      {/* ── STICKY HEADER — greeting + timeline + vitals ── */}
       <div className="sticky top-0 z-10 border-b border-[rgba(0,220,180,0.08)] bg-[rgba(8,14,16,0.78)] backdrop-blur-xl">
         <div className="mx-auto w-full max-w-lg px-5 pb-3 pt-5">
           <div className="flex items-center justify-between gap-3">
@@ -207,15 +208,16 @@ export default function DashboardPage() {
                 <LevelBadge />
               </div>
             </div>
+            {fingerprint && <WeekTimeline fingerprint={fingerprint} />}
           </div>
 
-          {/* Vitals bar */}
+          {/* Vitals bar — streak de-emphasized */}
           <div className="mt-3 grid grid-cols-4 divide-x divide-[rgba(255,255,255,0.07)]">
             {[
-              { label: 'rekke',      value: String(streak),       color: streak > 0 ? 'var(--nc-red)' : 'var(--nc-text-muted)' },
-              { label: 'min talt',  value: String(speakingMins), color: 'var(--nc-text-muted)' },
+              { label: 'rekke',        value: String(streak),       color: 'var(--nc-text-dim)' },
+              { label: 'min talt',     value: String(speakingMins), color: 'var(--nc-text-muted)' },
               { label: 'treffprosent', value: (fingerprint?.totalSessionsCompleted ?? 0) > 0 && attemptedMastery.length > 0 ? `${accuracy}%` : '—', color: 'var(--nc-green)' },
-              { label: 'økter',     value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-dim)' },
+              { label: 'økter',        value: String(fingerprint?.totalSessionsCompleted ?? 0), color: 'var(--nc-text-dim)' },
             ].map((v) => (
               <div key={v.label} className="flex flex-col items-center py-2">
                 <span
@@ -233,7 +235,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <main className="relative mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-4">
+      <main className="relative mx-auto flex w-full max-w-lg flex-1 flex-col gap-3 px-5 pb-6 pt-4">
 
         {/* ── Level-up toast ── */}
         <AnimatePresence>
@@ -244,7 +246,6 @@ export default function DashboardPage() {
               exit={{ opacity: 0, scale: 0.95 }}
               className="nc-glass-elevated p-4 text-center"
             >
-              <div className="mb-1 text-2xl">🎉</div>
               <div className="text-[17px] font-extrabold text-[var(--nc-green)]">
                 Nivå opp! Du er nå A2
               </div>
@@ -255,7 +256,7 @@ export default function DashboardPage() {
           )}
         </AnimatePresence>
 
-        {/* ── Guest banner — between vitals and session card ── */}
+        {/* ── Guest banner ── */}
         {!user && (
           <div className="nc-surface flex items-center justify-between gap-3 px-4 py-2.5">
             <p className="text-[12px] text-[#111110]/60">
@@ -289,207 +290,120 @@ export default function DashboardPage() {
           )}
         </AnimatePresence>
 
-        {/* ── Weekly Sprint strip ── */}
-        {fingerprint ? <WeekStrip fingerprint={fingerprint} /> : null}
+        {/* ── COACH HERO CARD — the single recommendation ── */}
+        {recommendation && <CoachHeroCard recommendation={recommendation} />}
 
-        {/* ── Lane progress strip — Dagens fremgang ── */}
-        <div className="nc-glass px-4 py-3">
-          <div className="nc-label mb-2">Dagens fremgang</div>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { id: 'session',      label: 'Økt',        active: (fingerprint?.totalSessionsCompleted ?? 0) > 0 },
-              { id: 'journal',      label: 'Journal',    active: false },
-              { id: 'conversation', label: 'Samtale',    active: false },
-              { id: 'roleplay',     label: 'Rollespill', active: false },
-              { id: 'reading',      label: 'Lesing',     active: false },
-            ].map((lane) => (
-              <span
-                key={lane.id}
-                className="rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold"
-                style={{
-                  background: lane.active ? 'var(--nc-green-tint)' : 'rgba(255,255,255,0.04)',
-                  border: `1px solid ${lane.active ? 'var(--nc-green-border)' : 'rgba(255,255,255,0.08)'}`,
-                  color: lane.active ? 'var(--nc-green)' : 'var(--nc-text-dim)',
-                }}
-              >
-                {lane.label}
-              </span>
+        {/* ── LANE TRACKS — uncompleted first ── */}
+        {uncompletedLanes.length > 0 && (
+          <div className="flex flex-col gap-2">
+            <div className="px-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
+              Andre baner
+            </div>
+            {uncompletedLanes.map((laneId) => (
+              <LaneTrackRow
+                key={laneId}
+                laneId={laneId}
+                hint={laneHints[laneId]}
+                done={false}
+                focusBadge={laneFocusMap[laneId]}
+              />
             ))}
           </div>
-        </div>
+        )}
 
-        {/* ── TODAY'S SESSION — primary action ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="nc-glass-cream p-5"
-        >
-          <div className="nc-label mb-2 text-[var(--nc-cream-dim)]">{"Anbefalt økt · "}{levelLabel}</div>
-          <div className="font-display text-[1.5rem] font-bold text-[var(--nc-cream-text)] text-balance mt-1">
-            {sessionTitle}
-          </div>
-          <p className="mt-2 text-[12px] text-[var(--nc-cream-muted)] text-pretty">
-            Ca. {estimatedMin} min
-          </p>
-          {topDiagnosis && (
-            <div className="mt-3 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-2.5">
-              <div className="nc-label mb-1 text-[var(--nc-cream-dim)]">Hvorfor denne</div>
-              <p className="text-[12px] leading-relaxed text-[var(--nc-cream-text)] text-pretty">
-                {topDiagnosis.reasoning}
-              </p>
+        {/* ── Completed lanes ── */}
+        {doneLanes.length > 0 && (
+          <div className="flex flex-col gap-2">
+            <div className="px-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
+              Fullført i dag
             </div>
-          )}
-          <motion.button
-            onClick={() => router.push('/session')}
-            whileTap={{ scale: 0.97 }}
-            className="nc-button-primary mt-4 inline-flex min-h-[48px] items-center gap-2 px-5 py-3 text-sm"
-            aria-label="Start dagens økt"
-          >
-            <Play size={14} aria-hidden="true" />
-            Start økt
-          </motion.button>
-
-          {/* Session composition badges */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {remediation > 0 && (
-              <span className="rounded-[0.65rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-red)]">
-                {remediation} reparasjoner
-              </span>
-            )}
-            {review > 0 && (
-              <span className="rounded-[0.65rem] border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.04)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-cream-muted)]">
-                {review} repetisjon
-              </span>
-            )}
-            {newMaterial > 0 && (
-              <span className="rounded-[0.65rem] border border-[var(--nc-teal-border)] bg-[var(--nc-teal-tint)] px-3 py-1.5 text-[10px] font-semibold text-[var(--nc-teal)]">
-                {newMaterial} nytt
-              </span>
-            )}
+            {doneLanes.map((laneId) => (
+              <LaneTrackRow
+                key={laneId}
+                laneId={laneId}
+                hint={laneHints[laneId]}
+                done={true}
+              />
+            ))}
           </div>
+        )}
 
-        </motion.div>
-
-        {/* ── Speak — Muntlig ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12 }}
-          className="nc-glass-cream p-5"
-        >
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0 flex-1">
-              <div className="nc-label mb-2 text-[var(--nc-cream-dim)]">MUNTLIG</div>
-              <div className="font-display text-[1.2rem] font-bold leading-tight text-[var(--nc-cream-text)] text-balance">
-                Snakk med Kari
+        {/* ── Weekly check (contextual) ── */}
+        {recommendation?.laneId !== 'weekly-check' && (
+          <div className="flex items-center justify-between gap-3 rounded-[var(--radius)] border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] px-4 py-3">
+            <div>
+              <div className="text-[12px] font-bold text-[var(--nc-text)]">📋 Ukens sjekk</div>
+              <div className="mt-0.5 text-[10px] text-[var(--nc-text-dim)]">
+                {dayOfWeek === 6 || dayOfWeek === 0 ? 'Tilgjengelig nå' : 'Tilgjengelig lørdag'}
               </div>
-              <p className="mt-1 text-[14px] text-[var(--nc-cream-muted)] text-pretty">
-                Foreslått tema:{' '}
-                <span className="font-semibold text-[var(--nc-cream-text)]">{suggestedTopic}</span>
-              </p>
-              {speakingMins > 0 && (
-                <p className="mt-1 text-[11px] text-[var(--nc-cream-dim)]">
-                  {speakingMins} min snakket totalt
+            </div>
+            <Link
+              href="/uke"
+              className="text-[10px] font-semibold text-[var(--nc-teal)] hover:underline"
+              aria-label="Gå til ukens sjekk"
+            >
+              {dayOfWeek === 6 || dayOfWeek === 0 ? 'Start →' : 'lør →'}
+            </Link>
+          </div>
+        )}
+
+        {/* ── Recalibration banner ── */}
+        <AnimatePresence>
+          {showRecalibrationSuggestion && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="nc-glass flex items-center justify-between gap-3 border-l-4 border-l-[var(--nc-red)] px-4 py-3"
+            >
+              <div>
+                <p className="text-[13px] font-semibold text-[var(--nc-text)]">Lenge siden sist?</p>
+                <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)] text-pretty">
+                  Din ukentlige sjekk venter — ta den for å oppdatere profilen din.
                 </p>
-              )}
+              </div>
+              <motion.button
+                onClick={() => router.push('/uke')}
+                whileTap={{ scale: 0.97 }}
+                aria-label="Gå til ukentlig sjekk"
+                className="nc-button-primary shrink-0 px-3 py-2 text-[12px] font-bold"
+              >
+                Sjekk
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ── Focus concepts ── */}
+        {progressEntries.length > 0 && (
+          <div className="mt-1">
+            <div className="mb-2 px-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">
+              Ukens fokus
             </div>
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.06)]">
-              <Mic size={18} className="text-[var(--nc-cream-muted)]" aria-hidden="true" />
+            <div className="flex flex-wrap gap-1.5">
+              {progressEntries.map((entry) => {
+                const deltaLabel = entry.deltaDecayed > 0 ? `+${entry.deltaDecayed}` : entry.deltaDecayed < 0 ? `−${Math.abs(entry.deltaDecayed)}` : '±0'
+                const deltaColor = entry.deltaDecayed > 0 ? 'var(--nc-teal)' : 'var(--nc-text-dim)'
+                return (
+                  <span
+                    key={entry.conceptId}
+                    className="rounded-full border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.04)] px-2.5 py-1 text-[11px]"
+                  >
+                    <span className="font-medium text-[var(--nc-text)]">{entry.label}</span>
+                    {' '}
+                    <span className="tabular-nums font-semibold" style={{ color: deltaColor }}>{deltaLabel}</span>
+                    {entry.attemptsThisWeek > 0 && (
+                      <span className="text-[var(--nc-text-dim)]"> · {entry.attemptsThisWeek} forsøk</span>
+                    )}
+                  </span>
+                )
+              })}
             </div>
           </div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <Link
-              href="/conversation"
-              aria-label="Start norsk samtale"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.20)] bg-[rgba(4,14,8,0.06)] px-4 py-2.5 text-[13px] font-bold text-[var(--nc-cream-text)] hover:bg-[rgba(4,14,8,0.10)]"
-            >
-              <Play size={13} aria-hidden="true" />
-              Start samtale
-            </Link>
-            <Link
-              href="/shadow"
-              aria-label="Øv på skygging"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
-            >
-              Skygging
-            </Link>
-            <Link
-              href="/drills"
-              aria-label="Øv på uttale"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
-            >
-              Uttaleøvelser
-            </Link>
-            <Link
-              href="/listen"
-              aria-label="Øv på å lytte og svare"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
-            >
-              Lytt og svar
-            </Link>
-            <Link
-              href="/roleplay"
-              aria-label="Øv på rollespill"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-[var(--radius)] border border-[rgba(4,14,8,0.14)] bg-transparent px-4 py-2.5 text-[13px] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(4,14,8,0.06)] hover:text-[var(--nc-cream-text)]"
-            >
-              Rollespill
-            </Link>
-          </div>
-        </motion.div>
+        )}
 
-        {/* ── Write — Skrivejournal ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.16 }}
-          className="nc-glass p-4"
-        >
-          <div className="nc-label mb-2 text-[var(--nc-text-dim)]">SKRIVEJOURNAL</div>
-          <p className="text-[14px] italic text-[var(--nc-text-muted)] text-pretty">
-            &ldquo;{promptTeaser}&rdquo;
-          </p>
-          <Link
-            href="/journal"
-            aria-label="Skriv i journalen i dag"
-            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)]"
-          >
-            Skriv i dag <ArrowRight size={12} aria-hidden="true" />
-          </Link>
-        </motion.div>
-
-        {/* ── Read — Lesestudio ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.20 }}
-          className="nc-glass p-4"
-        >
-          <div className="nc-label mb-2 text-[var(--nc-text-dim)]">LESESTUDIO</div>
-          <p className="text-[14px] text-[var(--nc-text-muted)] text-pretty">
-            {textsAtLevel > 0
-              ? `${textsAtLevel} tekster på ditt ${levelLabel}-nivå`
-              : 'Tekster tilgjengelig for lesing'}
-          </p>
-          <Link
-            href="/reading"
-            aria-label="Bla gjennom lesetekster"
-            className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--nc-text)] hover:text-[var(--nc-text-muted)]"
-          >
-            Bla gjennom <ArrowRight size={12} aria-hidden="true" />
-          </Link>
-        </motion.div>
-
-        {/* ── Daily Learning Card ── */}
-        <DailyLearningCard />
-
-        {/* ── Daily Word Pack ── */}
-        <DailyWordPack />
-
-        {/* ── Progress Reassurance Strip ── */}
-        <ProgressReassuranceStrip />
-
-        {/* ── Concepts in focus ── */}
-        {activeConcepts.length > 0 && (
+        {/* ── Concepts in focus (fallback when no weekly sprint) ── */}
+        {progressEntries.length === 0 && activeConcepts.length > 0 && (
           <div className="flex items-center justify-between gap-3 px-1">
             <div className="flex min-w-0 items-center gap-2">
               <div
@@ -512,33 +426,6 @@ export default function DashboardPage() {
             </Link>
           </div>
         )}
-
-        {/* ── Recalibration banner ── */}
-        <AnimatePresence>
-          {showRecalibrationSuggestion && (
-            <motion.div
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="nc-glass border-l-4 border-l-[var(--nc-red)] flex items-center justify-between gap-3 px-4 py-3"
-            >
-              <div>
-                <p className="text-[13px] font-semibold text-[var(--nc-text)]">Lenge siden sist?</p>
-                <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)] text-pretty">
-                  Din ukentlige sjekk venter — ta den for å oppdatere profilen din.
-                </p>
-              </div>
-              <motion.button
-                onClick={() => router.push('/uke')}
-                whileTap={{ scale: 0.97 }}
-                aria-label="Gå til ukentlig sjekk"
-                className="nc-button-primary shrink-0 px-3 py-2 text-[12px] font-bold"
-              >
-                Sjekk
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
       </main>
       <BottomNav active="home" />

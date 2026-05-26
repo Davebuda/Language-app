@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft } from 'lucide-react'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { useFingerprint } from '@/hooks/useFingerprint'
+import { markLaneDone } from '@/lib/lane-completion'
 
 type Genre = 'story' | 'dialogue' | 'recipe' | 'news'
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
@@ -87,6 +88,7 @@ export default function ReadingPage() {
   function closeText() {
     if (selectedText) {
       recordExposure(selectedText.conceptIds)
+      markLaneDone('reading')
     }
     setSelectedText(null)
   }

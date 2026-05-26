@@ -6,6 +6,7 @@ import { isMastered, getConceptPhase } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+import { WeeklyTrajectory } from '@/components/progress/WeeklyTrajectory'
 import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import type { ConceptNode } from '@/types/concepts'
@@ -151,44 +152,9 @@ export default function ProgressPage() {
           </div>
         )}
 
-        {/* Weekly sprint history */}
-        {fingerprint && fingerprint.weeklySprintHistory.length > 0 && (
-          <div className="nc-glass-elevated p-4">
-            <div className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)] mb-3">
-              Ukentlig historikk
-            </div>
-            <div className="flex flex-col gap-2">
-              {fingerprint.weeklySprintHistory.slice(0, 4).map((week, i) => {
-                const weekDate = new Date(week.weekStartedAt)
-                const weekLabel = `${weekDate.getDate()}.${weekDate.getMonth() + 1}`
-                const graduatedCount = Object.values(week.focusOutcomes).filter((o) => o.graduated).length
-                const focusCount = week.focus.length
-                return (
-                  <div key={i} className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="tabular-nums text-[0.75rem] font-semibold text-[var(--nc-text-muted)] w-10 shrink-0">
-                        {weekLabel}
-                      </span>
-                      <span className={`text-[0.6875rem] ${week.status === 'abandoned' ? 'text-[var(--nc-text-dim)]' : 'text-[var(--nc-text-muted)]'}`}>
-                        {week.status === 'abandoned' ? 'Avbrutt' : `${graduatedCount}/${focusCount} mestret`}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      {week.checkResult ? (
-                        <span className="tabular-nums rounded-full bg-[var(--nc-red-tint)] px-2 py-0.5 text-[0.625rem] font-semibold text-[var(--nc-red)]">
-                          {Math.round(week.checkResult.score)}%
-                        </span>
-                      ) : (
-                        <span className="text-[0.625rem] text-[var(--nc-text-dim)]">
-                          Ingen sjekk
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+        {/* Weekly trajectory chart */}
+        {fingerprint?.weeklySprintHistory && fingerprint.weeklySprintHistory.length > 0 && (
+          <WeeklyTrajectory history={fingerprint.weeklySprintHistory} />
         )}
 
         {PHASE_ORDER.map((phase, phaseIndex) => {

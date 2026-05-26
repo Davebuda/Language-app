@@ -11,6 +11,7 @@ import { ScoreCircle } from '@/components/session/ScoreCircle'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { emitEvent } from '@/lib/events'
 import { logSessionResults } from '@/lib/logEvents'
+import { markLaneDone } from '@/lib/lane-completion'
 import { createClient } from '@/lib/supabase/client'
 import { getConceptPhase, isMastered } from '@/engine'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
@@ -116,6 +117,7 @@ export default function SessionCompletePage() {
         }
         setFingerprint(updated)
         saveFingerprint(updated).catch(console.warn)
+        markLaneDone('session')
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
