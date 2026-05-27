@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { saveFingerprint } from '@/storage/indexeddb'
+import { createClient } from '@/lib/supabase/client'
 import { seedInitialMastery } from '@/engine/fingerprint'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { ensureWeekOpen } from '@/engine/weekly-sprint'
@@ -40,6 +41,13 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
     updated = ensureWeekOpen(updated, graph)
     setFingerprint(updated)
     await saveFingerprint(updated).catch(console.warn)
+    if (updated.userId && !updated.userId.startsWith('anon-')) {
+      const supabase = createClient()
+      supabase.from('fingerprint_sync').upsert(
+        { user_id: updated.userId, data: updated, updated_at: new Date().toISOString() },
+        { onConflict: 'user_id' }
+      ).then(() => {}, console.warn)
+    }
     setSelecting(false)
     onClose?.()
   }

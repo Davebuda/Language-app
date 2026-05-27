@@ -85,11 +85,11 @@ export const FALLBACK_PROMPTS: Record<CEFRLevel, string[]> = {
     'Skriv et avsnitt der du forklarer en mening med fordi-setninger',
   ],
   B2: [
-    'Skriv et avsnitt der du bruker presens perfektum minst tre ganger',
-    'Skriv et avsnitt der du beskriver noe du ønsker å gjøre, med modalverb',
-    'Skriv et avsnitt om en reise du har tatt, med fortid og perfektum',
-    'Skriv et avsnitt der du sammenligner to byer i Norge',
-    'Skriv et avsnitt der du forklarer en mening med fordi-setninger',
+    'Skriv et avsnitt der du argumenterer for eller mot en aktuell sak i Norge',
+    'Skriv et formelt brev eller e-post til en arbeidsgiver på norsk',
+    'Skriv et avsnitt der du bruker leddsetninger og konjunksjoner som selv om, til tross for og dersom',
+    'Skriv et avsnitt der du beskriver et komplekst tema med akademisk tone',
+    'Skriv et avsnitt der du bruker idiomer eller faste uttrykk på norsk',
   ],
 }
 

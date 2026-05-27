@@ -24,7 +24,7 @@ export default function VocabPage() {
 
           <div className="nc-glass-elevated w-full p-5 text-left">
             <p className="text-[14px] leading-relaxed text-[var(--nc-text-muted)]">
-              Vocabulary SRS coming soon. Alle ord du møter i Samtale, Lesestudio og Skrivejournal samles her og repeteres med intelligent mellomlagringssystem (SRS). Ord forfaller aldri — de gjentas akkurat når du er i ferd med å glemme dem.
+              Kommer i versjon 2. Alle ord du møter i Samtale, Lesestudio og Skrivejournal samles her og repeteres med intelligent mellomlagringssystem (SRS). Ord forfaller aldri — de gjentas akkurat når du er i ferd med å glemme dem.
             </p>
           </div>
 
