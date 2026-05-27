@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -20,30 +20,38 @@ type Step =
 const INTRO_SLIDES = [
   {
     id: 'welcome',
-    label: '01 / Adaptive system',
-    heading: 'En roligere vei til norsk flyt.',
-    body: 'Ikke et standardkurs. NorskCoach ser hvor du stopper opp og bygger neste økt rundt akkurat det.',
+    label: '01 / AI coach',
+    heading: 'Start med riktig flyt, ikke bare neste leksjon.',
+    body:
+      'NorskCoach bygger første steg rundt hvordan du faktisk lærer: hva du kan, hvor du stopper opp, og hva som bør trenes nå.',
     cta: 'Fortsett',
+    highlights: [
+      'Kort oppstart på mobilen',
+      'AI-styrt nivåvalg',
+      'Én læringsprofil på tvers av alle flater',
+    ],
   },
   {
     id: 'fingerprint',
     label: '02 / Learning memory',
-    heading: 'Motoren lærer svakhetene dine.',
-    body: 'Etter hvert svar oppdateres læringsprofilen din. Systemet ser hva som glipper, hva som sitter, og hva som bør trenes først.',
+    heading: 'Motoren husker mønstrene dine.',
+    body:
+      'Etter hvert svar oppdateres læringsprofilen din. Systemet ser hva som sitter, hva som glipper, og hva som må repeteres før du mister det.',
     detail: [
-      { icon: '•', label: 'Substantivets kjønn', sub: 'Aktivt · 63%' },
-      { icon: '•', label: 'V2-regelen', sub: 'Svakt · 41%' },
-      { icon: '•', label: 'Adjektivbøying', sub: 'Låst' },
+      { icon: 'A', label: 'Substantiv og kjønn', sub: 'Aktiv · 63%' },
+      { icon: 'V', label: 'V2-regelen', sub: 'Svakt · 41%' },
+      { icon: 'B', label: 'Bisetninger', sub: 'Neste fokus' },
     ],
     cta: 'Neste',
   },
   {
     id: 'repair',
     label: '03 / Repair loops',
-    heading: 'Feil blir til målrettet trening.',
-    body: 'Når du svarer feil, åpnes en kort reparasjonsløkke med forklaring, miniøvelse og et nytt forsøk før du går videre.',
+    heading: 'Hver feil blir til en målrettet loop.',
+    body:
+      'Når noe går galt, stopper appen ikke bare og markerer feil. Den forklarer raskt, trener akkurat det punktet, og lar deg prøve igjen med bedre støtte.',
     steps: [
-      { icon: '01', label: 'Feil svar' },
+      { icon: '01', label: 'Svar' },
       { icon: '02', label: 'Forklaring' },
       { icon: '03', label: 'Miniøvelse' },
       { icon: '04', label: 'Nytt forsøk' },
@@ -86,21 +94,12 @@ async function seedFingerprintFromDiagnostic(
   const userId = getOrCreateUserId()
   const now = new Date().toISOString()
 
-  // P0.5-07 (F031): preserve any existing fingerprint state. Earlier behavior
-  // built a fresh createEmptyFingerprint on every diagnostic completion, which
-  // wiped recentErrors and conceptMastery the user had accumulated through
-  // session play. Now we load the existing fingerprint and merge the
-  // diagnostic seeds on top.
   const existing = await loadFingerprint(userId).catch(() => null)
   const fp: MistakeFingerprint = existing ?? createEmptyFingerprint(userId)
 
-  // Cap displayed level at A2 until B1/B2 graphs exist
   fp.currentLevel = result.rawScore >= 0.55 ? 'A2' : result.cefrLevel
   fp.levelSetByUser = true
 
-  // P0.5-07 (F017): merge diagnostic seeds with any existing mastery rather
-  // than overwriting. Prior attempt counts and lastCorrectAt are preserved;
-  // the diagnostic adds the new attempts on top.
   for (const [conceptId, seed] of Object.entries(result.conceptSeeds)) {
     const existingMastery = fp.conceptMastery[conceptId]
     if (existingMastery) {
@@ -139,9 +138,6 @@ async function seedFingerprintFromDiagnostic(
     }
   }
 
-  // P0.5-07 (F015): UNION new asked-question ids with any existing list so a
-  // repeat diagnostic does not re-ask. (The diagnostic engine also seeds from
-  // these via createDiagnosticState now.)
   const askedIdSet = new Set([
     ...(fp.askedDiagnosticQuestionIds ?? []),
     ...(result.askedQuestionIds ?? []),
@@ -172,8 +168,6 @@ export function OnboardingFlow() {
     { kind: 'ready' },
   ]
 
-  // P0.5-12 (F013): persist slide index to sessionStorage so a mid-onboarding
-  // refresh returns the user to where they were rather than slide 1.
   const [stepIndex, setStepIndex] = useState(() => {
     if (typeof window === 'undefined') return 0
     const stored = window.sessionStorage.getItem('onboarding-step-index')
@@ -196,10 +190,15 @@ export function OnboardingFlow() {
   }
 
   function back() {
-    if (stepIndex === 0) { router.push('/'); return }
+    if (stepIndex === 0) {
+      router.push('/')
+      return
+    }
     setDirection(-1)
-    // Back from ready → return to last intro slide (skip diagnostic re-run)
-    if (currentStep.kind === 'ready') { setStepIndex(INTRO_SLIDES.length - 1); return }
+    if (currentStep.kind === 'ready') {
+      setStepIndex(INTRO_SLIDES.length - 1)
+      return
+    }
     setStepIndex((i) => i - 1)
   }
 
@@ -208,9 +207,6 @@ export function OnboardingFlow() {
     advanceTo(steps.findIndex((s) => s.kind === 'ready'))
   }
 
-  // P0.5-07 (F016): persist diagnostic seed as soon as the result is ready,
-  // not on the navigation click. If the user closes the tab on the result
-  // screen, the answers no longer evaporate.
   useEffect(() => {
     if (!diagnosticResult) return
     seedFingerprintFromDiagnostic(diagnosticResult, setFingerprint).catch(console.warn)
@@ -218,8 +214,6 @@ export function OnboardingFlow() {
 
   function commit(destination: '/session' | '/dashboard') {
     if (!diagnosticResult) return
-    // P0.5-12: clear the persisted step index so a future onboarding visit
-    // starts fresh.
     if (typeof window !== 'undefined') {
       window.sessionStorage.removeItem('onboarding-step-index')
     }
@@ -249,34 +243,37 @@ export function OnboardingFlow() {
 
   return (
     <div className="nc-gradient-page flex flex-col">
-      {/* Progress header */}
-      <div className="relative z-10 mx-auto flex w-full max-w-lg items-center gap-3 px-5 pt-5">
+      <div className="nc-mobile-shell relative z-10 flex items-center gap-3 px-4 pt-4">
         <button
           onClick={back}
-          className="nc-glass inline-flex h-10 w-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
+          className="nc-glass-cream inline-flex h-11 w-11 items-center justify-center text-[var(--nc-cream-text)] transition-transform hover:-translate-y-0.5"
           aria-label="Tilbake"
         >
-          <ArrowLeft size={14} />
+          <ArrowLeft size={16} />
         </button>
 
-        <div className="grid flex-1 grid-cols-7 gap-1.5">
-          {steps.map((_, index) => (
-            <div
-              key={index}
-              className={`h-1.5 rounded-[0.4rem] transition-colors ${
-                index <= stepIndex ? 'bg-[var(--nc-red)]' : 'bg-white/[0.15]'
-              }`}
-            />
-          ))}
-        </div>
+        <div className="nc-glass-cream flex flex-1 items-center gap-3 px-4 py-3">
+          <div className="grid flex-1 grid-cols-5 gap-1.5">
+            {steps.map((_, index) => (
+              <div
+                key={index}
+                className={`h-1.5 rounded-full transition-colors ${
+                  index <= stepIndex ? 'bg-[var(--nc-signal)]' : 'bg-[rgba(6,16,23,0.10)]'
+                }`}
+              />
+            ))}
+          </div>
 
-        <span className="text-[11px] font-medium tracking-[0.08em] text-[var(--nc-text-dim)]">
-          {stepIndex + 1}/{steps.length}
-        </span>
+          <span className="text-[11px] font-semibold tracking-[0.08em] text-[var(--nc-cream-muted)]">
+            {stepIndex + 1}/{steps.length}
+          </span>
+        </div>
       </div>
 
-      {/* Main content */}
-      <div className="relative z-10 mx-auto flex w-full max-w-lg flex-1 overflow-hidden px-5 pb-10 pt-6" style={{ minHeight: 'calc(100dvh - 5rem)' }}>
+      <div
+        className="nc-mobile-shell relative z-10 flex w-full flex-1 overflow-hidden px-4 pb-10 pt-4"
+        style={{ minHeight: 'calc(100dvh - 5rem)' }}
+      >
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={stepIndex}
@@ -304,93 +301,126 @@ function IntroSlide({
   onNext: () => void
 }) {
   return (
-    <div className="flex flex-1 flex-col gap-5">
-      {/* Main hero card */}
-      <div className="nc-glass-elevated p-6">
-        <div className="flex h-full flex-col justify-between">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <div className="nc-label-red">{slide.label}</div>
-              <h1 className="mt-4 max-w-[14rem] text-[2.25rem] leading-[0.96] text-[var(--nc-text)]">
-                {slide.heading}
-              </h1>
-              <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-[var(--nc-text-muted)]">
-                {slide.body}
-              </p>
-            </div>
-
-            <div className="hidden h-20 w-20 rounded-[1rem] border border-white/10 bg-white/5 sm:block" />
+    <div className="flex flex-1 flex-col gap-4">
+      <div className="nc-glass-cream p-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="nc-label text-[var(--nc-cream-dim)]">{slide.label}</div>
+            <h1 className="mt-3 text-balance text-[2.1rem] leading-[0.94] text-[var(--nc-cream-text)]">
+              {slide.heading}
+            </h1>
+            <p className="mt-3 text-pretty text-[0.95rem] leading-7 text-[var(--nc-cream-muted)]">
+              {slide.body}
+            </p>
           </div>
 
-          <div className="mt-6 text-sm text-[var(--nc-text-dim)]">Bygges rundt det du faktisk trenger.</div>
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[1rem] bg-[var(--nc-signal)] text-sm font-bold text-[var(--nc-signal-fg)] shadow-[0_16px_32px_rgba(183,243,0,0.20)]">
+            {slide.label.slice(0, 2)}
+          </div>
+        </div>
+
+        <div className="mt-5 rounded-[1.35rem] bg-[rgba(6,16,23,0.92)] p-4 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+          {'highlights' in slide && slide.highlights ? (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45">
+                  Launch setup
+                </span>
+                <span className="nc-chip-signal rounded-full px-2.5 py-1 text-[10px] font-semibold">
+                  AI guided
+                </span>
+              </div>
+              <div className="space-y-2">
+                {slide.highlights.map((item, index) => (
+                  <div
+                    key={item}
+                    className="flex items-center justify-between rounded-[1rem] border border-white/8 bg-white/5 px-3 py-3"
+                  >
+                    <span className="text-sm font-medium text-white">{item}</span>
+                    <span className="text-[11px] font-semibold text-white/35">0{index + 1}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : 'detail' in slide && slide.detail ? (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45">
+                  Fingerprint map
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/30">
+                  Live
+                </span>
+              </div>
+              <div className="space-y-2">
+                {slide.detail.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between rounded-[1rem] border border-white/8 bg-white/5 px-3 py-3"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(215,255,92,0.24)] text-[11px] font-bold text-[var(--nc-signal-fg)]">
+                        {item.icon}
+                      </span>
+                      <span className="text-sm font-medium text-white">{item.label}</span>
+                    </div>
+                    <span className="text-xs font-semibold text-white/55">{item.sub}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : 'steps' in slide && slide.steps ? (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45">
+                  Repair flow
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/30">
+                  Focused
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2.5">
+                {slide.steps.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[1rem] border border-white/8 bg-white/5 px-3 py-3"
+                  >
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/32">
+                      {item.icon}
+                    </div>
+                    <div className="mt-2 text-sm font-medium text-white">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
 
-      {'detail' in slide && slide.detail ? (
-        <div className="nc-glass p-4">
-          <div className="nc-label">Eksempel på konseptprofil</div>
-          <div className="mt-4 flex flex-col gap-3">
-            {slide.detail.map((item) => (
-              <div key={item.label} className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-[var(--nc-red)]">{item.icon}</span>
-                  <span className="text-sm font-medium text-[var(--nc-text)]">{item.label}</span>
-                </div>
-                <span className="text-xs font-semibold text-[var(--nc-text-dim)]">{item.sub}</span>
-              </div>
-            ))}
-          </div>
+      <div className="nc-glass px-4 py-4">
+        <div className="nc-label">Hva du får</div>
+        <div className="mt-3 space-y-3">
+          {[
+            'Mobil først, med én tydelig handling per skjerm.',
+            'Lys glassflate for lesing, mørke støtteflater for fokus.',
+            'AI som styrer nivå, reparasjon og neste steg.',
+          ].map((item) => (
+            <div key={item} className="flex items-start gap-3">
+              <span className="mt-1.5 h-2 w-2 rounded-full bg-[var(--nc-signal)]" />
+              <p className="text-sm leading-7 text-[var(--nc-text-muted)]">{item}</p>
+            </div>
+          ))}
         </div>
-      ) : null}
-
-      {'steps' in slide && slide.steps ? (
-        <div className="nc-glass p-4">
-          <div className="nc-label">Reparasjonsflyt</div>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {slide.steps.map((item, index) => (
-              <div
-                key={item.label}
-                className="nc-glass px-4 py-4"
-              >
-                <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--nc-text-dim)]">
-                  {item.icon}
-                </div>
-                <div className="mt-2 text-sm font-medium text-[var(--nc-text)]">{item.label}</div>
-                <div className="mt-3 text-[11px] text-[var(--nc-text-dim)]">
-                  {index < slide.steps.length - 1 ? 'Neste steg' : 'Klar for nytt forsøk'}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-
-      {!('detail' in slide) && !('steps' in slide) ? (
-        <div className="nc-glass p-4">
-          <div className="nc-label">Hva du får</div>
-          <div className="mt-4 grid gap-3">
-            {[
-              'En tydelig første økt med riktig nivå.',
-              'Forklaringer når du svarer feil.',
-              'Fremdrift som bygger på det du faktisk gjør.',
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <div className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-[var(--nc-red)]" />
-                <p className="text-sm leading-7 text-[var(--nc-text-muted)]">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
+      </div>
 
       <div className="flex-1" />
 
       <button
         onClick={onNext}
-        className="nc-gradient-red inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+        className="nc-button-primary inline-flex min-h-[54px] w-full items-center justify-center gap-2 px-6 text-sm font-bold"
       >
         <span>{slide.cta}</span>
-        <ArrowRight size={15} />
+        <ArrowRight size={16} />
       </button>
     </div>
   )
@@ -407,52 +437,60 @@ function ReadyStep({
   onStart: () => void
   onDashboard: () => void
 }) {
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-1 flex-col gap-5"
+      className="flex flex-1 flex-col gap-4"
     >
-      {/* Level badge card */}
-      <div className="nc-glass-elevated px-5 py-6 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[1rem] bg-white/10 border border-white/14">
-          <span className="font-display text-lg font-semibold text-[var(--nc-text)]">{level}</span>
+      <div className="nc-glass-cream p-5">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[1rem] bg-[var(--nc-signal)] text-lg font-semibold text-[var(--nc-signal-fg)] shadow-[0_18px_40px_rgba(183,243,0,0.20)]">
+          {level}
         </div>
-        <h2 className="mt-4 text-[2rem] leading-[0.98] text-[var(--nc-text)]">Første økt er klar.</h2>
-        <p className="mt-3 text-sm leading-7 text-[var(--nc-text-muted)]">
-          Vi starter på {level}-nivå og justerer videre ut fra hvordan du svarer.
+        <h2 className="mt-4 text-center text-[2rem] leading-[0.96] text-[var(--nc-cream-text)]">
+          Første økt er klar.
+        </h2>
+        <p className="mt-3 text-center text-sm leading-7 text-[var(--nc-cream-muted)]">
+          Vi starter på {level}-nivå og justerer videre med en gang du begynner å svare.
         </p>
-      </div>
 
-      {/* First session concepts */}
-      <div className="nc-glass p-5">
-        <div className="nc-label-red">Din første økt</div>
-        <div className="mt-4 flex flex-col gap-3">
-          {concepts.map((concept) => (
-            <div key={concept.label} className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-[var(--nc-green)]" />
-                <span className="text-sm font-medium text-[var(--nc-text)]">{concept.label}</span>
+        <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/42">
+              Første fokus
+            </span>
+            <span className="nc-chip-signal rounded-full px-2.5 py-1 text-[10px] font-semibold">
+              10 min
+            </span>
+          </div>
+          <div className="mt-3 space-y-2">
+            {concepts.map((concept) => (
+              <div
+                key={concept.label}
+                className="flex items-center justify-between rounded-[1rem] border border-white/8 bg-white/5 px-3 py-3"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[var(--nc-signal)]" />
+                  <span className="text-sm font-medium text-white">{concept.label}</span>
+                </div>
+                <span className="text-xs font-semibold text-white/50">{concept.sub}</span>
               </div>
-              <span className="text-xs font-semibold text-[var(--nc-text-dim)]">{concept.sub}</span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* How it adapts */}
       <div className="nc-glass p-4">
-        <div className="nc-label">Hvordan det tilpasser seg</div>
-        <div className="mt-4 grid gap-3">
+        <div className="nc-label">Systemet tilpasser seg slik</div>
+        <div className="mt-3 space-y-3">
           {[
-            'Reparasjonsløkker aktiveres når du svarer feil.',
-            'Øktplanen oppdateres etter hver runde du fullfører.',
-            'Samtale, lesing og skriving bruker samme læringsprofil.',
+            'Feil aktiverer korte reparasjonsløkker med forklaring og nytt forsøk.',
+            'Øktplanen endres etter hva du faktisk får til, ikke en fast pensumliste.',
+            'Samtale, lesing og skriving deler samme læringsminne.',
           ].map((item) => (
             <div key={item} className="flex items-start gap-3">
-              <div className="mt-1 h-2 w-2 rounded-full bg-[var(--nc-red)]" />
+              <span className="mt-1.5 h-2 w-2 rounded-full bg-[var(--nc-signal)]" />
               <p className="text-sm leading-7 text-[var(--nc-text-muted)]">{item}</p>
             </div>
           ))}
@@ -463,10 +501,10 @@ function ReadyStep({
 
       <button
         onClick={onStart}
-        className="nc-gradient-red inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+        className="nc-button-primary inline-flex min-h-[54px] w-full items-center justify-center gap-2 px-6 text-sm font-bold"
       >
         <span>Start første økt</span>
-        <ArrowRight size={15} />
+        <ArrowRight size={16} />
       </button>
 
       <button

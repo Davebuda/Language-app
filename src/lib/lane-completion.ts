@@ -52,7 +52,7 @@ export function getCompletedLanes(): Set<LaneId> {
 
 export function allLanesDone(): boolean {
   const state = readState()
-  return Object.values(state.lanes).every(Boolean)
+  return CORE_LANES.every((laneId) => state.lanes[laneId])
 }
 
 export const CORE_LANES: LaneId[] = ['session', 'journal', 'conversation', 'roleplay', 'reading']

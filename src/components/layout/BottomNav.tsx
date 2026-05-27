@@ -18,9 +18,9 @@ export function BottomNav({ active }: { active: NavTab }) {
   return (
     <nav
       aria-label="Hovednavigasjon"
-      className="border-t border-[rgba(255,255,255,0.08)] bg-[rgba(18,14,14,0.88)] pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
+      className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[calc(env(safe-area-inset-bottom)+14px)] pt-3"
     >
-      <div className="mx-auto flex max-w-lg justify-around px-2 py-2">
+      <div className="mx-auto flex w-full max-w-[23rem] items-center justify-around gap-1 rounded-[1.8rem] border border-[rgba(255,255,255,0.16)] bg-[rgba(13,18,24,0.78)] p-2.5 shadow-[0_30px_80px_rgba(16,22,29,0.24)] backdrop-blur-[26px]">
         {TABS.map(({ id, label, href, Icon }) => {
           const isActive = id === active
           return (
@@ -29,16 +29,18 @@ export function BottomNav({ active }: { active: NavTab }) {
               href={href}
               aria-label={label}
               aria-current={isActive ? 'page' : undefined}
-              className={`flex min-h-[44px] min-w-[56px] flex-col items-center justify-center gap-0.5 px-1 ${
-                isActive ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text-muted)]'
+              className={`flex min-h-[54px] flex-1 flex-col items-center justify-center gap-1 rounded-[1.2rem] px-2 py-2 transition-colors ${
+                isActive
+                  ? 'bg-[rgba(215,255,92,0.24)] text-[var(--nc-signal-fg)]'
+                  : 'text-white/44 hover:text-white'
               }`}
             >
-              <Icon size={18} strokeWidth={isActive ? 2.2 : 1.6} />
-              <span className="text-[9px] font-semibold">{label}</span>
+              <Icon size={18} strokeWidth={isActive ? 2.25 : 1.8} />
+              <span className="text-[9px] font-semibold uppercase tracking-[0.1em]">{label}</span>
               <span
                 aria-hidden="true"
-                className={`h-[3px] w-[3px] rounded-full transition-opacity ${
-                  isActive ? 'bg-[var(--nc-red)] opacity-100' : 'opacity-0'
+                className={`h-[4px] w-[4px] rounded-full transition-opacity ${
+                  isActive ? 'bg-[var(--nc-signal-fg)] opacity-100' : 'opacity-0'
                 }`}
               />
             </Link>

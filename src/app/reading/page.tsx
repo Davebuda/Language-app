@@ -101,8 +101,8 @@ export default function ReadingPage() {
   }
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-4 pt-5 relative z-10">
+    <div className="nc-gradient-page flex min-h-dvh flex-col">
+      <main className="relative z-10 mx-auto flex w-full max-w-xl flex-1 flex-col gap-4 px-5 pb-24 pt-5">
         <AnimatePresence mode="wait">
           {!selectedText ? (
             <motion.div
@@ -113,9 +113,12 @@ export default function ReadingPage() {
               className="flex flex-col gap-4"
             >
               {/* Header */}
-              <div>
-                <h1 className="text-[22px] font-extrabold text-[var(--nc-text)]">Lesestudio</h1>
-                <p className="text-[13px] text-[var(--nc-text-muted)]">Les norsk tekst på ditt nivå</p>
+              <div className="nc-glass-cream p-5">
+                <div className="nc-label">Leseflate</div>
+                <h1 className="mt-2 text-[2rem] font-extrabold text-[var(--nc-cream-text)]">Lesestudio</h1>
+                <p className="mt-2 text-[0.95rem] leading-7 text-[var(--nc-cream-muted)]">
+                  Les norsk tekst på ditt nivå. Hver eksponering kan støtte de samme konseptene som øktene dine.
+                </p>
               </div>
 
               {/* Filter pills */}
@@ -147,15 +150,15 @@ export default function ReadingPage() {
                     className="w-full text-left nc-glass-cream rounded-2xl p-4 hover:border-[var(--nc-red-border)] transition-colors active:scale-[0.99]"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <span className="text-[15px] font-bold text-[var(--nc-text)]">{text.title}</span>
+                      <span className="text-[15px] font-bold text-[var(--nc-cream-text)]">{text.title}</span>
                       <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[text.cefrLevel]}`}>
                         {text.cefrLevel}
                       </span>
                     </div>
                     <div className="mt-1 flex items-center gap-2">
-                      <span className="text-[11px] text-[var(--nc-text-muted)]">{GENRE_LABELS[text.genre]}</span>
-                      <span className="text-[var(--nc-text-dim)]">·</span>
-                      <span className="text-[11px] text-[var(--nc-text-muted)]">~{text.estimatedMinutes} min</span>
+                      <span className="text-[11px] text-[var(--nc-cream-muted)]">{GENRE_LABELS[text.genre]}</span>
+                      <span className="text-[var(--nc-cream-dim)]">·</span>
+                      <span className="text-[11px] text-[var(--nc-cream-muted)]">~{text.estimatedMinutes} min</span>
                     </div>
                   </motion.button>
                 ))}

@@ -14,11 +14,7 @@ import type { RoleplayScenario, RoleplayTurn } from '@/lib/roleplayContent'
 import type { ExerciseResult } from '@/types/session'
 import { markLaneDone } from '@/lib/lane-completion'
 
-// ── Constants ─────────────────────────────────────────────────────────────────
-
 const LISTEN_SECONDS = 5
-
-// ── Sub-components ────────────────────────────────────────────────────────────
 
 function PulsingDot() {
   return (
@@ -31,8 +27,6 @@ function PulsingDot() {
   )
 }
 
-// ── Scenario selection card ───────────────────────────────────────────────────
-
 interface ScenarioCardProps {
   scenario: RoleplayScenario
   onSelect: (scenario: RoleplayScenario) => void
@@ -43,37 +37,35 @@ function ScenarioCard({ scenario, onSelect }: ScenarioCardProps) {
     <motion.button
       onClick={() => onSelect(scenario)}
       aria-label={`Velg scenario: ${scenario.title}`}
-      className="nc-glass w-full rounded-xl p-5 text-left transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nc-red)]"
+      className="w-full rounded-[1.2rem] border border-white/14 bg-[rgba(247,251,245,0.96)] p-5 text-left shadow-[0_18px_38px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.55)] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nc-signal)]"
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.15 }}
     >
       <div className="flex flex-col gap-2">
-        <p className="text-[1rem] font-bold leading-snug text-[var(--nc-text)]">
-          {scenario.title}
-        </p>
-        <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">
-          {scenario.titleEnglish}
-        </p>
-        <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-dim)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-[1rem] font-bold leading-snug text-[var(--nc-cream-text)]">
+              {scenario.title}
+            </p>
+            <p className="mt-1 text-[0.8125rem] text-[var(--nc-cream-muted)]">
+              {scenario.titleEnglish}
+            </p>
+          </div>
+          <span className="rounded-full bg-[rgba(6,16,23,0.08)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]">
+            Voice
+          </span>
+        </div>
+        <p className="text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
           {scenario.setting}
         </p>
-        <span
-          className="mt-1 inline-flex w-fit rounded-full px-2.5 py-0.5 text-[0.6875rem] font-semibold"
-          style={{
-            background: 'var(--nc-teal-tint)',
-            border: '1px solid var(--nc-teal-border)',
-            color: 'var(--nc-teal)',
-          }}
-        >
+        <span className="mt-1 inline-flex w-fit rounded-full bg-[rgba(215,255,92,0.18)] px-2.5 py-1 text-[0.6875rem] font-semibold text-[var(--nc-signal-fg)]">
           Med: {scenario.characterName}
         </span>
       </div>
     </motion.button>
   )
 }
-
-// ── Match helper ──────────────────────────────────────────────────────────────
 
 function isKeywordMatch(transcript: string, expectedKeywords: string[]): boolean {
   const normalisedTranscript = normaliseWord(transcript)
@@ -83,12 +75,8 @@ function isKeywordMatch(transcript: string, expectedKeywords: string[]): boolean
   )
 }
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-
 type ScreenPhase = 'selection' | 'turn' | 'complete'
 type TurnPhase = 'prompt' | 'listening' | 'result' | 'fallback'
-
-// ── Turn exercise component ───────────────────────────────────────────────────
 
 interface RoleplayTurnExerciseProps {
   scenario: RoleplayScenario
@@ -125,12 +113,10 @@ function RoleplayTurnExercise({
     reset,
   } = useSpeechRecognition()
 
-  // Keep transcriptRef in sync with latest speech state
   useEffect(() => {
     transcriptRef.current = transcript || interimTranscript
   }, [transcript, interimTranscript])
 
-  // Reset local state when turn changes
   useEffect(() => {
     reset()
     setCurrentTranscript('')
@@ -139,7 +125,7 @@ function RoleplayTurnExercise({
     setPassed(false)
     hasResolved.current = false
     setTurnPhase('prompt')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turn.id])
 
   const resolveResult = useCallback(
@@ -149,17 +135,14 @@ function RoleplayTurnExercise({
       setPassed(matched)
 
       if (!matched && !retried) {
-        // First fail — go to fallback for coaching
         setTurnPhase('fallback')
       } else {
-        // Pass, or second fail — show final result
         setTurnPhase('result')
       }
     },
     [turn.expectedKeywords, retried],
   )
 
-  // Countdown timer — starts when turnPhase enters 'listening'
   useEffect(() => {
     if (turnPhase !== 'listening') return
     const startTime = Date.now()
@@ -177,10 +160,9 @@ function RoleplayTurnExercise({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turnPhase, resolveResult])
 
-  // Auto-advance when speech API fires a final result before the timer
   useEffect(() => {
     if (turnPhase !== 'listening') return
     if (isListening) return
@@ -230,72 +212,75 @@ function RoleplayTurnExercise({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.28 }}
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-4"
     >
-      {/* Progress indicator */}
-      <div className="flex items-center gap-2">
-        <span className="nc-label tabular-nums">{turnIndex + 1} / {totalTurns}</span>
-        <div className="flex-1 h-[3px] overflow-hidden rounded-full bg-[var(--nc-border)]">
+      <div className="nc-glass-cream p-4">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <div className="nc-label text-[var(--nc-cream-dim)]">Scenario</div>
+            <div className="mt-1 text-sm font-semibold text-[var(--nc-cream-text)]">
+              {scenario.title}
+            </div>
+          </div>
+          <div className="rounded-full bg-[rgba(6,16,23,0.08)] px-3 py-1.5 text-[11px] font-semibold tabular-nums text-[var(--nc-cream-muted)]">
+            {turnIndex + 1} / {totalTurns}
+          </div>
+        </div>
+        <div className="mt-4 h-2 overflow-hidden rounded-full bg-[rgba(6,16,23,0.08)]">
           <motion.div
-            className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+            className="h-full origin-left rounded-full bg-[var(--nc-signal)]"
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: turnIndex / totalTurns }}
+            animate={{ scaleX: (turnIndex + 1) / totalTurns }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           />
         </div>
       </div>
 
-      {/* Character card */}
-      <div className="nc-glass-dark p-5 flex flex-col gap-2">
-        <span className="nc-label text-[var(--nc-teal)]">{scenario.characterName}</span>
-        <p className="text-balance text-[1.5rem] md:text-[1.75rem] font-bold leading-tight text-[var(--nc-text)]">
+      <div className="nc-glass p-5">
+        <span className="nc-label">{scenario.characterName}</span>
+        <p className="mt-3 text-balance text-[1.5rem] font-bold leading-tight text-[var(--nc-text)]">
           {turn.character}
         </p>
-        <p className="text-pretty text-[0.875rem] text-[var(--nc-text-muted)]">
+        <p className="mt-2 text-pretty text-[0.875rem] text-[var(--nc-text-muted)]">
           {turn.characterEnglish}
         </p>
       </div>
 
-      {/* Response area */}
-      <div className="nc-glass-elevated p-5 flex flex-col gap-4">
-        <p className="nc-label text-[var(--nc-text-dim)]">Ditt svar</p>
+      <div className="nc-glass-cream p-5">
+        <p className="nc-label text-[var(--nc-cream-dim)]">Ditt svar</p>
 
         <AnimatePresence mode="wait">
-
-          {/* ── Prompt ── */}
-          {turnPhase === 'prompt' && (
+          {turnPhase === 'prompt' ? (
             <motion.div
               key="prompt"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-3"
+              className="mt-4 flex flex-col gap-3"
             >
-              {!isSupported && (
-                <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">
-                  Din nettleser støtter ikke talegjenkjenning. Prøv Chrome.
+              {!isSupported ? (
+                <p className="text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
+                  Nettleseren støtter ikke talegjenkjenning. Prøv Chrome.
                 </p>
-              )}
-              {isSupported && (
+              ) : (
                 <button
                   onClick={handleStartListening}
                   aria-label="Svar på karakterens linje"
                   className="nc-button-primary w-full py-3.5 text-[0.875rem] font-bold"
                 >
-                  Svar
+                  Start svar
                 </button>
               )}
             </motion.div>
-          )}
+          ) : null}
 
-          {/* ── Listening ── */}
-          {turnPhase === 'listening' && (
+          {turnPhase === 'listening' ? (
             <motion.div
               key="listening"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-3"
+              className="mt-4 flex flex-col gap-3"
             >
               <div className="flex items-center gap-2">
                 <PulsingDot />
@@ -304,10 +289,8 @@ function RoleplayTurnExercise({
                 </span>
               </div>
 
-              {/* Countdown bar */}
               <div
-                className="h-[4px] w-full overflow-hidden rounded-full"
-                style={{ background: 'rgba(255,255,255,0.1)' }}
+                className="h-[4px] w-full overflow-hidden rounded-full bg-[rgba(6,16,23,0.08)]"
                 role="progressbar"
                 aria-label="Nedtelling"
                 aria-valuenow={Math.round(progress * 100)}
@@ -324,69 +307,60 @@ function RoleplayTurnExercise({
                 />
               </div>
 
-              {(interimTranscript || transcript) && (
-                <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-muted)]">
+              {interimTranscript || transcript ? (
+                <p className="text-pretty text-[0.875rem] italic text-[var(--nc-cream-muted)]">
                   {interimTranscript || transcript}
                 </p>
-              )}
+              ) : null}
 
               <button
                 onClick={handleSkip}
                 aria-label="Hopp over denne replikken"
-                className="w-full rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+                className="rounded-[1rem] border border-[rgba(6,16,23,0.12)] bg-white/55 py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-cream-text)]"
               >
                 Hopp over
               </button>
             </motion.div>
-          )}
+          ) : null}
 
-          {/* ── Result (pass or retried fail) ── */}
-          {turnPhase === 'result' && (
+          {turnPhase === 'result' ? (
             <motion.div
               key="result"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4"
+              className="mt-4 flex flex-col gap-4"
             >
-              {/* Transcript display */}
-              <div
-                className="rounded-lg p-3"
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.09)',
-                }}
-              >
-                <p className="nc-label mb-2">Hva du sa</p>
+              <div className="rounded-[1rem] border border-[rgba(6,16,23,0.10)] bg-white/55 p-3">
+                <p className="nc-label text-[var(--nc-cream-dim)]">Hva du sa</p>
                 {currentTranscript ? (
-                  <p className="text-[1rem] leading-relaxed text-[var(--nc-text)]">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-[var(--nc-cream-text)]">
                     {currentTranscript}
                   </p>
                 ) : (
-                  <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-dim)]">
+                  <p className="mt-2 text-pretty text-[0.875rem] italic text-[var(--nc-cream-muted)]">
                     Ingen lyd registrert.
                   </p>
                 )}
               </div>
 
-              {/* Pass/fail badge */}
               <span
                 className="inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-[0.75rem] font-bold"
                 style={
                   passed
                     ? {
-                        background: 'var(--nc-green-tint)',
-                        border: '1px solid var(--nc-green-border)',
-                        color: 'var(--nc-green)',
+                        background: 'rgba(215,255,92,0.18)',
+                        border: '1px solid rgba(215,255,92,0.38)',
+                        color: 'var(--nc-signal-fg)',
                       }
                     : {
-                        background: 'rgba(220,38,38,0.12)',
-                        border: '1px solid rgba(220,38,38,0.28)',
+                        background: 'rgba(255,106,85,0.10)',
+                        border: '1px solid rgba(255,106,85,0.28)',
                         color: 'var(--nc-red)',
                       }
                 }
               >
-                {passed ? 'Riktig svar!' : 'Prøv å bruke norske nøkkelord'}
+                {passed ? 'Riktig retning' : 'Prøv å bruke norske nøkkelord'}
               </span>
 
               <button
@@ -394,68 +368,51 @@ function RoleplayTurnExercise({
                 aria-label={turnIndex + 1 < totalTurns ? 'Neste replikk' : 'Avslutt scenario'}
                 className="nc-button-primary flex w-full items-center justify-center gap-2 py-3 text-[0.875rem] font-bold"
               >
-                {turnIndex + 1 < totalTurns ? 'Neste' : 'Avslutt'}
+                {turnIndex + 1 < totalTurns ? 'Neste replikk' : 'Avslutt'}
                 <ArrowRight size={16} aria-hidden="true" />
               </button>
             </motion.div>
-          )}
+          ) : null}
 
-          {/* ── Fallback (first fail — coaching) ── */}
-          {turnPhase === 'fallback' && (
+          {turnPhase === 'fallback' ? (
             <motion.div
               key="fallback"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4"
+              className="mt-4 flex flex-col gap-4"
             >
-              {/* Transcript display */}
-              <div
-                className="rounded-lg p-3"
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.09)',
-                }}
-              >
-                <p className="nc-label mb-2">Hva du sa</p>
+              <div className="rounded-[1rem] border border-[rgba(6,16,23,0.10)] bg-white/55 p-3">
+                <p className="nc-label text-[var(--nc-cream-dim)]">Hva du sa</p>
                 {currentTranscript ? (
-                  <p className="text-[1rem] leading-relaxed text-[var(--nc-text)]">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-[var(--nc-cream-text)]">
                     {currentTranscript}
                   </p>
                 ) : (
-                  <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-dim)]">
+                  <p className="mt-2 text-pretty text-[0.875rem] italic text-[var(--nc-cream-muted)]">
                     Ingen lyd registrert.
                   </p>
                 )}
               </div>
 
-              {/* Hint text */}
-              <p className="text-pretty text-[0.875rem] text-[var(--nc-text-muted)]">
+              <p className="text-pretty text-[0.875rem] text-[var(--nc-cream-muted)]">
                 {turn.hint}
               </p>
 
-              {/* Model answer */}
-              <div
-                className="rounded-lg p-3"
-                style={{
-                  background: 'var(--nc-teal-tint)',
-                  border: '1px solid var(--nc-teal-border)',
-                }}
-              >
-                <p className="nc-label mb-1.5" style={{ color: 'var(--nc-teal)' }}>
+              <div className="rounded-[1rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40">
                   Prøv å si
                 </p>
-                <p className="text-[0.9375rem] font-semibold text-[var(--nc-text)]">
+                <p className="mt-2 text-[0.9375rem] font-semibold text-white">
                   {turn.modelAnswer}
                 </p>
               </div>
 
-              {/* Two-button row */}
               <div className="flex gap-2">
                 <button
                   onClick={handleRetryAfterFallback}
                   aria-label="Prøv replikken igjen"
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent py-3 text-[0.8125rem] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-[1rem] border border-[rgba(6,16,23,0.12)] bg-white/55 py-3 text-[0.8125rem] font-semibold text-[var(--nc-cream-text)]"
                 >
                   <RotateCcw size={13} aria-hidden="true" />
                   Prøv igjen
@@ -463,21 +420,18 @@ function RoleplayTurnExercise({
                 <button
                   onClick={handleContinueFromFallback}
                   aria-label="Fortsett til neste replikk"
-                  className="nc-button-dark flex flex-1 items-center justify-center gap-1.5 py-3 text-[0.8125rem] font-semibold"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-[1rem] bg-[rgba(6,16,23,0.94)] py-3 text-[0.8125rem] font-semibold text-white"
                 >
                   Fortsett
                 </button>
               </div>
             </motion.div>
-          )}
-
+          ) : null}
         </AnimatePresence>
       </div>
     </motion.div>
   )
 }
-
-// ── Main RoleplayScreen ───────────────────────────────────────────────────────
 
 export function RoleplayScreen() {
   const router = useRouter()
@@ -502,7 +456,6 @@ export function RoleplayScreen() {
     const turn = activeScenario.turns[turnIndex]
     if (!turn) return
 
-    // Record to fingerprint engine
     const result: ExerciseResult = {
       sessionId: 'roleplay',
       itemId: `roleplay-${activeScenario.id}-${turn.id}`,
@@ -521,7 +474,6 @@ export function RoleplayScreen() {
 
     const nextIndex = turnIndex + 1
     if (nextIndex >= activeScenario.turns.length) {
-      // Scenario complete — increment speaking minutes
       const fp = useFingerprintStore.getState().fingerprint
       if (fp) {
         const minutesSpoken = activeScenario.turns.length * (LISTEN_SECONDS / 60)
@@ -549,42 +501,40 @@ export function RoleplayScreen() {
   const totalTurns = activeScenario?.turns.length ?? scores.length
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pb-24 pt-5">
+    <div className="nc-gradient-page flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col px-4 pb-28 pt-4">
         <AnimatePresence mode="wait">
-
-          {/* ── Scenario selection ── */}
-          {screenPhase === 'selection' && (
+          {screenPhase === 'selection' ? (
             <motion.div
               key="selection"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4 pt-4"
+              className="flex flex-col gap-4"
             >
-              {/* Page header */}
-              <div className="mb-2">
-                <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">
-                  Rollespill
+              <div className="nc-glass-cream p-5">
+                <div className="nc-label text-[var(--nc-cream-dim)]">Roleplay</div>
+                <h1 className="mt-2 text-balance text-[2rem] leading-[0.96] text-[var(--nc-cream-text)]">
+                  Tren korte hverdagsdialoger med stemme.
                 </h1>
-                <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">
-                  Øv på hverdagslige samtaler på norsk
+                <p className="mt-3 text-sm leading-7 text-[var(--nc-cream-muted)]">
+                  Velg en scene, lytt til karakteren, og svar på norsk under lett tidspress.
                 </p>
+
+                <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
+                  <div className="flex flex-wrap gap-2">
+                    {['Talegjenkjenning', 'Mini-feedback', 'Muntlig flyt'].map((chip) => (
+                      <span
+                        key={chip}
+                        className="rounded-full bg-white/8 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/58"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Feature chips */}
-              <div className="flex flex-wrap gap-2">
-                {['Samtalesimulator', 'Talegjenkjenning', 'Fingeravtrykk'].map((chip) => (
-                  <span
-                    key={chip}
-                    className="nc-glass rounded-full px-3 py-1 text-[0.6875rem] font-semibold text-[var(--nc-text-dim)]"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-
-              {/* Scenario cards */}
               <div className="flex flex-col gap-3">
                 {ROLEPLAY_SCENARIOS.map((scenario, i) => (
                   <motion.div
@@ -598,24 +548,23 @@ export function RoleplayScreen() {
                 ))}
               </div>
             </motion.div>
-          )}
+          ) : null}
 
-          {/* ── Turn ── */}
-          {screenPhase === 'turn' && activeScenario && (
+          {screenPhase === 'turn' && activeScenario ? (
             <motion.div
               key={`turn-${activeScenario.id}-${turnIndex}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4 pt-4"
+              className="flex flex-col gap-4"
             >
-              {/* Turn header */}
-              <div className="mb-2">
-                <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">
+              <div className="nc-glass-cream p-4">
+                <div className="nc-label text-[var(--nc-cream-dim)]">Aktiv scene</div>
+                <h1 className="mt-2 text-balance text-[1.55rem] leading-tight text-[var(--nc-cream-text)]">
                   {activeScenario.title}
                 </h1>
-                <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">
-                  Svar på norsk — du har {LISTEN_SECONDS} sekunder.
+                <p className="mt-2 text-sm leading-7 text-[var(--nc-cream-muted)]">
+                  Svar på norsk. Du har {LISTEN_SECONDS} sekunder når opptaket starter.
                 </p>
               </div>
 
@@ -633,70 +582,53 @@ export function RoleplayScreen() {
                 )
               })()}
             </motion.div>
-          )}
+          ) : null}
 
-          {/* ── Complete ── */}
-          {screenPhase === 'complete' && (
+          {screenPhase === 'complete' ? (
             <motion.div
               key="complete"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-1 flex-col items-center justify-center gap-6 py-12"
+              className="flex flex-1 flex-col justify-center gap-4"
             >
-              <div className="nc-glass-elevated w-full p-8 text-center flex flex-col items-center gap-5">
-                <div className="nc-label">Scenario fullført</div>
-
-                <h2 className="text-balance text-[1.75rem] font-extrabold text-[var(--nc-text)]">
-                  {passedCount === totalTurns ? 'Imponerende!' : 'Bra jobbet!'}
+              <div className="nc-glass-cream p-6 text-center">
+                <div className="nc-label text-[var(--nc-cream-dim)]">Scenario fullført</div>
+                <h2 className="mt-3 text-balance text-[1.9rem] leading-[0.96] text-[var(--nc-cream-text)]">
+                  {passedCount === totalTurns ? 'Imponerende.' : 'Bra jobbet.'}
                 </h2>
 
-                {/* Pass / total count */}
-                <div className="flex flex-col items-center gap-1">
-                  <span
-                    className="text-[3rem] font-extrabold tabular-nums leading-none"
-                    style={{
-                      color:
-                        passedCount >= Math.ceil(totalTurns / 2)
-                          ? 'var(--nc-green)'
-                          : 'var(--nc-red)',
-                    }}
-                  >
+                <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
+                  <div className="text-[3rem] font-extrabold leading-none" style={{ color: 'var(--nc-signal)' }}>
                     {passedCount}/{totalTurns}
-                  </span>
-                  <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">
+                  </div>
+                  <p className="mt-2 text-[0.8125rem] text-white/62">
                     replikker besvart riktig
                   </p>
+                  <div className="mt-4 flex w-full gap-1.5">
+                    {scores.map((score, i) => (
+                      <div
+                        key={i}
+                        className="h-2 flex-1 rounded-full"
+                        style={{
+                          background: score ? 'var(--nc-signal)' : 'rgba(255,106,85,0.65)',
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
 
-                {/* Per-turn breakdown bar */}
-                <div className="flex w-full gap-1.5">
-                  {scores.map((s, i) => (
-                    <div
-                      key={i}
-                      className="flex-1 rounded-full h-2"
-                      style={{
-                        background: s
-                          ? 'var(--nc-green)'
-                          : 'rgba(220,38,38,0.55)',
-                      }}
-                      title={`Replikk ${i + 1}: ${s ? 'riktig' : 'feil'}`}
-                      aria-label={`Replikk ${i + 1}: ${s ? 'riktig' : 'feil'}`}
-                    />
-                  ))}
-                </div>
-
-                <p className="text-pretty text-[0.875rem] text-[var(--nc-text-muted)]">
+                <p className="mt-4 text-pretty text-[0.875rem] text-[var(--nc-cream-muted)]">
                   {passedCount === totalTurns
-                    ? 'Fremragende! Fremgangen er registrert i fingeravtrykket ditt.'
+                    ? 'Sterk leveranse. Fremgangen er registrert i læringsprofilen din.'
                     : passedCount >= Math.ceil(totalTurns / 2)
-                      ? 'Bra fremgang. Prøv å bruk flere norske nøkkelord neste gang.'
-                      : 'Disse replikken er utfordrende — prøv igjen for å bygge flyt.'}
+                      ? 'God fremgang. Prøv igjen for å få svarene enda mer naturlige.'
+                      : 'Denne scenen trenger litt mer flyt. Kjør den gjerne på nytt.'}
                 </p>
               </div>
 
-              <div className="flex w-full flex-col gap-3">
+              <div className="flex flex-col gap-3">
                 <button
                   onClick={handleTryAnother}
                   aria-label="Prøv et annet scenario"
@@ -708,14 +640,13 @@ export function RoleplayScreen() {
                 <button
                   onClick={() => router.push('/dashboard')}
                   aria-label="Tilbake til dashboard"
-                  className="nc-button-dark w-full py-3 text-[0.875rem] font-semibold"
+                  className="nc-glass w-full rounded-[1rem] py-3 text-[0.875rem] font-semibold text-[var(--nc-text)]"
                 >
-                  Tilbake til dashboard
+                  Til dashboard
                 </button>
               </div>
             </motion.div>
-          )}
-
+          ) : null}
         </AnimatePresence>
       </main>
 

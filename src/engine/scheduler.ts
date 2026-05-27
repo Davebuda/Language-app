@@ -9,6 +9,19 @@ import { getUnlockedConcepts } from '@/types/concepts';
 
 const AVG_EXERCISE_SECONDS = 45; // average exercise duration
 
+const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B2'] as const;
+
+function filterSentencesByLevel(sentenceIds: string[], maxLevel: string, sentences: Record<string, { cefrLevel: string }>): string[] {
+  const maxIdx = LEVEL_ORDER.indexOf(maxLevel as typeof LEVEL_ORDER[number]);
+  if (maxIdx < 0) return sentenceIds;
+  return sentenceIds.filter(id => {
+    const s = sentences[id];
+    if (!s) return false;
+    const sIdx = LEVEL_ORDER.indexOf(s.cefrLevel as typeof LEVEL_ORDER[number]);
+    return sIdx >= 0 && sIdx <= maxIdx;
+  });
+}
+
 // Exercise types by learning goal
 const PRODUCTION_EXERCISES: ExerciseType[] = [
   'sentence-transformation',
@@ -134,7 +147,9 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     candidates: ExerciseType[],
     excludePassed: boolean = true,
   ): ExerciseType | null {
-    const allIds = availableSentenceIds[conceptId] ?? [];
+    const rawIds = availableSentenceIds[conceptId] ?? [];
+    const levelFiltered = filterSentencesByLevel(rawIds, fingerprint.currentLevel, sentences);
+    const allIds = levelFiltered;
     const ids = excludePassed
       ? allIds.filter((id) => !passedIds[id])
       : allIds;

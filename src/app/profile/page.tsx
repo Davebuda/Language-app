@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { ArrowRight, LogOut } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useFingerprint } from '@/hooks/useFingerprint'
@@ -21,10 +20,10 @@ const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; des
 ]
 
 const LEVEL_LABELS: Record<string, string> = {
-  A1: 'A1 - Nybegynner',
-  A2: 'A2 - Grunnleggende',
-  B1: 'B1 - Selvstendig',
-  B2: 'B2 - Viderekommen',
+  A1: 'A1 · Nybegynner',
+  A2: 'A2 · Grunnleggende',
+  B1: 'B1 · Selvstendig',
+  B2: 'B2 · Viderekommen',
 }
 
 export default function ProfilePage() {
@@ -60,36 +59,31 @@ export default function ProfilePage() {
       score: mastery.decayedScore,
     }))
 
-  const displayName =
-    user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
+  const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
   const initials = displayName.slice(0, 2).toUpperCase()
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-6 pt-5">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="nc-glass-elevated p-5"
-        >
+    <div className="nc-gradient-page flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col gap-3 px-4 pb-28 pt-4">
+        <section className="nc-glass-cream p-5">
           <div className="flex items-start gap-4">
-            <div className="flex size-16 items-center justify-center overflow-hidden rounded-[1rem] border border-[var(--nc-teal-border)] bg-[var(--nc-teal-tint)] text-lg font-display font-semibold text-[var(--nc-teal)]">
+            <div className="flex size-16 items-center justify-center overflow-hidden rounded-[1rem] bg-[rgba(6,16,23,0.94)] text-lg font-display font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
               <span>{initials}</span>
             </div>
 
             <div className="min-w-0 flex-1">
-              <div className="nc-label">Profil</div>
-              <div className="mt-2 text-[1.55rem] font-display font-semibold tracking-[-0.03em] text-[var(--nc-text)]">
+              <div className="nc-label text-[var(--nc-cream-dim)]">Profil</div>
+              <div className="mt-2 text-[1.7rem] font-display font-semibold tracking-[-0.03em] text-[var(--nc-cream-text)]">
                 {displayName}
               </div>
               {user?.email ? (
-                <div className="truncate text-sm text-[var(--nc-text-muted)]">{user.email}</div>
+                <div className="truncate text-sm text-[var(--nc-cream-muted)]">{user.email}</div>
               ) : null}
 
               {!user && !authLoading ? (
                 <button
                   onClick={() => router.push('/login')}
-                  className="mt-3 inline-flex items-center gap-2 rounded-[0.8rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-2 text-xs font-medium text-[var(--nc-red)]"
+                  className="mt-3 inline-flex items-center gap-2 rounded-[0.9rem] bg-[rgba(6,16,23,0.92)] px-3 py-2 text-xs font-medium text-white"
                 >
                   Logg inn for å synkronisere
                   <ArrowRight size={14} />
@@ -97,37 +91,52 @@ export default function ProfilePage() {
               ) : null}
             </div>
           </div>
-        </motion.div>
 
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { label: 'Nivå', value: fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1'), tone: 'text-[var(--nc-red)]' },
-            { label: 'Rekke', value: String(streak), tone: 'text-[var(--nc-text)]' },
-            {
-              label: 'Økter',
-              value: String(fingerprint?.totalSessionsCompleted ?? 0),
-              tone: 'text-[var(--nc-text)]',
-            },
-          ].map((stat) => (
-            <div key={stat.label} className="nc-glass px-3 py-4 text-center">
-              <div className={`text-[1.8rem] font-display font-semibold tracking-[-0.03em] ${stat.tone}`}>
-                {stat.value}
-              </div>
-              <div className="mt-1 text-[10px] font-medium tracking-[0.08em] text-[var(--nc-text-dim)]">
-                {stat.label}
+          <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                {
+                  label: 'Nivå',
+                  value: fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1'),
+                  tone: 'text-[var(--nc-signal)]',
+                },
+                { label: 'Rekke', value: String(streak), tone: 'text-white' },
+                {
+                  label: 'Økter',
+                  value: String(fingerprint?.totalSessionsCompleted ?? 0),
+                  tone: 'text-white',
+                },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-[1rem] border border-white/8 bg-white/5 px-3 py-4 text-center">
+                  <div className={`text-[1.8rem] font-display font-semibold tracking-[-0.03em] ${stat.tone}`}>
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="nc-glass-cream p-4">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <div className="nc-label text-[var(--nc-cream-dim)]">Nåværende nivå</div>
+              <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-cream-text)]">
+                {fingerprint?.currentLevel
+                  ? (LEVEL_LABELS[fingerprint.currentLevel] ?? fingerprint.currentLevel)
+                  : (status === 'loading' ? '–' : 'A1')}
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className="nc-glass-cream p-4">
-          <div className="nc-label text-nc-cream-dim">Nåværende nivå</div>
-          <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-cream-text)]">
-            {fingerprint?.currentLevel ? (LEVEL_LABELS[fingerprint.currentLevel] ?? fingerprint.currentLevel) : (status === 'loading' ? '–' : 'A1')}
+            <span className="rounded-full bg-[var(--nc-signal)] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">
+              Live
+            </span>
           </div>
-          <div className="mt-4 h-2 w-full overflow-hidden rounded-[0.4rem] bg-[rgba(4,14,8,0.12)]">
+          <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[rgba(6,16,23,0.08)]">
             <div
-              className="h-full rounded-[0.4rem] bg-[var(--nc-red)]"
+              className="h-full rounded-full bg-[var(--nc-signal)]"
               style={{
                 width: `${totalConcepts > 0 ? (masteredCount / totalConcepts) * 100 : 0}%`,
               }}
@@ -136,50 +145,51 @@ export default function ProfilePage() {
           <div className="mt-2 text-sm text-[var(--nc-cream-muted)]">
             {masteredCount} av {totalConcepts} konsepter mestret
           </div>
-        </div>
+        </section>
 
         {weakConcepts.length > 0 ? (
-          <div className="nc-glass p-4">
-            <div className="nc-label">Svake punkter</div>
-            <div className="mt-4 flex flex-col gap-3">
+          <section className="nc-glass p-4">
+            <div className="nc-label">Trenger mer trening</div>
+            <div className="mt-4 space-y-3">
               {weakConcepts.map((concept) => (
-                <div key={concept.id} className="flex items-center justify-between gap-3">
+                <div
+                  key={concept.id}
+                  className="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/5 px-3 py-3"
+                >
                   <span className="text-sm font-medium text-[var(--nc-text)]">{concept.label}</span>
-                  <span className="rounded-[0.7rem] bg-[var(--nc-red-tint)] px-3 py-1.5 text-xs font-medium text-[var(--nc-red)]">
+                  <span className="rounded-full bg-[var(--nc-red-tint)] px-3 py-1.5 text-xs font-medium text-[var(--nc-red)]">
                     {Math.round(concept.score)}%
                   </span>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         ) : null}
 
         {topErrors.length > 0 ? (
-          <div className="nc-glass p-4">
-            <div className="nc-label">Tilbakevendende feil</div>
+          <section className="nc-glass-cream p-4">
+            <div className="nc-label text-[var(--nc-cream-dim)]">Tilbakevendende feil</div>
             <div className="mt-4 flex flex-wrap gap-2">
               {topErrors.map((error) => (
                 <span
                   key={error.tag}
-                  className="nc-glass rounded-[0.72rem] px-3 py-2 text-xs font-medium text-[var(--nc-text)]"
+                  className="rounded-full border border-[rgba(6,16,23,0.10)] bg-white/60 px-3 py-2 text-xs font-medium text-[var(--nc-cream-text)]"
                 >
                   {error.tag} · {error.frequency}x
                 </span>
               ))}
             </div>
-          </div>
+          </section>
         ) : null}
 
-        {/* AI status */}
         <AIStatusSection />
 
-        {/* Input/production preference */}
-        <div className="nc-glass p-4">
-          <div className="nc-label">Øktstil</div>
-          <p className="mt-1 text-[12px] text-[var(--nc-text-dim)]">
-            Påvirker hvilke øvelsestyper som vises i øktene dine.
+        <section className="nc-glass-cream p-4">
+          <div className="nc-label text-[var(--nc-cream-dim)]">Øktstil</div>
+          <p className="mt-1 text-[12px] text-[var(--nc-cream-muted)]">
+            Påvirker hvilke øvelsestyper som vises oftere i planene dine.
           </p>
-          <div className="mt-4 grid grid-cols-3 gap-2">
+          <div className="mt-4 grid gap-2">
             {PREFERENCE_OPTIONS.map((opt) => {
               const current = fingerprint?.inputProductionPreference ?? 'balanced'
               const isActive = current === opt.value
@@ -190,38 +200,41 @@ export default function ProfilePage() {
                   aria-pressed={isActive}
                   onClick={() => {
                     if (!fingerprint) return
-                    const updated = { ...fingerprint, inputProductionPreference: opt.value, updatedAt: new Date().toISOString() }
+                    const updated = {
+                      ...fingerprint,
+                      inputProductionPreference: opt.value,
+                      updatedAt: new Date().toISOString(),
+                    }
                     setFingerprint(updated)
                     saveFingerprint(updated).catch(console.warn)
                   }}
-                  className="flex flex-col gap-1 rounded-[0.875rem] border px-3 py-2.5 text-left transition-colors"
+                  className="rounded-[1rem] border px-4 py-3 text-left transition-colors"
                   style={{
-                    background: isActive ? 'rgba(220,38,38,0.14)' : 'rgba(255,255,255,0.05)',
-                    borderColor: isActive ? 'rgba(220,38,38,0.40)' : 'rgba(255,255,255,0.09)',
+                    background: isActive
+                      ? 'linear-gradient(135deg, rgba(215,255,92,0.92) 0%, rgba(199,244,93,0.88) 100%)'
+                      : 'rgba(255,255,255,0.52)',
+                    borderColor: isActive ? 'rgba(215,255,92,0.42)' : 'rgba(6,16,23,0.10)',
+                    color: isActive ? 'var(--nc-signal-fg)' : 'var(--nc-cream-text)',
+                    boxShadow: isActive ? '0 14px 30px rgba(183,243,0,0.16)' : 'none',
                   }}
                 >
-                  <span
-                    className="text-[12px] font-bold"
-                    style={{ color: isActive ? 'var(--nc-red)' : 'var(--nc-text)' }}
-                  >
-                    {opt.label}
-                  </span>
-                  <span
-                    className="text-[10px] leading-snug"
-                    style={{ color: isActive ? 'var(--nc-text-muted)' : 'var(--nc-text-dim)' }}
+                  <div className="text-[13px] font-bold">{opt.label}</div>
+                  <div
+                    className="mt-1 text-[11px] leading-snug"
+                    style={{ color: isActive ? 'rgba(8,17,13,0.72)' : 'var(--nc-cream-muted)' }}
                   >
                     {opt.desc}
-                  </span>
+                  </div>
                 </button>
               )
             })}
           </div>
-        </div>
+        </section>
 
         {user ? (
           <button
             onClick={signOut}
-            className="inline-flex items-center justify-center gap-2 rounded-[var(--radius)] border border-[var(--nc-red)] px-4 py-3 text-sm font-medium text-[var(--nc-red)] transition-colors hover:bg-[var(--nc-red-tint)]"
+            className="nc-glass inline-flex items-center justify-center gap-2 rounded-[1rem] px-4 py-3 text-sm font-medium text-[var(--nc-text)]"
           >
             <LogOut size={15} />
             Logg ut
@@ -239,51 +252,69 @@ function AIStatusSection() {
 
   const modeInfo = {
     webllm: {
-      label: 'Lokal AI (WebGPU)',
-      desc: 'AI-modellen kjører direkte i nettleseren din. Ingen data sendes til noen server.',
-      color: 'var(--nc-green)',
-      badge: '🔒 Lokal',
+      label: 'Lokal AI',
+      desc: 'Modellen kjører i nettleseren. Dataene dine blir på enheten når lokal modus er aktiv.',
+      badge: 'Lokal',
+      tone: 'signal',
     },
     server: {
       label: 'Sky-AI',
-      desc: 'AI-svarene leveres via en skybasert tjeneste. Raskere, men krever nettforbindelse. Ingen personlige data lagres.',
-      color: 'var(--nc-teal)',
-      badge: '☁️ Sky',
+      desc: 'Svarene leveres via server for raskere respons og bredere modellstøtte.',
+      badge: 'Sky',
+      tone: 'teal',
     },
     none: {
       label: 'Maler',
-      desc: 'AI er ikke tilgjengelig akkurat nå. Du får faste svar basert på norske grammatikkregler. For bedre AI-opplevelse, bruk Chrome på en datamaskin med WebGPU-støtte.',
-      color: 'var(--nc-text-dim)',
-      badge: '📝 Maler',
+      desc: 'AI er ikke tilgjengelig akkurat nå. Appen faller tilbake til faste forklaringer og regler.',
+      badge: 'Fallback',
+      tone: 'muted',
     },
-  }
+  } as const
 
   const info = modeInfo[aiMode]
+  const toneStyles = {
+    signal: {
+      badgeBg: 'rgba(215,255,92,0.24)',
+      badgeColor: 'var(--nc-signal-fg)',
+      headingColor: 'var(--nc-text)',
+    },
+    teal: {
+      badgeBg: 'rgba(109,229,255,0.14)',
+      badgeColor: 'var(--nc-teal)',
+      headingColor: 'var(--nc-text)',
+    },
+    muted: {
+      badgeBg: 'rgba(255,255,255,0.08)',
+      badgeColor: 'var(--nc-text-dim)',
+      headingColor: 'var(--nc-text)',
+    },
+  } as const
+  const tone = toneStyles[info.tone]
 
   return (
-    <div className="nc-glass p-4">
-      <div className="nc-label">AI-status</div>
-      <div className="mt-3 flex items-start gap-3">
-        <span
-          className="shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold"
-          style={{ background: 'rgba(255,255,255,0.06)', color: info.color }}
-        >
-          {info.badge}
-        </span>
-        <div className="min-w-0 flex-1">
-          <div className="text-[13px] font-bold" style={{ color: info.color }}>
+    <section className="nc-glass p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="nc-label">AI-status</div>
+          <div className="mt-2 text-sm font-semibold" style={{ color: tone.headingColor }}>
             {info.label}
-            {state === 'loading' && (
+            {state === 'loading' ? (
               <span className="ml-2 text-[11px] font-normal text-[var(--nc-text-dim)]">
                 Laster modell…
               </span>
-            )}
+            ) : null}
           </div>
-          <p className="mt-1 text-pretty text-[11px] leading-relaxed text-[var(--nc-text-dim)]">
+          <p className="mt-2 text-[12px] leading-6 text-[var(--nc-text-muted)]">
             {info.desc}
           </p>
         </div>
+        <span
+          className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em]"
+          style={{ background: tone.badgeBg, color: tone.badgeColor }}
+        >
+          {info.badge}
+        </span>
       </div>
-    </div>
+    </section>
   )
 }

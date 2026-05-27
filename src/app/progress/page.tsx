@@ -107,14 +107,15 @@ export default function ProgressPage() {
   const masteredCount = byPhase.maintenance.length + byPhase.consolidation.length
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-24 pt-5">
-        <div>
-          <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">
+    <div className="nc-gradient-page flex min-h-dvh flex-col">
+      <main className="relative z-10 mx-auto flex w-full max-w-xl flex-1 flex-col gap-4 px-5 pb-24 pt-5">
+        <div className="nc-glass-cream p-5">
+          <div className="nc-label">Læringsgraf</div>
+          <h1 className="mt-2 text-balance text-[2rem] font-extrabold text-[var(--nc-cream-text)]">
             Fremgang
           </h1>
-          <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">
-            {levelLabel} — {masteredCount} av {totalCount} konsepter i befestning eller vedlikehold
+          <p className="text-pretty mt-2 text-[0.92rem] leading-7 text-[var(--nc-cream-muted)]">
+            {levelLabel} — {masteredCount} av {totalCount} konsepter ligger i befestning eller vedlikehold.
           </p>
         </div>
 

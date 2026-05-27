@@ -8,15 +8,11 @@ export function AIStatusBadge() {
 
   if (state === 'idle') return null
 
-  // Unavailable: static badge, muted styling — distinct from the animated 'ready' chip.
-  // No motion: unavailable is a discovered fact, not a progress event.
-  // Follow-up: split into three states (capability-gated vs. load-failed vs. loading)
-  // once the lazy-load architecture lands. For now one honest copy covers both
-  // unavailable paths without violating CLAUDE.md's no-silent-substitution rule.
   if (state === 'unavailable') {
     return (
-      <div className="rounded-[0.75rem] border border-nc-border bg-nc-card px-2.5 py-1.5 text-[10px] font-medium text-nc-text-dim">
-        AI unavailable — using templates
+      <div className="inline-flex items-center gap-2 rounded-full border border-[var(--nc-red-border)] bg-[rgba(255,106,85,0.12)] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--nc-red)]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[var(--nc-red)]" />
+        AI unavailable · templates
       </div>
     )
   }
@@ -27,8 +23,9 @@ export function AIStatusBadge() {
         initial={{ opacity: 0, y: -4 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -4 }}
-        className="rounded-[0.75rem] border border-nc-border bg-white px-2.5 py-1.5 text-[10px] font-medium text-nc-text-muted"
+        className="nc-chip-signal gap-2 rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em]"
       >
+        <span className={`h-1.5 w-1.5 rounded-full bg-[var(--nc-signal-fg)] ${state === 'loading' ? 'animate-pulse' : ''}`} />
         {state === 'loading' ? `AI ${loadingPct}%` : 'AI ready'}
       </motion.div>
     </AnimatePresence>

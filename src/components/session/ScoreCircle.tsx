@@ -5,13 +5,18 @@ import { useEffect, useState } from 'react'
 interface ScoreCircleProps {
   accuracy: number
   size?: number
+  tone?: 'dark' | 'light'
 }
 
-export function ScoreCircle({ accuracy, size = 172 }: ScoreCircleProps) {
+export function ScoreCircle({ accuracy, size = 172, tone = 'dark' }: ScoreCircleProps) {
   const [animated, setAnimated] = useState(0)
   const radius = (size - 16) / 2
   const circumference = 2 * Math.PI * radius
   const offset = circumference - (animated / 100) * circumference
+  const textColor = tone === 'light' ? 'var(--nc-cream-text)' : 'var(--nc-text)'
+  const subTextColor = tone === 'light' ? 'var(--nc-cream-muted)' : 'var(--nc-text-muted)'
+  const trackColor = tone === 'light' ? 'rgba(6,16,23,0.10)' : 'var(--nc-border)'
+  const fillColor = tone === 'light' ? 'rgba(247,251,245,0.96)' : 'white'
 
   useEffect(() => {
     const timeout = setTimeout(() => setAnimated(accuracy), 80)
@@ -24,14 +29,14 @@ export function ScoreCircle({ accuracy, size = 172 }: ScoreCircleProps) {
         cx={size / 2}
         cy={size / 2}
         r={(size - 28) / 2}
-        fill="white"
+        fill={fillColor}
       />
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="var(--nc-border)"
+        stroke={trackColor}
         strokeWidth={8}
       />
       <circle
@@ -39,7 +44,7 @@ export function ScoreCircle({ accuracy, size = 172 }: ScoreCircleProps) {
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="var(--nc-green)"
+        stroke="var(--nc-signal)"
         strokeWidth={8}
         strokeLinecap="round"
         strokeDasharray={circumference}
@@ -54,7 +59,7 @@ export function ScoreCircle({ accuracy, size = 172 }: ScoreCircleProps) {
         dominantBaseline="middle"
         style={{ fontFamily: 'var(--font-display), sans-serif', fontWeight: 800 }}
         fontSize={size * 0.24}
-        fill="var(--nc-text)"
+        fill={textColor}
       >
         {accuracy}
       </text>
@@ -64,7 +69,7 @@ export function ScoreCircle({ accuracy, size = 172 }: ScoreCircleProps) {
         textAnchor="middle"
         style={{ fontFamily: 'var(--font-body), sans-serif', fontWeight: 500 }}
         fontSize={size * 0.085}
-        fill="var(--nc-text-muted)"
+        fill={subTextColor}
       >
         accuracy
       </text>

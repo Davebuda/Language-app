@@ -13,3 +13,18 @@ public/audio/sentences/
 
 # Harness reports (generated, not committed)
 reports/
+
+# OMC state (agent orchestration)
+.omc/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Build logs
+.next-logs/
+
+# Test results (generated)
+test-results/
+
+# Audit screenshots
+audit-*.png

@@ -58,7 +58,7 @@ export function TopographicGrid() {
         if (alpha < 0.004) continue
 
         const nAmp = scale * 0.020 * (1 - p * 0.55)
-        ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`
+        ctx.strokeStyle = `rgba(17,24,32,${(alpha * 0.42).toFixed(3)})`
         ctx.lineWidth   = 0.55
         ctx.beginPath()
 
@@ -70,7 +70,11 @@ export function TopographicGrid() {
             Math.sin(a * 9.4 + k * 0.34 + t * 0.32 + 2.65) * nAmp * 0.21
           const x = cx + (rx + noise)        * Math.cos(a)
           const y = cy + (ry + noise * 0.52) * Math.sin(a)
-          seg === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
+          if (seg === 0) {
+            ctx.moveTo(x, y)
+          } else {
+            ctx.lineTo(x, y)
+          }
         }
         ctx.closePath()
         ctx.stroke()
@@ -85,7 +89,7 @@ export function TopographicGrid() {
       ;[orb.r1, orb.r2].forEach(r => {
         ctx.beginPath()
         ctx.arc(ox, oy, r, 0, Math.PI * 2)
-        ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+        ctx.strokeStyle = 'rgba(17,24,32,0.10)'
         ctx.lineWidth   = 0.6
         ctx.stroke()
       })
@@ -104,7 +108,12 @@ export function TopographicGrid() {
         const by = oy + orbit * Math.sin(angle)
         ctx.beginPath()
         ctx.arc(bx, by, bRadius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,255,255,${alpha})`
+        ctx.fillStyle =
+          alpha > 0.8
+            ? 'rgba(215,255,92,0.88)'
+            : alpha > 0.7
+              ? 'rgba(17,24,32,0.64)'
+              : 'rgba(17,24,32,0.34)'
         ctx.fill()
       })
     }

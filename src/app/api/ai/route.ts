@@ -13,6 +13,28 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY
 const GROQ_MODEL = process.env.GROQ_MODEL ?? 'llama-3.1-8b-instant'
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
+const rateLimitMap = new Map<string, number[]>()
+const RATE_LIMIT = 30
+const WINDOW_MS = 60_000
+let cleanupCounter = 0
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const timestamps = rateLimitMap.get(ip) ?? []
+  const recent = timestamps.filter(t => now - t < WINDOW_MS)
+  if (recent.length >= RATE_LIMIT) return false
+  recent.push(now)
+  rateLimitMap.set(ip, recent)
+  if (++cleanupCounter % 100 === 0) {
+    for (const [key, vals] of rateLimitMap) {
+      const filtered = vals.filter(t => now - t < WINDOW_MS)
+      if (filtered.length === 0) rateLimitMap.delete(key)
+      else rateLimitMap.set(key, filtered)
+    }
+  }
+  return true
+}
+
 async function groqComplete(
   system: string,
   messages: Array<{ role: string; content: string }>,
@@ -156,6 +178,14 @@ async function handleDetect(params: { text: string; level: CEFRLevel }) {
 }
 
 export async function POST(request: Request) {
+  const ip = request.headers.get('x-forwarded-for') ?? 'anonymous'
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: 'For mange forespørsler. Prøv igjen om litt.' },
+      { status: 429 },
+    )
+  }
+
   if (!GROQ_API_KEY) {
     return NextResponse.json({ error: 'AI not configured' }, { status: 503 })
   }
