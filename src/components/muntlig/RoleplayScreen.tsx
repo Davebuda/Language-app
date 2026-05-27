@@ -9,10 +9,13 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
 import { normaliseWord, tokenise } from '@/lib/speechMatchUtils'
-import { ROLEPLAY_SCENARIOS } from '@/lib/roleplayContent'
+import { getRoleplayScenarios } from '@/lib/roleplayContent'
 import type { RoleplayScenario, RoleplayTurn } from '@/lib/roleplayContent'
+import { rankScenariosByFocusOverlap, scoreFocusOverlap } from '@/lib/roleplay-focus-scoring'
 import type { ExerciseResult } from '@/types/session'
 import { markLaneDone } from '@/lib/lane-completion'
+import { useAuth } from '@/hooks/useAuth'
+import { logExerciseResult } from '@/lib/logEvents'
 
 const LISTEN_SECONDS = 5
 
@@ -30,9 +33,10 @@ function PulsingDot() {
 interface ScenarioCardProps {
   scenario: RoleplayScenario
   onSelect: (scenario: RoleplayScenario) => void
+  isRecommended?: boolean
 }
 
-function ScenarioCard({ scenario, onSelect }: ScenarioCardProps) {
+function ScenarioCard({ scenario, onSelect, isRecommended }: ScenarioCardProps) {
   return (
     <motion.button
       onClick={() => onSelect(scenario)}
@@ -52,9 +56,16 @@ function ScenarioCard({ scenario, onSelect }: ScenarioCardProps) {
               {scenario.titleEnglish}
             </p>
           </div>
-          <span className="rounded-full bg-[rgba(6,16,23,0.08)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]">
-            Voice
-          </span>
+          <div className="flex flex-col items-end gap-1.5">
+            {isRecommended ? (
+              <span className="rounded-full bg-[rgba(200,255,32,0.15)] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#C8FF20]">
+                Anbefalt
+              </span>
+            ) : null}
+            <span className="rounded-full bg-[rgba(6,16,23,0.08)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]">
+              Stemme
+            </span>
+          </div>
         </div>
         <p className="text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
           {scenario.setting}
@@ -437,6 +448,10 @@ export function RoleplayScreen() {
   const router = useRouter()
   const { recordResult } = useFingerprint()
   const { setFingerprint } = useFingerprintStore()
+  const { user } = useAuth()
+
+  const currentLevel = useFingerprintStore.getState().fingerprint?.currentLevel ?? 'A1'
+  const levelScenarios = getRoleplayScenarios(currentLevel)
 
   const [screenPhase, setScreenPhase] = useState<ScreenPhase>('selection')
   const [activeScenario, setActiveScenario] = useState<RoleplayScenario | null>(null)
@@ -468,6 +483,9 @@ export function RoleplayScreen() {
       errorTag: passed ? undefined : turn.errorTag,
     }
     recordResult(result)
+    if (user?.id) {
+      logExerciseResult(user.id, result)
+    }
 
     const newScores = [...scores, passed]
     setScores(newScores)
@@ -536,16 +554,22 @@ export function RoleplayScreen() {
               </div>
 
               <div className="flex flex-col gap-3">
-                {ROLEPLAY_SCENARIOS.map((scenario, i) => (
-                  <motion.div
-                    key={scenario.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.22, delay: i * 0.06 }}
-                  >
-                    <ScenarioCard scenario={scenario} onSelect={handleSelectScenario} />
-                  </motion.div>
-                ))}
+                {(() => {
+                  const fp = useFingerprintStore.getState().fingerprint
+                  const focus = fp?.weeklyFocus ?? []
+                  const ranked = rankScenariosByFocusOverlap(levelScenarios, focus)
+                  const topHasOverlap = focus.length > 0 && ranked.length > 0 && scoreFocusOverlap(ranked[0], focus) > 0
+                  return ranked.map((scenario, i) => (
+                    <motion.div
+                      key={scenario.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.22, delay: i * 0.06 }}
+                    >
+                      <ScenarioCard scenario={scenario} onSelect={handleSelectScenario} isRecommended={topHasOverlap && i === 0} />
+                    </motion.div>
+                  ))
+                })()}
               </div>
             </motion.div>
           ) : null}

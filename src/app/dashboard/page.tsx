@@ -192,9 +192,10 @@ export default function DashboardPage() {
         : 'Skriv i journalen',
       roleplay: focusLabel ? `Anbefalt for ${focusLabel}` : '3 scenarier tilgjengelig',
       reading: textsAtLevel > 0 ? `${textsAtLevel} tekster på ${levelLabel}-nivå` : 'Tekster tilgjengelig',
-      listen: 'Ikke eksponert på dashbordet',
-      drills: 'Ikke eksponert på dashbordet',
-      shadow: 'Ikke eksponert på dashbordet',
+      listen: 'Lytt og svar',
+      drills: 'Uttaleøvelser',
+      shadow: 'Skyggelesing',
+      uke: 'Ukens repetisjon',
     } satisfies Record<LaneId, string>
   }, [plan, fingerprint, activeGraph, levelLabel, dayOfWeek])
 
@@ -208,6 +209,7 @@ export default function DashboardPage() {
     listen: false,
     drills: false,
     shadow: false,
+    uke: true,
   }), [fingerprint?.weeklyFocus, focusSet.size])
 
   const uncompletedLanes = CORE_LANES
@@ -239,15 +241,19 @@ export default function DashboardPage() {
       : 'Laster…'
 
   const focusPreview = progressEntries.length > 0
-    ? progressEntries.slice(0, 3).map((entry) => ({
+    ? progressEntries.slice(0, 5).map((entry) => ({
       id: entry.conceptId,
       label: entry.label,
-      meta: entry.attemptsThisWeek > 0 ? `${entry.attemptsThisWeek} forsøk` : 'Ingen nye forsøk',
+      meta: (() => {
+        const deltaStr = entry.deltaDecayed > 0 ? `+${entry.deltaDecayed}` : `${entry.deltaDecayed}`
+        const attemptsStr = entry.attemptsThisWeek > 0 ? `${entry.attemptsThisWeek} forsøk` : 'Ingen nye forsøk'
+        return `${deltaStr} · ${attemptsStr}`
+      })(),
       stat: entry.deltaDecayed > 0 ? `+${entry.deltaDecayed}` : `${entry.deltaDecayed}`,
       tone: entry.deltaDecayed > 0 ? 'text-[var(--nc-signal-fg)]' : 'text-[var(--nc-cream-dim)]',
       color: undefined,
     }))
-    : activeConcepts.slice(0, 3).map((concept) => ({
+    : activeConcepts.slice(0, 5).map((concept) => ({
       id: concept.id,
       label: concept.label,
       meta: concept.phase,

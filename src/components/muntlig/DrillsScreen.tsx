@@ -10,6 +10,8 @@ import { DRILL_SETS } from '@/lib/drillContent'
 import type { DrillSet } from '@/lib/drillContent'
 import { markLaneDone } from '@/lib/lane-completion'
 import type { ExerciseResult } from '@/types/session'
+import { useAuth } from '@/hooks/useAuth'
+import { logExerciseResult } from '@/lib/logEvents'
 
 // ── Drill-set selection card ──────────────────────────────────────────────────
 
@@ -70,6 +72,7 @@ type ScreenPhase = 'selection' | 'drilling' | 'complete'
 export function DrillsScreen() {
   const router = useRouter()
   const { recordResult } = useFingerprint()
+  const { user } = useAuth()
 
   const [screenPhase, setScreenPhase] = useState<ScreenPhase>('selection')
   const [activeDrillSet, setActiveDrillSet] = useState<DrillSet | null>(null)
@@ -104,6 +107,9 @@ export function DrillsScreen() {
     }
 
     recordResult(result)
+    if (user?.id) {
+      logExerciseResult(user.id, result)
+    }
     setScores((prev) => [...prev, matchScore])
 
     const nextIndex = currentWordIndex + 1

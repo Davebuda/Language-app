@@ -216,7 +216,7 @@ describe('buildWeeklyCheckItems', () => {
 
     const sentences = allConcepts.map((cid) => makeSentence(`s-${cid}`, [cid]));
     const focusOutcomes = Object.fromEntries(
-      gradConcepts.map((cid) => [cid, { startScore: 60, endScore: 90, attempts: 8 }]),
+      gradConcepts.map((cid) => [cid, { startScore: 60, endScore: 90, attempts: 8, graduated: true }]),
     );
 
     const fp = makeFingerprint({

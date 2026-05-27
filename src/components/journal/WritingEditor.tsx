@@ -8,12 +8,11 @@ import type { WritingFeedback } from '@/ai/types'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { useFingerprint } from '@/hooks/useFingerprint'
-import { logError, aggregateErrorPatterns, updateConceptMastery } from '@/engine'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
+import { repairBatchFromSurface } from '@/engine/repair-from-surface'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
-import type { ErrorTag } from '@/types/taxonomy'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
 
@@ -148,35 +147,16 @@ export function WritingEditor() {
   function pushErrorsToFingerprint(result: WritingFeedback): void {
     if (!fingerprint || result.errors.length === 0) return
     const activeGraph = getGraphForLevel(fingerprint.currentLevel)
-    let updated = fingerprint
-    for (const err of result.errors) {
-      // P0.5-04: errorTagToConceptId always returns a concept-id (fallback to
-      // noun-gender), so unmapped AI tags no longer silently drop the error.
-      const conceptId = errorTagToConceptId(err.tag)
-      const node = activeGraph.concepts.find((c) => c.id === conceptId)
-      // logError first (only touches recentErrors/updatedAt), then mastery
-      updated = logError(updated, {
-        conceptId,
-        errorTag: err.tag as ErrorTag,
-        exerciseType: 'free-writing',
-        wrong: err.wrong,
-        correct: err.correct,
-      })
-      const updatedMastery = updateConceptMastery(
-        updated.conceptMastery[conceptId],
-        false,
-        node?.minAttempts ?? 15,
-        node?.minDays ?? 3,
-      )
-      updated = {
-        ...updated,
-        conceptMastery: { ...updated.conceptMastery, [conceptId]: { ...updatedMastery, conceptId } },
-        updatedAt: new Date().toISOString(),
-      }
-    }
-    const withPatterns = { ...updated, errorPatterns: aggregateErrorPatterns(updated) }
-    setFingerprint(withPatterns)
-    saveFingerprint(withPatterns).catch(console.warn)
+    const inputs = result.errors.map((err) => ({
+      surfaceKind: 'journal' as const,
+      errorTag: err.tag,
+      conceptId: errorTagToConceptId(err.tag),
+      wrong: err.wrong,
+      correct: err.correct,
+    }))
+    const updated = repairBatchFromSurface(fingerprint, inputs, activeGraph)
+    setFingerprint(updated)
+    saveFingerprint(updated).catch(console.warn)
   }
 
   async function handleAnalyze() {

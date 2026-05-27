@@ -7,11 +7,13 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { ListenRespondExercise } from '@/components/muntlig/ListenRespondExercise'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
-import { LISTEN_RESPOND_QUESTIONS } from '@/lib/listenRespondContent'
+import { getListenQuestions } from '@/lib/listenRespondContent'
 import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
 import { markLaneDone } from '@/lib/lane-completion'
 import { saveFingerprint } from '@/storage/indexeddb'
 import type { ExerciseResult } from '@/types/session'
+import { useAuth } from '@/hooks/useAuth'
+import { logExerciseResult } from '@/lib/logEvents'
 
 // ── Question selection card ───────────────────────────────────────────────────
 
@@ -58,14 +60,16 @@ export function ListenRespondScreen() {
   const router = useRouter()
   const { recordResult } = useFingerprint()
   const { fingerprint, setFingerprint } = useFingerprintStore()
+  const { user } = useAuth()
 
   const [screenPhase, setScreenPhase] = useState<ScreenPhase>('selection')
   const [activeQuestion, setActiveQuestion] = useState<ListenRespondQuestion | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [scores, setScores] = useState<ScoreRecord[]>([])
 
+  const levelQuestions = getListenQuestions(fingerprint?.currentLevel ?? 'A1')
   const focusSet = new Set(fingerprint?.weeklyFocus ?? [])
-  const sortedQuestions = [...LISTEN_RESPOND_QUESTIONS].sort((a, b) => {
+  const sortedQuestions = [...levelQuestions].sort((a, b) => {
     const aFocus = focusSet.has(a.conceptId) ? 0 : 1
     const bFocus = focusSet.has(b.conceptId) ? 0 : 1
     return aFocus - bFocus
@@ -95,6 +99,9 @@ export function ListenRespondScreen() {
         errorTag: correct ? undefined : activeQuestion.errorTag,
       }
       recordResult(result)
+      if (user?.id) {
+        logExerciseResult(user.id, result)
+      }
     }
 
     const newScores: ScoreRecord[] = [
@@ -208,7 +215,7 @@ export function ListenRespondScreen() {
               <ListenRespondExercise
                 question={activeQuestion}
                 index={currentIndex}
-                total={LISTEN_RESPOND_QUESTIONS.length}
+                total={levelQuestions.length}
                 onComplete={handleQuestionComplete}
               />
             </motion.div>

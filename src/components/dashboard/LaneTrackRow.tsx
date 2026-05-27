@@ -63,6 +63,12 @@ const LANE_CONFIG: Record<LaneId, { Icon: ElementType; name: string; href: strin
     href: '/shadow',
     accent: 'var(--nc-text-dim)',
   },
+  uke: {
+    Icon: Sparkles,
+    name: 'Ukens sjekk',
+    href: '/uke',
+    accent: 'var(--nc-signal)',
+  },
 }
 
 interface LaneTrackRowProps {

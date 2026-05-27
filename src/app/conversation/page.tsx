@@ -20,6 +20,9 @@ import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
 import type { ResponseConstraint } from '@/lib/constraints'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
+import { logExerciseResult } from '@/lib/logEvents'
+import type { ExerciseResult } from '@/types/session'
+import type { ErrorTag } from '@/types/taxonomy'
 
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
@@ -177,6 +180,19 @@ export default function ConversationPage() {
     setFingerprint(repaired)
     saveFingerprint(repaired).catch(console.warn)
     errorCountRef.current++
+    if (user?.id) {
+      const errResult: ExerciseResult = {
+        sessionId: dbSessionIdRef.current ?? 'conversation',
+        itemId: `conversation-correction-${Date.now()}`,
+        correct: false,
+        userAnswer: correction.original,
+        correctAnswer: correction.corrected,
+        timeTakenSeconds: 0,
+        conceptId: errorTagToConceptId(correction.errorTag),
+        errorTag: correction.errorTag as ErrorTag,
+      }
+      logExerciseResult(user.id, errResult)
+    }
   }
 
   function recordConstraintResult(constraintConceptId: string, met: boolean): void {
@@ -193,6 +209,18 @@ export default function ConversationPage() {
     }
     setFingerprint(newFp)
     saveFingerprint(newFp).catch(console.warn)
+    if (user?.id) {
+      const constraintExResult: ExerciseResult = {
+        sessionId: dbSessionIdRef.current ?? 'conversation',
+        itemId: `conversation-constraint-${constraintConceptId}-${Date.now()}`,
+        correct: met,
+        userAnswer: '',
+        correctAnswer: '',
+        timeTakenSeconds: 0,
+        conceptId: constraintConceptId,
+      }
+      logExerciseResult(user.id, constraintExResult)
+    }
   }
 
   useEffect(() => {

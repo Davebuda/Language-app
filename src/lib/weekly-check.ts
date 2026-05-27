@@ -39,11 +39,7 @@ export function buildWeeklyCheckItems(
   const lastWeekRecord = fp.weeklySprintHistory[0];
   const lastWeekGraduates = lastWeekRecord
     ? Object.entries(lastWeekRecord.focusOutcomes)
-        .filter(([conceptId, outcome]) => {
-          const node = graph.concepts.find((c) => c.id === conceptId);
-          if (!node) return false;
-          return outcome.endScore >= node.masteryThreshold;
-        })
+        .filter(([, outcome]) => outcome.graduated === true)
         .map(([conceptId]) => conceptId)
     : [];
 

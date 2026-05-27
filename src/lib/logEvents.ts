@@ -24,6 +24,17 @@ export function logSessionResults(userId: string, results: ExerciseResult[]): vo
   void _write(userId, results)
 }
 
+/**
+ * Fire-and-forget: write a single ExerciseResult row to learning_events_log.
+ * Convenience wrapper for surfaces that record one result at a time
+ * (conversation, roleplay, listen, drills, shadow).
+ * Auth users only — guests are silently skipped.
+ * Never throws; never blocks the caller.
+ */
+export function logExerciseResult(userId: string, result: ExerciseResult): void {
+  void _write(userId, [result])
+}
+
 async function _write(userId: string, results: ExerciseResult[]): Promise<void> {
   try {
     if (!results.length) return

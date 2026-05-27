@@ -11,6 +11,7 @@ import type { Sentence, ResolvedContent } from '@/types/content'
 import type { SessionItem, ExerciseResult } from '@/types/session'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
+import { filterSentencesByLevel } from '@/engine/scheduler'
 
 interface WeeklyCheckScreenProps {
   sentences: Record<string, Sentence>
@@ -18,14 +19,17 @@ interface WeeklyCheckScreenProps {
 }
 
 // Resolve a sentence for a SessionItem — picks the first sentence in the
-// pool that supports the item's exerciseType. Returns null if none found.
+// pool that supports the item's exerciseType, filtered to the learner's
+// current CEFR level. Returns null if none found.
 function resolveContent(
   item: SessionItem,
   sentences: Record<string, Sentence>,
   availableSentenceIds: Record<string, string[]>,
+  currentLevel: string,
 ): ResolvedContent | null {
   const conceptId = item.conceptIds[0] ?? ''
-  const sentenceIds = availableSentenceIds[conceptId] ?? []
+  const rawIds = availableSentenceIds[conceptId] ?? []
+  const sentenceIds = filterSentencesByLevel(rawIds, currentLevel, sentences)
   const isFillBlank = item.exerciseType === 'fill-in-blank'
 
   for (const id of sentenceIds) {
@@ -69,8 +73,8 @@ export function WeeklyCheckScreen({
 
   const currentContent: ResolvedContent | null = useMemo(() => {
     if (!currentItem) return null
-    return resolveContent(currentItem, sentences, availableSentenceIds)
-  }, [currentItem, sentences, availableSentenceIds])
+    return resolveContent(currentItem, sentences, availableSentenceIds, fp?.currentLevel ?? 'A1')
+  }, [currentItem, sentences, availableSentenceIds, fp?.currentLevel])
 
   // Weekly check session id — stable per mount
   const sessionId = useMemo(() => `weekly-check-${Date.now()}`, [])

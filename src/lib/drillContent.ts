@@ -19,7 +19,7 @@ export const DRILL_SETS: DrillSet[] = [
   {
     id: 'kj-sound',
     targetSound: 'kj-lyden',
-    conceptId: 'common-prepositions',
+    conceptId: 'pronunciation',
     description: 'Lyden som i kjøpe og kjenne — en av de vanskeligste for engelsktalende.',
     words: [
       { norwegian: 'kjøpe', english: 'to buy', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjope.mp3` },
@@ -32,7 +32,7 @@ export const DRILL_SETS: DrillSet[] = [
   {
     id: 'sj-sound',
     targetSound: 'sj-lyden',
-    conceptId: 'basic-adjectives',
+    conceptId: 'pronunciation',
     description: 'Lyden som i sjø og skjorte — lik "sh" på engelsk men litt annerledes.',
     words: [
       { norwegian: 'sjø', english: 'lake/sea', targetPhoneme: 'sj', audioUrl: `${A}/drill-sjo.mp3` },
@@ -45,7 +45,7 @@ export const DRILL_SETS: DrillSet[] = [
   {
     id: 'oe-sound',
     targetSound: 'ø-lyden',
-    conceptId: 'noun-gender',
+    conceptId: 'pronunciation',
     description: 'Vokalen ø — finnes ikke på engelsk. Rund munnen som for "o" mens du sier "e".',
     words: [
       { norwegian: 'øl', english: 'beer', targetPhoneme: 'ø', audioUrl: `${A}/drill-ol.mp3` },
@@ -58,7 +58,7 @@ export const DRILL_SETS: DrillSet[] = [
   {
     id: 'retroflex',
     targetSound: 'retroflekse lyder',
-    conceptId: 'present-tense-regular',
+    conceptId: 'pronunciation',
     description: 'rd, rt, rn, rl — tungen rulles bakover. Typisk for Oslo-dialekt.',
     words: [
       { norwegian: 'bord', english: 'table', targetPhoneme: 'rd', audioUrl: `${A}/drill-bord.mp3` },

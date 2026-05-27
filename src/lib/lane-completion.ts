@@ -1,4 +1,4 @@
-export type LaneId = 'session' | 'journal' | 'conversation' | 'roleplay' | 'reading' | 'listen' | 'drills' | 'shadow'
+export type LaneId = 'session' | 'journal' | 'conversation' | 'roleplay' | 'reading' | 'listen' | 'drills' | 'shadow' | 'uke'
 
 const STORAGE_KEY = 'norskcoach_lane_completion'
 
@@ -12,7 +12,7 @@ function todayKey(): string {
 }
 
 function emptyLanes(): Record<LaneId, boolean> {
-  return { session: false, journal: false, conversation: false, roleplay: false, reading: false, listen: false, drills: false, shadow: false }
+  return { session: false, journal: false, conversation: false, roleplay: false, reading: false, listen: false, drills: false, shadow: false, uke: false }
 }
 
 function readState(): LaneState {

@@ -11,7 +11,7 @@ const AVG_EXERCISE_SECONDS = 45; // average exercise duration
 
 const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B2'] as const;
 
-function filterSentencesByLevel(sentenceIds: string[], maxLevel: string, sentences: Record<string, { cefrLevel: string }>): string[] {
+export function filterSentencesByLevel(sentenceIds: string[], maxLevel: string, sentences: Record<string, { cefrLevel: string }>): string[] {
   const maxIdx = LEVEL_ORDER.indexOf(maxLevel as typeof LEVEL_ORDER[number]);
   if (maxIdx < 0) return sentenceIds;
   return sentenceIds.filter(id => {

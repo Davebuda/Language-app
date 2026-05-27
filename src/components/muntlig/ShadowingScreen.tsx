@@ -10,6 +10,8 @@ import { useFingerprintStore } from '@/stores/fingerprint-store'
 import type { Sentence } from '@/types/content'
 import { markLaneDone } from '@/lib/lane-completion'
 import type { ExerciseResult } from '@/types/session'
+import { useAuth } from '@/hooks/useAuth'
+import { logExerciseResult } from '@/lib/logEvents'
 
 const SESSION_SIZE = 5
 
@@ -32,6 +34,7 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
   const router = useRouter()
   const { fingerprint, recordResult } = useFingerprint()
   const { status } = useFingerprintStore()
+  const { user } = useAuth()
 
   // Pick 5 sentences once per mount — stable via useMemo with no deps
   // (re-selecting only when fingerprint level is first known)
@@ -65,7 +68,7 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
     const sentence = sentences[currentIndex]
     if (!sentence) return
 
-    const conceptId = sentence.conceptIds[0] ?? 'personal-pronouns'
+    const conceptId = sentence.conceptIds[0] ?? 'pronunciation'
     const correct = matchScore >= 0.7
 
     const result: ExerciseResult = {
@@ -81,6 +84,9 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
     }
 
     recordResult(result)
+    if (user?.id) {
+      logExerciseResult(user.id, result)
+    }
     setScores((prev) => [...prev, matchScore])
 
     const nextIndex = currentIndex + 1
