@@ -398,6 +398,14 @@
 
 }
 
+/* ── Block transition interstitial keyframe ── */
+@keyframes nc-block-fade {
+  0%   { opacity: 0; transform: translateY(-6px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  70%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
 @layer utilities {
   .text-balance { text-wrap: balance; }
 }

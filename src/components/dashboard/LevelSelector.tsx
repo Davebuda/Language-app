@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { saveFingerprint } from '@/storage/indexeddb'
+import { seedInitialMastery } from '@/engine/fingerprint'
+import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { ensureWeekOpen } from '@/engine/weekly-sprint'
 import type { CEFRLevel } from '@/types/fingerprint'
 
 const LEVELS: { value: CEFRLevel; label: string; desc: string; comingSoon?: boolean }[] = [
@@ -26,12 +29,15 @@ export function LevelSelector({ variant, onClose }: LevelSelectorProps) {
   async function choose(level: CEFRLevel) {
     if (!fingerprint || selecting) return
     setSelecting(true)
-    const updated = {
+    let updated = {
       ...fingerprint,
       currentLevel: level,
       levelSetByUser: true,
       updatedAt: new Date().toISOString(),
     }
+    const graph = getGraphForLevel(level)
+    updated = seedInitialMastery(updated, graph)
+    updated = ensureWeekOpen(updated, graph)
     setFingerprint(updated)
     await saveFingerprint(updated).catch(console.warn)
     setSelecting(false)

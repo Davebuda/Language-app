@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0",
+  "language": "Norwegian Bokmål",
+  "concepts": [
+    {
+      "id": "academic-writing",
+      "label": "Academic register (formal hedging and citation language)",
+      "description": "Formal academic Norwegian uses hedging verbs (hevde, antyde, indikere), nominal style (nominalisering), distancing constructions (det kan hevdes at, i henhold til), and citation patterns (ifølge, som påpekt av). Mastery means producing written prose that reads as credentialed rather than conversational.",
+      "cefrLevel": "B2",
+      "prerequisites": ["formal-informal-register", "complex-subordination"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["wrong-word-same-category", "word-order", "meaning-misunderstood"]
+    },
+    {
+      "id": "nuanced-register",
+      "label": "Nuanced register switching (De/Dem vs du/deg)",
+      "description": "Recognising when to deploy the formal second-person address De/Dem (rare but expected in official letters, elderly interlocutors, ceremonial contexts) versus the universal du/deg, and correctly choosing passive -s, nominalisation, and sentence-level formality markers to match the social register of the situation.",
+      "cefrLevel": "B2",
+      "prerequisites": ["formal-informal-register", "s-passive-vs-bli-passive"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["pronoun-choice", "wrong-word-same-category", "meaning-misunderstood"]
+    },
+    {
+      "id": "advanced-passive",
+      "label": "Advanced passive constructions (agent deletion, stative passive)",
+      "description": "Extended passive use beyond basic bli + past participle: agent deletion with purpose (informasjonen holdes tilbake), stative passive with 'være' describing a resultant state (døren var låst da vi kom), and impersonal passive (det snakkes mye om dette) that deletes the subject entirely.",
+      "cefrLevel": "B2",
+      "prerequisites": ["s-passive-vs-bli-passive", "past-perfect"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["verb-tense", "verb-conjugation", "word-order"]
+    },
+    {
+      "id": "complex-argumentation",
+      "label": "Complex argumentation (concessive and contrastive markers)",
+      "description": "Building multi-clause argumentative sentences using concessive subordinators (selv om, til tross for at, enda, skjønt) and contrastive discourse connectors (derimot, imidlertid, på den annen side, likevel). Correct word order must be maintained in each sub-clause even when the sentence spans three or more clauses.",
+      "cefrLevel": "B2",
+      "prerequisites": ["complex-subordination", "discourse-markers"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["word-order", "reading-parsing", "wrong-word-same-category"]
+    },
+    {
+      "id": "norwegian-idioms",
+      "label": "Advanced idiomatic expressions and their register",
+      "description": "A productive command of less transparent Norwegian idioms: å bite i det sure eplet (bite the bullet), det er ikke gratis (there's a price to pay), å ha hendene fulle (have one's hands full), å slå to fluer i én smekk (kill two birds), å ta tyren ved hornene (take the bull by the horns). Includes recognising when an idiom is too informal for the context.",
+      "cefrLevel": "B2",
+      "prerequisites": ["idiomatic-expressions", "formal-informal-register"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["meaning-misunderstood", "wrong-word-same-category", "reading-parsing"]
+    },
+    {
+      "id": "advanced-word-order",
+      "label": "Advanced word order (topicalisation, focus fronting)",
+      "description": "Deliberate manipulation of Norwegian V2 for rhetorical effect: topicalising objects or adverbials to create contrast (Den boken har jeg ikke lest), focus fronting to emphasise information (Det var nettopp det jeg mente), and left-dislocation for discourse cohesion (Den saken, den er avgjort). Learners must distinguish motivated fronting from V2 errors.",
+      "cefrLevel": "B2",
+      "prerequisites": ["cleft-sentences", "complex-subordination"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["word-order", "reading-parsing", "meaning-misunderstood"]
+    },
+    {
+      "id": "reported-speech-advanced",
+      "label": "Advanced reported speech (tense backshift, speech-act verbs)",
+      "description": "Full command of indirect speech: tense backshift across embedded clauses (hun sa at hun hadde sett det, ikke at hun ser det), selecting the right speech-act verb (hevde, innrømme, nekte, bemerke, understreke) to preserve the pragmatic force of the original utterance, and embedding indirect yes/no questions (han spurte om vi hadde tid).",
+      "cefrLevel": "B2",
+      "prerequisites": ["indirect-questions", "past-perfect"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["verb-tense", "word-order", "wrong-word-same-category"]
+    },
+    {
+      "id": "subjunctive-mood",
+      "label": "Counterfactual constructions (om bare, hvis jeg hadde)",
+      "description": "Norwegian counterfactual conditionals use past tense (eller past perfect) to signal unreality: 'Hvis jeg hadde visst det, ville jeg ha sagt ifra.' 'Om bare hun kom!' The pattern extends to concessive hypotheticals (selv om det var sant, ville det ikke hjelpe) and wish constructions with preterite modal (jeg skulle ønske dette fantes).",
+      "cefrLevel": "B2",
+      "prerequisites": ["subjunctive-equivalents", "complex-subordination"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["verb-tense", "modal-verb", "word-order"]
+    },
+    {
+      "id": "text-cohesion",
+      "label": "Text cohesion (anaphoric reference and logical connectors)",
+      "description": "Paragraph-level coherence through correct use of anaphoric pronouns (det, den, dette, disse), demonstrative reference (sistnevnte, førstnevnte), and logical connectors signalling cause (følgelig, dermed), contrast (dog, men derimot), sequence (for det første … for det andre), and summary (kort sagt, oppsummert). Errors here produce grammatically correct but incoherent prose.",
+      "cefrLevel": "B2",
+      "prerequisites": ["complex-argumentation", "discourse-markers"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["reading-parsing", "meaning-misunderstood", "wrong-word-same-category"]
+    },
+    {
+      "id": "advanced-verb-forms",
+      "label": "Advanced verb forms (present participle as adjective, compound past participle)",
+      "description": "Using the present participle -ende attributively (en oppsiktsvekkende uttalelse, et beroligende svar) and understanding agreement restrictions (participle-as-adjective takes -e in all definite/plural contexts). Also covers long-form past participle compounds used predicatively (avisen er godt skrevet) and the distinction between passive past participle and pure adjective (døren er lukket vs. noen lukket døren).",
+      "cefrLevel": "B2",
+      "prerequisites": ["present-participle", "advanced-passive"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["adjective-agreement", "verb-tense", "spelling"]
+    },
+    {
+      "id": "stylistic-variation",
+      "label": "Stylistic variation (rhetorical questions, parentheticals, sentence rhythm)",
+      "description": "Conscious control of prose texture: varying sentence length between short declaratives and long periodic sentences for rhythm, using rhetorical questions to engage the reader (Hvorfor er dette viktig?), inserting parenthetical remarks (som nevnt ovenfor, med andre ord) without disturbing the main clause V2 requirement, and avoiding monotonous subject-initial patterns.",
+      "cefrLevel": "B2",
+      "prerequisites": ["academic-writing", "text-cohesion"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["word-order", "reading-parsing", "meaning-misunderstood"]
+    },
+    {
+      "id": "professional-norwegian",
+      "label": "Professional Norwegian (workplace email and meeting register)",
+      "description": "The conventions of Norwegian workplace communication: opening and closing formulas for formal email (Jeg viser til din henvendelse av …, Med vennlig hilsen), meeting-room phrases (ta ordet, gi ordet videre, vi er enige om at), and the particular mid-formality of Norwegian office culture — less stiff than German but more precise than informal speech. Includes correct use of passive and nominalised verbs as markers of professional register.",
+      "cefrLevel": "B2",
+      "prerequisites": ["nuanced-register", "academic-writing"],
+      "masteryThreshold": 85,
+      "minAttempts": 20,
+      "minDays": 5,
+      "errorTags": ["wrong-word-same-category", "meaning-misunderstood", "word-order"]
+    }
+  ]
+}

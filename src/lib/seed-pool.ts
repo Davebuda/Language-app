@@ -12,6 +12,7 @@
 
 import a1Raw from '@content/sentences/a1.json'
 import a2Raw from '@content/sentences/a2.json'
+import b1Raw from '@content/sentences/b1.json'
 import type { Sentence } from '@/types/content'
 
 interface RawSentence {
@@ -46,9 +47,14 @@ function mapRow(raw: RawSentence): Sentence {
   }
 }
 
+let b2Raw: RawSentence[] = []
+try { b2Raw = require('@content/sentences/b2.json') } catch { /* B2 corpus may not exist yet */ }
+
 const RAW: RawSentence[] = [
   ...(a1Raw as RawSentence[]),
   ...(a2Raw as RawSentence[]),
+  ...(b1Raw as RawSentence[]),
+  ...b2Raw,
 ]
 
 export const SEED_SENTENCES: Record<string, Sentence> = {}

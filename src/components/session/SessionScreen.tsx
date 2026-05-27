@@ -22,7 +22,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import type { Sentence } from '@/types/content'
-import type { ExerciseResult } from '@/types/session'
+import type { ExerciseResult, SessionBlock, SessionBlockType } from '@/types/session'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 
 interface SessionScreenProps {
@@ -53,6 +53,7 @@ export function SessionScreen({
     currentItem,
     currentContent,
     currentItemIndex,
+    currentBlock,
     isInRepair,
     repairPlan,
     startNewSession,
@@ -63,6 +64,9 @@ export function SessionScreen({
   const lastResultRef = useRef<ExerciseResult | null>(null)
   const sessionStartedRef = useRef(false)
   const [exitDialogOpen, setExitDialogOpen] = useState(false)
+  // Track block transitions for the interstitial overlay
+  const prevBlockIndexRef = useRef<number | null>(null)
+  const [blockTransition, setBlockTransition] = useState<{ label: string } | null>(null)
   const { fingerprint } = useFingerprintStore()
 
   useEffect(() => {
@@ -87,6 +91,21 @@ export function SessionScreen({
       router.push('/session/complete')
     }
   }, [isComplete, router, session, totalItems])
+
+  // Show a brief interstitial when the learner crosses a block boundary
+  useEffect(() => {
+    if (!currentBlock) return
+    const prev = prevBlockIndexRef.current
+    if (prev !== null && prev !== currentBlock.blockIndex) {
+      const icons: Record<SessionBlockType, string> = { lytt: '🎧', lær: '✏️', snakk: '🗣️' }
+      const icon = icons[currentBlock.block.type]
+      setBlockTransition({ label: `Bra! Nå: ${icon} ${currentBlock.block.label}` })
+      const timer = setTimeout(() => setBlockTransition(null), 1500)
+      prevBlockIndexRef.current = currentBlock.blockIndex
+      return () => clearTimeout(timer)
+    }
+    prevBlockIndexRef.current = currentBlock.blockIndex
+  }, [currentBlock])
 
   function handleResult(result: ExerciseResult) {
     lastResultRef.current = result
@@ -161,10 +180,28 @@ export function SessionScreen({
             </div>
             <AIStatusBadge />
           </div>
+          {/* Block indicator strip — shown only when the session has blocks */}
+          {session?.blocks && session.blocks.length > 0 && currentBlock && (
+            <BlockIndicatorStrip
+              blocks={session.blocks}
+              activeBlockIndex={currentBlock.blockIndex}
+            />
+          )}
         </div>
       </header>
 
       <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-4 py-5">
+        {/* Block transition interstitial — fades in/out over 300ms via CSS */}
+        {blockTransition && (
+          <div
+            className="pointer-events-none absolute inset-x-0 top-[7rem] z-10 flex justify-center"
+            style={{ animation: 'nc-block-fade 1.5s ease forwards' }}
+          >
+            <div className="rounded-[1rem] bg-[var(--nc-card)] px-5 py-3 text-[15px] font-semibold text-[var(--nc-text)] shadow-lg">
+              {blockTransition.label}
+            </div>
+          </div>
+        )}
         {!session ? (
           <LoadingSkeleton />
         ) : totalItems === 0 ? (
@@ -173,6 +210,15 @@ export function SessionScreen({
           <LoadingSkeleton />
         ) : currentItem && currentContent ? (
           <>
+            {/* Block header — shown only when session has blocks */}
+            {currentBlock && (
+              <BlockHeader
+                type={currentBlock.block.type}
+                label={currentBlock.block.label}
+                current={currentBlock.positionInBlock + 1}
+                total={currentBlock.block.items.length}
+              />
+            )}
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentItemIndex}
@@ -237,6 +283,61 @@ function EmptyState() {
       <p className="max-w-xs text-sm leading-7 text-nc-text-muted">
         Ingen ovelser tilgjengelig enna. Innholdet blir seedet snart.
       </p>
+    </div>
+  )
+}
+
+const BLOCK_ICONS: Record<SessionBlockType, string> = {
+  lytt: '🎧',
+  lær: '✏️',
+  snakk: '🗣️',
+}
+
+function BlockHeader({
+  type,
+  label,
+  current,
+  total,
+}: {
+  type: SessionBlockType
+  label: string
+  current: number
+  total: number
+}) {
+  return (
+    <div className="flex items-center gap-2 px-1 py-1 text-[13px] text-[var(--nc-text-muted)]">
+      <span aria-hidden="true">{BLOCK_ICONS[type]}</span>
+      <span className="font-semibold text-[var(--nc-text)]">{label}</span>
+      <span className="tabular-nums">
+        {current} / {total}
+      </span>
+    </div>
+  )
+}
+
+function BlockIndicatorStrip({
+  blocks,
+  activeBlockIndex,
+}: {
+  blocks: SessionBlock[]
+  activeBlockIndex: number
+}) {
+  return (
+    <div className="mt-1.5 flex items-center gap-1.5">
+      {blocks.map((block, i) => (
+        <div
+          key={block.id}
+          title={block.label}
+          className={[
+            'flex h-1 flex-1 items-center justify-center rounded-full transition-colors duration-300',
+            i < activeBlockIndex
+              ? 'bg-[var(--nc-teal)]'
+              : i === activeBlockIndex
+                ? 'bg-[var(--nc-teal)] opacity-70'
+                : 'bg-[var(--nc-border)]',
+          ].join(' ')}
+        />
+      ))}
     </div>
   )
 }

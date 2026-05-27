@@ -65,6 +65,22 @@ export const DEFAULT_SESSION_RECIPE: SessionRecipe = {
 
 export type SessionStatus = 'active' | 'completed' | 'abandoned';
 
+export type SessionBlockType = 'lytt' | 'lær' | 'snakk';
+
+export interface SessionBlock {
+  id: string;
+  type: SessionBlockType;
+  label: string;
+  items: SessionItem[];
+}
+
+export const LEVEL_BLOCK_SIZES: Record<CEFRLevel, Record<SessionBlockType, number>> = {
+  A1: { lytt: 5, lær: 15, snakk: 5 },
+  A2: { lytt: 6, lær: 13, snakk: 6 },
+  B1: { lytt: 7, lær: 11, snakk: 7 },
+  B2: { lytt: 8, lær: 9, snakk: 8 },
+};
+
 export interface Session {
   id: string;
   userId: string;
@@ -76,6 +92,7 @@ export interface Session {
   completedItemIds: string[];
   level: CEFRLevel;
   primaryFocus?: string;        // e.g. "dative case" — main concept being targeted
+  blocks?: SessionBlock[];
 }
 
 export interface ExerciseResult {

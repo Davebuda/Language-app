@@ -276,24 +276,12 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* ── B1/B2 graph notice ── */}
-        <AnimatePresence>
-          {(fingerprint?.currentLevel === 'B1' || fingerprint?.currentLevel === 'B2') && (
-            <motion.div
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="nc-glass px-4 py-3"
-            >
-              <p className="text-[12px] leading-6 text-[var(--nc-text-muted)] text-pretty">
-                <span className="font-semibold text-[var(--nc-text)]">
-                  {fingerprint.currentLevel}-innhold er under utvikling.
-                </span>{' '}
-                Du øver på A2-materiale med høyere intensitet inntil det er klart.
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* ── Level fallback notice (only shows for incomplete levels) ── */}
+        {fingerprint?.currentLevel === 'B2' && (
+          <div role="status" className="rounded-[0.875rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[13px] leading-relaxed text-[var(--nc-text-muted)]">
+            B2-innhold er under utvikling. Du øver på B1-materiale med høyere intensitet inntil det er klart.
+          </div>
+        )}
 
         {/* ── COACH HERO CARD — the single recommendation ── */}
         {recommendation && <CoachHeroCard recommendation={recommendation} />}

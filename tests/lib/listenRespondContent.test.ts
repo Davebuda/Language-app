@@ -3,14 +3,17 @@ import { LISTEN_RESPOND_QUESTIONS } from '@/lib/listenRespondContent'
 import { ALL_ERROR_TAGS } from '@/types/taxonomy'
 import a1GraphJson from '@content/concepts/a1-graph.json'
 import a2GraphJson from '@content/concepts/a2-graph.json'
+import b1GraphJson from '@content/concepts/b1-graph.json'
 import type { ConceptGraph } from '@/types/concepts'
 
 const a1Graph = a1GraphJson as ConceptGraph
 const a2Graph = a2GraphJson as ConceptGraph
+const b1Graph = b1GraphJson as ConceptGraph
 
 const ALL_CONCEPT_IDS = new Set([
   ...a1Graph.concepts.map((c) => c.id),
   ...a2Graph.concepts.map((c) => c.id),
+  ...b1Graph.concepts.map((c) => c.id),
 ])
 
 describe('LISTEN_RESPOND_QUESTIONS — concept-tag validity', () => {

@@ -7,7 +7,7 @@ import { useFingerprint } from '@/hooks/useFingerprint';
 import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
 import { emitEvent } from '@/lib/events';
-import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe } from '@/types/session';
+import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe, SessionBlock } from '@/types/session';
 import type { Sentence, ResolvedContent } from '@/types/content';
 import { getGraphForLevel } from '@/lib/concept-graph-loader';
 
@@ -79,6 +79,31 @@ export function useSession(
   const { session, currentItemIndex, isInRepair, repairPlan } = sessionStore;
   const currentItem = session?.items[currentItemIndex] ?? null;
   const currentContent = currentItem ? contentCache.current.get(currentItem.id) : undefined;
+
+  // Compute which block the current item belongs to and its 0-based position within
+  // that block. Returns null when the session has no blocks (backward compatibility).
+  const currentBlock: {
+    block: SessionBlock;
+    blockIndex: number;
+    positionInBlock: number;
+  } | null = (() => {
+    const blocks = session?.blocks;
+    if (!blocks || blocks.length === 0) return null;
+    let offset = 0;
+    for (let i = 0; i < blocks.length; i++) {
+      const block = blocks[i];
+      if (!block) continue;
+      const blockSize = block.items.length;
+      if (currentItemIndex < offset + blockSize) {
+        return { block, blockIndex: i, positionInBlock: currentItemIndex - offset };
+      }
+      offset += blockSize;
+    }
+    // currentItemIndex is past all blocks (session complete) — return last block boundary
+    const lastBlock = blocks[blocks.length - 1];
+    if (!lastBlock) return null;
+    return { block: lastBlock, blockIndex: blocks.length - 1, positionInBlock: lastBlock.items.length };
+  })();
 
   // Re-index sentences by concept whenever the map changes
   useEffect(() => {
@@ -330,6 +355,7 @@ export function useSession(
     currentItem,
     currentContent,
     currentItemIndex,
+    currentBlock,
     isInRepair,
     repairPlan,
     startNewSession,

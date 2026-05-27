@@ -56,11 +56,12 @@ export function loadContentSentences(): {
   const a1 = readJson(path.join(contentDir, 'a1.json'))
   const a2 = readJson(path.join(contentDir, 'a2.json'))
   const b1 = readJson(path.join(contentDir, 'b1.json'))
+  const b2 = readJson(path.join(contentDir, 'b2.json'))
 
   const sentences: Record<string, Sentence> = {}
   const availableSentenceIds: Record<string, string[]> = {}
 
-  for (const raw of [...a1, ...a2, ...b1]) {
+  for (const raw of [...a1, ...a2, ...b1, ...b2]) {
     const s = mapRow(raw)
     sentences[s.id] = s
     for (const conceptId of s.conceptIds) {

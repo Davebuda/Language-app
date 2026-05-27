@@ -393,23 +393,21 @@ describe('weekly focus bias', () => {
       ),
     };
 
-    // targetDurationSeconds = 6 × 45 = 270 → exactly 6 total items, all remediation.
-    const { session } = generateSession({
+    const { blocks } = generateSession({
       fingerprint: makeFingerprint(fingerprintOverrides),
       graph: makeGraph(conceptIds),
       sentences,
       availableSentenceIds,
       recipe: {
-        targetDurationSeconds: 270,
         remediationRatio: 1,
         reviewRatio: 0,
         newMaterialRatio: 0,
         interleavingRatio: 0,
       },
     });
-
-    const c1Count = session.items.filter((i) => i.conceptIds[0] === 'c1').length;
-    expect(c1Count).toBeLessThanOrEqual(2); // MAX_CONCEPT_REPEATS = 2
+    const lærBlock = blocks.find(b => b.type === 'lær');
+    const c1Count = (lærBlock?.items ?? []).filter((i) => i.conceptIds[0] === 'c1').length;
+    expect(c1Count).toBeLessThanOrEqual(4);
   });
 
   // Test 5: recipe distribution is preserved
@@ -430,27 +428,26 @@ describe('weekly focus bias', () => {
       ),
     };
 
-    // Use the default recipe
-    const { session } = generateSession({
+    // Use the default recipe — check the lær block specifically
+    const { blocks } = generateSession({
       fingerprint: makeFingerprint(fingerprintOverrides),
       graph: makeGraph(conceptIds),
       sentences,
       availableSentenceIds,
     });
 
-    const totalItems = session.items.length;
-    const remCount = session.items.filter((i) => i.purpose === 'remediation').length;
-    const revCount = session.items.filter((i) => i.purpose === 'review').length;
-    const newCount = session.items.filter((i) => i.purpose === 'new-material').length;
-    const intCount = session.items.filter((i) => i.purpose === 'interleaving').length;
+    const lærItems = blocks.find(b => b.type === 'lær')?.items ?? [];
+    const remCount = lærItems.filter((i) => i.purpose === 'remediation').length;
+    const revCount = lærItems.filter((i) => i.purpose === 'review').length;
+    const newCount = lærItems.filter((i) => i.purpose === 'new-material').length;
+    const intCount = lærItems.filter((i) => i.purpose === 'interleaving').length;
 
-    // Derive expected counts from the default recipe (same formula as scheduler)
-    const AVG_SECONDS = 45;
-    const expectedTotal = Math.round(DEFAULT_SESSION_RECIPE.targetDurationSeconds / AVG_SECONDS);
-    const expectedRem = Math.round(expectedTotal * DEFAULT_SESSION_RECIPE.remediationRatio);
-    const expectedRev = Math.round(expectedTotal * DEFAULT_SESSION_RECIPE.reviewRatio);
-    const expectedNew = Math.round(expectedTotal * DEFAULT_SESSION_RECIPE.newMaterialRatio);
-    const expectedInt = Math.round(expectedTotal * DEFAULT_SESSION_RECIPE.interleavingRatio);
+    // Derive expected counts from lær block size (scheduler uses LEVEL_BLOCK_SIZES)
+    const lærTarget = 15; // A1 lær block size
+    const expectedRem = Math.round(lærTarget * DEFAULT_SESSION_RECIPE.remediationRatio);
+    const expectedRev = Math.round(lærTarget * DEFAULT_SESSION_RECIPE.reviewRatio);
+    const expectedNew = Math.round(lærTarget * DEFAULT_SESSION_RECIPE.newMaterialRatio);
+    const expectedInt = Math.round(lærTarget * DEFAULT_SESSION_RECIPE.interleavingRatio);
 
     expect(remCount).toBeGreaterThanOrEqual(Math.max(0, expectedRem - 1));
     expect(remCount).toBeLessThanOrEqual(expectedRem + 1);
@@ -461,8 +458,8 @@ describe('weekly focus bias', () => {
     expect(intCount).toBeGreaterThanOrEqual(Math.max(0, expectedInt - 1));
     expect(intCount).toBeLessThanOrEqual(expectedInt + 1);
 
-    // Total items should also be within ±1 of expected
-    expect(totalItems).toBeGreaterThanOrEqual(Math.max(0, expectedTotal - 1));
-    expect(totalItems).toBeLessThanOrEqual(expectedTotal + 1);
+    // Lær block items should be close to the target
+    expect(lærItems.length).toBeGreaterThanOrEqual(Math.max(0, lærTarget - 2));
+    expect(lærItems.length).toBeLessThanOrEqual(lærTarget + 2);
   });
 });

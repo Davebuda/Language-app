@@ -68,6 +68,22 @@ export interface VocabularyClusterMastery {
 
 export type InputProductionPreference = 'input_heavy' | 'balanced' | 'production_heavy'
 
+export interface DailyBlockProgress {
+  completed: number
+  total: number
+  correct: number
+}
+
+export interface DailyProgress {
+  date: string  // YYYY-MM-DD
+  blocks: {
+    lytt: DailyBlockProgress
+    lær: DailyBlockProgress
+    snakk: DailyBlockProgress
+  }
+  completedAt: string | null
+}
+
 export interface MistakeFingerprint {
   userId: string;           // Supabase auth user ID or anonymous UUID
   createdAt: string;
@@ -95,6 +111,7 @@ export interface MistakeFingerprint {
     attemptCount: number;                      // by giving summarizeWeeklyProgress a baseline to diff against.
   }>;
   passedSentenceIds: Record<string, string>;   // sentenceId → ISO timestamp when passed; excluded from normal selection
+  dailyProgress: DailyProgress[];              // rolling 7-day window, newest first
 }
 
 // Factory: create a new empty fingerprint
@@ -122,5 +139,6 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     weeklySprintHistory: [],
     weekStartSnapshots: {},
     passedSentenceIds: {},
+    dailyProgress: [],
   };
 }

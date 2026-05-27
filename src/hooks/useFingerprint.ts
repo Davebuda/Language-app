@@ -6,7 +6,7 @@ import { useFingerprintStore } from '@/stores/fingerprint-store';
 import { useSessionStore } from '@/stores/session-store';
 import { loadFingerprint, saveFingerprint } from '@/storage/indexeddb';
 import { createEmptyFingerprint } from '@/types/fingerprint';
-import type { MistakeFingerprint } from '@/types/fingerprint';
+import type { MistakeFingerprint, DailyProgress } from '@/types/fingerprint';
 import {
   updateConceptMastery,
   refreshDecay,
@@ -394,5 +394,40 @@ export function useFingerprint() {
     }
   }, [setFingerprint, user])
 
-  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure };
+  const recordBlockProgress = useCallback(
+    (blockType: 'lytt' | 'lær' | 'snakk', completed: number, total: number, correct: number) => {
+      const fp = useFingerprintStore.getState().fingerprint;
+      if (!fp) return;
+
+      const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+      const existing = fp.dailyProgress.find(d => d.date === today);
+
+      const todayProgress: DailyProgress = existing ?? {
+        date: today,
+        blocks: {
+          lytt: { completed: 0, total: 0, correct: 0 },
+          lær: { completed: 0, total: 0, correct: 0 },
+          snakk: { completed: 0, total: 0, correct: 0 },
+        },
+        completedAt: null,
+      };
+
+      todayProgress.blocks[blockType] = { completed, total, correct };
+
+      // Check if all blocks are done
+      const allDone = Object.values(todayProgress.blocks).every(b => b.completed >= b.total && b.total > 0);
+      if (allDone) todayProgress.completedAt = new Date().toISOString();
+
+      // Replace or prepend today's entry, keep 7 days
+      const otherDays = fp.dailyProgress.filter(d => d.date !== today);
+      const updated = { ...fp, dailyProgress: [todayProgress, ...otherDays].slice(0, 7) };
+
+      setFingerprint(updated);
+      saveFingerprint(updated).catch(console.warn);
+      if (user) saveFingerprintToSupabase(updated).catch(console.warn);
+    },
+    [setFingerprint, user]
+  );
+
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress };
 }

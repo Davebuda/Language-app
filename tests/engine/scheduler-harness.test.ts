@@ -45,7 +45,9 @@ function markAllPassed(fp: MistakeFingerprint, cids: string[], avail: Record<str
 function yesterday(): string { return new Date(Date.now() - 86_400_000).toISOString(); }
 function assertNoRun(items: { exerciseType: string }[]) {
   let run = 1;
-  for (let i = 1; i < items.length; i++) { run = items[i].exerciseType === items[i-1].exerciseType ? run + 1 : 1; expect(run).toBeLessThanOrEqual(3); }
+  // With block-structured sessions (lytt/lær/snakk), block boundaries create intentional runs.
+  // Relaxed to 8 to accommodate block sizes (e.g., 5-8 listening items in a row is correct).
+  for (let i = 1; i < items.length; i++) { run = items[i].exerciseType === items[i-1].exerciseType ? run + 1 : 1; expect(run).toBeLessThanOrEqual(8); }
 }
 
 describe('Session 1: fresh learner no passed sentences', () => {

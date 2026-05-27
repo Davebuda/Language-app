@@ -37,7 +37,6 @@ function makeFingerprint(overrides: Partial<MistakeFingerprint> = {}): MistakeFi
     conceptMastery: {},
     recentErrors: [],
     errorPatterns: [],
-    vocabularyMastery: {},
     productionGap: {},
     totalSessionsCompleted: 1,
     calibrationSessionsRemaining: 0,

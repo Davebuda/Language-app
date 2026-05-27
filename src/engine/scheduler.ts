@@ -1,8 +1,8 @@
 import type { MistakeFingerprint, InputProductionPreference } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
-import type { Session, SessionItem, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
+import type { Session, SessionItem, SessionBlock, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
 import type { Sentence } from '@/types/content';
-import { DEFAULT_SESSION_RECIPE } from '@/types/session';
+import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES } from '@/types/session';
 import { isMastered } from './fingerprint';
 import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
 import { getUnlockedConcepts } from '@/types/concepts';
@@ -29,6 +29,10 @@ const NEW_MATERIAL_EXERCISES: ExerciseType[] = [
   'translation-to-norwegian',
   'fill-in-blank',
 ];
+
+// Exercise pools for named blocks
+const LYTT_EXERCISES_BLOCK: ExerciseType[] = ['listening-comprehension', 'translation-to-english'];
+const SNAKK_EXERCISES_BLOCK: ExerciseType[] = ['translation-to-norwegian', 'word-order'];
 
 // Resolve which exercise pool to use based on productionGap signal AND
 // the user's explicit input/production preference.
@@ -77,6 +81,7 @@ export interface SchedulerInput {
 
 export interface SchedulerOutput {
   session: Session;
+  blocks: SessionBlock[];
   primaryFocus: string;
   weakConcepts: string[];
   decayingConcepts: string[];
@@ -105,12 +110,13 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   const diagnosisResults = runDiagnosis(fingerprint);
   const unlockedConcepts = getUnlockedConcepts(graph, masteredIds);
 
-  const totalItems = Math.round(recipe.targetDurationSeconds / AVG_EXERCISE_SECONDS);
+  const blockSizes = LEVEL_BLOCK_SIZES[fingerprint.currentLevel];
+  const lærTarget = blockSizes.lær;
   const counts = {
-    remediation: Math.round(totalItems * recipe.remediationRatio),
-    review: Math.round(totalItems * recipe.reviewRatio),
-    newMaterial: Math.round(totalItems * recipe.newMaterialRatio),
-    interleaving: Math.round(totalItems * recipe.interleavingRatio),
+    remediation: Math.round(lærTarget * recipe.remediationRatio),
+    review: Math.round(lærTarget * recipe.reviewRatio),
+    newMaterial: Math.round(lærTarget * recipe.newMaterialRatio),
+    interleaving: Math.round(lærTarget * recipe.interleavingRatio),
   };
 
   const items: SessionItem[] = [];
@@ -305,17 +311,92 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
 
   const primaryFocus = weakConcepts[0] ?? newMaterialConcepts[0]?.id ?? 'general-review';
 
+  // --- Lær block: the existing recipe-driven shuffled items ---
+  const lærBlock: SessionBlock = {
+    id: 'block-lær',
+    type: 'lær',
+    label: 'Lær',
+    items: shuffled,
+  };
+
+  // --- Lytt block: recognition exercises drawn from concept pools ---
+  // Prefer focus → review-due → weak → unlocked. Allows passed sentences (review by design).
+  const lyttConceptPool = [
+    ...Array.from(focusIds),
+    ...reviewPool,
+    ...weakConcepts,
+    ...unlockedConcepts.map((c) => c.id),
+  ];
+  const lyttItems: SessionItem[] = [];
+  const lyttUsed = new Set<string>();
+  let lyttIndex = itemIndex;
+  for (let i = 0; lyttItems.length < blockSizes.lytt && i < lyttConceptPool.length * 2; i++) {
+    const conceptId = lyttConceptPool[i % Math.max(lyttConceptPool.length, 1)];
+    if (!conceptId || lyttUsed.has(conceptId)) continue;
+    const exerciseType = firstEligibleType(conceptId, LYTT_EXERCISES_BLOCK, false);
+    if (exerciseType === null) continue;
+    const lyttReason: SelectionReason = focusIds.has(conceptId)
+      ? 'weekly_focus'
+      : reviewDueSet.has(conceptId)
+        ? 'review_due'
+        : 'weak_concept';
+    lyttItems.push(
+      makeItem(`item-lytt-${lyttIndex++}`, conceptId, `pending:${conceptId}`, exerciseType, 'review', lyttReason),
+    );
+    lyttUsed.add(conceptId);
+  }
+  const lyttBlock: SessionBlock = {
+    id: 'block-lytt',
+    type: 'lytt',
+    label: 'Lytt',
+    items: lyttItems,
+  };
+
+  // --- Snakk block: production exercises drawn from focus concepts ---
+  // Excludes passed sentences — fresh production practice only.
+  const snakkConceptPool = [
+    ...Array.from(focusIds),
+    ...weakConcepts,
+    ...unlockedConcepts.map((c) => c.id),
+  ];
+  const snakkItems: SessionItem[] = [];
+  const snakkUsed = new Set<string>();
+  let snakkIndex = lyttIndex;
+  for (let i = 0; snakkItems.length < blockSizes.snakk && i < snakkConceptPool.length * 2; i++) {
+    const conceptId = snakkConceptPool[i % Math.max(snakkConceptPool.length, 1)];
+    if (!conceptId || snakkUsed.has(conceptId)) continue;
+    const exerciseType = firstEligibleType(conceptId, SNAKK_EXERCISES_BLOCK, true);
+    if (exerciseType === null) continue;
+    const snakkReason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
+    snakkItems.push(
+      makeItem(`item-snakk-${snakkIndex++}`, conceptId, `pending:${conceptId}`, exerciseType, 'remediation', snakkReason),
+    );
+    snakkUsed.add(conceptId);
+  }
+  const snakkBlock: SessionBlock = {
+    id: 'block-snakk',
+    type: 'snakk',
+    label: 'Snakk',
+    items: snakkItems,
+  };
+
+  // Compose: lytt → lær → snakk
+  // session.items is the flat union — preserves backward compatibility for all existing consumers.
+  const blocks: SessionBlock[] = [lyttBlock, lærBlock, snakkBlock];
+  const allItems = blocks.flatMap((b) => b.items);
+
   const session: Session = {
     id: crypto.randomUUID(),
     userId: fingerprint.userId,
     startedAt: new Date().toISOString(),
     status: 'active',
     recipe,
-    items: shuffled,
+    items: allItems,
     completedItemIds: [],
     level: fingerprint.currentLevel,
     primaryFocus,
+    blocks,
   };
 
-  return { session, primaryFocus, weakConcepts, decayingConcepts, diagnosisResults };
+  return { session, blocks, primaryFocus, weakConcepts, decayingConcepts, diagnosisResults };
 }
