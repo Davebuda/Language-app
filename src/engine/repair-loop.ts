@@ -1,5 +1,5 @@
 import type { ErrorLogEntry } from '@/types/fingerprint';
-import type { ExerciseType, SessionItem, SelectionReason } from '@/types/session';
+import type { ExerciseType, SessionItem } from '@/types/session';
 import type { ErrorTag } from '@/types/taxonomy';
 
 // Templates for each error type — used when AI is unavailable

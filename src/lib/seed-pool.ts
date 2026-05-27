@@ -47,8 +47,8 @@ function mapRow(raw: RawSentence): Sentence {
   }
 }
 
-let b2Raw: RawSentence[] = []
-try { b2Raw = require('@content/sentences/b2.json') } catch { /* B2 corpus may not exist yet */ }
+import b2RawImport from '@content/sentences/b2.json'
+const b2Raw: RawSentence[] = b2RawImport as RawSentence[]
 
 const RAW: RawSentence[] = [
   ...(a1Raw as RawSentence[]),

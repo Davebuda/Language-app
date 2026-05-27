@@ -17,7 +17,7 @@ export function getGraphForLevel(level: CEFRLevel): ConceptGraph {
     case 'B1': return b1Graph
     case 'B2': return b2Graph
     default: {
-      const _exhaustive: never = level
+      void (level satisfies never)
       return a1Graph
     }
   }
