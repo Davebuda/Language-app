@@ -185,6 +185,11 @@ These don't depend on audio or analytics. They can run alongside.
 | 4.2 | **B1 sentence corpus** — 360 sentences (30 per concept × 12), error-tagged, mixed exercise types | 3-5 days | 4.1 | ✅ DONE 2026-05-26 |
 | 4.3 | **B1 audio generation** — 360 MP3s via edge-tts for all B1 sentences | 1 day | 4.2, Wave 1 | ✅ DONE 2026-05-26 |
 | 4.4 | **Honest level switching** — B1 selection produces real B1 content | 1 day | 4.2 | ✅ DONE 2026-05-26 |
+| 4.5 | **B2 concept graph** — 12 concepts, CEFR-tagged, with B1 prerequisites | 1 day | 4.4 | ✅ DONE 2026-05-26 |
+| 4.6 | **B2 sentence corpus** — 360 sentences (30 per concept × 12), error-tagged, mixed exercise types | 1 day | 4.5 | ✅ DONE 2026-05-26 |
+| 4.7 | **B2 audio generation** — 360 MP3s via msedge-tts (Node.js) for all B2 sentences | 1 day | 4.6 | ✅ DONE 2026-05-27 |
+| 4.8 | **CEFR sentence filter** — `filterSentencesByLevel` in scheduler prevents cross-level leakage | 30 min | 4.6 | ✅ DONE 2026-05-27 |
+| 4.9 | **Market-readiness hardening** — error boundaries, loading states, security headers, API rate limiter, credentials cleanup | 1 day | All | ✅ DONE 2026-05-27 |
 
 ### Wave 5: V2 Engine (REQUIRES REAL USERS + DATA)
 

@@ -47,7 +47,7 @@ The adaptive engine is built, traced, and verified correct:
 - **Decay** — exponential half-life, decays toward floor of 35 (not zero). Half-life is **25 days** (Stream 1.2 shipped); see `src/engine/fingerprint.ts:12`.
 - **Calibration window** — first 5 sessions use a 30/30/30/10 recipe variant (Stream 1.3 shipped); see `src/hooks/useSession.ts:154`.
 - **Phase model** — locked → intro → practice → consolidation → maintenance, computed live.
-- **Scheduler** — recipe 40/30/20/10 (remediation/review/new/interleaving), pulls 5 weak concepts, SRS-driven review pool, repeat cap, production guarantee, Fisher-Yates shuffle. **Weekly Sprint bias (Stream 5):** the 40% remediation pool biases toward `weeklyFocus` while preserving the recipe within ±5pp. **Passed-sentence filtering:** the scheduler consults `passedSentenceIds` and excludes passed sentences from remediation, new-material, and interleaving pools. Review items explicitly allow passed sentences (`excludePassed: false`) for intentional spaced repetition. When all sentences for a concept are passed, the concept is skipped for non-review purposes; AI top-up generates fresh content. Every `SessionItem` carries a required `selectionReason` (`weak_concept` | `review_due` | `decaying` | `new_material` | `interleaving` | `weekly_focus` | `repair_target` | `cold_start`) justifying its inclusion.
+- **Scheduler** — recipe 40/30/20/10 (remediation/review/new/interleaving), pulls 5 weak concepts, SRS-driven review pool, repeat cap, production guarantee, Fisher-Yates shuffle. **Weekly Sprint bias (Stream 5):** the 40% remediation pool biases toward `weeklyFocus` while preserving the recipe within ±5pp. **Passed-sentence filtering:** the scheduler consults `passedSentenceIds` and excludes passed sentences from remediation, new-material, and interleaving pools. Review items explicitly allow passed sentences (`excludePassed: false`) for intentional spaced repetition. When all sentences for a concept are passed, the concept is skipped for non-review purposes; AI top-up generates fresh content. Every `SessionItem` carries a required `selectionReason` (`weak_concept` | `review_due` | `decaying` | `new_material` | `interleaving` | `weekly_focus` | `repair_target` | `cold_start`) justifying its inclusion. **CEFR-level sentence filter:** `filterSentencesByLevel` in scheduler.ts ensures sentences are filtered to the learner's current level or below — an A1 learner never sees B1+ sentences even for shared concepts.
 - **Weekly Sprint engine (Stream 5)** — `selectWeeklyFocus`, `shouldResetWeek`, `closeWeek`, `openWeek`, `ensureWeekOpen` in `src/engine/weekly-sprint.ts`. Graduation rule promotes/demotes on close.
 - **Diagnosis engine** — 4 root-cause rules on real error data. Output surfaced on dashboard session card.
 - **Repair loop** — template explanation + 2 micro-drills + retry + SRS scheduling on the ladder 1→3→7→14→30 days.
@@ -64,23 +64,25 @@ Retired surfaces: `/vocab` → honest "Kommer i versjon 2" banner. `/recalibrate
 
 Live muntlig modes: `/shadow` (shadowing — listen + repeat + word matching), `/drills` (pronunciation drills — 4 sound groups + heuristic feedback), `/listen` (listen-and-respond — 7 questions with focus-biased ordering). All three feed the fingerprint and lane completion system. Dashboard "Muntlig" section links to all three.
 
-Stubs / not built: vocab SRS, reading comprehension scoring, B2 concept graph.
+Stubs / not built: vocab SRS, reading comprehension scoring.
 
 ## Current Phase
 
-**SHIP-READY 2026-05-26.** All 12 ship-ready criteria met. See `docs/vision-and-plan.md` for the full execution plan.
+**SHIP-READY 2026-05-27.** All 12 ship-ready criteria met. Four-dimensional market-readiness audit passed. See `docs/vision-and-plan.md` for the full execution plan.
 
 **What's shipped:**
 - Stream 5.5 Phases 3-8 (all surfaces laned, repair externalized, stubs retired, recalibration retired)
 - Wave 0: CLAUDE.md sync, `/listen`+`/drills` muted, F027 repair-loop cap
-- Wave 1: Audio pipeline — 435+ MP3 files generated via edge-tts (nb-NO-PernilleNeural), AudioPlayer wired to real paths with browser TTS fallback
+- Wave 1: Audio pipeline — 1,117+ MP3 files generated via edge-tts (nb-NO-PernilleNeural), AudioPlayer wired to real paths with browser TTS fallback. All 4 CEFR levels have audio coverage.
 - Wave 2: Analytics surface v1 + moat metric defined + history cap confirmed
 - Wave 3: Dashboard composition, progress trajectory, 27 dead CSS classes removed, BottomNav Norwegian
 - Wave 4: B1 concept graph (12 concepts), B1 corpus (360 sentences, 30/concept), all 16 files migrated to `getGraphForLevel`, B1 level selectable
+- Wave 4.5: B2 concept graph (12 concepts), B2 corpus (360 sentences, 30/concept), B2 audio (360 MP3s)
 - Norwegian-dominates pass across ALL learning surfaces (~99% Norwegian)
 - Auth redirect confirmed working
+- Market-readiness audit: security headers, error boundaries (Norwegian), loading skeletons, CEFR sentence filter, API rate limiter (30 req/min), `.env.local.example` credentials cleaned
 
-**Next (polish, not blockers):** UI-2 conversation aesthetic pass (Wave 3.2), landing page content (Wave 3.4), B1 audio generation for remaining sentences, Playwright walkthrough, deploy to pandoai.no. V2 engine (Wave 5) blocked on real users.
+**Next (operational, not code):** Rotate Supabase keys (old keys in git history), deploy to pandoai.no, auth completion (magic-link end-to-end test). V2 engine (Wave 5) blocked on real users.
 
 ## Operating Rules (HARD RAILS — these caused real problems when absent)
 
