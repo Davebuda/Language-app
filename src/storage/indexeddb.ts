@@ -24,10 +24,27 @@ export async function saveFingerprint(fingerprint: MistakeFingerprint): Promise<
   await db.put(FINGERPRINT_STORE, fingerprint);
 }
 
+function isValidFingerprint(obj: unknown): obj is MistakeFingerprint {
+  if (!obj || typeof obj !== 'object') return false;
+  const fp = obj as Record<string, unknown>;
+  return (
+    typeof fp.userId === 'string' &&
+    typeof fp.currentLevel === 'string' &&
+    typeof fp.conceptMastery === 'object' &&
+    fp.conceptMastery !== null &&
+    typeof fp.totalSessionsCompleted === 'number'
+  );
+}
+
 export async function loadFingerprint(userId: string): Promise<MistakeFingerprint | null> {
   const db = await getDB();
   const result = await db.get(FINGERPRINT_STORE, userId);
-  return result ?? null;
+  if (!result) return null;
+  if (!isValidFingerprint(result)) {
+    console.warn('[indexeddb] Corrupt fingerprint detected, treating as empty');
+    return null;
+  }
+  return result;
 }
 
 export async function deleteFingerprint(userId: string): Promise<void> {

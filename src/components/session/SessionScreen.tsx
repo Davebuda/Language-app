@@ -81,6 +81,8 @@ export function SessionScreen({
   const progressValue = totalItems > 0 ? Math.min(currentItemIndex + 1, totalItems) : 0
   const progressPct = totalItems > 0 ? (progressValue / totalItems) * 100 : 0
 
+  const isMasteryComplete = !!session && totalItems === 0
+
   useEffect(() => {
     if (!session || totalItems === 0) return
     if (isComplete) {
@@ -95,7 +97,7 @@ export function SessionScreen({
     if (prev !== null && prev !== currentBlock.blockIndex) {
       const icons: Record<SessionBlockType, string> = { lytt: '🎧', lær: '✏️', snakk: '🗣️' }
       const icon = icons[currentBlock.block.type]
-      setBlockTransition({ label: `Bra. Nå går du videre til ${icon} ${currentBlock.block.label}.` })
+      setBlockTransition({ label: `${icon} ${currentBlock.block.label}` })
       const timer = setTimeout(() => setBlockTransition(null), 1500)
       prevBlockIndexRef.current = currentBlock.blockIndex
       return () => clearTimeout(timer)
@@ -108,10 +110,42 @@ export function SessionScreen({
     submitResult(result)
   }
 
+  if (isMasteryComplete) {
+    return (
+      <div className="nc-stage flex min-h-dvh flex-col items-center justify-center text-[var(--nc-text)]">
+        <div className="nc-mobile-shell flex flex-col items-center gap-6 px-5 text-center">
+          <div className="text-6xl">🎉</div>
+          <h1 className="font-display text-2xl font-bold">Du har mestret alt!</h1>
+          <p className="max-w-xs text-sm text-[var(--nc-text-muted)]">
+            Alle konseptene på dette nivået er gjennomgått. Prøv å gå opp et nivå eller ta ukens sjekk.
+          </p>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => router.push('/uke')}
+              className="rounded-xl bg-[var(--nc-red)] px-5 py-3 text-sm font-semibold text-white"
+            >
+              Ukens sjekk
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push('/dashboard')}
+              className="rounded-xl border border-[var(--nc-border)] px-5 py-3 text-sm font-semibold text-[var(--nc-text-muted)]"
+            >
+              Dashbord
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="nc-gradient-page flex min-h-dvh flex-col text-[var(--nc-text)]">
-      <header className="nc-mobile-shell flex w-full flex-col gap-3 px-4 pb-2 pt-4">
-        <div className="nc-glass-cream p-4">
+    <div className="nc-stage flex min-h-dvh flex-col text-[var(--nc-text)]">
+      <div className="nc-mobile-shell flex w-full flex-1 flex-col px-2.5 pb-24 pt-2.5">
+      <div className="nc-phone-page flex flex-1 flex-col p-2.5">
+      <header className="flex w-full flex-col gap-2 pb-2">
+        <div className="nc-card-soft p-3">
           <div className="flex items-start gap-3">
             <button
               type="button"
@@ -123,7 +157,7 @@ export function SessionScreen({
                   router.push('/dashboard')
                 }
               }}
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[1rem] bg-[rgba(6,16,23,0.92)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+              className="inline-flex size-10 shrink-0 items-center justify-center rounded-[0.7rem] bg-[rgba(6,16,23,0.92)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
               aria-label="Tilbake til dashboard"
             >
               <X size={18} />
@@ -152,8 +186,8 @@ export function SessionScreen({
                   <div className="nc-label text-[var(--nc-cream-dim)]">
                     {currentItem ? getExerciseTypeLabel(currentItem.exerciseType) : 'Session'}
                   </div>
-                  <div className="mt-1 text-lg font-semibold text-[var(--nc-cream-text)]">
-                    Fokusert økt
+                  <div className="mt-0.5 text-[0.92rem] font-semibold text-[var(--nc-cream-text)]">
+                    Økt
                   </div>
                 </div>
                 <AIStatusBadge />
@@ -166,18 +200,18 @@ export function SessionScreen({
                 />
               </div>
 
-              <div className="mt-3 rounded-[1rem] bg-[rgba(6,16,23,0.94)] px-4 py-3 text-white">
+              <div className="mt-3 rounded-[0.75rem] bg-[rgba(6,16,23,0.94)] px-3 py-2.5 text-white">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/38">
-                      Nå
+                    <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white/38">
+                      Status
                     </div>
-                    <div className="mt-1 text-sm font-medium text-white">
+                    <div className="mt-1 text-[0.82rem] font-medium text-white">
                       {session ? `${progressValue} / ${totalItems || '-'}` : 'Laster økt…'}
                     </div>
                   </div>
-                  <div className="rounded-full bg-white/8 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/60">
-                    Mobil fokus
+                  <div className="rounded-[0.5rem] bg-white/8 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/60">
+                    Nå
                   </div>
                 </div>
 
@@ -193,13 +227,13 @@ export function SessionScreen({
         </div>
       </header>
 
-      <main className="nc-mobile-shell relative flex w-full flex-1 flex-col gap-3 px-4 pb-28 pt-1">
+      <main className="relative flex w-full flex-1 flex-col gap-2.5 pt-0">
         {blockTransition ? (
           <div
             className="pointer-events-none absolute inset-x-0 top-2 z-20 flex justify-center px-4"
             style={{ animation: 'nc-block-fade 1.5s ease forwards' }}
           >
-            <div className="rounded-full border border-white/16 bg-[rgba(247,251,245,0.92)] px-4 py-2 text-[13px] font-semibold text-[var(--nc-cream-text)] shadow-[0_20px_40px_rgba(0,0,0,0.18)] backdrop-blur">
+            <div className="rounded-[0.6rem] border border-white/16 bg-[rgba(247,251,245,0.92)] px-4 py-2 text-[12px] font-semibold text-[var(--nc-cream-text)] shadow-[0_20px_40px_rgba(0,0,0,0.18)] backdrop-blur">
               {blockTransition.label}
             </div>
           </div>
@@ -241,19 +275,19 @@ export function SessionScreen({
             </AnimatePresence>
 
             {!isInRepair && currentBlock ? (
-              <div className="nc-glass p-4">
+              <div className="nc-card-dark-solid p-3">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="nc-label">Why this block exists</div>
-                    <div className="mt-2 text-sm font-medium text-[var(--nc-text)]">
+                    <div className="nc-label">Blokk</div>
+                    <div className="mt-1.5 text-[0.84rem] font-medium text-[var(--nc-text)]">
                       {currentBlock.block.label}
                     </div>
-                    <p className="mt-1 text-sm leading-7 text-[var(--nc-text-muted)]">
-                      Én oppgave av gangen, med mindre friksjon og raskere feedback.
+                    <p className="mt-1 text-[0.74rem] leading-5 text-[var(--nc-text-muted)]">
+                      Ett steg av gangen.
                     </p>
                   </div>
-                  <span className="nc-chip-signal rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em]">
-                    AI plan
+                  <span className="nc-chip-signal rounded-[0.5rem] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.08em]">
+                    Aktiv
                   </span>
                 </div>
               </div>
@@ -287,22 +321,24 @@ export function SessionScreen({
           <LoadingSkeleton />
         )}
       </main>
+      </div>
+      </div>
     </div>
   )
 }
 
 function LoadingSkeleton() {
   return (
-    <div className="nc-glass-cream p-5">
-      <div className="h-72 animate-pulse rounded-[1.3rem] bg-[rgba(6,16,23,0.08)]" />
+    <div className="nc-card-soft p-3">
+      <div className="h-72 animate-pulse rounded-[0.7rem] bg-[rgba(6,16,23,0.08)]" />
     </div>
   )
 }
 
 function EmptyState() {
   return (
-    <div className="nc-glass-cream flex flex-1 items-center justify-center p-6 text-center">
-      <p className="max-w-xs text-sm leading-7 text-[var(--nc-cream-muted)]">
+    <div className="nc-card-soft flex flex-1 items-center justify-center p-4 text-center">
+      <p className="max-w-xs text-[0.82rem] leading-6 text-[var(--nc-cream-muted)]">
         Ingen øvelser tilgjengelig ennå. Innholdet blir seedet snart.
       </p>
     </div>
@@ -327,13 +363,13 @@ function BlockHeader({
   total: number
 }) {
   return (
-    <div className="nc-glass px-4 py-3">
+    <div className="nc-card-dark-solid px-3 py-2.5">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span aria-hidden="true">{BLOCK_ICONS[type]}</span>
-          <span className="text-sm font-semibold text-[var(--nc-text)]">{label}</span>
+          <span className="text-[0.82rem] font-semibold text-[var(--nc-text)]">{label}</span>
         </div>
-        <span className="rounded-full bg-white/6 px-3 py-1 text-[11px] font-semibold tabular-nums text-[var(--nc-text-muted)]">
+        <span className="rounded-[0.5rem] bg-white/6 px-2.5 py-1 text-[10px] font-semibold tabular-nums text-[var(--nc-text-muted)]">
           {current} / {total}
         </span>
       </div>
