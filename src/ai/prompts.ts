@@ -1,5 +1,13 @@
 import type { GenerateParams, ExplainParams } from './types';
 import type { ExerciseType } from '@/types/session';
+import type { CEFRLevel } from '@/types/fingerprint';
+
+const LEVEL_CONSTRAINTS: Record<CEFRLevel, string> = {
+  A1: 'Use only present tense. Max 6 words per sentence. Basic vocabulary only. No subordinate clauses.',
+  A2: 'Use present and past tense. Max 10 words per sentence. Everyday vocabulary. Simple subordinate clauses allowed.',
+  B1: 'Use varied tenses including perfect and passive. Max 15 words. Abstract topics allowed. Complex subordination fine.',
+  B2: 'Fluent natural Norwegian. Complex grammar, idioms, and register variation expected. No simplification needed.',
+}
 
 // Human-readable labels for each concept ID — used in generation prompts
 const CONCEPT_LABELS: Record<string, string> = {
@@ -30,7 +38,9 @@ const TOPIC_DESCRIPTIONS: Record<string, string> = {
   'health': 'feeling well or unwell, exercise, or a doctor visit',
 };
 
-function difficultyInstruction(masteryScore?: number): string {
+function difficultyInstruction(masteryScore?: number, level?: CEFRLevel): string {
+  if (level === 'A1')
+    return 'Short sentence (5–7 words). Simple, high-frequency vocabulary. Single main clause only.';
   if (!masteryScore || masteryScore < 40)
     return 'Short sentence (5–7 words). Simple, high-frequency vocabulary. Single main clause only.';
   if (masteryScore < 70)
@@ -53,7 +63,7 @@ STRICT NORWEGIAN RULES — apply to every sentence you generate:
 function fillInBlankPrompt(p: GenerateParams): string {
   const concept = CONCEPT_LABELS[p.conceptId] ?? p.conceptId;
   const topic = p.scenario ? (TOPIC_DESCRIPTIONS[p.scenario] ?? p.scenario) : 'everyday Norwegian life';
-  const difficulty = difficultyInstruction(p.masteryScore);
+  const difficulty = difficultyInstruction(p.masteryScore, p.level as CEFRLevel);
   const errorNote = p.recentErrors?.length
     ? `Learner recently made these errors: ${p.recentErrors.slice(0, 3).join(', ')}. Target that gap directly.`
     : '';
@@ -62,6 +72,7 @@ function fillInBlankPrompt(p: GenerateParams): string {
 
 Concept to test: ${concept}
 CEFR level: ${p.level}
+Level constraints: ${LEVEL_CONSTRAINTS[p.level as CEFRLevel]}
 Topic: ${topic}
 Difficulty: ${difficulty}
 ${errorNote}
@@ -86,12 +97,13 @@ Output JSON only:
 function wordOrderPrompt(p: GenerateParams): string {
   const concept = CONCEPT_LABELS[p.conceptId] ?? p.conceptId;
   const topic = p.scenario ? (TOPIC_DESCRIPTIONS[p.scenario] ?? p.scenario) : 'everyday Norwegian life';
-  const difficulty = difficultyInstruction(p.masteryScore);
+  const difficulty = difficultyInstruction(p.masteryScore, p.level as CEFRLevel);
 
   return `Generate a Norwegian Bokmål word-order exercise.
 
 Concept to test: ${concept}
 CEFR level: ${p.level}
+Level constraints: ${LEVEL_CONSTRAINTS[p.level as CEFRLevel]}
 Topic: ${topic}
 Difficulty: ${difficulty}
 
@@ -113,7 +125,7 @@ Output JSON only:
 function translationPrompt(p: GenerateParams): string {
   const concept = CONCEPT_LABELS[p.conceptId] ?? p.conceptId;
   const topic = p.scenario ? (TOPIC_DESCRIPTIONS[p.scenario] ?? p.scenario) : 'everyday Norwegian life';
-  const difficulty = difficultyInstruction(p.masteryScore);
+  const difficulty = difficultyInstruction(p.masteryScore, p.level as CEFRLevel);
   const direction =
     p.exerciseType === 'translation-to-norwegian'
       ? 'Learner reads English, writes Norwegian'
@@ -124,6 +136,7 @@ function translationPrompt(p: GenerateParams): string {
 Direction: ${direction}
 Concept to test: ${concept}
 CEFR level: ${p.level}
+Level constraints: ${LEVEL_CONSTRAINTS[p.level as CEFRLevel]}
 Topic: ${topic}
 Difficulty: ${difficulty}
 
@@ -144,12 +157,13 @@ Output JSON only:
 
 function listeningPrompt(p: GenerateParams): string {
   const concept = CONCEPT_LABELS[p.conceptId] ?? p.conceptId;
-  const difficulty = difficultyInstruction(p.masteryScore);
+  const difficulty = difficultyInstruction(p.masteryScore, p.level as CEFRLevel);
 
   return `Generate a Norwegian Bokmål listening exercise sentence.
 
 Concept: ${concept}
 CEFR level: ${p.level}
+Level constraints: ${LEVEL_CONSTRAINTS[p.level as CEFRLevel]}
 Difficulty: ${difficulty}
 
 Rules:
@@ -175,6 +189,7 @@ function speedRoundPrompt(p: GenerateParams): string {
 
 Concept: ${concept}
 CEFR level: ${p.level}
+Level constraints: ${LEVEL_CONSTRAINTS[p.level as CEFRLevel]}
 
 Rules:
 - 4–7 words only — this is a speed exercise, brevity is critical
@@ -288,11 +303,15 @@ export function buildExplanationPrompt(
       ? `The learner has hit this error ${params.errorCount} times.`
       : '';
 
+  const explanationLang = (params.level === 'B1' || params.level === 'B2')
+    ? 'Norwegian'
+    : 'English'
+
   return {
     system: `You are a Norwegian language tutor giving precise, encouraging feedback.
 Be specific about the rule violated, reference the learner's exact answer, and keep it under 4 sentences.
 Plain text only — no markdown, no headers.
-Write your explanation in English (the learner needs to understand it clearly), but any Norwegian examples you give must be grammatically correct Bokmål with proper V2 word order.`,
+Explanation language: ${explanationLang}. Any Norwegian examples must be grammatically correct Bokmål with proper V2 word order.`,
     user: `Learner wrote: "${params.wrong}"
 Correct answer: "${params.correct}"
 Error type: ${params.errorTag}

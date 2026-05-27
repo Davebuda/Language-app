@@ -21,11 +21,13 @@ import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
 import { logWeeklyCheckComplete, logConceptExposure } from '@/lib/logEvents';
 import type { ExerciseResult } from '@/types/session';
-import { getGraphForLevel, a1Graph } from '@/lib/concept-graph-loader';
+import { getGraphForLevel, a1Graph, a2Graph, b1Graph } from '@/lib/concept-graph-loader';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 
 const A1_CONCEPTS = a1Graph.concepts;
+const A2_CONCEPTS = a2Graph.concepts;
+const B1_CONCEPTS = b1Graph.concepts;
 
 const ANON_ID_KEY = 'norsk-coach-anon-id';
 
@@ -45,6 +47,20 @@ function checkA1Complete(fp: MistakeFingerprint): boolean {
       m.rawScore >= node.masteryThreshold &&
       m.attemptCount >= node.minAttempts
     );
+  });
+}
+
+function checkA2Complete(fp: MistakeFingerprint): boolean {
+  return A2_CONCEPTS.every((c) => {
+    const m = fp.conceptMastery[c.id];
+    return m && m.rawScore >= c.masteryThreshold && m.attemptCount >= c.minAttempts;
+  });
+}
+
+function checkB1Complete(fp: MistakeFingerprint): boolean {
+  return B1_CONCEPTS.every((c) => {
+    const m = fp.conceptMastery[c.id];
+    return m && m.rawScore >= c.masteryThreshold && m.attemptCount >= c.minAttempts;
   });
 }
 
@@ -302,9 +318,9 @@ export function useFingerprint() {
       // ── A1 → A2 level progression ────────────────────────────────────────
       if (updated.currentLevel === 'A1' && checkA1Complete(updated)) {
         updated = { ...updated, currentLevel: 'A2', updatedAt: new Date().toISOString() };
-        const a2Graph = getGraphForLevel('A2');
-        updated = seedInitialMastery(updated, a2Graph);
-        const withWeek = ensureWeekOpen(updated, a2Graph);
+        const a2GraphLocal = getGraphForLevel('A2');
+        updated = seedInitialMastery(updated, a2GraphLocal);
+        const withWeek = ensureWeekOpen(updated, a2GraphLocal);
         if (withWeek !== updated) updated = withWeek;
         try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
         emitEvent({
@@ -312,6 +328,20 @@ export function useFingerprint() {
           mode: 'session',
           payload: { from: 'A1', to: 'A2' },
         });
+      }
+
+      // ── A2 → B1 level progression ────────────────────────────────────────
+      if (updated.currentLevel === 'A2' && checkA2Complete(updated)) {
+        updated = { ...updated, currentLevel: 'B1', updatedAt: new Date().toISOString() };
+        updated = seedInitialMastery(updated, getGraphForLevel('B1'));
+        updated = ensureWeekOpen(updated, getGraphForLevel('B1'));
+        try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
+      }
+
+      // ── B1 → B2 level progression ────────────────────────────────────────
+      if (updated.currentLevel === 'B1' && checkB1Complete(updated)) {
+        updated = { ...updated, currentLevel: 'B2', updatedAt: new Date().toISOString() };
+        try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
       }
 
       setFingerprint(updated);

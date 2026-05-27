@@ -62,7 +62,7 @@ describe('getJournalPrompt', () => {
     const result = getJournalPrompt(fp, now)
     expect(result.focusConceptId).toBeNull()
     expect(result.focusLabel).toBeNull()
-    expect(result.prompt).toBe(FALLBACK_PROMPTS[0])
+    expect(result.prompt).toBe(FALLBACK_PROMPTS['A1'][0])
   })
 
   it('returns daily fallback when the live-lowest focus concept has no Norwegian label', () => {
@@ -82,7 +82,7 @@ describe('getJournalPrompt', () => {
     const result = getJournalPrompt(fp, now)
     expect(result.focusConceptId).toBeNull()
     expect(result.focusLabel).toBeNull()
-    expect(result.prompt).toBe(FALLBACK_PROMPTS[0])
+    expect(result.prompt).toBe(FALLBACK_PROMPTS['A1'][0])
   })
 
   it('picks the focus concept with the lowest live decayedScore, not weeklyFocus[0]', () => {
@@ -103,8 +103,7 @@ describe('getJournalPrompt', () => {
     expect(result.focusConceptId).toBe('present-tense-regular')
     expect(result.focusLabel).toBe('presens av regelmessige verb')
     expect(result.prompt).toContain('presens av regelmessige verb')
-    expect(result.prompt).toContain('Skriv en kort tekst')
-    expect(result.prompt).toContain('minst tre ganger')
+    expect(result.prompt).toContain('Skriv 3 setninger')
   })
 
   it('treats a focus concept with no mastery entry as score 0 (eligible as weakest)', () => {
@@ -156,9 +155,9 @@ describe('getDailyPrompt', () => {
     const sunday = new Date('2026-05-17T10:00:00Z')   // day 0 → prompt[0]
     const monday = new Date('2026-05-18T10:00:00Z')   // day 1 → prompt[1]
     const friday = new Date('2026-05-22T10:00:00Z')   // day 5 → prompt[0]
-    expect(getDailyPrompt(sunday)).toBe(FALLBACK_PROMPTS[0])
-    expect(getDailyPrompt(monday)).toBe(FALLBACK_PROMPTS[1])
-    expect(getDailyPrompt(friday)).toBe(FALLBACK_PROMPTS[0])
+    expect(getDailyPrompt(sunday, 'A1')).toBe(FALLBACK_PROMPTS['A1'][0])
+    expect(getDailyPrompt(monday, 'A1')).toBe(FALLBACK_PROMPTS['A1'][1])
+    expect(getDailyPrompt(friday, 'A1')).toBe(FALLBACK_PROMPTS['A1'][0])
   })
 })
 

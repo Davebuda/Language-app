@@ -83,7 +83,9 @@ export default function ConversationPage() {
   const router = useRouter()
   const [phase, setPhase] = useState<'setup' | 'chat' | 'summary'>('setup')
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
-  const [level, setLevel] = useState<CEFRLevel>('A1')
+  const fpStore = useFingerprintStore.getState().fingerprint
+  const [level, setLevel] = useState<CEFRLevel>(fpStore?.currentLevel ?? 'A1')
+  const [userOverrodeLevel, setUserOverrodeLevel] = useState(false)
   const [messages, setMessages] = useState<DisplayMessage[]>([])
   const [isListening, setIsListening] = useState(false)
   const [isThinking, setIsThinking] = useState(false)
@@ -104,6 +106,12 @@ export default function ConversationPage() {
   const micStartRef = useRef<number>(0)
   const [activeConstraint, setActiveConstraint] = useState<ResponseConstraint | null>(null)
   const [constraintResult, setConstraintResult] = useState<{ met: boolean; feedback?: string } | null>(null)
+
+  useEffect(() => {
+    if (fingerprint?.currentLevel && !userOverrodeLevel) {
+      setLevel(fingerprint.currentLevel)
+    }
+  }, [fingerprint?.currentLevel, userOverrodeLevel])
 
   async function persistSessionStart(topic: string, lvl: CEFRLevel): Promise<void> {
     if (!user) return
@@ -339,7 +347,7 @@ export default function ConversationPage() {
                   {LEVELS.map((l) => (
                     <button
                       key={l}
-                      onClick={() => setLevel(l)}
+                      onClick={() => { setLevel(l); setUserOverrodeLevel(true) }}
                       className={`flex-1 rounded-full py-2.5 text-[13px] font-bold border transition-colors ${
                         level === l
                           ? 'bg-[var(--nc-red)] text-white border-[var(--nc-red)]'

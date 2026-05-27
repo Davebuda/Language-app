@@ -1,4 +1,4 @@
-import type { MistakeFingerprint } from '@/types/fingerprint'
+import type { MistakeFingerprint, CEFRLevel } from '@/types/fingerprint'
 
 // ── Norwegian concept-label dict ─────────────────────────────────────────────
 // Lives here (not on the ConceptGraph json) per architect D5: a local dict is
@@ -62,16 +62,40 @@ export const NORWEGIAN_CONCEPT_LABELS: Record<string, string> = {
 // is the unbiased fallback when no weekly focus exists OR no Norwegian label
 // is available for the focus concept.
 
-export const FALLBACK_PROMPTS = [
-  'Beskriv din ideelle norske helg',
-  'Hva liker du best med vinteren?',
-  'Skriv om et sted du vil besøke i Norge',
-  'Beskriv deg selv på norsk',
-  'Hva er din favorittmat, og hvorfor?',
-]
+export const FALLBACK_PROMPTS: Record<CEFRLevel, string[]> = {
+  A1: [
+    'Skriv 3 setninger om familien din',
+    'Skriv 3 setninger om hva du liker å spise',
+    'Skriv 3 setninger om hva du gjør i dag',
+    'Skriv 3 setninger om været der du bor',
+    'Skriv 3 setninger om favorittfargen din',
+  ],
+  A2: [
+    'Beskriv din ideelle norske helg',
+    'Beskriv et sted du vil besøke i Norge',
+    'Beskriv deg selv på norsk',
+    'Beskriv hva du liker best med vinteren',
+    'Beskriv en vanlig dag i livet ditt',
+  ],
+  B1: [
+    'Skriv et avsnitt der du bruker presens perfektum minst tre ganger',
+    'Skriv et avsnitt der du beskriver noe du ønsker å gjøre, med modalverb',
+    'Skriv et avsnitt om en reise du har tatt, med fortid og perfektum',
+    'Skriv et avsnitt der du sammenligner to byer i Norge',
+    'Skriv et avsnitt der du forklarer en mening med fordi-setninger',
+  ],
+  B2: [
+    'Skriv et avsnitt der du bruker presens perfektum minst tre ganger',
+    'Skriv et avsnitt der du beskriver noe du ønsker å gjøre, med modalverb',
+    'Skriv et avsnitt om en reise du har tatt, med fortid og perfektum',
+    'Skriv et avsnitt der du sammenligner to byer i Norge',
+    'Skriv et avsnitt der du forklarer en mening med fordi-setninger',
+  ],
+}
 
-export function getDailyPrompt(now: Date = new Date()): string {
-  return FALLBACK_PROMPTS[now.getDay() % FALLBACK_PROMPTS.length]
+export function getDailyPrompt(now: Date = new Date(), level: CEFRLevel = 'A1'): string {
+  const prompts = FALLBACK_PROMPTS[level]
+  return prompts[now.getDay() % prompts.length]
 }
 
 // ── Journal prompt selection ─────────────────────────────────────────────────
@@ -99,8 +123,9 @@ export function getJournalPrompt(
   fp: MistakeFingerprint,
   now: Date = new Date(),
 ): JournalPrompt {
+  const level: CEFRLevel = fp.currentLevel ?? 'A1'
   const dailyFallback: JournalPrompt = {
-    prompt: getDailyPrompt(now),
+    prompt: getDailyPrompt(now, level),
     focusConceptId: null,
     focusLabel: null,
   }
@@ -119,8 +144,15 @@ export function getJournalPrompt(
   const label = NORWEGIAN_CONCEPT_LABELS[lowest.id]
   if (!label) return dailyFallback // silent English-in-Norwegian prevention
 
+  const focusedPrompt: Record<CEFRLevel, string> = {
+    A1: `Skriv 3 setninger der du bruker '${label}'.`,
+    A2: `Beskriv noe du liker, og bruk '${label}' minst to ganger.`,
+    B1: `Skriv et avsnitt der du bruker '${label}' minst tre ganger.`,
+    B2: `Skriv et avsnitt der du bruker '${label}' minst tre ganger.`,
+  }
+
   return {
-    prompt: `Skriv en kort tekst der du bruker '${label}' minst tre ganger.`,
+    prompt: focusedPrompt[level],
     focusConceptId: lowest.id,
     focusLabel: label,
   }

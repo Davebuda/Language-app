@@ -1,5 +1,8 @@
 import type { GenerateParams } from './types';
 import type { ExerciseType } from '@/types/session';
+import type { CEFRLevel } from '@/types/fingerprint';
+
+const LEVEL_MAX_WORDS: Record<CEFRLevel, number> = { A1: 8, A2: 12, B1: 18, B2: 18 }
 
 // Raw shape the model returns (before validation)
 interface RawGenerated {
@@ -60,13 +63,18 @@ function checkStructure(raw: RawGenerated, exerciseType: ExerciseType): string |
   return null;
 }
 
-function checkContent(norwegian: string, exerciseType: ExerciseType): string | null {
+function checkContent(norwegian: string, exerciseType: ExerciseType, level?: CEFRLevel): string | null {
   const testStr = norwegian.replace(/___/g, '');
   if (!NORWEGIAN_CHARS.test(testStr)) return 'unexpected characters in norwegian text';
 
   const wc = wordCount(norwegian);
   if (exerciseType === 'speed-round' && (wc < 3 || wc > 9)) return 'speed-round sentence wrong length';
   if (exerciseType !== 'speed-round' && (wc < 4 || wc > 18)) return 'sentence length out of range';
+
+  if (level && exerciseType !== 'speed-round') {
+    const maxWords = LEVEL_MAX_WORDS[level]
+    if (wc > maxWords) return 'sentence too complex for level'
+  }
 
   return null;
 }
@@ -184,7 +192,7 @@ export function validateGenerated(
   const norwegian = (r.norwegian as string).trim();
   const english = (r.english as string).trim();
 
-  const contentErr = checkContent(norwegian, params.exerciseType);
+  const contentErr = checkContent(norwegian, params.exerciseType, params.level as CEFRLevel);
   if (contentErr) return { valid: false, error: contentErr };
 
   const content: ValidatedContent = {

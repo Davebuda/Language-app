@@ -45,11 +45,15 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
     if (!levelKnown) return []
     const level = fingerprint?.currentLevel ?? 'A1'
 
-    // Prefer sentences matching the learner's level; fall back to A1 if too few
+    // Prefer sentences matching the learner's level; cascade to next-lower level if empty
     const levelMatch = candidateSentences.filter((s) => s.cefrLevel === level)
-    const pool = levelMatch.length >= SESSION_SIZE ? levelMatch : candidateSentences
+    const pool = levelMatch.length > 0 ? levelMatch : candidateSentences.filter(s => {
+      const fallbacks: Record<string, string[]> = { B2: ['B1','A2'], B1: ['A2'], A2: ['A1'], A1: [] }
+      return (fallbacks[level] || []).includes(s.cefrLevel)
+    })
+    const sessionPool = pool.length > 0 ? pool : candidateSentences
 
-    return shuffleCopy(pool).slice(0, SESSION_SIZE)
+    return shuffleCopy(sessionPool).slice(0, SESSION_SIZE)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelKnown])
 

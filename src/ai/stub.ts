@@ -89,8 +89,8 @@ export class StubAIService implements AIService {
   async reviewWriting(_params: ReviewParams): Promise<WritingFeedback> {
     return {
       errors: [],
-      praise: 'Good attempt! Keep writing in Norwegian.',
-      suggestion: 'Focus on getting the word order right — verb second in main clauses.',
+      praise: 'Bra innsats! Fortsett å skrive på norsk.',
+      suggestion: 'Fokuser på å få ordstillingen riktig — husk V2-regelen i hovedsetninger.',
       source: 'template',
     };
   }
