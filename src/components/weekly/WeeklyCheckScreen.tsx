@@ -10,6 +10,7 @@ import { buildWeeklyCheckItems } from '@/lib/weekly-check'
 import type { Sentence, ResolvedContent } from '@/types/content'
 import type { SessionItem, ExerciseResult } from '@/types/session'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { markLaneDone } from '@/lib/lane-completion'
 
 interface WeeklyCheckScreenProps {
   sentences: Record<string, Sentence>
@@ -84,6 +85,7 @@ export function WeeklyCheckScreen({
     if (nextIndex >= totalItems) {
       const score = totalItems > 0 ? Math.round((nextCorrect / totalItems) * 100) : 0
       recordWeeklyCheckResult({ score, items: totalItems })
+      markLaneDone('uke')
       setCorrectCount(nextCorrect)
       setIsComplete(true)
     } else {

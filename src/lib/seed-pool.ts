@@ -1,4 +1,4 @@
-// Client-safe seed pool — the 397-sentence A1+A2 corpus statically imported
+// Client-safe seed pool — the full A1+A2+B1+B2 corpus statically imported
 // from JSON so client-side schedulers see the same data the server grader has.
 //
 // The server grader (src/app/session/actions.ts) uses `loadContentSentences`

@@ -98,7 +98,7 @@ export function DrillsScreen() {
       userAnswer: transcript,
       correctAnswer: word.norwegian,
       timeTakenSeconds: 0,
-      conceptId: 'personal-pronouns',
+      conceptId: activeDrillSet.conceptId ?? 'pronunciation',
       sentenceId: undefined,
       errorTag: correct ? undefined : 'listening-recognition',
     }

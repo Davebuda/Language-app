@@ -2,6 +2,7 @@ export interface DrillSet {
   id: string
   targetSound: string       // e.g. "kj-lyd"
   description: string       // e.g. "Lyden som i 'kjøpe' og 'kjenne'"
+  conceptId?: string
   words: DrillWord[]
 }
 

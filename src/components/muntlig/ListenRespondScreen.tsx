@@ -10,6 +10,7 @@ import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { LISTEN_RESPOND_QUESTIONS } from '@/lib/listenRespondContent'
 import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
 import { markLaneDone } from '@/lib/lane-completion'
+import { saveFingerprint } from '@/storage/indexeddb'
 import type { ExerciseResult } from '@/types/session'
 
 // ── Question selection card ───────────────────────────────────────────────────
@@ -107,11 +108,13 @@ export function ListenRespondScreen() {
       if (fingerprint) {
         const answeredCount = newScores.filter((s) => !s.skipped).length
         const minutesSpoken = answeredCount * (5 / 60)
-        setFingerprint({
+        const updated = {
           ...fingerprint,
           speakingMinutesTotal: (fingerprint.speakingMinutesTotal ?? 0) + minutesSpoken,
           updatedAt: new Date().toISOString(),
-        })
+        }
+        setFingerprint(updated)
+        saveFingerprint(updated).catch(console.warn)
       }
       markLaneDone('listen')
       setScreenPhase('complete')
