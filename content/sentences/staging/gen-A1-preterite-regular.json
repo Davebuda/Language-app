@@ -796,5 +796,173 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "cfd048f7-2819-4157-b238-1a01c5f00430",
+    "norwegian": "Hun kjørte bilen",
+    "english": "She drove the car",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "45055624-0fd4-42b7-ab92-e7ff022ae1f3",
+    "norwegian": "Han bodde i Oslo",
+    "english": "He lived in Oslo",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "13d794cb-5a9a-4a8f-8ff8-27f3c5c1e4f4",
+    "norwegian": "Vi snakket norsk",
+    "english": "We spoke Norwegian",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "75121e39-8619-4bcd-ad10-6c1e91181bf7",
+    "norwegian": "De leste boken",
+    "english": "They read the book",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8cf09b1e-46c0-4724-a0df-8a845579354d",
+    "norwegian": "Jeg skrev brevet",
+    "english": "I wrote the letter",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "247de525-a8db-4dfc-a1f3-476c8c920c1f",
+    "norwegian": "Hun tegnet bildet",
+    "english": "She drew the picture",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5e147473-e056-44de-acc2-4aef922cb5ff",
+    "norwegian": "Han synte skjorten",
+    "english": "He sewed the shirt",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09335316-4d78-4db8-b551-7b82057edb4e",
+    "norwegian": "Vi hørte musikken",
+    "english": "We heard the music",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

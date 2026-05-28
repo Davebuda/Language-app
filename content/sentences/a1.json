@@ -15226,5 +15226,434 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "124abad4-91d0-4796-8ff3-c7651711f0da",
+    "norwegian": "Det koster femten kroner.",
+    "english": "It costs fifteen crowns",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1de95771-e87c-441a-bdf9-d1d1cd5ea9bb",
+    "norwegian": "Han har nitten bøker.",
+    "english": "He has nineteen books",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a8320c33-8636-41f5-8a48-fd9ddc471fe1",
+    "norwegian": "Det er åtte hus.",
+    "english": "There are eight houses",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c36fe68c-0951-4690-8ff8-c6c55f925da5",
+    "norwegian": "Jeg har fjorten dager.",
+    "english": "I have fourteen days",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c0bbc478-313d-4d9e-bbba-edb803f00543",
+    "norwegian": "Hun kjøper tjueen billetter.",
+    "english": "She buys twenty-one tickets",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "45055624-0fd4-42b7-ab92-e7ff022ae1f3",
+    "norwegian": "Han bodde i Oslo.",
+    "english": "He lived in Oslo",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "13d794cb-5a9a-4a8f-8ff8-27f3c5c1e4f4",
+    "norwegian": "Vi snakket norsk.",
+    "english": "We spoke Norwegian",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "247de525-a8db-4dfc-a1f3-476c8c920c1f",
+    "norwegian": "Hun tegnet bildet.",
+    "english": "She drew the picture",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09335316-4d78-4db8-b551-7b82057edb4e",
+    "norwegian": "Vi hørte musikken.",
+    "english": "We heard the music",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ad9f021-6ed8-4e4d-9207-4d9c145d92ae",
+    "norwegian": "Jeg ser TV.",
+    "english": "I watch TV",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c75c8e29-034a-4e37-85a7-01d6b925a64b",
+    "norwegian": "De spiser frokost.",
+    "english": "They eat breakfast",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "56a31c1c-3b64-4ff9-9fb8-17fc3f676ee5",
+    "norwegian": "Han skriver et brev.",
+    "english": "He writes a letter",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b907a15d-30cc-4470-8ab8-aae9b06cbafa",
+    "norwegian": "De synger en sang.",
+    "english": "They sing a song",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4764d916-5d8f-4df4-ad26-cadb52f20fe9",
+    "norwegian": "Hun tegner et bilde.",
+    "english": "She draws a picture",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5309eb9f-02de-4a38-9a98-5bbed39a2525",
+    "norwegian": "Han spiller fotball.",
+    "english": "He plays soccer",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c46bbe0a-efc2-43c9-981e-3def370efc98",
+    "norwegian": "Hun kjøper en gave.",
+    "english": "She buys a gift",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ff704fb-6e2b-4d30-9603-0c8d5917d1c4",
+    "norwegian": "Han leser en bok.",
+    "english": "He reads a book",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ad031e9-f289-4724-b0a2-56d994e13c34",
+    "norwegian": "Han tar en dusj.",
+    "english": "He takes a shower",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "95207ca0-4b40-4987-9696-79814a6a424b",
+    "norwegian": "Jeg bruker en datamaskin.",
+    "english": "I use a computer",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c48ec99b-5010-40b1-9960-7defffd29dcd",
+    "norwegian": "Vi ser en film.",
+    "english": "We watch a movie",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f6c9e2ef-346b-4a6c-b90d-e85a92b95388",
+    "norwegian": "Han kjøper frukt.",
+    "english": "He buys fruit",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]
