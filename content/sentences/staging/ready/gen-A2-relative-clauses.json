@@ -1,0 +1,116 @@
+[
+  {
+    "id": "caca4def-e92c-4c2b-90c4-d292bf0c4744",
+    "norwegian": "Jeg liker å lese bøker som handler om eventyr",
+    "english": "I like to read books about adventure",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ed185401-7736-4732-9851-98f52080d54f",
+    "norwegian": "Hun jobber i en butikk som ligger i sentrum",
+    "english": "She works in a store that is located in the city center",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9177e495-477c-4f88-9d4e-5c8101c17b3a",
+    "norwegian": "De dro til et land som heter Frankrike",
+    "english": "They went to a country that is called France",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4505032c-2ba2-49b1-a286-e5b72fc31d1a",
+    "norwegian": "Hun reiste med en buss som var full av folk",
+    "english": "She traveled with a bus that was full of people",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bdcc069e-5c1a-45c3-a6f8-8ec3b053709a",
+    "norwegian": "Vi skal til en by som er hovedstaden",
+    "english": "We will go to a city that is the capital",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5e26d716-e9fd-48e9-a217-fe785ef6ee6d",
+    "norwegian": "De har en hund som heter Max",
+    "english": "They have a dog that is called Max",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

@@ -5050,5 +5050,1271 @@
       "speed-round",
       "listening-comprehension"
     ]
+  },
+  {
+    "id": "260967b2-e939-4b4d-ac01-2db6094f5d6d",
+    "norwegian": "Dårlig vær er verre enn bra vær",
+    "english": "Bad weather is worse than good weather",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ff632b98-2e25-44ab-bfb1-b217f00d337f",
+    "norwegian": "Jeg er kortere enn min bror",
+    "english": "I am shorter than my brother",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "245f6dae-4ceb-40bc-b559-4a81036e2869",
+    "norwegian": "Huset mitt er større enn vennens hus",
+    "english": "My house is bigger than my friend's house",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c9d2356e-2c5c-488a-8455-a7837ae2c704",
+    "norwegian": "Bilen min er lengre enn naboens bil",
+    "english": "My car is longer than my neighbor's car",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "669c3e98-02ca-47b9-b707-79d164b5692f",
+    "norwegian": "Vinteren er kaldere enn sommeren",
+    "english": "Winter is colder than summer",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4ad7be08-7cd8-4c9d-b520-95ab2094f493",
+    "norwegian": "Den store byen er større enn den lille",
+    "english": "The big city is bigger than the small",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "71a17846-7796-4951-b581-93a0df8a7ff1",
+    "norwegian": "Vi må skrive et brev til dem.",
+    "english": "We must write a letter to them.",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fed0688b-fe25-4da1-8367-11efc3a8a3c0",
+    "norwegian": "Jeg kjøper en bok fra deg",
+    "english": "I buy a book from you.",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f5370013-2966-40ab-868f-ccf653a0429e",
+    "norwegian": "Jeg brukte telefonen for å ringe ham",
+    "english": "I used the phone to call him",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3b1a401a-b9fb-4c19-b026-73882d3eb620",
+    "norwegian": "Jeg vil besøke dem neste uke",
+    "english": "I will visit them next week",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f5e55cdf-150f-4756-9ac1-b728a8ad7315",
+    "norwegian": "Jeg skal gjøre det for deg",
+    "english": "I will do it for you",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1380d9ab-f414-4a25-96c7-59c85f721311",
+    "norwegian": "De gir meg boken",
+    "english": "They give me the book",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "95669259-f76a-4d6a-9873-9d5decdf35ce",
+    "norwegian": "Jeg så ham på butikken",
+    "english": "I saw him in the store",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9898b666-705e-49ac-a723-21e400436509",
+    "norwegian": "Boken leses av John",
+    "english": "The book is read by John",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "21e0c801-f995-44ef-b4d9-14c8497a3873",
+    "norwegian": "Prosjektet er ferdigstilt av teamet",
+    "english": "The project is completed by the team",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3d766f6b-7bb3-407b-894e-a1e280587f81",
+    "norwegian": "Rapporten leses av komiteen",
+    "english": "The report is read by the committee",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "135ea18e-612b-499c-9f32-e153b1f6b7e0",
+    "norwegian": "Boken leses av eleven",
+    "english": "The book is read by the student",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dd5c2ea5-c02e-4dd1-bbcc-ae7970ffa42a",
+    "norwegian": "E-posten skrives av vennen",
+    "english": "The email is written by the friend",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b18f29ac-2b91-4fbb-8f28-86d46de2dcd8",
+    "norwegian": "Brevet blir sendt til sjefen",
+    "english": "The letter is sent to the manager",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0980fc26-6fb2-4bbd-99fc-e3c98ca883ed",
+    "norwegian": "Artikkelen blir skrevet av forskeren",
+    "english": "The article is written by the researcher",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8443eb6f-a41f-4b3e-a4a6-432603a129d4",
+    "norwegian": "Boken leses av læreren",
+    "english": "The book is read by the teacher",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "52e1a9a8-5776-4a04-b7fa-7e7c3f84320f",
+    "norwegian": "E-posten blir skrevet av eleven",
+    "english": "The email is written by the student",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2e93a1b0-f052-4dde-8591-ad9a742f6258",
+    "norwegian": "Boken leses",
+    "english": "The book is read",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "61e569dc-76f3-47ac-a318-1dcefd61e3e8",
+    "norwegian": "Jeg vasker meg",
+    "english": "I wash myself",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f98e6257-9905-41c7-b05e-eafcafab6abd",
+    "norwegian": "Du kler på deg",
+    "english": "You get dressed",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7d1b6702-27bd-4d06-a6b0-900de7593627",
+    "norwegian": "Hun gifter seg med meg",
+    "english": "She gets married to me",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0ef5b834-d224-47f2-9d8e-9b9dc4eab2d8",
+    "norwegian": "Du vasker deg selv",
+    "english": "You wash yourself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a34d24e5-0d2f-49d4-842c-21b98f97ac91",
+    "norwegian": "Jeg setter meg ved bordet.",
+    "english": "I sit down at the table.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "82add22d-45b3-4def-992a-9164debbbcca",
+    "norwegian": "Han kler seg selv",
+    "english": "He dresses himself",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ae39712c-0c5c-4b8f-a68a-fa41f494cbca",
+    "norwegian": "Jeg gifter meg med henne",
+    "english": "I marry her.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f7fe0117-11df-4756-960b-b0293c93a6bc",
+    "norwegian": "Jeg setter meg ned",
+    "english": "I sit down.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "305391a8-b5e4-46ff-a690-24a724131f02",
+    "norwegian": "Jeg kler på meg selv",
+    "english": "I dress myself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "caca4def-e92c-4c2b-90c4-d292bf0c4744",
+    "norwegian": "Jeg liker å lese bøker som handler om eventyr",
+    "english": "I like to read books about adventure",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ed185401-7736-4732-9851-98f52080d54f",
+    "norwegian": "Hun jobber i en butikk som ligger i sentrum",
+    "english": "She works in a store that is located in the city center",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9177e495-477c-4f88-9d4e-5c8101c17b3a",
+    "norwegian": "De dro til et land som heter Frankrike",
+    "english": "They went to a country that is called France",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4505032c-2ba2-49b1-a286-e5b72fc31d1a",
+    "norwegian": "Hun reiste med en buss som var full av folk",
+    "english": "She traveled with a bus that was full of people",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bdcc069e-5c1a-45c3-a6f8-8ec3b053709a",
+    "norwegian": "Vi skal til en by som er hovedstaden",
+    "english": "We will go to a city that is the capital",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5e26d716-e9fd-48e9-a217-fe785ef6ee6d",
+    "norwegian": "De har en hund som heter Max",
+    "english": "They have a dog that is called Max",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7bbeb95d-4ca9-4fa7-af2e-def4bc9cf4d5",
+    "norwegian": "Jeg skal gå til butikken når du er ferdig",
+    "english": "I will go to the store when you are finished",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cc714384-8c36-4b57-989f-5ec857028b3f",
+    "norwegian": "Hvis du blir med, skal vi ta en tur",
+    "english": "If you join me, we will take a walk",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fd0d1163-75c1-4571-a6be-e45905ebb6fd",
+    "norwegian": "Jeg skal gå til butikken hvis jeg har penger.",
+    "english": "I will go to the store if I have money.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3ce9d142-f2cd-4c19-ba36-cd6181622818",
+    "norwegian": "Hvis jeg er sulten, spiser jeg et eple.",
+    "english": "If I am hungry, I eat an apple.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dc4e8319-f657-4cdc-a0e2-986114c80f2a",
+    "norwegian": "Når jeg er ferdig, går jeg hjem",
+    "english": "When I am finished, I go home.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "59485a75-1804-443d-8b8a-fcd61acac0fb",
+    "norwegian": "Jeg kjøper en bok fordi den er interessant",
+    "english": "I buy a book because it is interesting",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "df55a1cb-2473-42d0-9171-4f9445e69ad6",
+    "norwegian": "Jeg vil gå ut når det blir lyst",
+    "english": "I will go out when it gets light",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d36efe09-c4b6-41eb-a108-f8b4fba5a0db",
+    "norwegian": "Jeg vil besøke deg når jeg har tid",
+    "english": "I will visit you when I have time",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "42a067c7-da2a-418d-a3e8-bbd292ff6649",
+    "norwegian": "Hvis det regner går jeg inn",
+    "english": "If it rains I go in",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c2917a0f-299c-487f-912a-82805213931b",
+    "norwegian": "Jeg tar en kopp te fordi den er varm",
+    "english": "I take a cup of tea because it is hot",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e0d40f28-602a-4ee4-9b13-e076f7638c3f",
+    "norwegian": "Jeg kjøper en bil fordi den er ny",
+    "english": "I buy a car because it is new",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fadab393-7bfb-4b99-8c0c-28b40eee6391",
+    "norwegian": "Jeg vil gå ut når solen går ned",
+    "english": "I will go out when the sun goes down",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "adbfd3e1-0bea-4bdb-b87d-624dfdce3cef",
+    "norwegian": "Jeg går til butikken hvis jeg trenger brød.",
+    "english": "I go to the store if I need bread.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a61cc9e4-3e08-4e2e-99e3-1ac181129899",
+    "norwegian": "Hun jobber fordi hun er sulten.",
+    "english": "She works because she is hungry.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c4a11525-72b2-46d6-8cea-25c934313ba0",
+    "norwegian": "Jeg vil dra til butikken når jeg er ferdig med oppgaven",
+    "english": "I will go to the store when I am finished with my task",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e1c7d02c-6919-4842-9a23-8f2ec647c5ea",
+    "norwegian": "Boken er mest interessant",
+    "english": "The book is the most interesting",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6fa677be-8ca8-4548-98cd-403cb7757a0c",
+    "norwegian": "Forfatteren skriver den mest populære boka",
+    "english": "The author writes the most popular book",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ab08d497-66b9-4886-837e-e25052224e5e",
+    "norwegian": "Biblioteket har flest bøker",
+    "english": "The library has the most books",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7b586a58-adad-4b93-ad6a-97db8fa509f7",
+    "norwegian": "Romanen er den beste",
+    "english": "The novel is the best",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1210f45b-795c-4102-a6b1-ecfa890c2c1c",
+    "norwegian": "Hun er den vakreste",
+    "english": "She is the most beautiful",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "784e6881-d37c-4951-9aa9-bedc598c17f7",
+    "norwegian": "Jeg har det største huset",
+    "english": "I have the largest house",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "943e0f82-4d98-4fe2-8089-b24e956acdb9",
+    "norwegian": "Vannet er det varmeste i elven",
+    "english": "The water is the warmest in the river",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "217cdda8-59c0-49a8-a56c-5b2a065118ae",
+    "norwegian": "Boken er den lengste på hyllen",
+    "english": "The book is the longest on the shelf",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c678fd87-50ff-4d1b-9a07-37847f6cb4d4",
+    "norwegian": "Huset er det høyeste i nabolaget",
+    "english": "The house is the highest in the neighborhood",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9106af9d-e3b1-4540-bbbe-48e20605e48d",
+    "norwegian": "Huset er det største",
+    "english": "The house is the biggest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b5f708db-2c80-4d8c-baf9-c24d4fa891df",
+    "norwegian": "Boken er den lengste",
+    "english": "The book is the longest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b2f90d49-f032-4735-9891-a63288bab850",
+    "norwegian": "Jeg har den største",
+    "english": "I have the biggest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "decf54d4-15e0-4417-86e0-08073386b022",
+    "norwegian": "Vi har den mest komfortable",
+    "english": "We have the most comfortable",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "828b2536-994c-4741-970a-bf7fb673b4d6",
+    "norwegian": "De er de raskeste",
+    "english": "They are the fastest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

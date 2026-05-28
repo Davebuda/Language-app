@@ -1,0 +1,18 @@
+{
+  "_comment": "norwegian-linguist review (2026-05-29, autopilot session 2b) of the 8 previously-UN-seeded staging files (possessive-pronouns A1 + 7 A2 concepts), ~168 generated sentences. Only KEEP rows were seeded into the live corpus (written to staging/ready/, then seed-staging --commit). DROP rows were NOT seeded. This is fresh evidence that the mechanical content-gate passes a large share of low-quality content: ~49% true keep. Dominant drop reasons: OFF-CONCEPT (sentence does not exercise the tagged grammar), TRANSLATION MISMATCH (NO passive ↔ EN active; tense drift), generator artefacts ('(self)'), noun-phrase fragments (relative-clause file), articleless/agreement errors, near-duplicates.",
+  "kept_per_file": {
+    "gen-A1-possessive-pronouns.json": "16/22",
+    "gen-A2-object-pronouns.json": "7/21",
+    "gen-A2-comparative-adjectives.json": "6/18",
+    "gen-A2-superlative-adjectives.json": "14/19",
+    "gen-A2-passive-voice.json": "10/22",
+    "gen-A2-reflexive-verbs.json": "9/22",
+    "gen-A2-relative-clauses.json": "6/22",
+    "gen-A2-subordinate-clauses.json": "15/22"
+  },
+  "total_kept": 83,
+  "total_reviewed": 168,
+  "seeded_into": { "A1": "+16 (580->596)", "A2": "+67 (238->305)" },
+  "audit_after": "0 ERRORS",
+  "dropped_excluded_not_seeded": "85 rows — left in the raw gen-*.json provenance files only, never entered the live corpus. RECLASSIFY:B1 candidates (2 passive + 3 subordinate) were also excluded rather than moved, to avoid A2-concept/B1-graph mismatch."
+}

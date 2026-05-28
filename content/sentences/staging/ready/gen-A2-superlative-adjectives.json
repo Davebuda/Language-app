@@ -1,0 +1,268 @@
+[
+  {
+    "id": "e1c7d02c-6919-4842-9a23-8f2ec647c5ea",
+    "norwegian": "Boken er mest interessant",
+    "english": "The book is the most interesting",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6fa677be-8ca8-4548-98cd-403cb7757a0c",
+    "norwegian": "Forfatteren skriver den mest populære boka",
+    "english": "The author writes the most popular book",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ab08d497-66b9-4886-837e-e25052224e5e",
+    "norwegian": "Biblioteket har flest bøker",
+    "english": "The library has the most books",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7b586a58-adad-4b93-ad6a-97db8fa509f7",
+    "norwegian": "Romanen er den beste",
+    "english": "The novel is the best",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1210f45b-795c-4102-a6b1-ecfa890c2c1c",
+    "norwegian": "Hun er den vakreste",
+    "english": "She is the most beautiful",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "784e6881-d37c-4951-9aa9-bedc598c17f7",
+    "norwegian": "Jeg har det største huset",
+    "english": "I have the largest house",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "943e0f82-4d98-4fe2-8089-b24e956acdb9",
+    "norwegian": "Vannet er det varmeste i elven",
+    "english": "The water is the warmest in the river",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "217cdda8-59c0-49a8-a56c-5b2a065118ae",
+    "norwegian": "Boken er den lengste på hyllen",
+    "english": "The book is the longest on the shelf",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c678fd87-50ff-4d1b-9a07-37847f6cb4d4",
+    "norwegian": "Huset er det høyeste i nabolaget",
+    "english": "The house is the highest in the neighborhood",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9106af9d-e3b1-4540-bbbe-48e20605e48d",
+    "norwegian": "Huset er det største",
+    "english": "The house is the biggest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b5f708db-2c80-4d8c-baf9-c24d4fa891df",
+    "norwegian": "Boken er den lengste",
+    "english": "The book is the longest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b2f90d49-f032-4735-9891-a63288bab850",
+    "norwegian": "Jeg har den største",
+    "english": "I have the biggest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "decf54d4-15e0-4417-86e0-08073386b022",
+    "norwegian": "Vi har den mest komfortable",
+    "english": "We have the most comfortable",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "828b2536-994c-4741-970a-bf7fb673b4d6",
+    "norwegian": "De er de raskeste",
+    "english": "They are the fastest",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]
