@@ -29,6 +29,15 @@ describe('extractBlank', () => {
     expect(result.before).toBe('Ingen blank her.');
     expect(result.after).toBe('');
   });
+
+  // Regression: B1/B2 corpus uses '_____' (5 underscores), A1/A2 uses '___' (3).
+  // extractBlank must handle any run of underscores, else B1/B2 blanks mis-render.
+  it('extracts a 5-underscore blank (B1/B2 marker style)', () => {
+    expect(extractBlank('Hun hadde _____ (sove) i to timer.')).toEqual({
+      before: 'Hun hadde ',
+      after: ' (sove) i to timer.',
+    });
+  });
 });
 
 // ── errorTag derivation — the fix for P0 item 5 ───────────────────────────────
