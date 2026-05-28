@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach Landing — Voice Orb v2 (Tighter)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --lime: #C8FF20;
+    --lime-dark: #0A1206;
+    --lime-glow: rgba(200,255,32,0.25);
+    --lime-glow-soft: rgba(200,255,32,0.08);
+    --dark: #151718;
+    --darker: #0F1011;
+    --text-w: #EDEEE9;
+    --text-wm: rgba(237,238,233,0.58);
+    --text-wd: rgba(237,238,233,0.34);
+    --border-d: rgba(255,255,255,0.08);
+    --font: 'Schibsted Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: linear-gradient(180deg, #2C2E30 0%, #343638 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px 12px;
+    -webkit-font-smoothing: antialiased;
+    color: var(--text-w);
+  }
+
+  .phone {
+    width: 375px;
+    min-height: 812px;
+    border-radius: 1.2rem;
+    background: rgba(248,250,246,0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ═══ ZONE 1: LIME HERO — 65-70% ═══ */
+  .hero {
+    flex: 7;
+    background: linear-gradient(135deg, #C8FF20 0%, #B8EF10 100%);
+    padding: 12px 12px 18px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero .circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    border: 1px solid rgba(10,18,6,0.05);
+  }
+  .hero .c1 { width: 200px; height: 200px; right: -60px; top: -40px; }
+  .hero .c2 { width: 110px; height: 110px; right: -15px; top: 5px; }
+  .hero .c3 { width: 50px; height: 50px; right: 24px; top: 34px; }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .logo { font-size: 12px; font-weight: 800; color: var(--lime-dark); letter-spacing: -0.01em; }
+  .start-btn {
+    background: var(--lime-dark); color: #fff;
+    font-size: 11px; font-weight: 600;
+    padding: 6px 14px; border-radius: 0.35rem; border: none; cursor: pointer;
+  }
+
+  .hero-content { position: relative; z-index: 1; margin-top: 28px; }
+  .headline {
+    font-size: 1.75rem; font-weight: 800; line-height: 0.92;
+    letter-spacing: -0.03em; color: var(--lime-dark);
+  }
+  .headline-en {
+    display: block; margin-top: 6px;
+    font-size: 0.88rem; font-weight: 500; line-height: 1.2;
+    color: rgba(10,18,6,0.40);
+  }
+  .hero-sub {
+    margin-top: 10px; font-size: 12px; line-height: 1.5;
+    color: rgba(10,18,6,0.52); max-width: 230px;
+  }
+
+  /* Carousel */
+  .carousel-track {
+    display: flex; gap: 8px; margin-top: 16px;
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+  .carousel-card {
+    min-width: 78%; flex-shrink: 0;
+    background: rgba(10,18,6,0.07); border-radius: 0.45rem; padding: 12px 12px;
+  }
+  .carousel-card.peek { opacity: 0.4; }
+  .cc-outcome {
+    font-size: 0.95rem; font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--lime-dark);
+  }
+  .cc-sub { margin-top: 4px; font-size: 10px; line-height: 1.4; color: rgba(10,18,6,0.46); }
+  .carousel-dots {
+    display: flex; gap: 5px; justify-content: center;
+    margin-top: 10px; position: relative; z-index: 1;
+  }
+  .dot { width: 5px; height: 5px; border-radius: 99px; background: rgba(10,18,6,0.15); }
+  .dot.active { width: 16px; background: var(--lime-dark); }
+
+  /* Social proof — inline in hero */
+  .hero-social {
+    margin-top: 14px;
+    display: flex; align-items: center; gap: 10px;
+    position: relative; z-index: 1;
+  }
+  .avatars { display: flex; }
+  .avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; font-weight: 800;
+    border: 1.5px solid rgba(10,18,6,0.12);
+    margin-left: -6px;
+  }
+  .avatar:first-child { margin-left: 0; }
+  .hero-social-text {
+    font-size: 10px; color: rgba(10,18,6,0.50);
+  }
+  .hero-social-text strong { font-weight: 700; color: rgba(10,18,6,0.70); }
+
+  .hero-cta {
+    position: relative; z-index: 1; margin-top: 14px; width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--lime-dark); color: #fff;
+    font-size: 13px; font-weight: 700;
+    padding: 12px; border-radius: 0.45rem; border: none; cursor: pointer;
+  }
+  .hero-friction {
+    position: relative; z-index: 1; margin-top: 6px;
+    text-align: center; font-size: 10px; color: rgba(10,18,6,0.34);
+  }
+
+  /* Trust badges — compact row in hero */
+  .trust-row {
+    display: flex; gap: 4px; margin-top: 10px;
+    position: relative; z-index: 1;
+  }
+  .trust-pill {
+    flex: 1;
+    background: rgba(10,18,6,0.06);
+    border-radius: 0.3rem;
+    padding: 6px 4px;
+    text-align: center;
+    font-size: 9px; font-weight: 700; color: rgba(10,18,6,0.52);
+  }
+  .trust-pill strong { color: rgba(10,18,6,0.72); }
+
+  /* ═══ ZONE 2: VOICE ORB — 30% ═══ */
+  .orb-zone {
+    flex: 3;
+    background: var(--dark);
+    border-top: 1px solid var(--border-d);
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .orb-zone .oz-c {
+    position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .orb-zone .ozc1 { width: 160px; height: 160px; border: 1px solid rgba(255,255,255,0.02); right: -50px; bottom: -40px; }
+
+  .orb-header {
+    display: flex; align-items: center; gap: 8px;
+    position: relative; z-index: 1;
+  }
+  .orb-tag {
+    font-size: 8px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--lime);
+    background: rgba(200,255,32,0.08);
+    padding: 3px 8px; border-radius: 0.2rem;
+  }
+  .orb-title {
+    font-size: 14px; font-weight: 700; color: var(--text-w);
+    letter-spacing: -0.01em;
+  }
+
+  .orb-desc {
+    margin-top: 4px; font-size: 11px; line-height: 1.4;
+    color: var(--text-wd); text-align: center;
+    position: relative; z-index: 1;
+  }
+
+  /* Orb — compact */
+  .orb-wrap {
+    position: relative; z-index: 1;
+    margin: 14px 0 8px;
+    width: 72px; height: 72px;
+  }
+  .orb-ring {
+    position: absolute; border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .orb-r1 {
+    width: 96px; height: 96px;
+    background: radial-gradient(circle, var(--lime-glow-soft) 0%, transparent 70%);
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .orb-r2 {
+    width: 84px; height: 84px;
+    border: 1px solid rgba(200,255,32,0.10);
+    animation: breathe 3s ease-in-out infinite 0.6s;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.5; }
+  }
+
+  .orb-btn {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 64px; height: 64px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #d4ff55 0%, #C8FF20 50%, #a8d818 100%);
+    box-shadow:
+      0 0 18px var(--lime-glow),
+      0 0 44px var(--lime-glow-soft),
+      inset 0 1.5px 3px rgba(255,255,255,0.25);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .orb-btn:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 26px var(--lime-glow), 0 0 60px rgba(200,255,32,0.12), inset 0 1.5px 3px rgba(255,255,255,0.25);
+  }
+  .orb-btn:active { transform: translate(-50%, -50%) scale(0.95); }
+  .mic-icon { color: var(--lime-dark); width: 22px; height: 22px; }
+
+  .orb-hint {
+    font-size: 10px; color: var(--text-wd);
+    position: relative; z-index: 1;
+  }
+
+  .orb-footer {
+    margin-top: 10px;
+    position: relative; z-index: 1;
+  }
+  .orb-footer a {
+    font-size: 11px; color: var(--text-wd); text-decoration: none;
+  }
+
+  .page-label {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--text-wd);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-label">v2 — Tighter Proportions</div>
+
+<div class="phone">
+
+  <!-- ═══ HERO: 65-70% ═══ -->
+  <div class="hero">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+
+    <div class="topbar">
+      <span class="logo">NorskCoach</span>
+      <button class="start-btn">Start</button>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="headline">
+        Snakk norsk. Trygt.
+        <span class="headline-en">Speak Norwegian. Confidently.</span>
+      </h1>
+      <p class="hero-sub">Diagnostisk coaching som finner svakhetene dine og fikser dem.</p>
+    </div>
+
+    <div class="carousel-track">
+      <div class="carousel-card">
+        <div class="cc-outcome">Bestill kaffe på norsk.</div>
+        <div class="cc-sub">Fra første ord til flytende hverdagsspråk.</div>
+      </div>
+      <div class="carousel-card peek">
+        <div class="cc-outcome">Forstå kollegaene dine.</div>
+        <div class="cc-sub">Arbeidslivet krever mer enn læreboka.</div>
+      </div>
+    </div>
+    <div class="carousel-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <!-- Social proof inline -->
+    <div class="hero-social">
+      <div class="avatars">
+        <div class="avatar" style="background:#C8FF20;color:#0A1206;">D</div>
+        <div class="avatar" style="background:#6de5ff;color:#061017;">K</div>
+        <div class="avatar" style="background:#ff8f62;color:#1a0a06;">M</div>
+        <div class="avatar" style="background:#C8FF20;color:#0A1206;">A</div>
+        <div class="avatar" style="background:#7dffb2;color:#062212;">S</div>
+      </div>
+      <span class="hero-social-text"><strong>4.9 ★</strong> fra tidlige brukere</span>
+    </div>
+
+    <button class="hero-cta">Start kartlegging →</button>
+    <div class="hero-friction">2 min · Gratis · Ingen konto</div>
+
+    <div class="trust-row">
+      <div class="trust-pill"><strong>A1→B2</strong> CEFR</div>
+      <div class="trust-pill"><strong>AI</strong> diagnostikk</div>
+      <div class="trust-pill"><strong>Gratis</strong> alltid</div>
+    </div>
+  </div>
+
+  <!-- ═══ VOICE ORB: 30% ═══ -->
+  <div class="orb-zone">
+    <span class="oz-c ozc1"></span>
+
+    <div class="orb-header">
+      <span class="orb-tag">AI</span>
+      <span class="orb-title">Snakk med Kari</span>
+    </div>
+    <div class="orb-desc">Trykk og snakk norsk. Ingen tekst, bare samtale.</div>
+
+    <div class="orb-wrap">
+      <div class="orb-ring orb-r1"></div>
+      <div class="orb-ring orb-r2"></div>
+      <button class="orb-btn" aria-label="Start samtale med Kari">
+        <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" x2="12" y1="19" y2="22"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="orb-hint">Trykk for å starte</div>
+
+    <div class="orb-footer">
+      <a href="#">Allerede bruker? Se appen →</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

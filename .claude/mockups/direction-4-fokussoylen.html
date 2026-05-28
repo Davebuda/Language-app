@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 4 — Fokussøylen (The Focus Spine)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #080E10; color: #F0FFF8; min-height: 100vh; display: flex; justify-content: center; }
+  .phone { width: 375px; min-height: 812px; background: #080E10; position: relative; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); }
+  .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,255,248,0.36); }
+  .glass { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 20px; font-size: 9px; font-weight: 700; }
+
+  .sticky-header { position: sticky; top: 0; z-index: 10; background: rgba(8,14,16,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 20px; }
+
+  .content { padding: 12px 16px 100px; }
+
+  /* Concept accordion */
+  .concept-row { border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
+  .concept-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .concept-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .concept-name { font-size: 14px; font-weight: 700; flex: 1; }
+  .concept-score { font-size: 12px; font-weight: 700; color: rgba(240,255,248,0.58); }
+  .concept-chevron { font-size: 12px; color: rgba(240,255,248,0.36); }
+
+  /* Progress bar */
+  .progress-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin: 0 16px 0; }
+  .progress-fill { height: 100%; border-radius: 2px; }
+
+  /* Expanded lanes */
+  .concept-lanes { padding: 8px 16px 14px; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+  .lane-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .lane-row:last-child { border-bottom: none; }
+  .lane-icon { font-size: 16px; margin-right: 10px; }
+  .lane-name { font-size: 12px; font-weight: 600; }
+  .lane-hint { font-size: 10px; color: rgba(240,255,248,0.36); margin-top: 1px; }
+  .lane-action { font-size: 11px; font-weight: 700; color: #FF3333; cursor: pointer; }
+  .lane-done { font-size: 11px; color: #4ade80; font-weight: 600; }
+
+  .bottom-nav { position: fixed; bottom: 0; width: 375px; display: flex; justify-content: space-around; padding: 10px 8px; background: rgba(18,14,14,0.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-item { text-align: center; font-size: 9px; font-weight: 600; color: rgba(240,255,248,0.58); }
+  .nav-item.active { color: #FF3333; }
+  .nav-icon { font-size: 18px; margin-bottom: 2px; }
+
+  .annotation { position: fixed; top: 12px; right: 12px; background: #FF3333; color: white; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; z-index: 100; }
+</style>
+</head>
+<body>
+<div class="annotation">Direction 4: Fokussøylen — The Focus Spine</div>
+<div class="phone">
+
+  <!-- Sticky header -->
+  <div class="sticky-header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="label" style="margin-bottom: 4px;">onsdag 28. mai</div>
+        <div style="font-size: 20px; font-weight: 700;">God kveld, David!</div>
+      </div>
+      <div class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">A2</div>
+    </div>
+    <div style="margin-top: 10px; font-size: 11px; color: rgba(240,255,248,0.58);">
+      5 konsepter i fokus denne uken · dag 3 av 7
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="label" style="margin-bottom: 10px; padding: 0 4px;">UKENS FOKUS — TAP FOR Å SE BANER</div>
+
+    <!-- Concept 1 — EXPANDED (weakest, recommended) -->
+    <div class="concept-row" style="border-color: rgba(255,51,51,0.28); background: rgba(255,51,51,0.04);">
+      <div class="concept-header">
+        <div class="concept-dot" style="background: #FF3333;"></div>
+        <div class="concept-name">Adjektivbøyning</div>
+        <div class="concept-score" style="color: #FF3333;">42%</div>
+        <div class="concept-chevron">▼</div>
+      </div>
+      <div class="progress-bar" style="margin-bottom: 8px;">
+        <div class="progress-fill" style="width: 42%; background: #FF3333;"></div>
+      </div>
+      <div class="concept-lanes">
+        <div style="font-size: 10px; color: rgba(240,255,248,0.36); margin-bottom: 8px;">Øv på dette konseptet via:</div>
+        <div class="lane-row">
+          <div style="display: flex; align-items: center;">
+            <span class="lane-icon">⚡</span>
+            <div>
+              <div class="lane-name">Økt</div>
+              <div class="lane-hint">4 reparasjoner venter</div>
+            </div>
+          </div>
+          <div class="lane-action">Start →</div>
+        </div>
+        <div class="lane-row">
+          <div style="display: flex; align-items: center;">
+            <span class="lane-icon">✏️</span>
+            <div>
+              <div class="lane-name">Skriv</div>
+              <div class="lane-hint">Bruk adjektiv i journalen</div>
+            </div>
+          </div>
+          <div class="lane-action">Skriv →</div>
+        </div>
+        <div class="lane-row">
+          <div style="display: flex; align-items: center;">
+            <span class="lane-icon">🗣️</span>
+            <div>
+              <div class="lane-name">Snakk</div>
+              <div class="lane-hint">Beskriv ting i samtale</div>
+            </div>
+          </div>
+          <div class="lane-action">Snakk →</div>
+        </div>
+        <div class="lane-row">
+          <div style="display: flex; align-items: center;">
+            <span class="lane-icon">📖</span>
+            <div>
+              <div class="lane-name">Les</div>
+              <div class="lane-hint">Tekst med adjektivfokus</div>
+            </div>
+          </div>
+          <div class="lane-done">✓ lest</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept 2 — collapsed -->
+    <div class="concept-row" style="background: rgba(255,255,255,0.02);">
+      <div class="concept-header">
+        <div class="concept-dot" style="background: #00E5C4;"></div>
+        <div class="concept-name">Preposisjoner</div>
+        <div class="concept-score">58%</div>
+        <div class="concept-chevron">▶</div>
+      </div>
+      <div class="progress-bar" style="margin-bottom: 12px;">
+        <div class="progress-fill" style="width: 58%; background: #00E5C4;"></div>
+      </div>
+    </div>
+
+    <!-- Concept 3 — collapsed -->
+    <div class="concept-row" style="background: rgba(255,255,255,0.02);">
+      <div class="concept-header">
+        <div class="concept-dot" style="background: #F97316;"></div>
+        <div class="concept-name">Preteritum</div>
+        <div class="concept-score">47%</div>
+        <div class="concept-chevron">▶</div>
+      </div>
+      <div class="progress-bar" style="margin-bottom: 12px;">
+        <div class="progress-fill" style="width: 47%; background: #F97316;"></div>
+      </div>
+    </div>
+
+    <!-- Concept 4 — collapsed -->
+    <div class="concept-row" style="background: rgba(255,255,255,0.02);">
+      <div class="concept-header">
+        <div class="concept-dot" style="background: rgba(240,255,248,0.58);"></div>
+        <div class="concept-name">V2-ordstilling</div>
+        <div class="concept-score">63%</div>
+        <div class="concept-chevron">▶</div>
+      </div>
+      <div class="progress-bar" style="margin-bottom: 12px;">
+        <div class="progress-fill" style="width: 63%; background: rgba(240,255,248,0.58);"></div>
+      </div>
+    </div>
+
+    <!-- Concept 5 — collapsed -->
+    <div class="concept-row" style="background: rgba(255,255,255,0.02);">
+      <div class="concept-header">
+        <div class="concept-dot" style="background: rgba(240,255,248,0.36);"></div>
+        <div class="concept-name">Modale verb</div>
+        <div class="concept-score">71%</div>
+        <div class="concept-chevron">▶</div>
+      </div>
+      <div class="progress-bar" style="margin-bottom: 12px;">
+        <div class="progress-fill" style="width: 71%; background: rgba(240,255,248,0.36);"></div>
+      </div>
+    </div>
+
+    <!-- Quick access for non-focus activities -->
+    <div style="margin-top: 16px; padding: 0 4px;">
+      <div class="label" style="margin-bottom: 8px;">RASK TILGANG</div>
+      <div style="display: flex; gap: 8px;">
+        <div class="glass" style="flex: 1; padding: 12px; text-align: center; cursor: pointer;">
+          <div style="font-size: 16px;">🎭</div>
+          <div style="font-size: 10px; font-weight: 600; margin-top: 4px;">Rollespill</div>
+        </div>
+        <div class="glass" style="flex: 1; padding: 12px; text-align: center; cursor: pointer;">
+          <div style="font-size: 16px;">📋</div>
+          <div style="font-size: 10px; font-weight: 600; margin-top: 4px;">Ukens sjekk</div>
+        </div>
+        <div class="glass" style="flex: 1; padding: 12px; text-align: center; cursor: pointer;">
+          <div style="font-size: 16px;">📊</div>
+          <div style="font-size: 10px; font-weight: 600; margin-top: 4px;">Analyse</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><div class="nav-icon">🏠</div>Hjem</div>
+    <div class="nav-item"><div class="nav-icon">📖</div>Lær</div>
+    <div class="nav-item"><div class="nav-icon">💬</div>Øv</div>
+    <div class="nav-item"><div class="nav-icon">📊</div>Fremgang</div>
+    <div class="nav-item"><div class="nav-icon">👤</div>Profil</div>
+  </div>
+
+</div>
+</body>
+</html>

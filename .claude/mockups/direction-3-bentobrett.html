@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 3 — Bento-brett (The Bento Board)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #080E10; color: #F0FFF8; min-height: 100vh; display: flex; justify-content: center; }
+  .phone { width: 375px; min-height: 812px; background: #080E10; position: relative; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); }
+  .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,255,248,0.36); }
+  .cream-card { background: #F4FFF8; color: #040E08; border-radius: 12px; }
+  .glass { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; }
+  .btn-primary { background: #FF3333; color: white; border: none; border-radius: 10px; padding: 12px 20px; font-weight: 700; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 20px; font-size: 9px; font-weight: 700; }
+  .done-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .sticky-header { position: sticky; top: 0; z-index: 10; background: rgba(8,14,16,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 20px; }
+
+  /* Bento grid */
+  .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 16px 100px; }
+  .bento-large { grid-column: 1 / -1; }
+  .bento-tile { padding: 16px; position: relative; overflow: hidden; }
+  .bento-tile .tile-status { position: absolute; top: 12px; right: 12px; }
+
+  /* Week strip */
+  .week-strip { display: flex; justify-content: center; gap: 8px; padding: 8px 20px 4px; }
+  .week-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .bottom-nav { position: fixed; bottom: 0; width: 375px; display: flex; justify-content: space-around; padding: 10px 8px; background: rgba(18,14,14,0.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-item { text-align: center; font-size: 9px; font-weight: 600; color: rgba(240,255,248,0.58); }
+  .nav-item.active { color: #FF3333; }
+  .nav-icon { font-size: 18px; margin-bottom: 2px; }
+
+  .annotation { position: fixed; top: 12px; right: 12px; background: #FF3333; color: white; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; z-index: 100; }
+</style>
+</head>
+<body>
+<div class="annotation">Direction 3: Bento-brett — The Bento Board</div>
+<div class="phone">
+
+  <!-- Sticky header -->
+  <div class="sticky-header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="label" style="margin-bottom: 4px;">onsdag 28. mai</div>
+        <div style="font-size: 20px; font-weight: 700;">God kveld, David!</div>
+      </div>
+      <div class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">A2</div>
+    </div>
+    <!-- Mini week dots -->
+    <div class="week-strip">
+      <div class="week-dot" style="background: #4ade80;"></div>
+      <div class="week-dot" style="background: #4ade80;"></div>
+      <div class="week-dot" style="background: #FF3333;"></div>
+      <div class="week-dot" style="background: rgba(255,255,255,0.1);"></div>
+      <div class="week-dot" style="background: rgba(255,255,255,0.1);"></div>
+      <div class="week-dot" style="background: rgba(0,229,196,0.3);"></div>
+      <div class="week-dot" style="background: rgba(255,255,255,0.06);"></div>
+    </div>
+  </div>
+
+  <!-- Bento grid -->
+  <div class="bento">
+
+    <!-- LARGE: Session — spans full width -->
+    <div class="bento-tile bento-large cream-card">
+      <div class="tile-status">
+        <div class="done-dot" style="background: rgba(4,14,8,0.12);"></div>
+      </div>
+      <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(4,14,8,0.34);">ØKT · FOKUS</div>
+      <div style="font-size: 22px; font-weight: 700; margin-top: 6px;">Adjektivbøyning</div>
+      <div style="font-size: 12px; color: rgba(4,14,8,0.52); margin-top: 4px;">9 oppgaver · 18 min</div>
+      <div style="display: flex; gap: 6px; margin-top: 10px;">
+        <span class="badge" style="background: rgba(255,51,51,0.1); color: #FF3333;">4 reparasjon</span>
+        <span class="badge" style="background: rgba(0,229,196,0.08); color: #00997F;">2 nytt</span>
+      </div>
+      <button class="btn-primary" style="margin-top: 14px;">▶ Start økt</button>
+    </div>
+
+    <!-- MEDIUM: Conversation -->
+    <div class="bento-tile glass" style="min-height: 140px;">
+      <div class="tile-status">
+        <div class="done-dot" style="background: rgba(255,255,255,0.1);"></div>
+      </div>
+      <div style="font-size: 20px; margin-bottom: 6px;">🗣️</div>
+      <div style="font-size: 13px; font-weight: 700;">Snakk</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.36); margin-top: 4px;">Samtale med Kari</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.58); margin-top: 6px;">
+        <span class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.2); color: #FF3333;">fokus</span>
+      </div>
+    </div>
+
+    <!-- MEDIUM: Journal -->
+    <div class="bento-tile glass" style="min-height: 140px;">
+      <div class="tile-status">
+        <div class="done-dot" style="background: rgba(255,255,255,0.1);"></div>
+      </div>
+      <div style="font-size: 20px; margin-bottom: 6px;">✏️</div>
+      <div style="font-size: 13px; font-weight: 700;">Skriv</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.36); margin-top: 4px;">Daglig journalprompt</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.58); margin-top: 6px; font-style: italic;">
+        "Beskriv din ideelle..."
+      </div>
+    </div>
+
+    <!-- SMALL: Roleplay -->
+    <div class="bento-tile glass" style="min-height: 110px;">
+      <div class="tile-status">
+        <div class="done-dot" style="background: rgba(255,255,255,0.1);"></div>
+      </div>
+      <div style="font-size: 18px; margin-bottom: 4px;">🎭</div>
+      <div style="font-size: 12px; font-weight: 700;">Rollespill</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.36); margin-top: 4px;">3 scenarier</div>
+    </div>
+
+    <!-- SMALL: Reading -->
+    <div class="bento-tile glass" style="min-height: 110px;">
+      <div class="tile-status">
+        <div class="done-dot" style="background: #4ade80;"></div>
+      </div>
+      <div style="font-size: 18px; margin-bottom: 4px;">📖</div>
+      <div style="font-size: 12px; font-weight: 700;">Les</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.36); margin-top: 4px;">2 tekster · A2</div>
+      <div style="font-size: 9px; color: #4ade80; margin-top: 4px; font-weight: 600;">✓ lest i dag</div>
+    </div>
+
+    <!-- FULL WIDTH: Weekly check (contextual) -->
+    <div class="bento-tile bento-large glass" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px;">
+      <div>
+        <div style="font-size: 12px; font-weight: 700;">📋 Ukens sjekk</div>
+        <div style="font-size: 10px; color: rgba(240,255,248,0.36); margin-top: 2px;">Tilgjengelig lørdag · 3 dager</div>
+      </div>
+      <div style="font-size: 10px; color: rgba(0,229,196,0.5); font-weight: 600;">lør →</div>
+    </div>
+
+    <!-- Focus concepts row -->
+    <div class="bento-large" style="padding: 0 2px;">
+      <div class="label" style="margin-bottom: 6px;">UKENS FOKUS</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <span class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">adjektivbøyning +8</span>
+        <span class="badge" style="background: rgba(0,229,196,0.14); border: 1px solid rgba(0,229,196,0.28); color: #00E5C4;">preposisjoner +3</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.5);">preteritum</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.5);">V2</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.5);">modale</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><div class="nav-icon">🏠</div>Hjem</div>
+    <div class="nav-item"><div class="nav-icon">📖</div>Lær</div>
+    <div class="nav-item"><div class="nav-icon">💬</div>Øv</div>
+    <div class="nav-item"><div class="nav-icon">📊</div>Fremgang</div>
+    <div class="nav-item"><div class="nav-icon">👤</div>Profil</div>
+  </div>
+
+</div>
+</body>
+</html>

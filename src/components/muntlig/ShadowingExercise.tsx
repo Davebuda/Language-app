@@ -15,14 +15,14 @@ import {
 
 function WordColorDisplay({ matches }: { matches: WordMatch[] }) {
   return (
-    <p className="text-[1.1rem] leading-relaxed">
+    <p className="text-[1rem] leading-relaxed">
       {matches.map((m, i) => (
         <span
           key={i}
           className={
             m.matched
-              ? 'text-[var(--nc-green)] font-semibold'
-              : 'text-[var(--nc-text-muted)]'
+              ? 'font-semibold text-[#5A8A00]'
+              : 'text-[var(--nc-cream-muted)]'
           }
         >
           {i > 0 ? ' ' : ''}
@@ -30,17 +30,6 @@ function WordColorDisplay({ matches }: { matches: WordMatch[] }) {
         </span>
       ))}
     </p>
-  )
-}
-
-function PulsingDot() {
-  return (
-    <motion.span
-      className="inline-block size-3 rounded-full bg-[var(--nc-red)]"
-      animate={{ scale: [1, 1.15, 1] }}
-      transition={{ repeat: Infinity, duration: 1, ease: 'easeInOut' }}
-      aria-hidden="true"
-    />
   )
 }
 
@@ -143,14 +132,16 @@ export function ShadowingExercise({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.28 }}
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-3"
     >
       {/* Progress indicator */}
       <div className="flex items-center gap-2">
-        <span className="nc-label">{index + 1} / {total}</span>
-        <div className="flex-1 h-[3px] overflow-hidden rounded-full bg-[var(--nc-border)]">
+        <span className="text-[9px] font-bold uppercase tracking-[0.12em] tabular-nums text-[var(--nc-text-dim)]">
+          {index + 1} / {total}
+        </span>
+        <div className="flex-1 h-[3px] overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
           <motion.div
-            className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+            className="h-full w-full origin-left rounded-full bg-[var(--nc-signal)]"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: index / total }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -158,16 +149,16 @@ export function ShadowingExercise({
         </div>
       </div>
 
-      {/* Main card */}
-      <div className="nc-glass-elevated p-6 flex flex-col gap-4">
+      {/* Main card — cream surface */}
+      <div className="nc-glass-cream flex flex-col gap-4 p-5">
 
         {/* No-audio banner */}
         {!sentence.audioUrl && (
           <div
-            className="nc-label rounded-md px-3 py-1.5 text-center"
+            className="rounded-[0.4rem] px-3 py-1.5 text-center text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]"
             style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.09)',
+              background: 'rgba(17,21,24,0.05)',
+              border: '1px solid rgba(17,21,24,0.09)',
             }}
           >
             Tekst-modus — les setningen høyt
@@ -176,10 +167,10 @@ export function ShadowingExercise({
 
         {/* Norwegian sentence — T1 dominant */}
         <div>
-          <h2 className="text-balance text-[1.75rem] md:text-[2rem] font-bold leading-tight text-[var(--nc-text)]">
+          <h2 className="text-balance text-[1.65rem] font-bold leading-tight text-[var(--nc-cream-text)]">
             {sentence.norwegian}
           </h2>
-          <p className="text-pretty mt-2 text-[0.875rem] text-[var(--nc-text-muted)]">
+          <p className="mt-1.5 text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
             {sentence.english}
           </p>
         </div>
@@ -188,7 +179,7 @@ export function ShadowingExercise({
         <AnimatePresence mode="wait">
 
           {/* ── Idle ── */}
-          {phase === 'idle' && (
+          {phase === 'idle' ? (
             <motion.div
               key="idle"
               initial={{ opacity: 0 }}
@@ -197,7 +188,7 @@ export function ShadowingExercise({
               className="flex flex-col gap-3"
             >
               {!isSupported && (
-                <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">
+                <p className="text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
                   Din nettleser støtter ikke talegjenkjenning. Prøv Chrome.
                 </p>
               )}
@@ -209,27 +200,32 @@ export function ShadowingExercise({
                     aria-label="Spill av norsk lyd"
                     className="nc-button-dark flex items-center gap-2 px-4 py-2.5 text-[0.8125rem] font-semibold"
                   >
-                    <Volume2 size={15} aria-hidden="true" />
+                    <Volume2 size={14} aria-hidden="true" />
                     Lytt
                   </button>
                 )}
 
                 {isSupported && (
+                  /* Mic button with orb-ring glow */
                   <button
                     onClick={handleStartRecording}
                     aria-label="Start opptak av din uttale"
-                    className="nc-button-primary flex flex-1 items-center justify-center gap-2 py-2.5 text-[0.8125rem] font-bold"
+                    className="relative flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-[var(--radius)] py-2.5 text-[0.8125rem] font-bold text-[var(--nc-signal-fg)]"
+                    style={{
+                      background: 'linear-gradient(135deg, #C8FF20 0%, #b7f300 100%)',
+                      boxShadow: '0 0 16px rgba(200,255,32,0.25), 0 12px 32px rgba(183,243,0,0.18)',
+                    }}
                   >
-                    <Mic size={15} aria-hidden="true" />
+                    <Mic size={14} aria-hidden="true" />
                     Start opptak
                   </button>
                 )}
               </div>
             </motion.div>
-          )}
+          ) : null}
 
           {/* ── Listening ── */}
-          {phase === 'listening' && (
+          {phase === 'listening' ? (
             <motion.div
               key="listening"
               initial={{ opacity: 0 }}
@@ -237,57 +233,70 @@ export function ShadowingExercise({
               exit={{ opacity: 0 }}
               className="flex flex-col gap-3"
             >
-              <div className="flex items-center gap-2">
-                <PulsingDot />
-                <span className="text-[0.8125rem] font-semibold text-[var(--nc-red)]">
-                  Innspilling…
-                </span>
+              {/* Active mic orb */}
+              <div className="flex flex-col items-center gap-2 py-1">
+                <div className="relative" style={{ width: 56, height: 56 }}>
+                  <motion.span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute rounded-full"
+                    style={{ inset: 0, border: '1.5px solid rgba(200,255,32,0.35)' }}
+                    animate={{ scale: [1, 1.14, 1], opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity }}
+                  />
+                  <motion.button
+                    onClick={handleStopRecording}
+                    aria-label="Stopp innspilling"
+                    className="absolute flex items-center justify-center rounded-full"
+                    style={{
+                      inset: 6,
+                      background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
+                      boxShadow: '0 0 28px rgba(200,255,32,0.45), 0 0 60px rgba(200,255,32,0.18)',
+                    }}
+                    animate={{ scale: [1, 1.04, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                  >
+                    <Mic size={16} style={{ color: '#0A1206' }} aria-hidden="true" />
+                  </motion.button>
+                </div>
+                <span className="text-[0.72rem] font-bold text-[#5A8A00]">Innspilling… trykk for å stoppe</span>
               </div>
 
               {interimTranscript && (
-                <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-muted)]">
+                <p className="text-pretty text-[0.8125rem] italic text-[var(--nc-cream-muted)]">
                   {interimTranscript}
                 </p>
               )}
-
-              <button
-                onClick={handleStopRecording}
-                aria-label="Stopp innspilling"
-                className="nc-button-dark w-full py-2.5 text-[0.8125rem] font-semibold"
-              >
-                Stopp
-              </button>
             </motion.div>
-          )}
+          ) : null}
 
           {/* ── Result ── */}
-          {phase === 'result' && (
+          {phase === 'result' ? (
             <motion.div
               key="result"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-3"
             >
-              {/* Word-level colour match */}
-              <div className="rounded-lg p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.09)' }}>
-                <p className="nc-label mb-2">Dine ord</p>
+              {/* Word-level colour match — inset on cream */}
+              <div className="rounded-[0.55rem] border border-[rgba(17,21,24,0.08)] bg-[rgba(17,21,24,0.05)] p-3">
+                <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Dine ord</p>
                 {finalTranscript ? (
                   <WordColorDisplay matches={wordMatches} />
                 ) : (
-                  <p className="text-pretty text-[0.875rem] text-[var(--nc-text-dim)] italic">
+                  <p className="text-pretty text-[0.8125rem] italic text-[var(--nc-cream-muted)]">
                     Ingen lyd registrert.
                   </p>
                 )}
               </div>
 
-              {/* Score badge */}
+              {/* Score badge + retry */}
               <div className="flex items-center justify-between">
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.75rem] font-bold"
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.72rem] font-bold"
                   style={
                     passed
-                      ? { background: 'var(--nc-green-tint)', border: '1px solid var(--nc-green-border)', color: 'var(--nc-green)' }
+                      ? { background: 'var(--nc-signal-tint)', border: '1px solid var(--nc-signal-border)', color: '#5A8A00' }
                       : { background: 'var(--nc-red-tint)', border: '1px solid var(--nc-red-border)', color: 'var(--nc-red)' }
                   }
                 >
@@ -299,7 +308,7 @@ export function ShadowingExercise({
                   <button
                     onClick={handleRetry}
                     aria-label="Prøv setningen igjen"
-                    className="flex items-center gap-1 text-[0.8125rem] text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
+                    className="flex items-center gap-1 text-[0.8125rem] text-[var(--nc-cream-muted)] transition-opacity hover:opacity-80"
                   >
                     <RotateCcw size={13} aria-hidden="true" />
                     Prøv igjen
@@ -314,10 +323,11 @@ export function ShadowingExercise({
                 className="nc-button-primary flex w-full items-center justify-center gap-2 py-3 text-[0.875rem] font-bold"
               >
                 Neste
-                <ArrowRight size={16} aria-hidden="true" />
+                <ArrowRight size={15} aria-hidden="true" />
               </button>
             </motion.div>
-          )}
+          ) : null}
+
         </AnimatePresence>
       </div>
     </motion.div>

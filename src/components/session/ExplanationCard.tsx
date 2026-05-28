@@ -25,88 +25,91 @@ export function ExplanationCard({
   const label = conceptLabel ?? conceptId
 
   return (
-    <div className="nc-glass-cream-strong space-y-4 overflow-hidden p-5">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="nc-label text-nc-cream-dim">Repair loop</p>
-          <h3 className="mt-2 text-balance text-[1.65rem] font-display font-semibold text-nc-cream-text">
-            Nesten.
-          </h3>
+    <div className="overflow-hidden rounded-[0.75rem] border border-[var(--nc-repair-border)] bg-[var(--nc-repair-bg)] shadow-[0_18px_48px_rgba(0,0,0,0.22)]">
+      {/* Red accent bar signals repair mode */}
+      <div className="h-[3px] w-full bg-[linear-gradient(90deg,var(--nc-red)_0%,rgba(255,106,85,0.55)_100%)]" />
+      <div className="space-y-[6px] p-3.5">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="nc-label-red">Reparasjon</p>
+            <h3 className="mt-1.5 text-balance font-display text-[1.55rem] font-extrabold leading-[0.96] tracking-[-0.03em] text-[var(--nc-text)]">
+              Nesten.
+            </h3>
+          </div>
+          <span className="shrink-0 rounded-[0.35rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.10em] text-[var(--nc-text-muted)]">
+            {label}
+          </span>
         </div>
-        <span className="rounded-full border border-[rgba(4,14,8,0.14)] bg-[rgba(4,14,8,0.06)] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-nc-cream-muted">
-          {label}
-        </span>
-      </div>
 
-      <p className="text-pretty text-sm leading-7 text-nc-cream-muted">
-        {repairPlan.explanation}
-      </p>
+        <p className="text-pretty text-[0.84rem] leading-[1.6] text-[var(--nc-text-muted)]">
+          {repairPlan.explanation}
+        </p>
 
-      <div className="rounded-[1rem] bg-[rgba(6,16,23,0.94)] px-4 py-4 text-white">
-        <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/40">
-          Riktig svar
+        {/* Correct answer — dark panel on dark card for contrast */}
+        <div className="rounded-[0.55rem] border border-[var(--nc-border-strong)] bg-[var(--nc-card)] px-3 py-2.5">
+          <div className="nc-label">Riktig svar</div>
+          <div className="mt-1.5 font-display text-[1.15rem] font-bold tracking-tight text-[var(--nc-signal)]">
+            {correctAnswer}
+          </div>
         </div>
-        <div className="mt-2 text-[15px] font-medium text-white">
-          {correctAnswer}
-        </div>
-      </div>
 
-      {explainer ? (
-        <>
-          <button
-            type="button"
-            onClick={() => setShowGrammar((current) => !current)}
-            className="w-full rounded-[1rem] border border-[rgba(4,14,8,0.12)] bg-white/45 px-4 py-3 text-left text-sm font-medium text-nc-cream-text transition-colors hover:bg-white/60"
-          >
-            {showGrammar
-              ? 'Skjul grammatikk'
-              : `Vis regelen for ${explainer.title}`}
-          </button>
+        {explainer ? (
+          <>
+            <button
+              type="button"
+              onClick={() => setShowGrammar((current) => !current)}
+              className="w-full rounded-[0.55rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-4 py-2.5 text-left text-[0.82rem] font-semibold text-[var(--nc-text-muted)] transition-colors hover:bg-[rgba(255,255,255,0.08)]"
+            >
+              {showGrammar
+                ? 'Skjul grammatikk'
+                : `Vis regelen for ${explainer.title}`}
+            </button>
 
-          <AnimatePresence>
-            {showGrammar ? (
-              <motion.div
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.18, ease: 'easeOut' }}
-              >
-                <div className="rounded-[1rem] border border-[rgba(4,14,8,0.14)] bg-white/45 px-4 py-4">
-                  <p className="text-sm font-medium text-nc-cream-text">
-                    {explainer.shortRule}
-                  </p>
-                  <div className="mt-3 flex flex-col gap-2">
-                    {explainer.examples.slice(0, 2).map((example, index) => (
-                      <div
-                        key={`${example.norwegian}-${index}`}
-                        className="rounded-[0.85rem] border border-[rgba(4,14,8,0.10)] bg-white/45 px-3 py-3"
-                      >
-                        <div className="text-sm font-medium text-nc-cream-text">
-                          {example.norwegian}
+            <AnimatePresence>
+              {showGrammar ? (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                >
+                  <div className="rounded-[0.55rem] border border-[var(--nc-border)] bg-[var(--nc-card)] px-3 py-3">
+                    <p className="text-[0.84rem] font-semibold text-[var(--nc-text)]">
+                      {explainer.shortRule}
+                    </p>
+                    <div className="mt-2.5 flex flex-col gap-2">
+                      {explainer.examples.slice(0, 2).map((example, index) => (
+                        <div
+                          key={`${example.norwegian}-${index}`}
+                          className="rounded-[0.45rem] border border-[var(--nc-border-subtle)] bg-[rgba(255,255,255,0.04)] px-3 py-2.5"
+                        >
+                          <div className="text-[0.84rem] font-semibold text-[var(--nc-text)]">
+                            {example.norwegian}
+                          </div>
+                          <div className="mt-0.5 text-[0.75rem] text-[var(--nc-text-muted)]">
+                            {example.english}
+                          </div>
                         </div>
-                        <div className="mt-1 text-xs text-nc-cream-muted">
-                          {example.english}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                    <div className="mt-2.5 rounded-[0.45rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-2.5 text-[0.82rem] leading-[1.6] text-[var(--nc-text-muted)]">
+                      {explainer.tip}
+                    </div>
                   </div>
-                  <div className="mt-3 rounded-[0.85rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-3 text-sm leading-7 text-nc-cream-muted">
-                    {explainer.tip}
-                  </div>
-                </div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-        </>
-      ) : null}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </>
+        ) : null}
 
-      <button
-        type="button"
-        onClick={onContinue}
-        className="nc-button-primary min-h-[52px] w-full px-6 text-sm font-bold"
-      >
-        Prøv igjen
-      </button>
+        <button
+          type="button"
+          onClick={onContinue}
+          className="nc-button-primary min-h-[52px] w-full px-6 text-[0.9rem] font-bold"
+        >
+          Prøv igjen
+        </button>
+      </div>
     </div>
   )
 }

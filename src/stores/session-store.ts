@@ -11,6 +11,7 @@ interface SessionSlice {
   isInRepair: boolean;
   repairPlan: RepairPlan | null;
   usedSentenceIds: Set<string>;
+  originalItemCount: number;
   startSession: (session: Session) => void;
   advanceItem: () => void;
   recordResult: (result: ExerciseResult) => void;
@@ -31,8 +32,9 @@ const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
   isInRepair: false,
   repairPlan: null,
   usedSentenceIds: EMPTY_USED_SENTENCES,
+  originalItemCount: 0,
   startSession: (session) =>
-    set({ session, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null, usedSentenceIds: new Set() }),
+    set({ session, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null, usedSentenceIds: new Set(), originalItemCount: session.items.length }),
   advanceItem: () => set((s) => ({ currentItemIndex: s.currentItemIndex + 1 })),
   recordResult: (result) => set((s) => ({ results: [...s.results, result] })),
   enterRepair: (plan) => set({ isInRepair: true, repairPlan: plan }),
@@ -44,20 +46,26 @@ const createSessionSlice: StateCreator<SessionSlice> = (set) => ({
     ),
   exitRepair: () => set({ isInRepair: false, repairPlan: null }),
   endSession: () =>
-    set({ session: null, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null, usedSentenceIds: new Set() }),
+    set({ session: null, currentItemIndex: 0, results: [], isInRepair: false, repairPlan: null, usedSentenceIds: new Set(), originalItemCount: 0 }),
   injectRepairItems: (items, afterIndex) =>
-    set((s) => ({
-      session: s.session
-        ? {
-            ...s.session,
-            items: [
-              ...s.session.items.slice(0, afterIndex + 1),
-              ...items,
-              ...s.session.items.slice(afterIndex + 1),
-            ],
-          }
-        : null,
-    })),
+    set((s) => {
+      if (!s.session) return {};
+      const cap = s.originalItemCount * 2;
+      const currentTotal = s.session.items.length;
+      const allowedCount = Math.max(0, cap - currentTotal);
+      if (allowedCount === 0) return {};
+      const capped = items.slice(0, allowedCount);
+      return {
+        session: {
+          ...s.session,
+          items: [
+            ...s.session.items.slice(0, afterIndex + 1),
+            ...capped,
+            ...s.session.items.slice(afterIndex + 1),
+          ],
+        },
+      };
+    }),
   markSentenceUsed: (id) =>
     set((s) => ({ usedSentenceIds: new Set([...s.usedSentenceIds, id]) })),
 });

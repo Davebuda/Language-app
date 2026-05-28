@@ -209,7 +209,7 @@ export function CoachHeroCard({ recommendation }: CoachHeroCardProps) {
             </span>
           </div>
 
-          <motion.div whileTap={{ scale: 0.97 }}>
+          <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
             <Link
               href={href}
               className="nc-button-primary inline-flex min-h-[52px] items-center gap-2 rounded-[1rem] px-5 py-3 text-sm font-semibold"

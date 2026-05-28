@@ -71,23 +71,23 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
 
   return (
     <div className="space-y-4">
-      {/* English instruction — demoted to small label per aesthetic direction */}
-      <p className="text-[12px] font-bold uppercase tracking-widest text-nc-cream-dim">
+      {/* English instruction as micro-label */}
+      <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">
         {sentence.english}
       </p>
 
-      {/* Answer zone — where tiles are placed in order */}
+      {/* Answer zone */}
       <div
         aria-label="Ditt svar"
         className={[
-          'min-h-[64px] flex flex-wrap items-center gap-2 rounded-xl border p-3 transition-colors',
+          'min-h-[64px] flex flex-wrap items-center gap-2 rounded-[0.65rem] border p-3 transition-colors',
           answerTiles.length > 0
-            ? 'border-nc-green/30 bg-nc-green/5'
-            : 'border-[rgba(4,14,8,0.12)] bg-[rgba(4,14,8,0.03)]',
+            ? 'border-[rgba(200,255,32,0.30)] bg-[rgba(200,255,32,0.06)]'
+            : 'border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.03)]',
         ].join(' ')}
       >
         {answerTiles.length === 0 ? (
-          <span className="text-[12px] text-nc-cream-dim select-none px-1">
+          <span className="select-none px-1 text-[0.78rem] text-[var(--nc-cream-dim)]">
             Trykk på ordene nedenfor for å bygge setningen
           </span>
         ) : (
@@ -103,7 +103,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ duration: 0.12 }}
-                className="rounded-xl border border-nc-green/50 bg-nc-green/14 px-5 py-2.5 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-nc-green transition-colors hover:border-nc-green/80 hover:bg-nc-green/20 disabled:cursor-default"
+                className="rounded-[0.55rem] border border-[rgba(200,255,32,0.45)] bg-[rgba(200,255,32,0.12)] px-4 py-2 font-display text-[1.35rem] font-extrabold text-[#3A5800] transition-colors hover:border-[rgba(200,255,32,0.70)] hover:bg-[rgba(200,255,32,0.20)] disabled:cursor-default"
               >
                 {tile.word}
               </motion.button>
@@ -112,10 +112,10 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
         )}
       </div>
 
-      {/* Source zone — scrambled tiles not yet placed */}
+      {/* Source zone */}
       <div
         aria-label="Tilgjengelige ord"
-        className="flex flex-wrap gap-3 rounded-xl border border-[rgba(4,14,8,0.10)] bg-[rgba(4,14,8,0.03)] p-4"
+        className="flex flex-wrap gap-2.5 rounded-[0.65rem] border border-[rgba(17,21,24,0.10)] bg-[rgba(17,21,24,0.03)] p-3.5"
       >
         <AnimatePresence mode="popLayout">
           {sourceTiles.map((tile) => (
@@ -129,14 +129,14 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="rounded-xl border border-[rgba(4,14,8,0.16)] bg-[rgba(4,14,8,0.06)] px-5 py-3 text-[22px] sm:text-[24px] lg:text-[26px] font-bold text-nc-cream-text transition-colors hover:border-nc-green/50 hover:bg-nc-green/10 hover:text-nc-green disabled:cursor-default"
+              className="rounded-[0.55rem] border border-[rgba(17,21,24,0.14)] bg-[rgba(17,21,24,0.06)] px-4 py-2.5 font-display text-[1.35rem] font-extrabold text-[var(--nc-cream-text)] transition-colors hover:border-[rgba(200,255,32,0.40)] hover:bg-[rgba(200,255,32,0.08)] hover:text-[#3A5800] disabled:cursor-default"
             >
               {tile.word}
             </motion.button>
           ))}
         </AnimatePresence>
         {sourceTiles.length === 0 && !submitted && (
-          <span className="text-[12px] text-nc-cream-dim select-none px-1">Alle ord er plassert</span>
+          <span className="select-none px-1 text-[0.78rem] text-[var(--nc-cream-dim)]">Alle ord er plassert</span>
         )}
       </div>
 

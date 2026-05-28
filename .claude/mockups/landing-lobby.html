@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach Landing — Hotel Lobby</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --lime: #C8FF20;
+    --lime-dark: #0A1206;
+    --lime-dim: rgba(200,255,32,0.12);
+    --dark: #151718;
+    --darker: #0E0F10;
+    --cream: #F0F1EC;
+    --text-w: #EDEEE9;
+    --text-wm: rgba(237,238,233,0.58);
+    --text-wd: rgba(237,238,233,0.34);
+    --border-d: rgba(255,255,255,0.08);
+    --font: 'Schibsted Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: linear-gradient(180deg, #2C2E30 0%, #343638 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 24px 12px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .phone {
+    width: 375px;
+    border-radius: 1.2rem;
+    background: rgba(248,250,246,0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+
+  /* ─── 1. HERO — Lime ─── */
+  .hero {
+    background: linear-gradient(135deg, #C8FF20 0%, #B8EF10 100%);
+    padding: 14px 14px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    border: 1.5px solid rgba(10,18,6,0.06);
+  }
+  .hero .c1 { width: 240px; height: 240px; right: -70px; top: -50px; }
+  .hero .c2 { width: 140px; height: 140px; right: -20px; top: 0; }
+  .hero .c3 { width: 60px; height: 60px; right: 30px; top: 40px; }
+
+  .hero-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-logo {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--lime-dark);
+    letter-spacing: -0.01em;
+  }
+  .hero-start {
+    background: var(--lime-dark);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 0.4rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 36px;
+  }
+  .hero-headline {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--lime-dark);
+  }
+  .hero-headline .en {
+    display: block;
+    margin-top: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: rgba(10,18,6,0.48);
+  }
+
+  .hero-sub {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(10,18,6,0.58);
+    max-width: 240px;
+  }
+
+  .hero-cta {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--lime-dark);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  .hero-friction {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(10,18,6,0.42);
+  }
+
+  /* ─── 2. LANGUAGE TASTE — Dark ─── */
+  .taste {
+    margin: 8px 8px 0;
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.5rem;
+    padding: 24px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .taste .circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .taste .tc1 { width: 120px; height: 120px; border: 1px solid rgba(255,255,255,0.03); left: -40px; top: -30px; }
+  .taste .tc2 { width: 80px; height: 80px; border: 1px solid rgba(255,255,255,0.025); left: -15px; top: -5px; }
+
+  .taste-label {
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-wd);
+    position: relative;
+    z-index: 1;
+  }
+  .taste-phrase {
+    margin-top: 14px;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text-w);
+    position: relative;
+    z-index: 1;
+  }
+  .taste-translation {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-wd);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  .taste-divider {
+    width: 28px;
+    height: 2px;
+    background: var(--lime);
+    border-radius: 99px;
+    margin: 16px auto;
+    opacity: 0.6;
+    position: relative;
+    z-index: 1;
+  }
+  .taste-phrase-2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-wm);
+    position: relative;
+    z-index: 1;
+  }
+  .taste-translation-2 {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-wd);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── 3. TRUST STRIP ─── */
+  .trust {
+    margin: 8px 8px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .trust-card {
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.4rem;
+    padding: 14px 8px;
+    text-align: center;
+  }
+  .trust-value {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .trust-value.lime { color: var(--lime); }
+  .trust-value.white { color: var(--text-w); }
+  .trust-label {
+    margin-top: 4px;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-wd);
+  }
+
+  /* ─── 4. DIFFERENTIATOR ─── */
+  .diff {
+    margin: 8px 8px 0;
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.5rem;
+    padding: 18px 14px;
+  }
+  .diff-label {
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--lime);
+  }
+  .diff-headline {
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-w);
+    letter-spacing: -0.01em;
+  }
+  .diff-steps {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .diff-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-d);
+  }
+  .diff-step:last-child { border-bottom: none; }
+  .diff-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 0.3rem;
+    background: rgba(200,255,32,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--lime);
+    flex-shrink: 0;
+  }
+  .diff-text {
+    font-size: 13px;
+    color: var(--text-w);
+    line-height: 1.4;
+  }
+  .diff-text strong { font-weight: 700; }
+  .diff-text span { color: var(--text-wm); }
+
+  /* ─── 5. FINAL CTA ─── */
+  .final {
+    margin: 8px 8px;
+    padding: 20px 14px;
+    text-align: center;
+  }
+  .final-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-wm);
+    line-height: 1.5;
+  }
+  .final-cta {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: var(--lime);
+    color: var(--lime-dark);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  .final-secondary {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-wd);
+  }
+
+  .page-label {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-wd);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-label">NorskCoach — Hotel Lobby Direction</div>
+
+<div class="phone">
+
+  <!-- 1. HERO -->
+  <div class="hero">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+
+    <div class="hero-topbar">
+      <span class="hero-logo">NorskCoach</span>
+      <button class="hero-start">Start</button>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        Snakk norsk.<br>Trygt.
+        <span class="en">Speak Norwegian. Confidently.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Diagnostisk coaching som finner hva du sliter med — og fikser det.
+      </p>
+
+      <button class="hero-cta">Start kartlegging →</button>
+      <div class="hero-friction">2 minutter · Gratis · Ingen konto</div>
+    </div>
+  </div>
+
+  <!-- 2. LANGUAGE TASTE -->
+  <div class="taste">
+    <span class="circle tc1"></span>
+    <span class="circle tc2"></span>
+
+    <div class="taste-label">Norsk i dag</div>
+    <div class="taste-phrase">Jeg gleder<br>meg til å lære.</div>
+    <div class="taste-translation">"I'm looking forward to learning."</div>
+    <div class="taste-divider"></div>
+    <div class="taste-phrase-2">Hva betyr det?</div>
+    <div class="taste-translation-2">"What does it mean?"</div>
+  </div>
+
+  <!-- 3. TRUST STRIP -->
+  <div class="trust">
+    <div class="trust-card">
+      <div class="trust-value lime">A1→B2</div>
+      <div class="trust-label">CEFR-nivå</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-value white">AI</div>
+      <div class="trust-label">Diagnostikk</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-value lime">Gratis</div>
+      <div class="trust-label">Alltid</div>
+    </div>
+  </div>
+
+  <!-- 4. DIFFERENTIATOR -->
+  <div class="diff">
+    <div class="diff-label">Hvorfor NorskCoach</div>
+    <div class="diff-headline">Ikke pensum. Coaching.</div>
+
+    <div class="diff-steps">
+      <div class="diff-step">
+        <div class="diff-num">01</div>
+        <div class="diff-text"><strong>Finn svakheten</strong><br><span>Kort diagnostisk test finner nøyaktig hva du sliter med.</span></div>
+      </div>
+      <div class="diff-step">
+        <div class="diff-num">02</div>
+        <div class="diff-text"><strong>Forstå hvorfor</strong><br><span>Hver feil får en forklaring — ikke bare «feil svar».</span></div>
+      </div>
+      <div class="diff-step">
+        <div class="diff-num">03</div>
+        <div class="diff-text"><strong>Fiks det</strong><br><span>Målrettet trening + repetisjon til det sitter.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FINAL CTA -->
+  <div class="final">
+    <div class="final-text">Klar til å finne ut hvor du står?</div>
+    <button class="final-cta">Begynn nå →</button>
+    <div class="final-secondary">Allerede bruker? Se appen →</div>
+  </div>
+
+</div>
+
+</body>
+</html>

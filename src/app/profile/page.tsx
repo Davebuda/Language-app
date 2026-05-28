@@ -62,102 +62,100 @@ export default function ProfilePage() {
   const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
   const initials = displayName.slice(0, 2).toUpperCase()
 
-  return (
-    <div className="nc-gradient-page flex min-h-dvh flex-col">
-      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col gap-3 px-4 pb-28 pt-4">
-        <section className="nc-glass-cream p-5">
-          <div className="flex items-start gap-4">
-            <div className="flex size-16 items-center justify-center overflow-hidden rounded-[1rem] bg-[rgba(6,16,23,0.94)] text-lg font-display font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-              <span>{initials}</span>
-            </div>
+  const levelLabel = fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1')
 
+  return (
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell nc-flow-shell">
+
+        {/* ── Identity header (Dark) ── */}
+        <div className="flex items-stretch gap-[6px]">
+          <div className="flex flex-1 items-center gap-2.5 rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2.5 py-2">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-[0.7rem] bg-[linear-gradient(135deg,var(--nc-signal)_0%,#A8E010_100%)] text-[1rem] font-display font-extrabold text-[var(--nc-signal-fg)]">
+              {initials}
+            </div>
             <div className="min-w-0 flex-1">
-              <div className="nc-label text-[var(--nc-cream-dim)]">Profil</div>
-              <div className="mt-2 text-[1.7rem] font-display font-semibold tracking-[-0.03em] text-[var(--nc-cream-text)]">
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Profil</div>
+              <div className="mt-1 text-[1.1rem] font-display font-extrabold leading-tight tracking-[-0.03em] text-[var(--nc-text)]">
                 {displayName}
               </div>
               {user?.email ? (
-                <div className="truncate text-sm text-[var(--nc-cream-muted)]">{user.email}</div>
-              ) : null}
-
-              {!user && !authLoading ? (
-                <button
-                  onClick={() => router.push('/login')}
-                  className="mt-3 inline-flex items-center gap-2 rounded-[0.9rem] bg-[rgba(6,16,23,0.92)] px-3 py-2 text-xs font-medium text-white"
-                >
-                  Logg inn for å synkronisere
-                  <ArrowRight size={14} />
-                </button>
+                <div className="mt-px truncate text-[0.72rem] text-[var(--nc-text-muted)]">{user.email}</div>
               ) : null}
             </div>
           </div>
-
-          <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                {
-                  label: 'Nivå',
-                  value: fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1'),
-                  tone: 'text-[var(--nc-signal)]',
-                },
-                { label: 'Rekke', value: String(streak), tone: 'text-white' },
-                {
-                  label: 'Økter',
-                  value: String(fingerprint?.totalSessionsCompleted ?? 0),
-                  tone: 'text-white',
-                },
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-[1rem] border border-white/8 bg-white/5 px-3 py-4 text-center">
-                  <div className={`text-[1.8rem] font-display font-semibold tracking-[-0.03em] ${stat.tone}`}>
-                    {stat.value}
-                  </div>
-                  <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-col items-center justify-center rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-2 min-w-[52px]">
+            <span className="rounded-[0.25rem] border border-[rgba(200,255,32,0.18)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelLabel}</span>
+            <div className="mt-1.5 text-[7px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Nivå</div>
           </div>
-        </section>
+        </div>
 
-        <section className="nc-glass-cream p-4">
+        {/* ── Stat Strip (Cream) — mirrors dashboard pattern ── */}
+        <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+          {([
+            { label: 'Rekke', value: String(streak), numTone: 'text-[var(--nc-cream-text)]' },
+            { label: 'Mestret', value: String(masteredCount), numTone: 'text-[#5A8A00]' },
+            { label: 'Økter', value: String(fingerprint?.totalSessionsCompleted ?? 0), numTone: 'text-[var(--nc-cream-text)]' },
+          ] as const).map((stat, i) => (
+            <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
+              <div className={`text-[1.25rem] font-extrabold tabular-nums leading-none ${stat.numTone}`}>
+                {stat.value}
+              </div>
+              <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Level / Mastery Hero (Lime) ── */}
+        <section className="nc-signal-panel p-2.5">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="nc-label text-[var(--nc-cream-dim)]">Nåværende nivå</div>
-              <div className="mt-2 text-lg font-display font-semibold text-[var(--nc-cream-text)]">
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Nåværende nivå</div>
+              <div className="mt-1.5 text-balance text-[1.2rem] font-display font-extrabold leading-none text-[var(--nc-signal-fg)]">
                 {fingerprint?.currentLevel
                   ? (LEVEL_LABELS[fingerprint.currentLevel] ?? fingerprint.currentLevel)
                   : (status === 'loading' ? '–' : 'A1')}
               </div>
             </div>
-            <span className="rounded-full bg-[var(--nc-signal)] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">
+            <span className="rounded-full bg-[rgba(6,16,23,0.9)] px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.08em] text-white">
               Live
             </span>
           </div>
-          <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[rgba(6,16,23,0.08)]">
+          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-[rgba(6,16,23,0.14)]">
             <div
-              className="h-full rounded-full bg-[var(--nc-signal)]"
+              className="h-full rounded-full bg-[rgba(6,16,23,0.9)]"
               style={{
                 width: `${totalConcepts > 0 ? (masteredCount / totalConcepts) * 100 : 0}%`,
               }}
             />
           </div>
-          <div className="mt-2 text-sm text-[var(--nc-cream-muted)]">
+          <div className="mt-1.5 text-[0.72rem] text-[rgba(8,17,13,0.72)]">
             {masteredCount} av {totalConcepts} konsepter mestret
           </div>
+
+          {!user && !authLoading ? (
+            <button
+              onClick={() => router.push('/login')}
+              className="mt-3 inline-flex items-center gap-2 rounded-lg bg-[rgba(10,18,6,0.90)] px-3.5 py-2 text-[0.78rem] font-semibold text-white"
+            >
+              Logg inn for å synkronisere
+              <ArrowRight size={14} aria-hidden="true" />
+            </button>
+          ) : null}
         </section>
 
+        {/* ── Weak concepts (Cream) ── */}
         {weakConcepts.length > 0 ? (
-          <section className="nc-glass p-4">
+          <section className="nc-glass-cream p-2.5">
             <div className="nc-label">Trenger mer trening</div>
-            <div className="mt-4 space-y-3">
+            <div className="mt-2 flex flex-col gap-1">
               {weakConcepts.map((concept) => (
                 <div
                   key={concept.id}
-                  className="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/5 px-3 py-3"
+                  className="flex items-center justify-between gap-3 rounded-lg border border-[rgba(17,21,24,0.07)] bg-[rgba(255,255,255,0.5)] px-3 py-2"
                 >
-                  <span className="text-sm font-medium text-[var(--nc-text)]">{concept.label}</span>
-                  <span className="rounded-full bg-[var(--nc-red-tint)] px-3 py-1.5 text-xs font-medium text-[var(--nc-red)]">
+                  <span className="text-[0.82rem] font-medium text-[var(--nc-cream-text)]">{concept.label}</span>
+                  <span className="rounded-full bg-[rgba(255,106,85,0.12)] px-3 py-1 text-[0.72rem] font-bold text-[var(--nc-red)]">
                     {Math.round(concept.score)}%
                   </span>
                 </div>
@@ -166,14 +164,15 @@ export default function ProfilePage() {
           </section>
         ) : null}
 
+        {/* ── Recurring errors (Dark) ── */}
         {topErrors.length > 0 ? (
-          <section className="nc-glass-cream p-4">
-            <div className="nc-label text-[var(--nc-cream-dim)]">Tilbakevendende feil</div>
-            <div className="mt-4 flex flex-wrap gap-2">
+          <section className="nc-glass p-2.5">
+            <div className="nc-label">Tilbakevendende feil</div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
               {topErrors.map((error) => (
                 <span
                   key={error.tag}
-                  className="rounded-full border border-[rgba(6,16,23,0.10)] bg-white/60 px-3 py-2 text-xs font-medium text-[var(--nc-cream-text)]"
+                  className="rounded-full border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-3 py-1.5 text-[0.72rem] font-medium text-[var(--nc-text)]"
                 >
                   {error.tag} · {error.frequency}x
                 </span>
@@ -184,12 +183,13 @@ export default function ProfilePage() {
 
         <AIStatusSection />
 
-        <section className="nc-glass-cream p-4">
-          <div className="nc-label text-[var(--nc-cream-dim)]">Øktstil</div>
-          <p className="mt-1 text-[12px] text-[var(--nc-cream-muted)]">
+        {/* ── Session style (Dark) ── */}
+        <section className="nc-glass p-2.5">
+          <div className="nc-label">Øktstil</div>
+          <p className="mt-1 text-[0.72rem] text-[var(--nc-text-muted)]">
             Påvirker hvilke øvelsestyper som vises oftere i planene dine.
           </p>
-          <div className="mt-4 grid gap-2">
+          <div className="mt-2 grid gap-1.5">
             {PREFERENCE_OPTIONS.map((opt) => {
               const current = fingerprint?.inputProductionPreference ?? 'balanced'
               const isActive = current === opt.value
@@ -208,20 +208,20 @@ export default function ProfilePage() {
                     setFingerprint(updated)
                     saveFingerprint(updated).catch(console.warn)
                   }}
-                  className="rounded-[1rem] border px-4 py-3 text-left transition-colors"
+                  className="rounded-lg border px-3 py-2 text-left transition-colors"
                   style={{
                     background: isActive
                       ? 'linear-gradient(135deg, rgba(215,255,92,0.92) 0%, rgba(199,244,93,0.88) 100%)'
-                      : 'rgba(255,255,255,0.52)',
-                    borderColor: isActive ? 'rgba(215,255,92,0.42)' : 'rgba(6,16,23,0.10)',
-                    color: isActive ? 'var(--nc-signal-fg)' : 'var(--nc-cream-text)',
-                    boxShadow: isActive ? '0 14px 30px rgba(183,243,0,0.16)' : 'none',
+                      : 'linear-gradient(180deg, rgba(248,250,246,0.08) 0%, rgba(248,250,246,0.04) 100%)',
+                    borderColor: isActive ? 'rgba(215,255,92,0.42)' : 'rgba(255,255,255,0.10)',
+                    color: isActive ? 'var(--nc-signal-fg)' : 'var(--nc-text)',
+                    boxShadow: isActive ? '0 18px 36px rgba(183,243,0,0.16)' : '0 18px 34px rgba(0,0,0,0.18)',
                   }}
                 >
-                  <div className="text-[13px] font-bold">{opt.label}</div>
+                  <div className="text-[0.82rem] font-bold">{opt.label}</div>
                   <div
-                    className="mt-1 text-[11px] leading-snug"
-                    style={{ color: isActive ? 'rgba(8,17,13,0.72)' : 'var(--nc-cream-muted)' }}
+                    className="mt-1 text-[0.72rem] leading-snug"
+                    style={{ color: isActive ? 'rgba(8,17,13,0.72)' : 'var(--nc-text-muted)' }}
                   >
                     {opt.desc}
                   </div>
@@ -234,9 +234,9 @@ export default function ProfilePage() {
         {user ? (
           <button
             onClick={signOut}
-            className="nc-glass inline-flex items-center justify-center gap-2 rounded-[1rem] px-4 py-3 text-sm font-medium text-[var(--nc-text)]"
+            className="nc-glass inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-[0.82rem] font-medium text-[var(--nc-text-muted)]"
           >
-            <LogOut size={15} />
+            <LogOut size={14} aria-hidden="true" />
             Logg ut
           </button>
         ) : null}
@@ -274,17 +274,20 @@ function AIStatusSection() {
   const info = modeInfo[aiMode]
   const toneStyles = {
     signal: {
-      badgeBg: 'rgba(215,255,92,0.24)',
-      badgeColor: 'var(--nc-signal-fg)',
+      badgeBg: 'var(--nc-signal-tint)',
+      badgeBorder: 'var(--nc-signal-border)',
+      badgeColor: 'var(--nc-signal)',
       headingColor: 'var(--nc-text)',
     },
     teal: {
-      badgeBg: 'rgba(109,229,255,0.14)',
+      badgeBg: 'var(--nc-teal-tint)',
+      badgeBorder: 'var(--nc-teal-border)',
       badgeColor: 'var(--nc-teal)',
       headingColor: 'var(--nc-text)',
     },
     muted: {
-      badgeBg: 'rgba(255,255,255,0.08)',
+      badgeBg: 'rgba(255,255,255,0.06)',
+      badgeBorder: 'rgba(255,255,255,0.10)',
       badgeColor: 'var(--nc-text-dim)',
       headingColor: 'var(--nc-text)',
     },
@@ -292,25 +295,25 @@ function AIStatusSection() {
   const tone = toneStyles[info.tone]
 
   return (
-    <section className="nc-glass p-4">
+    <section className="nc-glass p-2.5">
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="nc-label">AI-status</div>
-          <div className="mt-2 text-sm font-semibold" style={{ color: tone.headingColor }}>
+          <div className="mt-1.5 text-[0.88rem] font-bold" style={{ color: tone.headingColor }}>
             {info.label}
             {state === 'loading' ? (
-              <span className="ml-2 text-[11px] font-normal text-[var(--nc-text-dim)]">
+              <span className="ml-2 text-[0.72rem] font-normal text-[var(--nc-text-dim)]">
                 Laster modell…
               </span>
             ) : null}
           </div>
-          <p className="mt-2 text-[12px] leading-6 text-[var(--nc-text-muted)]">
+          <p className="mt-1 text-[0.72rem] leading-5 text-[var(--nc-text-muted)]">
             {info.desc}
           </p>
         </div>
         <span
-          className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em]"
-          style={{ background: tone.badgeBg, color: tone.badgeColor }}
+          className="shrink-0 rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em]"
+          style={{ background: tone.badgeBg, borderColor: tone.badgeBorder, color: tone.badgeColor }}
         >
           {info.badge}
         </span>

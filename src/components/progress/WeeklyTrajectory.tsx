@@ -58,7 +58,7 @@ export function WeeklyTrajectory({ history }: WeeklyTrajectoryProps) {
   return (
     <div className="nc-glass-elevated p-4">
       {/* Section label */}
-      <div className="text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--nc-text-dim)] mb-4">
+      <div className="nc-label mb-3">
         Ukentlig fremgang
       </div>
 
@@ -100,7 +100,7 @@ export function WeeklyTrajectory({ history }: WeeklyTrajectoryProps) {
                 className="relative w-full rounded-sm overflow-visible"
                 style={{
                   height: '80px',
-                  backgroundColor: 'var(--nc-red-tint)',
+                  backgroundColor: 'var(--nc-signal-tint)',
                   borderRadius: '3px',
                 }}
                 aria-label={`Uke ${slice.label}: gjennomsnittlig score ${slice.avgEndScore}%${slice.checkScore !== null ? `, ukesjekk ${slice.checkScore}%` : ''}`}
@@ -108,7 +108,7 @@ export function WeeklyTrajectory({ history }: WeeklyTrajectoryProps) {
                 {/* Animated bar fill — grows from bottom */}
                 <motion.div
                   className="absolute bottom-0 left-0 right-0 rounded-sm"
-                  style={{ backgroundColor: 'var(--nc-red)', borderRadius: '3px' }}
+                  style={{ backgroundColor: 'var(--nc-signal)', borderRadius: '3px' }}
                   initial={{ height: 0 }}
                   animate={{ height: `${barHeightPx}px` }}
                   transition={{
@@ -173,7 +173,7 @@ export function WeeklyTrajectory({ history }: WeeklyTrajectoryProps) {
         <div className="flex items-center gap-1.5">
           <div
             className="w-2.5 h-2.5 rounded-sm"
-            style={{ backgroundColor: 'var(--nc-red)' }}
+            style={{ backgroundColor: 'var(--nc-signal)' }}
           />
           <span style={{ fontSize: '0.625rem', color: 'var(--nc-text-dim)' }}>
             Gjennomsnittlig score

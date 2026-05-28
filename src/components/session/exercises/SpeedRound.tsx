@@ -69,21 +69,22 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   }
 
   const pct = (secondsLeft / initialSeconds) * 100;
-  const urgentColor = secondsLeft <= 10 ? 'var(--nc-red)' : 'var(--nc-teal)';
+  // Timer urgent threshold: red when ≤10s, lime otherwise (demote teal)
+  const urgentColor = secondsLeft <= 10 ? 'var(--nc-red)' : 'var(--nc-signal)';
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-nc-cream-dim">
+        <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">
           Hurtigrunde
         </p>
-        <span className="text-sm font-bold tabular-nums" style={{ color: urgentColor }}>
+        <span className="font-display text-[0.92rem] font-extrabold tabular-nums" style={{ color: urgentColor }}>
           {secondsLeft}s
         </span>
       </div>
 
-      {/* Timer bar */}
-      <div className="h-[3px] overflow-hidden rounded-full bg-[rgba(4,14,8,0.12)]">
+      {/* Timer bar — lime accent */}
+      <div className="h-[3px] overflow-hidden rounded-full bg-[rgba(17,21,24,0.10)]">
         <motion.div
           className="h-full w-full origin-left rounded-full"
           style={{ background: urgentColor }}
@@ -93,13 +94,13 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       </div>
 
       <motion.p
-        className="text-[28px] font-bold text-nc-cream-text"
+        className="font-display text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--nc-cream-text)]"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
       >
         {sentence.norwegian}
       </motion.p>
-      <p className="text-sm text-nc-cream-muted">Oversett til engelsk så raskt du kan</p>
+      <p className="text-[0.82rem] text-[var(--nc-cream-muted)]">Oversett til engelsk så raskt du kan</p>
 
       <input
         ref={inputRef}

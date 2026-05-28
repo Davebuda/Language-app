@@ -9,6 +9,8 @@ interface ConceptProgressRowProps {
   locked?: boolean
   prereqLabel?: string
   className?: string
+  /** 'cream' uses cream text colors (default); 'dark' uses nc-text colors for dark card backgrounds */
+  variant?: 'cream' | 'dark'
 }
 
 export function ConceptProgressRow({
@@ -18,10 +20,27 @@ export function ConceptProgressRow({
   locked = false,
   prereqLabel,
   className,
+  variant = 'cream',
 }: ConceptProgressRowProps) {
   const defaultClass = locked
     ? 'nc-glass flex items-center gap-3 px-4 py-3 opacity-60'
-    : 'nc-glass-cream flex items-center gap-3 px-4 py-3'
+    : variant === 'dark'
+      ? 'nc-glass flex items-center gap-3 px-4 py-3'
+      : 'nc-glass-cream flex items-center gap-3 px-4 py-3'
+
+  const nameColor = locked
+    ? 'text-[var(--nc-text-muted)]'
+    : variant === 'dark'
+      ? 'text-[var(--nc-text)]'
+      : 'text-[var(--nc-cream-text)]'
+
+  const scoreColor = variant === 'dark'
+    ? 'text-[var(--nc-signal)]'
+    : 'text-[#5A8A00]'
+
+  const trackColor = variant === 'dark'
+    ? 'bg-[rgba(255,255,255,0.08)]'
+    : 'bg-[rgba(4,14,8,0.12)]'
 
   return (
     <div className={className ?? defaultClass}>
@@ -32,7 +51,7 @@ export function ConceptProgressRow({
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-3">
-          <span className={`truncate text-[13px] font-medium ${locked ? 'text-[var(--nc-text-muted)]' : 'text-[var(--nc-cream-text)]'}`}>
+          <span className={`truncate text-[13px] font-medium ${nameColor}`}>
             {name}
           </span>
           {locked ? (
@@ -40,16 +59,16 @@ export function ConceptProgressRow({
               {prereqLabel}
             </span>
           ) : (
-            <span className="text-[12px] font-semibold text-[var(--nc-cream-dim)]">
+            <span className={`text-[12px] font-semibold ${scoreColor}`}>
               {score}%
             </span>
           )}
         </div>
 
-        <div className="mt-2 h-[5px] overflow-hidden rounded-full bg-[rgba(4,14,8,0.12)]">
+        <div className={`mt-2 h-[5px] overflow-hidden rounded-full ${trackColor}`}>
           {!locked ? (
             <motion.div
-              className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+              className="h-full w-full origin-left rounded-full bg-[var(--nc-signal)]"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: score / 100 }}
               transition={{ duration: 0.65, ease: 'easeOut' }}

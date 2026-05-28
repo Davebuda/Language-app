@@ -80,7 +80,7 @@ export default async function UkePage() {
   }
 
   return (
-    <main className="min-h-dvh">
+    <main className="nc-gradient-page nc-secondary-flow min-h-dvh">
       <WeeklyCheckScreen
         availableSentenceIds={availableSentenceIds}
         sentences={sentences}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 2 — Treneren (The Coach)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #080E10; color: #F0FFF8; min-height: 100vh; display: flex; justify-content: center; }
+  .phone { width: 375px; min-height: 812px; background: #080E10; position: relative; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); }
+  .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,255,248,0.36); }
+  .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; }
+  .cream-card { background: #F4FFF8; color: #040E08; border-radius: 12px; }
+  .btn-primary { background: #FF3333; color: white; border: none; border-radius: 12px; padding: 16px 32px; font-weight: 700; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center; }
+  .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+
+  .sticky-header { position: sticky; top: 0; z-index: 10; background: rgba(8,14,16,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 20px; }
+
+  .content { padding: 24px 20px 100px; display: flex; flex-direction: column; align-items: center; }
+
+  .coach-avatar { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,51,51,0.14); border: 2px solid rgba(255,51,51,0.28); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 12px; }
+
+  .hero-card { width: 100%; padding: 32px 24px; text-align: center; }
+
+  .progress-ring { width: 120px; height: 120px; margin: 24px auto; position: relative; }
+  .progress-ring svg { transform: rotate(-90deg); }
+  .progress-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  .drawer-toggle { width: 100%; margin-top: 24px; padding: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; color: rgba(240,255,248,0.58); font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
+
+  .drawer { width: 100%; margin-top: 8px; }
+  .drawer-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .drawer-item:last-child { border-bottom: none; }
+
+  .bottom-nav { position: fixed; bottom: 0; width: 375px; display: flex; justify-content: space-around; padding: 10px 8px; background: rgba(18,14,14,0.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-item { text-align: center; font-size: 9px; font-weight: 600; color: rgba(240,255,248,0.58); }
+  .nav-item.active { color: #FF3333; }
+  .nav-icon { font-size: 18px; margin-bottom: 2px; }
+
+  .annotation { position: fixed; top: 12px; right: 12px; background: #FF3333; color: white; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; z-index: 100; }
+</style>
+</head>
+<body>
+<div class="annotation">Direction 2: Treneren — The Coach</div>
+<div class="phone">
+
+  <!-- Minimal sticky header -->
+  <div class="sticky-header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="label">onsdag 28. mai</div>
+        <div style="font-size: 20px; font-weight: 700; margin-top: 4px;">God kveld, David!</div>
+      </div>
+      <div class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">A2</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Coach avatar -->
+    <div class="coach-avatar">🎯</div>
+    <div style="font-size: 11px; color: rgba(240,255,248,0.36); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">Din trener anbefaler</div>
+
+    <!-- THE one recommendation — dominates the screen -->
+    <div class="hero-card cream-card" style="margin-top: 16px;">
+      <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(4,14,8,0.34);">NESTE STEG</div>
+      <div style="font-size: 28px; font-weight: 700; margin-top: 10px; line-height: 1.1;">Start dagens økt</div>
+      <div style="font-size: 14px; color: rgba(4,14,8,0.52); margin-top: 10px; line-height: 1.5;">
+        Fokus: <strong style="color: #040E08;">adjektivbøyning</strong><br>
+        9 oppgaver · ca. 18 min
+      </div>
+
+      <div style="margin-top: 8px; font-size: 12px; color: rgba(4,14,8,0.42); padding: 10px; background: rgba(4,14,8,0.04); border-radius: 8px; border: 1px solid rgba(4,14,8,0.08);">
+        Du feiler på ubøyd vs. bøyd form — denne økten reparerer det mønsteret.
+      </div>
+
+      <button class="btn-primary" style="margin-top: 20px;">▶ Start</button>
+    </div>
+
+    <!-- Weekly progress ring -->
+    <div class="progress-ring">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#FF3333" stroke-width="6" stroke-dasharray="327" stroke-dashoffset="196" stroke-linecap="round"/>
+      </svg>
+      <div class="progress-center">
+        <div style="font-size: 24px; font-weight: 700;">40%</div>
+        <div style="font-size: 9px; color: rgba(240,255,248,0.36); font-weight: 600; text-transform: uppercase;">uken</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 12px; color: rgba(240,255,248,0.58);">
+      2 av 5 baner fullført i dag · 3 dager gjenstår
+    </div>
+
+    <!-- Expandable "More" drawer -->
+    <div class="drawer-toggle">
+      ↓ Andre aktiviteter
+    </div>
+
+    <div class="drawer card" style="margin-top: 8px;">
+      <div class="drawer-item">
+        <div>
+          <div style="font-size: 13px; font-weight: 700;">✏️ Skrivejournal</div>
+          <div style="font-size: 11px; color: rgba(240,255,248,0.36);">Ukens prompt tilgjengelig</div>
+        </div>
+        <div style="font-size: 11px; color: rgba(240,255,248,0.36);">→</div>
+      </div>
+      <div class="drawer-item">
+        <div>
+          <div style="font-size: 13px; font-weight: 700;">🗣️ Samtale med Kari</div>
+          <div style="font-size: 11px; color: rgba(240,255,248,0.36);">Foreslått: daglig rutine</div>
+        </div>
+        <div style="font-size: 11px; color: rgba(240,255,248,0.36);">→</div>
+      </div>
+      <div class="drawer-item">
+        <div>
+          <div style="font-size: 13px; font-weight: 700;">🎭 Rollespill</div>
+          <div style="font-size: 11px; color: rgba(240,255,248,0.36);">Anbefalt: På kafeen</div>
+        </div>
+        <div style="font-size: 11px; color: rgba(240,255,248,0.36);">→</div>
+      </div>
+      <div class="drawer-item">
+        <div>
+          <div style="font-size: 13px; font-weight: 700;">📖 Lesestudio</div>
+          <div style="font-size: 11px; color: rgba(240,255,248,0.36);">2 tekster på ditt nivå</div>
+        </div>
+        <div style="font-size: 11px; color: rgba(240,255,248,0.36);">→</div>
+      </div>
+      <div class="drawer-item">
+        <div>
+          <div style="font-size: 13px; font-weight: 700;">📊 Ukens sjekk</div>
+          <div style="font-size: 11px; color: rgba(240,255,248,0.36);">Tilgjengelig lørdag</div>
+        </div>
+        <div style="font-size: 11px; color: rgba(240,255,248,0.36); opacity: 0.4;">lør</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><div class="nav-icon">🏠</div>Hjem</div>
+    <div class="nav-item"><div class="nav-icon">📖</div>Lær</div>
+    <div class="nav-item"><div class="nav-icon">💬</div>Øv</div>
+    <div class="nav-item"><div class="nav-icon">📊</div>Fremgang</div>
+    <div class="nav-item"><div class="nav-icon">👤</div>Profil</div>
+  </div>
+
+</div>
+</body>
+</html>

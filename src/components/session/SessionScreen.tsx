@@ -95,9 +95,9 @@ export function SessionScreen({
     if (!currentBlock) return
     const prev = prevBlockIndexRef.current
     if (prev !== null && prev !== currentBlock.blockIndex) {
-      const icons: Record<SessionBlockType, string> = { lytt: '🎧', lær: '✏️', snakk: '🗣️' }
-      const icon = icons[currentBlock.block.type]
-      setBlockTransition({ label: `${icon} ${currentBlock.block.label}` })
+      const labels: Record<SessionBlockType, string> = { lytt: 'Lytt', lær: 'Lær', snakk: 'Snakk' }
+      const label = labels[currentBlock.block.type]
+      setBlockTransition({ label: `${label} · ${currentBlock.block.label}` })
       const timer = setTimeout(() => setBlockTransition(null), 1500)
       prevBlockIndexRef.current = currentBlock.blockIndex
       return () => clearTimeout(timer)
@@ -112,25 +112,29 @@ export function SessionScreen({
 
   if (isMasteryComplete) {
     return (
-      <div className="nc-stage flex min-h-dvh flex-col items-center justify-center text-[var(--nc-text)]">
-        <div className="nc-mobile-shell flex flex-col items-center gap-6 px-5 text-center">
-          <div className="text-6xl">🎉</div>
-          <h1 className="font-display text-2xl font-bold">Du har mestret alt!</h1>
-          <p className="max-w-xs text-sm text-[var(--nc-text-muted)]">
-            Alle konseptene på dette nivået er gjennomgått. Prøv å gå opp et nivå eller ta ukens sjekk.
-          </p>
-          <div className="flex gap-3">
+      <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col items-center justify-center text-[var(--nc-text)]">
+        <div className="nc-mobile-shell flex flex-col items-center gap-5 px-5 text-center">
+          <div className="nc-signal-panel w-full p-5 text-center">
+            <div className="nc-label">Status</div>
+            <h1 className="mt-2 font-display text-[1.9rem] font-extrabold leading-[0.96] tracking-[-0.03em]">
+              Du har mestret alt!
+            </h1>
+            <p className="mt-3 text-[0.84rem] leading-6 text-[rgba(10,18,6,0.65)]">
+              Alle konseptene på dette nivået er gjennomgått. Prøv å gå opp et nivå eller ta ukens sjekk.
+            </p>
+          </div>
+          <div className="flex w-full gap-3">
             <button
               type="button"
               onClick={() => router.push('/uke')}
-              className="rounded-xl bg-[var(--nc-red)] px-5 py-3 text-sm font-semibold text-white"
+              className="nc-button-primary flex-1 py-3 text-[0.9rem] font-bold"
             >
               Ukens sjekk
             </button>
             <button
               type="button"
               onClick={() => router.push('/dashboard')}
-              className="rounded-xl border border-[var(--nc-border)] px-5 py-3 text-sm font-semibold text-[var(--nc-text-muted)]"
+              className="nc-button-dark flex-1 py-3 text-[0.9rem] font-semibold"
             >
               Dashbord
             </button>
@@ -141,187 +145,162 @@ export function SessionScreen({
   }
 
   return (
-    <div className="nc-stage flex min-h-dvh flex-col text-[var(--nc-text)]">
-      <div className="nc-mobile-shell flex w-full flex-1 flex-col px-2.5 pb-24 pt-2.5">
-      <div className="nc-phone-page flex flex-1 flex-col p-2.5">
-      <header className="flex w-full flex-col gap-2 pb-2">
-        <div className="nc-card-soft p-3">
-          <div className="flex items-start gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                const hasProgress = (useSessionStore.getState().results?.length ?? 0) > 0
-                if (hasProgress) {
-                  setExitDialogOpen(true)
-                } else {
-                  router.push('/dashboard')
-                }
-              }}
-              className="inline-flex size-10 shrink-0 items-center justify-center rounded-[0.7rem] bg-[rgba(6,16,23,0.92)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-              aria-label="Tilbake til dashboard"
-            >
-              <X size={18} />
-            </button>
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col text-[var(--nc-text)]">
+      <div className="nc-mobile-shell nc-flow-shell">
+        <div className="flex flex-1 flex-col gap-[6px]">
 
-            <AlertDialog open={exitDialogOpen} onOpenChange={setExitDialogOpen}>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Avslutte økten?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Du mister fremgangen i denne økten.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Avbryt</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => router.push('/dashboard')}>
-                    Avslutt
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+          {/* ── Header: lime focal panel ── */}
+          <header className="flex w-full flex-col gap-[6px]">
+            <div className="rounded-[0.65rem] bg-[linear-gradient(135deg,#C8FF20_0%,#B8EF10_100%)] p-2.5 text-[var(--nc-signal-fg)]">
+              <div className="flex items-start gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const hasProgress = (useSessionStore.getState().results?.length ?? 0) > 0
+                    if (hasProgress) {
+                      setExitDialogOpen(true)
+                    } else {
+                      router.push('/dashboard')
+                    }
+                  }}
+                  className="inline-flex size-10 shrink-0 items-center justify-center rounded-[0.55rem] bg-[rgba(10,18,6,0.90)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                  aria-label="Tilbake til dashboard"
+                >
+                  <X size={18} />
+                </button>
 
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <div className="nc-label text-[var(--nc-cream-dim)]">
-                    {currentItem ? getExerciseTypeLabel(currentItem.exerciseType) : 'Session'}
+                <AlertDialog open={exitDialogOpen} onOpenChange={setExitDialogOpen}>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Avslutte økten?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Du mister fremgangen i denne økten.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Avbryt</AlertDialogCancel>
+                      <AlertDialogAction onClick={() => router.push('/dashboard')}>
+                        Avslutt
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">
+                        {currentItem ? getExerciseTypeLabel(currentItem.exerciseType) : 'Økt'}
+                      </div>
+                      <div className="mt-0.5 text-[0.88rem] font-extrabold leading-tight text-[var(--nc-signal-fg)]">
+                        Økt
+                      </div>
+                    </div>
+                    <AIStatusBadge />
                   </div>
-                  <div className="mt-0.5 text-[0.92rem] font-semibold text-[var(--nc-cream-text)]">
-                    Økt
+
+                  {/* Progress bar — lime on lime-dark track */}
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-[rgba(10,18,6,0.14)]">
+                    <div
+                      className="h-full rounded-full bg-[rgba(10,18,6,0.82)] transition-[width] duration-300"
+                      style={{ width: `${progressPct}%` }}
+                    />
+                  </div>
+
+                  {/* Stat row inside header */}
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="text-[0.72rem] font-semibold tabular-nums text-[rgba(10,18,6,0.55)]">
+                      {session ? `${progressValue} / ${totalItems || '—'}` : 'Laster…'}
+                    </span>
+                    {session?.blocks && session.blocks.length > 0 && currentBlock ? (
+                      <BlockIndicatorStrip
+                        blocks={session.blocks}
+                        activeBlockIndex={currentBlock.blockIndex}
+                      />
+                    ) : null}
                   </div>
                 </div>
-                <AIStatusBadge />
               </div>
+            </div>
+          </header>
 
-              <div className="mt-4 h-2 overflow-hidden rounded-full bg-[rgba(6,16,23,0.08)]">
-                <div
-                  className="h-full rounded-full bg-[var(--nc-signal)] transition-[width] duration-300"
-                  style={{ width: `${progressPct}%` }}
-                />
-              </div>
-
-              <div className="mt-3 rounded-[0.75rem] bg-[rgba(6,16,23,0.94)] px-3 py-2.5 text-white">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white/38">
-                      Status
-                    </div>
-                    <div className="mt-1 text-[0.82rem] font-medium text-white">
-                      {session ? `${progressValue} / ${totalItems || '-'}` : 'Laster økt…'}
-                    </div>
-                  </div>
-                  <div className="rounded-[0.5rem] bg-white/8 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/60">
-                    Nå
-                  </div>
+          {/* ── Exercise area ── */}
+          <main className="relative flex w-full flex-1 flex-col gap-[6px] pt-0">
+            {blockTransition ? (
+              <div
+                className="pointer-events-none absolute inset-x-0 top-2 z-20 flex justify-center px-4"
+                style={{ animation: 'nc-block-fade 1.5s ease forwards' }}
+              >
+                <div className="rounded-[0.5rem] border border-[var(--nc-border)] bg-[var(--nc-card)] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.10em] text-[var(--nc-text-muted)] shadow-[0_20px_40px_rgba(0,0,0,0.26)]">
+                  {blockTransition.label}
                 </div>
+              </div>
+            ) : null}
 
-                {session?.blocks && session.blocks.length > 0 && currentBlock ? (
-                  <BlockIndicatorStrip
-                    blocks={session.blocks}
-                    activeBlockIndex={currentBlock.blockIndex}
+            {!session ? (
+              <LoadingSkeleton />
+            ) : totalItems === 0 ? (
+              <EmptyState />
+            ) : isComplete ? (
+              <LoadingSkeleton />
+            ) : currentItem && currentContent ? (
+              <>
+                {currentBlock ? (
+                  <BlockHeader
+                    type={currentBlock.block.type}
+                    label={currentBlock.block.label}
+                    current={currentBlock.positionInBlock + 1}
+                    total={currentBlock.block.items.length}
                   />
                 ) : null}
-              </div>
-            </div>
-          </div>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentItemIndex}
+                    initial={{ x: 48, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -48, opacity: 0 }}
+                    transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
+                  >
+                    <ExerciseCard
+                      item={currentItem}
+                      sentence={currentContent}
+                      sessionId={session.id}
+                      onResult={handleResult}
+                      repairPlan={isInRepair ? repairPlan : null}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <AnimatePresence>
+                  {isInRepair && repairPlan ? (
+                    <motion.div
+                      key="repair"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <ExplanationCard
+                        repairPlan={repairPlan}
+                        correctAnswer={lastResultRef.current?.correctAnswer ?? ''}
+                        conceptId={currentItem.conceptIds[0] ?? 'concept'}
+                        conceptLabel={
+                          getGraphForLevel(fingerprint?.currentLevel ?? 'A1').concepts.find(
+                            (concept) => concept.id === currentItem.conceptIds[0],
+                          )?.label
+                        }
+                        onContinue={continueAfterRepair}
+                      />
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </>
+            ) : (
+              <LoadingSkeleton />
+            )}
+          </main>
         </div>
-      </header>
-
-      <main className="relative flex w-full flex-1 flex-col gap-2.5 pt-0">
-        {blockTransition ? (
-          <div
-            className="pointer-events-none absolute inset-x-0 top-2 z-20 flex justify-center px-4"
-            style={{ animation: 'nc-block-fade 1.5s ease forwards' }}
-          >
-            <div className="rounded-[0.6rem] border border-white/16 bg-[rgba(247,251,245,0.92)] px-4 py-2 text-[12px] font-semibold text-[var(--nc-cream-text)] shadow-[0_20px_40px_rgba(0,0,0,0.18)] backdrop-blur">
-              {blockTransition.label}
-            </div>
-          </div>
-        ) : null}
-
-        {!session ? (
-          <LoadingSkeleton />
-        ) : totalItems === 0 ? (
-          <EmptyState />
-        ) : isComplete ? (
-          <LoadingSkeleton />
-        ) : currentItem && currentContent ? (
-          <>
-            {currentBlock ? (
-              <BlockHeader
-                type={currentBlock.block.type}
-                label={currentBlock.block.label}
-                current={currentBlock.positionInBlock + 1}
-                total={currentBlock.block.items.length}
-              />
-            ) : null}
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentItemIndex}
-                initial={{ x: 48, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -48, opacity: 0 }}
-                transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
-              >
-                <ExerciseCard
-                  item={currentItem}
-                  sentence={currentContent}
-                  sessionId={session.id}
-                  onResult={handleResult}
-                  repairPlan={isInRepair ? repairPlan : null}
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            {!isInRepair && currentBlock ? (
-              <div className="nc-card-dark-solid p-3">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="nc-label">Blokk</div>
-                    <div className="mt-1.5 text-[0.84rem] font-medium text-[var(--nc-text)]">
-                      {currentBlock.block.label}
-                    </div>
-                    <p className="mt-1 text-[0.74rem] leading-5 text-[var(--nc-text-muted)]">
-                      Ett steg av gangen.
-                    </p>
-                  </div>
-                  <span className="nc-chip-signal rounded-[0.5rem] px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.08em]">
-                    Aktiv
-                  </span>
-                </div>
-              </div>
-            ) : null}
-
-            <AnimatePresence>
-              {isInRepair && repairPlan ? (
-                <motion.div
-                  key="repair"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <ExplanationCard
-                    repairPlan={repairPlan}
-                    correctAnswer={lastResultRef.current?.correctAnswer ?? ''}
-                    conceptId={currentItem.conceptIds[0] ?? 'concept'}
-                    conceptLabel={
-                      getGraphForLevel(fingerprint?.currentLevel ?? 'A1').concepts.find(
-                        (concept) => concept.id === currentItem.conceptIds[0],
-                      )?.label
-                    }
-                    onContinue={continueAfterRepair}
-                  />
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
-          </>
-        ) : (
-          <LoadingSkeleton />
-        )}
-      </main>
-      </div>
       </div>
     </div>
   )
@@ -329,26 +308,29 @@ export function SessionScreen({
 
 function LoadingSkeleton() {
   return (
-    <div className="nc-card-soft p-3">
-      <div className="h-72 animate-pulse rounded-[0.7rem] bg-[rgba(6,16,23,0.08)]" />
+    <div className="overflow-hidden rounded-[0.75rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+      <div className="h-[3px] w-full bg-[linear-gradient(90deg,var(--nc-signal)_0%,#B8EF10_100%)]" />
+      <div className="p-3.5">
+        <div className="h-64 animate-pulse rounded-[0.55rem] bg-[rgba(17,21,24,0.06)]" />
+      </div>
     </div>
   )
 }
 
 function EmptyState() {
   return (
-    <div className="nc-card-soft flex flex-1 items-center justify-center p-4 text-center">
-      <p className="max-w-xs text-[0.82rem] leading-6 text-[var(--nc-cream-muted)]">
+    <div className="nc-glass flex flex-1 items-center justify-center p-4 text-center">
+      <p className="max-w-xs text-[0.82rem] leading-6 text-[var(--nc-text-muted)]">
         Ingen øvelser tilgjengelig ennå. Innholdet blir seedet snart.
       </p>
     </div>
   )
 }
 
-const BLOCK_ICONS: Record<SessionBlockType, string> = {
-  lytt: '🎧',
-  lær: '✏️',
-  snakk: '🗣️',
+const BLOCK_LABELS: Record<SessionBlockType, string> = {
+  lytt: 'Lytt',
+  lær: 'Lær',
+  snakk: 'Snakk',
 }
 
 function BlockHeader({
@@ -363,16 +345,16 @@ function BlockHeader({
   total: number
 }) {
   return (
-    <div className="nc-card-dark-solid px-3 py-2.5">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <span aria-hidden="true">{BLOCK_ICONS[type]}</span>
-          <span className="text-[0.82rem] font-semibold text-[var(--nc-text)]">{label}</span>
-        </div>
-        <span className="rounded-[0.5rem] bg-white/6 px-2.5 py-1 text-[10px] font-semibold tabular-nums text-[var(--nc-text-muted)]">
-          {current} / {total}
+    <div className="flex items-center justify-between rounded-[0.55rem] bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-2">
+      <div className="flex items-center gap-2">
+        <span className="text-[9px] font-bold uppercase tracking-[0.10em] text-[var(--nc-text-dim)]">
+          {BLOCK_LABELS[type]}
         </span>
+        <span className="text-[0.8rem] font-semibold text-[var(--nc-text)]">{label}</span>
       </div>
+      <span className="rounded-[0.35rem] bg-[rgba(255,255,255,0.06)] px-2 py-0.5 text-[9px] font-bold tabular-nums text-[var(--nc-text-dim)]">
+        {current} / {total}
+      </span>
     </div>
   )
 }
@@ -385,18 +367,18 @@ function BlockIndicatorStrip({
   activeBlockIndex: number
 }) {
   return (
-    <div className="mt-3 flex items-center gap-1.5">
+    <div className="flex items-center gap-1">
       {blocks.map((block, i) => (
         <div
           key={block.id}
           title={block.label}
           className={[
-            'flex h-1.5 flex-1 items-center justify-center rounded-full transition-colors duration-300',
+            'h-1.5 flex-1 rounded-full transition-colors duration-200',
             i < activeBlockIndex
-              ? 'bg-[var(--nc-signal)]'
+              ? 'bg-[rgba(10,18,6,0.70)]'
               : i === activeBlockIndex
-                ? 'bg-[var(--nc-signal)] opacity-55'
-                : 'bg-white/10',
+                ? 'bg-[rgba(10,18,6,0.45)]'
+                : 'bg-[rgba(10,18,6,0.18)]',
           ].join(' ')}
         />
       ))}

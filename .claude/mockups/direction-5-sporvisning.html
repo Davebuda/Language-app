@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 5 — Spor-visning (The Track View)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #080E10; color: #F0FFF8; min-height: 100vh; display: flex; justify-content: center; }
+  .phone { width: 375px; min-height: 812px; background: #080E10; position: relative; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); }
+  .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,255,248,0.36); }
+  .glass { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; }
+  .cream-card { background: #F4FFF8; color: #040E08; border-radius: 12px; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 20px; font-size: 9px; font-weight: 700; }
+
+  .sticky-header { position: sticky; top: 0; z-index: 10; background: rgba(8,14,16,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 20px 0; }
+
+  /* Week timeline */
+  .week-timeline { display: flex; align-items: center; gap: 0; padding: 12px 0 14px; position: relative; }
+  .timeline-day { flex: 1; text-align: center; position: relative; z-index: 1; }
+  .timeline-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 3px; }
+  .timeline-label { font-size: 8px; font-weight: 600; color: rgba(240,255,248,0.36); }
+  .timeline-line { position: absolute; top: 16px; left: 14%; right: 14%; height: 2px; background: rgba(255,255,255,0.06); z-index: 0; }
+  .timeline-line-fill { height: 100%; background: #4ade80; width: 33%; }
+
+  .content { padding: 0 16px 100px; }
+
+  /* Track rows */
+  .track { display: flex; align-items: center; gap: 12px; padding: 14px 16px; margin-bottom: 6px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); }
+  .track.primary { background: #F4FFF8; border-color: transparent; }
+  .track.done { opacity: 0.5; }
+
+  .track-icon { font-size: 20px; width: 32px; text-align: center; flex-shrink: 0; }
+  .track-info { flex: 1; min-width: 0; }
+  .track-name { font-size: 14px; font-weight: 700; }
+  .track-name-dark { font-size: 14px; font-weight: 700; color: #040E08; }
+  .track-hint { font-size: 11px; color: rgba(240,255,248,0.36); margin-top: 2px; }
+  .track-hint-dark { font-size: 11px; color: rgba(4,14,8,0.42); margin-top: 2px; }
+  .track-action { flex-shrink: 0; }
+  .track-btn { background: #FF3333; color: white; border: none; border-radius: 8px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .track-btn-outline { background: transparent; color: #F0FFF8; border: 1px solid rgba(255,255,255,0.16); border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .track-check { color: #4ade80; font-size: 14px; font-weight: 700; }
+
+  /* Focus chips */
+  .focus-strip { padding: 12px 16px; }
+
+  .bottom-nav { position: fixed; bottom: 0; width: 375px; display: flex; justify-content: space-around; padding: 10px 8px; background: rgba(18,14,14,0.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-item { text-align: center; font-size: 9px; font-weight: 600; color: rgba(240,255,248,0.58); }
+  .nav-item.active { color: #FF3333; }
+  .nav-icon { font-size: 18px; margin-bottom: 2px; }
+
+  .annotation { position: fixed; top: 12px; right: 12px; background: #FF3333; color: white; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; z-index: 100; }
+</style>
+</head>
+<body>
+<div class="annotation">Direction 5: Spor-visning — The Track View</div>
+<div class="phone">
+
+  <!-- Sticky header with week timeline -->
+  <div class="sticky-header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="label" style="margin-bottom: 4px;">onsdag 28. mai</div>
+        <div style="font-size: 20px; font-weight: 700;">God kveld, David!</div>
+      </div>
+      <div class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">A2</div>
+    </div>
+
+    <!-- Week timeline — shared across all tracks -->
+    <div class="week-timeline">
+      <div class="timeline-line"><div class="timeline-line-fill"></div></div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: #4ade80;"></div>
+        <div class="timeline-label">man</div>
+      </div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: #4ade80;"></div>
+        <div class="timeline-label">tir</div>
+      </div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: #FF3333; box-shadow: 0 0 0 3px rgba(255,51,51,0.3);"></div>
+        <div class="timeline-label" style="color: #FF3333; font-weight: 700;">ons</div>
+      </div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: rgba(255,255,255,0.1);"></div>
+        <div class="timeline-label">tor</div>
+      </div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: rgba(255,255,255,0.1);"></div>
+        <div class="timeline-label">fre</div>
+      </div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: rgba(0,229,196,0.3);"></div>
+        <div class="timeline-label" style="color: rgba(0,229,196,0.6);">sjekk</div>
+      </div>
+      <div class="timeline-day">
+        <div class="timeline-dot" style="background: rgba(255,255,255,0.06);"></div>
+        <div class="timeline-label">søn</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 4px 8px;">
+      <div class="label">DAGENS BANER</div>
+      <div style="font-size: 10px; color: rgba(240,255,248,0.58);">1 av 5 fullført</div>
+    </div>
+
+    <!-- Track 1: Session (PRIMARY — cream) -->
+    <div class="track primary">
+      <div class="track-icon">⚡</div>
+      <div class="track-info">
+        <div class="track-name-dark">Økt</div>
+        <div class="track-hint-dark">Adjektivbøyning · 18 min · 9 oppgaver</div>
+        <div style="display: flex; gap: 4px; margin-top: 6px;">
+          <span class="badge" style="background: rgba(255,51,51,0.1); color: #CC2929; font-size: 8px;">4 reparasjon</span>
+          <span class="badge" style="background: rgba(0,180,160,0.08); color: #00997F; font-size: 8px;">2 nytt</span>
+        </div>
+      </div>
+      <div class="track-action">
+        <button class="track-btn">Start</button>
+      </div>
+    </div>
+
+    <!-- Track 2: Write -->
+    <div class="track">
+      <div class="track-icon">✏️</div>
+      <div class="track-info">
+        <div class="track-name">Skriv</div>
+        <div class="track-hint">Journalprompt · ukens fokus</div>
+      </div>
+      <div class="track-action">
+        <button class="track-btn-outline">Åpne</button>
+      </div>
+    </div>
+
+    <!-- Track 3: Speak -->
+    <div class="track">
+      <div class="track-icon">🗣️</div>
+      <div class="track-info">
+        <div class="track-name">Snakk</div>
+        <div class="track-hint">Samtale med Kari · daglig rutine</div>
+      </div>
+      <div class="track-action">
+        <button class="track-btn-outline">Åpne</button>
+      </div>
+    </div>
+
+    <!-- Track 4: Roleplay -->
+    <div class="track">
+      <div class="track-icon">🎭</div>
+      <div class="track-info">
+        <div class="track-name">Rollespill</div>
+        <div class="track-hint">Anbefalt: På kafeen</div>
+        <div style="margin-top: 4px;">
+          <span class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.2); color: #FF3333;">Anbefalt</span>
+        </div>
+      </div>
+      <div class="track-action">
+        <button class="track-btn-outline">Åpne</button>
+      </div>
+    </div>
+
+    <!-- Track 5: Read (DONE) -->
+    <div class="track done">
+      <div class="track-icon">📖</div>
+      <div class="track-info">
+        <div class="track-name">Les</div>
+        <div class="track-hint">Min første dag i Oslo</div>
+      </div>
+      <div class="track-action">
+        <div class="track-check">✓</div>
+      </div>
+    </div>
+
+    <!-- Separator -->
+    <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 12px 0;"></div>
+
+    <!-- Weekly check (not yet available) -->
+    <div class="track" style="opacity: 0.4;">
+      <div class="track-icon">📋</div>
+      <div class="track-info">
+        <div class="track-name">Ukens sjekk</div>
+        <div class="track-hint">Tilgjengelig lørdag</div>
+      </div>
+      <div class="track-action">
+        <div style="font-size: 10px; color: rgba(240,255,248,0.36);">lør</div>
+      </div>
+    </div>
+
+    <!-- Focus chips -->
+    <div class="focus-strip">
+      <div class="label" style="margin-bottom: 8px;">UKENS FOKUS</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <span class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">adjektivbøyning · +8 · 5 forsøk</span>
+        <span class="badge" style="background: rgba(0,229,196,0.14); border: 1px solid rgba(0,229,196,0.28); color: #00E5C4;">preposisjoner · +3 · 3 forsøk</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.5);">preteritum · 0</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.5);">V2-ordstilling · 0</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.5);">modale verb · 0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><div class="nav-icon">🏠</div>Hjem</div>
+    <div class="nav-item"><div class="nav-icon">📖</div>Lær</div>
+    <div class="nav-item"><div class="nav-icon">💬</div>Øv</div>
+    <div class="nav-item"><div class="nav-icon">📊</div>Fremgang</div>
+    <div class="nav-item"><div class="nav-icon">👤</div>Profil</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -18,9 +18,9 @@ export function BottomNav({ active }: { active: NavTab }) {
   return (
     <nav
       aria-label="Hovednavigasjon"
-      className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[calc(env(safe-area-inset-bottom)+14px)] pt-3"
+      className="fixed inset-x-0 bottom-0 z-40 px-1.5 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-1"
     >
-      <div className="mx-auto flex w-full max-w-[23rem] items-center justify-around gap-1 rounded-[1.8rem] border border-[rgba(255,255,255,0.16)] bg-[rgba(13,18,24,0.78)] p-2.5 shadow-[0_30px_80px_rgba(16,22,29,0.24)] backdrop-blur-[26px]">
+      <div className="mx-auto flex w-full max-w-[23rem] items-center justify-around rounded-[0.65rem] border border-[var(--nc-border)] bg-[rgba(21,23,24,0.94)] p-1">
         {TABS.map(({ id, label, href, Icon }) => {
           const isActive = id === active
           return (
@@ -29,19 +29,17 @@ export function BottomNav({ active }: { active: NavTab }) {
               href={href}
               aria-label={label}
               aria-current={isActive ? 'page' : undefined}
-              className={`flex min-h-[54px] flex-1 flex-col items-center justify-center gap-1 rounded-[1.2rem] px-2 py-2 transition-colors ${
+              className={`flex flex-1 flex-col items-center gap-0.5 rounded-[0.35rem] px-1 py-2 transition-colors ${
                 isActive
-                  ? 'bg-[rgba(215,255,92,0.24)] text-[var(--nc-signal-fg)]'
-                  : 'text-white/44 hover:text-white'
+                  ? 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal)]'
+                  : 'text-[var(--nc-text-dim)] hover:text-[var(--nc-text)]'
               }`}
             >
-              <Icon size={18} strokeWidth={isActive ? 2.25 : 1.8} />
-              <span className="text-[9px] font-semibold uppercase tracking-[0.1em]">{label}</span>
+              <Icon size={16} strokeWidth={isActive ? 2.25 : 1.8} />
+              <span className="text-[7px] font-bold uppercase tracking-[0.08em]">{label}</span>
               <span
                 aria-hidden="true"
-                className={`h-[4px] w-[4px] rounded-full transition-opacity ${
-                  isActive ? 'bg-[var(--nc-signal-fg)] opacity-100' : 'opacity-0'
-                }`}
+                className={`size-1 rounded-full ${isActive ? 'bg-[var(--nc-signal)]' : 'bg-transparent'}`}
               />
             </Link>
           )

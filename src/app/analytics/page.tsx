@@ -80,20 +80,20 @@ export default function AnalyticsPage() {
   }, [user, fingerprint])
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-24 pt-5">
-        <div className="mb-2">
-          <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col gap-[6px] px-1.5 pb-28 pt-3">
+
+        {/* Page header row */}
+        <div className="flex items-center justify-between px-0.5 pb-1">
+          <h1 className="font-display text-[1.1rem] font-extrabold tracking-[-0.02em] text-[var(--nc-text)]">
             Analyse
           </h1>
-          <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">
-            Læringsdata fra øktene dine
-          </p>
+          <span className="nc-label">Læringsdata</span>
         </div>
 
         {!user && (
-          <div className="nc-glass p-5 text-center">
-            <p className="text-[0.875rem] text-[var(--nc-text-muted)]">
+          <div className="nc-glass px-4 py-5 text-center">
+            <p className="text-[0.82rem] text-[var(--nc-text-muted)]">
               Logg inn for å se analysen din.
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function AnalyticsPage() {
 
         {user && loading && (
           <div className="flex justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--nc-border)] border-t-[var(--nc-red)]" />
+            <div className="h-7 w-7 animate-spin rounded-full border-2 border-[var(--nc-border)] border-t-[var(--nc-signal)]" />
           </div>
         )}
 
@@ -109,35 +109,54 @@ export default function AnalyticsPage() {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col gap-4"
+            transition={{ duration: 0.28 }}
+            className="flex flex-col gap-[6px]"
           >
-            {/* Card 1: Total Events */}
-            <div className="nc-glass-elevated p-5">
+            {/* Lime focal — total events */}
+            <div className="nc-signal-panel p-3.5">
               <div className="nc-label">Totalt hendelser</div>
-              <div className="mt-2 text-[2.5rem] font-extrabold tabular-nums text-[var(--nc-text)]">
+              <div className="mt-1 font-display text-[2.8rem] font-extrabold leading-none tabular-nums text-[var(--nc-signal-fg)]">
                 {data.totalEvents ?? 0}
               </div>
-              <p className="mt-1 text-[0.75rem] text-[var(--nc-text-dim)]">
+              <p className="mt-1 text-[0.72rem] text-[rgba(10,18,6,0.48)]">
                 Øvelser, sjekker og eksponeringslogger
               </p>
             </div>
 
-            {/* Card 2: Top Error Tags */}
-            <div className="nc-glass-elevated p-5">
-              <div className="nc-label">Vanligste feiltyper</div>
+            {/* Cream stat strip — retention */}
+            <div className="grid grid-cols-2 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+              <div className="px-3 py-3 text-center">
+                <div className="font-display text-[1.6rem] font-extrabold tabular-nums text-[#5A8A00]">
+                  {data.avgRetention !== null ? `${data.avgRetention}%` : '—'}
+                </div>
+                <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">Bevaring</div>
+              </div>
+              <div className="relative px-3 py-3 text-center before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]">
+                <div className="font-display text-[1.6rem] font-extrabold tabular-nums text-[var(--nc-cream-text)]">
+                  {data.topErrorTags.length}
+                </div>
+                <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">Feiltyper</div>
+              </div>
+            </div>
+
+            {/* Dark panel — top error tags */}
+            <div className="nc-glass overflow-hidden">
+              <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-3 py-2">
+                <span className="nc-label">Vanligste feiltyper</span>
+              </div>
               {data.topErrorTags.length === 0 ? (
-                <p className="mt-3 text-[0.8125rem] text-[var(--nc-text-dim)]">
+                <p className="px-3 py-4 text-[0.8rem] text-[var(--nc-text-dim)]">
                   Ingen feil registrert ennå.
                 </p>
               ) : (
-                <div className="mt-3 flex flex-col gap-2">
+                <div className="flex flex-col">
                   {data.topErrorTags.map((item, i) => (
-                    <div key={item.tag} className="flex items-center justify-between">
-                      <span className="text-[0.8125rem] text-[var(--nc-text)]">
-                        <span className="text-[var(--nc-text-dim)] tabular-nums">{i + 1}.</span>{' '}
+                    <div key={item.tag} className={`flex items-center justify-between px-3 py-2.5${i > 0 ? ' border-t border-[var(--nc-border-subtle)]' : ''}`}>
+                      <span className="text-[0.82rem] text-[var(--nc-text)]">
+                        <span className="tabular-nums text-[var(--nc-text-dim)]">{i + 1}.</span>{' '}
                         {item.tag}
                       </span>
-                      <span className="rounded-full bg-[var(--nc-red-tint)] px-2.5 py-0.5 text-[0.6875rem] font-semibold tabular-nums text-[var(--nc-red)]">
+                      <span className="rounded-full bg-[var(--nc-red-tint)] px-2.5 py-0.5 text-[0.6875rem] font-bold tabular-nums text-[var(--nc-red)]">
                         {item.count}×
                       </span>
                     </div>
@@ -146,14 +165,10 @@ export default function AnalyticsPage() {
               )}
             </div>
 
-            {/* Card 3: Average Retention */}
-            <div className="nc-glass-elevated p-5">
-              <div className="nc-label">Gjennomsnittlig bevaring</div>
-              <div className="mt-2 text-[2.5rem] font-extrabold tabular-nums text-[var(--nc-text)]">
-                {data.avgRetention !== null ? `${data.avgRetention}%` : '—'}
-              </div>
-              <p className="mt-1 text-[0.75rem] text-[var(--nc-text-dim)]">
-                Forholdet mellom rå poengsum og forfalt poengsum for konsepter med 5+ forsøk
+            {/* Retention note — cream */}
+            <div className="nc-glass-cream px-3 py-2.5">
+              <p className="text-[0.72rem] leading-[1.55] text-[var(--nc-cream-muted)]">
+                Bevaring = forfalt poengsum ÷ rå poengsum for konsepter med 5+ forsøk.
               </p>
             </div>
           </motion.div>

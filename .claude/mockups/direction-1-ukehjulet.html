@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction 1 — Ukehjulet (The Week Wheel)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #080E10; color: #F0FFF8; min-height: 100vh; display: flex; justify-content: center; }
+  .phone { width: 375px; min-height: 812px; background: #080E10; position: relative; overflow-y: auto; border: 1px solid rgba(255,255,255,0.08); }
+  .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,255,248,0.36); }
+  .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; }
+  .cream-card { background: #F4FFF8; color: #040E08; border-radius: 12px; }
+  .red { color: #FF3333; }
+  .teal { color: #00E5C4; }
+  .green { color: #4ade80; }
+  .dim { color: rgba(240,255,248,0.36); }
+  .muted { color: rgba(240,255,248,0.58); }
+  .btn-primary { background: #FF3333; color: white; border: none; border-radius: 12px; padding: 14px 24px; font-weight: 700; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+  .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+
+  /* Week wheel specific */
+  .week-ring { display: flex; justify-content: center; gap: 6px; padding: 16px 20px; }
+  .day-node { width: 40px; height: 40px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; border: 2px solid rgba(255,255,255,0.08); position: relative; }
+  .day-node.active { border-color: #FF3333; background: rgba(255,51,51,0.14); }
+  .day-node.done { border-color: #4ade80; background: rgba(74,222,128,0.12); }
+  .day-node.future { border-color: rgba(255,255,255,0.06); color: rgba(240,255,248,0.24); }
+  .day-label { font-size: 7px; margin-top: 1px; }
+
+  .phase-label { text-align: center; padding: 8px 20px; font-size: 11px; font-weight: 600; color: rgba(240,255,248,0.58); }
+  .phase-label strong { color: #F0FFF8; }
+
+  .sticky-header { position: sticky; top: 0; z-index: 10; background: rgba(8,14,16,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 20px 0; }
+  .greeting { font-size: 22px; font-weight: 700; }
+  .vitals { display: grid; grid-template-columns: repeat(4, 1fr); padding: 12px 0 12px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 8px; }
+  .vital { text-align: center; }
+  .vital-value { font-size: 18px; font-weight: 700; }
+  .vital-label { font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(240,255,248,0.36); margin-top: 2px; }
+
+  .content { padding: 0 20px 100px; }
+  .section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(240,255,248,0.36); margin: 16px 0 8px; }
+
+  .bottom-nav { position: fixed; bottom: 0; width: 375px; display: flex; justify-content: space-around; padding: 10px 8px; background: rgba(18,14,14,0.92); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-item { text-align: center; font-size: 9px; font-weight: 600; color: rgba(240,255,248,0.58); }
+  .nav-item.active { color: #FF3333; }
+  .nav-icon { font-size: 18px; margin-bottom: 2px; }
+
+  .annotation { position: fixed; top: 12px; right: 12px; background: #FF3333; color: white; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; z-index: 100; }
+</style>
+</head>
+<body>
+<div class="annotation">Direction 1: Ukehjulet — The Week Wheel</div>
+<div class="phone">
+
+  <!-- Sticky header -->
+  <div class="sticky-header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div class="label" style="margin-bottom: 4px;">onsdag 28. mai</div>
+        <div class="greeting">God kveld, David!</div>
+      </div>
+      <div class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">A2</div>
+    </div>
+
+    <!-- Week wheel — the organizing UI element -->
+    <div class="week-ring">
+      <div class="day-node done">
+        <span>M</span>
+        <span class="day-label">✓</span>
+      </div>
+      <div class="day-node done">
+        <span>T</span>
+        <span class="day-label">✓</span>
+      </div>
+      <div class="day-node active">
+        <span style="color: #FF3333;">O</span>
+        <span class="day-label" style="color: #FF3333;">i dag</span>
+      </div>
+      <div class="day-node future">
+        <span>T</span>
+        <span class="day-label">&nbsp;</span>
+      </div>
+      <div class="day-node future">
+        <span>F</span>
+        <span class="day-label">&nbsp;</span>
+      </div>
+      <div class="day-node future" style="border-color: rgba(0,229,196,0.28);">
+        <span style="color: #00E5C4;">L</span>
+        <span class="day-label" style="color: rgba(0,229,196,0.5);">sjekk</span>
+      </div>
+      <div class="day-node future">
+        <span>S</span>
+        <span class="day-label">&nbsp;</span>
+      </div>
+    </div>
+
+    <div class="phase-label">
+      <strong>Øvingsdag</strong> — 3 av 5 baner gjenstår
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- TODAY'S CONTEXT: It's Wednesday (practice day) -->
+    <div class="section-title">Anbefalt neste</div>
+
+    <!-- Primary recommendation — cream card -->
+    <div class="cream-card" style="padding: 20px; margin-bottom: 12px;">
+      <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(4,14,8,0.34);">ØKT · A2 · 18 min</div>
+      <div style="font-size: 22px; font-weight: 700; margin-top: 6px; color: #040E08;">Adjektivbøyning</div>
+      <div style="font-size: 12px; color: rgba(4,14,8,0.52); margin-top: 6px;">Fordi: Du feiler konsekvent på ubøyd vs. bøyd form etter ubestemt artikkel.</div>
+      <button class="btn-primary" style="margin-top: 16px;">▶ Start økt</button>
+      <div style="display: flex; gap: 6px; margin-top: 12px;">
+        <span class="badge" style="background: rgba(255,51,51,0.1); border: 1px solid rgba(255,51,51,0.2); color: #FF3333;">4 reparasjoner</span>
+        <span class="badge" style="background: rgba(4,14,8,0.04); border: 1px solid rgba(4,14,8,0.12); color: rgba(4,14,8,0.5);">3 repetisjon</span>
+        <span class="badge" style="background: rgba(0,229,196,0.08); border: 1px solid rgba(0,229,196,0.2); color: #00997F;">2 nytt</span>
+      </div>
+    </div>
+
+    <!-- Remaining lanes for today -->
+    <div class="section-title">Andre baner i dag</div>
+
+    <div class="card" style="padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700;">✏️ Skriv</div>
+        <div class="muted" style="font-size: 11px;">Ukens tema: adjektivbøyning</div>
+      </div>
+      <div style="font-size: 11px; font-weight: 600; color: rgba(240,255,248,0.36);">→</div>
+    </div>
+
+    <div class="card" style="padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700;">🗣️ Snakk</div>
+        <div class="muted" style="font-size: 11px;">Samtale med Kari · daglig rutine</div>
+      </div>
+      <div style="font-size: 11px; font-weight: 600; color: rgba(240,255,248,0.36);">→</div>
+    </div>
+
+    <div class="card" style="padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700;">🎭 Rollespill</div>
+        <div class="muted" style="font-size: 11px;">Anbefalt: På kafeen</div>
+      </div>
+      <div style="font-size: 11px; font-weight: 600; color: rgba(240,255,248,0.36);">→</div>
+    </div>
+
+    <!-- Completed lanes -->
+    <div class="section-title">Fullført i dag</div>
+
+    <div class="card" style="padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; opacity: 0.5;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700;">📖 Les</div>
+        <div class="muted" style="font-size: 11px;">Min første dag i Oslo</div>
+      </div>
+      <div class="green" style="font-size: 12px;">✓</div>
+    </div>
+
+    <!-- Weekly focus -->
+    <div class="section-title">Ukens fokus</div>
+    <div class="card" style="padding: 14px 16px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <span class="badge" style="background: rgba(255,51,51,0.14); border: 1px solid rgba(255,51,51,0.28); color: #FF3333;">adjektivbøyning · +8</span>
+        <span class="badge" style="background: rgba(0,229,196,0.14); border: 1px solid rgba(0,229,196,0.28); color: #00E5C4;">preposisjoner · +3</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.58);">preteritum · 0</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.58);">V2-ordstilling · 0</span>
+        <span class="badge" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(240,255,248,0.58);">modale verb · 0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><div class="nav-icon">🏠</div>Hjem</div>
+    <div class="nav-item"><div class="nav-icon">📖</div>Lær</div>
+    <div class="nav-item"><div class="nav-icon">💬</div>Øv</div>
+    <div class="nav-item"><div class="nav-icon">📊</div>Fremgang</div>
+    <div class="nav-item"><div class="nav-icon">👤</div>Profil</div>
+  </div>
+
+</div>
+</body>
+</html>

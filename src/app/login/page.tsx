@@ -42,66 +42,59 @@ function LoginForm() {
   }
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh px-5 py-5">
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-2.5rem)] w-full max-w-md flex-col justify-center">
-        <div className="mb-5 flex items-center justify-between gap-4">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <div className="nc-mobile-shell relative z-10 flex min-h-dvh flex-col px-1.5 pb-10 pt-4">
+
+        {/* Top bar */}
+        <div className="flex items-center justify-between gap-3">
           <Link
             href="/"
-            className="nc-glass inline-flex h-10 w-10 items-center justify-center text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
+            className="nc-glass inline-flex h-11 w-11 items-center justify-center text-[var(--nc-text-muted)] transition-transform hover:-translate-y-0.5"
             aria-label="Tilbake"
           >
-            <ArrowLeft size={14} />
+            <ArrowLeft size={15} />
           </Link>
-          <div className="nc-label">Account</div>
+          <span className="nc-label">Konto</span>
         </div>
 
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-4"
+          transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-3 flex flex-1 flex-col gap-[6px]"
         >
-          <div className="nc-glass-elevated p-6 md:p-8">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="nc-label">NorskCoach account</div>
-                <h1 className="mt-3 max-w-[14rem] text-[2.35rem] leading-[0.96] text-[var(--nc-text)]">
-                  Fremgangen din,
-                  <br />
-                  overalt.
-                </h1>
-                <p className="mt-4 max-w-[17rem] text-[15px] leading-7 text-[var(--nc-text-muted)]">
-                  Koble læringsprofilen din til e-post og fortsett sømløst på tvers av enheter.
-                </p>
-              </div>
-            </div>
+          {/* Lime focal panel — headline */}
+          <div className="nc-signal-panel p-4">
+            <div className="nc-label">NorskCoach</div>
+            <h1 className="mt-2 text-balance font-display text-[2rem] font-extrabold leading-[0.94] tracking-[-0.03em] text-[var(--nc-signal-fg)]">
+              Fremgangen din,
+              <br />overalt.
+            </h1>
+            <p className="mt-2 text-pretty text-[0.82rem] leading-[1.55] text-[rgba(10,18,6,0.52)]">
+              Koble læringsprofilen til e-post og fortsett sømløst på alle enheter.
+            </p>
           </div>
 
-          <div className="nc-surface p-6">
-            <div className="nc-label" style={{ color: 'rgba(17,17,16,0.55)' }}>Sign in</div>
-            <div className="mt-2 text-[1.45rem] font-display font-semibold" style={{ color: '#111110' }}>
+          {/* Cream sign-in panel */}
+          <div className="nc-glass-cream p-4">
+            <div className="nc-label">Logg inn</div>
+            <div className="mt-1 font-display text-[1.2rem] font-extrabold leading-tight tracking-[-0.02em] text-[var(--nc-cream-text)]">
               Synkroniser profilen din
             </div>
-            <p className="mt-2 text-sm leading-7" style={{ color: 'rgba(17,17,16,0.55)' }}>
-              Vi sender deg en innloggingslenke. Ingen passord, bare rask tilgang til samme
-              læringshistorikk overalt.
-            </p>
 
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div
                   key="success"
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="mt-6 rounded-[var(--radius)] border border-[rgba(17,17,16,0.10)] bg-[rgba(17,17,16,0.04)] px-5 py-5"
+                  className="mt-4 rounded-[var(--radius)] border border-[rgba(17,21,24,0.10)] bg-[rgba(17,21,24,0.05)] px-4 py-4"
                 >
-                  <div className="text-[11px] font-bold uppercase tracking-[0.08em]" style={{ color: 'rgba(17,17,16,0.45)' }}>
-                    Sjekk innboksen
-                  </div>
-                  <p className="mt-2 text-sm leading-7" style={{ color: 'rgba(17,17,16,0.55)' }}>
+                  <div className="nc-label">Sjekk innboksen</div>
+                  <p className="mt-1.5 text-[0.82rem] leading-[1.55] text-[var(--nc-cream-muted)]">
                     Vi sendte en lenke til{' '}
-                    <span className="font-medium" style={{ color: '#111110' }}>{email}</span>.
+                    <span className="font-semibold text-[var(--nc-cream-text)]">{email}</span>.
                   </p>
                 </motion.div>
               ) : (
@@ -111,13 +104,12 @@ function LoginForm() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onSubmit={handleSubmit}
-                  className="mt-6 flex flex-col gap-4"
+                  className="mt-4 flex flex-col gap-3"
                 >
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-1.5">
                     <label
                       htmlFor="email"
-                      className="text-[13px] font-medium"
-                      style={{ color: 'rgba(17,17,16,0.55)' }}
+                      className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]"
                     >
                       E-postadresse
                     </label>
@@ -129,13 +121,12 @@ function LoginForm() {
                       placeholder="deg@example.com"
                       value={email}
                       onChange={(event) => setEmail(event.target.value)}
-                      className="w-full min-h-[3rem] rounded-[var(--radius)] border-[1.5px] border-[rgba(17,17,16,0.15)] bg-[rgba(17,17,16,0.04)] px-4 py-3 text-[0.9375rem] outline-none transition-colors focus:border-[#DC2626] focus:ring-2 focus:ring-[rgba(220,38,38,0.12)]"
-                      style={{ color: '#111110' }}
+                      className="nc-input-cream"
                     />
                   </div>
 
                   {errorMsg ? (
-                    <p className="rounded-[0.9rem] border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600">
+                    <p className="rounded-[var(--radius)] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-2.5 text-[0.82rem] text-[var(--nc-red)]">
                       {errorMsg}
                     </p>
                   ) : null}
@@ -143,28 +134,29 @@ function LoginForm() {
                   <button
                     type="submit"
                     disabled={loading || !email}
-                    className="nc-button-primary inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-4 py-4 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-35"
+                    className="nc-button-dark inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-4 py-3 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35"
                   >
                     <span>{loading ? 'Sender…' : 'Send innloggingslenke'}</span>
-                    {!loading ? <ArrowRight size={15} /> : null}
+                    {!loading ? <ArrowRight size={15} aria-hidden="true" /> : null}
                   </button>
                 </motion.form>
               )}
             </AnimatePresence>
+          </div>
 
-            <p className="mt-7 text-center text-sm leading-7" style={{ color: 'rgba(17,17,16,0.45)' }}>
-              Vil du bare utforske først?{' '}
+          {/* Dark footer note */}
+          <div className="nc-glass px-4 py-3 text-center">
+            <p className="text-[0.78rem] text-[var(--nc-text-muted)]">
+              Vil du bare utforske?{' '}
               <Link
                 href="/dashboard"
-                className="font-medium transition-colors hover:opacity-80"
-                style={{ color: '#DC2626' }}
+                className="font-semibold text-[var(--nc-signal)] transition-opacity hover:opacity-80"
               >
                 Fortsett uten innlogging
               </Link>
-              .
             </p>
           </div>
-        </motion.section>
+        </motion.div>
       </div>
     </div>
   )

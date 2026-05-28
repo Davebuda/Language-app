@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { createEmptyFingerprint } from '@/types/fingerprint'
 import { saveFingerprint } from '@/storage/indexeddb'
@@ -96,36 +97,45 @@ export function PlacementQuiz() {
   if (done) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col items-center gap-6 text-center"
+        transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col gap-[6px]"
       >
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-          <span className="font-display text-xl font-bold text-nc-text">A1</span>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold text-nc-text">Klar for A1!</h2>
-          <p className="mt-2 text-pretty text-sm leading-7 text-nc-text-muted">
-            Vi starter med grunnleggende ordklasser og artikler.
-            Motoren tilpasser seg etter hvert svar.
+        {/* Lime focal result */}
+        <div className="nc-signal-panel p-4 text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[0.8rem] bg-[rgba(10,18,6,0.88)] font-display text-base font-extrabold text-white shadow-[0_18px_40px_rgba(10,18,6,0.20)]">
+            A1
+          </div>
+          <h2 className="mt-3 font-display text-[1.7rem] font-extrabold leading-[0.94] tracking-[-0.03em] text-[var(--nc-signal-fg)]">
+            Klar for A1!
+          </h2>
+          <p className="mt-2 text-pretty text-[0.82rem] leading-[1.55] text-[rgba(10,18,6,0.52)]">
+            Vi starter med grunnleggende ordklasser og artikler. Motoren tilpasser seg etter hvert svar.
           </p>
         </div>
-        <div className="nc-glass w-full p-4 text-left">
-          <div className="nc-label mb-2">Din første økt</div>
-          <div className="text-base font-bold text-nc-text">Substantiv og artikler</div>
-          <div className="mt-1 text-[11px] tabular-nums text-nc-text-dim">
+
+        {/* Cream first session card */}
+        <div className="nc-glass-cream px-4 py-3">
+          <div className="nc-label mb-1.5">Din første økt</div>
+          <div className="text-[0.88rem] font-bold text-[var(--nc-cream-text)]">Substantiv og artikler</div>
+          <div className="mt-0.5 text-[0.72rem] tabular-nums text-[var(--nc-cream-dim)]">
             9 øvelser · ~12 min · motoren tilpasser seg
           </div>
         </div>
+
         <button
           onClick={() => router.push('/session')}
-          className="nc-gradient-red inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-6 text-sm font-bold text-white"
+          className="nc-button-primary inline-flex min-h-[52px] w-full items-center justify-center gap-2 px-6 text-sm font-bold"
+          aria-label="Start første økt"
         >
-          Start første økt →
+          Start første økt
+          <ArrowRight size={15} aria-hidden="true" />
         </button>
         <button
           onClick={() => router.push('/dashboard')}
-          className="text-sm font-medium text-nc-text-dim transition-colors hover:text-nc-text"
+          className="text-[0.82rem] font-medium text-[var(--nc-text-dim)] transition-colors hover:text-[var(--nc-text)]"
+          aria-label="Gå til dashbord først"
         >
           Gå til dashbord først
         </button>
@@ -134,15 +144,14 @@ export function PlacementQuiz() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Progress dots */}
-      <div className="flex gap-2">
+    <div className="flex flex-col gap-[6px]">
+      {/* Progress bar */}
+      <div className="flex gap-1.5">
         {QUESTIONS.map((_, i) => (
           <div
             key={i}
-            className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-              i < step ? 'bg-nc-green' : 'bg-[rgba(255,255,255,0.1)]'
-            }`}
+            className="h-1.5 flex-1 rounded-full transition-colors duration-300"
+            style={{ background: i < step ? 'var(--nc-signal)' : 'rgba(255,255,255,0.10)' }}
           />
         ))}
       </div>
@@ -154,18 +163,19 @@ export function PlacementQuiz() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -40, opacity: 0 }}
           transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-[6px]"
         >
-          <div>
+          {/* Question panel */}
+          <div className="nc-surface px-4 py-5">
             <div className="nc-label mb-2">
               Spørsmål {step + 1} av {QUESTIONS.length}
             </div>
-            <h2 className="text-balance text-[1.75rem] font-bold leading-[1.2] text-nc-text">
+            <h2 className="text-balance font-display text-[1.2rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-[var(--nc-cream-text)]">
               {question.text}
             </h2>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
             {question.options.map((opt) => (
               <button
                 key={opt.value}
@@ -173,11 +183,21 @@ export function PlacementQuiz() {
                   setSelected(opt.value)
                   setTimeout(() => advance(opt.value), 180)
                 }}
-                className={`rounded-xl border px-4 py-3 text-left text-[0.9375rem] font-medium transition-all duration-150 ${
+                className="w-full rounded-[var(--radius)] border px-4 py-3.5 text-left text-[0.9rem] font-medium transition-opacity"
+                style={
                   selected === opt.value
-                    ? 'border-nc-green bg-nc-green/10 text-nc-green font-bold'
-                    : 'border-nc-border bg-nc-card text-nc-text-muted hover:border-nc-green/40 hover:text-nc-text'
-                }`}
+                    ? {
+                        borderColor: 'rgba(200,255,32,0.42)',
+                        background: 'linear-gradient(135deg, rgba(200,255,32,0.92) 0%, rgba(184,239,16,0.88) 100%)',
+                        color: 'var(--nc-signal-fg)',
+                      }
+                    : {
+                        borderColor: 'rgba(255,255,255,0.10)',
+                        background: 'rgba(255,255,255,0.05)',
+                        color: 'var(--nc-text)',
+                      }
+                }
+                aria-label={opt.label}
               >
                 {opt.label}
               </button>

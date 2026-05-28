@@ -273,36 +273,38 @@ export default function EvalPage() {
     : 0
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <div className="relative z-10 mx-auto w-full max-w-3xl space-y-5 px-5 py-6">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <div className="nc-mobile-shell relative z-10 flex w-full flex-col gap-[6px] px-1.5 py-3">
 
-        {/* Header */}
-        <div className="nc-glass-elevated p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <div className="nc-label">Norwegian AI Evaluation</div>
-              <h1 className="mt-2 font-display text-[1.8rem] font-semibold text-[var(--nc-text)]">
+        {/* Lime focal header */}
+        <div className="nc-signal-panel p-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="nc-label">AI-evaluering</div>
+              <h1 className="mt-2 font-display text-[1.7rem] font-extrabold leading-[0.94] tracking-[-0.03em] text-[var(--nc-signal-fg)]">
                 Model quality harness
               </h1>
-              <p className="mt-2 text-[13px] text-[var(--nc-text-muted)]">
-                {TASKS.length} tasks × {RUNS_PER_TASK} runs each. Requires the AI model to be loaded.
+              <p className="mt-1.5 text-[0.78rem] text-[rgba(10,18,6,0.52)]">
+                {TASKS.length} tasks × {RUNS_PER_TASK} runs each. AI model must be loaded.
               </p>
             </div>
             <AIStatusBadge />
           </div>
 
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-2.5">
             <button
               onClick={runAll}
               disabled={running}
-              className="nc-button-primary px-5 py-2.5 text-sm font-semibold disabled:opacity-50"
+              className="inline-flex items-center rounded-[var(--radius)] bg-[rgba(10,18,6,0.90)] px-5 py-2.5 text-sm font-bold text-white disabled:opacity-50"
+              aria-label="Run all evaluation tasks"
             >
               {running ? `Running… ${progress}%` : 'Run evaluation'}
             </button>
             {results.length > 0 && (
               <button
                 onClick={downloadResults}
-                className="nc-button-dark px-5 py-2.5 text-sm font-semibold"
+                className="inline-flex items-center rounded-[var(--radius)] bg-[rgba(10,18,6,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--nc-signal-fg)]"
+                aria-label="Download results as JSON"
               >
                 Download JSON
               </button>
@@ -310,9 +312,9 @@ export default function EvalPage() {
           </div>
 
           {running && (
-            <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[var(--nc-border)]">
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[rgba(10,18,6,0.14)]">
               <motion.div
-                className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+                className="h-full w-full origin-left rounded-full bg-[rgba(10,18,6,0.80)]"
                 animate={{ scaleX: progress / 100 }}
                 transition={{ duration: 0.3 }}
               />
@@ -320,17 +322,17 @@ export default function EvalPage() {
           )}
         </div>
 
-        {/* Summary */}
+        {/* Summary — cream stat strip */}
         {results.length > 0 && !running && (
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
             {[
-              { label: 'Tasks completed', value: `${results.filter((r) => !r.error).length} / ${results.length}` },
-              { label: 'Success rate', value: `${successRate}%` },
-              { label: 'Avg duration', value: `${Math.round(results.reduce((s, r) => s + r.durationMs, 0) / results.length)}ms` },
-            ].map((s) => (
-              <div key={s.label} className="nc-glass px-3 py-3 text-center">
-                <div className="font-display text-[1.4rem] font-semibold text-[var(--nc-red)]">{s.value}</div>
-                <div className="mt-1 text-[10px] font-medium text-[var(--nc-text-dim)]">{s.label}</div>
+              { label: 'Completed', value: `${results.filter((r) => !r.error).length}/${results.length}` },
+              { label: 'Success', value: `${successRate}%` },
+              { label: 'Avg ms', value: `${Math.round(results.reduce((s, r) => s + r.durationMs, 0) / results.length)}` },
+            ].map((s, i) => (
+              <div key={s.label} className={`px-2 py-2.5 text-center${i > 0 ? ' relative before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
+                <div className="font-display text-[1.2rem] font-extrabold tabular-nums text-[#5A8A00]">{s.value}</div>
+                <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{s.label}</div>
               </div>
             ))}
           </div>

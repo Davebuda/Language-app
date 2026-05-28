@@ -13,10 +13,11 @@ export function ScoreCircle({ accuracy, size = 172, tone = 'dark' }: ScoreCircle
   const radius = (size - 16) / 2
   const circumference = 2 * Math.PI * radius
   const offset = circumference - (animated / 100) * circumference
-  const textColor = tone === 'light' ? 'var(--nc-cream-text)' : 'var(--nc-text)'
-  const subTextColor = tone === 'light' ? 'var(--nc-cream-muted)' : 'var(--nc-text-muted)'
-  const trackColor = tone === 'light' ? 'rgba(6,16,23,0.10)' : 'var(--nc-border)'
-  const fillColor = tone === 'light' ? 'rgba(247,251,245,0.96)' : 'white'
+  // On lime panel (tone=light), text must be dark (signal-fg); on dark bg (tone=dark), text is light
+  const textColor = tone === 'light' ? 'var(--nc-signal-fg)' : 'var(--nc-text)'
+  const subTextColor = tone === 'light' ? 'rgba(10,18,6,0.55)' : 'var(--nc-text-muted)'
+  const trackColor = tone === 'light' ? 'rgba(10,18,6,0.12)' : 'var(--nc-border)'
+  const fillColor = tone === 'light' ? 'rgba(10,18,6,0.08)' : 'rgba(255,255,255,0.04)'
 
   useEffect(() => {
     const timeout = setTimeout(() => setAnimated(accuracy), 80)
@@ -24,7 +25,7 @@ export function ScoreCircle({ accuracy, size = 172, tone = 'dark' }: ScoreCircle
   }, [accuracy])
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-label={`Nøyaktighet: ${accuracy} prosent`}>
       <circle
         cx={size / 2}
         cy={size / 2}
@@ -67,11 +68,11 @@ export function ScoreCircle({ accuracy, size = 172, tone = 'dark' }: ScoreCircle
         x={size / 2}
         y={size / 2 + size * 0.17}
         textAnchor="middle"
-        style={{ fontFamily: 'var(--font-body), sans-serif', fontWeight: 500 }}
-        fontSize={size * 0.085}
+        style={{ fontFamily: 'var(--font-body), sans-serif', fontWeight: 600, letterSpacing: '0.08em' }}
+        fontSize={size * 0.075}
         fill={subTextColor}
       >
-        accuracy
+        TREFF
       </text>
     </svg>
   )

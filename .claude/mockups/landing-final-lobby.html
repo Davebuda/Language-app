@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach Landing — Final Lobby Direction</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --lime: #C8FF20;
+    --lime-dark: #0A1206;
+    --lime-dim: rgba(200,255,32,0.12);
+    --lime-border: rgba(200,255,32,0.28);
+    --dark: #151718;
+    --darker: #0F1011;
+    --cream: #F0F1EC;
+    --text-w: #EDEEE9;
+    --text-wm: rgba(237,238,233,0.58);
+    --text-wd: rgba(237,238,233,0.34);
+    --border-d: rgba(255,255,255,0.08);
+    --font: 'Schibsted Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: linear-gradient(180deg, #2C2E30 0%, #343638 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px 12px;
+    -webkit-font-smoothing: antialiased;
+    color: var(--text-w);
+  }
+
+  .phone {
+    width: 375px;
+    border-radius: 1.2rem;
+    background: rgba(248,250,246,0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+
+  /* ═══════════════════════════════════════════════
+     ZONE 1: LIME HERO — 70% of first viewport
+     ═══════════════════════════════════════════════ */
+  .hero {
+    background: linear-gradient(135deg, #C8FF20 0%, #B8EF10 100%);
+    padding: 14px 14px 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero .circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    border: 1.5px solid rgba(10,18,6,0.06);
+  }
+  .hero .c1 { width: 260px; height: 260px; right: -80px; top: -60px; }
+  .hero .c2 { width: 150px; height: 150px; right: -25px; top: -5px; }
+  .hero .c3 { width: 65px; height: 65px; right: 28px; top: 38px; }
+  .hero .c4 { width: 180px; height: 180px; left: -50px; bottom: -40px; border-color: rgba(10,18,6,0.04); }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .logo { font-size: 13px; font-weight: 800; color: var(--lime-dark); letter-spacing: -0.01em; }
+  .start-btn {
+    background: var(--lime-dark); color: #fff;
+    font-size: 12px; font-weight: 600;
+    padding: 7px 16px; border-radius: 0.4rem; border: none; cursor: pointer;
+  }
+
+  .hero-content { position: relative; z-index: 1; margin-top: 40px; }
+  .headline {
+    font-size: 2.5rem; font-weight: 900; line-height: 0.88;
+    letter-spacing: -0.04em; color: var(--lime-dark);
+  }
+  .headline-en {
+    display: block; margin-top: 8px;
+    font-size: 1.05rem; font-weight: 600; line-height: 1.2;
+    letter-spacing: -0.01em; color: rgba(10,18,6,0.44);
+  }
+  .hero-sub {
+    margin-top: 14px; font-size: 13px; line-height: 1.5;
+    color: rgba(10,18,6,0.56); max-width: 250px;
+  }
+
+  /* Carousel */
+  .carousel-wrap {
+    position: relative; z-index: 1;
+    margin-top: 22px;
+    overflow: hidden;
+  }
+  .carousel-track {
+    display: flex; gap: 10px;
+    /* Simulating first card visible + peek of second */
+  }
+  .carousel-card {
+    min-width: 82%;
+    background: rgba(10,18,6,0.08);
+    border-radius: 0.5rem;
+    padding: 16px 14px;
+    flex-shrink: 0;
+  }
+  .carousel-card.active {
+    background: rgba(10,18,6,0.12);
+  }
+  .cc-outcome {
+    font-size: 1.1rem; font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--lime-dark);
+  }
+  .cc-sub {
+    margin-top: 6px; font-size: 11px; line-height: 1.4;
+    color: rgba(10,18,6,0.5);
+  }
+  .carousel-dots {
+    display: flex; gap: 6px; justify-content: center;
+    margin-top: 12px; position: relative; z-index: 1;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 99px;
+    background: rgba(10,18,6,0.18);
+    transition: all 0.2s;
+  }
+  .dot.active {
+    width: 20px; background: var(--lime-dark);
+  }
+
+  /* Hero CTA */
+  .hero-cta {
+    position: relative; z-index: 1;
+    margin-top: 18px; width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--lime-dark); color: #fff;
+    font-size: 14px; font-weight: 700;
+    padding: 14px; border-radius: 0.5rem; border: none; cursor: pointer;
+  }
+  .hero-friction {
+    position: relative; z-index: 1;
+    margin-top: 8px; text-align: center;
+    font-size: 11px; color: rgba(10,18,6,0.38);
+  }
+
+  /* ═══════════════════════════════════════════════
+     ZONE 2: SOCIAL PROOF + TRUST
+     ═══════════════════════════════════════════════ */
+  .social-strip {
+    margin: 8px;
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.5rem;
+    padding: 14px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .social-left {}
+  .social-label {
+    font-size: 10px; color: var(--text-wm); font-weight: 500;
+  }
+  .avatars {
+    display: flex; margin-top: 6px;
+  }
+  .avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800;
+    border: 2px solid var(--dark);
+    margin-left: -8px;
+  }
+  .avatar:first-child { margin-left: 0; }
+  .av-lime { background: var(--lime); color: var(--lime-dark); }
+  .av-teal { background: #6de5ff; color: #061017; }
+  .av-coral { background: #ff8f62; color: #1a0a06; }
+  .av-mint { background: #7dffb2; color: #062212; }
+
+  .social-right { text-align: right; }
+  .social-rating {
+    display: flex; align-items: center; gap: 4px; justify-content: flex-end;
+  }
+  .rating-num { font-size: 16px; font-weight: 800; color: var(--text-w); }
+  .rating-star { font-size: 14px; color: var(--lime); }
+  .sparkle { color: var(--lime); opacity: 0.7; font-size: 11px; }
+  .rating-sub { font-size: 10px; color: var(--text-wd); margin-top: 2px; }
+
+  /* Trust badges */
+  .trust-row {
+    margin: 0 8px;
+    display: flex; gap: 6px;
+  }
+  .trust-badge {
+    flex: 1;
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.35rem;
+    padding: 8px 6px;
+    text-align: center;
+  }
+  .tb-value {
+    font-size: 11px; font-weight: 800; color: var(--lime);
+    letter-spacing: -0.01em;
+  }
+  .tb-label {
+    font-size: 7px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-wd); margin-top: 2px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     ZONE 3: KARI AI SHOWCASE + MINI CHAT
+     ═══════════════════════════════════════════════ */
+  .kari-zone {
+    background: var(--darker);
+    margin-top: 8px;
+    padding: 0 8px 8px;
+  }
+
+  .kari-intro {
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.5rem;
+    padding: 18px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kari-intro .ki-circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .kari-intro .kc1 { width: 100px; height: 100px; border: 1px solid rgba(255,255,255,0.03); right: -30px; top: -20px; }
+  .kari-intro .kc2 { width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.025); right: -10px; top: 0; }
+  .ki-eyebrow {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--lime);
+    position: relative; z-index: 1;
+  }
+  .ki-title {
+    margin-top: 8px; font-size: 18px; font-weight: 800;
+    color: var(--text-w); letter-spacing: -0.02em;
+    position: relative; z-index: 1;
+  }
+  .ki-desc {
+    margin-top: 6px; font-size: 13px; line-height: 1.5;
+    color: var(--text-wm); max-width: 280px;
+    position: relative; z-index: 1;
+  }
+
+  /* Mini Chat */
+  .mini-chat {
+    margin-top: 8px;
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .chat-header {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-d);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .chat-avatar {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--lime); color: var(--lime-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 800;
+  }
+  .chat-name { font-size: 12px; font-weight: 700; color: var(--text-w); }
+  .chat-status { font-size: 9px; color: var(--lime); opacity: 0.7; }
+
+  .chat-messages {
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+    min-height: 160px;
+  }
+  .msg {
+    max-width: 82%;
+    padding: 10px 12px;
+    border-radius: 0.5rem;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .msg-kari {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-w);
+    align-self: flex-start;
+    border-bottom-left-radius: 0.15rem;
+  }
+  .msg-user {
+    background: var(--lime);
+    color: var(--lime-dark);
+    align-self: flex-end;
+    border-bottom-right-radius: 0.15rem;
+    font-weight: 500;
+  }
+  .msg-typing {
+    align-self: flex-start;
+    display: flex; gap: 4px; align-items: center;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 0.5rem;
+    border-bottom-left-radius: 0.15rem;
+  }
+  .typing-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--text-wd);
+    animation: blink 1.4s infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink {
+    0%, 60%, 100% { opacity: 0.3; }
+    30% { opacity: 1; }
+  }
+
+  .chat-input-wrap {
+    padding: 8px 10px;
+    border-top: 1px solid var(--border-d);
+    display: flex; gap: 8px; align-items: center;
+  }
+  .chat-input {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-d);
+    border-radius: 0.4rem;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--text-w);
+    font-family: var(--font);
+    outline: none;
+  }
+  .chat-input::placeholder { color: var(--text-wd); }
+  .chat-input:focus {
+    border-color: var(--lime-border);
+    background: rgba(255,255,255,0.08);
+  }
+  .chat-send {
+    width: 36px; height: 36px; border-radius: 0.4rem;
+    background: var(--lime); color: var(--lime-dark);
+    display: flex; align-items: center; justify-content: center;
+    border: none; cursor: pointer; font-size: 16px; font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Soft CTA after chat */
+  .chat-nudge {
+    margin-top: 8px;
+    background: var(--dark);
+    border: 1px solid var(--border-d);
+    border-left: 2px solid var(--lime);
+    border-radius: 0.4rem;
+    padding: 14px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .nudge-text { font-size: 13px; font-weight: 600; color: var(--text-w); }
+  .nudge-sub { font-size: 11px; color: var(--text-wd); margin-top: 2px; }
+  .nudge-btn {
+    flex-shrink: 0;
+    background: var(--lime); color: var(--lime-dark);
+    font-size: 12px; font-weight: 700;
+    padding: 8px 14px; border-radius: 0.4rem; border: none; cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 16px 8px 20px;
+    text-align: center;
+  }
+  .footer a {
+    font-size: 12px; color: var(--text-wd); text-decoration: none;
+  }
+
+  /* Page label */
+  .page-label {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--text-wd);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-label">Approach B — Carousel + Live Chat</div>
+
+<div class="phone">
+
+  <!-- ═══ ZONE 1: LIME HERO ═══ -->
+  <div class="hero">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+    <span class="circle c4"></span>
+
+    <div class="topbar">
+      <span class="logo">NorskCoach</span>
+      <button class="start-btn">Start</button>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="headline">
+        Snakk norsk.<br>Trygt.
+        <span class="headline-en">Speak Norwegian. Confidently.</span>
+      </h1>
+      <p class="hero-sub">Diagnostisk coaching som finner hva du sliter med — og fikser det.</p>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel-wrap">
+      <div class="carousel-track">
+        <div class="carousel-card active">
+          <div class="cc-outcome">Bestill kaffe<br>på norsk.</div>
+          <div class="cc-sub">Fra første ord til flytende hverdagsspråk.</div>
+        </div>
+        <div class="carousel-card" style="opacity:0.5;">
+          <div class="cc-outcome">Forstå kollegaene<br>dine.</div>
+          <div class="cc-sub">Arbeidslivet krever mer enn læreboka.</div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <button class="hero-cta">Start kartlegging →</button>
+    <div class="hero-friction">2 minutter · Gratis · Ingen konto</div>
+  </div>
+
+  <!-- ═══ ZONE 2: SOCIAL PROOF + TRUST ═══ -->
+  <div class="social-strip">
+    <div class="social-left">
+      <div class="social-label">Anbefalt av tidlige brukere</div>
+      <div class="avatars">
+        <div class="avatar av-lime">D</div>
+        <div class="avatar av-teal">K</div>
+        <div class="avatar av-coral">M</div>
+        <div class="avatar av-lime">A</div>
+        <div class="avatar av-mint">S</div>
+      </div>
+    </div>
+    <div class="social-right">
+      <div class="social-rating">
+        <span class="rating-num">4.9</span>
+        <span class="rating-star">★</span>
+        <span class="sparkle">✦</span>
+      </div>
+      <div class="rating-sub">fra brukere</div>
+    </div>
+  </div>
+
+  <div class="trust-row">
+    <div class="trust-badge">
+      <div class="tb-value">A1→B2</div>
+      <div class="tb-label">CEFR-nivå</div>
+    </div>
+    <div class="trust-badge">
+      <div class="tb-value">Diagnostikk</div>
+      <div class="tb-label">AI-metode</div>
+    </div>
+    <div class="trust-badge">
+      <div class="tb-value">Gratis</div>
+      <div class="tb-label">Alltid</div>
+    </div>
+  </div>
+
+  <!-- ═══ ZONE 3: KARI + MINI CHAT ═══ -->
+  <div class="kari-zone">
+
+    <!-- Kari intro -->
+    <div class="kari-intro" style="margin-top:8px;">
+      <span class="ki-circle kc1"></span>
+      <span class="ki-circle kc2"></span>
+      <div class="ki-eyebrow">AI-veileder</div>
+      <div class="ki-title">Møt Kari.</div>
+      <div class="ki-desc">Din personlige norsktrener. Snakk norsk fra første sekund — Kari tilpasser seg nivået ditt.</div>
+    </div>
+
+    <!-- Live mini chat -->
+    <div class="mini-chat">
+      <div class="chat-header">
+        <div class="chat-avatar">K</div>
+        <div>
+          <div class="chat-name">Kari</div>
+          <div class="chat-status">● Online</div>
+        </div>
+      </div>
+      <div class="chat-messages">
+        <div class="msg msg-kari">Hei! Jeg er Kari 👋 Skal vi prøve å snakke litt norsk? Hva heter du?</div>
+        <div class="msg msg-user">Jeg heter David!</div>
+        <div class="msg msg-kari">Hyggelig, David! Veldig bra — du kan allerede si «Jeg heter». Hva liker du å gjøre på fritiden?</div>
+      </div>
+      <div class="chat-input-wrap">
+        <input class="chat-input" placeholder="Skriv på norsk..." />
+        <button class="chat-send">→</button>
+      </div>
+    </div>
+
+    <!-- Soft CTA nudge -->
+    <div class="chat-nudge">
+      <div>
+        <div class="nudge-text">Liker du dette?</div>
+        <div class="nudge-sub">Finn ut nøyaktig hva du bør øve på.</div>
+      </div>
+      <button class="nudge-btn">Start →</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a href="#">Allerede bruker? Se appen →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

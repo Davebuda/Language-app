@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach Landing — v3 Breathe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --lime: #C8FF20;
+    --lime-dark: #0A1206;
+    --lime-glow: rgba(200,255,32,0.25);
+    --lime-glow-soft: rgba(200,255,32,0.08);
+    --dark: #151718;
+    --text-w: #EDEEE9;
+    --text-wm: rgba(237,238,233,0.58);
+    --text-wd: rgba(237,238,233,0.34);
+    --border-d: rgba(255,255,255,0.08);
+    --font: 'Schibsted Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: linear-gradient(180deg, #2C2E30 0%, #343638 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px 12px;
+    -webkit-font-smoothing: antialiased;
+    color: var(--text-w);
+  }
+
+  .phone {
+    width: 375px;
+    border-radius: 1.2rem;
+    background: rgba(248,250,246,0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+
+  /* ═══════════════════════════════════════════
+     HERO — lime, generous spacing
+     ═══════════════════════════════════════════ */
+  .hero {
+    background: linear-gradient(135deg, #C8FF20 0%, #B8EF10 100%);
+    padding: 14px 18px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative art — takes REAL space like the reference */
+  .deco-zone {
+    position: relative;
+    height: 140px;
+    margin-top: 8px;
+  }
+  /* Large concentric rings — center-right, prominent */
+  .deco-zone .ring {
+    position: absolute; border-radius: 50%;
+    border: 1.5px solid rgba(10,18,6,0.10);
+  }
+  .deco-zone .r1 { width: 180px; height: 180px; right: -20px; top: -30px; }
+  .deco-zone .r2 { width: 130px; height: 130px; right: 5px; top: -5px; }
+  .deco-zone .r3 { width: 80px; height: 80px; right: 30px; top: 20px; }
+  .deco-zone .r4 { width: 40px; height: 40px; right: 50px; top: 40px; }
+  /* Starburst accent — top left */
+  .deco-zone .star {
+    position: absolute; left: 10px; top: 20px;
+    width: 48px; height: 48px;
+  }
+  .deco-zone .star svg { width: 100%; height: 100%; }
+  /* Small dot cluster */
+  .deco-zone .dot-cluster {
+    position: absolute; left: 70px; top: 70px;
+    display: flex; gap: 6px;
+  }
+  .deco-zone .dc-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    border: 1.5px solid rgba(10,18,6,0.14);
+  }
+  .deco-zone .dc-dot.filled {
+    background: rgba(10,18,6,0.10);
+  }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .logo { font-size: 12px; font-weight: 800; color: var(--lime-dark); letter-spacing: -0.01em; }
+  .start-btn {
+    background: var(--lime-dark); color: #fff;
+    font-size: 11px; font-weight: 600;
+    padding: 7px 16px; border-radius: 0.4rem; border: none; cursor: pointer;
+  }
+
+  /* Headline — well-spaced, not oversized */
+  .headline-zone {
+    margin-top: 24px;
+    position: relative; z-index: 1;
+  }
+  .headline {
+    font-size: 1.85rem; font-weight: 800; line-height: 1;
+    letter-spacing: -0.03em; color: var(--lime-dark);
+  }
+  .headline-en {
+    display: block; margin-top: 8px;
+    font-size: 0.92rem; font-weight: 500; line-height: 1.3;
+    color: rgba(10,18,6,0.38);
+  }
+
+  .hero-sub {
+    margin-top: 16px;
+    font-size: 13px; line-height: 1.55;
+    color: rgba(10,18,6,0.52); max-width: 260px;
+  }
+
+  /* Carousel — breathing room */
+  .carousel-section {
+    margin-top: 28px;
+    position: relative; z-index: 1;
+  }
+  .carousel-track {
+    display: flex; gap: 10px;
+    overflow: hidden;
+  }
+  .carousel-card {
+    min-width: 80%; flex-shrink: 0;
+    background: rgba(10,18,6,0.06);
+    border-radius: 0.55rem; padding: 16px;
+  }
+  .carousel-card.peek { opacity: 0.35; }
+  .cc-outcome {
+    font-size: 1rem; font-weight: 800; line-height: 1.15;
+    letter-spacing: -0.02em; color: var(--lime-dark);
+  }
+  .cc-sub {
+    margin-top: 6px; font-size: 11px; line-height: 1.45;
+    color: rgba(10,18,6,0.44);
+  }
+  .carousel-dots {
+    display: flex; gap: 6px; justify-content: center; margin-top: 14px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 99px; background: rgba(10,18,6,0.14); }
+  .dot.active { width: 18px; background: var(--lime-dark); }
+
+  /* Social proof — clean row with breathing room */
+  .social-row {
+    margin-top: 28px;
+    display: flex; align-items: center; gap: 12px;
+    position: relative; z-index: 1;
+  }
+  .avatars { display: flex; }
+  .avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 800;
+    border: 2px solid rgba(180,220,30,0.5);
+    margin-left: -7px;
+  }
+  .avatar:first-child { margin-left: 0; }
+  .social-text {
+    font-size: 11px; color: rgba(10,18,6,0.48);
+    line-height: 1.4;
+  }
+  .social-text strong { font-weight: 700; color: rgba(10,18,6,0.65); }
+
+  /* CTA — generous top margin, full width */
+  .hero-cta {
+    margin-top: 28px;
+    width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--lime-dark); color: #fff;
+    font-size: 14px; font-weight: 700;
+    padding: 16px 20px; border-radius: 0.55rem;
+    border: none; cursor: pointer;
+    position: relative; z-index: 1;
+  }
+  .hero-cta-arrow {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-friction {
+    margin-top: 10px; text-align: center;
+    font-size: 10px; color: rgba(10,18,6,0.32);
+    position: relative; z-index: 1;
+  }
+
+  /* ═══════════════════════════════════════════
+     VOICE ORB — dark, ~30%
+     ═══════════════════════════════════════════ */
+  .orb-zone {
+    background: var(--dark);
+    padding: 32px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .orb-zone .oz-ring {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.025);
+  }
+  .orb-zone .ozr1 { width: 220px; height: 220px; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+  .orb-zone .ozr2 { width: 160px; height: 160px; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+  .orb-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    position: relative; z-index: 1;
+  }
+  .orb-tag {
+    font-size: 8px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--lime);
+    background: rgba(200,255,32,0.08);
+    padding: 3px 10px; border-radius: 0.25rem;
+  }
+  .orb-name {
+    font-size: 14px; font-weight: 700; color: var(--text-w);
+    letter-spacing: -0.01em;
+  }
+
+  .orb-desc {
+    margin-top: 8px;
+    font-size: 12px; line-height: 1.5; color: var(--text-wd);
+    position: relative; z-index: 1;
+  }
+
+  /* The orb itself */
+  .orb-wrap {
+    position: relative; z-index: 1;
+    margin: 28px auto;
+    width: 80px; height: 80px;
+  }
+  .orb-glow {
+    position: absolute; border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .og1 {
+    width: 110px; height: 110px;
+    background: radial-gradient(circle, var(--lime-glow-soft) 0%, transparent 70%);
+    animation: pulse 3.5s ease-in-out infinite;
+  }
+  .og2 {
+    width: 96px; height: 96px;
+    border: 1px solid rgba(200,255,32,0.10);
+    animation: pulse 3.5s ease-in-out infinite 0.7s;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.45; }
+  }
+
+  .orb-btn {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 72px; height: 72px; border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%);
+    box-shadow:
+      0 0 20px var(--lime-glow),
+      0 0 50px var(--lime-glow-soft),
+      inset 0 2px 4px rgba(255,255,255,0.28);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .orb-btn:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+    box-shadow: 0 0 28px var(--lime-glow), 0 0 70px rgba(200,255,32,0.14), inset 0 2px 4px rgba(255,255,255,0.28);
+  }
+  .orb-btn:active { transform: translate(-50%, -50%) scale(0.94); }
+  .mic-icon { color: var(--lime-dark); width: 24px; height: 24px; }
+
+  .orb-hint {
+    font-size: 11px; color: var(--text-wd);
+    position: relative; z-index: 1;
+  }
+
+  .orb-footer {
+    margin-top: 20px;
+    position: relative; z-index: 1;
+  }
+  .orb-footer a {
+    font-size: 11px; color: var(--text-wd); text-decoration: none;
+  }
+
+  .page-label {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--text-wd);
+  }
+</style>
+</head>
+<body>
+
+<div class="page-label">v3 — Designed Spacing</div>
+
+<div class="phone">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+
+    <div class="topbar">
+      <span class="logo">NorskCoach</span>
+      <button class="start-btn">Start</button>
+    </div>
+
+    <!-- Decorative art zone — takes real space like the reference -->
+    <div class="deco-zone">
+      <span class="ring r1"></span>
+      <span class="ring r2"></span>
+      <span class="ring r3"></span>
+      <span class="ring r4"></span>
+      <!-- Starburst -->
+      <div class="star">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M24 0 L26 20 L48 24 L26 26 L24 48 L22 26 L0 24 L22 20 Z" fill="rgba(10,18,6,0.12)"/>
+        </svg>
+      </div>
+      <!-- Dot cluster -->
+      <div class="dot-cluster">
+        <span class="dc-dot filled"></span>
+        <span class="dc-dot"></span>
+        <span class="dc-dot filled"></span>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <div class="headline-zone">
+      <h1 class="headline">
+        Snakk norsk.<br>Trygt.
+        <span class="headline-en">Speak Norwegian. Confidently.</span>
+      </h1>
+    </div>
+
+    <p class="hero-sub">Diagnostisk coaching som finner svakhetene dine og fikser dem med målrettet trening.</p>
+
+    <!-- Carousel -->
+    <div class="carousel-section">
+      <div class="carousel-track">
+        <div class="carousel-card">
+          <div class="cc-outcome">Bestill kaffe på norsk.</div>
+          <div class="cc-sub">Fra første ord til flytende hverdagsspråk.</div>
+        </div>
+        <div class="carousel-card peek">
+          <div class="cc-outcome">Forstå kollegaene dine.</div>
+          <div class="cc-sub">Arbeidslivet krever mer enn læreboka.</div>
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <!-- Social proof -->
+    <div class="social-row">
+      <div class="avatars">
+        <div class="avatar" style="background:#C8FF20;color:#0A1206;">D</div>
+        <div class="avatar" style="background:#6de5ff;color:#061017;">K</div>
+        <div class="avatar" style="background:#ff8f62;color:#1a0a06;">M</div>
+        <div class="avatar" style="background:#C8FF20;color:#0A1206;">A</div>
+        <div class="avatar" style="background:#7dffb2;color:#062212;">S</div>
+      </div>
+      <span class="social-text"><strong>4.9 ★</strong> fra tidlige brukere</span>
+    </div>
+
+    <!-- CTA — like the reference: full width, icon on right -->
+    <button class="hero-cta">
+      <span>Start kartlegging</span>
+      <span class="hero-cta-arrow">→</span>
+    </button>
+    <div class="hero-friction">2 min · Gratis · Ingen konto</div>
+  </div>
+
+  <!-- ═══ VOICE ORB ═══ -->
+  <div class="orb-zone">
+    <span class="oz-ring ozr1"></span>
+    <span class="oz-ring ozr2"></span>
+
+    <div class="orb-label">
+      <span class="orb-tag">AI</span>
+      <span class="orb-name">Snakk med Kari</span>
+    </div>
+    <div class="orb-desc">Trykk og snakk norsk. Ingen tekst, bare samtale.</div>
+
+    <div class="orb-wrap">
+      <div class="orb-glow og1"></div>
+      <div class="orb-glow og2"></div>
+      <button class="orb-btn" aria-label="Start samtale med Kari">
+        <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" x2="12" y1="19" y2="22"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="orb-hint">Trykk for å starte</div>
+
+    <div class="orb-footer">
+      <a href="#">Allerede bruker? Se appen →</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

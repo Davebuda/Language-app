@@ -34,9 +34,9 @@ const ERROR_TAG_LABELS: Partial<Record<string, string>> = {
 }
 
 const PHASE_STYLES: Record<string, string> = {
-  locked: 'bg-[rgba(6,16,23,0.06)] text-[var(--nc-cream-dim)] border border-[rgba(6,16,23,0.08)]',
-  intro: 'bg-[rgba(6,16,23,0.08)] text-[var(--nc-cream-muted)] border border-[rgba(6,16,23,0.10)]',
-  practice: 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal-fg)] border border-[var(--nc-signal-border)]',
+  locked: 'bg-[rgba(255,255,255,0.04)] text-[var(--nc-text-dim)] border border-[rgba(255,255,255,0.06)]',
+  intro: 'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-muted)] border border-[rgba(255,255,255,0.08)]',
+  practice: 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal)] border border-[var(--nc-signal-border)]',
   consolidation: 'bg-[var(--nc-green-tint)] text-[var(--nc-green)] border border-[var(--nc-green-border)]',
   maintenance: 'bg-[var(--nc-green-tint)] text-[var(--nc-green)] border border-[var(--nc-green-border)]',
 }
@@ -213,68 +213,67 @@ export default function SessionCompletePage() {
   }
 
   return (
-    <div className="nc-gradient-page flex min-h-dvh flex-col">
-      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col gap-3 px-4 pb-28 pt-4">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell nc-flow-shell">
+
+        {/* Back button */}
         <div className="flex items-center justify-between">
           <button
             type="button"
             onClick={goToDashboard}
-            className="nc-glass-cream flex size-11 items-center justify-center text-[var(--nc-cream-text)] transition-transform hover:-translate-y-0.5"
+            className="nc-glass flex size-11 items-center justify-center text-[var(--nc-text)] transition-transform hover:-translate-y-0.5"
             aria-label="Til dashboard"
           >
             <ArrowLeft size={18} />
           </button>
         </div>
 
+        {/* ── Hero: lime celebration panel ── */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="nc-glass-cream p-5"
+          className="nc-signal-panel p-3.5"
         >
-          <div className="text-center">
-            <div className="nc-label text-[var(--nc-cream-dim)]">Session recap</div>
-            <h1 className="mt-2 text-balance text-[2.3rem] leading-[0.96] text-[var(--nc-cream-text)]">
-              Økten er fullført.
-            </h1>
-            <p className="mt-3 text-sm leading-7 text-[var(--nc-cream-muted)]">
-              {productionCount > 0
-                ? `${productionCount} produksjonsøvelser fullført. Det er denne typen arbeid som bygger flyt.`
-                : 'Bra innsats i dag.'}
-            </p>
+          <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Økt fullført</div>
+          <h1 className="mt-1.5 text-balance font-display text-[2rem] font-extrabold leading-[0.94] tracking-[-0.03em] text-[var(--nc-signal-fg)]">
+            Ferdig.
+          </h1>
+          <p className="mt-2 text-[0.82rem] text-[rgba(10,18,6,0.60)]">
+            {productionCount > 0 ? `${productionCount} produksjonsøvelser.` : `${totalAnswered} oppgaver.`}
+          </p>
+
+          <div className="mt-4 flex justify-center">
+            <ScoreCircle accuracy={accuracy} size={160} tone="light" />
           </div>
 
-          <div className="mt-5 flex justify-center">
-            <ScoreCircle accuracy={accuracy} size={172} tone="light" />
-          </div>
-
-          <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { label: 'Produksjon', value: String(productionCount) },
-                { label: 'Tid brukt', value: duration },
-                { label: 'Konsepter', value: String(conceptsCount) },
-              ].map((stat) => (
-                <div key={stat.label} className="rounded-[1rem] border border-white/8 bg-white/5 px-3 py-4 text-center">
-                  <div className="text-[1.7rem] font-display font-bold text-white">
-                    {stat.value}
-                  </div>
-                  <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
-                    {stat.label}
-                  </div>
+          {/* Stat strip inside lime panel — dark surface for contrast */}
+          <div className="mt-4 grid grid-cols-3 gap-[6px]">
+            {[
+              { label: 'Produksjon', value: String(productionCount) },
+              { label: 'Tid brukt', value: duration },
+              { label: 'Konsepter', value: String(conceptsCount) },
+            ].map((stat) => (
+              <div key={stat.label} className="rounded-[0.45rem] bg-[rgba(10,18,6,0.88)] px-2 py-2.5 text-center">
+                <div className="font-display text-[1.55rem] font-extrabold tabular-nums leading-none text-white">
+                  {stat.value}
                 </div>
-              ))}
-            </div>
+                <div className="mt-1 text-[8px] font-bold uppercase tracking-[0.10em] text-white/40">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
 
+        {/* ── Worked concepts (dark) ── */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.08 }}
-          className="nc-glass-cream p-4"
+          className="nc-glass p-3"
         >
-          <div className="nc-label text-[var(--nc-cream-dim)]">Hva du jobbet med</div>
-          <div className="mt-3 space-y-3 text-sm text-[var(--nc-cream-muted)]">
+          <div className="nc-label mb-2.5">Arbeidet</div>
+          <div className="flex flex-col gap-2">
             {practicedConceptIds.slice(0, 3).map((id) => {
               const node = conceptGraph.concepts.find((concept) => concept.id === id)
               const mastery = fingerprint?.conceptMastery[id]
@@ -284,12 +283,12 @@ export default function SessionCompletePage() {
               return (
                 <div
                   key={id}
-                  className="flex items-center justify-between gap-3 rounded-[1rem] border border-[rgba(6,16,23,0.08)] bg-white/50 px-3 py-3"
+                  className="flex items-center justify-between gap-3 rounded-[0.5rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2.5"
                 >
-                  <span className="text-sm font-medium text-[var(--nc-cream-text)]">
+                  <span className="text-[0.84rem] font-semibold text-[var(--nc-text)]">
                     {node?.label ?? id}
                   </span>
-                  <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.06em] ${phaseStyle}`}>
+                  <span className={`rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em] ${phaseStyle}`}>
                     {phaseLabel}
                   </span>
                 </div>
@@ -298,35 +297,36 @@ export default function SessionCompletePage() {
           </div>
         </motion.div>
 
+        {/* ── Repair entries (dark) ── */}
         {wrongResults.length > 0 ? (
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
-            className="nc-glass p-5"
+            className="nc-glass p-3"
           >
-            <div className="flex items-center justify-between gap-3">
+            <div className="mb-2.5 flex items-center justify-between gap-3">
               <div className="nc-label-red">{wrongResults.length} mønstre reparert</div>
               {nextReviewLabel ? (
-                <div className="nc-chip-signal rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em]">
+                <div className="nc-chip-signal rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.08em]">
                   {nextReviewLabel}
                 </div>
               ) : null}
             </div>
-            <div className="mt-3 space-y-3">
+            <div className="flex flex-col gap-2">
               {repairEntries.map((entry) => (
                 <div
                   key={entry.conceptId}
-                  className="rounded-[1rem] border border-white/8 bg-white/5 px-4 py-3"
+                  className="rounded-[0.5rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2.5"
                 >
-                  <div className="text-sm font-medium text-[var(--nc-text)]">
+                  <div className="text-[0.84rem] font-semibold text-[var(--nc-text)]">
                     {entry.label}
                   </div>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
                     {entry.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-[var(--nc-teal-tint)] px-2.5 py-1 text-[10px] font-semibold text-[var(--nc-teal)]"
+                        className="rounded-full border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.06em] text-[var(--nc-signal)]"
                       >
                         {ERROR_TAG_LABELS[tag] ?? tag}
                       </span>
@@ -338,6 +338,7 @@ export default function SessionCompletePage() {
           </motion.div>
         ) : null}
 
+        {/* ── Reflection (cream) ── */}
         <AnimatePresence>
           {!reflectionSubmitted ? (
             <motion.div
@@ -345,14 +346,14 @@ export default function SessionCompletePage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ delay: 0.24 }}
-              className="nc-glass-cream p-4"
+              className="nc-glass-cream p-3"
             >
               <div className="nc-label text-[var(--nc-cream-dim)]">Reflekter et øyeblikk</div>
-              <p className="mt-2 text-pretty text-[14px] font-medium text-[var(--nc-cream-text)]">
+              <p className="mt-2 text-pretty text-[0.88rem] font-semibold leading-[1.5] text-[var(--nc-cream-text)]">
                 {reflectionPrompt}
               </p>
               <textarea
-                className="mt-3 w-full resize-none rounded-[0.9rem] border border-black/10 bg-white/70 px-4 py-3 text-sm text-[var(--nc-cream-text)] placeholder-[rgba(6,16,23,0.34)] focus:border-[var(--nc-signal-border)] focus:outline-none transition-colors"
+                className="mt-3 w-full resize-none rounded-[0.65rem] border border-[rgba(17,21,24,0.12)] bg-[rgba(255,255,255,0.55)] px-3.5 py-3 text-[0.88rem] text-[var(--nc-cream-text)] placeholder:text-[var(--nc-cream-dim)] focus:border-[rgba(200,255,32,0.55)] focus:outline-none transition-colors"
                 rows={2}
                 placeholder="Skriv kort her..."
                 value={reflectionText}
@@ -360,7 +361,7 @@ export default function SessionCompletePage() {
               />
               <button
                 onClick={submitReflection}
-                className="nc-button-primary mt-3 w-full py-3 text-sm font-bold"
+                className="nc-button-dark mt-3 w-full py-3 text-[0.88rem] font-bold"
               >
                 {reflectionText.trim() ? 'Del og fortsett' : 'Hopp over'}
               </button>
@@ -368,33 +369,32 @@ export default function SessionCompletePage() {
           ) : null}
         </AnimatePresence>
 
+        {/* ── Next step (dark) ── */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.32 }}
-          className="nc-glass-cream p-5"
+          className="nc-glass p-3"
         >
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="nc-label text-[var(--nc-cream-dim)]">Neste steg</div>
-              <div className="mt-2 text-lg font-semibold text-[var(--nc-cream-text)]">
+              <div className="nc-label mb-1.5">Neste</div>
+              <div className="text-[0.92rem] font-bold text-[var(--nc-text)]">
                 {nextConceptNode?.label ?? primaryConceptNode?.label ?? 'Fortsett med A1'}
               </div>
-              <p className="mt-2 text-sm leading-7 text-[var(--nc-cream-muted)]">
-                Dashboardet ditt er oppdatert med neste prioritet og aktive læringsflater.
-              </p>
             </div>
-            <span className="rounded-full bg-[var(--nc-signal)] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">
+            <span className="shrink-0 rounded-full bg-[var(--nc-signal)] px-3 py-1 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">
               Klar
             </span>
           </div>
           <button
             onClick={goToDashboard}
-            className="nc-button-primary mt-4 w-full py-3 text-sm font-bold"
+            className="nc-button-primary mt-3.5 w-full py-3 text-[0.9rem] font-bold"
           >
             Til dashboard
           </button>
         </motion.div>
+
       </main>
 
       <BottomNav active="session" />

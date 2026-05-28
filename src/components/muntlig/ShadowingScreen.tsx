@@ -106,16 +106,16 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
   // Loading state while fingerprint bootstraps
   if (!levelKnown || sentences.length === 0) {
     return (
-      <div className="nc-gradient-page flex flex-col min-h-dvh">
-        <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col justify-center gap-4 px-5 pb-24 pt-5">
+      <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+        <main className="nc-mobile-shell nc-flow-shell justify-center">
           <div className="flex flex-col items-center gap-3">
             <motion.div
-              className="size-8 rounded-full border-2 border-[var(--nc-red)] border-t-transparent"
+              className="size-7 rounded-full border-2 border-[var(--nc-signal)] border-t-transparent"
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 0.8, ease: 'linear' }}
               aria-label="Laster…"
             />
-            <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">Laster setninger…</p>
+            <p className="text-[0.8125rem] text-[var(--nc-text-muted)]">Laster setninger…</p>
           </div>
         </main>
         <BottomNav active="home" />
@@ -124,39 +124,56 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
   }
 
   return (
-    <div className="nc-gradient-page flex flex-col min-h-dvh">
-      <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pb-24 pt-5">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell nc-flow-shell">
         <AnimatePresence mode="wait">
 
           {/* ── Exercise phase ── */}
-          {phase === 'exercise' && sentences[currentIndex] && (
+          {phase === 'exercise' && sentences[currentIndex] ? (
             <motion.div
               key={`exercise-${currentIndex}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4 pt-4"
+              className="flex flex-col gap-3"
             >
-              {/* Page header */}
-              <div className="mb-2">
-                <h1 className="text-balance text-[1.375rem] font-extrabold text-[var(--nc-text)]">
+              {/* Lime hero header */}
+              <div className="nc-signal-panel p-3">
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Muntlig</div>
+                <h1 className="mt-1 text-balance text-[1.35rem] font-extrabold leading-none text-[var(--nc-signal-fg)]">
                   Uttalelab
                 </h1>
-                <p className="text-pretty mt-0.5 text-[0.8125rem] text-[var(--nc-text-muted)]">
+                <p className="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(10,18,6,0.62)]">
                   Lytt til norske setninger og gjenta dem. Appen sjekker hvilke ord du fikk med deg.
                 </p>
+
+                {/* Feature chips — dark inset on lime */}
+                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                  {['Skygging', 'Selvavspilling', 'Ordgjenkjenning'].map((chip) => (
+                    <span
+                      key={chip}
+                      className="rounded-full bg-[rgba(6,16,23,0.12)] px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[rgba(6,16,23,0.62)]"
+                    >
+                      {chip}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              {/* Feature chips */}
-              <div className="flex flex-wrap gap-2">
-                {['Skygging', 'Selvavspilling', 'Ordgjenkjenning'].map((chip) => (
-                  <span
-                    key={chip}
-                    className="nc-glass rounded-full px-3 py-1 text-[0.6875rem] font-semibold text-[var(--nc-text-dim)]"
-                  >
-                    {chip}
+              {/* Progress strip — cream */}
+              <div className="flex items-center justify-between rounded-[0.5rem] border border-[rgba(17,21,24,0.06)] bg-[var(--nc-cream)] px-3 py-2">
+                <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Fremgang</span>
+                <div className="flex items-center gap-2">
+                  <div className="h-1 w-16 overflow-hidden rounded-full bg-[rgba(17,21,24,0.10)]">
+                    <div
+                      className="h-full rounded-full bg-[#5A8A00] shadow-[0_0_6px_rgba(90,138,0,0.3)]"
+                      style={{ width: `${(currentIndex / sentences.length) * 100}%`, transition: 'width 0.4s ease' }}
+                    />
+                  </div>
+                  <span className="text-[0.78rem] font-bold tabular-nums text-[var(--nc-cream-text)]">
+                    {currentIndex + 1} / {sentences.length}
                   </span>
-                ))}
+                </div>
               </div>
 
               <ShadowingExercise
@@ -166,54 +183,52 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
                 onComplete={handleSentenceComplete}
               />
             </motion.div>
-          )}
+          ) : null}
 
           {/* ── Completion screen ── */}
-          {phase === 'complete' && (
+          {phase === 'complete' ? (
             <motion.div
               key="complete"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-1 flex-col items-center justify-center gap-6 py-12"
+              className="flex flex-1 flex-col justify-center gap-3"
             >
-              <div className="nc-glass-elevated w-full p-8 text-center flex flex-col items-center gap-5">
-                <div className="nc-label">Skygging fullført</div>
-
-                <h2 className="text-balance text-[1.75rem] font-extrabold text-[var(--nc-text)]">
+              {/* Lime completion panel */}
+              <div className="nc-signal-panel p-4 text-center">
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Skygging fullført</div>
+                <h2 className="mt-2 text-balance text-[1.75rem] font-extrabold leading-[0.96] text-[var(--nc-signal-fg)]">
                   Bra jobbet!
                 </h2>
 
-                {/* Accuracy ring */}
-                <div className="flex flex-col items-center gap-1">
-                  <span
-                    className="text-[3rem] font-extrabold tabular-nums leading-none"
-                    style={{ color: averageScore >= 70 ? 'var(--nc-green)' : 'var(--nc-red)' }}
+                {/* Score inset — dark on lime */}
+                <div className="mt-4 rounded-[0.5rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
+                  <div
+                    className="text-[2.75rem] font-extrabold tabular-nums leading-none"
+                    style={{ color: averageScore >= 70 ? 'var(--nc-signal)' : 'var(--nc-red)' }}
                   >
                     {averageScore}%
-                  </span>
-                  <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">gjennomsnittlig nøyaktighet</p>
+                  </div>
+                  <p className="mt-1.5 text-[0.78rem] text-[rgba(255,255,255,0.55)]">gjennomsnittlig nøyaktighet</p>
+
+                  {/* Per-sentence bar */}
+                  <div className="mt-3 flex w-full gap-1.5">
+                    {scores.map((score, i) => (
+                      <div
+                        key={i}
+                        className="h-1.5 flex-1 rounded-full"
+                        style={{
+                          background: score >= 0.7 ? 'var(--nc-signal)' : 'rgba(255,106,85,0.65)',
+                        }}
+                        title={`Setning ${i + 1}: ${Math.round(score * 100)}%`}
+                        aria-label={`Setning ${i + 1}: ${Math.round(score * 100)} prosent`}
+                      />
+                    ))}
+                  </div>
                 </div>
 
-                {/* Per-sentence breakdown */}
-                <div className="flex w-full gap-1.5">
-                  {scores.map((score, i) => (
-                    <div
-                      key={i}
-                      className="flex-1 rounded-full h-2"
-                      style={{
-                        background: score >= 0.7
-                          ? 'var(--nc-green)'
-                          : 'rgba(220,38,38,0.55)',
-                      }}
-                      title={`Setning ${i + 1}: ${Math.round(score * 100)}%`}
-                      aria-label={`Setning ${i + 1}: ${Math.round(score * 100)} prosent`}
-                    />
-                  ))}
-                </div>
-
-                <p className="text-pretty text-[0.875rem] text-[var(--nc-text-muted)]">
+                <p className="mt-3 text-pretty text-[0.8125rem] text-[rgba(10,18,6,0.62)]">
                   {averageScore >= 70
                     ? 'Fremgangen din er registrert. Fortsett å øve for å bygge flyt.'
                     : 'Øvelse gjør mester. Prøv igjen i morgen for å se fremgang.'}
@@ -228,7 +243,8 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
                 Tilbake til dashboard
               </button>
             </motion.div>
-          )}
+          ) : null}
+
         </AnimatePresence>
       </main>
 

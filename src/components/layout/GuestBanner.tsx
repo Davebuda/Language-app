@@ -6,16 +6,17 @@ export function GuestBanner() {
   const router = useRouter()
 
   return (
-    <div className="nc-glass flex items-center justify-between gap-3 px-4 py-3">
+    <div className="nc-glass-cream flex items-center justify-between gap-3 px-3 py-2.5">
       <div>
-        <p className="nc-label">Guest mode</p>
-        <p className="mt-1 text-sm text-nc-text-muted">
+        <p className="nc-label">Gjestemodus</p>
+        <p className="mt-0.5 text-[0.78rem] text-[var(--nc-cream-muted)]">
           Fremgangen din lagres lokalt. Logg inn for å synkronisere.
         </p>
       </div>
       <button
-        className="rounded-[0.8rem] border border-nc-border bg-white px-3 py-2 text-xs font-medium text-nc-text transition-colors hover:border-nc-text/20"
+        className="nc-button-dark whitespace-nowrap rounded-full px-3 py-2 text-xs font-semibold"
         onClick={() => router.push('/login')}
+        aria-label="Logg inn for å synkronisere profil"
       >
         Logg inn
       </button>

@@ -2,23 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, RotateCcw } from 'lucide-react'
+import { ArrowRight, Mic, RotateCcw, Volume2 } from 'lucide-react'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
 import { normaliseWord, tokenise } from '@/lib/speechMatchUtils'
 import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
-
-// ── Sub-components ───────────────────────────────────────────────────────────
-
-function PulsingDot() {
-  return (
-    <motion.span
-      className="inline-block size-3 rounded-full bg-[var(--nc-red)]"
-      animate={{ scale: [1, 1.15, 1] }}
-      transition={{ repeat: Infinity, duration: 1, ease: 'easeInOut' }}
-      aria-hidden="true"
-    />
-  )
-}
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -179,14 +166,16 @@ export function ListenRespondExercise({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.28 }}
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-3"
     >
       {/* Progress indicator */}
       <div className="flex items-center gap-2">
-        <span className="nc-label tabular-nums">{index + 1} / {total}</span>
-        <div className="flex-1 h-[3px] overflow-hidden rounded-full bg-[var(--nc-border)]">
+        <span className="text-[9px] font-bold uppercase tracking-[0.12em] tabular-nums text-[var(--nc-text-dim)]">
+          {index + 1} / {total}
+        </span>
+        <div className="flex-1 h-[3px] overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
           <motion.div
-            className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+            className="h-full w-full origin-left rounded-full bg-[var(--nc-signal)]"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: index / total }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -194,15 +183,15 @@ export function ListenRespondExercise({
         </div>
       </div>
 
-      {/* Main card */}
-      <div className="nc-glass-elevated p-6 flex flex-col gap-4">
+      {/* Main card — cream so Norwegian question pops */}
+      <div className="nc-glass-cream flex flex-col gap-4 p-5">
 
         {/* Norwegian question — T1 dominant */}
         <div>
-          <h2 className="text-balance text-[1.75rem] md:text-[2rem] font-bold leading-tight text-[var(--nc-text)]">
+          <h2 className="text-balance text-[1.65rem] font-bold leading-tight text-[var(--nc-cream-text)]">
             {question.question}
           </h2>
-          <p className="text-pretty mt-2 text-[0.875rem] text-[var(--nc-text-muted)]">
+          <p className="mt-1.5 text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
             {question.questionEnglish}
           </p>
         </div>
@@ -211,7 +200,7 @@ export function ListenRespondExercise({
         <AnimatePresence mode="wait">
 
           {/* ── Idle ── */}
-          {phase === 'idle' && (
+          {phase === 'idle' ? (
             <motion.div
               key="idle"
               initial={{ opacity: 0 }}
@@ -220,7 +209,7 @@ export function ListenRespondExercise({
               className="flex flex-col gap-3"
             >
               {!isSupported && (
-                <p className="text-pretty text-[0.8125rem] text-[var(--nc-text-muted)]">
+                <p className="text-pretty text-[0.8125rem] text-[var(--nc-cream-muted)]">
                   Din nettleser støtter ikke talegjenkjenning. Prøv Chrome.
                 </p>
               )}
@@ -230,29 +219,36 @@ export function ListenRespondExercise({
                   <button
                     onClick={playAudio}
                     aria-label="Spill av spørsmålet"
-                    className="nc-button-dark flex items-center gap-2 px-4 py-2.5 text-[0.8125rem] font-semibold"
+                    className="flex items-center gap-2 rounded-[var(--radius)] border border-[rgba(17,21,24,0.14)] bg-[rgba(17,21,24,0.07)] px-4 py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-cream-text)]"
                   >
+                    <Volume2 size={14} aria-hidden="true" />
                     Lytt
                   </button>
                 )}
 
                 {isSupported && (
+                  /* Mic button with orb glow — on cream background */
                   <button
                     onClick={handleStartListening}
                     aria-label="Start lytting og svar på spørsmålet"
-                    className="nc-button-primary flex flex-1 items-center justify-center gap-2 py-2.5 text-[0.8125rem] font-bold"
+                    className="relative flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-[var(--radius)] py-2.5 text-[0.8125rem] font-bold text-[var(--nc-signal-fg)]"
+                    style={{
+                      background: 'linear-gradient(135deg, #C8FF20 0%, #b7f300 100%)',
+                      boxShadow: '0 0 16px rgba(200,255,32,0.25), 0 12px 32px rgba(183,243,0,0.18)',
+                    }}
                   >
+                    <Mic size={14} aria-hidden="true" />
                     Start lytting
                   </button>
                 )}
               </div>
 
-              <p className="nc-label text-[var(--nc-text-dim)]">{question.hint}</p>
+              <p className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{question.hint}</p>
             </motion.div>
-          )}
+          ) : null}
 
           {/* ── Listening ── */}
-          {phase === 'listening' && (
+          {phase === 'listening' ? (
             <motion.div
               key="listening"
               initial={{ opacity: 0 }}
@@ -260,17 +256,38 @@ export function ListenRespondExercise({
               exit={{ opacity: 0 }}
               className="flex flex-col gap-3"
             >
-              <div className="flex items-center gap-2">
-                <PulsingDot />
-                <span className="text-[0.8125rem] font-semibold text-[var(--nc-red)]">
-                  Lytter…
-                </span>
+              {/* Active mic orb */}
+              <div className="flex flex-col items-center gap-2 py-1">
+                <div className="relative" style={{ width: 56, height: 56 }}>
+                  <motion.span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute rounded-full"
+                    style={{ inset: 0, border: '1.5px solid rgba(200,255,32,0.40)' }}
+                    animate={{ scale: [1, 1.14, 1], opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity }}
+                  />
+                  <div
+                    className="absolute flex items-center justify-center rounded-full"
+                    style={{
+                      inset: 6,
+                      background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
+                      boxShadow: '0 0 28px rgba(200,255,32,0.45), 0 0 60px rgba(200,255,32,0.18)',
+                    }}
+                  >
+                    <motion.span
+                      className="inline-block size-2.5 rounded-full bg-[#0A1206]"
+                      animate={{ scale: [1, 1.15, 1] }}
+                      transition={{ repeat: Infinity, duration: 1, ease: 'easeInOut' }}
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+                <span className="text-[0.72rem] font-bold text-[#5A8A00]">Lytter…</span>
               </div>
 
-              {/* Countdown bar — scaleX transform only, NO layout properties */}
+              {/* Countdown bar */}
               <div
-                className="h-[4px] w-full overflow-hidden rounded-full"
-                style={{ background: 'rgba(255,255,255,0.1)' }}
+                className="h-[4px] w-full overflow-hidden rounded-full bg-[rgba(17,21,24,0.10)]"
                 role="progressbar"
                 aria-label="Nedtelling"
                 aria-valuenow={Math.round(progress * 100)}
@@ -278,8 +295,9 @@ export function ListenRespondExercise({
                 aria-valuemax={100}
               >
                 <div
-                  className="h-full w-full origin-left rounded-full bg-[var(--nc-red)]"
+                  className="h-full w-full origin-left rounded-full"
                   style={{
+                    background: 'linear-gradient(90deg, #C8FF20 0%, #b7f300 100%)',
                     transform: `scaleX(${1 - progress})`,
                     transformOrigin: 'left center',
                     transition: 'none',
@@ -288,7 +306,7 @@ export function ListenRespondExercise({
               </div>
 
               {(interimTranscript || transcript) && (
-                <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-muted)]">
+                <p className="text-pretty text-[0.8125rem] italic text-[var(--nc-cream-muted)]">
                   {interimTranscript || transcript}
                 </p>
               )}
@@ -296,37 +314,37 @@ export function ListenRespondExercise({
               <button
                 onClick={handleSkip}
                 aria-label="Hopp over dette spørsmålet"
-                className="w-full rounded-[var(--radius)] border border-[var(--nc-border)] bg-transparent py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-text-muted)] hover:bg-[rgba(255,255,255,0.06)] hover:text-[var(--nc-text)]"
+                className="w-full rounded-[var(--radius)] border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.05)] py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(17,21,24,0.09)]"
               >
                 Hopp over
               </button>
             </motion.div>
-          )}
+          ) : null}
 
           {/* ── Result ── */}
-          {phase === 'result' && (
+          {phase === 'result' ? (
             <motion.div
               key="result"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-3"
             >
-              {/* Transcript display */}
+              {/* Transcript display — dark inset on cream */}
               <div
-                className="rounded-lg p-3"
+                className="rounded-[0.5rem] p-3"
                 style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.09)',
+                  background: 'rgba(17,21,24,0.06)',
+                  border: '1px solid rgba(17,21,24,0.09)',
                 }}
               >
-                <p className="nc-label mb-2">Hva du sa</p>
+                <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Hva du sa</p>
                 {finalTranscript ? (
-                  <p className="text-[1.1rem] leading-relaxed text-[var(--nc-text)]">
+                  <p className="text-[1rem] leading-relaxed text-[var(--nc-cream-text)]">
                     {finalTranscript}
                   </p>
                 ) : (
-                  <p className="text-pretty text-[0.875rem] italic text-[var(--nc-text-dim)]">
+                  <p className="text-pretty text-[0.8125rem] italic text-[var(--nc-cream-muted)]">
                     Ingen lyd registrert.
                   </p>
                 )}
@@ -334,7 +352,7 @@ export function ListenRespondExercise({
 
               {/* Keyword chips */}
               <div>
-                <p className="nc-label mb-2 text-[var(--nc-text-dim)]">Nøkkelord</p>
+                <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Nøkkelord</p>
                 <div className="flex flex-wrap gap-1.5">
                   {question.expectedKeywords.map((kw) => {
                     const isMatched = matchedKeywords.includes(kw)
@@ -345,14 +363,14 @@ export function ListenRespondExercise({
                         style={
                           isMatched
                             ? {
-                                background: 'var(--nc-green-tint)',
-                                border: '1px solid var(--nc-green-border)',
-                                color: 'var(--nc-green)',
+                                background: 'rgba(90,138,0,0.12)',
+                                border: '1px solid rgba(90,138,0,0.28)',
+                                color: '#5A8A00',
                               }
                             : {
-                                background: 'rgba(255,255,255,0.04)',
-                                border: '1px solid rgba(255,255,255,0.09)',
-                                color: 'var(--nc-text-dim)',
+                                background: 'rgba(17,21,24,0.06)',
+                                border: '1px solid rgba(17,21,24,0.10)',
+                                color: 'var(--nc-cream-muted)',
                               }
                         }
                       >
@@ -366,17 +384,17 @@ export function ListenRespondExercise({
               {/* Pass/fail badge + retry */}
               <div className="flex items-center justify-between">
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.75rem] font-bold"
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.72rem] font-bold"
                   style={
                     passed
                       ? {
-                          background: 'var(--nc-green-tint)',
-                          border: '1px solid var(--nc-green-border)',
-                          color: 'var(--nc-green)',
+                          background: 'rgba(90,138,0,0.12)',
+                          border: '1px solid rgba(90,138,0,0.28)',
+                          color: '#5A8A00',
                         }
                       : {
-                          background: 'rgba(220,38,38,0.12)',
-                          border: '1px solid rgba(220,38,38,0.28)',
+                          background: 'rgba(255,106,85,0.10)',
+                          border: '1px solid rgba(255,106,85,0.24)',
                           color: 'var(--nc-red)',
                         }
                   }
@@ -388,7 +406,7 @@ export function ListenRespondExercise({
                   <button
                     onClick={handleRetry}
                     aria-label="Prøv spørsmålet igjen"
-                    className="flex items-center gap-1 text-[0.8125rem] text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
+                    className="flex items-center gap-1 text-[0.8125rem] text-[var(--nc-cream-muted)] transition-opacity hover:opacity-80"
                   >
                     <RotateCcw size={13} aria-hidden="true" />
                     Prøv igjen
@@ -396,17 +414,19 @@ export function ListenRespondExercise({
                 )}
               </div>
 
-              {/* Advance */}
+              {/* Advance — dark button on cream card */}
               <button
                 onClick={handleNext}
                 aria-label={index + 1 < total ? 'Neste spørsmål' : 'Avslutt øvelsen'}
-                className="nc-button-primary flex w-full items-center justify-center gap-2 py-3 text-[0.875rem] font-bold"
+                className="flex w-full items-center justify-center gap-2 rounded-[var(--radius)] py-3 text-[0.875rem] font-bold text-white"
+                style={{ background: 'rgba(10,18,6,0.90)' }}
               >
                 {index + 1 < total ? 'Neste spørsmål' : 'Avslutt'}
-                <ArrowRight size={16} aria-hidden="true" />
+                <ArrowRight size={15} aria-hidden="true" />
               </button>
             </motion.div>
-          )}
+          ) : null}
+
         </AnimatePresence>
       </div>
     </motion.div>

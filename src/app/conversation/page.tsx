@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mic, MicOff, Send, X } from 'lucide-react'
+import { Mic, MicOff, Send, X, MessageSquare } from 'lucide-react'
 import { aiService } from '@/ai'
 import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
 import { BottomNav } from '@/components/layout/BottomNav'
@@ -48,12 +48,12 @@ interface SpeechRec {
 type SpeechRecCtor = new () => SpeechRec
 
 const TOPICS = [
-  { id: 'daily-routine', label: 'Daglig rutine', emoji: '☀️', desc: 'Morgen, kvelder, vaner' },
-  { id: 'food', label: 'Mat og drikke', emoji: '🍜', desc: 'Lage mat, restaurant, favoritter' },
-  { id: 'family', label: 'Familie', emoji: '🏠', desc: 'Familiemedlemmer, hjemmeliv' },
-  { id: 'norway', label: 'Norge', emoji: '🏔️', desc: 'Natur, byer, kultur' },
-  { id: 'hobbies', label: 'Fritid', emoji: '🎯', desc: 'Sport, musikk, interesser' },
-  { id: 'work', label: 'Jobb', emoji: '💼', desc: 'Arbeid, kolleger, drømmejobb' },
+  { id: 'daily-routine', label: 'Daglig rutine', desc: 'Morgen, kvelder, vaner' },
+  { id: 'food', label: 'Mat og drikke', desc: 'Lage mat, restaurant, favoritter' },
+  { id: 'family', label: 'Familie', desc: 'Familiemedlemmer, hjemmeliv' },
+  { id: 'norway', label: 'Norge', desc: 'Natur, byer, kultur' },
+  { id: 'hobbies', label: 'Fritid', desc: 'Sport, musikk, interesser' },
+  { id: 'work', label: 'Jobb', desc: 'Arbeid, kolleger, drømmejobb' },
 ] as const
 
 const LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2']
@@ -331,77 +331,95 @@ export default function ConversationPage() {
   const summaryTopicMeta = TOPICS.find((t) => t.id === summaryTopicRef.current) ?? null
 
   return (
-    <div className="nc-gradient-page flex min-h-dvh flex-col">
-      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col overflow-hidden px-4 pb-28 pt-4">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell relative z-10 flex w-full flex-1 flex-col overflow-hidden px-1.5 pb-28 pt-3">
         <AnimatePresence mode="wait">
+
+          {/* ── SETUP PHASE ── */}
           {phase === 'setup' ? (
             <motion.div
               key="setup"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="flex flex-1 flex-col gap-4"
+              className="flex flex-1 flex-col gap-[6px]"
             >
-              <div className="nc-glass-cream p-5">
-                <div className="flex items-start justify-between gap-4">
+              {/* Lime hero panel */}
+              <div className="nc-signal-panel p-2.5">
+                <div className="flex items-start justify-between gap-2">
                   <div>
-                    <div className="nc-label text-[var(--nc-cream-dim)]">AI conversation</div>
-                    <h1 className="mt-2 text-balance text-[2rem] leading-[0.96] text-[var(--nc-cream-text)]">
-                      Snakk norsk i et mer naturlig tempo.
+                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Samtale</div>
+                    <h1 className="mt-1 text-balance text-[1.25rem] font-extrabold leading-none tracking-[-0.03em] text-[var(--nc-signal-fg)]">
+                      Snakk med Kari
                     </h1>
-                    <p className="mt-3 text-sm leading-7 text-[var(--nc-cream-muted)]">
-                      Velg et tema, lås riktig nivå, og få løpende korrigering mens du snakker.
+                    <p className="mt-1 text-[0.75rem] leading-[1.4] text-[rgba(10,18,6,0.60)]">
+                      Velg tema · sett nivå · få rettelser
                     </p>
                   </div>
-                  <div className="rounded-[1rem] bg-[var(--nc-signal)] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">
-                    Voice
-                  </div>
+                  <span className="rounded-[0.3rem] bg-[rgba(10,18,6,0.90)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.10em] text-white">
+                    Live
+                  </span>
                 </div>
 
-                <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/38">
-                        Klar samtale
-                      </div>
-                      <div className="mt-1 text-sm font-medium text-white">
-                        {selectedTopicMeta ? `${selectedTopicMeta.emoji} ${selectedTopicMeta.label}` : 'Velg tema nedenfor'}
-                      </div>
+                {/* Compact feature strip */}
+                <div className="mt-2.5 flex items-center gap-1.5">
+                  {['Rettelser', 'Fokus-biased', level].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-[rgba(10,18,6,0.14)] bg-[rgba(10,18,6,0.07)] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.08em] text-[rgba(10,18,6,0.58)]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Selected topic preview — dark inset */}
+                <div className="mt-2 rounded-[0.4rem] bg-[rgba(6,16,23,0.94)] px-2.5 py-2 text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white/40">
+                      {selectedTopicMeta ? 'Valgt tema' : 'Velg tema nedenfor'}
                     </div>
-                    <div className="rounded-full bg-white/8 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/58">
+                    <span className="rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-white/60 tabular-nums">
                       {level}
-                    </div>
+                    </span>
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-white/65">
-                    Coachen holder samtalen i gang, plukker opp feil, og presser deg forsiktig mot neste grammatikkmål.
-                  </p>
+                  {selectedTopicMeta ? (
+                    <div className="mt-1 text-[0.82rem] font-semibold text-white">{selectedTopicMeta.label}</div>
+                  ) : (
+                    <div className="mt-1 text-[0.78rem] text-white/36">—</div>
+                  )}
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2.5">
+              {/* Topic grid — 2-col */}
+              <div className="grid grid-cols-2 gap-[6px]">
                 {TOPICS.map((topic) => {
                   const isSelected = selectedTopic === topic.id
                   return (
                     <button
                       key={topic.id}
                       onClick={() => setSelectedTopic(topic.id)}
-                      className="rounded-[1.15rem] border p-4 text-left transition-all active:scale-[0.98]"
+                      aria-pressed={isSelected}
+                      className="rounded-lg border p-2.5 text-left transition-all active:scale-[0.98]"
                       style={{
                         background: isSelected
-                          ? 'linear-gradient(135deg, rgba(215,255,92,0.94) 0%, rgba(199,244,93,0.88) 100%)'
-                          : 'rgba(247,251,245,0.96)',
-                        borderColor: isSelected ? 'rgba(215,255,92,0.44)' : 'rgba(255,255,255,0.14)',
-                        color: isSelected ? 'var(--nc-signal-fg)' : 'var(--nc-cream-text)',
+                          ? 'linear-gradient(135deg, rgba(200,255,32,0.92) 0%, rgba(184,239,16,0.88) 100%)'
+                          : 'var(--nc-card)',
+                        borderColor: isSelected ? 'rgba(200,255,32,0.44)' : 'var(--nc-border)',
+                        color: isSelected ? 'var(--nc-signal-fg)' : 'var(--nc-text)',
                         boxShadow: isSelected
-                          ? '0 18px 36px rgba(183,243,0,0.16)'
-                          : '0 14px 30px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.55)',
+                          ? '0 12px 28px rgba(183,243,0,0.18)'
+                          : '0 2px 8px rgba(0,0,0,0.18)',
                       }}
                     >
-                      <div className="text-2xl">{topic.emoji}</div>
-                      <div className="mt-3 text-[13px] font-bold">{topic.label}</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.10em]"
+                        style={{ color: isSelected ? 'rgba(10,18,6,0.48)' : 'var(--nc-text-dim)' }}
+                      >
+                        {topic.label}
+                      </div>
                       <div
-                        className="mt-1 text-[11px] leading-snug"
-                        style={{ color: isSelected ? 'rgba(8,17,13,0.70)' : 'var(--nc-cream-muted)' }}
+                        className="mt-1 text-[0.75rem] leading-snug"
+                        style={{ color: isSelected ? 'rgba(10,18,6,0.68)' : 'var(--nc-text-muted)' }}
                       >
                         {topic.desc}
                       </div>
@@ -410,9 +428,12 @@ export default function ConversationPage() {
                 })}
               </div>
 
-              <div className="nc-glass p-4">
-                <div className="nc-label">Nivå</div>
-                <div className="mt-3 grid grid-cols-4 gap-2">
+              {/* Level selector — cream strip */}
+              <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+                <div className="flex items-center justify-center border-r border-[rgba(17,21,24,0.08)] px-2 py-2.5">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Nivå</span>
+                </div>
+                <div className="col-span-2 flex items-center gap-1.5 px-2 py-2">
                   {LEVELS.map((currentLevel) => {
                     const isActive = level === currentLevel
                     return (
@@ -422,10 +443,11 @@ export default function ConversationPage() {
                           setLevel(currentLevel)
                           setUserOverrodeLevel(true)
                         }}
-                        className="rounded-full px-3 py-2.5 text-[13px] font-bold transition-colors"
+                        aria-pressed={isActive}
+                        className="rounded-full px-3 py-1.5 text-[11px] font-bold transition-colors"
                         style={{
-                          background: isActive ? 'var(--nc-signal)' : 'rgba(255,255,255,0.06)',
-                          color: isActive ? 'var(--nc-signal-fg)' : 'var(--nc-text-muted)',
+                          background: isActive ? 'var(--nc-signal)' : 'rgba(17,21,24,0.08)',
+                          color: isActive ? 'var(--nc-signal-fg)' : 'var(--nc-cream-muted)',
                         }}
                       >
                         {currentLevel}
@@ -435,38 +457,41 @@ export default function ConversationPage() {
                 </div>
               </div>
 
+              {/* CTA */}
               <button
                 disabled={!selectedTopic}
                 onClick={() => void startConversation()}
-                className="nc-button-primary mt-auto w-full rounded-[1rem] py-4 text-sm font-extrabold disabled:opacity-40"
+                className="nc-button-primary mt-auto w-full rounded-lg py-3.5 text-[0.82rem] font-extrabold disabled:opacity-40"
               >
                 Start samtale
               </button>
             </motion.div>
           ) : null}
 
+          {/* ── CHAT PHASE ── */}
           {phase === 'chat' ? (
             <motion.div
               key="chat"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-1 flex-col gap-3 overflow-hidden"
+              className="flex flex-1 flex-col gap-1.5 overflow-hidden"
             >
-              <div className="nc-glass-cream p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] bg-[rgba(6,16,23,0.94)] text-lg text-white">
-                      {selectedTopicMeta?.emoji ?? '💬'}
+              {/* Chat header — dark card */}
+              <div className="rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2.5 py-2">
+                <div className="flex items-center justify-between gap-1.5">
+                  <div className="flex items-center gap-2">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-[0.35rem] bg-[linear-gradient(135deg,var(--nc-signal)_0%,#A8E010_100%)]">
+                      <MessageSquare size={14} aria-hidden="true" color="var(--nc-signal-fg)" />
                     </div>
                     <div>
-                      <div className="nc-label text-[var(--nc-cream-dim)]">Samtale med Kari</div>
-                      <div className="mt-1 text-sm font-semibold text-[var(--nc-cream-text)]">
+                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Samtale med Kari</div>
+                      <div className="mt-0.5 text-[0.78rem] font-semibold text-[var(--nc-text)]">
                         {selectedTopicMeta?.label ?? 'Tema'}
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
+                  <div className="flex items-center gap-2">
                     <AIStatusBadge />
                     <button
                       onClick={() => {
@@ -478,28 +503,29 @@ export default function ConversationPage() {
                         markLaneDone('conversation')
                         setPhase('summary')
                       }}
-                      className="inline-flex items-center gap-1 rounded-full bg-[rgba(6,16,23,0.08)] px-3 py-1.5 text-[11px] font-semibold text-[var(--nc-cream-muted)]"
+                      aria-label="Avslutt samtale"
+                      className="flex items-center gap-1 rounded-full border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-2.5 py-1 text-[10px] font-semibold text-[var(--nc-text-muted)]"
                     >
-                      <X size={12} />
+                      <X size={11} aria-hidden="true" />
                       Avslutt
                     </button>
                   </div>
                 </div>
               </div>
 
+              {/* Message list */}
               <div ref={scrollRef} className="flex-1 overflow-y-auto pb-2">
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2.5">
                   {messages.map((msg, i) => (
                     <div key={i} className={`flex flex-col gap-1 ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
                       {msg.role === 'tutor' ? (
                         <div className="flex items-center gap-1.5 px-1">
-                          <span className="text-sm">{selectedTopicMeta?.emoji ?? '💬'}</span>
-                          <span className="text-[10px] font-semibold text-[var(--nc-text-dim)]">Kari</span>
+                          <span className="text-[9px] font-bold uppercase tracking-[0.10em] text-[var(--nc-text-dim)]">Kari</span>
                         </div>
                       ) : null}
 
                       <div
-                        className={`max-w-[82%] rounded-[1.25rem] px-4 py-3 text-[14px] leading-relaxed ${
+                        className={`max-w-[82%] rounded-lg px-3 py-2.5 text-[14px] leading-relaxed ${
                           msg.role === 'user'
                             ? 'bg-[rgba(6,16,23,0.94)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
                             : 'nc-glass-cream text-[var(--nc-cream-text)]'
@@ -512,14 +538,14 @@ export default function ConversationPage() {
                         <motion.div
                           initial={{ opacity: 0, y: 4 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="max-w-[82%] rounded-[1rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-2"
+                          className="max-w-[82%] rounded-lg border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-2"
                         >
-                          <p className="text-[12px] text-[var(--nc-text-muted)]">
+                          <p className="text-[11px] text-[var(--nc-text-muted)]">
                             <span className="line-through text-[var(--nc-text-dim)]">{msg.correction.original}</span>
                             {' → '}
                             <span className="font-semibold text-[var(--nc-red)]">{msg.correction.corrected}</span>
                           </p>
-                          <p className="mt-0.5 text-[11px] text-[var(--nc-text-dim)]">{msg.correction.explanation}</p>
+                          <p className="mt-0.5 text-[10px] text-[var(--nc-text-dim)]">{msg.correction.explanation}</p>
                         </motion.div>
                       ) : null}
                     </div>
@@ -527,7 +553,7 @@ export default function ConversationPage() {
 
                   {isThinking ? (
                     <div className="flex items-start gap-2">
-                      <div className="nc-glass rounded-[1.1rem] px-4 py-3 text-[var(--nc-text-muted)]">
+                      <div className="nc-glass rounded-[1.1rem] px-3 py-2.5 text-[var(--nc-text-muted)]">
                         <div className="flex gap-1">
                           {[0, 0.2, 0.4].map((delay) => (
                             <motion.div
@@ -544,29 +570,30 @@ export default function ConversationPage() {
                 </div>
               </div>
 
+              {/* Constraint banner */}
               <AnimatePresence>
                 {activeConstraint ? (
                   <motion.div
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="rounded-[1rem] px-4 py-3 text-[12px]"
+                    className="rounded-lg px-3 py-2 text-[11px]"
                     style={{
                       background: constraintResult
                         ? constraintResult.met
-                          ? 'rgba(215,255,92,0.18)'
+                          ? 'rgba(200,255,32,0.14)'
                           : 'rgba(255,106,85,0.10)'
-                        : 'rgba(247,251,245,0.92)',
+                        : 'rgba(255,255,255,0.05)',
                       border: constraintResult
                         ? constraintResult.met
-                          ? '1px solid rgba(215,255,92,0.34)'
+                          ? '1px solid rgba(200,255,32,0.28)'
                           : '1px solid rgba(255,106,85,0.22)'
-                        : '1px solid rgba(255,255,255,0.12)',
+                        : '1px solid var(--nc-border)',
                       color: constraintResult
                         ? constraintResult.met
-                          ? 'var(--nc-signal-fg)'
+                          ? 'var(--nc-signal)'
                           : 'var(--nc-red)'
-                        : 'var(--nc-cream-text)',
+                        : 'var(--nc-text-muted)',
                     }}
                   >
                     {constraintResult ? (
@@ -580,7 +607,8 @@ export default function ConversationPage() {
                 ) : null}
               </AnimatePresence>
 
-              <div className="nc-glass-cream flex items-center gap-3 px-4 py-3">
+              {/* Input bar — dark card */}
+              <div className="rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] flex items-center gap-2.5 px-3 py-2">
                 <input
                   type="text"
                   value={inputText}
@@ -589,24 +617,25 @@ export default function ConversationPage() {
                     if (e.key === 'Enter') void handleSend(inputText)
                   }}
                   placeholder="Skriv eller snakk…"
-                  className="flex-1 bg-transparent text-[14px] text-[var(--nc-cream-text)] outline-none placeholder:text-[var(--nc-cream-muted)]"
+                  aria-label="Skriv melding"
+                  className="flex-1 bg-transparent text-[14px] text-[var(--nc-text)] outline-none placeholder:text-[var(--nc-text-dim)]"
                 />
                 {hasSpeechAPI ? (
                   <button
                     onClick={toggleListening}
                     aria-label={isListening ? 'Stopp opptak' : 'Start opptak'}
-                    className="flex size-11 items-center justify-center rounded-full transition-colors"
+                    className="flex size-9 items-center justify-center rounded-full transition-colors"
                     style={{
-                      background: isListening ? 'var(--nc-red)' : 'rgba(6,16,23,0.08)',
-                      color: isListening ? 'white' : 'var(--nc-cream-text)',
+                      background: isListening ? 'var(--nc-red)' : 'rgba(255,255,255,0.08)',
+                      color: isListening ? 'white' : 'var(--nc-text-muted)',
                     }}
                   >
                     {isListening ? (
                       <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1 }}>
-                        <MicOff size={18} />
+                        <MicOff size={15} aria-hidden="true" />
                       </motion.div>
                     ) : (
-                      <Mic size={18} />
+                      <Mic size={15} aria-hidden="true" />
                     )}
                   </button>
                 ) : null}
@@ -614,14 +643,15 @@ export default function ConversationPage() {
                   onClick={() => void handleSend(inputText)}
                   disabled={!inputText.trim() || isThinking}
                   aria-label="Send melding"
-                  className="nc-button-primary flex size-11 items-center justify-center rounded-full disabled:opacity-40"
+                  className="nc-button-primary flex size-9 items-center justify-center rounded-full disabled:opacity-40"
                 >
-                  <Send size={18} />
+                  <Send size={14} aria-hidden="true" />
                 </button>
               </div>
             </motion.div>
           ) : null}
 
+          {/* ── SUMMARY PHASE ── */}
           {phase === 'summary' ? (
             <motion.div
               key="summary"
@@ -629,55 +659,47 @@ export default function ConversationPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25 }}
-              className="flex flex-1 flex-col justify-center gap-4"
+              className="flex flex-1 flex-col justify-center gap-[6px]"
             >
-              <div className="nc-glass-cream p-6 text-center">
-                <div className="nc-label text-[var(--nc-cream-dim)]">Samtale fullført</div>
-                <p className="mt-3 text-[2rem] font-semibold leading-[0.96] text-[var(--nc-cream-text)]">
-                  {summaryTopicMeta?.emoji ?? '💬'} {summaryTopicMeta?.label ?? 'Samtale'}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-[var(--nc-cream-muted)]">
-                  Oppsummeringen er lagret i læringsprofilen din, slik at neste samtale kan starte smartere.
+              {/* Lime summary panel */}
+              <div className="nc-signal-panel p-3">
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Samtale fullført</div>
+                <p className="mt-1.5 text-balance text-[1.35rem] font-extrabold leading-none tracking-[-0.03em] text-[var(--nc-signal-fg)]">
+                  {summaryTopicMeta?.label ?? 'Samtale'}
                 </p>
 
-                <div className="mt-5 rounded-[1.3rem] bg-[rgba(6,16,23,0.94)] p-4 text-white">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-[1rem] border border-white/8 bg-white/5 px-3 py-4">
-                      <div className="text-[2rem] font-display font-bold text-white">
-                        {summaryTurnCountRef.current}
-                      </div>
-                      <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/42">
-                        Utvekslinger
-                      </div>
+                {/* Stats — dark inset on lime */}
+                <div className="mt-3 grid grid-cols-2 gap-1.5 rounded-[0.4rem] bg-[rgba(6,16,23,0.94)] p-2">
+                  <div className="rounded-[0.35rem] border border-white/8 bg-white/5 px-3 py-3 text-center">
+                    <div className="text-[1.6rem] font-extrabold tabular-nums leading-none text-white">
+                      {summaryTurnCountRef.current}
                     </div>
-                    <div className="rounded-[1rem] border border-white/8 bg-white/5 px-3 py-4">
-                      <div className="text-[2rem] font-display font-bold text-[var(--nc-signal)]">
-                        {summaryErrorCountRef.current}
-                      </div>
-                      <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/42">
-                        Rettelser
-                      </div>
+                    <div className="mt-1 text-[8px] font-bold uppercase tracking-[0.10em] text-white/40">
+                      Utvekslinger
+                    </div>
+                  </div>
+                  <div className="rounded-[0.35rem] border border-white/8 bg-white/5 px-3 py-3 text-center">
+                    <div className="text-[1.6rem] font-extrabold tabular-nums leading-none text-[var(--nc-signal)]">
+                      {summaryErrorCountRef.current}
+                    </div>
+                    <div className="mt-1 text-[8px] font-bold uppercase tracking-[0.10em] text-white/40">
+                      Rettelser
                     </div>
                   </div>
                 </div>
-
-                {user ? (
-                  <p className="mt-4 text-[12px] text-[var(--nc-cream-muted)]">
-                    Fremgangen er synkronisert.
-                  </p>
-                ) : null}
               </div>
 
-              <div className="flex flex-col gap-3">
+              {/* Actions */}
+              <div className="flex flex-col gap-[6px]">
                 <button
                   onClick={() => setPhase('setup')}
-                  className="nc-button-primary w-full rounded-[1rem] py-3.5 text-sm font-bold"
+                  className="nc-button-primary w-full rounded-lg py-3.5 text-[0.82rem] font-bold"
                 >
                   Ny samtale
                 </button>
                 <button
                   onClick={() => router.push('/dashboard')}
-                  className="nc-glass w-full rounded-[1rem] py-3 text-sm font-semibold text-[var(--nc-text)]"
+                  className="w-full rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] py-3 text-[0.82rem] font-semibold text-[var(--nc-text)]"
                 >
                   Til dashboard
                 </button>

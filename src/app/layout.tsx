@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nb" className={`${schibstedDisplay.variable} ${schibstedBody.variable} dark`}>
-      <body className="font-sans antialiased bg-[var(--nc-bg)]">
+      <body className="font-sans antialiased bg-[#2C2E30]">
         <MotionProvider>
           <TopographicGrid />
           {children}

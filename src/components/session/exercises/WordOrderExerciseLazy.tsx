@@ -5,7 +5,7 @@ const WordOrderExercise = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-24 animate-pulse rounded-2xl bg-nc-card" />
+      <div className="h-24 animate-pulse rounded-2xl bg-[var(--nc-card)]" />
     ),
   }
 );

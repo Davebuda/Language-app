@@ -32,14 +32,14 @@ function NotYetAvailable({
   sessionId: string
 }) {
   return (
-    <div className="space-y-5">
-      <p className="nc-label">
-        Exercise type
+    <div className="space-y-4">
+      <p className="nc-label text-[var(--nc-cream-dim)]">
+        Øvelsestype
       </p>
-      <p className="text-[18px] font-bold leading-snug text-nc-text">
+      <p className="font-display text-[1.45rem] font-bold leading-snug text-[var(--nc-cream-text)]">
         {type === 'reading-comprehension' ? 'Leseforståelse' : 'Fri skriving'} kommer snart.
       </p>
-      <p className="text-sm text-nc-text-muted">
+      <p className="text-pretty text-sm leading-6 text-[var(--nc-cream-muted)]">
         Denne øvelsestypen er ikke tilgjengelig ennå. Trykk for å hoppe over.
       </p>
       <button
@@ -111,9 +111,11 @@ export function ExerciseCard({
       animate={wasWrong && shakeKey > 0 ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
       transition={{ duration: 0.4 }}
       onAnimationComplete={() => setWasWrong(false)}
-      className="nc-glass-cream-strong p-6"
+      className="overflow-hidden rounded-[0.75rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] shadow-[0_18px_48px_rgba(0,0,0,0.22)]"
     >
-      <div className="relative z-[1]">{renderExercise()}</div>
+      {/* Lime accent top-bar — single lime focal element on the card */}
+      <div className="h-[3px] w-full bg-[linear-gradient(90deg,var(--nc-signal)_0%,#B8EF10_100%)]" />
+      <div className="relative z-[1] p-3.5">{renderExercise()}</div>
     </motion.div>
   )
 }

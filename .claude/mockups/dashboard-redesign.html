@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach Dashboard — Before / After</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap');
+
+  :root {
+    --nc-signal: #d7ff5c;
+    --nc-signal-fg: #08110d;
+    --nc-signal-border: rgba(215,255,92,0.38);
+    --nc-teal: #6de5ff;
+    --nc-teal-tint: rgba(109,229,255,0.14);
+    --nc-red: #ff6a55;
+    --nc-red-border: rgba(255,106,85,0.32);
+    --nc-green: #7dffb2;
+    --nc-green-tint: rgba(125,255,178,0.14);
+    --nc-cream-text: #111820;
+    --nc-cream-muted: rgba(17,24,32,0.76);
+    --nc-cream-dim: rgba(17,24,32,0.58);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    background: #b8b8b4;
+    color: var(--nc-cream-text);
+    padding: 32px 16px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .column { display: flex; flex-direction: column; gap: 8px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .tag-before { background: rgba(17,24,32,0.08); color: var(--nc-cream-dim); }
+  .tag-after { background: var(--nc-signal); color: var(--nc-signal-fg); }
+
+  .phone {
+    width: 100%;
+    max-width: 390px;
+    border-radius: 23px;
+    background: linear-gradient(180deg, rgba(246,244,239,0.92) 0%, rgba(239,236,230,0.88) 100%);
+    border: 1px solid rgba(255,255,255,0.48);
+    box-shadow: 0 18px 56px rgba(20,22,20,0.10), inset 0 1px 0 rgba(255,255,255,0.66);
+    overflow: hidden;
+    padding: 14px 10px 18px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nc-cream-dim);
+    margin: 20px 0 8px;
+    padding-left: 2px;
+  }
+
+  /* ——— HEADER: BEFORE ——— */
+  .header-before {
+    padding: 4px 6px;
+  }
+  .header-before .date {
+    font-size: 9px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--nc-cream-dim);
+  }
+  .header-before .row {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 4px;
+  }
+  .header-before h1 {
+    font-size: 1.85rem; font-weight: 700; line-height: 0.92; letter-spacing: -0.03em;
+    max-width: 11ch; text-wrap: balance;
+  }
+  .header-before .subtitle {
+    font-size: 0.76rem; line-height: 1.4; color: var(--nc-cream-muted); margin-top: 4px; max-width: 20ch;
+  }
+  .header-before .badges-col {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  }
+  .badge-old-level {
+    display: inline-flex; align-items: center;
+    border-radius: 9999px; border: 1px solid rgba(16,22,29,0.16);
+    background: #10161d; padding: 4px 10px;
+    font-size: 11px; font-weight: 700; color: var(--nc-green);
+  }
+  .badge-old-ai {
+    display: inline-flex; align-items: center; gap: 6px;
+    border-radius: 9999px;
+    border: 1px solid rgba(174,214,54,0.24);
+    background: linear-gradient(135deg, rgba(215,255,92,0.30) 0%, rgba(193,226,108,0.22) 100%);
+    padding: 4px 10px;
+    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--nc-signal-fg);
+  }
+  .badge-old-ai .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--nc-signal-fg);
+  }
+  .chips-row {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding: 0 6px;
+  }
+  .chip-muted {
+    display: inline-flex; align-items: center;
+    border-radius: 9999px; border: 1px solid rgba(20,22,20,0.08);
+    background: rgba(255,255,255,0.42); color: rgba(17,24,32,0.62);
+    padding: 4px 10px; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .chip-dark {
+    display: inline-flex; align-items: center;
+    border-radius: 9999px; background: rgba(13,16,15,0.90);
+    color: rgba(247,247,242,0.86);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    padding: 4px 10px; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+  }
+
+  /* ——— HEADER: AFTER ——— */
+  .header-after {
+    padding: 4px 6px;
+  }
+  .header-after .date {
+    font-size: 9px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--nc-cream-dim);
+  }
+  .header-after .row {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 4px;
+  }
+  .header-after h1 {
+    font-size: 1.85rem; font-weight: 700; line-height: 0.92; letter-spacing: -0.03em;
+    max-width: 11ch; text-wrap: balance;
+  }
+  .header-after .badges-col {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px;
+  }
+  .badge-new-level {
+    display: inline-flex; align-items: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--nc-signal-border);
+    background: var(--nc-signal);
+    padding: 4px 10px;
+    font-size: 11px; font-weight: 700; color: var(--nc-signal-fg);
+  }
+  .badge-new-ai {
+    display: inline-flex; align-items: center; gap: 4px;
+    border-radius: 0.375rem;
+    border: 1px solid rgba(17,24,32,0.10);
+    background: rgba(17,24,32,0.05);
+    padding: 2px 8px;
+    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.10em;
+    color: var(--nc-cream-dim);
+  }
+  .badge-new-ai .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--nc-signal); opacity: 0.7;
+  }
+
+  /* ——— LANE ROWS: BEFORE ——— */
+  .lane-before {
+    display: flex; align-items: center; gap: 12px;
+    border-radius: 0.6rem; padding: 10px;
+  }
+  .lane-before:hover { background: rgba(17,24,32,0.04); }
+  .lane-icon {
+    width: 32px; height: 32px; border-radius: 0.5rem;
+    background: rgba(17,24,32,0.92); color: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 13px;
+  }
+  .lane-text { flex: 1; min-width: 0; }
+  .lane-name { font-size: 0.84rem; font-weight: 600; color: var(--nc-cream-text); }
+  .lane-hint { font-size: 0.72rem; color: var(--nc-cream-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lane-arrow { color: var(--nc-cream-dim); flex-shrink: 0; font-size: 14px; }
+
+  /* ——— LANE ROWS: AFTER ——— */
+  .lane-after {
+    display: flex; align-items: center; gap: 12px;
+    border-radius: 0.6rem; padding: 10px;
+    background: rgba(255,255,255,0.28);
+    border: 1px solid rgba(17,24,32,0.05);
+    border-left-width: 2px;
+    transition: background 150ms ease;
+  }
+  .lane-after:hover { background: rgba(17,24,32,0.04); }
+  .lane-after:hover .lane-arrow-new { transform: translateX(2px); }
+  .lane-arrow-new {
+    color: var(--nc-cream-dim); flex-shrink: 0; font-size: 14px;
+    transition: transform 150ms ease;
+  }
+
+  /* ——— LANE DONE ——— */
+  .lane-done {
+    display: flex; align-items: center; gap: 12px;
+    border-radius: 0.6rem; padding: 10px;
+    background: rgba(17,24,32,0.04);
+  }
+  .lane-done .lane-icon { background: rgba(17,24,32,0.06); color: var(--nc-cream-dim); }
+  .lane-done .lane-name { color: var(--nc-cream-dim); text-decoration: line-through; text-decoration-color: rgba(17,24,32,0.18); }
+  .lane-check {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--nc-green-tint); color: var(--nc-green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+
+  .lanes-list { display: flex; flex-direction: column; gap: 2px; padding: 0 4px; }
+
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between; padding: 0 6px;
+  }
+  .section-header h2 { font-size: 0.88rem; font-weight: 700; letter-spacing: -0.03em; }
+  .section-header .count { font-size: 0.72rem; color: var(--nc-cream-dim); font-variant-numeric: tabular-nums; }
+
+  /* Neste valg after — ambient circles */
+  .neste-valg-after { position: relative; overflow: hidden; }
+  .ambient-circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    border: 1px solid rgba(17,24,32,0.04);
+  }
+  .ambient-circle.c1 { width: 144px; height: 144px; right: -40px; top: -40px; }
+  .ambient-circle.c2 { width: 88px; height: 88px; right: -16px; top: -16px; }
+  .ambient-circle.c3 { width: 40px; height: 40px; right: 12px; top: 12px; border-color: rgba(17,24,32,0.03); }
+
+  .divider {
+    height: 1px; background: rgba(17,24,32,0.06); margin: 32px 0;
+  }
+
+  /* SVG icons inline */
+  .icon-svg { width: 14px; height: 14px; }
+</style>
+</head>
+<body>
+
+<div style="max-width:860px;margin:0 auto 16px;font-size:1.3rem;font-weight:700;letter-spacing:-0.03em;">Dashboard Redesign — Before / After</div>
+
+<div class="grid">
+
+<!-- ============ BEFORE COLUMN ============ -->
+<div class="column">
+  <span class="tag tag-before">Before</span>
+
+  <div class="phone">
+    <!-- Header Before -->
+    <div class="header-before">
+      <div class="date">tirsdag 27. mai</div>
+      <div class="row">
+        <div>
+          <h1>Hei, David</h1>
+          <p class="subtitle">Start her. Resten ligger under.</p>
+        </div>
+        <div class="badges-col">
+          <div class="badge-old-ai">
+            <span class="dot"></span>
+            AI ready
+          </div>
+          <div class="badge-old-level">A1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips-row">
+      <span class="chip-muted">5 spor</span>
+      <span class="chip-muted">A1</span>
+      <span class="chip-dark">AI</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Neste valg Before -->
+    <div style="margin-top:4px;">
+      <div class="section-header">
+        <h2>Neste valg</h2>
+        <span class="count">2/5</span>
+      </div>
+
+      <div class="lanes-list" style="margin-top:4px;">
+        <div class="lane-before">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(215,255,92,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Okt</div>
+            <div class="lane-hint">10 oppgaver &middot; ca. 8 min</div>
+          </div>
+          <span class="lane-arrow">&rarr;</span>
+        </div>
+
+        <div class="lane-before">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(109,229,255,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Snakk</div>
+            <div class="lane-hint">Samtale med Kari &middot; daglig rutine</div>
+          </div>
+          <span class="lane-arrow">&rarr;</span>
+        </div>
+
+        <div class="lane-before">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(109,229,255,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Skriv</div>
+            <div class="lane-hint">Beskriv din ideelle norske helg</div>
+          </div>
+          <span class="lane-arrow">&rarr;</span>
+        </div>
+
+        <div class="lane-before">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(109,229,255,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Les</div>
+            <div class="lane-hint">2 tekster pa A1-niva</div>
+          </div>
+          <span class="lane-arrow">&rarr;</span>
+        </div>
+
+        <div class="lane-done">
+          <div class="lane-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Rollespill</div>
+          </div>
+          <span class="lane-check">&#10003;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AFTER COLUMN ============ -->
+<div class="column">
+  <span class="tag tag-after">After</span>
+
+  <div class="phone">
+    <!-- Header After -->
+    <div class="header-after">
+      <div class="date">tirsdag 27. mai</div>
+      <div class="row">
+        <div>
+          <h1>Hei, David</h1>
+        </div>
+        <div class="badges-col">
+          <div class="badge-new-level">A1</div>
+          <div class="badge-new-ai">
+            <span class="dot"></span>
+            AI
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- No chips row -->
+
+    <div class="divider"></div>
+
+    <!-- Neste valg After -->
+    <div class="neste-valg-after" style="margin-top:4px;">
+      <div class="ambient-circle c1"></div>
+      <div class="ambient-circle c2"></div>
+      <div class="ambient-circle c3"></div>
+
+      <div class="section-header" style="position:relative;z-index:1;">
+        <h2>Neste valg</h2>
+        <span class="count">2/5</span>
+      </div>
+
+      <div class="lanes-list" style="margin-top:4px;position:relative;z-index:1;">
+        <div class="lane-after" style="border-left-color: color-mix(in srgb, #d7ff5c 35%, transparent);">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(215,255,92,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Okt</div>
+            <div class="lane-hint">10 oppgaver &middot; ca. 8 min</div>
+          </div>
+          <span class="lane-arrow-new">&rarr;</span>
+        </div>
+
+        <div class="lane-after" style="border-left-color: color-mix(in srgb, #6de5ff 35%, transparent);">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(109,229,255,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Snakk</div>
+            <div class="lane-hint">Samtale med Kari &middot; daglig rutine</div>
+          </div>
+          <span class="lane-arrow-new">&rarr;</span>
+        </div>
+
+        <div class="lane-after" style="border-left-color: color-mix(in srgb, #6de5ff 35%, transparent);">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(109,229,255,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Skriv</div>
+            <div class="lane-hint">Beskriv din ideelle norske helg</div>
+          </div>
+          <span class="lane-arrow-new">&rarr;</span>
+        </div>
+
+        <div class="lane-after" style="border-left-color: color-mix(in srgb, #6de5ff 35%, transparent);">
+          <div class="lane-icon" style="box-shadow: 0 6px 14px rgba(109,229,255,0.14);">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Les</div>
+            <div class="lane-hint">2 tekster pa A1-niva</div>
+          </div>
+          <span class="lane-arrow-new">&rarr;</span>
+        </div>
+
+        <div class="lane-done">
+          <div class="lane-icon">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div class="lane-text">
+            <div class="lane-name">Rollespill</div>
+          </div>
+          <span class="lane-check">&#10003;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div style="max-width:860px;margin:24px auto 0;font-size:0.78rem;color:var(--nc-cream-dim);line-height:1.6;">
+  <strong>Changes in "After":</strong><br>
+  <strong>Header:</strong> Removed filler subtitle + redundant chip pills. Level badge is now lime accent with square corners (not pill). AI badge is quieter — muted bg, shorter label, rounded-rect.<br>
+  <strong>Lane rows:</strong> Active rows have faint card surface (white 28% bg + hair border). Left accent line in lane color at 35% opacity. Arrow shifts right on hover. Done rows unchanged.<br>
+  <strong>Section:</strong> Faint concentric circle pattern at top-right of "Neste valg" (barely visible — look closely).
+</div>
+
+</body>
+</html>

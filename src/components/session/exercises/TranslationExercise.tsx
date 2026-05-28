@@ -96,7 +96,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
   const answerFieldClassName = [
     'nc-input-cream',
     feedbackTone === 'correct'
-      ? 'border-[var(--nc-green-border)] bg-[var(--nc-green-tint)]'
+      ? 'border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)]'
       : feedbackTone === 'wrong'
         ? 'border-[var(--nc-red-border)] bg-[var(--nc-red-tint)]'
         : '',
@@ -104,17 +104,17 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
   ].filter(Boolean).join(' ');
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex items-center justify-between">
-        <p className="text-[0.6875rem] font-bold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]">
-          {promptLabel}
-        </p>
-      </div>
+    <div className="flex flex-col gap-4">
+      {/* Micro-label */}
+      <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">
+        {promptLabel}
+      </p>
+      {/* Hero prompt — dominant Norwegian/English sentence */}
       <motion.p
-        className="font-display text-[1.75rem] font-bold leading-[1.15] tracking-tight text-[var(--nc-cream-text)]"
+        className="font-display text-[1.75rem] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--nc-cream-text)]"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: 0.2 }}
       >
         {prompt}
       </motion.p>
@@ -139,7 +139,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
         className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
       >
         <span>Sjekk svar</span>
-        <ArrowRight size={16} />
+        <ArrowRight size={16} aria-hidden="true" />
       </button>
       <div aria-live="polite" className="sr-only">
         {feedbackTone === 'correct' ? 'Riktig svar.' : feedbackTone === 'wrong' ? 'Feil svar.' : ''}

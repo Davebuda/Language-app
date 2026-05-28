@@ -13,7 +13,7 @@ const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B2'] as const;
 
 export function filterSentencesByLevel(sentenceIds: string[], maxLevel: string, sentences: Record<string, { cefrLevel: string }>): string[] {
   const maxIdx = LEVEL_ORDER.indexOf(maxLevel as typeof LEVEL_ORDER[number]);
-  if (maxIdx < 0) return sentenceIds;
+  if (maxIdx < 0) return [];
   return sentenceIds.filter(id => {
     const s = sentences[id];
     if (!s) return false;

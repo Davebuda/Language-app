@@ -64,8 +64,8 @@ export default function ProgressPage() {
 
   if (status === 'loading') {
     return (
-      <div className="nc-gradient-page flex flex-col min-h-dvh">
-        <main className="relative z-10 mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 px-5 pb-24 pt-5">
+      <div className="nc-gradient-page nc-secondary-flow flex flex-col min-h-dvh">
+        <main className="nc-mobile-shell nc-flow-shell">
           <div className="h-8 w-48 animate-pulse rounded-lg bg-white/5" />
           <div className="h-4 w-64 animate-pulse rounded bg-white/5" />
         </main>
@@ -107,22 +107,23 @@ export default function ProgressPage() {
   const masteredCount = byPhase.maintenance.length + byPhase.consolidation.length
 
   return (
-    <div className="nc-gradient-page flex min-h-dvh flex-col">
-      <main className="relative z-10 mx-auto flex w-full max-w-xl flex-1 flex-col gap-4 px-5 pb-24 pt-5">
-        <div className="nc-glass-cream p-5">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell nc-flow-shell">
+        <div className="nc-signal-panel p-3">
           <div className="nc-label">Læringsgraf</div>
-          <h1 className="mt-2 text-balance text-[2rem] font-extrabold text-[var(--nc-cream-text)]">
+          <h1 className="mt-1 text-balance text-[1.15rem] font-extrabold text-[var(--nc-signal-fg)]">
             Fremgang
           </h1>
-          <p className="text-pretty mt-2 text-[0.92rem] leading-7 text-[var(--nc-cream-muted)]">
+          <p className="text-pretty mt-1 text-[0.78rem] leading-5 text-[rgba(8,17,13,0.72)]">
             {levelLabel} — {masteredCount} av {totalCount} konsepter ligger i befestning eller vedlikehold.
           </p>
         </div>
 
-        {/* Phase distribution bar */}
+        {/* Phase distribution bar — cream panel for contrast after lime hero */}
         {totalCount > 0 && (
-          <div className="nc-glass-elevated p-4">
-            <div className="flex h-3 w-full overflow-hidden rounded-full">
+          <div className="nc-glass-cream p-3">
+            <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)] mb-2">Fasefordeling</div>
+            <div className="flex h-2.5 w-full overflow-hidden rounded-full">
               {PHASE_ORDER.map((phase) => {
                 const count = byPhase[phase].length
                 if (count === 0) return null
@@ -136,15 +137,15 @@ export default function ProgressPage() {
                 )
               })}
             </div>
-            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+            <div className="mt-2.5 flex flex-wrap gap-x-3 gap-y-1">
               {PHASE_ORDER.map((phase) => {
                 const count = byPhase[phase].length
                 if (count === 0) return null
                 return (
                   <div key={phase} className="flex items-center gap-1.5">
                     <div className="size-2 rounded-full" style={{ backgroundColor: PHASE_BAR_COLORS[phase] }} />
-                    <span className="text-[0.6875rem] text-[var(--nc-text-muted)]">
-                      {PHASE_META[phase].label} <span className="tabular-nums font-semibold">{count}</span>
+                    <span className="text-[0.6875rem] text-[var(--nc-cream-muted)]">
+                      {PHASE_META[phase].label} <span className="tabular-nums font-bold text-[var(--nc-cream-text)]">{count}</span>
                     </span>
                   </div>
                 )
@@ -169,12 +170,16 @@ export default function ProgressPage() {
 
           return (
             <section key={phase}>
-              <div className="nc-glass flex items-center justify-between gap-3 px-4 py-3 mb-2">
-                <div>
-                  <div className="text-[13px] font-medium text-[var(--nc-text)]">{meta.label}</div>
-                  <div className="mt-0.5 text-[11px] text-[var(--nc-text-dim)]">{meta.description}</div>
+              {/* Phase header — cream strip for dark↔cream alternation */}
+              <div className="nc-glass-cream mb-1 flex items-center justify-between gap-3 px-3 py-2">
+                <div className="flex items-center gap-2">
+                  <div className={`size-2 rounded-full shrink-0`} style={{ backgroundColor: PHASE_BAR_COLORS[phase] }} />
+                  <div>
+                    <div className="text-[0.78rem] font-bold text-[var(--nc-cream-text)]">{meta.label}</div>
+                    <div className="text-[0.6875rem] text-[var(--nc-cream-muted)]">{meta.description}</div>
+                  </div>
                 </div>
-                <div className={`rounded-[var(--radius)] border px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] ${meta.badgeTone}`}>
+                <div className={`rounded-[0.3rem] border px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] shrink-0 ${meta.badgeTone}`}>
                   {concepts.length}
                 </div>
               </div>
@@ -187,6 +192,7 @@ export default function ProgressPage() {
                     score={Math.round(fingerprint?.conceptMastery[concept.id]?.decayedScore ?? 0)}
                     locked={phase === 'locked'}
                     prereqLabel={phase === 'locked' ? getPrereqLabel(concept, conceptGraph.concepts) : undefined}
+                    variant="dark"
                   />
                 ))}
               </div>

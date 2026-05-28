@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useRef, useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -179,105 +179,119 @@ export function WritingEditor() {
   const unappliedCount = correctionResult?.unapplied ?? 0
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Daily prompt */}
-      <div className="rounded-xl bg-nc-card border border-nc-border p-3">
-        <div className="mb-1 flex items-center gap-2 flex-wrap">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-nc-text-dim">
+    <div className="flex flex-col gap-[6px]">
+
+      {/* ── Prompt — cream panel ── */}
+      <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-3 py-2.5">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">
             {focusLabel ? 'Ukens fokus' : 'Dagens prompt'}
           </span>
-          {focusLabel && (
+          {focusLabel ? (
             <span
-              className="rounded-full px-2 py-0.5 text-[10px] font-semibold leading-none"
-              style={{
-                background: 'var(--nc-green-tint)',
-                border: '1px solid var(--nc-green-border)',
-                color: 'var(--nc-green)',
-              }}
+              className="rounded-full border border-[rgba(200,255,32,0.28)] bg-[rgba(200,255,32,0.12)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#5A8A00]"
               aria-label={`Ukens fokus: ${focusLabel}`}
             >
               {focusLabel}
             </span>
-          )}
+          ) : null}
         </div>
-        <p className="text-[13px] text-pretty text-nc-text-muted">{prompt}</p>
+        <p className="mt-1.5 text-[0.82rem] text-pretty leading-[1.5] text-[var(--nc-cream-muted)]">{prompt}</p>
       </div>
 
-      {/* Mode switcher — voice is default when available */}
-      {hasSpeechAPI && (
-        <div className="flex gap-2">
-          {(['voice', 'text'] as const).map((mode) => (
-            <button
-              key={mode}
-              onClick={() => { if (isListening) toggleListening(); setInputMode(mode) }}
-              className="flex-1 rounded-full border py-2 text-[12px] font-bold transition-colors"
-              style={{
-                background: inputMode === mode ? '#111118' : '#fff',
-                borderColor: inputMode === mode ? '#111118' : 'rgba(17,17,24,0.12)',
-                color: inputMode === mode ? '#C8FF00' : 'rgba(17,17,24,0.55)',
-              }}
-            >
-              {mode === 'voice' ? '🎙 Snakk' : '⌨️ Skriv'}
-            </button>
-          ))}
+      {/* ── Input mode toggle (voice / text) — dark card ── */}
+      {hasSpeechAPI ? (
+        <div className="grid grid-cols-2 overflow-hidden rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)]">
+          {(['voice', 'text'] as const).map((mode, i) => {
+            const isActive = inputMode === mode
+            return (
+              <button
+                key={mode}
+                onClick={() => { if (isListening) toggleListening(); setInputMode(mode) }}
+                aria-pressed={isActive}
+                className={`relative py-2.5 text-[10px] font-bold uppercase tracking-[0.10em] transition-colors${i === 0 ? '' : ' border-l border-[var(--nc-border)]'}`}
+                style={{
+                  color: isActive ? 'var(--nc-signal)' : 'var(--nc-text-dim)',
+                  background: isActive ? 'rgba(200,255,32,0.06)' : 'transparent',
+                }}
+              >
+                {mode === 'voice' ? 'Snakk' : 'Skriv'}
+                {isActive ? (
+                  <span className="absolute bottom-0 left-0 h-[2px] w-full bg-[var(--nc-signal)]" />
+                ) : null}
+              </button>
+            )
+          })}
         </div>
-      )}
+      ) : null}
 
-      {/* Voice input mode */}
+      {/* ── Voice input mode — dark card with mic orb ── */}
       {inputMode === 'voice' && hasSpeechAPI ? (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-[6px]">
           <button
             onClick={toggleListening}
-            className="flex flex-col items-center justify-center gap-3 rounded-2xl border py-8 transition-all active:scale-[0.98]"
+            aria-label={isListening ? 'Stopp opptak' : 'Start opptak'}
+            className="flex flex-col items-center justify-center gap-3 rounded-lg border py-8 transition-all active:scale-[0.98]"
             style={{
-              background: isListening ? 'rgba(17,17,24,0.04)' : '#fff',
-              borderColor: isListening ? 'rgba(17,17,24,0.20)' : 'rgba(17,17,24,0.10)',
+              background: 'var(--nc-card)',
+              borderColor: isListening ? 'var(--nc-signal-border)' : 'var(--nc-border)',
             }}
           >
             <motion.div
               animate={isListening ? { scale: [1, 1.15, 1] } : { scale: 1 }}
-              transition={{ duration: 1, repeat: isListening ? Infinity : 0 }}
-              className="flex h-14 w-14 items-center justify-center rounded-full"
-              style={{ background: isListening ? '#111118' : 'rgba(17,17,24,0.06)' }}
+              transition={{ duration: 0.15, repeat: isListening ? Infinity : 0 }}
+              className="flex size-14 items-center justify-center rounded-full"
+              style={{
+                background: isListening ? 'var(--nc-signal-tint)' : 'rgba(255,255,255,0.06)',
+              }}
             >
               {isListening
-                ? <MicOff size={22} color="#C8FF00" />
-                : <Mic size={22} color="rgba(17,17,24,0.55)" />}
+                ? <MicOff size={22} color="var(--nc-signal)" aria-hidden="true" />
+                : <Mic size={22} color="var(--nc-text-muted)" aria-hidden="true" />}
             </motion.div>
-            <span className="text-[13px] font-bold" style={{ color: isListening ? '#111118' : 'rgba(17,17,24,0.45)' }}>
+            <span className="text-[11px] font-bold uppercase tracking-[0.10em]"
+              style={{ color: isListening ? 'var(--nc-signal)' : 'var(--nc-text-dim)' }}
+            >
               {isListening ? 'Trykk for å stoppe' : 'Trykk for å snakke'}
             </span>
           </button>
-          {text && (
-            <div className="rounded-xl bg-nc-card border border-nc-border p-4 text-[15px] leading-relaxed text-nc-text">
+
+          {text ? (
+            <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-3 py-3 text-[14px] leading-relaxed text-[var(--nc-cream-text)]">
               {text}
-              <div className="mt-2 text-right text-[11px] text-nc-text-dim">{wordCount} ord</div>
+              <div className="mt-2 text-right text-[10px] tabular-nums text-[var(--nc-cream-dim)]">{wordCount} ord</div>
             </div>
-          )}
+          ) : null}
         </div>
       ) : (
-        /* Text input mode */
+        /* ── Text input mode — cream writing surface ── */
         <div className="flex flex-col gap-1">
-          <textarea
-            className="w-full min-h-[180px] resize-none rounded-xl bg-nc-card border border-nc-border p-4 text-nc-text placeholder-nc-text-dim text-[15px] leading-relaxed focus:outline-none focus:border-nc-green/40 transition-colors"
-            placeholder="Skriv på norsk her..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <div className="text-right text-[11px] text-nc-text-dim">{wordCount} ord</div>
+          <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] overflow-hidden">
+            <textarea
+              className="w-full min-h-[180px] resize-none bg-transparent px-3 py-3 text-[14px] leading-relaxed text-[var(--nc-cream-text)] placeholder:text-[var(--nc-cream-dim)] focus:outline-none"
+              placeholder="Skriv på norsk her..."
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              aria-label="Skriv norsk tekst"
+            />
+            <div className="flex items-center justify-end border-t border-[rgba(17,21,24,0.06)] px-3 py-1.5">
+              <span className="text-[10px] tabular-nums text-[var(--nc-cream-dim)]">{wordCount} ord</span>
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Analyze button */}
-      {canAnalyze && (
+      {/* ── Analyze button — lime CTA ── */}
+      {canAnalyze ? (
         <button
           onClick={handleAnalyze}
           disabled={isAnalyzing}
-          className="w-full rounded-xl bg-nc-green py-3 text-sm font-extrabold text-[#0d0d14] disabled:opacity-50 transition-transform active:scale-[0.98] flex items-center justify-center gap-2"
+          aria-label="Analyser tekst"
+          className="nc-button-primary w-full rounded-lg py-3 text-[0.82rem] font-extrabold disabled:opacity-50 flex items-center justify-center gap-2"
         >
           {isAnalyzing ? (
             <>
-              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+              <svg className="animate-spin size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
               </svg>
@@ -287,79 +301,89 @@ export function WritingEditor() {
             'Analyser tekst'
           )}
         </button>
-      )}
+      ) : null}
 
-      {/* Feedback */}
+      {/* ── Feedback block ── */}
       <AnimatePresence>
-        {feedback && (
+        {feedback ? (
           <motion.div
             key="feedback"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-[6px]"
           >
-            {/* Praise */}
-            <div className="rounded-xl bg-nc-green/8 border border-nc-green/20 p-4">
-              <p className="text-[13px] text-nc-text">🎉 {feedback.praise}</p>
+            {/* Praise — cream panel */}
+            <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-3 py-2.5">
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Tilbakemelding</div>
+              <p className="mt-1 text-[0.82rem] leading-[1.5] text-[var(--nc-cream-text)]">{feedback.praise}</p>
             </div>
 
-            {/* Errors — focus-tagged errors render first (silent stable sort, D4) */}
-            {orderedErrors.length > 0 && (
-              <div className="flex flex-col gap-2">
+            {/* Errors — dark cards with red left accent */}
+            {orderedErrors.length > 0 ? (
+              <div className="flex flex-col gap-[6px]">
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)] px-1">
+                  {orderedErrors.length} {orderedErrors.length === 1 ? 'rettelse' : 'rettelser'}
+                </div>
                 {orderedErrors.map((err, i) => (
-                  <div key={i} className="rounded-xl bg-nc-card border border-nc-border border-l-2 border-l-red-400/60 pl-4 pr-4 py-3">
-                    <p className="text-[13px] text-nc-text">
-                      <span className="line-through text-nc-text-muted">{err.wrong}</span>
+                  <div
+                    key={i}
+                    className="rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] border-l-2 pl-3 pr-3 py-2.5"
+                    style={{ borderLeftColor: 'rgba(255,106,85,0.55)' }}
+                  >
+                    <p className="text-[0.82rem] text-[var(--nc-text)]">
+                      <span className="line-through text-[var(--nc-text-dim)]">{err.wrong}</span>
                       {' → '}
-                      <span className="text-nc-green font-semibold">{err.correct}</span>
+                      <span className="font-semibold text-[var(--nc-signal)]">{err.correct}</span>
                     </p>
-                    <p className="mt-1 text-[12px] text-nc-text-muted">{err.briefWhy}</p>
+                    <p className="mt-0.5 text-[11px] text-[var(--nc-text-muted)]">{err.briefWhy}</p>
                   </div>
                 ))}
               </div>
-            )}
+            ) : null}
 
-            {/* Suggestion */}
-            <div className="rounded-xl bg-nc-card border border-nc-border p-4">
-              <p className="text-[13px] text-nc-text-muted">💡 {feedback.suggestion}</p>
+            {/* Suggestion — dark card */}
+            <div className="rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-2.5">
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Forslag</div>
+              <p className="mt-1 text-[0.82rem] leading-[1.5] text-[var(--nc-text-muted)]">{feedback.suggestion}</p>
             </div>
 
             {/* Show corrected toggle */}
-            {feedback.errors.length > 0 && (
+            {feedback.errors.length > 0 ? (
               <button
                 onClick={() => setShowCorrected((v) => !v)}
-                className="text-[12px] font-semibold text-nc-green underline underline-offset-2 text-left"
+                className="text-[11px] font-semibold text-left px-1"
+                style={{ color: 'var(--nc-signal)' }}
+                aria-expanded={showCorrected}
               >
                 {showCorrected ? 'Skjul rettet versjon' : 'Se rettet versjon'}
               </button>
-            )}
+            ) : null}
 
-            {/* Corrected version */}
+            {/* Corrected version — cream panel */}
             <AnimatePresence>
-              {showCorrected && (
+              {showCorrected ? (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="rounded-xl bg-nc-card border border-nc-green/20 p-4">
-                    <div className="mb-1 text-[10px] uppercase tracking-widest text-nc-green/50">Rettet versjon</div>
-                    <p className="text-[15px] leading-relaxed text-nc-green/90">{correctedText}</p>
-                    {unappliedCount > 0 && (
-                      <p className="mt-2 text-[11px] text-nc-text-dim">
+                  <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(200,255,32,0.22)] px-3 py-2.5">
+                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#5A8A00]">Rettet versjon</div>
+                    <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--nc-cream-text)]">{correctedText}</p>
+                    {unappliedCount > 0 ? (
+                      <p className="mt-2 text-[10px] text-[var(--nc-cream-dim)]">
                         Noen rettelser kunne ikke brukes automatisk — se tilbakemeldingen over.
                       </p>
-                    )}
+                    ) : null}
                   </div>
                 </motion.div>
-              )}
+              ) : null}
             </AnimatePresence>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   )
 }
-

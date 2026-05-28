@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, BookOpen, Clock } from 'lucide-react'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { markLaneDone } from '@/lib/lane-completion'
@@ -71,11 +71,20 @@ const GENRE_LABELS: Record<Genre, string> = {
   news: 'Nyheter',
 }
 
+// Green-led coherent CEFR badge set: signal green leads, neutral tints for others
 const CEFR_COLORS: Record<CEFRLevel, string> = {
-  A1: 'bg-emerald-400/15 text-emerald-400',
-  A2: 'bg-sky-400/15 text-sky-400',
-  B1: 'bg-violet-400/15 text-violet-400',
-  B2: 'bg-amber-400/15 text-amber-400',
+  A1: 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal)] border border-[rgba(200,255,32,0.18)]',
+  A2: 'bg-[rgba(255,255,255,0.08)] text-[var(--nc-text-muted)] border border-[var(--nc-border)]',
+  B1: 'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-dim)] border border-[var(--nc-border)]',
+  B2: 'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-dim)] border border-[var(--nc-border)]',
+}
+
+// Cream-context CEFR colors (used inside the reader panel)
+const CEFR_COLORS_CREAM: Record<CEFRLevel, string> = {
+  A1: 'bg-[var(--nc-signal-tint)] text-[#3A6600] border border-[rgba(200,255,32,0.28)]',
+  A2: 'bg-[rgba(17,21,24,0.07)] text-[var(--nc-cream-muted)] border border-[rgba(17,21,24,0.10)]',
+  B1: 'bg-[rgba(17,21,24,0.05)] text-[var(--nc-cream-dim)] border border-[rgba(17,21,24,0.08)]',
+  B2: 'bg-[rgba(17,21,24,0.05)] text-[var(--nc-cream-dim)] border border-[rgba(17,21,24,0.08)]',
 }
 
 export default function ReadingPage() {
@@ -101,8 +110,8 @@ export default function ReadingPage() {
   }
 
   return (
-    <div className="nc-gradient-page flex min-h-dvh flex-col">
-      <main className="relative z-10 mx-auto flex w-full max-w-xl flex-1 flex-col gap-4 px-5 pb-24 pt-5">
+    <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
+      <main className="nc-mobile-shell nc-flow-shell">
         <AnimatePresence mode="wait">
           {!selectedText ? (
             <motion.div
@@ -110,58 +119,75 @@ export default function ReadingPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-[6px]"
             >
-              {/* Header */}
-              <div className="nc-glass-cream p-5">
-                <div className="nc-label">Leseflate</div>
-                <h1 className="mt-2 text-[2rem] font-extrabold text-[var(--nc-cream-text)]">Lesestudio</h1>
-                <p className="mt-2 text-[0.95rem] leading-7 text-[var(--nc-cream-muted)]">
-                  Les norsk tekst på ditt nivå. Hver eksponering kan støtte de samme konseptene som øktene dine.
+              {/* ── Hero (Lime focal panel) ── */}
+              <div className="nc-signal-panel p-3">
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Leseflate</div>
+                <h1 className="mt-1 text-balance text-[1.25rem] font-extrabold leading-none text-[var(--nc-signal-fg)]">
+                  Lesestudio
+                </h1>
+                <p className="mt-1 text-[0.78rem] leading-5 text-[rgba(10,18,6,0.62)]">
+                  Norsk tekst på ditt nivå.
                 </p>
               </div>
 
-              {/* Filter pills */}
-              <div className="flex gap-2 flex-wrap">
-                {(['all', 'A1', 'A2'] as const).map((lvl) => (
-                  <button
-                    key={lvl}
-                    onClick={() => setFilterLevel(lvl)}
-                    className={`rounded-full px-3 py-1 text-[11px] font-semibold border transition-colors ${
-                      filterLevel === lvl
-                        ? 'bg-[var(--nc-red-tint)] text-[var(--nc-red)] border-[var(--nc-red-border)]'
-                        : 'nc-glass text-[var(--nc-text-muted)] hover:text-[var(--nc-text)]'
-                    }`}
-                  >
-                    {lvl === 'all' ? 'Alle' : lvl}
-                  </button>
-                ))}
+              {/* ── Filter pills (Dark strip) ── */}
+              <div className="flex items-center gap-[6px] rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
+                <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Nivå</span>
+                <div className="flex gap-1.5 flex-wrap">
+                  {(['all', 'A1', 'A2'] as const).map((lvl) => (
+                    <button
+                      key={lvl}
+                      onClick={() => setFilterLevel(lvl)}
+                      aria-label={`Filter: ${lvl === 'all' ? 'Alle nivåer' : lvl}`}
+                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold border transition-colors ${
+                        filterLevel === lvl
+                          ? 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal)] border-[var(--nc-signal-border)]'
+                          : 'bg-transparent text-[var(--nc-text-muted)] border-[var(--nc-border)] hover:text-[var(--nc-text)]'
+                      }`}
+                    >
+                      {lvl === 'all' ? 'Alle' : lvl}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              {/* Text cards */}
-              <div className="flex flex-col gap-3">
-                {filtered.map((text, i) => (
-                  <motion.button
-                    key={text.id}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    onClick={() => { setSelectedText(text); setTappedWord(null); setShowParallel(false) }}
-                    className="w-full text-left nc-glass-cream rounded-2xl p-4 hover:border-[var(--nc-red-border)] transition-colors active:scale-[0.99]"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <span className="text-[15px] font-bold text-[var(--nc-cream-text)]">{text.title}</span>
-                      <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[text.cefrLevel]}`}>
-                        {text.cefrLevel}
-                      </span>
-                    </div>
-                    <div className="mt-1 flex items-center gap-2">
-                      <span className="text-[11px] text-[var(--nc-cream-muted)]">{GENRE_LABELS[text.genre]}</span>
-                      <span className="text-[var(--nc-cream-dim)]">·</span>
-                      <span className="text-[11px] text-[var(--nc-cream-muted)]">~{text.estimatedMinutes} min</span>
-                    </div>
-                  </motion.button>
-                ))}
+              {/* ── Text cards (Cream panel) ── */}
+              <div className="nc-glass-cream rounded-lg overflow-hidden">
+                <div className="border-b border-[rgba(17,21,24,0.06)] px-2.5 py-2">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">
+                    {filtered.length} tekster
+                  </span>
+                </div>
+                <div className="flex flex-col divide-y divide-[rgba(17,21,24,0.06)]">
+                  {filtered.map((text, i) => (
+                    <motion.button
+                      key={text.id}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.04 }}
+                      onClick={() => { setSelectedText(text); setTappedWord(null); setShowParallel(false) }}
+                      className="w-full text-left px-2.5 py-2.5 hover:bg-[rgba(17,21,24,0.03)] active:bg-[rgba(17,21,24,0.06)] transition-colors"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <span className="text-[0.88rem] font-bold leading-tight text-[var(--nc-cream-text)]">
+                          {text.title}
+                        </span>
+                        <span className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold ${CEFR_COLORS_CREAM[text.cefrLevel]}`}>
+                          {text.cefrLevel}
+                        </span>
+                      </div>
+                      <div className="mt-1 flex items-center gap-1.5">
+                        <BookOpen size={10} className="text-[var(--nc-cream-dim)]" aria-hidden="true" />
+                        <span className="text-[10px] text-[var(--nc-cream-muted)]">{GENRE_LABELS[text.genre]}</span>
+                        <span className="text-[var(--nc-cream-dim)]">·</span>
+                        <Clock size={10} className="text-[var(--nc-cream-dim)]" aria-hidden="true" />
+                        <span className="text-[10px] tabular-nums text-[var(--nc-cream-muted)]">~{text.estimatedMinutes} min</span>
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ) : (
@@ -170,54 +196,69 @@ export default function ReadingPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-[6px]"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between">
+              {/* ── Reader nav bar (Dark) ── */}
+              <div className="flex items-center justify-between gap-2 rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-1.5">
                 <button
                   onClick={closeText}
-                  className="nc-glass flex size-10 items-center justify-center text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] transition-colors"
-                  aria-label="Tilbake"
+                  className="flex size-8 items-center justify-center rounded-[0.35rem] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)] hover:bg-[rgba(255,255,255,0.06)] transition-colors"
+                  aria-label="Tilbake til tekstliste"
                 >
                   <ChevronLeft size={18} />
                 </button>
+
+                <div className="flex min-w-0 flex-1 items-center gap-1.5">
+                  <span className="truncate text-[0.8rem] font-bold text-[var(--nc-text)]">{selectedText.title}</span>
+                  <span className={`shrink-0 rounded-full px-1.5 py-px text-[9px] font-bold ${CEFR_COLORS[selectedText.cefrLevel]}`}>
+                    {selectedText.cefrLevel}
+                  </span>
+                </div>
+
                 <button
                   onClick={() => setShowParallel((v) => !v)}
-                  className={`rounded-full border px-3 py-1 text-[11px] font-semibold transition-colors ${
+                  aria-label={showParallel ? 'Vis kun norsk' : 'Vis engelsk parallelt'}
+                  className={`shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-bold transition-colors ${
                     showParallel
-                      ? 'bg-[var(--nc-red-tint)] border-[var(--nc-red-border)] text-[var(--nc-red)]'
-                      : 'nc-glass text-[var(--nc-text-muted)]'
+                      ? 'bg-[var(--nc-signal-tint)] border-[var(--nc-signal-border)] text-[var(--nc-signal)]'
+                      : 'bg-transparent border-[var(--nc-border)] text-[var(--nc-text-muted)]'
                   }`}
                 >
                   {showParallel ? 'Norsk' : 'Vis engelsk'}
                 </button>
               </div>
 
-              {/* Title block */}
-              <div>
-                <h1 className="font-display text-xl font-bold text-[var(--nc-text)]">{selectedText.title}</h1>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CEFR_COLORS[selectedText.cefrLevel]}`}>
-                    {selectedText.cefrLevel}
+              {/* ── Concept strip (Dark micro bar) ── */}
+              <div className="flex items-center gap-1.5 rounded-md bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-1.5 overflow-x-auto">
+                <span className="shrink-0 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Konsepter</span>
+                {selectedText.conceptIds.slice(0, 3).map((cid) => (
+                  <span
+                    key={cid}
+                    className="shrink-0 rounded-[0.2rem] bg-[var(--nc-signal-tint)] border border-[rgba(200,255,32,0.14)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.06em] text-[var(--nc-signal)]"
+                  >
+                    {cid.replace(/-/g, ' ')}
                   </span>
-                  <span className="text-[11px] text-[var(--nc-text-muted)]">{GENRE_LABELS[selectedText.genre]}</span>
+                ))}
+                <div className="flex shrink-0 items-center gap-1 ml-auto">
+                  <Clock size={9} className="text-[var(--nc-text-dim)]" aria-hidden="true" />
+                  <span className="text-[9px] tabular-nums text-[var(--nc-text-dim)]">~{selectedText.estimatedMinutes} min</span>
                 </div>
               </div>
 
-              {/* Text content */}
-              <div className={showParallel ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
-                <div className="nc-glass-elevated p-5 md:p-7">
+              {/* ── Text content (Cream "paper" surface) ── */}
+              <div className={showParallel ? 'grid grid-cols-1 gap-[6px]' : ''}>
+                <div className="nc-surface p-4">
                   {showParallel && (
-                    <div className="mb-2 text-[10px] uppercase tracking-widest text-[var(--nc-text-dim)]">Norsk</div>
+                    <div className="mb-2 text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Norsk</div>
                   )}
-                  <p className="text-[16px] leading-8 text-[var(--nc-text-muted)]">
+                  <p className="text-[0.9rem] leading-[1.85] text-[var(--nc-cream-text)]">
                     {selectedText.content.split('\n').map((line, i) => (
                       <span key={i}>
                         {line.split(' ').map((word, j) => (
                           <span
                             key={j}
                             onClick={() => handleWordTap(word)}
-                            className="cursor-pointer hover:text-[var(--nc-red)] rounded px-0.5 transition-colors"
+                            className="cursor-pointer rounded px-px hover:bg-[rgba(200,255,32,0.18)] hover:text-[#1A4800] transition-colors"
                           >
                             {word}{' '}
                           </span>
@@ -229,16 +270,16 @@ export default function ReadingPage() {
                 </div>
 
                 {showParallel && (
-                  <div className="nc-glass-elevated p-5 md:p-7">
-                    <div className="mb-2 text-[10px] uppercase tracking-widest text-[var(--nc-text-dim)]">Engelsk</div>
-                    <p className="text-[15px] leading-8 text-[var(--nc-text-muted)]">
+                  <div className="nc-glass rounded-lg p-4">
+                    <div className="mb-2 text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Engelsk</div>
+                    <p className="text-[0.85rem] leading-[1.85] text-[var(--nc-text-muted)] text-pretty">
                       {selectedText.contentEn}
                     </p>
                   </div>
                 )}
               </div>
 
-              {/* Word lookup tooltip */}
+              {/* ── Word lookup (Dark card) ── */}
               <AnimatePresence>
                 {tappedWord && (
                   <motion.div
@@ -246,28 +287,29 @@ export default function ReadingPage() {
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="nc-glass p-4"
+                    transition={{ duration: 0.15 }}
+                    className="nc-glass rounded-lg p-2.5"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[15px] font-bold text-[var(--nc-text)]">{tappedWord}</span>
+                      <span className="text-[0.9rem] font-bold text-[var(--nc-text)]">{tappedWord}</span>
                       <button
                         onClick={() => setTappedWord(null)}
-                        className="text-[var(--nc-text-dim)] text-[12px] hover:text-[var(--nc-text)] transition-colors"
-                        aria-label="Lukk"
+                        className="flex size-6 items-center justify-center rounded-full border border-[var(--nc-border)] text-[var(--nc-text-dim)] hover:text-[var(--nc-text)] transition-colors"
+                        aria-label="Lukk ordoppslag"
                       >
-                        ✕
+                        <span aria-hidden="true" className="text-[11px] leading-none">✕</span>
                       </button>
                     </div>
-                    <p className="mt-1 text-[12px] text-[var(--nc-text-muted)]">Ordoppslag kommer snart</p>
+                    <p className="mt-1 text-[0.75rem] text-[var(--nc-text-muted)]">Ordoppslag kommer snart</p>
                   </motion.div>
                 )}
               </AnimatePresence>
 
               <button
                 onClick={closeText}
-                className="nc-button-primary w-full rounded-xl py-3 text-sm font-extrabold transition-transform active:scale-[0.98]"
+                className="nc-button-primary w-full rounded-xl py-3 text-[0.82rem] font-extrabold"
               >
-                Ferdig lesing ✓
+                Ferdig lesing
               </button>
             </motion.div>
           )}
