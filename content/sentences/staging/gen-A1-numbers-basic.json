@@ -1,0 +1,296 @@
+[
+  {
+    "id": "e3891bb4-d922-4942-89cb-60d8896a2a3a",
+    "norwegian": "Jeg har 50 kroner",
+    "english": "I have 50 kr",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad5b1f2d-a1b4-469e-88d4-c06a311626c0",
+    "norwegian": "Jeg er 25 år gammel",
+    "english": "I am 25 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "70a291a7-ab9e-4eed-a245-411c672358f2",
+    "norwegian": "Jeg har 3 epler",
+    "english": "I have 3 apples",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fbcf5e68-bb02-4018-8c3e-f4ddb93d05c7",
+    "norwegian": "Jeg er 20 år gammel",
+    "english": "I am 20 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "44ef8514-221c-448f-837b-0fe65a7cf90e",
+    "norwegian": "Jeg har 3 søsken.",
+    "english": "I have 3 siblings.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bcc374b2-00ab-4da9-bc30-ba8e534f88ad",
+    "norwegian": "Jeg har 50 kr",
+    "english": "I have 50 kroner",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f54e81c7-ab97-43d3-892f-7251a3829668",
+    "norwegian": "Han er 30 år gammel",
+    "english": "He is 30 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d266d18a-db5f-4e5d-83b9-05e21fcf8423",
+    "norwegian": "Vi har 20 kopper",
+    "english": "We have 20 cups",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "27e18583-0bfc-4563-8f13-29cd411881ea",
+    "norwegian": "Det er 10 timer",
+    "english": "It is 10 hours",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "02c95efe-c35b-4c23-88e5-8fc885ec7558",
+    "norwegian": "Jeg har to bøker",
+    "english": "I have two books",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6d516e3b-a717-4a61-99e9-881dad96d866",
+    "norwegian": "Det er 15 minutter igjen",
+    "english": "It's 15 minutes left",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a48dd2cc-a00b-4e74-a13d-9bcf7815d465",
+    "norwegian": "Jeg har 25 kroner",
+    "english": "I have 25 kr",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2597b745-25c6-4923-8a86-8425f64c874b",
+    "norwegian": "Jeg er 30 år",
+    "english": "I am 30 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b95433da-87fb-42bf-8acc-492751be5aa6",
+    "norwegian": "Jeg har 5 epler",
+    "english": "I have 5 apples",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

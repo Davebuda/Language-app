@@ -17,7 +17,8 @@ import { join } from 'node:path'
 
 const ROOT = process.cwd()
 const SENT_DIR = join(ROOT, 'content', 'sentences')
-const STAGE_DIR = join(SENT_DIR, 'staging')
+const dirArg = (process.argv.find((a) => a.startsWith('--dir=')) ?? '').split('=')[1]
+const STAGE_DIR = dirArg ? join(ROOT, dirArg) : join(SENT_DIR, 'staging')
 const COMMIT = process.argv.includes('--commit')
 const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const
 

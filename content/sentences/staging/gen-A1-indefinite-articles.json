@@ -1,0 +1,464 @@
+[
+  {
+    "id": "b67d03c7-4e51-4e59-be14-457f807d93ef",
+    "norwegian": "Jeg har en hund.",
+    "english": "I have a dog.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa397799-ab14-4bc4-a9db-1efa427f748b",
+    "norwegian": "Vi tar en tur.",
+    "english": "We take a walk.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8bca53ce-faa8-4660-8b1b-0a5e67588048",
+    "norwegian": "De har to biler.",
+    "english": "They have two cars.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "991a4be7-f1aa-416b-b7d1-ca255d0f9891",
+    "norwegian": "Jeg skal et møte.",
+    "english": "I am going to a meeting.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5fcc1f2c-6fd0-424e-aae0-3c25562b651d",
+    "norwegian": "Hun tar en kaffe.",
+    "english": "She is taking a coffee.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8a07fcd5-c8d5-48d5-b603-2e26a62eb767",
+    "norwegian": "Vi er i en butikk.",
+    "english": "We are in a store.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2c168615-77c7-44f2-a72e-a7ea2e397854",
+    "norwegian": "De har tre bøker.",
+    "english": "They have three books.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7fdba185-935b-444f-b049-2bd92a9b8de3",
+    "norwegian": "Jeg tar en pause.",
+    "english": "I am taking a break.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a5224e8c-46fd-4d6a-9342-5be242ab531d",
+    "norwegian": "Hun tar en bil.",
+    "english": "She is taking a car.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ef561c72-e1ee-4848-8dd3-57d6202c761f",
+    "norwegian": "Vi er i et bibliotek.",
+    "english": "We are in a library.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a4c64bdd-3b53-4e9e-87a1-58b2b7a0c196",
+    "norwegian": "De har fire bøker.",
+    "english": "They have four books.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ba26a307-ebdb-4c43-ac56-42b34c1b89a3",
+    "norwegian": "Jeg tar en tur.",
+    "english": "I am taking a walk.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d5926be0-db18-42ce-bf56-39b5ef55d2ff",
+    "norwegian": "Hun tar en bok.",
+    "english": "She is taking a book.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a269a390-0cb6-45c7-9e73-b60bcf0cc94b",
+    "norwegian": "Vi er i et museum.",
+    "english": "We are in a museum.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1f49620d-de9a-4f03-86e5-ee460d421a57",
+    "norwegian": "De har fem bøker.",
+    "english": "They have five books.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6a10555b-4f74-448c-9583-abcd5091ea2a",
+    "norwegian": "Ei venninne bor i huset",
+    "english": "A friend lives in the house",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bed5f2e2-793a-4050-9cf0-7ed37724b29f",
+    "norwegian": "Et barn leker med ballen",
+    "english": "A child plays with the ball",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c90accbc-ecb6-422f-b6c9-7e9d8040ee97",
+    "norwegian": "Vi bor i en by",
+    "english": "We live in a city",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cf390bf1-8b8a-41dd-8e10-beca0d54d8a4",
+    "norwegian": "Et barn leker med et leketøy",
+    "english": "A child plays with a toy",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "49a3523b-2714-4325-9c9b-54d44cde83a6",
+    "norwegian": "Ei venninne går til butikken",
+    "english": "A friend goes to the store",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "85f4fa63-9df8-477b-9710-d6c1c0c673da",
+    "norwegian": "Vi bor i et hus",
+    "english": "We live in a house",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "52c8e66e-4d41-4b65-97d4-ca7cfa0fa81a",
+    "norwegian": "Et barn leker med en ball",
+    "english": "A child plays with a ball",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

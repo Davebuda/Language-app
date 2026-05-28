@@ -1,0 +1,464 @@
+[
+  {
+    "id": "dd4c3749-ac2f-4108-af16-cc349c71f1d9",
+    "norwegian": "Hun er stor",
+    "english": "She is big",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ad47135-702c-4c5c-805d-9c406a6237a6",
+    "norwegian": "Huset er lite",
+    "english": "The house is small",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "72af98ad-6e83-4f80-884d-52fb77f700af",
+    "norwegian": "Han er dårlig",
+    "english": "He is bad",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f6e592ed-5936-426e-8d94-b35d399ae9de",
+    "norwegian": "Boken er gammel",
+    "english": "The book is old",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "44aa32d6-86b9-4b9f-baea-75d0292691ca",
+    "norwegian": "Hun er kort",
+    "english": "She is short",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4ead517d-2a96-44a7-adde-cfd2b6407b0a",
+    "norwegian": "De er ny",
+    "english": "They are new",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "32895e33-8a25-4f92-aaed-892639aaa07b",
+    "norwegian": "Han er lang",
+    "english": "He is long",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ff79a94e-d3f6-4493-aa2e-a2657c792802",
+    "norwegian": "Hun er god",
+    "english": "She is good",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "72b1edc3-ecb9-4518-837f-f98a8421fc8e",
+    "norwegian": "De er gode",
+    "english": "They are good",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c837dd1e-b5e1-420a-b437-ccca0e04ae77",
+    "norwegian": "Jeg har en stor bok",
+    "english": "I have a big book",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25dfa35e-1bc5-4fb6-ace0-066bfbabfbd3",
+    "norwegian": "Boken er liten",
+    "english": "The book is small",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6481ae9d-4743-4d8c-9bc4-16319d45ed8a",
+    "norwegian": "Den er ny",
+    "english": "It is new",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c2e5069b-3368-453b-9b79-6e11af20035a",
+    "norwegian": "Jeg leser en lang historie",
+    "english": "I am reading a long story",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de91f20b-f664-4e86-b37f-d530391e703f",
+    "norwegian": "Boken er stor.",
+    "english": "The book is big.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "93a1b126-2675-4d0f-a065-a7b03d0e2dd2",
+    "norwegian": "Vinen er dårlig.",
+    "english": "The wine is bad.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9f7468c1-7da2-421d-8c2e-5f6245c689b6",
+    "norwegian": "Møtet er nytt.",
+    "english": "The meeting is new.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c6a77935-4664-4039-899f-9e80e1558096",
+    "norwegian": "Rommet er gammelt.",
+    "english": "The room is old.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3a0a5b85-5a22-4ed1-b7f8-5b6f1ea65ec5",
+    "norwegian": "Stolen er langt.",
+    "english": "The stolen is long.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "089ae981-3e1c-4235-93d2-1ed736a20428",
+    "norwegian": "Filmen er kort.",
+    "english": "The movie is short.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e33fc77c-f10d-442b-b1fe-dad480b7cb5b",
+    "norwegian": "Brevet er lite (igjen).",
+    "english": "The letter is small (again).",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1c8b3aff-00d5-41b0-a03d-bc06f1cfe6e7",
+    "norwegian": "Bilen er kort (igjen).",
+    "english": "The car is short (again).",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "276ac3a5-236a-41d9-9829-c42880d1cdff",
+    "norwegian": "Planen er stor (igjen).",
+    "english": "The plan is big (again).",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

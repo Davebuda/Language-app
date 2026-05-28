@@ -1,0 +1,420 @@
+[
+  {
+    "id": "a79ce9f2-30ca-44f8-8de7-3a50bc950e79",
+    "norwegian": "Huset som ligger ved sjøen",
+    "english": "The house that is by the sea",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "32f710f4-5bbf-49f7-a5a9-d0916bea6d7c",
+    "norwegian": "Mannen som går tur",
+    "english": "The man who goes for a walk",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a3dd46e8-3556-4f6c-a5d1-3d288b0d4ddc",
+    "norwegian": "Kvinnen som jobber",
+    "english": "The woman who works",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4c2f99a8-dc71-4b6a-a22b-aedba8b7b30b",
+    "norwegian": "Barnet som leker",
+    "english": "The child who plays",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f3590d06-66eb-4c79-a3f8-a982dde51855",
+    "norwegian": "Byen som er stor",
+    "english": "The city that is big",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d16d1b36-9292-4e4d-943e-79ea18b507cf",
+    "norwegian": "Maten som spises",
+    "english": "The food that is eaten",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ddb72538-f0b7-469e-b54d-02c55927a0f1",
+    "norwegian": "Mannen som leser bok",
+    "english": "The man who reads a book",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4d94d845-ee79-4a90-abcf-65eedab23b97",
+    "norwegian": "Kvinnen som lærer språk",
+    "english": "The woman who learns a language",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cf20009c-3614-41d2-9e03-3ef70a970d18",
+    "norwegian": "Barnet som snakker med barn",
+    "english": "The child who talks to children",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "184e26db-66fe-43d7-9ca3-c99b34f06c6b",
+    "norwegian": "Hunden som bjeffer",
+    "english": "The dog that barks",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ca58267-b0d1-4f47-bb08-e6db6b92fcfe",
+    "norwegian": "Mannen som spiller fotball",
+    "english": "The man who plays football",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b0716123-0985-4bc0-acd7-804592316703",
+    "norwegian": "Kvinnen som kjører bil",
+    "english": "The woman who drives a car",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "407ce29d-6857-4453-a760-615ef06aafcb",
+    "norwegian": "Barnet som går til skolen",
+    "english": "The child who goes to school",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a4fdc46c-8b68-403d-a319-da77d47248d0",
+    "norwegian": "Byen som er travel",
+    "english": "The city that is busy",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "caca4def-e92c-4c2b-90c4-d292bf0c4744",
+    "norwegian": "Jeg liker å lese bøker som handler om eventyr",
+    "english": "I like to read books about adventure",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ed185401-7736-4732-9851-98f52080d54f",
+    "norwegian": "Hun jobber i en butikk som ligger i sentrum",
+    "english": "She works in a store that is located in the city center",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0d38b2b5-d1d3-4652-8b98-2ac5428c6c87",
+    "norwegian": "Han spiller fotball som er en del av landslaget",
+    "english": "He plays football that is part of the national team",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9177e495-477c-4f88-9d4e-5c8101c17b3a",
+    "norwegian": "De dro til et land som heter Frankrike",
+    "english": "They went to a country that is called France",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4505032c-2ba2-49b1-a286-e5b72fc31d1a",
+    "norwegian": "Hun reiste med en buss som var full av folk",
+    "english": "She traveled with a bus that was full of people",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c16249c6-96ae-459d-801e-2118ac4e8b02",
+    "norwegian": "Han bor i en leilighet som har et stort hage",
+    "english": "He lives in an apartment that has a large garden",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bdcc069e-5c1a-45c3-a6f8-8ec3b053709a",
+    "norwegian": "Vi skal til en by som er hovedstaden",
+    "english": "We will go to a city that is the capital",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5e26d716-e9fd-48e9-a217-fe785ef6ee6d",
+    "norwegian": "De har en hund som heter Max",
+    "english": "They have a dog that is called Max",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

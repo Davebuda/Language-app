@@ -172,15 +172,15 @@ describe('E: Level Isolation', () => {
     });
   });
 
-  describe('E5: B1 corpus has substantial content', () => {
-    it('B1 has more sentences than A1 (360 vs ~198)', () => {
+  describe('E5: corpus has substantial content at each level', () => {
+    // Updated 2026-05-29: the content-overhaul depth pass deepened A1 from ~198
+    // to ~591 sentences (avg ~27/concept), so A1 is now the most populated level
+    // — the old "B1 > A1" assertion encoded the pre-overhaul thinness of A1 and
+    // is obsolete. The real intent is that every shipped level is substantial.
+    it('A1 has substantial content after the depth overhaul (≥ 300)', () => {
       const a1 = getLevelContentConfig('A1');
-      const b1 = getLevelContentConfig('B1');
-
       const a1Count = Object.keys(a1.sentences).length;
-      const b1Count = Object.keys(b1.sentences).length;
-
-      expect(b1Count).toBeGreaterThan(a1Count);
+      expect(a1Count).toBeGreaterThanOrEqual(300);
     });
 
     it('B1 has at least 300 sentences (canonical b1.json = 360)', () => {

@@ -1,0 +1,632 @@
+[
+  {
+    "id": "1f5bf398-9b54-4f36-9ac0-ee972296e60d",
+    "norwegian": "Liker du kaffe?",
+    "english": "Do you like coffee?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "62f04b84-672c-4e50-a500-4dbad053df57",
+    "norwegian": "Bor du i Oslo?",
+    "english": "Do you live in Oslo?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "06889816-32e8-446b-8f2d-04a3668dea3b",
+    "norwegian": "Hva spiser du?",
+    "english": "What are you eating?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8ef88107-4948-4ed1-80aa-91b297d4d29e",
+    "norwegian": "Har du hund?",
+    "english": "Do you have a dog?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "30639219-4663-42c1-9aee-f41233d102c9",
+    "norwegian": "Kan du svømme?",
+    "english": "Can you swim?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f04b3262-2b0b-45bf-a74b-fdd6ade25050",
+    "norwegian": "Er du glad?",
+    "english": "Are you happy?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a6da5049-48d0-4c2d-b260-a7068c241285",
+    "norwegian": "Hvor bor du?",
+    "english": "Where do you live?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a160085d-d2bb-438e-a38d-70b8c9f799a6",
+    "norwegian": "Liker du musikk?",
+    "english": "Do you like music?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ac96596-e50e-44b0-bf36-0109a2dd98fc",
+    "norwegian": "Har du bil?",
+    "english": "Do you have a car?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "95545d3d-2e37-4b49-b71a-f6410d3dac6b",
+    "norwegian": "Kan du sykle?",
+    "english": "Can you cycle?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "16f86cef-0c3b-4bf8-bb92-932b52b3b5c1",
+    "norwegian": "Er du sulten?",
+    "english": "Are you hungry?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "840f8b6e-7c44-4548-9246-d7ffb93dffad",
+    "norwegian": "Hva gjør du?",
+    "english": "What are you doing?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c7f526c9-77e8-41d8-8203-ee7c221fc260",
+    "norwegian": "Bor du her?",
+    "english": "Do you live here?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5d736b0f-c605-4bf5-805d-b7b4d2729b9a",
+    "norwegian": "Hvor bor han?",
+    "english": "Where does he live?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aa02c4e1-b7b6-41e4-bd1b-dabf23448289",
+    "norwegian": "Hva heter du?",
+    "english": "What is your name?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "68b23a84-e3b0-431a-857f-d2a043b60113",
+    "norwegian": "Liker han te?",
+    "english": "Does he like tea?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "33bdb7e8-3c44-41aa-9220-331b1de6cce7",
+    "norwegian": "Er du syk?",
+    "english": "Are you sick?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cdaf35a5-ca30-44c5-90eb-85ec1d0f700a",
+    "norwegian": "Kjøper du bok?",
+    "english": "Are you buying a book?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0745f238-2085-45b3-b5ab-3f71aa85d56c",
+    "norwegian": "Spiser du frokost?",
+    "english": "Are you eating breakfast?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6ac2d7ac-1c20-46c4-9ea8-c8fe44457d33",
+    "norwegian": "Bor han i Oslo?",
+    "english": "Does he live in Oslo?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5110059d-68be-45d6-b03d-d286ee1fef4f",
+    "norwegian": "Er hun syk?",
+    "english": "Is she ill?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1f5746e6-d4fc-4c35-a545-3b856d1b7939",
+    "norwegian": "Hva gjør han?",
+    "english": "What is he doing?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "02ef7f21-0c7f-4a62-97a9-28189d03b2d6",
+    "norwegian": "Kjøper du bil?",
+    "english": "Are you buying a car?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe2c9391-fd23-4dfb-b21e-cf62e1e9743e",
+    "norwegian": "Bor du hjemme?",
+    "english": "Do you live at home?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "50cc898d-873c-4a76-b3a0-c660c1a1a9d6",
+    "norwegian": "Liker hun film?",
+    "english": "Does she like movies?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "216d3c03-7009-476f-9202-1c979acad7b7",
+    "norwegian": "Har du bror?",
+    "english": "Do you have a brother?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa7be922-23cd-4da8-965d-7a59967f06f1",
+    "norwegian": "Går du skole?",
+    "english": "Are you going to school?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dc8af5a1-5012-49a3-a760-cfc4bfae7b09",
+    "norwegian": "Kjøper du en bil?",
+    "english": "Are you buying a car?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0da5dcb0-a763-4f19-913a-9e743d120acf",
+    "norwegian": "Har du en hund?",
+    "english": "Do you have a dog?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cced31a9-f3a2-4360-94bb-a9197e919393",
+    "norwegian": "Liker hun fisk?",
+    "english": "Does she like fish?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [
+      "question-words",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

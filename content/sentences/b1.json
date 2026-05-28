@@ -7664,5 +7664,198 @@
       "translation-to-norwegian"
     ],
     "notes": ""
+  },
+  {
+    "id": "462a2dd7-8603-4470-a7d8-30dd0b98c07c",
+    "norwegian": "Jeg hadde spist middagen før jeg gikk til sengs",
+    "english": "I had eaten dinner before I went to bed",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "922a5970-383b-48dd-a0bd-5011f7371f8f",
+    "norwegian": "Jeg hadde spist frokost da jeg kom hjem",
+    "english": "I had eaten breakfast when I came home",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa34bc02-de10-4fd9-9c32-5cb327e8be82",
+    "norwegian": "Hun hadde gått en tur før hun dro til jobb",
+    "english": "She had gone for a walk before she went to work",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bf9dd260-2216-4d7d-883a-38957e139f52",
+    "norwegian": "Jeg hadde lest en bok før jeg dro til butikken",
+    "english": "I had read a book before I went to the store",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2442e1d5-172f-4b0d-ad3f-1a670dafba0d",
+    "norwegian": "De hadde dratt på ferie før de begynte å jobbe igjen",
+    "english": "They had gone on vacation before they started working again",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ef726c47-93ec-43ec-a6f4-2e03e9654d50",
+    "norwegian": "Jeg hadde studert i flere timer da jeg tok eksamen",
+    "english": "I had studied for several hours when I took the exam",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "499091c7-6c6e-4ccf-8308-d2ac45b74460",
+    "norwegian": "Jeg hadde tatt en tur før jeg dro til treningsstudioet",
+    "english": "I had taken a walk before I went to the gym",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "937ec0a4-3156-448e-a4af-88a36e535e9e",
+    "norwegian": "De hadde gjort husarbeid da de kom hjem fra jobb",
+    "english": "They had done their chores when they came home from work",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9715f40f-ba9d-44e1-8a19-1ed564842ab2",
+    "norwegian": "Jeg hadde studert i flere timer før jeg tok eksamen",
+    "english": "I had studied for several hours before I took the exam",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9be2f508-1e82-42e5-b03d-f60b69b9bffd",
+    "norwegian": "Jeg har vært i Norge i tre år, men er fortsatt ikke flytende.",
+    "english": "I have been in Norway for three years but am still not fluent.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "translation-to-english",
+      "word-order",
+      "speed-round",
+      "listening-comprehension"
+    ]
   }
 ]

@@ -1,0 +1,380 @@
+[
+  {
+    "id": "7e202c36-9215-44e2-a439-22768ab78ce3",
+    "norwegian": "Jeg spiste frokost klokken 8",
+    "english": "I ate breakfast at 8 o'clock",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dd7e6cf3-df76-436a-83eb-d08b3d8593cc",
+    "norwegian": "Boken var veldig lang",
+    "english": "The book was very long",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bb782a0f-3fe5-4e96-8085-72206b608e87",
+    "norwegian": "Jeg kjørte til butikken",
+    "english": "I drove to the store",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d5012fdd-9744-4c16-91fd-b7dabdf1ae14",
+    "norwegian": "Jeg snakket telefonen",
+    "english": "I called on the phone",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4803941e-401a-4e9d-a5e0-b293340d761f",
+    "norwegian": "Han kjørte til jobb",
+    "english": "He drove to work",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "33b21773-8748-4d27-9f66-52f6dc9c7b99",
+    "norwegian": "Hun bodd i byen",
+    "english": "She lived in the city",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0254e3c8-4939-4b10-bfe4-1df1bce60207",
+    "norwegian": "Jeg kjøpte en bok",
+    "english": "I bought a book",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4afbca36-9dfd-439e-be87-179357a8f662",
+    "norwegian": "Han spiste middag",
+    "english": "He ate lunch",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "69197379-cff6-4f01-82b1-3688578bcac8",
+    "norwegian": "Hun studerte hele natten",
+    "english": "She studied the whole night",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c980da8f-afc7-46e5-9663-9778ace59bd1",
+    "norwegian": "Jeg kjørte bilen i går",
+    "english": "I drove the car yesterday",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "746e0096-9a8e-4681-986e-515c0b60cb32",
+    "norwegian": "Han bodd i Paris",
+    "english": "He lived in Paris",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7fdcfeb5-76f9-42f6-91cd-17d8e58ab8d8",
+    "norwegian": "Hun snakket med vennen sin",
+    "english": "She spoke with her friend",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5f5cf83-01b5-478c-b98c-2c78b5206bbf",
+    "norwegian": "Jeg kjørte til butikken i går",
+    "english": "I drove to the store yesterday",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "78de52ae-477b-488c-970a-64b0e20ac9c6",
+    "norwegian": "Bilen min er blå.",
+    "english": "My car is blue.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "140c9a13-e7c2-4a9d-85ad-5b87eec347a5",
+    "norwegian": "Jeg går til jobb klokken 9.",
+    "english": "I go to work at 9 am.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f0f13d39-9920-4c5c-a3fd-77c2fceb839f",
+    "norwegian": "Jeg spiste en bolle med frokost",
+    "english": "I ate a bowl of breakfast",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f14544ba-c241-4b06-9e46-36b52d9ebe00",
+    "norwegian": "Jeg kjørte til jobb",
+    "english": "I drove to work",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "498da4ae-a571-4ff8-94bb-e4abbe1d72d9",
+    "norwegian": "Jeg bodde i en liten by",
+    "english": "I lived in a small town",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

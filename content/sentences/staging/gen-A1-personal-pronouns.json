@@ -1,0 +1,420 @@
+[
+  {
+    "id": "e9931b78-a368-4d2f-830e-d4b3c717814d",
+    "norwegian": "Jeg heter Ole",
+    "english": "My name is Ole",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3c0d9d2f-5783-403c-a313-801d16015f20",
+    "norwegian": "Hun jobber i butikken",
+    "english": "She works in the store",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e956cd99-df33-42a6-9f3c-4201e93824d5",
+    "norwegian": "De er mine venner",
+    "english": "They are my friends",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1293b76b-27a1-4c07-9718-4f880651e190",
+    "norwegian": "Jeg heter Ola",
+    "english": "My name is Ola",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "47b89b24-07a0-4509-9feb-bca1fc429057",
+    "norwegian": "Du er læreren min",
+    "english": "You are my teacher",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "31b10fe2-202a-4cbd-9543-3f59127e9e0b",
+    "norwegian": "Han går til butikken",
+    "english": "He goes to the store",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3bf89ab6-1bab-4494-ae02-2da3eb7a2ac4",
+    "norwegian": "Hun spiser lunsj",
+    "english": "She eats lunch",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "29183196-8434-4197-9409-54f87c3fd035",
+    "norwegian": "Det er søndag",
+    "english": "It is Sunday",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "981b9acd-7d37-466e-94bc-f5e56e2d8e7d",
+    "norwegian": "Vi går til parken",
+    "english": "We go to the park",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6ad0766e-99f3-4b2b-a08d-5e30eb296c08",
+    "norwegian": "Dere er vennene mine",
+    "english": "You are my friends",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de63f1ef-b22d-4e95-98e8-bdd9a4ed4bf9",
+    "norwegian": "De går hjem",
+    "english": "They go home",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4ec72d8b-80dd-488f-b113-54bb92cdb333",
+    "norwegian": "Jeg leser en bok",
+    "english": "I am reading a book",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2a422106-9e89-4b8f-8bec-3caef956c99d",
+    "norwegian": "Du ser på TV",
+    "english": "You are watching TV",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e27999aa-520b-4753-aad7-cee54718cfc4",
+    "norwegian": "Han spiller et spill",
+    "english": "He is playing a game",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dc7e4a53-3df8-4f87-85a6-bea5649d3efb",
+    "norwegian": "Hun er på jobb",
+    "english": "She is at work",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aaa74a61-2e66-4b02-8e65-b8a8a8ff527f",
+    "norwegian": "De går til skolen",
+    "english": "They go to school",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "958977d4-1fe8-47a6-ad6b-da0007b1d789",
+    "norwegian": "Vi ser på filmen",
+    "english": "We are watching the movie",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e40d85c3-6c72-4379-bd55-cacbbf910758",
+    "norwegian": "Jeg jobber på kontoret",
+    "english": "I work in the office",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a6193bfa-2c63-4a0c-8f21-b926db7cf7bc",
+    "norwegian": "Hun studerer i parken",
+    "english": "She studies in the park",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c60fe7c5-6404-4517-8057-0e65820aa866",
+    "norwegian": "De spiller fotball",
+    "english": "They play football",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "294be78a-30de-4fbe-ba8b-66e41735c64d",
+    "norwegian": "Hun studerer norsk",
+    "english": "She studies Norwegian",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0ca5131d-2898-4497-ba91-a6329d6e5b1f",
+    "norwegian": "Han bor i Oslo",
+    "english": "He lives in Oslo",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

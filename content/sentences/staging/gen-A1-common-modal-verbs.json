@@ -1,0 +1,442 @@
+[
+  {
+    "id": "ecccd3df-2ddf-4ca3-bebd-8a5d560115aa",
+    "norwegian": "Kan jeg ta en kaffe?",
+    "english": "Can I have a coffee?",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0bb9851c-3265-425e-9f86-b0db42627c58",
+    "norwegian": "Vil du komme på festen?",
+    "english": "Will you come to the party?",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "781f83d5-f23e-4985-ac7c-43c7a3b95542",
+    "norwegian": "Skal jeg hjelpe deg?",
+    "english": "Shall I help you?",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9aa3e1c4-9167-4f30-88fc-016647abbaa9",
+    "norwegian": "Jeg kan spise pizza",
+    "english": "I can eat pizza",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e8cc4554-9777-47ac-ad71-ac472166f8cd",
+    "norwegian": "Jeg skal gå til butikken",
+    "english": "I will go to the store",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a4866118-05ce-442f-9ec4-d09a0cdd8652",
+    "norwegian": "Du må gå til skolen",
+    "english": "You must go to school",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "65b28ee2-aa7c-4b92-b21c-3441e617117d",
+    "norwegian": "Jeg vil gå til butikken.",
+    "english": "I will go to the store.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b5973e51-1ed1-4d04-9098-6a795759f615",
+    "norwegian": "Du må ta medisinen din",
+    "english": "You must take your medicine.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09b04b6e-7220-4e6b-b471-72a06a6c9c30",
+    "norwegian": "Jeg kan gå til butikken.",
+    "english": "I can go to the store.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "82b72c6a-24c0-462c-8dd8-777311540daf",
+    "norwegian": "Jeg vil kjøpe melk.",
+    "english": "I will buy milk.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9ff23b66-5170-4f7f-90e5-8ee6ec9528c7",
+    "norwegian": "Jeg skal ta bussen.",
+    "english": "I will take the bus.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "192a62df-ab39-45b2-8098-5551f70882ba",
+    "norwegian": "Jeg må gå til skolen.",
+    "english": "I must go to school.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0c4e02bc-adb5-4856-b987-39114c0b2aa8",
+    "norwegian": "Jeg kan skrive på bokmål",
+    "english": "I can write in Bokmål",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "40859164-3d0a-4d2e-a807-c351b99172fc",
+    "norwegian": "Jeg vil reise til Norge",
+    "english": "I will travel to Norway",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f0736a7c-b8f2-4ed8-8baa-fbf46b4f6c9a",
+    "norwegian": "Jeg må studere hver dag",
+    "english": "I must study every day",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dd3d3a1e-058d-4d30-995c-01d42256b7f3",
+    "norwegian": "Jeg kan lære norsk",
+    "english": "I can learn Norwegian",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8c17c457-80bf-45d2-81c1-4c560471615e",
+    "norwegian": "Jeg vil gå til skolen",
+    "english": "I will go to school",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe73429f-52a5-40e1-bc77-236ddc1ad1dc",
+    "norwegian": "Jeg skal reise til byen",
+    "english": "I shall travel to the city",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "60beacf9-460c-47d4-a01f-6cba8bf54b70",
+    "norwegian": "Jeg må jobbe hardt",
+    "english": "I must work hard",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a79843a0-c46a-4c84-a37c-f6977b15facc",
+    "norwegian": "Jeg kan lese en bok",
+    "english": "I can read a book",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3d1f68bf-a74b-4a21-9910-aaa50e451c7b",
+    "norwegian": "Jeg vil lære å snakke engelsk",
+    "english": "I will learn to speak English",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3d8a5255-d405-4ad6-a1d2-dbd0c38c0092",
+    "norwegian": "Jeg skal gå til parken",
+    "english": "I shall go to the park",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

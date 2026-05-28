@@ -1,0 +1,632 @@
+[
+  {
+    "id": "e2518c3d-de3a-4762-847c-f6113c48602a",
+    "norwegian": "Barna leker",
+    "english": "The children are playing",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d10fbbb7-2a17-4891-8b6b-f40becd33bdd",
+    "norwegian": "Hundene løper",
+    "english": "The dogs are running",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ede0fa0f-d275-417f-8d27-3abd48f4e2ef",
+    "norwegian": "Bilene kjører",
+    "english": "The cars are driving",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e3afe50a-18d1-48c8-8d53-4a50ce0ec8e7",
+    "norwegian": "Bøkene ligger",
+    "english": "The books are lying",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "777d711d-5614-4700-9c89-484cbcc3dcae",
+    "norwegian": "Dørene åpner",
+    "english": "The doors are opening",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "13c43897-1b4f-44a5-9cb9-6f3ecb19b633",
+    "norwegian": "Vinduene lukker",
+    "english": "The windows are closing",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "be081d52-b651-4006-8ee6-24226761bbc1",
+    "norwegian": "Barna spiser",
+    "english": "The children are eating",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bee08126-0724-4236-b181-5aa3a9f791d1",
+    "norwegian": "Kattene sover",
+    "english": "The cats are sleeping",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "73782929-ddf2-46e8-96b7-9bcd10d93e6a",
+    "norwegian": "Husene står",
+    "english": "The houses are standing",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a18e7a55-5e85-4ced-b970-8b31fe2830fe",
+    "norwegian": "Gatene er brede",
+    "english": "The streets are wide",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "db432518-35d6-4ef2-b22d-a12476f5480c",
+    "norwegian": "Skolene er store",
+    "english": "The schools are big",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0e107be4-5a77-4d9e-a7cb-55d2022f3169",
+    "norwegian": "Barna synger",
+    "english": "The children are singing",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8c28e54e-4de8-410f-a632-bcf88ee4cd12",
+    "norwegian": "Bøkene er mine.",
+    "english": "The books are mine.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8aeaa2d3-18b0-46f5-b5fb-4b2605451eba",
+    "norwegian": "Bilene er nye.",
+    "english": "The cars are new.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6ad1d49a-8045-434b-9c10-4624868b2746",
+    "norwegian": "Husene er store.",
+    "english": "The houses are big.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "38fd7ea1-9fd6-42f0-9225-f0a77f77a219",
+    "norwegian": "Guttene leker.",
+    "english": "The boys are playing.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d11de18d-63be-47e3-b749-0b3a2caff9cb",
+    "norwegian": "Jentene synger.",
+    "english": "The girls are singing.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "01565a78-a86e-46fe-8ab4-f5814aa2e257",
+    "norwegian": "Dørene er åpne.",
+    "english": "The doors are open.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4a763148-5e7a-4a62-82a0-241ebd444847",
+    "norwegian": "Vinduene er små.",
+    "english": "The windows are small.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e63197e7-ac57-4993-8a85-c8cd95f888b4",
+    "norwegian": "Stolene er gamle.",
+    "english": "The chairs are old.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "993f23d3-e548-4d77-a63a-37e4d7cf9ab2",
+    "norwegian": "Bordene er rene.",
+    "english": "The tables are clean.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ebb2f4f2-895a-421a-8615-ebb23a6c8c77",
+    "norwegian": "Bilene er røde.",
+    "english": "The cars are red.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "43281def-2374-4383-ae8c-a49bc4e930b1",
+    "norwegian": "Vinduene er høye.",
+    "english": "The windows are high.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c32a9bc4-61eb-48ac-82ca-977c05052b25",
+    "norwegian": "Stolene er nye.",
+    "english": "The chairs are new.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cb2482ac-1107-4b00-bac2-5a4d533d0658",
+    "norwegian": "Bordene er blanke.",
+    "english": "The tables are blank.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a5c3f52-eb3d-4b49-a339-46b9d6468d41",
+    "norwegian": "Lampene er lyse.",
+    "english": "The lamps are bright.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4beec460-ffd5-4b91-91ff-3bfffc1aa91a",
+    "norwegian": "Bordene er lange.",
+    "english": "The tables are long.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e333f8b3-c7dd-4d2f-b8be-71f000f6474e",
+    "norwegian": "Vinduene åpner.",
+    "english": "The windows open.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a4a05b8e-acdf-4bd0-ab17-5335aa0e859f",
+    "norwegian": "Glasene er fulle.",
+    "english": "The glasses are full.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "db096add-e26e-45ea-886c-ba19731125dc",
+    "norwegian": "Sakene er tunge.",
+    "english": "The things are heavy.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

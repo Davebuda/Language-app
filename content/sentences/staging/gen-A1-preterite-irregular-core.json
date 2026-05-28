@@ -1,0 +1,464 @@
+[
+  {
+    "id": "d96e500d-02b1-4ede-8fdc-29e4fa14892f",
+    "norwegian": "Jeg gikk til butikken",
+    "english": "I went to the store",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "885a5629-e042-454b-887e-046875445d2c",
+    "norwegian": "Jeg sa hei",
+    "english": "I said hello",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "00bb8112-219f-4445-b840-f15c07a74a73",
+    "norwegian": "Jeg så på TV",
+    "english": "I watched on TV",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "92b3c36e-b636-49d4-a5af-b75fc5b7ee05",
+    "norwegian": "Jeg ble trøtt",
+    "english": "I got tired",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ebd58ee-fe03-442b-b298-d50b40117d3f",
+    "norwegian": "De kom til meg",
+    "english": "They came to me",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fdf5f8da-4dc0-47e2-9e1c-9fbc7a3edc11",
+    "norwegian": "Jeg tok en bok",
+    "english": "I took a book",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4dd5d2b3-6e28-45c7-af4e-3a457e75ec92",
+    "norwegian": "Jeg ble til et møte",
+    "english": "I was to a meeting",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a376a71c-345f-471e-a826-5ef8158723c4",
+    "norwegian": "Jeg kom fra jobb",
+    "english": "I came from work",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f955b1d-ae3e-40b0-8c04-1c14ca9ed8e2",
+    "norwegian": "Jeg ga en gave",
+    "english": "I gave a gift",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5b90fad1-dbe9-47d5-a5bd-47a2c9ebd2b2",
+    "norwegian": "Jeg visste ikke hva jeg skulle gjøre",
+    "english": "I did not know what to do",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "432bc2cd-daaf-41b5-a8e6-92c24f22a926",
+    "norwegian": "Jeg sa ikke hei",
+    "english": "I did not say hello",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bf83f78e-3d18-42e5-a28c-116398d919bb",
+    "norwegian": "Jeg ble ikke til et møte",
+    "english": "I was not to a meeting",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9b14be77-ac48-42f1-9d3b-c67219307fe1",
+    "norwegian": "Jeg kom ikke fra jobb",
+    "english": "I did not come from work",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ef3be40d-1d5c-4aa6-bf8b-707097dfab58",
+    "norwegian": "Jeg ga ikke en gave",
+    "english": "I did not give a gift",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4fb2f665-a931-4e4a-8984-ddf6ef7ad325",
+    "norwegian": "Jeg sa noe morsomt",
+    "english": "I said something funny",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "27506ea6-3643-4621-8f2b-06e82fe035ed",
+    "norwegian": "De blir hjemme",
+    "english": "They stay home",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cb025cbe-81b9-4bd8-be3b-a15ef9a94532",
+    "norwegian": "Han kommer tilbake",
+    "english": "He comes back",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de5060e2-2b16-444c-a4cb-afd20a874641",
+    "norwegian": "Vi sa noe viktig",
+    "english": "We said something important",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b41f0170-7aec-44d9-a938-247dca634a21",
+    "norwegian": "De blir hjemme hele dagen",
+    "english": "They stay home all day",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e125a808-0914-4552-9a60-728a8eb8e63d",
+    "norwegian": "Han gir meg noe fint",
+    "english": "He gives me something nice",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "71b0ba00-da59-4dba-81df-b04b82051185",
+    "norwegian": "Vi tar en pause",
+    "english": "We take a break",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b8c80437-7c6a-4595-b9d0-f1a69c0310e6",
+    "norwegian": "De sa noe interessant",
+    "english": "They said something interesting",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

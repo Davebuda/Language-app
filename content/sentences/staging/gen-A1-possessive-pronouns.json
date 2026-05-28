@@ -1,0 +1,486 @@
+[
+  {
+    "id": "be27b5a3-904f-4660-a7f7-0b0c81f577b0",
+    "norwegian": "boken min",
+    "english": "my book",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0a8cb5e5-07f2-4ebb-8980-074e70112dcf",
+    "norwegian": "huset ditt",
+    "english": "your house",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b014e10b-c0ff-452d-98ab-8948e1d2ef34",
+    "norwegian": "bilen hans",
+    "english": "his car",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de82a861-4537-4644-9f3d-d3aae325b18b",
+    "norwegian": "boken din",
+    "english": "your book",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c4a51866-0269-4354-90e2-4649c9a1ca14",
+    "norwegian": "huset mitt",
+    "english": "my house",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1f9f7afa-18ce-499c-9a72-0c2d860ad7dd",
+    "norwegian": "bilen vår",
+    "english": "our car",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "996e9469-7f13-4f8a-9c03-97d4fd5d07e7",
+    "norwegian": "boken hans",
+    "english": "his book",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3d7beade-0344-4b5e-8e45-45a173773189",
+    "norwegian": "bilen hennes",
+    "english": "her car",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d00cc5aa-eac5-4e82-ae95-9ab6ceccdb4d",
+    "norwegian": "boken vår",
+    "english": "our book",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dfda65c0-1641-4d56-9f94-c5460a9de32e",
+    "norwegian": "Han kjører en bil",
+    "english": "He drives a car",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "674358ab-f674-44da-9818-9b07d008c478",
+    "norwegian": "Boken min er på bordet.",
+    "english": "The book is on the table.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e9800163-0a2b-4734-9c0b-9af6da2432b3",
+    "norwegian": "Huset ditt er vakkert.",
+    "english": "Your house is beautiful.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2fc415c9-de7f-418a-bf0d-6934a5d151be",
+    "norwegian": "Bilen hans er rask.",
+    "english": "His car is fast.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fab101fd-b9f1-4e5e-83df-4e7cfad69193",
+    "norwegian": "Han kjøpte en bil som er rød",
+    "english": "He bought a red car",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f4854287-3d41-4327-a494-2fc799acde0e",
+    "norwegian": "Vi har et hus som er stort",
+    "english": "We have a big house",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "23f4c8f3-9b42-4265-a958-c7cd484c587f",
+    "norwegian": "Den boken er hans",
+    "english": "That book is his",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "29d32212-caf9-4eda-9f35-4364440586ce",
+    "norwegian": "Bilen min er ny",
+    "english": "My car is new",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fc4caa77-108c-4d78-8501-dfbca8c50bca",
+    "norwegian": "Jeg har et hus som er mitt",
+    "english": "I have a house that is mine",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0b880920-1b3b-44ed-be4f-df4068abada6",
+    "norwegian": "Bilen hans er gammel",
+    "english": "His car is old",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b94b7c83-88a4-406b-9575-fc057e6d288b",
+    "norwegian": "Han har et hus som er stort",
+    "english": "He has a big house",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "67ee3356-e775-409f-b001-c5c14dac0247",
+    "norwegian": "Den boken er hennes",
+    "english": "That book is hers",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d29213c9-0698-4224-b27c-328a5fdb6f76",
+    "norwegian": "Bilen min er på veien",
+    "english": "My car is on the road",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

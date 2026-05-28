@@ -1,0 +1,28 @@
+{
+  "_comment": "Id-prefixes (first 8 chars) the norwegian-linguist confirm pass dropped from the gate-survivor (filtered/) lexical files on 2026-05-29. Reasons: translation mismatch, unnatural Norwegian, off-concept, off-level. Consumed by scripts/apply-drops.ts.",
+  "drop": [
+    "398d0d47", "f852c8df", "677bd9a3", "d8ea029c", "f549df13", "c774d5a5",
+    "0ff65e23", "738b1418", "611a17d6", "495be4f6", "27b78227",
+    "e3891bb4", "bcc374b2", "a48dd2cc", "27e18583",
+    "e9931b78", "1293b76b", "29183196", "e40d85c3",
+    "72d07464", "5e5cf09c", "6ce9970b", "ece28f53", "d7e7bfc1", "35f25429",
+    "925df3ae", "8adf529c", "c767a83b", "1ef75b23", "009591b1", "0b75dbfa", "cc0c045c", "7afbc61d",
+    "72af98ad", "4ead517d", "32895e33", "9f7468c1", "3a0a5b85",
+    "5fe93b1c", "9c2048b4", "ef0f022f", "ac24d8fe", "34ea678a",
+    "991a4be7", "a5224e8c",
+    "d5012fdd", "33b21773", "4afbca36", "746e0096", "78de52ae", "140c9a13", "f0f13d39", "dd7e6cf3",
+    "00bb8112", "4dd5d2b3", "bf83f78e", "27506ea6", "cb025cbe", "b41f0170", "e125a808", "71b0ba00", "5b90fad1",
+    "6444753f", "6d1c8ac1", "0b1b1d5e", "d70970fb", "002ba8c1", "2247f1db", "acc5d5d4", "e3f83cd7",
+    "383b6d20", "3d1fcaee",
+    "07dfcfac", "13d95444", "522d344d", "9e9748a8", "ce2e2264", "0c9ce55b",
+    "b9e363aa", "2c1fa8dd",
+    "cdaf35a5", "02ef7f21", "216d3c03", "fa7be922",
+    "97880bf0", "d156c9d9", "6dc11b8b", "1afa3f98", "6f715f48", "4f72212f", "d2997639", "95918a1a", "27fd6ea2", "b617dd1e",
+    "e75b2817", "bc2c7cc3",
+    "777d711d", "13c43897", "e333f8b3", "cb2482ac", "a4a05b8e", "db096add",
+    "a07ffcb0", "c73450d4", "a2e46f65", "f7aabfca", "60119626",
+    "d7649b75", "62dc96ff", "3c6ed6bd", "ec4a0019", "577ff9c3",
+    "a36fac61", "97128f85", "2e9164df", "de97cbff",
+    "5eb26593", "a742d93b", "c0efaa07"
+  ]
+}

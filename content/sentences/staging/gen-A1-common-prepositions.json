@@ -1,0 +1,486 @@
+[
+  {
+    "id": "bbdb447f-edb6-48d7-a316-81d25b96bf62",
+    "norwegian": "Jeg går til butikken med en venn",
+    "english": "I go to the store with a friend",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8499ea28-982f-4032-8b7c-811b01ccd634",
+    "norwegian": "Jeg kjøper et brød på bakeriet",
+    "english": "I buy a bread at the bakery",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "87b8a369-248e-4439-8478-8d58ad07b16c",
+    "norwegian": "Jeg bruker en hammer fra verktøykassen",
+    "english": "I use a hammer from the toolbox",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "72c59b7e-f462-4a67-8434-0f2f4d62a8c4",
+    "norwegian": "Jeg drar til jobb i bilen min",
+    "english": "I go to work in my car",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fb6f390e-1a9a-4ce4-8e9e-aa868f4dcc58",
+    "norwegian": "Jeg tar en bok fra hylla",
+    "english": "I take a book from the shelf",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f320ddaa-1567-4976-af59-ee1f934360e9",
+    "norwegian": "Jeg spiser lunsj med familien min",
+    "english": "I eat lunch with my family",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "495be4f6-08e2-4e76-9681-18f79fb97e73",
+    "norwegian": "Jeg skriver et brev til bestemor",
+    "english": "I write a letter to my grandmother",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "633d1c9c-19a8-492f-8829-b36324da9be2",
+    "norwegian": "Jeg jobber med en partner på kontoret",
+    "english": "I work with a partner at the office",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "611a17d6-4c95-4615-a6c8-f3a618bfd60c",
+    "norwegian": "Jeg drar fra huset til parken",
+    "english": "I go from home to the park",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "738b1418-220e-4147-9ce6-e6f81d07de1b",
+    "norwegian": "Jeg bruker en bok om natur på bordet",
+    "english": "I use a book about nature on the table",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "27b78227-881d-4f9e-a699-39321bb08bdc",
+    "norwegian": "Jeg går med et kart til butikken",
+    "english": "I go with a map to the store",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bf84a337-2a15-41f3-8e2d-2aef018823a1",
+    "norwegian": "Jeg drar fra byen til landet",
+    "english": "I go from the city to the countryside",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9702382d-f4c7-49d1-bfe9-c6d34150adbc",
+    "norwegian": "Jeg drar til butikken i dag",
+    "english": "I go to the store today",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "878178a8-4dca-4580-be6e-99db8749bd17",
+    "norwegian": "Han jobber med prosjektet",
+    "english": "He works on the project",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3fa0554a-15ca-47cd-8a2b-6f96b94ae2e7",
+    "norwegian": "Vi går ut med venner",
+    "english": "We go out with friends",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6af420a9-20bb-4ea7-9413-46463c6af296",
+    "norwegian": "Jeg besøker vennen min på fredag",
+    "english": "I visit my friend on Friday",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9f8e4d37-8eda-4cce-8475-bcaabb2221e6",
+    "norwegian": "Hun går til butikken med meg",
+    "english": "She goes to the store with me",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3aa322ee-619d-4860-9f90-15ea45ba0a58",
+    "norwegian": "Vi sitter i parken om sommeren",
+    "english": "We sit in the park in summer",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a32bfaad-130a-4bef-9b98-eb79f8321816",
+    "norwegian": "Jeg har en bok på bordet",
+    "english": "I have a book on the table",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0ff65e23-828c-4311-86a7-58542f9a6e85",
+    "norwegian": "Han reiser til fra",
+    "english": "He travels from to",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "05b29eb6-c3a3-4626-b25e-c37cc349bc52",
+    "norwegian": "Vi er i et møte med min sjef",
+    "english": "We are in a meeting with my boss",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8eab64e9-8374-4ff8-b4a5-3c71fdaf9982",
+    "norwegian": "Jeg er på restauranten",
+    "english": "I am at the restaurant",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

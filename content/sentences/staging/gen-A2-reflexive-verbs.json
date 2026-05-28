@@ -1,0 +1,420 @@
+[
+  {
+    "id": "61e569dc-76f3-47ac-a318-1dcefd61e3e8",
+    "norwegian": "Jeg vasker meg",
+    "english": "I wash myself",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f98e6257-9905-41c7-b05e-eafcafab6abd",
+    "norwegian": "Du kler på deg",
+    "english": "You get dressed",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7d1b6702-27bd-4d06-a6b0-900de7593627",
+    "norwegian": "Hun gifter seg med meg",
+    "english": "She gets married to me",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3d7f2c38-ac42-42a5-8e71-7fc77b8100c3",
+    "norwegian": "Jeg kler på meg.",
+    "english": "I put on myself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8e79af04-d867-4c2a-a22c-e0e8947c9144",
+    "norwegian": "Jeg setter meg",
+    "english": "I sit down myself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "00854254-39cc-4c36-bfb9-4631296b9e4d",
+    "norwegian": "Jeg gifter meg med deg",
+    "english": "I get married with you (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0ef5b834-d224-47f2-9d8e-9b9dc4eab2d8",
+    "norwegian": "Du vasker deg selv",
+    "english": "You wash yourself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d3fdef6e-bd64-40eb-9e91-632f5b921cae",
+    "norwegian": "Du kler på deg selv",
+    "english": "You put on yourself (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1108e361-e73f-4961-b826-360681f986a1",
+    "norwegian": "Du setter deg selv",
+    "english": "You sit down yourself (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "764f4ba1-d6c0-4631-bfcc-5b1b87949590",
+    "norwegian": "Jeg vasker meg selv med deg",
+    "english": "I wash myself with you (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "001380f1-ca44-4541-8eda-c7dba148481f",
+    "norwegian": "Du vasker deg selv med meg",
+    "english": "You wash yourself with me (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bb48df43-2487-4a53-b033-ee94602df826",
+    "norwegian": "Du kler på deg selv med meg",
+    "english": "You put on yourself with me (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ba308fa5-c36c-4bba-a560-5595953fde24",
+    "norwegian": "Jeg vasker meg selv med dem",
+    "english": "I wash myself with them (self)",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9b8f322e-eedb-4f31-985a-756f83611478",
+    "norwegian": "Jeg kler på deg.",
+    "english": "I dress you.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a34d24e5-0d2f-49d4-842c-21b98f97ac91",
+    "norwegian": "Jeg setter meg ved bordet.",
+    "english": "I sit down at the table.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "82add22d-45b3-4def-992a-9164debbbcca",
+    "norwegian": "Han kler seg selv",
+    "english": "He dresses himself",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e047d7b8-e4b4-497b-889c-f5cdeae6fe0d",
+    "norwegian": "Jeg spiser deg",
+    "english": "I eat you",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ae39712c-0c5c-4b8f-a68a-fa41f494cbca",
+    "norwegian": "Jeg gifter meg med henne",
+    "english": "I marry her.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f7fe0117-11df-4756-960b-b0293c93a6bc",
+    "norwegian": "Jeg setter meg ned",
+    "english": "I sit down.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a64c65fc-587e-4f8b-aabe-2ba6d827923b",
+    "norwegian": "Jeg vasker bøkene mine",
+    "english": "I wash my books.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b7ffe9f9-0092-4b3c-96a3-3b30d7aab4ae",
+    "norwegian": "Jeg gifter boken til ham",
+    "english": "I marry the book to him.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "305391a8-b5e4-46ff-a690-24a724131f02",
+    "norwegian": "Jeg kler på meg selv",
+    "english": "I dress myself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]
