@@ -313,5 +313,404 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "25f0d611-b964-4004-b907-5da6009aa69b",
+    "norwegian": "I kveld ser jeg TV.",
+    "english": "Tonight I watch TV.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0acab935-1f7c-4095-be4b-1f41c8cd54cc",
+    "norwegian": "Om ettermiddagen leser han bok.",
+    "english": "In the afternoon he reads a book.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1ae06811-2c92-42f3-a328-c7f9958bda8f",
+    "norwegian": "På lørdag går jeg på kino.",
+    "english": "On Saturday I go to the cinema.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b5fbc0ca-3943-44ec-9ab2-02eefa6c67c3",
+    "norwegian": "Hjemme spiller jeg piano.",
+    "english": "At home I play the piano.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "64dd6129-20a5-4abf-9d05-c87dddbfea61",
+    "norwegian": "Om natten sover jeg godt.",
+    "english": "At night I sleep well.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "099983d9-4f85-4273-a726-1a19bf3f6c13",
+    "norwegian": "På søndag går vi på tur.",
+    "english": "On Sunday we go for a hike.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f8355ab6-3be2-40b1-954a-169be9543a19",
+    "norwegian": "I dag skriver jeg brev.",
+    "english": "Today I write a letter.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "eaa5ff3b-9967-470c-bbdd-2fd0bf7b893e",
+    "norwegian": "I morgen skal jeg jobbe.",
+    "english": "Tomorrow I will work.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f56a671-03c3-4d4e-8cdd-ac0b64372d04",
+    "norwegian": "På søndag besøker jeg familien.",
+    "english": "On Sunday I visit my family.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad2c4636-debe-492a-a0b5-e956fa489146",
+    "norwegian": "I dag går jeg på kino.",
+    "english": "Today I go to the movies.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ee08a7ac-12ba-4452-9e99-6bbc465455ce",
+    "norwegian": "På torsdag møter jeg vennene mine.",
+    "english": "On Thursday I meet my friends.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3a50ca98-45d3-4cfa-a84f-0d6c59d7c11e",
+    "norwegian": "Hjemme ser jeg TV.",
+    "english": "At home I watch TV.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "574d8646-cc60-48de-bc2b-1bd13f086acd",
+    "norwegian": "I kveld leser jeg bok.",
+    "english": "This evening I read a book.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cd32d84c-8904-4de4-9fad-e4b52bd851d1",
+    "norwegian": "Om ettermiddagen spiller jeg fotball.",
+    "english": "In the afternoon I play soccer.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "439817c7-d226-4f02-a379-9bd5c6333118",
+    "norwegian": "Hvert år besøker jeg bestemor.",
+    "english": "Every year I visit my grandmother.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ea25b97-fdbb-440e-9bac-23b0b0ceb090",
+    "norwegian": "På søndag tar jeg en tur.",
+    "english": "On Sunday I take a walk.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dbab9e90-f100-4e01-b46c-bf8189e71448",
+    "norwegian": "I morgen kjører han bil.",
+    "english": "Tomorrow he drives a car.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ee19b33-fab5-4d20-8399-1ec5d33b8271",
+    "norwegian": "Hver dag drikker jeg vann.",
+    "english": "Every day I drink water.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1faf3c53-a45a-460b-9a79-a0a2fd7b9d1d",
+    "norwegian": "På tirsdag møter jeg venner.",
+    "english": "On Tuesday I meet friends.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

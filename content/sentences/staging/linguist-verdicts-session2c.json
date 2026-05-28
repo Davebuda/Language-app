@@ -1,0 +1,14 @@
+{
+  "_comment": "Groq-70B generation + norwegian-linguist review (2026-05-29, autopilot session 2c) to bring thin A1 concepts to >=30. 202 newly-generated candidates (delta vs pre-gen snapshot) reviewed across 4 parallel linguist passes; 132 KEEP seeded (written to staging/ready2c/, seed-staging --commit). ~65% true-keep. Notable defects the mechanical gate missed but the linguist caught: irregular verbs misfiled as preterite-regular (kjørte/gikk/skrev/sov/tok), Swedish forms (dricker, køber), Nynorsk forms (pengar, skei, ei), agreement errors (Huset er gammel), 2-word 'pronoun' sentences testing nothing, and the ENTIRE svo-word-order batch (missing terminal periods + trivial/ungrammatical).",
+  "kept_per_file": {
+    "preterite-regular": "11/20", "preterite-irregular-core": "16/17", "infinitive-form": "8/9",
+    "adjective-agreement": "13/18", "basic-adjectives": "9/15", "indefinite-articles": "11/15",
+    "v2-word-order": "15/19", "negation": "12/17", "numbers-basic": "12/21",
+    "personal-pronouns": "4/11", "possessive-pronouns": "13/14", "common-prepositions": "8/13",
+    "svo-word-order": "0/13 (entire batch dropped — missing periods + trivial/ungrammatical; regenerate)"
+  },
+  "total_kept": 132,
+  "total_reviewed": 202,
+  "a1_result": "A1 596->728, avg 27.1->33.1/concept, 13 thin -> 3 thin (svo 25, numbers-basic 29, preterite-regular 29)",
+  "audit_after": "0 ERRORS"
+}

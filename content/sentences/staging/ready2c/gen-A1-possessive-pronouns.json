@@ -1,0 +1,288 @@
+[
+  {
+    "id": "48abbd1a-3966-4428-b090-7e4263001ae5",
+    "norwegian": "Bilen min er rød",
+    "english": "My car is red",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "95229b92-118f-41d0-a015-9944b2f77216",
+    "norwegian": "Huset ditt er stort",
+    "english": "Your house is big",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fd4d31e8-9dd9-4617-8918-15698cf57b50",
+    "norwegian": "Boken hans er ny",
+    "english": "His book is new",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a46314e6-5fce-4af9-86f5-8346113856f2",
+    "norwegian": "Datteren min spiser",
+    "english": "My daughter is eating",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b113fda7-1034-4f19-8a1c-25a16e803bf2",
+    "norwegian": "Sønnen din løper",
+    "english": "Your son is running",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "869ab384-f547-444f-8de7-63d73633d5a1",
+    "norwegian": "Hunden hans er glad",
+    "english": "His dog is happy",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "911919a6-ff27-4e0b-9c27-5b184deb502d",
+    "norwegian": "Vennen min kommer",
+    "english": "My friend is coming",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f1c5f380-ade1-432f-a0d9-863e7036814e",
+    "norwegian": "Skolen din er nær",
+    "english": "Your school is near",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e8494842-82b7-4093-adc9-865944df264e",
+    "norwegian": "Faren min arbeider",
+    "english": "My father is working",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c38ef7e6-b4e4-4810-ad34-e114d44aaffd",
+    "norwegian": "Moren din synger",
+    "english": "Your mother is singing",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a1b13eca-4431-4d27-a395-42395c3b6528",
+    "norwegian": "Broren min leser",
+    "english": "My brother is reading",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1021d511-7004-4948-a9e5-52d5aeebbd87",
+    "norwegian": "Søsteren din sover",
+    "english": "Your sister is sleeping",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f5c2ca91-addc-4877-bfe7-466c16c817d4",
+    "norwegian": "Boken din er tung",
+    "english": "Your book is heavy",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

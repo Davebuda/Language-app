@@ -460,5 +460,320 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "b8458886-3061-4e62-af62-1fcca44c607b",
+    "norwegian": "Dette er en god bil",
+    "english": "This is a good car",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "14469a40-6de3-4f17-b6e0-10235978178c",
+    "norwegian": "Han har en ny sykkel",
+    "english": "He has a new bike",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "219e36e4-02f9-475a-b5e8-684d5724a1fb",
+    "norwegian": "Hun spiser en dårlig frokost",
+    "english": "She eats a bad breakfast",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0959ef1e-a0e4-4541-80bf-4db7cf433f09",
+    "norwegian": "Jeg ser en lang vei",
+    "english": "I see a long road",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3183fe9f-d7ff-419b-9dc0-4280b8db9bce",
+    "norwegian": "Han har en kort jakke",
+    "english": "He has a short jacket",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "49a379db-d56c-4bb1-bf09-076e7dc2ced6",
+    "norwegian": "Dette er en gammel bok",
+    "english": "This is an old book",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "65b4e91f-f880-4222-bf79-85393d7c89f7",
+    "norwegian": "Jeg kjøper en liten gave",
+    "english": "I buy a small gift",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b7c545bf-d9f0-4ad1-84be-df8e1700f9d0",
+    "norwegian": "Hun har en stor veske",
+    "english": "She has a big bag",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "edc9674f-f858-4701-bc89-ab54006c9e58",
+    "norwegian": "Han ser en ny film",
+    "english": "He sees a new movie",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "332d6616-d55a-41c5-90c7-42df2b812913",
+    "norwegian": "Jeg har en god venn",
+    "english": "I have a good friend",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "233c8f9d-c0b9-4a9a-a1dd-f042f61aa026",
+    "norwegian": "Dette er en dårlig idé",
+    "english": "This is a bad idea",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1dabf2fd-1c4f-47e4-8c82-ac7f8d73a2c8",
+    "norwegian": "Hunden er stor",
+    "english": "The dog is big",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3b510c9f-924e-4a7d-9ffb-c9dca76459bd",
+    "norwegian": "Været er dårlig",
+    "english": "The weather is bad",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "543c127f-5b17-400c-96a1-d79ff7eb67f2",
+    "norwegian": "Bilen er ny",
+    "english": "The car is new",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3378d02e-caa2-4e95-a2a8-7a2bc2c15578",
+    "norwegian": "Huset er gammel",
+    "english": "The house is old",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

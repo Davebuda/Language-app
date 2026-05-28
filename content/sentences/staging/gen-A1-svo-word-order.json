@@ -438,5 +438,265 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "15be1abe-5bbb-40a2-909d-e6ec36186cdf",
+    "norwegian": "Jeg spiser brød",
+    "english": "I eat bread",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "46cace34-db73-4bfc-9451-98f0b4a2ca74",
+    "norwegian": "Han drikker vann",
+    "english": "He drinks water",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dc2fb649-1a8f-4d4d-b871-003ecb939702",
+    "norwegian": "Hun synger sang",
+    "english": "She sings a song",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e3ebc13b-6f6a-491e-8edf-35864ef38991",
+    "norwegian": "Jeg kjøper bok",
+    "english": "I buy a book",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "49f3d80f-5e38-440f-bf28-656a4598bf26",
+    "norwegian": "Hun spiser frokost",
+    "english": "She eats breakfast",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aca035eb-4427-4fc8-b5a3-a76c436bab00",
+    "norwegian": "Han løper raskt",
+    "english": "He runs fast",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "03a1a918-3202-442c-960d-436cf5597e98",
+    "norwegian": "Hun tegner bilde",
+    "english": "She draws a picture",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d92da59-118d-4a42-9c61-4136b55345e1",
+    "norwegian": "Han leser avis",
+    "english": "He reads a newspaper",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b40851d4-80e9-49cc-a747-7a0936a41628",
+    "norwegian": "Hun danser glad",
+    "english": "She dances happily",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a2841580-8427-48bf-8c22-dc8e240a64f0",
+    "norwegian": "Jeg spiser en sandwich",
+    "english": "I eat a sandwich",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "91a922bc-cfbf-4093-9d66-d2e8c6cbf1f0",
+    "norwegian": "Hun drikker vann",
+    "english": "She drinks water",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6af44043-2ad1-4c6d-8739-c15212e09aaf",
+    "norwegian": "Han kjøper en bil",
+    "english": "He buys a car",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "616541fc-4b12-448e-bc1f-a9237bf719e8",
+    "norwegian": "Vi spiser frokost",
+    "english": "We eat breakfast",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

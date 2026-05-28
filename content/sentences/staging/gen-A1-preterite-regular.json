@@ -376,5 +376,425 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "fbda65dd-2522-45af-8d2a-9d99cfeedcef",
+    "norwegian": "Jeg spiste",
+    "english": "I ate",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f45b3b10-8428-48b6-bdba-5eb9c8fbc66c",
+    "norwegian": "Hun kjørte",
+    "english": "She drove",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "14a74fa7-91f6-4a38-b41e-69e9ad85efab",
+    "norwegian": "Han bodde",
+    "english": "He lived",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1c033a8b-42f3-4f56-b6ca-787c9d6b4ec1",
+    "norwegian": "Vi sov",
+    "english": "We slept",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "440d5f84-e9c7-45ac-a30d-87bb8ce45b01",
+    "norwegian": "De leste",
+    "english": "They read",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "21278347-a2b2-47ba-8a8a-2b7888bf153b",
+    "norwegian": "Jeg hørte",
+    "english": "I heard",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ffc3764e-2518-4122-8d79-dbb550aa60ae",
+    "norwegian": "Hun skrev",
+    "english": "She wrote",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c17dd705-2a85-44be-9615-bd114d0781f9",
+    "norwegian": "Han snakket",
+    "english": "He spoke",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a5e01c2c-68b0-401b-918a-ee7b2bed37d5",
+    "norwegian": "Vi kjøpte",
+    "english": "We bought",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "32b0b8c6-e227-4830-8c24-fd2c96fb4b37",
+    "norwegian": "De så",
+    "english": "They saw",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f974aeb-2e5f-4ed4-8a41-ab40e3d3cb02",
+    "norwegian": "Jeg gikk",
+    "english": "I walked",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9050fce6-10c0-41f4-9625-e61d0051b3fe",
+    "norwegian": "Hun løp",
+    "english": "She ran",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "eceab658-92a0-412e-bfe5-e6ab8c7bfb40",
+    "norwegian": "Jeg spiste frokost",
+    "english": "I ate breakfast",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8f874069-a2e3-4583-af24-b33c92c26424",
+    "norwegian": "Han kjørte bilen",
+    "english": "He drove the car",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6a939757-60e6-4f09-acca-5b5c5a0ec92f",
+    "norwegian": "Hun bodde i Oslo",
+    "english": "She lived in Oslo",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a1859218-3da7-43b7-87a3-c33f1db90e8a",
+    "norwegian": "Jeg leste en bok",
+    "english": "I read a book",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "67d18cfc-2280-41f7-91b0-90c6239a2105",
+    "norwegian": "Vi danset sammen",
+    "english": "We danced together",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f98ed53-13b5-45a8-8ffe-fb91ff3ca76a",
+    "norwegian": "De snakket norsk",
+    "english": "They spoke Norwegian",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "af60a988-6f74-4d12-b684-9117c240a192",
+    "norwegian": "Jeg skrev et brev",
+    "english": "I wrote a letter",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1b3ead36-d4ea-476b-a3f8-1f65c0658d8c",
+    "norwegian": "Han tok en dukkert",
+    "english": "He took a dip",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

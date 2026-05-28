@@ -1,0 +1,233 @@
+[
+  {
+    "id": "cc30d2ef-58c6-4d53-80f2-06e0d74d57a4",
+    "norwegian": "Det er et dyr",
+    "english": "It is an animal",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "df2cf0c1-6b7a-42bf-8dd3-fe7dbd7c3daa",
+    "norwegian": "Jeg ser en hund",
+    "english": "I see a dog",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "92f0eca4-b20f-485f-bcd9-8c7ac411d855",
+    "norwegian": "Jeg finner en nøkkel",
+    "english": "I find a key",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6e3b5fb2-79db-421e-9afc-3b5a71f56b1b",
+    "norwegian": "Jeg har et problem",
+    "english": "I have a problem",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8a692ed0-f897-446a-8f3a-d4b354da5cba",
+    "norwegian": "Jeg kjøper en bil",
+    "english": "I buy a car",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "febe8079-2af5-4b97-9019-9c3119775b2c",
+    "norwegian": "Jeg ser et fjell",
+    "english": "I see a mountain",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "41b697e5-063a-419c-a608-d096924eb457",
+    "norwegian": "Det er et tre",
+    "english": "It is a tree",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5f6d37b7-364f-4ac5-88a1-bc1e96e210a8",
+    "norwegian": "Hun har en hund",
+    "english": "She has a dog",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "133e8cce-20d1-4da7-b9b2-251cc7cd7594",
+    "norwegian": "Det er en stol",
+    "english": "It is a chair",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7bb0a6e6-af6d-42e0-9cdc-3f672586656d",
+    "norwegian": "Jeg har et bord",
+    "english": "I have a table",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "90bee0d6-ab6e-4658-8d8a-ed0f58a18d18",
+    "norwegian": "Jeg ser en fugl",
+    "english": "I see a bird",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

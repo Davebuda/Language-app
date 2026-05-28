@@ -416,5 +416,214 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "646cee0c-557a-418d-9d8a-f08123c128bd",
+    "norwegian": "Jeg spiser",
+    "english": "I am eating",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9927c75b-5504-4cd0-84e0-1d920104f88d",
+    "norwegian": "Du løper",
+    "english": "You are running",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ed0deca5-cc1b-42a8-94c4-7c1c5bda26a3",
+    "norwegian": "Han synger",
+    "english": "He is singing",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "578855d2-d275-43cf-a7c4-9b9aa5bdb2dd",
+    "norwegian": "Hun danser",
+    "english": "She is dancing",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "577017f6-c884-4770-b10b-278bdd0b10d1",
+    "norwegian": "Det er rødt",
+    "english": "It is red",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "189518da-2a41-4276-b415-7b974ee3945e",
+    "norwegian": "Vi leser",
+    "english": "We are reading",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1cf54027-9d03-43c6-ac78-da1a4e494826",
+    "norwegian": "Dere skriver",
+    "english": "You are writing",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f6ce238a-69c6-43c5-83d4-c3eaa0fe5317",
+    "norwegian": "De spiller",
+    "english": "They are playing",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6fe381de-84e3-4f7b-8918-8974b3023f4f",
+    "norwegian": "Jeg ser deg",
+    "english": "I see you",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "958b9272-e32d-4610-a859-470ec8a0d453",
+    "norwegian": "Du hjelper meg",
+    "english": "You help me",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4fc1848b-a4d7-4a77-9b74-9d6ec710cb92",
+    "norwegian": "Han ser henne",
+    "english": "He sees her",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

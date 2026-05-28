@@ -12448,5 +12448,2783 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "228fe158-088b-4f28-809d-00c2ea56a948",
+    "norwegian": "Jeg har en stor hund",
+    "english": "I have a big dog",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8d961a29-27e3-4ddf-bb10-13d06b8162cd",
+    "norwegian": "Hun er en glad kvinne",
+    "english": "She is a happy woman",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ce14dd7-2328-47bb-a13e-e2be48c03e81",
+    "norwegian": "Det er et stort hus",
+    "english": "It is a big house",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "61684c6d-bf49-496e-9163-87206518411a",
+    "norwegian": "Han har en liten bil",
+    "english": "He has a small car",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2c80890c-8fb9-42d1-8485-ae1a8849f489",
+    "norwegian": "Jeg ser en fin film",
+    "english": "I see a nice movie",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "249ae32b-74f6-4b32-8b46-e65a3ad97aba",
+    "norwegian": "Hun har en ny sykkel",
+    "english": "She has a new bike",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b62ad5d0-599e-4d0a-b1d6-7ce905e6fc8d",
+    "norwegian": "Han har en god venn",
+    "english": "He has a good friend",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa482409-2b1b-482f-aab1-ab1dc2958bd1",
+    "norwegian": "Jeg har en stor kopp",
+    "english": "I have a big cup",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a53c4f36-5167-43bc-b6ea-8498d6b8600b",
+    "norwegian": "Hun er en snill jente",
+    "english": "She is a kind girl",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aefb1033-5d2e-4064-b527-8cc6da91fe9b",
+    "norwegian": "Det er et fint hus",
+    "english": "It is a nice house",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "52cd1962-ec25-44fe-9ebd-f6b935de4db1",
+    "norwegian": "Det er en stor bil",
+    "english": "It is a big car",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b04c05df-5429-4a73-b499-451de6582731",
+    "norwegian": "Et stort fly flyr",
+    "english": "A big plane flies",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bc100d57-3abe-4ca5-944d-7d3a150c5eb3",
+    "norwegian": "Jeg ser en liten fugl",
+    "english": "I see a small bird",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b8458886-3061-4e62-af62-1fcca44c607b",
+    "norwegian": "Dette er en god bil",
+    "english": "This is a good car",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0959ef1e-a0e4-4541-80bf-4db7cf433f09",
+    "norwegian": "Jeg ser en lang vei",
+    "english": "I see a long road",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "49a379db-d56c-4bb1-bf09-076e7dc2ced6",
+    "norwegian": "Dette er en gammel bok",
+    "english": "This is an old book",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "65b4e91f-f880-4222-bf79-85393d7c89f7",
+    "norwegian": "Jeg kjøper en liten gave",
+    "english": "I buy a small gift",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b7c545bf-d9f0-4ad1-84be-df8e1700f9d0",
+    "norwegian": "Hun har en stor veske",
+    "english": "She has a big bag",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "233c8f9d-c0b9-4a9a-a1dd-f042f61aa026",
+    "norwegian": "Dette er en dårlig idé",
+    "english": "This is a bad idea",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1dabf2fd-1c4f-47e4-8c82-ac7f8d73a2c8",
+    "norwegian": "Hunden er stor",
+    "english": "The dog is big",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3b510c9f-924e-4a7d-9ffb-c9dca76459bd",
+    "norwegian": "Været er dårlig",
+    "english": "The weather is bad",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "543c127f-5b17-400c-96a1-d79ff7eb67f2",
+    "norwegian": "Bilen er ny",
+    "english": "The car is new",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [
+      "descriptions",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e1ea6b6e-1ae7-4726-9068-352ab353a5b0",
+    "norwegian": "Jeg bor i Oslo",
+    "english": "I live in Oslo",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "03768bcc-8a6e-4dc8-861f-b0f137f1a656",
+    "norwegian": "Boken ligger på bordet",
+    "english": "The book is on the table",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ac1c8b1c-f7c0-4a37-b340-69323a8f203c",
+    "norwegian": "Jeg går til skolen",
+    "english": "I'm going to school",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "22777139-6d71-4bc7-b222-88eb8537cbcf",
+    "norwegian": "Jeg kommer fra Norge",
+    "english": "I come from Norway",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25f56c23-7226-4036-b392-f3ff01a88dfa",
+    "norwegian": "Jeg snakker om været",
+    "english": "I'm talking about the weather",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "38ad7e5f-5afa-4455-b87e-097dd0adbde5",
+    "norwegian": "Jeg er i klassen",
+    "english": "I am in the class",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f9043e27-70c0-4380-a8b3-fa4d124d25d1",
+    "norwegian": "Jeg går på kino",
+    "english": "I'm going to the movies",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "67bccb81-3a09-4ad4-b0c6-a964d4326559",
+    "norwegian": "Jeg er på skolen",
+    "english": "I am at school",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cc30d2ef-58c6-4d53-80f2-06e0d74d57a4",
+    "norwegian": "Det er et dyr",
+    "english": "It is an animal",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "df2cf0c1-6b7a-42bf-8dd3-fe7dbd7c3daa",
+    "norwegian": "Jeg ser en hund",
+    "english": "I see a dog",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "92f0eca4-b20f-485f-bcd9-8c7ac411d855",
+    "norwegian": "Jeg finner en nøkkel",
+    "english": "I find a key",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6e3b5fb2-79db-421e-9afc-3b5a71f56b1b",
+    "norwegian": "Jeg har et problem",
+    "english": "I have a problem",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8a692ed0-f897-446a-8f3a-d4b354da5cba",
+    "norwegian": "Jeg kjøper en bil",
+    "english": "I buy a car",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "febe8079-2af5-4b97-9019-9c3119775b2c",
+    "norwegian": "Jeg ser et fjell",
+    "english": "I see a mountain",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "41b697e5-063a-419c-a608-d096924eb457",
+    "norwegian": "Det er et tre",
+    "english": "It is a tree",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5f6d37b7-364f-4ac5-88a1-bc1e96e210a8",
+    "norwegian": "Hun har en hund",
+    "english": "She has a dog",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "133e8cce-20d1-4da7-b9b2-251cc7cd7594",
+    "norwegian": "Det er en stol",
+    "english": "It is a chair",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7bb0a6e6-af6d-42e0-9cdc-3f672586656d",
+    "norwegian": "Jeg har et bord",
+    "english": "I have a table",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "90bee0d6-ab6e-4658-8d8a-ed0f58a18d18",
+    "norwegian": "Jeg ser en fugl",
+    "english": "I see a bird",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [
+      "everyday-objects",
+      "food-drink"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4e5a757e-242e-4acd-94ca-cd2d8d0dce68",
+    "norwegian": "Jeg skal danse",
+    "english": "I will dance",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "13055ff1-3e38-4cba-be4b-175373d12308",
+    "norwegian": "Han kan sykle",
+    "english": "He can cycle",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ba137b2e-e0cb-4201-a1d3-4292c4d52748",
+    "norwegian": "Jeg vil åpne",
+    "english": "I will open",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "090d6852-31fb-4716-9e60-9545cd31aa74",
+    "norwegian": "Hun må løpe",
+    "english": "She must run",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "02c2c2f6-9ba4-4a13-96f1-b693c1c126ee",
+    "norwegian": "Det er vanskelig å klatre",
+    "english": "It's hard to climb",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a90cce55-14dc-4790-b510-8137ca1e5c2d",
+    "norwegian": "Jeg kan tegne",
+    "english": "I can draw",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "43aa78eb-c991-4815-8aab-72984fad09ca",
+    "norwegian": "Han vil sove",
+    "english": "He will sleep",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "709ffde0-9967-48f8-bb76-1ec47f4de13f",
+    "norwegian": "Hun kan synge",
+    "english": "She can sing",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "709c7b34-2341-4ddb-9852-a42623a24ff7",
+    "norwegian": "Jeg liker ikke kaffe",
+    "english": "I do not like coffee",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d4c17846-ef46-4b39-beb6-e3b0d998666c",
+    "norwegian": "Han spiser ikke frokost",
+    "english": "He does not eat breakfast",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4fa36101-d5e9-4c74-9dd0-c46c322f2818",
+    "norwegian": "Hun løper ikke raskt",
+    "english": "She does not run fast",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa704ff2-1022-4faf-a52f-efc3a57b55a0",
+    "norwegian": "Vi danser ikke godt",
+    "english": "We do not dance well",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0c6e5d97-92e8-4cdb-804d-0bd55f815008",
+    "norwegian": "De synger ikke høyt",
+    "english": "They do not sing loudly",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "eeb3cbb1-13fe-46ed-8aaa-c82581d34119",
+    "norwegian": "Jeg forstår ikke norsk",
+    "english": "I do not understand Norwegian",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "65b96536-60ca-4397-8b68-33ac3e326d19",
+    "norwegian": "Han leser ikke bøker",
+    "english": "He does not read books",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bbef8be0-5fed-4ce8-8965-b826b7f7b30e",
+    "norwegian": "Hun har ikke hund",
+    "english": "She does not have a dog",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "536d8439-b4d1-4c91-9bbb-cf33ffc11d43",
+    "norwegian": "Vi har ikke bil",
+    "english": "We do not have a car",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "47a13780-bd24-4740-b0e9-fd77adc0beb3",
+    "norwegian": "De spiser ikke middag",
+    "english": "They do not eat dinner",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "257af0c9-3fde-4e11-b6de-cc808febbc4a",
+    "norwegian": "Han liker ikke film",
+    "english": "He does not like movies",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ac407adf-fa25-4d83-9f76-5ebd2ccd3e8c",
+    "norwegian": "Hun liker ikke hunder",
+    "english": "She doesn't like dogs",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "44e6bafa-369d-4cdf-960d-bbfbd88a26d8",
+    "norwegian": "Jeg har 5 bøker",
+    "english": "I have 5 books",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dae77d27-8516-4ee8-8108-ba6c1679293a",
+    "norwegian": "Hun er 12 år",
+    "english": "She is 12 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "923b3b2d-1a1a-4bf2-af17-ea234cd7577c",
+    "norwegian": "Det koster 20 kroner",
+    "english": "It costs 20 crowns",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d8a41b3-4cca-4cee-96cb-3670a6f2113b",
+    "norwegian": "Han har 15 venner",
+    "english": "He has 15 friends",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ba9d2a21-473b-404f-8f9d-ea139c9383b9",
+    "norwegian": "Jeg er 25 år",
+    "english": "I am 25 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ea3bc42a-a755-471d-bfc2-de276bd6a910",
+    "norwegian": "Det er 40 grader",
+    "english": "It is 40 degrees",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "46d63e96-4991-40e7-aa4e-b7810c8eada4",
+    "norwegian": "Jeg kjøper 11 blomster",
+    "english": "I buy 11 flowers",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d0512586-c918-484d-99da-efb70ae35f82",
+    "norwegian": "Hun har 99 poeng",
+    "english": "She has 99 points",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09cb0cf1-68f0-4f28-9c92-05db256482ff",
+    "norwegian": "Jeg er tjue år",
+    "english": "I am twenty years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ecdfa914-2035-4062-a52c-c2658fc6b464",
+    "norwegian": "Det er elleve grader",
+    "english": "It is eleven degrees",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fbff13af-33ae-49ed-a2bd-f1bba5c9b4d4",
+    "norwegian": "Hun er sytten år",
+    "english": "She is seventeen years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "efef454d-59a3-48c7-aa9b-02c2f6dad79a",
+    "norwegian": "Det koster åtte kroner",
+    "english": "It costs eight crowns",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1cf54027-9d03-43c6-ac78-da1a4e494826",
+    "norwegian": "Dere skriver",
+    "english": "You are writing",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6fe381de-84e3-4f7b-8918-8974b3023f4f",
+    "norwegian": "Jeg ser deg",
+    "english": "I see you",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "958b9272-e32d-4610-a859-470ec8a0d453",
+    "norwegian": "Du hjelper meg",
+    "english": "You help me",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4fc1848b-a4d7-4a77-9b74-9d6ec710cb92",
+    "norwegian": "Han ser henne",
+    "english": "He sees her",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "48abbd1a-3966-4428-b090-7e4263001ae5",
+    "norwegian": "Bilen min er rød",
+    "english": "My car is red",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "95229b92-118f-41d0-a015-9944b2f77216",
+    "norwegian": "Huset ditt er stort",
+    "english": "Your house is big",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fd4d31e8-9dd9-4617-8918-15698cf57b50",
+    "norwegian": "Boken hans er ny",
+    "english": "His book is new",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a46314e6-5fce-4af9-86f5-8346113856f2",
+    "norwegian": "Datteren min spiser",
+    "english": "My daughter is eating",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b113fda7-1034-4f19-8a1c-25a16e803bf2",
+    "norwegian": "Sønnen din løper",
+    "english": "Your son is running",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "869ab384-f547-444f-8de7-63d73633d5a1",
+    "norwegian": "Hunden hans er glad",
+    "english": "His dog is happy",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "911919a6-ff27-4e0b-9c27-5b184deb502d",
+    "norwegian": "Vennen min kommer",
+    "english": "My friend is coming",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f1c5f380-ade1-432f-a0d9-863e7036814e",
+    "norwegian": "Skolen din er nær",
+    "english": "Your school is near",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e8494842-82b7-4093-adc9-865944df264e",
+    "norwegian": "Faren min arbeider",
+    "english": "My father is working",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c38ef7e6-b4e4-4810-ad34-e114d44aaffd",
+    "norwegian": "Moren din synger",
+    "english": "Your mother is singing",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a1b13eca-4431-4d27-a395-42395c3b6528",
+    "norwegian": "Broren min leser",
+    "english": "My brother is reading",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1021d511-7004-4948-a9e5-52d5aeebbd87",
+    "norwegian": "Søsteren din sover",
+    "english": "Your sister is sleeping",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f5c2ca91-addc-4877-bfe7-466c16c817d4",
+    "norwegian": "Boken din er tung",
+    "english": "Your book is heavy",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [
+      "people-family",
+      "everyday-objects"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "noun-gender",
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "05770041-f2cf-47e3-84f5-f4835ecf8f03",
+    "norwegian": "Jeg gikk hjem",
+    "english": "I walked home",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a0e7fc0-816f-4ef4-ae15-a5b80d5b40fc",
+    "norwegian": "Han sa nei",
+    "english": "He said no",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1c505f85-6314-4d2a-891a-3e6b3c29f648",
+    "norwegian": "Jeg så filmen",
+    "english": "I saw the movie",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6807c0fd-fef5-43c1-ab65-1793848b4f3a",
+    "norwegian": "Hun ble syk",
+    "english": "She became ill",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "986d3018-3e66-4f87-820d-fc964bc92a1e",
+    "norwegian": "De kom hjem",
+    "english": "They came home",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7e396162-d272-4030-8c30-ff2052b6cfda",
+    "norwegian": "Jeg tok bussen",
+    "english": "I took the bus",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5dcac592-f41e-424c-9e4e-f6e67dfb8958",
+    "norwegian": "Han ga meg mat",
+    "english": "He gave me food",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bfe04f22-fb8e-40b6-a135-377ac9a6c6bd",
+    "norwegian": "Jeg visste det",
+    "english": "I knew it",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "30a61142-c74f-482e-a166-5318f8cba7e7",
+    "norwegian": "Hun gikk til skolen",
+    "english": "She went to school",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3ceb3cef-f75c-4ceb-b4db-4cb9b65d02e4",
+    "norwegian": "Vi så TV",
+    "english": "We watched TV",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f7038e61-73f8-414a-abd0-e45879a16339",
+    "norwegian": "Jeg kom for sent",
+    "english": "I came too late",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad5975a9-e339-419f-9c4b-5c9f059cc3b7",
+    "norwegian": "Han tok en kopp kaffe",
+    "english": "He took a cup of coffee",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "91ed51ed-f69a-4e6c-89a6-ad67151f78a9",
+    "norwegian": "Hun sa ja",
+    "english": "She said yes",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "251c3479-6eee-4630-9f6f-169474367035",
+    "norwegian": "Jeg ble syk",
+    "english": "I got sick",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fbd2abc2-2851-4464-9d40-905366857e01",
+    "norwegian": "Han ga meg en gave",
+    "english": "He gave me a gift",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a9924698-4ab5-4e6d-8e28-77dd50c42f1b",
+    "norwegian": "Jeg visste svaret",
+    "english": "I knew the answer",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fbda65dd-2522-45af-8d2a-9d99cfeedcef",
+    "norwegian": "Jeg spiste",
+    "english": "I ate",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "14a74fa7-91f6-4a38-b41e-69e9ad85efab",
+    "norwegian": "Han bodde",
+    "english": "He lived",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "440d5f84-e9c7-45ac-a30d-87bb8ce45b01",
+    "norwegian": "De leste",
+    "english": "They read",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "21278347-a2b2-47ba-8a8a-2b7888bf153b",
+    "norwegian": "Jeg hørte",
+    "english": "I heard",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c17dd705-2a85-44be-9615-bd114d0781f9",
+    "norwegian": "Han snakket",
+    "english": "He spoke",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a5e01c2c-68b0-401b-918a-ee7b2bed37d5",
+    "norwegian": "Vi kjøpte",
+    "english": "We bought",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "eceab658-92a0-412e-bfe5-e6ab8c7bfb40",
+    "norwegian": "Jeg spiste frokost",
+    "english": "I ate breakfast",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6a939757-60e6-4f09-acca-5b5c5a0ec92f",
+    "norwegian": "Hun bodde i Oslo",
+    "english": "She lived in Oslo",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a1859218-3da7-43b7-87a3-c33f1db90e8a",
+    "norwegian": "Jeg leste en bok",
+    "english": "I read a book",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "67d18cfc-2280-41f7-91b0-90c6239a2105",
+    "norwegian": "Vi danset sammen",
+    "english": "We danced together",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f98ed53-13b5-45a8-8ffe-fb91ff3ca76a",
+    "norwegian": "De snakket norsk",
+    "english": "They spoke Norwegian",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [
+      "everyday-actions",
+      "time-expressions"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25f0d611-b964-4004-b907-5da6009aa69b",
+    "norwegian": "I kveld ser jeg TV.",
+    "english": "Tonight I watch TV.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0acab935-1f7c-4095-be4b-1f41c8cd54cc",
+    "norwegian": "Om ettermiddagen leser han bok.",
+    "english": "In the afternoon he reads a book.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1ae06811-2c92-42f3-a328-c7f9958bda8f",
+    "norwegian": "På lørdag går jeg på kino.",
+    "english": "On Saturday I go to the cinema.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b5fbc0ca-3943-44ec-9ab2-02eefa6c67c3",
+    "norwegian": "Hjemme spiller jeg piano.",
+    "english": "At home I play the piano.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "64dd6129-20a5-4abf-9d05-c87dddbfea61",
+    "norwegian": "Om natten sover jeg godt.",
+    "english": "At night I sleep well.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "099983d9-4f85-4273-a726-1a19bf3f6c13",
+    "norwegian": "På søndag går vi på tur.",
+    "english": "On Sunday we go for a hike.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f8355ab6-3be2-40b1-954a-169be9543a19",
+    "norwegian": "I dag skriver jeg brev.",
+    "english": "Today I write a letter.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f56a671-03c3-4d4e-8cdd-ac0b64372d04",
+    "norwegian": "På søndag besøker jeg familien.",
+    "english": "On Sunday I visit my family.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ee08a7ac-12ba-4452-9e99-6bbc465455ce",
+    "norwegian": "På torsdag møter jeg vennene mine.",
+    "english": "On Thursday I meet my friends.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "574d8646-cc60-48de-bc2b-1bd13f086acd",
+    "norwegian": "I kveld leser jeg bok.",
+    "english": "This evening I read a book.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cd32d84c-8904-4de4-9fad-e4b52bd851d1",
+    "norwegian": "Om ettermiddagen spiller jeg fotball.",
+    "english": "In the afternoon I play soccer.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "439817c7-d226-4f02-a379-9bd5c6333118",
+    "norwegian": "Hvert år besøker jeg bestemor.",
+    "english": "Every year I visit my grandmother.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dbab9e90-f100-4e01-b46c-bf8189e71448",
+    "norwegian": "I morgen kjører han bil.",
+    "english": "Tomorrow he drives a car.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ee19b33-fab5-4d20-8399-1ec5d33b8271",
+    "norwegian": "Hver dag drikker jeg vann.",
+    "english": "Every day I drink water.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1faf3c53-a45a-460b-9a79-a0a2fd7b9d1d",
+    "norwegian": "På tirsdag møter jeg venner.",
+    "english": "On Tuesday I meet friends.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

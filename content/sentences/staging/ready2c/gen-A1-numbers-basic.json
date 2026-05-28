@@ -1,0 +1,254 @@
+[
+  {
+    "id": "44e6bafa-369d-4cdf-960d-bbfbd88a26d8",
+    "norwegian": "Jeg har 5 bøker",
+    "english": "I have 5 books",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dae77d27-8516-4ee8-8108-ba6c1679293a",
+    "norwegian": "Hun er 12 år",
+    "english": "She is 12 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "923b3b2d-1a1a-4bf2-af17-ea234cd7577c",
+    "norwegian": "Det koster 20 kroner",
+    "english": "It costs 20 crowns",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d8a41b3-4cca-4cee-96cb-3670a6f2113b",
+    "norwegian": "Han har 15 venner",
+    "english": "He has 15 friends",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ba9d2a21-473b-404f-8f9d-ea139c9383b9",
+    "norwegian": "Jeg er 25 år",
+    "english": "I am 25 years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ea3bc42a-a755-471d-bfc2-de276bd6a910",
+    "norwegian": "Det er 40 grader",
+    "english": "It is 40 degrees",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "46d63e96-4991-40e7-aa4e-b7810c8eada4",
+    "norwegian": "Jeg kjøper 11 blomster",
+    "english": "I buy 11 flowers",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d0512586-c918-484d-99da-efb70ae35f82",
+    "norwegian": "Hun har 99 poeng",
+    "english": "She has 99 points",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09cb0cf1-68f0-4f28-9c92-05db256482ff",
+    "norwegian": "Jeg er tjue år",
+    "english": "I am twenty years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ecdfa914-2035-4062-a52c-c2658fc6b464",
+    "norwegian": "Det er elleve grader",
+    "english": "It is eleven degrees",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fbff13af-33ae-49ed-a2bd-f1bba5c9b4d4",
+    "norwegian": "Hun er sytten år",
+    "english": "She is seventeen years old",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "efef454d-59a3-48c7-aa9b-02c2f6dad79a",
+    "norwegian": "Det koster åtte kroner",
+    "english": "It costs eight crowns",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [
+      "numbers",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "spelling",
+      "listening-recognition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

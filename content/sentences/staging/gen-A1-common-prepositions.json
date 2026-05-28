@@ -482,5 +482,291 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "e1ea6b6e-1ae7-4726-9068-352ab353a5b0",
+    "norwegian": "Jeg bor i Oslo",
+    "english": "I live in Oslo",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "03768bcc-8a6e-4dc8-861f-b0f137f1a656",
+    "norwegian": "Boken ligger på bordet",
+    "english": "The book is on the table",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ac1c8b1c-f7c0-4a37-b340-69323a8f203c",
+    "norwegian": "Jeg går til skolen",
+    "english": "I'm going to school",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "22777139-6d71-4bc7-b222-88eb8537cbcf",
+    "norwegian": "Jeg kommer fra Norge",
+    "english": "I come from Norway",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d8469ef-c214-4e10-8083-9de484e4631a",
+    "norwegian": "Jeg spiser med skei",
+    "english": "I eat with a spoon",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "462ceabf-3ab9-491d-acd8-e5200e70d935",
+    "norwegian": "Huset er av tre",
+    "english": "The house is made of wood",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "eee789c7-afaf-4d82-a3c2-6bfe63f76c6d",
+    "norwegian": "Jeg kjøper gave for henne",
+    "english": "I'm buying a gift for her",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25f56c23-7226-4036-b392-f3ff01a88dfa",
+    "norwegian": "Jeg snakker om været",
+    "english": "I'm talking about the weather",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "38ad7e5f-5afa-4455-b87e-097dd0adbde5",
+    "norwegian": "Jeg er i klassen",
+    "english": "I am in the class",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "63c66a8a-fd6c-4237-9f34-0efc93899814",
+    "norwegian": "Jeg har bil til salgs",
+    "english": "I have a car for sale",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fd87eb5c-4494-4ffb-beeb-1208b622e023",
+    "norwegian": "Jeg leser bok om historie",
+    "english": "I'm reading a book about history",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f9043e27-70c0-4380-a8b3-fa4d124d25d1",
+    "norwegian": "Jeg går på kino",
+    "english": "I'm going to the movies",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "67bccb81-3a09-4ad4-b0c6-a964d4326559",
+    "norwegian": "Jeg er på skolen",
+    "english": "I am at school",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [
+      "places",
+      "time-expressions",
+      "everyday-actions"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]
