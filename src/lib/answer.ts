@@ -7,6 +7,8 @@ export function checkAnswer(userAnswer: string, correctAnswer: string): boolean 
 }
 
 export function extractBlank(template: string): { before: string; after: string } {
-  const parts = template.split('___');
+  // Blank markers are inconsistent across the corpus: A1/A2 use '___' (3) while
+  // B1/B2 use '_____' (5). Split on any run of underscores so both render.
+  const parts = template.split(/_+/);
   return { before: parts[0] ?? '', after: parts[1] ?? '' };
 }

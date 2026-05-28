@@ -35,8 +35,11 @@ function wordCount(s: string): number {
   return s.trim().replace(/___/g, 'BLANK').split(/\s+/).length;
 }
 
-// Norwegian Bokmål character set — includes / for abbreviations and % for common expressions
-const NORWEGIAN_CHARS = /^[a-zA-ZæøåÆØÅ0-9\s.,!?;:'"()\-–/%]+$/;
+// Norwegian Bokmål character set — includes / for abbreviations and % for common
+// expressions. Accented Latin letters (é in "én"/"idé"/"kafé", à, ô, ç…), the
+// em-dash, guillemets «», and typographic quotes/ellipsis are all legitimate in
+// Norwegian text and must pass (omitting them wrongly rejected valid sentences).
+const NORWEGIAN_CHARS = /^[a-zA-ZæøåÆØÅéÉèÈêÊàÀôÔçüÜäÄöÖ0-9\s.,!?;:'"«»“”‘’…()\-–—/%]+$/;
 
 function checkStructure(raw: RawGenerated, exerciseType: ExerciseType): string | null {
   if (!isNonEmptyString(raw.norwegian)) return 'missing or empty norwegian';
@@ -108,6 +111,10 @@ const NORWEGIAN_FUNCTION_WORDS = new Set([
   'og', 'eller', 'men', 'å', 'i', 'på', 'til', 'fra', 'med', 'av', 'for',
   'om', 'som', 'hva', 'hvor', 'hvem', 'når', 'hvorfor', 'kan', 'vil',
   'skal', 'må', 'meg', 'deg', 'oss', 'dem', 'min', 'din', 'sin',
+  // 3rd-person pronouns + common verbs/determiners — omitting these wrongly
+  // rejected valid sentences like "Han tar medisiner" / "Hun kjøper melk".
+  'han', 'hun', 'ham', 'henne', 'hans', 'hennes', 'dere', 'deres', 'seg',
+  'dette', 'disse', 'vår', 'var', 'blir', 'ble', 'ha', 'være',
 ])
 
 function tokenize(text: string): string[] {
