@@ -168,7 +168,7 @@ export default function HomePage() {
       className="min-h-dvh"
       style={{ background: 'linear-gradient(180deg, #2C2E30 0%, #343638 100%)' }}
     >
-      <div className="nc-mobile-shell flex min-h-dvh flex-col items-center px-0.5 py-5">
+      <div className="nc-mobile-shell flex flex-col items-center px-0.5 py-5">
         {/* Phone frame — full lime gradient */}
         <div
           className="relative flex w-full flex-col overflow-hidden"
@@ -236,11 +236,10 @@ export default function HomePage() {
             ))}
           </span>
 
-          {/* ── Main content — space-evenly distributes gaps ── */}
+          {/* ── Main content — generous gaps, scrollable ── */}
           <div
-            className="relative flex flex-1 flex-col"
+            className="relative flex flex-col gap-6"
             style={{
-              justifyContent: 'space-evenly',
               padding: '14px 16px 0',
               zIndex: 1,
             }}
