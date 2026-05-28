@@ -1,9 +1,18 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Mic } from 'lucide-react'
+import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
+import {
+  KARI_GREETING,
+  KARI_QUESTIONS,
+  KARI_CLOSING,
+  estimateLevelFromTranscript,
+  saveVoiceOnboardingResult,
+  type VoiceOnboardingTurn,
+} from '@/lib/voice-onboarding'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -338,115 +347,339 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* ── Floating orb card — on the lime, no neon spinner ── */}
-          <div
-            className="relative mx-[10px] mb-3 mt-0 flex flex-col items-center overflow-hidden rounded-[1rem] px-[18px] pb-4 pt-5 text-center"
-            style={{
-              zIndex: 10,
-              background: '#151718',
-              border: '1.5px solid rgba(200,255,32,0.22)',
-              boxShadow:
-                '0 0 14px rgba(200,255,32,0.10), 0 0 36px rgba(200,255,32,0.05), 0 16px 44px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.06)',
-            }}
-          >
-            {/* Orb label row */}
-            <div className="relative z-10 flex items-center gap-[7px]">
-              <span
-                className="rounded-[0.2rem] px-[9px] py-[3px] text-[8px] font-[700] uppercase tracking-[0.12em]"
-                style={{ color: '#C8FF20', background: 'rgba(200,255,32,0.08)', letterSpacing: '0.12em' }}
-              >
-                AI
-              </span>
-              <span className="text-[14px] font-[700]" style={{ color: '#EDEEE9' }}>
-                Snakk med Kari
-              </span>
-            </div>
-
-            {/* Description */}
-            <p
-              className="relative z-10 mt-1 text-[11px] leading-[1.4]"
-              style={{ color: 'rgba(237,238,233,0.34)' }}
-            >
-              Trykk og snakk norsk. Bare samtale.
-            </p>
-
-            {/* Orb button with tight ambient rings */}
-            <div
-              className="relative z-10 my-[14px]"
-              style={{ width: '80px', height: '80px' }}
-            >
-              {/* Ambient ring — outer (80px) */}
-              <motion.span
-                aria-hidden="true"
-                className="pointer-events-none absolute rounded-full"
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  top: 0,
-                  left: 0,
-                  border: '1px solid rgba(200,255,32,0.06)',
-                }}
-                animate={{ scale: [1, 1.06, 1], opacity: [1, 0.45, 1] }}
-                transition={{ duration: 3.5, ease: 'easeInOut', repeat: Infinity }}
-              />
-
-              {/* Ambient ring — inner (68px), centered */}
-              <motion.span
-                aria-hidden="true"
-                className="pointer-events-none absolute rounded-full"
-                style={{
-                  width: '68px',
-                  height: '68px',
-                  top: '6px',
-                  left: '6px',
-                  border: '1px solid rgba(200,255,32,0.06)',
-                }}
-                animate={{ scale: [1, 1.06, 1], opacity: [1, 0.45, 1] }}
-                transition={{ duration: 3.5, ease: 'easeInOut', repeat: Infinity, delay: 0.7 }}
-              />
-
-              {/* Orb button — 58px, centered in 80px wrapper */}
-              <Link
-                href="/conversation"
-                className="absolute flex items-center justify-center rounded-full"
-                style={{
-                  width: '58px',
-                  height: '58px',
-                  top: '11px',
-                  left: '11px',
-                  background:
-                    'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
-                  boxShadow:
-                    '0 0 16px rgba(200,255,32,0.25), 0 0 40px rgba(200,255,32,0.08), inset 0 2px 3px rgba(255,255,255,0.26)',
-                }}
-                aria-label="Start samtale med Kari"
-              >
-                <Mic size={20} style={{ color: '#0A1206' }} aria-hidden="true" />
-              </Link>
-            </div>
-
-            {/* Hint */}
-            <p
-              className="relative z-10 text-[10px]"
-              style={{ color: 'rgba(237,238,233,0.34)' }}
-            >
-              Trykk for å starte
-            </p>
-
-            {/* Footer link */}
-            <div className="relative z-10 mt-2">
-              <Link
-                href="/dashboard"
-                className="text-[10px]"
-                style={{ color: 'rgba(237,238,233,0.34)' }}
-                aria-label="Allerede bruker — gå til appen"
-              >
-                Allerede bruker? Se appen →
-              </Link>
-            </div>
-          </div>
+          {/* ── Floating orb card — voice onboarding ── */}
+          <VoiceOrbCard />
         </div>
       </div>
     </main>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Voice Orb Card — inline voice conversation with Kari
+// ---------------------------------------------------------------------------
+
+type OrbState = 'idle' | 'greeting' | 'listening' | 'processing' | 'speaking' | 'complete'
+
+const ORB_RING_VARIANTS: Record<OrbState, { scale: number[]; opacity: number[]; duration: number }> = {
+  idle:       { scale: [1, 1.06, 1], opacity: [1, 0.45, 1], duration: 3.5 },
+  greeting:   { scale: [1, 1.04, 1], opacity: [0.7, 1, 0.7], duration: 2 },
+  listening:  { scale: [1, 1.12, 1], opacity: [1, 0.6, 1], duration: 1.2 },
+  processing: { scale: [1, 1.02, 1], opacity: [0.4, 0.6, 0.4], duration: 2 },
+  speaking:   { scale: [1, 1.06, 1], opacity: [0.8, 1, 0.8], duration: 1.8 },
+  complete:   { scale: [1, 1.03, 1], opacity: [0.6, 0.8, 0.6], duration: 3 },
+}
+
+const ORB_GLOW: Record<OrbState, string> = {
+  idle:       '0 0 16px rgba(200,255,32,0.25), 0 0 40px rgba(200,255,32,0.08)',
+  greeting:   '0 0 22px rgba(200,255,32,0.35), 0 0 50px rgba(200,255,32,0.12)',
+  listening:  '0 0 28px rgba(200,255,32,0.45), 0 0 60px rgba(200,255,32,0.18)',
+  processing: '0 0 12px rgba(200,255,32,0.15), 0 0 30px rgba(200,255,32,0.06)',
+  speaking:   '0 0 22px rgba(109,229,255,0.30), 0 0 50px rgba(109,229,255,0.10)',
+  complete:   '0 0 18px rgba(200,255,32,0.30), 0 0 44px rgba(200,255,32,0.10)',
+}
+
+function speakText(text: string): Promise<void> {
+  return new Promise((resolve) => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) {
+      resolve()
+      return
+    }
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'nb-NO'
+    utterance.rate = 0.9
+    utterance.onend = () => resolve()
+    utterance.onerror = () => resolve()
+    window.speechSynthesis.speak(utterance)
+  })
+}
+
+function VoiceOrbCard() {
+  const [orbState, setOrbState] = useState<OrbState>('idle')
+  const [transcript, setTranscript] = useState<VoiceOnboardingTurn[]>([])
+  const [currentTurn, setCurrentTurn] = useState(0)
+  const [textInput, setTextInput] = useState('')
+  const [statusText, setStatusText] = useState('Trykk for å starte')
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const speech = useSpeechRecognition()
+
+  // 2-minute global timeout
+  useEffect(() => {
+    if (orbState !== 'idle' && orbState !== 'complete') {
+      timeoutRef.current = setTimeout(() => {
+        finishConversation()
+      }, 120_000)
+      return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orbState === 'idle', orbState === 'complete'])
+
+  // Watch for final transcript from speech recognition
+  useEffect(() => {
+    if (speech.transcript && orbState === 'listening') {
+      handleUserResponse(speech.transcript)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [speech.transcript])
+
+  const startConversation = useCallback(async () => {
+    if (orbState !== 'idle') return
+    setOrbState('greeting')
+    setStatusText('Kari snakker...')
+
+    const greetingWithQuestion = `${KARI_GREETING} ${KARI_QUESTIONS[0]}`
+    setTranscript([{ role: 'kari', text: greetingWithQuestion, turnIndex: 0 }])
+
+    await speakText(greetingWithQuestion)
+
+    setOrbState('listening')
+    setStatusText(speech.isSupported ? 'Lytter...' : 'Skriv på norsk...')
+    setCurrentTurn(1)
+    if (speech.isSupported) speech.start()
+  }, [orbState, speech])
+
+  const handleUserResponse = useCallback(async (userText: string) => {
+    if (!userText.trim()) return
+    speech.stop()
+
+    const userTurn: VoiceOnboardingTurn = { role: 'user', text: userText.trim(), turnIndex: currentTurn }
+    const updated = [...transcript, userTurn]
+    setTranscript(updated)
+
+    if (currentTurn >= KARI_QUESTIONS.length) {
+      await finishConversation(updated)
+      return
+    }
+
+    setOrbState('processing')
+    setStatusText('Kari tenker...')
+
+    const nextQuestion = KARI_QUESTIONS[currentTurn] ?? KARI_QUESTIONS[KARI_QUESTIONS.length - 1]
+    let kariResponse: string
+
+    try {
+      const messages = updated.map((t) => ({
+        role: t.role === 'kari' ? 'assistant' : 'user',
+        content: t.text,
+      }))
+
+      const res = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'conversation',
+          params: { messages, level: 'A1', topic: 'Introduksjon' },
+        }),
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        const aiText = (data.result ?? '').split('CORRECTION:')[0].trim()
+        kariResponse = aiText || `Bra! ${nextQuestion}`
+      } else {
+        kariResponse = `Bra! ${nextQuestion}`
+      }
+    } catch {
+      kariResponse = `Bra! ${nextQuestion}`
+    }
+
+    const kariTurn: VoiceOnboardingTurn = { role: 'kari', text: kariResponse, turnIndex: currentTurn }
+    const withKari = [...updated, kariTurn]
+    setTranscript(withKari)
+
+    setOrbState('speaking')
+    setStatusText('Kari snakker...')
+    await speakText(kariResponse)
+
+    const nextTurnIndex = currentTurn + 1
+    if (nextTurnIndex >= KARI_QUESTIONS.length) {
+      await finishConversation(withKari)
+      return
+    }
+
+    setCurrentTurn(nextTurnIndex)
+    setOrbState('listening')
+    setStatusText(speech.isSupported ? 'Lytter...' : 'Skriv på norsk...')
+    if (speech.isSupported) speech.start()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTurn, transcript, speech])
+
+  const finishConversation = useCallback(async (finalTranscript?: VoiceOnboardingTurn[]) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    speech.stop()
+
+    const ts = finalTranscript ?? transcript
+    const level = estimateLevelFromTranscript(ts)
+
+    saveVoiceOnboardingResult({
+      transcript: ts,
+      estimatedLevel: level,
+      completedTurns: ts.filter((t) => t.role === 'user').length,
+      timestamp: new Date().toISOString(),
+    })
+
+    setOrbState('speaking')
+    setStatusText('Kari snakker...')
+    await speakText(KARI_CLOSING)
+
+    setOrbState('complete')
+    setStatusText(`Estimert nivå: ${level}`)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [transcript, speech])
+
+  const handleTextSubmit = () => {
+    if (textInput.trim() && orbState === 'listening') {
+      handleUserResponse(textInput.trim())
+      setTextInput('')
+    }
+  }
+
+  const ringAnim = ORB_RING_VARIANTS[orbState]
+
+  return (
+    <div
+      className="relative mx-[10px] mb-3 mt-0 flex flex-col items-center overflow-hidden rounded-[1rem] px-[18px] pb-4 pt-5 text-center"
+      style={{
+        zIndex: 10,
+        background: '#151718',
+        border: '1.5px solid rgba(200,255,32,0.22)',
+        boxShadow:
+          '0 0 14px rgba(200,255,32,0.10), 0 0 36px rgba(200,255,32,0.05), 0 16px 44px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.06)',
+      }}
+    >
+      {/* Label */}
+      <div className="relative z-10 flex items-center gap-[7px]">
+        <span
+          className="rounded-[0.2rem] px-[9px] py-[3px] text-[8px] font-[700] uppercase tracking-[0.12em]"
+          style={{ color: '#C8FF20', background: 'rgba(200,255,32,0.08)' }}
+        >
+          AI
+        </span>
+        <span className="text-[14px] font-[700]" style={{ color: '#EDEEE9' }}>
+          Snakk med Kari
+        </span>
+      </div>
+
+      {/* Description */}
+      <p className="relative z-10 mt-1 text-[11px] leading-[1.4]" style={{ color: 'rgba(237,238,233,0.34)' }}>
+        {orbState === 'idle' ? 'Trykk og snakk norsk. Bare samtale.' : statusText}
+      </p>
+
+      {/* Orb with rings */}
+      <div className="relative z-10 my-[14px]" style={{ width: '80px', height: '80px' }}>
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute rounded-full"
+          style={{ width: '80px', height: '80px', top: 0, left: 0, border: '1px solid rgba(200,255,32,0.06)' }}
+          animate={{ scale: ringAnim.scale, opacity: ringAnim.opacity }}
+          transition={{ duration: ringAnim.duration, ease: 'easeInOut', repeat: Infinity }}
+        />
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute rounded-full"
+          style={{ width: '68px', height: '68px', top: '6px', left: '6px', border: '1px solid rgba(200,255,32,0.06)' }}
+          animate={{ scale: ringAnim.scale, opacity: ringAnim.opacity }}
+          transition={{ duration: ringAnim.duration, ease: 'easeInOut', repeat: Infinity, delay: 0.7 }}
+        />
+
+        <motion.button
+          onClick={orbState === 'idle' ? startConversation : undefined}
+          disabled={orbState !== 'idle' && orbState !== 'listening'}
+          className="absolute flex items-center justify-center rounded-full"
+          style={{
+            width: '58px',
+            height: '58px',
+            top: '11px',
+            left: '11px',
+            background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
+            boxShadow: `${ORB_GLOW[orbState]}, inset 0 2px 3px rgba(255,255,255,0.26)`,
+            cursor: orbState === 'idle' ? 'pointer' : 'default',
+          }}
+          animate={{ scale: orbState === 'listening' ? [1, 1.04, 1] : 1 }}
+          transition={orbState === 'listening' ? { duration: 0.8, repeat: Infinity } : {}}
+          aria-label="Start samtale med Kari"
+        >
+          <Mic
+            size={20}
+            style={{ color: orbState === 'listening' ? '#0A1206' : '#0A1206' }}
+            aria-hidden="true"
+          />
+        </motion.button>
+      </div>
+
+      {/* Status text */}
+      <p className="relative z-10 text-[10px]" style={{ color: 'rgba(237,238,233,0.34)' }}>
+        {orbState === 'idle' ? 'Trykk for å starte' : statusText}
+      </p>
+
+      {/* Interim transcript while listening */}
+      {orbState === 'listening' && speech.interimTranscript ? (
+        <p className="relative z-10 mt-2 text-[11px] italic" style={{ color: 'rgba(200,255,32,0.5)' }}>
+          {speech.interimTranscript}
+        </p>
+      ) : null}
+
+      {/* Text fallback for unsupported browsers */}
+      {orbState === 'listening' && !speech.isSupported ? (
+        <form
+          onSubmit={(e) => { e.preventDefault(); handleTextSubmit() }}
+          className="relative z-10 mt-3 flex w-full gap-2"
+        >
+          <input
+            type="text"
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+            placeholder="Skriv på norsk..."
+            className="flex-1 rounded-[0.4rem] border px-3 py-2 text-[12px] outline-none"
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              borderColor: 'rgba(255,255,255,0.08)',
+              color: '#EDEEE9',
+            }}
+            autoFocus
+          />
+          <button
+            type="submit"
+            className="flex items-center justify-center rounded-[0.4rem] px-3 py-2 text-[12px] font-[700]"
+            style={{ background: '#C8FF20', color: '#0A1206' }}
+          >
+            →
+          </button>
+        </form>
+      ) : null}
+
+      {/* Complete state — CTA to onboarding */}
+      <AnimatePresence>
+        {orbState === 'complete' ? (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative z-10 mt-3 w-full"
+          >
+            <Link
+              href="/onboarding"
+              className="flex w-full items-center justify-center gap-2 rounded-[0.5rem] py-3 text-[13px] font-[700]"
+              style={{ background: '#C8FF20', color: '#0A1206' }}
+              aria-label="Start kartlegging"
+            >
+              Start kartlegging
+              <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      {/* Footer */}
+      <div className="relative z-10 mt-2">
+        <Link
+          href="/dashboard"
+          className="text-[10px]"
+          style={{ color: 'rgba(237,238,233,0.34)' }}
+          aria-label="Allerede bruker — gå til appen"
+        >
+          Allerede bruker? Se appen →
+        </Link>
+      </div>
+    </div>
   )
 }

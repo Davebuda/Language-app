@@ -14,6 +14,7 @@ import type { DiagnosticState, DiagnosticResult } from '@/lib/diagnostic/engine'
 import type { DiagnosticQuestion } from '@/lib/diagnostic/questions'
 import type { CEFRLevel } from '@/types/fingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
+import { getVoiceOnboardingResult, clearVoiceOnboardingResult } from '@/lib/voice-onboarding'
 
 interface DiagnosticQuizProps {
   onComplete: (result: DiagnosticResult) => void
@@ -37,7 +38,12 @@ const transition = { duration: 0.22, ease: [0.32, 0.72, 0, 1] as const }
 export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
   const fingerprint = useFingerprintStore.getState().fingerprint
   const priorAskedIds = fingerprint?.askedDiagnosticQuestionIds ?? []
-  const [diagState, setDiagState] = useState<DiagnosticState>(() => createDiagnosticState(priorAskedIds))
+  const [voiceLevel] = useState(() => {
+    const result = getVoiceOnboardingResult()
+    if (result) clearVoiceOnboardingResult()
+    return result?.estimatedLevel ?? undefined
+  })
+  const [diagState, setDiagState] = useState<DiagnosticState>(() => createDiagnosticState(priorAskedIds, voiceLevel))
   const [currentQuestion, setCurrentQuestion] = useState<DiagnosticQuestion | null>(null)
   const [selected, setSelected] = useState<number | null>(null)
   const [revealed, setRevealed] = useState(false)

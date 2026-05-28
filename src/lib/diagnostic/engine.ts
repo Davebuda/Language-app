@@ -88,11 +88,13 @@ export function selectNextQuestion(state: DiagnosticState): DiagnosticQuestion |
 
 // ── State machine ─────────────────────────────────────────────────────────
 
-export function createDiagnosticState(seedAskedIds?: readonly string[]): DiagnosticState {
+const VOICE_PRESEED: Record<string, number> = { A1: 0.25, A2: 0.45, B1: 0.65, B2: 0.80 }
+
+export function createDiagnosticState(seedAskedIds?: readonly string[], preSeedLevel?: string): DiagnosticState {
   // P0.5-07 (F015): seed with previously-asked question IDs so a recalibration
   // or repeat onboarding does not re-ask the same questions.
   return {
-    estimate: 0.5,
+    estimate: preSeedLevel ? (VOICE_PRESEED[preSeedLevel] ?? 0.5) : 0.5,
     history: [],
     askedIds: new Set(seedAskedIds ?? []),
     answers: [],
