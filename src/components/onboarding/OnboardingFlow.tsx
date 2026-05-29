@@ -109,7 +109,7 @@ async function seedFingerprintFromDiagnostic(
   const existing = await loadFingerprint(userId).catch(() => null)
   const fp: MistakeFingerprint = existing ?? createEmptyFingerprint(userId)
 
-  fp.currentLevel = result.rawScore >= 0.55 ? 'A2' : result.cefrLevel
+  fp.currentLevel = result.cefrLevel
   fp.levelSetByUser = true
 
   for (const [conceptId, seed] of Object.entries(result.conceptSeeds)) {

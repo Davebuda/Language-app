@@ -27,6 +27,23 @@ const CEFR_LABELS: Record<CEFRLevel, string> = {
   B2: 'B2',
 }
 
+// Structural focus per concept — describes WHAT the question tests, never the answer.
+// Keeps the diagnostic measuring (not teaching) so placement stays accurate.
+const CONCEPT_FOCUS: Record<string, string> = {
+  'noun-gender': 'Focus: which gender article a noun takes (en / ei / et).',
+  'present-tense-regular': 'Focus: forming the present tense of a verb.',
+  'personal-pronouns': 'Focus: choosing the right personal pronoun.',
+  'svo-word-order': 'Focus: subject–verb–object order in a simple statement.',
+  'definite-articles-singular': 'Focus: making a noun definite (the "the" form).',
+  'v2-word-order': 'Focus: verb-second word order and inversion.',
+  negation: "Focus: where “ikke” sits in the sentence.",
+  'preterite-regular': 'Focus: past and perfect verb forms.',
+  'adjective-agreement': 'Focus: matching the adjective form to its noun.',
+  'common-modal-verbs': 'Focus: using modal verbs (kan / vil / skal / må).',
+  'question-formation': 'Focus: forming a yes/no question.',
+  'common-prepositions': 'Focus: choosing the correct preposition.',
+}
+
 const slideVariants = {
   enter: { x: 48, opacity: 0 },
   center: { x: 0, opacity: 1 },
@@ -139,21 +156,27 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
           animate="center"
           exit="exit"
           transition={transition}
-          className="nc-surface px-4 py-5"
+          className="nc-surface flex min-h-[200px] flex-col justify-between gap-4 px-5 py-6"
         >
+          {/* Top band — eyebrow + question number */}
           <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <div className="nc-label">
-                {displayedQuestion.cefrLevel} · {displayedQuestion.conceptId.replace(/-/g, ' ')}
-              </div>
-              <p className="mt-2 text-balance font-display text-[1.2rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-[var(--nc-cream-text)]">
-                {displayedQuestion.prompt}
-              </p>
+            <div className="nc-label">
+              {displayedQuestion.cefrLevel} · {displayedQuestion.conceptId.replace(/-/g, ' ')}
             </div>
             <div className="hidden shrink-0 rounded-[0.55rem] border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.05)] px-2.5 py-1.5 text-[10px] font-bold tabular-nums uppercase tracking-[0.08em] text-[var(--nc-cream-dim)] sm:block">
               Q{Math.min(answered + (revealed ? 0 : 1), maxQuestions)}
             </div>
           </div>
+
+          {/* Middle band — question */}
+          <p className="text-balance font-display text-[1.2rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-[var(--nc-cream-text)]">
+            {displayedQuestion.prompt}
+          </p>
+
+          {/* Bottom band — focus */}
+          <p className="text-pretty text-[0.78rem] leading-snug text-[var(--nc-cream-muted)]">
+            {CONCEPT_FOCUS[displayedQuestion.conceptId] ?? `Focus: ${displayedQuestion.conceptId.replace(/-/g, ' ')}.`}
+          </p>
         </motion.div>
       </AnimatePresence>
 

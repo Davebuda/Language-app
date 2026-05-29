@@ -166,11 +166,11 @@ export function PlacementQuiz() {
           className="flex flex-col gap-[6px]"
         >
           {/* Question panel */}
-          <div className="nc-surface px-4 py-5">
-            <div className="nc-label mb-2">
+          <div className="nc-surface flex min-h-[184px] flex-col px-5 py-6">
+            <div className="nc-label">
               Spørsmål {step + 1} av {QUESTIONS.length}
             </div>
-            <h2 className="text-balance font-display text-[1.2rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-[var(--nc-cream-text)]">
+            <h2 className="flex flex-1 items-center text-balance font-display text-[1.2rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-[var(--nc-cream-text)]">
               {question.text}
             </h2>
           </div>
