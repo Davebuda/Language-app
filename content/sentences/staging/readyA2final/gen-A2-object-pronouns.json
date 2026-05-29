@@ -1,0 +1,362 @@
+[
+  {
+    "id": "26e6e870-b9d6-4f2f-8516-78afea403053",
+    "norwegian": "Han hjelper meg.",
+    "english": "He helps me",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe74dd4a-affc-4b7c-afa0-045f4cf96fd0",
+    "norwegian": "Hun elsker ham.",
+    "english": "She loves him",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de76d4db-f2ee-4af1-8419-78077dd6e0ef",
+    "norwegian": "Vi ser henne.",
+    "english": "We see her",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2d14eda7-1ff7-400a-9d74-e27f30ba99b9",
+    "norwegian": "De kjøper det.",
+    "english": "They buy it",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b103f84c-4e85-43fc-a842-b59aea0fb296",
+    "norwegian": "Jeg kjente dem.",
+    "english": "I knew them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5cf5c454-eba5-4ae0-8e33-7c7527faae48",
+    "norwegian": "Du hjelper oss.",
+    "english": "You help us",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "81aeffd0-4b30-4c0f-b00d-38765151b50c",
+    "norwegian": "Han så meg.",
+    "english": "He saw me",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6b998ee5-4e90-4791-abe3-9c4ba81d8a59",
+    "norwegian": "Hun hjelper dem.",
+    "english": "She helps them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5c47cdc-d9b2-4317-ae1f-970860ee1431",
+    "norwegian": "Jeg ser det.",
+    "english": "I see it",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "68ab8f3f-029c-413c-831f-83a7f27ce9ac",
+    "norwegian": "Vi kjøper dem.",
+    "english": "We buy them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a857200e-b14c-4d8c-b4c9-81be8e55d531",
+    "norwegian": "De ser henne.",
+    "english": "They see her",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "85f407f0-3311-457c-b71f-e75182afdfb3",
+    "norwegian": "Han kjøper en gave til henne.",
+    "english": "He buys a gift for her",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a4f37c4-a321-4900-a9b9-08fce47db9ce",
+    "norwegian": "Hun synger for dem.",
+    "english": "She sings for them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0dd201d3-fcaa-489b-87cb-ef509879125b",
+    "norwegian": "De ser på det.",
+    "english": "They look at it",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25194d12-e604-4909-af56-32cd5d7cc6d9",
+    "norwegian": "Jeg har en bok for deg.",
+    "english": "I have a book for you",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e8155c7a-702a-4dfa-9b70-045d54c9e664",
+    "norwegian": "Hun gir ham en blomst.",
+    "english": "She gives him a flower",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9eb7c22d-772d-4006-822a-06146e1e01b5",
+    "norwegian": "Vi hjelper dem.",
+    "english": "We help them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ff1f8f27-8e5b-43c0-b433-7407630c5e6a",
+    "norwegian": "De viser henne veien.",
+    "english": "They show her the way",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "faa8e7cd-c226-438c-8beb-5f854725d9c0",
+    "norwegian": "Jeg gir det til ham.",
+    "english": "I give it to him",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "60f88314-d9cd-48bc-8406-e8746070f869",
+    "norwegian": "Hun ser på oss.",
+    "english": "She looks at us",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

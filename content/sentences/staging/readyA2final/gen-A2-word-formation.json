@@ -1,0 +1,230 @@
+[
+  {
+    "id": "1de540c5-5344-4a74-a476-d4d46422fbd0",
+    "norwegian": "Bilen kjører til togstasjonen.",
+    "english": "The car drives to the train station",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9a560078-543d-453e-8772-a0dba9d8d7bb",
+    "norwegian": "Jeg har en misforståelse.",
+    "english": "I have a misunderstanding",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "232a7aab-d2bd-459b-bcde-22b463ab8b89",
+    "norwegian": "Barnet spiller med en lekebil.",
+    "english": "The child plays with a toy car",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1d3595e1-8227-4b9c-9b9c-8ded0460f372",
+    "norwegian": "Hun er en misfornøyd kunde.",
+    "english": "She is a dissatisfied customer",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "46922083-362e-4fde-88c8-488aa82845ee",
+    "norwegian": "Han kjører en lastebil.",
+    "english": "He drives a truck",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bb704139-5ee8-45bc-aac9-eead977286e8",
+    "norwegian": "Jeg har en uviktig oppgave.",
+    "english": "I have an unimportant task",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e2688e32-7311-4199-b330-c1c2fbd7e46d",
+    "norwegian": "Hun har en skoleveske.",
+    "english": "She has a school bag",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad488998-fed5-4e6a-9a24-3725079fd591",
+    "norwegian": "Jeg har en datamaskin.",
+    "english": "I have a computer",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b4f2079c-c5b5-4de0-b2c8-af11194659e5",
+    "norwegian": "Jeg kjører til togstasjonen.",
+    "english": "I drive to the train station",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "07d17e36-18ec-4e73-9d0a-74ac50e9b84f",
+    "norwegian": "Hun er misfornøyd med arbeidet.",
+    "english": "She is dissatisfied with the work",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad04dbe4-92c8-42eb-876b-dff848435279",
+    "norwegian": "Barna leker på en lekeplass.",
+    "english": "The children play on a playground",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ed685b5-ea93-4ed6-8eca-4c209264bfb0",
+    "norwegian": "Vi har en ny skolebygning.",
+    "english": "We have a new school building",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

@@ -19,25 +19,6 @@
     ]
   },
   {
-    "id": "866c4b96-7335-4db6-9427-138b39dcd221",
-    "norwegian": "Vær så snill å hjelp meg!",
-    "english": "Be so kind as to help me!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "e93ec890-4c41-4982-90b9-126139f425ae",
     "norwegian": "Kjør forsiktig!",
     "english": "Drive carefully!",
@@ -52,25 +33,6 @@
     ],
     "cefr_level": "A2",
     "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "751a2cee-466e-4647-b8cc-45b3b89ca5db",
-    "norwegian": "Kan du lukke døren?",
-    "english": "Can you close the door?",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
     "exercise_types": [
       "translation-to-norwegian"
     ]
@@ -95,25 +57,6 @@
     ]
   },
   {
-    "id": "9d2e8c2a-b14e-4ea3-8691-2eb710d1673e",
-    "norwegian": "Vær så snill å gi meg en hånd!",
-    "english": "Be so kind as to give me a hand!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "d5234ce9-81ad-419b-89af-1ac85bfdc02e",
     "norwegian": "Se på TV!",
     "english": "Watch TV!",
@@ -128,44 +71,6 @@
     ],
     "cefr_level": "A2",
     "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "faeb9cc9-cf9c-4434-99da-9ba5ab6e043d",
-    "norwegian": "Ikke skyt hunden!",
-    "english": "Don't shoot the dog!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "e7c00771-6da0-4240-bbca-c1ad2cc68a71",
-    "norwegian": "Kan du hjelpe meg med oppgaven?",
-    "english": "Can you help me with the task?",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
     "exercise_types": [
       "translation-to-norwegian"
     ]
@@ -190,85 +95,9 @@
     ]
   },
   {
-    "id": "2bceabbc-6329-4873-9170-cc7e172982ba",
-    "norwegian": "Vær så snill å gi henne en blomst!",
-    "english": "Be so kind as to give her a flower!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "bf019fbd-6c31-4d31-b5cc-5292965cee66",
     "norwegian": "Kjør bilen min!",
     "english": "Drive my car!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "2072411a-f6b4-4ac7-9c77-de4dac98b0ee",
-    "norwegian": "Ikke spise kaken!",
-    "english": "Don't eat the cake!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "7daafc49-482b-4dc3-8de6-b4e76558fa90",
-    "norwegian": "Gå ikke ut!",
-    "english": "Don't go out!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "4ced2ab1-57da-439b-933e-d71eb280617b",
-    "norwegian": "Kan du åpne døren?",
-    "english": "Can you open the door?",
     "concept_ids": [
       "imperative"
     ],
@@ -342,25 +171,6 @@
     ]
   },
   {
-    "id": "966d37a8-df82-4b45-b315-7cb17340636a",
-    "norwegian": "Kan du skrive det ned?",
-    "english": "Can you write it down?",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "f4729996-ba94-4ce9-a648-b3da01423fd8",
     "norwegian": "Ikke se på TV!",
     "english": "Don't watch TV!",
@@ -399,47 +209,9 @@
     ]
   },
   {
-    "id": "8dc9ef95-4860-4dd0-8554-5c31782eaa2f",
-    "norwegian": "Vær så snill å spis!",
-    "english": "Be so kind as to eat!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "24541567-2436-4ed7-90e3-3ae888360786",
     "norwegian": "Ikke gå!",
     "english": "Don't go!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "8e15f0d9-0950-4490-846f-1b5f78ba8466",
-    "norwegian": "Vær så snill å lukk døren!",
-    "english": "Be so kind as to close the door!",
     "concept_ids": [
       "imperative"
     ],
@@ -513,66 +285,9 @@
     ]
   },
   {
-    "id": "25b4bf2b-1371-45c1-bd93-05ca4dc72096",
-    "norwegian": "Ikke se på TV nå!",
-    "english": "Don't watch TV now!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "f8493155-0c85-4780-8516-c925197d0381",
-    "norwegian": "Vær så snill å ring meg i morgen!",
-    "english": "Be so kind as to call me tomorrow!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "abfb26fc-a91d-43be-97c3-b52fc74845fb",
     "norwegian": "Ikke forsvinn!",
     "english": "Don't disappear!",
-    "concept_ids": [
-      "imperative"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement",
-      "spelling"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "2ce5ca14-11aa-44f6-9a74-5a73687efb77",
-    "norwegian": "Spis frokosten din!",
-    "english": "Eat your lunch!",
     "concept_ids": [
       "imperative"
     ],

@@ -416,5 +416,461 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "87aa76a4-38c7-40b4-9a0d-6f5fa87736b1",
+    "norwegian": "Mannen som synger er glad",
+    "english": "The man who sings is happy",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "27f9d2df-a8f3-4e80-80da-cb547f9ad11f",
+    "norwegian": "Kvinnen som leser er min mor",
+    "english": "The woman who reads is my mother",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4e98b183-8b30-40a8-a8e9-40c131a480e7",
+    "norwegian": "Hunden som barker er min",
+    "english": "The dog that barks is mine",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f43c8165-be8a-4ae9-9729-bbb974551ce4",
+    "norwegian": "Bilen som kjører er rød",
+    "english": "The car that drives is red",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa82a70a-908f-4196-af3e-8a464138373c",
+    "norwegian": "Gutten som løper er rask",
+    "english": "The boy who runs is fast",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f5c28d2d-62d7-4d6c-99b8-fc02e92f65d4",
+    "norwegian": "Døren som åpner er stor",
+    "english": "The door that opens is big",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "557781f9-6b9e-44d3-804e-d10a70de1825",
+    "norwegian": "Folket som danser er lykkelige",
+    "english": "The people who dance are happy",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "73d9d79d-1b3e-41a2-bb3b-344e4787bd0a",
+    "norwegian": "Barna som leker er små",
+    "english": "The children who play are small",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "da6cd501-97b2-497f-9f60-582f8f9fc683",
+    "norwegian": "Huset som selges er gammelt",
+    "english": "The house that is sold is old",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a0b302cd-f2c7-4bd8-a21a-ea6ed26f1e57",
+    "norwegian": "Katten som sover er trøtt",
+    "english": "The cat that sleeps is tired",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "72f4fbf3-e7eb-4e3a-b823-a5106664b782",
+    "norwegian": "Pennen som skriver er min",
+    "english": "The pen that writes is mine",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "343d1d1a-0aa5-435f-890f-032a98357776",
+    "norwegian": "Gaven som gave er fin",
+    "english": "The gift that was given is nice",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fc2c5a19-e045-4419-b6ae-a33ac08c1e9c",
+    "norwegian": "Mannen som løp var trøtt",
+    "english": "The man who ran was tired",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "56f3226f-1bcf-45a4-8d61-9dfbf3ddcf56",
+    "norwegian": "Kvinnen som synger er glad",
+    "english": "The woman who sings is happy",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "29fc6c39-92a1-41ec-8d33-8ce2124479cb",
+    "norwegian": "Hunden som bjeffer er min",
+    "english": "The dog that barks is mine",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aa65d360-6a55-4859-97d8-97b7a94cc04d",
+    "norwegian": "Gutten som leker er min bror",
+    "english": "The boy who plays is my brother",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "caf8a766-5cd8-4a00-98a2-06ccdf898c5d",
+    "norwegian": "Katten som sover er min",
+    "english": "The cat that sleeps is mine",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0f5f0f87-1cab-4b8f-822e-e478cc7f3da3",
+    "norwegian": "Båten som seiler er blå",
+    "english": "The boat that sails is blue",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "602f4506-3263-46bc-90ce-5c41a9385e9c",
+    "norwegian": "Jenten som danser er lykkelig",
+    "english": "The girl who dances is happy",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "570c7e28-5b19-458e-a90c-67a2d2221cf0",
+    "norwegian": "Huset som er stort har en hage",
+    "english": "The house that is big has a garden",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "39c67b14-7494-494c-b094-ed9ac35a0dbf",
+    "norwegian": "Bøken som jeg leser er spennende",
+    "english": "The book that I read is exciting",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ec5d8f92-d831-4c2e-8771-f2193f842bdd",
+    "norwegian": "Venner som hjelper er gode",
+    "english": "Friends who help are good",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fdb3329a-41eb-4035-8e34-b0919c7f14e0",
+    "norwegian": "Mannen som leser er min far",
+    "english": "The man who reads is my father",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ed45529-c384-483e-b348-bea46326e5e1",
+    "norwegian": "Datteren som danser er ung",
+    "english": "The daughter who dances is young",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

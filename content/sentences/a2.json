@@ -8558,5 +8558,1828 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "79b266e0-a21d-4ac8-be6a-2ad8e7e30444",
+    "norwegian": "Huset er større enn leiligheten.",
+    "english": "The house is bigger than the apartment",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "935aa4dd-a771-45c9-b06d-76c646765498",
+    "norwegian": "Dette kjøttet er mer mørt enn det andre.",
+    "english": "This meat is softer than the other",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "94e5540b-eee2-4355-aa7c-7c946ff241ef",
+    "norwegian": "Jeg løper raskere enn deg.",
+    "english": "I run faster than you",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f5fc1945-48d6-4e16-a4a7-9889e1e5490f",
+    "norwegian": "Været i dag er bedre enn i går.",
+    "english": "The weather today is better than yesterday",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a84fc393-15f3-4f7a-939e-288237e39716",
+    "norwegian": "Jeg føler meg mer trøtt enn i går.",
+    "english": "I feel more tired than yesterday",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e5ea9d09-10f4-4c81-9632-6259ee63dd20",
+    "norwegian": "Hunden er mer lojal enn katten.",
+    "english": "The dog is more loyal than the cat",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2150028a-dee2-41b5-b645-b46a797f94aa",
+    "norwegian": "Dagens mat var bedre enn i går.",
+    "english": "Today's food was better than yesterday's",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6454eee7-ed81-4db6-9720-a564fac854f1",
+    "norwegian": "Bilen er lengre enn sykkelen.",
+    "english": "The car is longer than the bike",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aada2073-02f3-4f15-ac99-8f0638d78222",
+    "norwegian": "Han er mer trøtt enn jeg.",
+    "english": "He is more tired than me",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e54d43a8-75a2-41f1-8311-683105266772",
+    "norwegian": "Kvelden var varmere enn dagen.",
+    "english": "The evening was warmer than the day",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0b423a93-e89b-41b8-ba1e-a7244a5c4981",
+    "norwegian": "Boka er mer interessant enn filmen.",
+    "english": "The book is more interesting than the movie",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8bf2b109-d5df-434e-858b-3dbb9b26857d",
+    "norwegian": "Det nye huset er større enn det gamle.",
+    "english": "The new house is bigger than the old one",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ac18ff8-2f8d-43ba-9f5d-7672b93f1839",
+    "norwegian": "Dette året er verre enn forrige år.",
+    "english": "This year is worse than last year",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dd618510-ca0c-4fc4-aad4-cc3cdc0883ff",
+    "norwegian": "Kaffen er bedre i dag enn i går.",
+    "english": "The coffee is better today than yesterday.",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "wrong-word-same-category",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8cf4897b-ef60-4306-b1d7-aeec77960c82",
+    "norwegian": "Ikke gå ut!",
+    "english": "Don't go out!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e93ec890-4c41-4982-90b9-126139f425ae",
+    "norwegian": "Kjør forsiktig!",
+    "english": "Drive carefully!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6d181516-f190-42b8-b9dd-921573f9f537",
+    "norwegian": "Ikke løp i korridoren!",
+    "english": "Don't run in the corridor!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d5234ce9-81ad-419b-89af-1ac85bfdc02e",
+    "norwegian": "Se på TV!",
+    "english": "Watch TV!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7cb65453-7ce2-43a7-89f6-f6969f86fb89",
+    "norwegian": "Gjør det selv!",
+    "english": "Do it yourself!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bf019fbd-6c31-4d31-b5cc-5292965cee66",
+    "norwegian": "Kjør bilen min!",
+    "english": "Drive my car!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7506c40b-5cc0-4d5e-b7de-a618d910e6dd",
+    "norwegian": "Løp raskt!",
+    "english": "Run fast!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4cd58d63-8058-429c-bcdd-6902d1705256",
+    "norwegian": "Ikke si noe!",
+    "english": "Don't say anything!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3e588820-cf77-4f37-ba86-3f5eeb6d7fc7",
+    "norwegian": "Hør på meg!",
+    "english": "Listen to me!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f4729996-ba94-4ce9-a648-b3da01423fd8",
+    "norwegian": "Ikke se på TV!",
+    "english": "Don't watch TV!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "570dc577-d51f-4fda-9f1d-6e0614ccbd28",
+    "norwegian": "Se på bildet!",
+    "english": "Look at the picture!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "24541567-2436-4ed7-90e3-3ae888360786",
+    "norwegian": "Ikke gå!",
+    "english": "Don't go!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e6023317-e672-405d-9457-a9312a78f56e",
+    "norwegian": "Ikke rør det!",
+    "english": "Don't touch it!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "697435df-d3a5-43aa-a0b1-37c6fdd370fd",
+    "norwegian": "Hent vann!",
+    "english": "Fetch water!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b0894ca1-e773-4e30-a366-d12d2c80b43b",
+    "norwegian": "Ikke åpne pakken!",
+    "english": "Don't open the package!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "abfb26fc-a91d-43be-97c3-b52fc74845fb",
+    "norwegian": "Ikke forsvinn!",
+    "english": "Don't disappear!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1087aff5-4295-405b-92de-5c395bd694e8",
+    "norwegian": "Ikke gå utendørs nå!",
+    "english": "Don't go outside now!",
+    "concept_ids": [
+      "imperative"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "negation-placement",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2bbbbc8e-796f-4ba9-9edb-badb599decfb",
+    "norwegian": "Jeg er første i køen.",
+    "english": "I am first in line",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fac83aaf-5424-44f1-9f4d-d5c564c16b29",
+    "norwegian": "Han spiser en halv pizza.",
+    "english": "He eats half a pizza",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "986b6fec-edf5-4cd3-8e24-ac46554edb58",
+    "norwegian": "Det er tredje gangen jeg prøver.",
+    "english": "It's the third time I'm trying",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0a3700e6-8893-41da-81f6-843371e9ebf0",
+    "norwegian": "Jeg har en tredjedel av en time.",
+    "english": "I have one third of an hour",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d14bae2-fa8d-48e9-8401-5fe204619db6",
+    "norwegian": "To tusen og tolv var et godt år.",
+    "english": "Two thousand and twelve was a good year",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "686388aa-d4db-4818-a130-0746fe30cee5",
+    "norwegian": "Hun var syvende i løpet.",
+    "english": "She was seventh in the race",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5daff6d6-1f35-4da0-9c09-d386a1621a56",
+    "norwegian": "Jeg har tusen norske kroner.",
+    "english": "I have one thousand Norwegian kroner",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "74e7dbdb-581e-427a-9a43-91c15f1d41d9",
+    "norwegian": "Det er andre gangen jeg ser filmen.",
+    "english": "It's the second time I'm watching the movie",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5a7df78c-815c-44d1-bbb6-796e4dd408f0",
+    "norwegian": "Jeg har en fjerdedel av en liter melk.",
+    "english": "I have a quarter of a liter of milk",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "94e083b9-efb6-409c-8bf3-c4731459d43f",
+    "norwegian": "Nittiåra var en spennende tid.",
+    "english": "The nineties were an exciting time",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4b87c260-be22-4c45-8e6b-2998246a3eba",
+    "norwegian": "Hun er andre i løpet.",
+    "english": "She is second in the race.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "431c1f05-1a1c-41c4-a460-4041da1cc5a7",
+    "norwegian": "Jeg ble født i nittiåra.",
+    "english": "I was born in the nineties.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0e79df4a-e58b-4e6d-8322-4ae8b20546d0",
+    "norwegian": "Han har hundre euro i lommen.",
+    "english": "He has a hundred euros in his pocket.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d0787152-8974-4f17-8ac8-0f1ec6edc24d",
+    "norwegian": "Jeg kjøpte en bil for tusen kroner.",
+    "english": "I bought a car for a thousand kroner.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c7c264bf-64dd-40b1-ae6b-089268d21010",
+    "norwegian": "Jeg er femte i klassen.",
+    "english": "I am fifth in the class.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "83be41ad-b788-4387-b4a6-a54b5e012a9e",
+    "norwegian": "Han er syvende i rekken.",
+    "english": "He is seventh in line.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d976063c-5c11-4914-a29e-e95fca5f0729",
+    "norwegian": "Det er første gang.",
+    "english": "It's the first time",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "48222575-d816-4b22-899d-b3880b560629",
+    "norwegian": "Jeg har en tredjedel av kaken.",
+    "english": "I have a third of the cake",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "00a93417-06ab-4fbd-aa4d-d4a1babe8c77",
+    "norwegian": "Det er tusen meter til toppen.",
+    "english": "It's a thousand meters to the top",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "86694d82-d6a5-4acd-90f5-33e85ec9a824",
+    "norwegian": "Han er andre i konkurransen.",
+    "english": "He is second in the competition",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7cdf5341-02fb-4b5c-9523-8c137865236d",
+    "norwegian": "Hun spiste en halv pizza.",
+    "english": "She ate half a pizza",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "adjective-agreement",
+      "listening-recognition"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "26e6e870-b9d6-4f2f-8516-78afea403053",
+    "norwegian": "Han hjelper meg.",
+    "english": "He helps me",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe74dd4a-affc-4b7c-afa0-045f4cf96fd0",
+    "norwegian": "Hun elsker ham.",
+    "english": "She loves him",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de76d4db-f2ee-4af1-8419-78077dd6e0ef",
+    "norwegian": "Vi ser henne.",
+    "english": "We see her",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2d14eda7-1ff7-400a-9d74-e27f30ba99b9",
+    "norwegian": "De kjøper det.",
+    "english": "They buy it",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b103f84c-4e85-43fc-a842-b59aea0fb296",
+    "norwegian": "Jeg kjente dem.",
+    "english": "I knew them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5cf5c454-eba5-4ae0-8e33-7c7527faae48",
+    "norwegian": "Du hjelper oss.",
+    "english": "You help us",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "81aeffd0-4b30-4c0f-b00d-38765151b50c",
+    "norwegian": "Han så meg.",
+    "english": "He saw me",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6b998ee5-4e90-4791-abe3-9c4ba81d8a59",
+    "norwegian": "Hun hjelper dem.",
+    "english": "She helps them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5c47cdc-d9b2-4317-ae1f-970860ee1431",
+    "norwegian": "Jeg ser det.",
+    "english": "I see it",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "68ab8f3f-029c-413c-831f-83a7f27ce9ac",
+    "norwegian": "Vi kjøper dem.",
+    "english": "We buy them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a857200e-b14c-4d8c-b4c9-81be8e55d531",
+    "norwegian": "De ser henne.",
+    "english": "They see her",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "85f407f0-3311-457c-b71f-e75182afdfb3",
+    "norwegian": "Han kjøper en gave til henne.",
+    "english": "He buys a gift for her",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a4f37c4-a321-4900-a9b9-08fce47db9ce",
+    "norwegian": "Hun synger for dem.",
+    "english": "She sings for them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0dd201d3-fcaa-489b-87cb-ef509879125b",
+    "norwegian": "De ser på det.",
+    "english": "They look at it",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25194d12-e604-4909-af56-32cd5d7cc6d9",
+    "norwegian": "Jeg har en bok for deg.",
+    "english": "I have a book for you",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e8155c7a-702a-4dfa-9b70-045d54c9e664",
+    "norwegian": "Hun gir ham en blomst.",
+    "english": "She gives him a flower",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9eb7c22d-772d-4006-822a-06146e1e01b5",
+    "norwegian": "Vi hjelper dem.",
+    "english": "We help them",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ff1f8f27-8e5b-43c0-b433-7407630c5e6a",
+    "norwegian": "De viser henne veien.",
+    "english": "They show her the way",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "faa8e7cd-c226-438c-8beb-5f854725d9c0",
+    "norwegian": "Jeg gir det til ham.",
+    "english": "I give it to him",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "60f88314-d9cd-48bc-8406-e8746070f869",
+    "norwegian": "Hun ser på oss.",
+    "english": "She looks at us",
+    "concept_ids": [
+      "object-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "87aa76a4-38c7-40b4-9a0d-6f5fa87736b1",
+    "norwegian": "Mannen som synger er glad.",
+    "english": "The man who sings is happy",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "27f9d2df-a8f3-4e80-80da-cb547f9ad11f",
+    "norwegian": "Kvinnen som leser er min mor.",
+    "english": "The woman who reads is my mother",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4e98b183-8b30-40a8-a8e9-40c131a480e7",
+    "norwegian": "Hunden som barker er min.",
+    "english": "The dog that barks is mine",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fa82a70a-908f-4196-af3e-8a464138373c",
+    "norwegian": "Gutten som løper er rask.",
+    "english": "The boy who runs is fast",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "73d9d79d-1b3e-41a2-bb3b-344e4787bd0a",
+    "norwegian": "Barna som leker er små.",
+    "english": "The children who play are small",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a0b302cd-f2c7-4bd8-a21a-ea6ed26f1e57",
+    "norwegian": "Katten som sover er trøtt.",
+    "english": "The cat that sleeps is tired",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fc2c5a19-e045-4419-b6ae-a33ac08c1e9c",
+    "norwegian": "Mannen som løp var trøtt.",
+    "english": "The man who ran was tired",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aa65d360-6a55-4859-97d8-97b7a94cc04d",
+    "norwegian": "Gutten som leker er min bror.",
+    "english": "The boy who plays is my brother",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0f5f0f87-1cab-4b8f-822e-e478cc7f3da3",
+    "norwegian": "Båten som seiler er blå.",
+    "english": "The boat that sails is blue",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "570c7e28-5b19-458e-a90c-67a2d2221cf0",
+    "norwegian": "Huset som er stort har en hage.",
+    "english": "The house that is big has a garden",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ec5d8f92-d831-4c2e-8771-f2193f842bdd",
+    "norwegian": "Venner som hjelper er gode.",
+    "english": "Friends who help are good",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fdb3329a-41eb-4035-8e34-b0919c7f14e0",
+    "norwegian": "Mannen som leser er min far.",
+    "english": "The man who reads is my father",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5ed45529-c384-483e-b348-bea46326e5e1",
+    "norwegian": "Datteren som danser er ung.",
+    "english": "The daughter who dances is young",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1de540c5-5344-4a74-a476-d4d46422fbd0",
+    "norwegian": "Bilen kjører til togstasjonen.",
+    "english": "The car drives to the train station",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9a560078-543d-453e-8772-a0dba9d8d7bb",
+    "norwegian": "Jeg har en misforståelse.",
+    "english": "I have a misunderstanding",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "232a7aab-d2bd-459b-bcde-22b463ab8b89",
+    "norwegian": "Barnet spiller med en lekebil.",
+    "english": "The child plays with a toy car",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1d3595e1-8227-4b9c-9b9c-8ded0460f372",
+    "norwegian": "Hun er en misfornøyd kunde.",
+    "english": "She is a dissatisfied customer",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "46922083-362e-4fde-88c8-488aa82845ee",
+    "norwegian": "Han kjører en lastebil.",
+    "english": "He drives a truck",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bb704139-5ee8-45bc-aac9-eead977286e8",
+    "norwegian": "Jeg har en uviktig oppgave.",
+    "english": "I have an unimportant task",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e2688e32-7311-4199-b330-c1c2fbd7e46d",
+    "norwegian": "Hun har en skoleveske.",
+    "english": "She has a school bag",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad488998-fed5-4e6a-9a24-3725079fd591",
+    "norwegian": "Jeg har en datamaskin.",
+    "english": "I have a computer",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b4f2079c-c5b5-4de0-b2c8-af11194659e5",
+    "norwegian": "Jeg kjører til togstasjonen.",
+    "english": "I drive to the train station",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "07d17e36-18ec-4e73-9d0a-74ac50e9b84f",
+    "norwegian": "Hun er misfornøyd med arbeidet.",
+    "english": "She is dissatisfied with the work",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad04dbe4-92c8-42eb-876b-dff848435279",
+    "norwegian": "Barna leker på en lekeplass.",
+    "english": "The children play on a playground",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ed685b5-ea93-4ed6-8eca-4c209264bfb0",
+    "norwegian": "Vi har en ny skolebygning.",
+    "english": "We have a new school building",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

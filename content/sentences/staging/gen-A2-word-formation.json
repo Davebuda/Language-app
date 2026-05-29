@@ -1,1 +1,610 @@
-[]
+[
+  {
+    "id": "1de540c5-5344-4a74-a476-d4d46422fbd0",
+    "norwegian": "Bilen kjører til togstasjonen",
+    "english": "The car drives to the train station",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9a560078-543d-453e-8772-a0dba9d8d7bb",
+    "norwegian": "Jeg har en misforståelse",
+    "english": "I have a misunderstanding",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ade4a3e-83b8-456b-ad92-bbf40e026aee",
+    "norwegian": "Hun er en uvillig deltaker",
+    "english": "She is an unwilling participant",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "719f1255-b0ac-4cbe-b369-6ec900e0af3c",
+    "norwegian": "Han har en reaktiv holdning",
+    "english": "He has a reactive attitude",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "232a7aab-d2bd-459b-bcde-22b463ab8b89",
+    "norwegian": "Barnet spiller med en lekebil",
+    "english": "The child plays with a toy car",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1df7388a-6dac-4020-8138-874aa6fdf2cf",
+    "norwegian": "Jeg har en urettferdig behandling",
+    "english": "I have an unfair treatment",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1d3595e1-8227-4b9c-9b9c-8ded0460f372",
+    "norwegian": "Hun er en misfornøyd kunde",
+    "english": "She is a dissatisfied customer",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "46922083-362e-4fde-88c8-488aa82845ee",
+    "norwegian": "Han kjører en lastebil",
+    "english": "He drives a truck",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bb704139-5ee8-45bc-aac9-eead977286e8",
+    "norwegian": "Jeg har en uviktig oppgave",
+    "english": "I have an unimportant task",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "02954d9e-9685-4c2e-b4aa-6375c5b98c4b",
+    "norwegian": "Barnet har en sykdom",
+    "english": "The child has an illness",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d6e91cfa-5eb9-495b-b64b-ed0d28cf2de7",
+    "norwegian": "Hun er en reaktiv person",
+    "english": "She is a reactive person",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "06cceed7-272b-400a-b5cf-194b1fb7ccb6",
+    "norwegian": "Han har en mislykket forsøk",
+    "english": "He has a failed attempt",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d01f8a79-6987-48c5-863e-3b1d77fedb01",
+    "norwegian": "Jeg har en bildebook",
+    "english": "I have a picture book",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "adbed44f-295f-4ae3-ae43-320ff895c452",
+    "norwegian": "Hunden er meget sjov",
+    "english": "The dog is very funny",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8200bbc8-e1bc-4b99-8281-c1a105061fa0",
+    "norwegian": "Hun spiser en sandwich",
+    "english": "She eats a sandwich",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "27d0780d-b96e-48ca-889c-b26461f6e561",
+    "norwegian": "Vi har en fotballag",
+    "english": "We have a football team",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c63a6a5b-0893-4821-adc9-02fae27b0ab1",
+    "norwegian": "Jeg har en ny sykkel",
+    "english": "I have a new bike",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "59f767ca-e4d4-4b2d-9bef-d5f807c61dfe",
+    "norwegian": "Katten er meget venlig",
+    "english": "The cat is very friendly",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e2688e32-7311-4199-b330-c1c2fbd7e46d",
+    "norwegian": "Hun har en skoleveske",
+    "english": "She has a school bag",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ddb7389f-d78a-4b09-b13e-099aa84a2db3",
+    "norwegian": "Jeg har en fjernsyn",
+    "english": "I have a television",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ccae8cd0-f0e9-41e5-b5ad-34bbdcbb5b37",
+    "norwegian": "Vi har en legekontor",
+    "english": "We have a doctor's office",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b96ffcd3-504b-4e63-889d-e5a6a1da285d",
+    "norwegian": "Jeg har en fotografi",
+    "english": "I have a photograph",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c2e788a0-e5e1-4aec-b04d-f3ddb6531202",
+    "norwegian": "Hun har en håndtaske",
+    "english": "She has a handbag",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad488998-fed5-4e6a-9a24-3725079fd591",
+    "norwegian": "Jeg har en datamaskin",
+    "english": "I have a computer",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b4f2079c-c5b5-4de0-b2c8-af11194659e5",
+    "norwegian": "Jeg kjører til togstasjonen",
+    "english": "I drive to the train station",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "07d17e36-18ec-4e73-9d0a-74ac50e9b84f",
+    "norwegian": "Hun er misfornøyd med arbeidet",
+    "english": "She is dissatisfied with the work",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad04dbe4-92c8-42eb-876b-dff848435279",
+    "norwegian": "Barna leker på en lekeplass",
+    "english": "The children play on a playground",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "01ed47ba-ac94-47b5-b98b-87a3f975075a",
+    "norwegian": "Han har en fotballbane hjemme",
+    "english": "He has a soccer field at home",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4110a241-5f20-474b-a7e1-afcc615a198a",
+    "norwegian": "Jeg har en sykdom som heter influensa",
+    "english": "I have a disease called influenza",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b8411c2a-4415-4e01-a60a-67ca8beb879f",
+    "norwegian": "Hun er en kvinne med stor åndelig styrke",
+    "english": "She is a woman with great spiritual strength",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2ed685b5-ea93-4ed6-8eca-4c209264bfb0",
+    "norwegian": "Vi har en ny skolebygning",
+    "english": "We have a new school building",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "668d1a4e-ebc3-4151-9252-b23077742afc",
+    "norwegian": "Bilen har en stor bagasjerom",
+    "english": "The car has a large trunk",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]
