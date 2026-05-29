@@ -1,0 +1,45 @@
+# Optional CD: build-check on every push, deploy on push to main via SSH.
+# Requires repo secrets (Settings → Secrets and variables → Actions):
+#   VPS_HOST, VPS_USER (e.g. root), VPS_SSH_KEY (private key with access to the box)
+# Until those secrets exist the deploy job is skipped automatically.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npm run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Guard — require SSH secrets
+        id: guard
+        run: |
+          if [ -z "${{ secrets.VPS_HOST }}" ]; then
+            echo "VPS secrets not set — skipping remote deploy." && echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: SSH deploy
+        if: steps.guard.outputs.ok == 'true'
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: cd /var/www/norskcoach && ./deploy/deploy.sh
