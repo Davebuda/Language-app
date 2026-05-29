@@ -244,6 +244,10 @@ async function main() {
     ? (s, u, ms) => groqChat(model, s, u, ms)
     : (s, u, ms) => ollamaChat(model, s, u, ms)
   const dry = FLAG('dry-run')
+  // Optional inter-call delay. Groq's free tier caps tokens-per-minute (~12k);
+  // firing several PER_CALL=12 requests back-to-back saturates it and every
+  // retry 429s. A few seconds between calls keeps a batch under the TPM ceiling.
+  const throttleMs = parseInt(arg('throttle') ?? '0', 10)
   if (!conceptId) { console.error('Missing --concept=<conceptId>'); process.exit(1) }
   if (provider === 'groq' && !GROQ_KEY) { console.error('provider=groq but GROQ_API_KEY not found in env/.env.local'); process.exit(1) }
 
@@ -264,6 +268,7 @@ async function main() {
   let totalSeen = 0, rejected = 0, failedCalls = 0
   const MAX_ATTEMPTS = Math.max(6, Math.ceil(count / 4))
   for (let attempt = 1; attempt <= MAX_ATTEMPTS && accepted.length < count; attempt++) {
+    if (attempt > 1 && throttleMs) await new Promise((r) => setTimeout(r, throttleMs))
     const { system, user } = buildPrompt(concept, level, type, PER_CALL)
     let cands: Cand[] = []
     try { cands = await callModel(chat, system, user) }
