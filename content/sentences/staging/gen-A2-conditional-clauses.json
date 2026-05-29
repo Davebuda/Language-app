@@ -1,0 +1,420 @@
+[
+  {
+    "id": "36a5d768-f31c-4ea3-b9e2-95ddf39e7efc",
+    "norwegian": "Hvis jeg har tid, går jeg på kino.",
+    "english": "If I have time, I go to the cinema.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "157f5dbf-915d-45a5-8ec9-9e10538dbed4",
+    "norwegian": "Om jeg ser en film, liker jeg det.",
+    "english": "If I watch a movie, I like it.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad723ecf-213e-4ccb-a833-6f51480e9569",
+    "norwegian": "Hvis jeg hadde penger, kjøpte jeg en bil.",
+    "english": "If I had money, I would buy a car.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f2a5ca3c-04b4-4a4d-a8e0-bced982a8427",
+    "norwegian": "Om det regner, tar jeg paraplyen.",
+    "english": "If it rains, I take the umbrella.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dd2b696c-ff2e-47f3-a175-de916e375ee9",
+    "norwegian": "Hvis jeg er syk, går jeg til legen.",
+    "english": "If I am sick, I go to the doctor.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "15ec89b3-07b0-4bc8-994e-7074a9564566",
+    "norwegian": "Om jeg har sult, spiser jeg en sandwich.",
+    "english": "If I am hungry, I eat a sandwich.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5963b55-c367-45d9-a87a-d0331ed63936",
+    "norwegian": "Hvis jeg har en hund, tar jeg den på tur.",
+    "english": "If I have a dog, I take it for a walk.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3ee67afd-864b-4bc7-a0a5-26741ca1eb59",
+    "norwegian": "Om jeg ser en ven, hilser jeg på ham.",
+    "english": "If I see a friend, I greet him.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dbd69201-cce2-4d03-97f7-cc203bc77ac3",
+    "norwegian": "Hvis jeg har en cykel, sykler jeg til arbeid.",
+    "english": "If I have a bike, I ride to work.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3b618135-01a8-4827-8cc6-07508f4abca4",
+    "norwegian": "Om jeg har en frist, leverer jeg oppgaven.",
+    "english": "If I have a deadline, I deliver the task.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "572e2e79-7ac1-455b-bfff-44bf6a50b88e",
+    "norwegian": "Hvis jeg bor i byen, går jeg på museet.",
+    "english": "If I live in the city, I go to the museum.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "56afcb25-4725-4b80-a08e-30c0d0a2ee55",
+    "norwegian": "Om jeg har en jobb, arbeider jeg hardt.",
+    "english": "If I have a job, I work hard.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "596cfc51-c63e-48ea-9127-56ddd6362d11",
+    "norwegian": "Om du løper raskt, vinner du.",
+    "english": "If you run fast, you win.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6c98da65-2c6b-4231-8746-9356678c7031",
+    "norwegian": "Hvis det regner, tar jeg paraplyen.",
+    "english": "If it rains, I take the umbrella.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "28fd9ab8-237a-4825-b567-630cfcf470bc",
+    "norwegian": "Om jeg hadde penger, kjøpte jeg en bil.",
+    "english": "If I had money, I would buy a car.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bce8a282-03e3-4ff1-832d-1cc6bccbb91e",
+    "norwegian": "Hvis du spiser mye, blir du syk.",
+    "english": "If you eat a lot, you get sick.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3a717173-c3e3-45a4-a4fc-a76237ca6166",
+    "norwegian": "Om jeg var deg, gikk jeg hjem.",
+    "english": "If I were you, I would go home.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "764e0b73-b2ba-48dc-a4cd-9a94e8f29184",
+    "norwegian": "Hvis du har hjemmelekser, gjør du dem.",
+    "english": "If you have homework, do it.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "edd3cf62-5d9d-495c-965d-8bee28fff944",
+    "norwegian": "Om jeg hadde tid, hjalp jeg deg.",
+    "english": "If I had time, I would help you.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e7d06d08-7a6d-4727-9556-3116d4c6ec0b",
+    "norwegian": "Hvis det er kaldt, tar jeg en genser.",
+    "english": "If it is cold, I take a sweater.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aa14b957-fa0d-431f-b6fc-ce3ad30c1366",
+    "norwegian": "Om jeg var i byen, handlet jeg.",
+    "english": "If I were in the city, I would shop.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "986d42e4-43c3-4693-a4df-99e5597e89f4",
+    "norwegian": "Hvis du er trøtt, sover du.",
+    "english": "If you are tired, you sleep.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

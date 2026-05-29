@@ -1,0 +1,211 @@
+[
+  {
+    "id": "869e22e4-2139-4045-acd2-dd6c5207bf53",
+    "norwegian": "Jeg spiser aldri frokost.",
+    "english": "I never eat breakfast",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f7b7506d-ebdc-4b20-9534-0630b42e67c2",
+    "norwegian": "Han kommer nok i morgen.",
+    "english": "He will probably come tomorrow",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2fb2aff8-13e7-4b1d-9eb1-eb75f29b32eb",
+    "norwegian": "Vi går alltid til parken.",
+    "english": "We always go to the park",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5a7aed4d-5fc9-4f6e-baa0-5d71188645cb",
+    "norwegian": "Han har aldri vært i Oslo.",
+    "english": "He has never been to Oslo",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c2685d54-cb41-4798-b97b-3855541f4367",
+    "norwegian": "Vi skal nok være der.",
+    "english": "We will probably be there",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a760eacc-830b-4f04-bfdf-b2c15c5fea45",
+    "norwegian": "Hun er alltid på tid.",
+    "english": "She is always on time",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0abb51da-5fff-4496-827e-61a19c1c06a6",
+    "norwegian": "Jeg har vel gjort det før.",
+    "english": "I have probably done it before",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4604a147-d93f-401d-a44f-7495a418e82a",
+    "norwegian": "Han kommer nok tilbake.",
+    "english": "He will probably come back",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3ab9011c-34e3-4fe5-8fd0-3d6bd5867bec",
+    "norwegian": "Vi kommer vel til å se deg i morgen.",
+    "english": "We will probably see you tomorrow",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe13e5af-5045-4cec-b0b4-6179b22e880e",
+    "norwegian": "Jeg har alltid likt å lese.",
+    "english": "I have always liked reading",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aa099976-5b06-47a7-bbbc-d51fa5ae7bec",
+    "norwegian": "Han har nok gjort det selv.",
+    "english": "He has probably done it himself",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

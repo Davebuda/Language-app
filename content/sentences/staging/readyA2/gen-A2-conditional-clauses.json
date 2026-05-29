@@ -1,0 +1,154 @@
+[
+  {
+    "id": "36a5d768-f31c-4ea3-b9e2-95ddf39e7efc",
+    "norwegian": "Hvis jeg har tid, går jeg på kino.",
+    "english": "If I have time, I go to the cinema.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dd2b696c-ff2e-47f3-a175-de916e375ee9",
+    "norwegian": "Hvis jeg er syk, går jeg til legen.",
+    "english": "If I am sick, I go to the doctor.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5963b55-c367-45d9-a87a-d0331ed63936",
+    "norwegian": "Hvis jeg har en hund, tar jeg den på tur.",
+    "english": "If I have a dog, I take it for a walk.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "572e2e79-7ac1-455b-bfff-44bf6a50b88e",
+    "norwegian": "Hvis jeg bor i byen, går jeg på museet.",
+    "english": "If I live in the city, I go to the museum.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "596cfc51-c63e-48ea-9127-56ddd6362d11",
+    "norwegian": "Om du løper raskt, vinner du.",
+    "english": "If you run fast, you win.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6c98da65-2c6b-4231-8746-9356678c7031",
+    "norwegian": "Hvis det regner, tar jeg paraplyen.",
+    "english": "If it rains, I take the umbrella.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bce8a282-03e3-4ff1-832d-1cc6bccbb91e",
+    "norwegian": "Hvis du spiser mye, blir du syk.",
+    "english": "If you eat a lot, you get sick.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e7d06d08-7a6d-4727-9556-3116d4c6ec0b",
+    "norwegian": "Hvis det er kaldt, tar jeg en genser.",
+    "english": "If it is cold, I take a sweater.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

@@ -1,0 +1,173 @@
+[
+  {
+    "id": "f3d4456b-0bc0-41f4-8086-9cf79b80611b",
+    "norwegian": "Jeg drakk vann i går.",
+    "english": "I drank water yesterday",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e7fe6c65-906d-4d08-b916-be64e8e585f5",
+    "norwegian": "Hun fant nøklene.",
+    "english": "She found the keys",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4a99462e-2fe9-49ff-8da5-42e0ee84f0d4",
+    "norwegian": "Han lå i sengen.",
+    "english": "He lay in bed",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5af50d0a-c2d6-4a29-96e4-8e24a0970e5f",
+    "norwegian": "De satt på benken.",
+    "english": "They sat on the bench",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4ae8b4f2-7715-4669-b298-ce911e9dd02b",
+    "norwegian": "Jeg falt på skolen.",
+    "english": "I fell at school",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dc762969-4132-4d6f-8329-ca8d1b4a3937",
+    "norwegian": "Hun holdt døren åpen.",
+    "english": "She held the door open",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "06abb8de-4a83-4ea2-b94b-3bdaebc22b19",
+    "norwegian": "Han slo ballen.",
+    "english": "He hit the ball",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "99e439f9-943e-4a64-9162-a9b78dce9fa8",
+    "norwegian": "Jeg bar sekken.",
+    "english": "I carried the bag",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8a11b700-20c3-41a3-937e-66f72af276e5",
+    "norwegian": "De skrev brev.",
+    "english": "They wrote letters",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

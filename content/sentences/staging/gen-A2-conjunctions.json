@@ -1,0 +1,420 @@
+[
+  {
+    "id": "227f8826-946a-4b5f-b200-4b7821100502",
+    "norwegian": "Jeg spiser frokost og drikker kaffe.",
+    "english": "I eat breakfast and drink coffee.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5713e6f1-6c46-47d4-99cd-0c18b3e1dd8b",
+    "norwegian": "Han er trøtt fordi han ikke sov.",
+    "english": "He is tired because he did not sleep.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "42dc19cb-78f5-4968-9518-af90174ea95e",
+    "norwegian": "Jeg liker å lese eller skrive.",
+    "english": "I like to read or write.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c7db253d-d06d-4959-98b3-0e6709bd677a",
+    "norwegian": "Hun er glad fordi hun fikk en gave.",
+    "english": "She is happy because she got a gift.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "55e478b9-ac50-4e50-9e8e-a9e40c0f94cb",
+    "norwegian": "Jeg går til skolen og så hjem.",
+    "english": "I go to school and then home.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cd077549-94fb-46a1-860d-7a113c931ce2",
+    "norwegian": "Han er syk men kommer snart.",
+    "english": "He is sick but will come soon.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "632ef1af-6e1b-48c0-aeec-4bb33cc29225",
+    "norwegian": "Jeg har en hund og en katt.",
+    "english": "I have a dog and a cat.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e7eda2fa-fe1a-4a80-8748-51e8cafc525e",
+    "norwegian": "Hun er glad og lykkelig.",
+    "english": "She is happy and happy.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4236b338-2464-4f30-a21e-37da66871993",
+    "norwegian": "Jeg spiser frokost fordi jeg er sulten.",
+    "english": "I eat breakfast because I am hungry.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "100489e4-8f41-4b42-b9aa-447ed620e8da",
+    "norwegian": "Han er trøtt så han sover.",
+    "english": "He is tired so he sleeps.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cb7385fd-6f66-4054-b4e9-5dc5ab6a727f",
+    "norwegian": "Jeg liker å lese eller se på TV.",
+    "english": "I like to read or watch TV.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d9b847b1-bcf5-425e-b6a8-eb2b239046f5",
+    "norwegian": "Hun er glad fordi hun har venner.",
+    "english": "She is happy because she has friends.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d1aabf30-0156-442a-8234-61817df09e87",
+    "norwegian": "Jeg spiser frokost og drikker vann.",
+    "english": "I eat breakfast and drink water.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7d5d2314-2c76-4436-9710-b35830090c01",
+    "norwegian": "Han kommer fordi han er sulten.",
+    "english": "He comes because he is hungry.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "75c55c1f-1acb-4ed4-bdf5-2168a6984244",
+    "norwegian": "Jeg løper og sykler hver dag.",
+    "english": "I run and cycle every day.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e7bd5afb-881c-4c5d-bc09-8c5760ba548c",
+    "norwegian": "Hun er trøtt fordi hun ikke sov.",
+    "english": "She is tired because she did not sleep.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "94a5df26-1178-4919-b02e-7a7db76e40d8",
+    "norwegian": "Jeg kjøper bok eller blad.",
+    "english": "I buy a book or a magazine.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1b301c24-265a-4fcc-a80e-af05d302fa34",
+    "norwegian": "Han spiser fordi han er sulten.",
+    "english": "He eats because he is hungry.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "593443dd-c03a-4015-9b0a-59e7c5a5b4c8",
+    "norwegian": "Jeg går og så løper jeg.",
+    "english": "I walk and then I run.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2d276aae-6668-4a59-9f1d-dbc99823c745",
+    "norwegian": "Hun er glad og hun synger.",
+    "english": "She is happy and she sings.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4b321f2c-6a06-4471-8147-8cf02be0dd5b",
+    "norwegian": "Jeg kommer fordi jeg er invitert.",
+    "english": "I come because I am invited.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6a8a0bd9-61df-4955-bf60-94bf69a468d9",
+    "norwegian": "Han er her fordi han er syk.",
+    "english": "He is here because he is ill.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

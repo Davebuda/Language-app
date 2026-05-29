@@ -1,0 +1,420 @@
+[
+  {
+    "id": "5e7df439-3c49-40ed-b147-d015fa661977",
+    "norwegian": "Jeg spiser frokost klokken åtte",
+    "english": "I eat breakfast at eight",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "935def4e-43a2-406d-80df-1e8779862ffd",
+    "norwegian": "Vi møtes på mandag",
+    "english": "We meet on Monday",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4d9d0a6c-e6ef-4bb5-9ba7-73774caf503b",
+    "norwegian": "Det er sommer i juli",
+    "english": "It's summer in July",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ec757927-1587-4dbc-9f34-40b494cd8b78",
+    "norwegian": "Jeg går alltid til skolen",
+    "english": "I always go to school",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7d9f85fd-b5ec-4786-9610-b6d890eb4591",
+    "norwegian": "Jeg kommer aldri for sent",
+    "english": "I never come late",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "256040bc-555e-42f8-ac1d-a6220d3351fe",
+    "norwegian": "Jeg sover i to timer",
+    "english": "I sleep for two hours",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3f1887ce-2050-4961-9afe-1a9a73cb9927",
+    "norwegian": "Vi har ferie i august",
+    "english": "We have holiday in August",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cbc897ac-ff56-4964-8afa-52efdd76081f",
+    "norwegian": "Jeg spiser middag klokken seks",
+    "english": "I eat dinner at six",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d6eb5960-38f2-4fe0-a975-77bed162fe2d",
+    "norwegian": "Det er vinter i januar",
+    "english": "It's winter in January",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "39fbd570-aaa5-4506-a00c-3b9aadb29987",
+    "norwegian": "Jeg går ofte til parken",
+    "english": "I often go to the park",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cec4b560-cc08-474c-b1b9-161c4abbf1e7",
+    "norwegian": "Jeg har ikke spist frokost i to timer",
+    "english": "I haven't eaten breakfast for two hours",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5bb7c84b-6779-4124-9c9f-ce75d03aa838",
+    "norwegian": "Jeg har bodd her i to år",
+    "english": "I have lived here for two years",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cef47d60-d03c-481a-af4d-3a257add2a52",
+    "norwegian": "Hun kommer på mandag",
+    "english": "She arrives on Monday",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e15113f0-90dd-48b6-b44f-c7424e4575e5",
+    "norwegian": "Vi går på skolen hver dag",
+    "english": "We go to school every day",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cb60f7a2-d2fe-4e0e-aeea-e0516718a5be",
+    "norwegian": "Jeg har aldri sett en film på en tirsdag",
+    "english": "I have never seen a movie on a Tuesday",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "34395b57-5031-4f09-ac74-570f28dade61",
+    "norwegian": "De spiser middag klokken seks om kvelden",
+    "english": "They eat dinner at six in the evening",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6959ca48-b8a5-44c1-bac9-f39a877813f6",
+    "norwegian": "Jeg har ikke vært på stranden i to måneder",
+    "english": "I haven't been to the beach in two months",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cafbd7e2-3a8c-4a4b-8815-cee7d4fbfb6e",
+    "norwegian": "Hun kommer hjem om to timer",
+    "english": "She comes home in two hours",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "66343f82-709f-496d-a9c2-c01838f47e65",
+    "norwegian": "Vi har ferie i juli",
+    "english": "We have vacation in July",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "81c6fdfb-f379-4c9f-8044-bcde17726bb2",
+    "norwegian": "Jeg går ofte på biblioteket",
+    "english": "I often go to the library",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "54d11789-d5d9-46c0-9f07-115fe7eb0ca6",
+    "norwegian": "De har bodd her i fem år",
+    "english": "They have lived here for five years",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "78055c93-dc20-4d74-b99e-4ac05c0d9e75",
+    "norwegian": "Jeg har ikke sett henne på en uke",
+    "english": "I haven't seen her in a week",
+    "concept_ids": [
+      "time-expressions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

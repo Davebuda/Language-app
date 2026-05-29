@@ -1,0 +1,287 @@
+[
+  {
+    "id": "638b9eaa-a127-4dcb-8334-89f1b67683f5",
+    "norwegian": "Jeg var hos legen i går.",
+    "english": "I was at the doctor's yesterday",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a38f1380-d60b-4949-9555-6e20e22192d8",
+    "norwegian": "Vi må finne løsningen innen fredag.",
+    "english": "We must find the solution by Friday",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a275eeb-462c-47e5-b3f9-99932797a371",
+    "norwegian": "Jeg fant boken blant sakene mine.",
+    "english": "I found the book among my things",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b4392d97-bfd8-4e98-8796-0276e13a6bb4",
+    "norwegian": "Vi gikk langs elven.",
+    "english": "We walked along the river",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "60d9d35b-5a30-42ec-8d24-4655c8b65473",
+    "norwegian": "Det er mye trafikk rundt byen.",
+    "english": "There is a lot of traffic around the city",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f0f6025d-62f1-4905-a231-ebfbd20721d0",
+    "norwegian": "Jeg besøkte henne hos moren hennes.",
+    "english": "I visited her at her mother's",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e2263891-998b-4dc9-a964-08da3f73065b",
+    "norwegian": "Vi må levere innen klokken fem.",
+    "english": "We must deliver by five o'clock",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ca9625ef-14d8-47b9-b891-6b4ae2a9055a",
+    "norwegian": "Vi gikk en tur rundt byen.",
+    "english": "We took a walk around the city",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b91ddfed-5f0a-40d2-901c-e87e24a35e22",
+    "norwegian": "Boka er hos meg.",
+    "english": "The book is at my place",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "11810399-4edc-40e8-85d2-6bbe675ab3a6",
+    "norwegian": "Jeg må gjøre det innen fredag.",
+    "english": "I have to do it by Friday",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a655a99a-4eb6-4e22-805c-ec985aff6e06",
+    "norwegian": "Huset er overfor parken.",
+    "english": "The house is opposite the park",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f28806e2-838f-4f33-b7d9-c6a53cf1ddb2",
+    "norwegian": "Jeg er blant venner.",
+    "english": "I am among friends",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "889ec178-c407-46fe-b6cf-a51c159c603d",
+    "norwegian": "Vi må være ferdige innen klokken fem.",
+    "english": "We have to be finished by five o'clock",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cc13f0e2-986d-4c69-bfac-c903b048e4a0",
+    "norwegian": "Hun bor overfor butikken.",
+    "english": "She lives opposite the shop",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c8fad2d5-10bc-4f80-9287-872c1a278bee",
+    "norwegian": "Jeg er på besøk hos en venn.",
+    "english": "I am visiting a friend",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]

@@ -1,0 +1,382 @@
+[
+  {
+    "id": "886ce758-cadb-49fb-8ce2-bd863812d7f7",
+    "norwegian": "Han sa at han var sulten.",
+    "english": "He said that he was hungry",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7f4471f3-4a8e-46a6-a45a-439a4dade821",
+    "norwegian": "Jeg fortalte henne at jeg var lei.",
+    "english": "I told her that I was tired",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d3ad37c9-d837-47da-ad02-401519872665",
+    "norwegian": "De spurte om vi hadde penger.",
+    "english": "They asked if we had money",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "60bf0514-b27d-423d-85c9-f51a966d7947",
+    "norwegian": "Læreren sa at elevene var flinke.",
+    "english": "The teacher said that the students were clever",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5c4183e-9976-4b68-808f-63a4944dda9c",
+    "norwegian": "Moren fortalte barnet at det var tid for å sove.",
+    "english": "The mother told the child that it was time to sleep",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09426639-8f8b-4e74-9ba0-a2536ab4df5d",
+    "norwegian": "Vennen sa at han hadde vært i Paris.",
+    "english": "The friend said that he had been to Paris",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2828b1eb-607a-49d4-b989-d2ac13417b24",
+    "norwegian": "Jeg sa at jeg ikke hadde sett filmen.",
+    "english": "I said that I had not seen the movie",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d56cb485-ebed-4df6-83c1-0c131a6b7168",
+    "norwegian": "De sa at de kom tilbake i morgen.",
+    "english": "They said that they would come back tomorrow",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ef705cb4-0283-4ae4-abb0-77a7be6fb48c",
+    "norwegian": "Han spurte om jeg hadde sett hunden.",
+    "english": "He asked if I had seen the dog",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "88a16150-6283-476e-8479-41f4d73a8645",
+    "norwegian": "Hun fortalte meg at hun hadde funnet en ny jobb.",
+    "english": "She told me that she had found a new job",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a0d87f84-54fe-43f3-8a70-3131ab08f3ef",
+    "norwegian": "Jeg sa at jeg ville møte deg i morgen.",
+    "english": "I said that I would meet you tomorrow",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e0b00a43-d411-4b10-9a7c-d8f06460786a",
+    "norwegian": "Jeg fortalte henne at jeg gikk hjem.",
+    "english": "I told her that I went home.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4f293de7-2f94-4558-a6c5-f7af02b51cf4",
+    "norwegian": "Hun sa at hun hadde sett filmen.",
+    "english": "She said that she had seen the movie.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3cb0520c-839e-426b-b553-6550e98a8b72",
+    "norwegian": "Vennen min sa at han ville komme.",
+    "english": "My friend said that he would come.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "972ff696-1b77-43bd-b9a1-0f64c9aaf4a7",
+    "norwegian": "Jeg sa at jeg ikke hadde tid.",
+    "english": "I said that I didn't have time.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "73ca87b3-369e-4dda-903d-26426cd78be6",
+    "norwegian": "De fortalte oss at de skulle reise.",
+    "english": "They told us that they would travel.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2d789194-8dad-4e34-9ffe-757d12ab4c85",
+    "norwegian": "Han spurte meg om jeg hadde sett boken.",
+    "english": "He asked me if I had seen the book.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "08f8f8ea-3a46-4265-a3fa-e9594a193908",
+    "norwegian": "Jeg sa at jeg hadde gjort hjemmelekser.",
+    "english": "I said that I had done my homework.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "becc031d-cb49-408e-b1f7-6f9c473b88a0",
+    "norwegian": "Læreren sa at elevene skulle være stille.",
+    "english": "The teacher said that the students should be quiet.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2d289e91-56c6-4c71-9469-88e91e4b3824",
+    "norwegian": "Hun fortalte meg at hun hadde en hund.",
+    "english": "She told me that she had a dog.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  }
+]
