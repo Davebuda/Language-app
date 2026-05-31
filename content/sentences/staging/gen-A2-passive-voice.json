@@ -1,43 +1,5 @@
 [
   {
-    "id": "9898b666-705e-49ac-a723-21e400436509",
-    "norwegian": "Boken leses av John",
-    "english": "The book is read by John",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "29e5ab73-abce-42da-9dae-d6297499a700",
-    "norwegian": "Brevet sendes av meg",
-    "english": "I write the letter",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "807af770-7e49-43ba-9726-c98d5486d243",
     "norwegian": "Møtet blir forsinket på grunn av problemene",
     "english": "The meeting is delayed due to problems",
@@ -57,47 +19,9 @@
     ]
   },
   {
-    "id": "40d91731-104b-4060-91d8-05e24fb9f698",
-    "norwegian": "Fakturaen betales til selskapet",
-    "english": "I pay the bill to the company",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "21e0c801-f995-44ef-b4d9-14c8497a3873",
-    "norwegian": "Prosjektet er ferdigstilt av teamet",
-    "english": "The project is completed by the team",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "5b697363-f556-401b-b920-3eabc46b146a",
     "norwegian": "E-posten blir sendt til sjefen",
-    "english": "I send the email to the manager",
+    "english": "The email is sent to the manager.",
     "concept_ids": [
       "passive-voice"
     ],
@@ -109,44 +33,6 @@
     ],
     "cefr_level": "A2",
     "difficulty": 3,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "3d766f6b-7bb3-407b-894e-a1e280587f81",
-    "norwegian": "Rapporten leses av komiteen",
-    "english": "The report is read by the committee",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "01bf926b-4eac-48a6-aa93-88adff68f4da",
-    "norwegian": "Brevet er skrevet til kunden",
-    "english": "I write the letter to the customer",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
     "exercise_types": [
       "translation-to-norwegian"
     ]
@@ -171,47 +57,9 @@
     ]
   },
   {
-    "id": "dde27a4e-e673-430f-9f22-81f2dfd7daa5",
-    "norwegian": "Fakturaen betales til meg",
-    "english": "I pay the bill to me",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "8dfa5168-baaf-4a14-a6ec-208c0f858fa0",
-    "norwegian": "Prosjektet er ferdigstilt av meg",
-    "english": "I complete the project",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "de375c2e-0f68-4ebe-a99f-920e14fa9588",
     "norwegian": "E-posten blir sendt til kollegaen",
-    "english": "I send the email to my colleague",
+    "english": "The email is sent to the colleague.",
     "concept_ids": [
       "passive-voice"
     ],
@@ -247,142 +95,9 @@
     ]
   },
   {
-    "id": "c3cd2f9d-d560-491a-b9ab-1d0e591674b0",
-    "norwegian": "Brevet er skrevet til selskapet",
-    "english": "I write the letter to the company",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "135ea18e-612b-499c-9f32-e153b1f6b7e0",
-    "norwegian": "Boken leses av eleven",
-    "english": "The book is read by the student",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "dd5c2ea5-c02e-4dd1-bbcc-ae7970ffa42a",
-    "norwegian": "E-posten skrives av vennen",
-    "english": "The email is written by the friend",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "b18f29ac-2b91-4fbb-8f28-86d46de2dcd8",
-    "norwegian": "Brevet blir sendt til sjefen",
-    "english": "The letter is sent to the manager",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "0980fc26-6fb2-4bbd-99fc-e3c98ca883ed",
-    "norwegian": "Artikkelen blir skrevet av forskeren",
-    "english": "The article is written by the researcher",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "8443eb6f-a41f-4b3e-a4a6-432603a129d4",
-    "norwegian": "Boken leses av læreren",
-    "english": "The book is read by the teacher",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 3,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "52e1a9a8-5776-4a04-b7fa-7e7c3f84320f",
-    "norwegian": "E-posten blir skrevet av eleven",
-    "english": "The email is written by the student",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "aea0de75-cf71-4a83-9805-f65d110a6712",
-    "norwegian": "E-posten blir skrevet av vennen",
-    "english": "The email is written by the friend",
+    "norwegian": "E-posten blir skrevet av en venn.",
+    "english": "The email is written by a friend.",
     "concept_ids": [
       "passive-voice"
     ],
@@ -394,25 +109,6 @@
     ],
     "cefr_level": "A2",
     "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "2e93a1b0-f052-4dde-8591-ad9a742f6258",
-    "norwegian": "Boken leses",
-    "english": "The book is read",
-    "concept_ids": [
-      "passive-voice"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "verb-conjugation",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
     "exercise_types": [
       "translation-to-norwegian"
     ]

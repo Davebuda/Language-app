@@ -1,46 +1,8 @@
 [
   {
-    "id": "2489bb60-f507-4511-81d2-1f5b2f51c2c9",
-    "norwegian": "Kjellens bil er rød",
-    "english": "Kjellen's car is red",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "4135f398-3237-4ec6-ac88-af8dbbce5285",
-    "norwegian": "Mannens hatt er svart",
-    "english": "The man's hat is black",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "d7796bec-4a12-4429-89e8-e874250b5d9a",
-    "norwegian": "Jentens leker er mange",
-    "english": "The girl's toys are many",
+    "norwegian": "Jentens leker er fine.",
+    "english": "The girl's toys are nice.",
     "concept_ids": [
       "genitive"
     ],
@@ -52,71 +14,14 @@
     ],
     "cefr_level": "A2",
     "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "7c69faf6-791a-4570-82ae-37bea1aa7ea9",
-    "norwegian": "Lærerens bok er tung",
-    "english": "The teacher's book is heavy",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "bc114a99-8d64-47df-aaef-c3b6f1607bbd",
-    "norwegian": "Sønnens drøm er å fly",
-    "english": "The son's dream is to fly",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
     "exercise_types": [
       "translation-to-norwegian"
     ]
   },
   {
     "id": "ddf7699b-1934-4e30-a891-8e8b6687b037",
-    "norwegian": "Morens smykke er vakker",
-    "english": "The mother's jewel is beautiful",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "b8bc8657-e35d-4b6c-9c8c-fde041f836c8",
-    "norwegian": "Datterens sang er fin",
-    "english": "The daughter's song is nice",
+    "norwegian": "Morens smykke er vakkert.",
+    "english": "The mother's jewel is beautiful.",
     "concept_ids": [
       "genitive"
     ],
@@ -134,8 +39,8 @@
   },
   {
     "id": "cb61af48-0a9e-4197-a738-26f4b01727b2",
-    "norwegian": "Gutten liker faren sin bil",
-    "english": "The boy likes his father's car",
+    "norwegian": "Gutten liker farens bil.",
+    "english": "The boy likes his father's car.",
     "concept_ids": [
       "genitive"
     ],
@@ -153,46 +58,8 @@
   },
   {
     "id": "ce3fc336-d4a8-47fe-be95-e5c99204cbfc",
-    "norwegian": "Kvinneens hår er langt",
-    "english": "The woman's hair is long",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "14fffb44-f1f2-47f9-9de8-17dd10217ecf",
-    "norwegian": "Søsterens kjole er fin",
-    "english": "The sister's dress is nice",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "bd463b4f-ec3e-4fdb-ab8b-53f8f25048da",
-    "norwegian": "Brorens sykkel er rød",
-    "english": "The brother's bike is red",
+    "norwegian": "Kvinnens hår er langt.",
+    "english": "The woman's hair is long.",
     "concept_ids": [
       "genitive"
     ],
@@ -210,8 +77,8 @@
   },
   {
     "id": "1a6be9ae-7f48-43f7-83bf-d8f23fa63c56",
-    "norwegian": "Jensas bil er rød",
-    "english": "Jens' car is red",
+    "norwegian": "Jens' bil er rød.",
+    "english": "Jens' car is red.",
     "concept_ids": [
       "genitive"
     ],
@@ -229,27 +96,8 @@
   },
   {
     "id": "2376e9d8-8583-4ef2-8b9c-6b5768fd0d62",
-    "norwegian": "Karias hund er stor",
-    "english": "Kari's dog is big",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "b4435ca3-21b1-4091-b919-bf316474b757",
-    "norwegian": "Pappas jobb er vanskelig",
-    "english": "Dad's job is difficult",
+    "norwegian": "Karis hund er stor.",
+    "english": "Kari's dog is big.",
     "concept_ids": [
       "genitive"
     ],
@@ -304,85 +152,9 @@
     ]
   },
   {
-    "id": "e6a48c08-317d-455d-84d7-f743ea61407a",
-    "norwegian": "Guttas sykkel er blå",
-    "english": "The boy's bike is blue",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "f859e3b8-29c1-45ed-913b-1d39b409e2ab",
-    "norwegian": "Kvinnens sko er brune",
-    "english": "The woman's shoes are brown",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "e1c0fd02-2462-432f-b160-c84227d64d5d",
-    "norwegian": "Datteras leker er mange",
-    "english": "The daughter's toys are many",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "650ca825-2420-4e85-913d-f3151b972052",
-    "norwegian": "Sønnens rom er stort",
-    "english": "The son's room is big",
-    "concept_ids": [
-      "genitive"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "spelling",
-      "wrong-word-different-category",
-      "reading-parsing"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "f2599a33-71e1-4c2f-bdf9-ef7477327a09",
-    "norwegian": "Morens kjole er grønn",
-    "english": "The mother's dress is green",
+    "norwegian": "Datterens leker er fine.",
+    "english": "The daughter's toys are nice.",
     "concept_ids": [
       "genitive"
     ],
@@ -400,8 +172,8 @@
   },
   {
     "id": "c7afdf1e-4b83-403b-a694-b77fe60b8805",
-    "norwegian": "Farenas hus er gammelt",
-    "english": "The father's house is old",
+    "norwegian": "Farens hus er gammelt.",
+    "english": "The father's house is old.",
     "concept_ids": [
       "genitive"
     ],

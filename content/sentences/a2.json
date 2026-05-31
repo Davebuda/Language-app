@@ -10780,5 +10780,879 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "157f5dbf-915d-45a5-8ec9-9e10538dbed4",
+    "norwegian": "Hvis jeg ser en film, nyter jeg den.",
+    "english": "If I watch a film, I enjoy it.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ad723ecf-213e-4ccb-a833-6f51480e9569",
+    "norwegian": "Hvis jeg hadde penger, ville jeg kjøpe en bil.",
+    "english": "If I had money, I would buy a car.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f2a5ca3c-04b4-4a4d-a8e0-bced982a8427",
+    "norwegian": "Om det regner, tar jeg paraplyen.",
+    "english": "If it rains, I take the umbrella.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "15ec89b3-07b0-4bc8-994e-7074a9564566",
+    "norwegian": "Hvis jeg er sulten, spiser jeg en sandwich.",
+    "english": "If I am hungry, I eat a sandwich.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3ee67afd-864b-4bc7-a0a5-26741ca1eb59",
+    "norwegian": "Hvis jeg ser en venn, hilser jeg på ham.",
+    "english": "If I see a friend, I greet him.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dbd69201-cce2-4d03-97f7-cc203bc77ac3",
+    "norwegian": "Hvis jeg har en sykkel, sykler jeg til jobb.",
+    "english": "If I have a bike, I ride to work.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3b618135-01a8-4827-8cc6-07508f4abca4",
+    "norwegian": "Om jeg har en frist, leverer jeg oppgaven.",
+    "english": "If I have a deadline, I submit the assignment.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "56afcb25-4725-4b80-a08e-30c0d0a2ee55",
+    "norwegian": "Hvis jeg har en jobb, jobber jeg hardt.",
+    "english": "If I have a job, I work hard.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3a717173-c3e3-45a4-a4fc-a76237ca6166",
+    "norwegian": "Hvis jeg var deg, ville jeg gå hjem.",
+    "english": "If I were you, I would go home.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "764e0b73-b2ba-48dc-a4cd-9a94e8f29184",
+    "norwegian": "Hvis du har lekser, gjør du dem.",
+    "english": "If you have homework, do it.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "edd3cf62-5d9d-495c-965d-8bee28fff944",
+    "norwegian": "Hvis jeg hadde tid, ville jeg hjelpe deg.",
+    "english": "If I had time, I would help you.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aa14b957-fa0d-431f-b6fc-ce3ad30c1366",
+    "norwegian": "Hvis jeg var i byen, ville jeg handle.",
+    "english": "If I were in the city, I would shop.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "986d42e4-43c3-4693-a4df-99e5597e89f4",
+    "norwegian": "Hvis du er trøtt, legger du deg.",
+    "english": "If you are tired, you sleep.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d7796bec-4a12-4429-89e8-e874250b5d9a",
+    "norwegian": "Jentens leker er fine.",
+    "english": "The girl's toys are nice.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ddf7699b-1934-4e30-a891-8e8b6687b037",
+    "norwegian": "Morens smykke er vakkert.",
+    "english": "The mother's jewel is beautiful.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cb61af48-0a9e-4197-a738-26f4b01727b2",
+    "norwegian": "Gutten liker farens bil.",
+    "english": "The boy likes his father's car.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ce3fc336-d4a8-47fe-be95-e5c99204cbfc",
+    "norwegian": "Kvinnens hår er langt.",
+    "english": "The woman's hair is long.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a6be9ae-7f48-43f7-83bf-d8f23fa63c56",
+    "norwegian": "Jens' bil er rød.",
+    "english": "Jens' car is red.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2376e9d8-8583-4ef2-8b9c-6b5768fd0d62",
+    "norwegian": "Karis hund er stor.",
+    "english": "Kari's dog is big.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b081ec4b-a448-41f3-aef8-c99a6aded2cc",
+    "norwegian": "Lærerens bok er gammel",
+    "english": "The teacher's book is old",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e3a3d2a0-ed00-4360-b4af-5bc38ec48073",
+    "norwegian": "Søsterens leke er fin",
+    "english": "Sister's toy is nice",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e1c0fd02-2462-432f-b160-c84227d64d5d",
+    "norwegian": "Datterens leker er fine.",
+    "english": "The daughter's toys are nice.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c7afdf1e-4b83-403b-a694-b77fe60b8805",
+    "norwegian": "Farens hus er gammelt.",
+    "english": "The father's house is old.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling",
+      "wrong-word-different-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "807af770-7e49-43ba-9726-c98d5486d243",
+    "norwegian": "Møtet blir forsinket på grunn av problemene",
+    "english": "The meeting is delayed due to problems",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5b697363-f556-401b-b920-3eabc46b146a",
+    "norwegian": "E-posten blir sendt til sjefen",
+    "english": "The email is sent to the manager.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ae39e356-2544-4715-bb9c-d826ff3054a9",
+    "norwegian": "Møtet blir forsinket på grunn av været",
+    "english": "The meeting is delayed due to the weather",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "de375c2e-0f68-4ebe-a99f-920e14fa9588",
+    "norwegian": "E-posten blir sendt til kollegaen",
+    "english": "The email is sent to the colleague.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "71b066a8-d65d-4002-82f6-b36f713c35b6",
+    "norwegian": "Rapporten leses av oss",
+    "english": "We read the report",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "aea0de75-cf71-4a83-9805-f65d110a6712",
+    "norwegian": "E-posten blir skrevet av en venn.",
+    "english": "The email is written by a friend.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3d7f2c38-ac42-42a5-8e71-7fc77b8100c3",
+    "norwegian": "Jeg kler på meg.",
+    "english": "I get dressed.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8e79af04-d867-4c2a-a22c-e0e8947c9144",
+    "norwegian": "Jeg setter meg.",
+    "english": "I sit down.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "00854254-39cc-4c36-bfb9-4631296b9e4d",
+    "norwegian": "Jeg gifter meg med deg.",
+    "english": "I am getting married to you.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d3fdef6e-bd64-40eb-9e91-632f5b921cae",
+    "norwegian": "Du kler på deg selv.",
+    "english": "You get dressed yourself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1108e361-e73f-4961-b826-360681f986a1",
+    "norwegian": "Du setter deg selv.",
+    "english": "You sit down yourself.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9b8f322e-eedb-4f31-985a-756f83611478",
+    "norwegian": "Jeg kler på deg.",
+    "english": "I dress you.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a141098f-c552-4ff9-9113-50028cf7cfb2",
+    "norwegian": "Kanskje hun er syk i dag.",
+    "english": "Maybe she is sick today.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "293a4d6d-2ba6-4d9b-83c2-fc0f1a8b233e",
+    "norwegian": "Jeg har ikke sett filmen.",
+    "english": "I have not seen the movie.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "65fb144b-5911-48e7-b08c-6e476c7b5c35",
+    "norwegian": "Jeg vet ikke hvorfor han ikke kommer.",
+    "english": "I do not know why he is not coming.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "32360f23-8f5b-4fb9-88b3-f37a3cb38a84",
+    "norwegian": "Det er kanskje fordi jeg er lat.",
+    "english": "It is perhaps because I am lazy.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5a88360e-1516-446e-afb6-ede04606ecdb",
+    "norwegian": "Han kommer ikke før i morgen.",
+    "english": "He is not coming until tomorrow.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "023e62f1-c0ff-4169-9836-920375ee882c",
+    "norwegian": "De har ikke sett filmen.",
+    "english": "They haven't seen the movie.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "65d3e8a4-5a38-4e6b-a6fc-64f0583e428c",
+    "norwegian": "Jeg har alltid gjort det slik.",
+    "english": "I have always done it this way.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "08921f02-c59b-457c-8a80-21e69bc53ec0",
+    "norwegian": "Det er kanskje bedre å vente.",
+    "english": "It is perhaps better to wait.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6adf8b80-5c61-4a2a-b028-c0b5beda74cc",
+    "norwegian": "Han har aldri vært i Paris.",
+    "english": "He has never been to Paris.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bf29bc80-d306-4fe8-8805-7a2432ab1f53",
+    "norwegian": "Jeg har ikke sett henne på lenge.",
+    "english": "I haven't seen her in a long time.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9b3021f4-94fe-4b78-90ac-f33a76f0feee",
+    "norwegian": "De kommer ikke til å være der.",
+    "english": "They won't be there.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]
