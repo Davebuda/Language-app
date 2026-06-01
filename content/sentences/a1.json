@@ -15657,8 +15657,8 @@
     ]
   },
   {
-    "norwegian": "Jeg er student på en skole.",
-    "english": "I am a student at a school.",
+    "norwegian": "Jeg er student.",
+    "english": "I am a student.",
     "concept_ids": [
       "personal-pronouns"
     ],
@@ -15675,8 +15675,8 @@
     "id": "77cff811-aaff-475f-b237-cabf84388975"
   },
   {
-    "norwegian": "Du har en fin hund.",
-    "english": "You have a nice dog.",
+    "norwegian": "Du er norsk.",
+    "english": "You are Norwegian.",
     "concept_ids": [
       "personal-pronouns"
     ],
@@ -15748,7 +15748,7 @@
   },
   {
     "norwegian": "Dere kan sitte her.",
-    "english": "You all can sit here.",
+    "english": "You (plural) can sit here.",
     "concept_ids": [
       "personal-pronouns"
     ],
@@ -15768,7 +15768,7 @@
     "norwegian": "Det er boken hennes.",
     "english": "It is her book.",
     "concept_ids": [
-      "personal-pronouns"
+      "possessive-pronouns"
     ],
     "vocab_clusters": [],
     "error_tags_detectable": [
@@ -15801,8 +15801,8 @@
     "id": "3d420d31-771b-4990-8da8-b44ad5ac07a3"
   },
   {
-    "norwegian": "Kjenner ___ hverandre?",
-    "english": "Do you all know each other?",
+    "norwegian": "Kjenner ___ ham?",
+    "english": "Do you all know him?",
     "concept_ids": [
       "personal-pronouns"
     ],
@@ -15909,8 +15909,8 @@
     "id": "1fb31f14-ee2b-4a93-87af-96504ab36c2b"
   },
   {
-    "norwegian": "Bordet er rent etter middagen.",
-    "english": "The table is clean after dinner.",
+    "norwegian": "Bordet er rent.",
+    "english": "The table is clean.",
     "concept_ids": [
       "basic-adjectives"
     ],
@@ -16089,7 +16089,7 @@
     "id": "61cd3ac4-66d0-4ad7-a41d-476183457eb5"
   },
   {
-    "norwegian": "Jeg ___ drikke mer vann.",
+    "norwegian": "Jeg bør drikke mer vann.",
     "english": "I should drink more water.",
     "concept_ids": [
       "common-modal-verbs"
@@ -16101,13 +16101,13 @@
     "cefr_level": "A1",
     "difficulty": 2,
     "exercise_types": [
-      "fill-in-blank"
+      "translation-to-norwegian"
     ],
-    "notes": "bør",
+    "notes": "",
     "id": "13178007-99d6-47ec-ad92-d0a0c1c1b493"
   },
   {
-    "norwegian": "Vi ___ gå hjem nå.",
+    "norwegian": "Vi må gå hjem nå.",
     "english": "We must go home now.",
     "concept_ids": [
       "common-modal-verbs"
@@ -16119,9 +16119,9 @@
     "cefr_level": "A1",
     "difficulty": 3,
     "exercise_types": [
-      "fill-in-blank"
+      "translation-to-norwegian"
     ],
-    "notes": "må",
+    "notes": "",
     "id": "4131447d-f8d7-4368-bc83-99866f541bfa"
   },
   {
@@ -16180,7 +16180,7 @@
   },
   {
     "norwegian": "Stolen står ___ bordet.",
-    "english": "The chair stands by the table.",
+    "english": "The chair is by the table.",
     "concept_ids": [
       "common-prepositions"
     ],
@@ -16396,7 +16396,7 @@
   },
   {
     "norwegian": "Vi bestiller ___ rom på hotellet.",
-    "english": "We order a room at the hotel.",
+    "english": "We book a room at the hotel.",
     "concept_ids": [
       "noun-gender"
     ],
@@ -16574,8 +16574,8 @@
     "id": "d571c10a-0758-4422-a7db-fdb1a5f1801c"
   },
   {
-    "norwegian": "Jeg drikker et kaldt glass vann.",
-    "english": "I drink a cold glass of water.",
+    "norwegian": "Jeg drikker et glass kaldt vann.",
+    "english": "I drink a glass of cold water.",
     "concept_ids": [
       "adjective-agreement"
     ],
@@ -16610,8 +16610,8 @@
     "id": "850356f5-5c77-4f9a-b4c0-e2622140fcd4"
   },
   {
-    "norwegian": "De har to store barn.",
-    "english": "They have two big children.",
+    "norwegian": "De har to store hunder.",
+    "english": "They have two big dogs.",
     "concept_ids": [
       "adjective-agreement"
     ],
@@ -16628,8 +16628,8 @@
     "id": "49913d15-d9f0-4bb0-9af7-cb8e72d03fa0"
   },
   {
-    "norwegian": "Vi bor i et lite, hvitt hus på landet.",
-    "english": "We live in a small, white house in the countryside.",
+    "norwegian": "Vi bor i et lite hus.",
+    "english": "We live in a small house.",
     "concept_ids": [
       "adjective-agreement"
     ],
@@ -16646,8 +16646,8 @@
     "id": "a2f80d96-ac6c-44b1-a0ff-250be2b2faa9"
   },
   {
-    "norwegian": "Han spiser et ferskt eple hver dag.",
-    "english": "He eats a fresh apple every day.",
+    "norwegian": "Han spiser et stort eple hver dag.",
+    "english": "He eats a big apple every day.",
     "concept_ids": [
       "adjective-agreement"
     ],
@@ -16682,8 +16682,8 @@
     "id": "f9d3b597-4ced-4ab4-af4f-a589bd0e783a"
   },
   {
-    "norwegian": "Jeg har mange ___ venner på skolen.",
-    "english": "I have many good friends at school.",
+    "norwegian": "Jeg har en ___ venn.",
+    "english": "I have a good friend.",
     "concept_ids": [
       "adjective-agreement"
     ],
@@ -16696,7 +16696,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "gode",
+    "notes": "god",
     "id": "27a89584-3327-472c-b7dd-39b71a261113"
   },
   {
@@ -16808,8 +16808,8 @@
     "id": "9170e58f-72ae-4446-a2af-a0090259b70b"
   },
   {
-    "norwegian": "Jeg finner ikke ___.",
-    "english": "I cannot find the keys.",
+    "norwegian": "Jeg ser ikke ___.",
+    "english": "I do not see the keys.",
     "concept_ids": [
       "definite-articles-plural"
     ],
@@ -17272,7 +17272,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "lagde",
+    "notes": "laget",
     "id": "51a7d71b-ab38-4369-81b9-056ec18d0ce4"
   },
   {
@@ -17823,7 +17823,7 @@
     ],
     "vocab_clusters": [],
     "error_tags_detectable": [
-      "verb-tense"
+      "modal-verb"
     ],
     "cefr_level": "A1",
     "difficulty": 1,
@@ -17834,14 +17834,14 @@
     "id": "c04419c5-73b9-41e5-b574-1c85dbebafe8"
   },
   {
-    "norwegian": "Hun vil lære å lage mat.",
-    "english": "She wants to learn to cook.",
+    "norwegian": "Hun liker å lage mat.",
+    "english": "She likes to cook.",
     "concept_ids": [
       "infinitive-form"
     ],
     "vocab_clusters": [],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-conjugation"
     ],
     "cefr_level": "A1",
     "difficulty": 2,
@@ -17852,8 +17852,8 @@
     "id": "ec43e53b-2968-4672-905a-f4db60a182c6"
   },
   {
-    "norwegian": "Vi vil prøve å ___ mat i kveld.",
-    "english": "We want to try to cook food tonight.",
+    "norwegian": "Vi vil lage mat i kveld.",
+    "english": "We want to cook food tonight.",
     "concept_ids": [
       "infinitive-form"
     ],
@@ -17864,9 +17864,9 @@
     "cefr_level": "A1",
     "difficulty": 3,
     "exercise_types": [
-      "fill-in-blank"
+      "translation-to-norwegian"
     ],
-    "notes": "lage",
+    "notes": "",
     "id": "546e9374-5a58-4edf-b2f5-193fec423b95"
   },
   {
@@ -17906,7 +17906,7 @@
     "id": "dec25cd2-0974-48cd-b297-08dd449877a9"
   },
   {
-    "norwegian": "Sekken ___ er tung.",
+    "norwegian": "Sekken vår er tung.",
     "english": "Our bag is heavy.",
     "concept_ids": [
       "possessive-pronouns"
@@ -17918,9 +17918,9 @@
     "cefr_level": "A1",
     "difficulty": 3,
     "exercise_types": [
-      "fill-in-blank"
+      "translation-to-norwegian"
     ],
-    "notes": "vår",
+    "notes": "",
     "id": "a418c633-b86d-4977-93b2-09a66ae59831"
   },
   {
@@ -17942,8 +17942,8 @@
     "id": "60723fb7-8e42-433b-bc5f-f5e4caae3c4f"
   },
   {
-    "norwegian": "Han ___ en pakke i går.",
-    "english": "He received a package yesterday.",
+    "norwegian": "Han ___ en gave i går.",
+    "english": "He got a gift yesterday.",
     "concept_ids": [
       "preterite-irregular-core"
     ],
@@ -17996,8 +17996,8 @@
     "id": "599a0b34-2178-4b30-86d7-f2bb2d07d846"
   },
   {
-    "norwegian": "Mannen leser avisen.",
-    "english": "The man reads the newspaper.",
+    "norwegian": "Mannen leser en bok.",
+    "english": "The man reads a book.",
     "concept_ids": [
       "svo-word-order"
     ],
@@ -18014,8 +18014,8 @@
     "id": "e8b8068c-6ef4-4bbd-9525-02fc28e41239"
   },
   {
-    "norwegian": "Gutten kaster ballen.",
-    "english": "The boy throws the ball.",
+    "norwegian": "Gutten kaster en ball.",
+    "english": "The boy throws a ball.",
     "concept_ids": [
       "svo-word-order"
     ],
