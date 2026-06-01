@@ -15655,5 +15655,2380 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "norwegian": "Jeg er student på en skole.",
+    "english": "I am a student at a school.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "77cff811-aaff-475f-b237-cabf84388975"
+  },
+  {
+    "norwegian": "Du har en fin hund.",
+    "english": "You have a nice dog.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "cda4e20b-5595-4f96-866b-40956422de39"
+  },
+  {
+    "norwegian": "Han er ikke hjemme akkurat nå.",
+    "english": "He is not home right now.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "664f53c2-4f05-4627-b533-cf9ba20adfd2"
+  },
+  {
+    "norwegian": "Vi spiser frokost sammen.",
+    "english": "We eat breakfast together.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "02c8d555-7c84-4cde-9ec0-b47eb4f558ee"
+  },
+  {
+    "norwegian": "De venter på bussen.",
+    "english": "They are waiting for the bus.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "15dfe5d9-8351-4904-875f-729e95e73db2"
+  },
+  {
+    "norwegian": "Dere kan sitte her.",
+    "english": "You all can sit here.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "0992b277-a097-4523-99ae-9f12c34d467a"
+  },
+  {
+    "norwegian": "Det er boken hennes.",
+    "english": "It is her book.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "eed234ab-50b4-4d3e-b156-f536409ce82f"
+  },
+  {
+    "norwegian": "___ jobber på kontoret i dag.",
+    "english": "She works at the office today.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Hun",
+    "id": "3d420d31-771b-4990-8da8-b44ad5ac07a3"
+  },
+  {
+    "norwegian": "Kjenner ___ hverandre?",
+    "english": "Do you all know each other?",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "dere",
+    "id": "20c7107d-5c81-4dfb-91f2-5fbda9d0da4c"
+  },
+  {
+    "norwegian": "Jakken er blå.",
+    "english": "The jacket is blue.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ab2864a9-8f6c-4b62-8387-79efcf18ddc5"
+  },
+  {
+    "norwegian": "Jeg er sulten etter skolen.",
+    "english": "I am hungry after school.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c2e8f2d1-81b4-47a5-ac72-9e48dc44c991"
+  },
+  {
+    "norwegian": "Hun er snill mot alle.",
+    "english": "She is kind to everyone.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4bc7ea2f-e9c9-4b7e-864e-a751b7eea10d"
+  },
+  {
+    "norwegian": "Toget er raskt.",
+    "english": "The train is fast.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "98b4a85f-a113-40f5-8b84-4c8a78e1294b"
+  },
+  {
+    "norwegian": "Jeg kjøper en pen kjole til festen.",
+    "english": "I am buying a pretty dress for the party.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1fb31f14-ee2b-4a93-87af-96504ab36c2b"
+  },
+  {
+    "norwegian": "Bordet er rent etter middagen.",
+    "english": "The table is clean after dinner.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "bb043819-f05f-402d-82db-e0af0da0cf97"
+  },
+  {
+    "norwegian": "Det er et ___ glass på kjøkkenet.",
+    "english": "There is a cold glass in the kitchen.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "kaldt",
+    "id": "0b952ced-b7f3-40cb-83fa-93d95782c980"
+  },
+  {
+    "norwegian": "Filmen var ___.",
+    "english": "The film was funny.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "morsom",
+    "id": "70a343ec-355a-4eb8-b718-5553fdf1dcb1"
+  },
+  {
+    "norwegian": "Jeg vil ha et glass vann.",
+    "english": "I want a glass of water.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ab7e3be8-9b99-4129-888b-aa0ec251c5bb"
+  },
+  {
+    "norwegian": "Han må sove nå.",
+    "english": "He must sleep now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "cd20720a-e8be-4a00-b96d-c54af5aeabb7"
+  },
+  {
+    "norwegian": "Kan du vente her?",
+    "english": "Can you wait here?",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dbc580e3-3944-4ab1-8d95-991bc516cdb0"
+  },
+  {
+    "norwegian": "Vi skal spise frokost nå.",
+    "english": "We are going to eat breakfast now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a728909d-c08f-49d2-9f0b-c054d1560fb4"
+  },
+  {
+    "norwegian": "Du kan sitte her.",
+    "english": "You can sit here.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d9b0e214-ead0-412e-bab9-d0981b7f54cc"
+  },
+  {
+    "norwegian": "Jeg må betale for maten.",
+    "english": "I must pay for the food.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "8a202249-72f3-4f57-9895-6a559a423f2b"
+  },
+  {
+    "norwegian": "Hun vil lære norsk.",
+    "english": "She wants to learn Norwegian.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "61cd3ac4-66d0-4ad7-a41d-476183457eb5"
+  },
+  {
+    "norwegian": "Jeg ___ drikke mer vann.",
+    "english": "I should drink more water.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "bør",
+    "id": "13178007-99d6-47ec-ad92-d0a0c1c1b493"
+  },
+  {
+    "norwegian": "Vi ___ gå hjem nå.",
+    "english": "We must go home now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "må",
+    "id": "4131447d-f8d7-4368-bc83-99866f541bfa"
+  },
+  {
+    "norwegian": "Katten sitter ved døren.",
+    "english": "The cat is sitting by the door.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "8615723f-c6cb-4370-a752-9dcdd1860571"
+  },
+  {
+    "norwegian": "Barnet sover under teppet.",
+    "english": "The child is sleeping under the blanket.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1d46edfc-e67b-4b46-adbf-297f9ef4aa84"
+  },
+  {
+    "norwegian": "Jeg venter ___ deg utenfor butikken.",
+    "english": "I am waiting for you outside the shop.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "på",
+    "id": "df00abb7-890c-4464-85d3-1a7403716bc2"
+  },
+  {
+    "norwegian": "Stolen står ___ bordet.",
+    "english": "The chair stands by the table.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ved",
+    "id": "f362bc29-1752-4b3d-878a-8865e9cb502d"
+  },
+  {
+    "norwegian": "Toget går fra Oslo til Bergen.",
+    "english": "The train goes from Oslo to Bergen.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "2b3713ac-9775-4bff-8d78-df6a74bd9ce7"
+  },
+  {
+    "norwegian": "Flyet flyr over byen.",
+    "english": "The plane flies over the city.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "99074ab3-aa5a-4e71-a686-f5ae8043e1ea"
+  },
+  {
+    "norwegian": "Vi snakker om ferien vår.",
+    "english": "We are talking about our holiday.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "2f824de0-d226-4e20-9bbf-e2e08ece7f44"
+  },
+  {
+    "norwegian": "Jeg vil ha en kopp kaffe.",
+    "english": "I want a cup of coffee.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ab76048f-96bd-4391-a5af-771b3d45a80a"
+  },
+  {
+    "norwegian": "Det er et glass på bordet.",
+    "english": "There is a glass on the table.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3916372c-24c6-4d3a-b471-66eece3149d8"
+  },
+  {
+    "norwegian": "Han har en sønn.",
+    "english": "He has a son.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3aee0c73-2997-4783-940e-0cd95b5f1174"
+  },
+  {
+    "norwegian": "Jeg finner en nøkkel på gulvet.",
+    "english": "I find a key on the floor.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "584de4f7-c8ed-414c-9def-8e897e68342f"
+  },
+  {
+    "norwegian": "Hun kjøper en jakke i butikken.",
+    "english": "She buys a jacket in the shop.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "f0caff79-51a2-4be6-b60e-c23cae9deb1a"
+  },
+  {
+    "norwegian": "Vi venter på et tog.",
+    "english": "We are waiting for a train.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3045b01f-642e-4934-8918-973ce415f253"
+  },
+  {
+    "norwegian": "Han leier et rom i sentrum.",
+    "english": "He rents a room in the city centre.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "92d34eef-da50-4653-a5c0-f3d1e4b41957"
+  },
+  {
+    "norwegian": "Det er ___ gate like ved skolen.",
+    "english": "There is a street right by the school.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "en",
+    "id": "b22f5801-83b7-4786-892d-08cf9f9dbdb4"
+  },
+  {
+    "norwegian": "Vi bestiller ___ rom på hotellet.",
+    "english": "We order a room at the hotel.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "et",
+    "id": "1d1f74a5-2187-4215-8968-855ff0155e55"
+  },
+  {
+    "norwegian": "Kaffen er varm og god.",
+    "english": "The coffee is warm and good.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "food-and-drink"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "9b362470-c1ea-470b-9275-4b49d87827ee"
+  },
+  {
+    "norwegian": "Jeg er ikke sulten nå.",
+    "english": "I am not hungry now.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dcef94c5-e75c-4a61-9574-569d76cd6078"
+  },
+  {
+    "norwegian": "De er ikke hjemme i dag.",
+    "english": "They are not home today.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "de4a0100-62dc-46ae-8b26-02451dae3d44"
+  },
+  {
+    "norwegian": "Er du fra Norge?",
+    "english": "Are you from Norway?",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "personal-information"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d87cfa4a-4f01-4d71-9330-0e77a39b4cf9"
+  },
+  {
+    "norwegian": "Det er fint vær i dag.",
+    "english": "The weather is nice today.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "00a7e618-9afb-449c-8eac-e96561ad0ccb"
+  },
+  {
+    "norwegian": "Rommet er lite, men det er koselig.",
+    "english": "The room is small, but it is cosy.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "home"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5c5105d8-6283-4ae2-bff6-f6659e87c31d"
+  },
+  {
+    "norwegian": "Skolen ___ ikke langt fra her.",
+    "english": "The school is not far from here.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "getting-around"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er",
+    "id": "4a1516a6-f8c4-4ea6-873e-3adac7985a53"
+  },
+  {
+    "norwegian": "Barna ___ veldig trøtte etter skolen.",
+    "english": "The children are very tired after school.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "family",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er",
+    "id": "d571c10a-0758-4422-a7db-fdb1a5f1801c"
+  },
+  {
+    "norwegian": "Jeg drikker et kaldt glass vann.",
+    "english": "I drink a cold glass of water.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "02e28ed1-7ced-4cbd-a0e9-c136f4478109"
+  },
+  {
+    "norwegian": "Rommet er rent etter middagen.",
+    "english": "The room is clean after dinner.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "850356f5-5c77-4f9a-b4c0-e2622140fcd4"
+  },
+  {
+    "norwegian": "De har to store barn.",
+    "english": "They have two big children.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "49913d15-d9f0-4bb0-9af7-cb8e72d03fa0"
+  },
+  {
+    "norwegian": "Vi bor i et lite, hvitt hus på landet.",
+    "english": "We live in a small, white house in the countryside.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a2f80d96-ac6c-44b1-a0ff-250be2b2faa9"
+  },
+  {
+    "norwegian": "Han spiser et ferskt eple hver dag.",
+    "english": "He eats a fresh apple every day.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1e95ef8a-2dc7-4a40-b7c9-aa8279c09288"
+  },
+  {
+    "norwegian": "Det er et ___ rom på hotellet.",
+    "english": "There is a clean room at the hotel.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "rent",
+    "id": "f9d3b597-4ced-4ab4-af4f-a589bd0e783a"
+  },
+  {
+    "norwegian": "Jeg har mange ___ venner på skolen.",
+    "english": "I have many good friends at school.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "gode",
+    "id": "27a89584-3327-472c-b7dd-39b71a261113"
+  },
+  {
+    "norwegian": "Nøklene ligger på bordet.",
+    "english": "The keys are on the table.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "6df85154-e2ac-48b2-bc9a-f6b48b95383e"
+  },
+  {
+    "norwegian": "Skoene mine er svarte.",
+    "english": "My shoes are black.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4340f7ad-e33f-4b17-8958-5e438bafe6d9"
+  },
+  {
+    "norwegian": "Fuglene synger om morgenen.",
+    "english": "The birds sing in the morning.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "654706f7-8a7a-4b54-b9f3-9939cd20cddf"
+  },
+  {
+    "norwegian": "Rommene på hotellet er store.",
+    "english": "The rooms at the hotel are big.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "01ef8079-420c-4c05-8bd7-f93116da29cb"
+  },
+  {
+    "norwegian": "Vennene mine bor i Oslo.",
+    "english": "My friends live in Oslo.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "70f1b991-262e-45db-83e4-90eb6dca4f8b"
+  },
+  {
+    "norwegian": "___ er under stolen.",
+    "english": "The shoes are under the chair.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Skoene",
+    "id": "9170e58f-72ae-4446-a2af-a0090259b70b"
+  },
+  {
+    "norwegian": "Jeg finner ikke ___.",
+    "english": "I cannot find the keys.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "nøklene",
+    "id": "d825e9be-4d2a-40af-8660-1ebfef21ef3b"
+  },
+  {
+    "norwegian": "Det ligger en bok på bordet.",
+    "english": "There is a book on the table.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1c6fa2d5-eae5-4daf-8418-320946e6a785"
+  },
+  {
+    "norwegian": "Det er et vindu i rommet.",
+    "english": "There is a window in the room.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "557902bd-6a3f-4b7f-974a-b2f431d45195"
+  },
+  {
+    "norwegian": "Han drikker et glass melk.",
+    "english": "He drinks a glass of milk.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "47805a7a-2380-44a3-afc1-aade55d2e8d6"
+  },
+  {
+    "norwegian": "Jeg ser en mann på gaten.",
+    "english": "I see a man on the street.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5e7ffcf8-30d7-422b-bd89-4e43e22e0556"
+  },
+  {
+    "norwegian": "Jeg spiser ___ eple til frokost.",
+    "english": "I eat an apple for breakfast.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "et",
+    "id": "560eb307-19c4-46d8-ae6f-5e89b839c549"
+  },
+  {
+    "norwegian": "Jeg trenger ___ paraply i dag.",
+    "english": "I need an umbrella today.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "en",
+    "id": "b372e8ee-214c-418e-8ae9-e571d4139d67"
+  },
+  {
+    "norwegian": "Jeg drikker ikke vann om morgenen.",
+    "english": "I do not drink water in the morning.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ce19c0d9-ee0d-40c1-b377-fdc24d4102b4"
+  },
+  {
+    "norwegian": "Hun jobber ikke på mandag.",
+    "english": "She does not work on Monday.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "9ed0e5bc-a900-4c39-b807-dfe8fdb72c16"
+  },
+  {
+    "norwegian": "Han snakker ___ norsk.",
+    "english": "He does not speak Norwegian.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ikke",
+    "id": "4ad7a94d-3778-40f1-8dc3-253ee77f01b4"
+  },
+  {
+    "norwegian": "Vi bor ikke i Bergen.",
+    "english": "We do not live in Bergen.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a23d54b3-11f5-45c1-95b6-14cc1d2f4bdc"
+  },
+  {
+    "norwegian": "Jeg kjenner ___ ham.",
+    "english": "I do not know him.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ikke",
+    "id": "bca0b03e-4011-4a84-a336-b674e8be41ea"
+  },
+  {
+    "norwegian": "De har ikke penger til billetten.",
+    "english": "They do not have money for the ticket.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e332aa14-e820-4be7-8c85-8f758b78b36b"
+  },
+  {
+    "norwegian": "Jeg tar ikke bussen til skolen.",
+    "english": "I do not take the bus to school.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3d4916aa-910d-4d0d-9b01-9e43eb424fa3"
+  },
+  {
+    "norwegian": "Jeg har tre søstre.",
+    "english": "I have three sisters.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c0678314-30b6-426d-8587-40676872b594"
+  },
+  {
+    "norwegian": "Det er seks stoler rundt bordet.",
+    "english": "There are six chairs around the table.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "cca5f8f7-4c33-488b-a6bb-770a312d6791"
+  },
+  {
+    "norwegian": "Jeg har fire epler i kurven.",
+    "english": "I have four apples in the basket.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4dd7ead0-010c-4d9e-b62c-03c2affeb2b7"
+  },
+  {
+    "norwegian": "Vi venter i ti minutter.",
+    "english": "We wait for ten minutes.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4d49c3a2-056a-4fb9-9018-cb7139bec364"
+  },
+  {
+    "norwegian": "Butikken er åpen i ___ timer om dagen.",
+    "english": "The shop is open for nine hours a day.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ni",
+    "id": "1408100d-c25d-4c37-9f9c-c05ee88fbb54"
+  },
+  {
+    "norwegian": "Han kjøper ___ appelsiner på markedet.",
+    "english": "He buys eight oranges at the market.",
+    "concept_ids": [
+      "numbers-basic"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "åtte",
+    "id": "819eef98-88ce-4974-a9c7-3cb7339d0c7f"
+  },
+  {
+    "norwegian": "Jeg vasket hendene før middag i går.",
+    "english": "I washed my hands before dinner yesterday.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "628a4a70-c6be-44dd-ad5e-fc8eb249113b"
+  },
+  {
+    "norwegian": "Han bestilte mat på restauranten i går kveld.",
+    "english": "He ordered food at the restaurant yesterday evening.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3eef9181-669e-49f4-a85d-5d65e7a53460"
+  },
+  {
+    "norwegian": "Vi besøkte bestemoren vår forrige søndag.",
+    "english": "We visited our grandmother last Sunday.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "67e03fba-c0d5-4d85-bd36-638bddb7e0c5"
+  },
+  {
+    "norwegian": "Jeg pakket sekken min før skolen i går morges.",
+    "english": "I packed my bag before school yesterday morning.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "53f6348c-0cea-43e2-a047-ef2979d7a85f"
+  },
+  {
+    "norwegian": "Hun betalte for maten på kafeen i går.",
+    "english": "She paid for the food at the café yesterday.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d36935de-b7f4-45da-9782-5b15502949a7"
+  },
+  {
+    "norwegian": "Vi ___ middag hjemme i går.",
+    "english": "We made dinner at home yesterday.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "lagde",
+    "id": "51a7d71b-ab38-4369-81b9-056ec18d0ce4"
+  },
+  {
+    "norwegian": "Han ___ rommet sitt forrige lørdag.",
+    "english": "He tidied his room last Saturday.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ryddet",
+    "id": "07408d59-ba7f-471e-93e2-2c7ee35efe2a"
+  },
+  {
+    "norwegian": "Gutten drikker melken.",
+    "english": "The boy drinks the milk.",
+    "concept_ids": [
+      "definite-articles-singular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dec52eb5-9b0e-4876-9d02-a1ad0ecdc06c"
+  },
+  {
+    "norwegian": "Katten sover på sofaen.",
+    "english": "The cat is sleeping on the sofa.",
+    "concept_ids": [
+      "definite-articles-singular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "41bb180d-ff2d-4ab7-9e70-5286b84a72ec"
+  },
+  {
+    "norwegian": "Kan du hente ___ fra kjøkkenet?",
+    "english": "Can you get the milk from the kitchen?",
+    "concept_ids": [
+      "definite-articles-singular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "melken",
+    "id": "dd27017a-eede-48e7-a861-0b537f2580ce"
+  },
+  {
+    "norwegian": "Jeg ser to gutter i parken.",
+    "english": "I see two boys in the park.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "523eb20b-16a4-4648-bd6f-f275d0ca140e"
+  },
+  {
+    "norwegian": "Hun kjøper tre kaker i butikken.",
+    "english": "She buys three cakes at the shop.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d8028e7b-1b43-47f7-825b-d3ff7cd81bf0"
+  },
+  {
+    "norwegian": "Det er mange ___ på hotellet.",
+    "english": "There are many rooms at the hotel.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "rom",
+    "id": "7c36f641-b166-42d5-bd3c-767b876bfaba"
+  },
+  {
+    "norwegian": "Vi trenger to ___ til festen.",
+    "english": "We need two bags for the party.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "poser",
+    "id": "7a6a04a4-db0a-49d4-b10c-fcee54226b2b"
+  },
+  {
+    "norwegian": "Det er fire vinduer i stuen.",
+    "english": "There are four windows in the living room.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "0287d746-f92e-4b09-b2b0-23e84ea8a608"
+  },
+  {
+    "norwegian": "Jeg spiser et eple til frokost.",
+    "english": "I eat an apple for breakfast.",
+    "concept_ids": [
+      "present-tense-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b048ef0d-fe97-4fe6-acf1-893b06919665"
+  },
+  {
+    "norwegian": "De snakker norsk på jobben.",
+    "english": "They speak Norwegian at work.",
+    "concept_ids": [
+      "present-tense-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "719768e7-f34c-4f36-a735-64e04d795db4"
+  },
+  {
+    "norwegian": "Hun drikker te om kvelden.",
+    "english": "She drinks tea in the evening.",
+    "concept_ids": [
+      "present-tense-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dfcbd243-6bfc-48d2-8b19-e3e19a4d3383"
+  },
+  {
+    "norwegian": "Han ___ melk til frokost.",
+    "english": "He drinks milk for breakfast.",
+    "concept_ids": [
+      "present-tense-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "drikker",
+    "id": "91ad157c-6d8d-4ff6-ae42-95a5015bd8f1"
+  },
+  {
+    "norwegian": "Når spiser dere middag?",
+    "english": "When do you (all) eat dinner?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b1ab1285-af76-4d24-b6f9-4b9e4bf21efb"
+  },
+  {
+    "norwegian": "Vil du ha vann?",
+    "english": "Do you want water?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a1783ab9-f35a-4fa6-a2fd-26db1346352b"
+  },
+  {
+    "norwegian": "Hvem lager mat i dag?",
+    "english": "Who is making food today?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "99e46bb9-faf6-4bfc-9c72-419affb329e1"
+  },
+  {
+    "norwegian": "___ kommer bussen?",
+    "english": "When does the bus come?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Når",
+    "id": "53ecffdb-cf61-47d4-acaa-ad4689eedb3f"
+  },
+  {
+    "norwegian": "___ heter læreren din?",
+    "english": "What is your teacher's name?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Hva",
+    "id": "1c093c23-8ae0-485d-b763-7481510634ad"
+  },
+  {
+    "norwegian": "Jeg har en bror.",
+    "english": "I have a brother.",
+    "concept_ids": [
+      "to-have-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "648903d2-e9c2-4a60-aa0b-db6b7782c031"
+  },
+  {
+    "norwegian": "Du har en søster.",
+    "english": "You have a sister.",
+    "concept_ids": [
+      "to-have-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b0c85ee5-c052-4695-a915-4b57d2777343"
+  },
+  {
+    "norwegian": "Vi har ikke nok mat til middag.",
+    "english": "We do not have enough food for dinner.",
+    "concept_ids": [
+      "to-have-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b272fb78-8cde-481b-8a18-47ac914c692b"
+  },
+  {
+    "norwegian": "Jeg har litt tid nå.",
+    "english": "I have a little time now.",
+    "concept_ids": [
+      "to-have-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a7de0444-dae0-4bc5-b9bb-1872b5124913"
+  },
+  {
+    "norwegian": "Han ___ en gammel paraply i sekken.",
+    "english": "He has an old umbrella in his bag.",
+    "concept_ids": [
+      "to-have-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "har",
+    "id": "d94d4525-c9b9-4775-9daa-4281b75c0c1b"
+  },
+  {
+    "norwegian": "De ___ et lite rom på hotellet.",
+    "english": "They have a small room at the hotel.",
+    "concept_ids": [
+      "to-have-verb"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "har",
+    "id": "f889fafc-35c4-4567-92b7-cfa45a8426e2"
+  },
+  {
+    "norwegian": "Nå spiser vi frokost.",
+    "english": "Now we are eating breakfast.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1422d2d7-c018-4e8b-b51f-8d6b4ef77a92"
+  },
+  {
+    "norwegian": "Hver dag går hun på skolen.",
+    "english": "Every day she goes to school.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "364c7913-a60f-41a3-900d-5a0a9e141dd7"
+  },
+  {
+    "norwegian": "Om kvelden drikker de te.",
+    "english": "In the evening they drink tea.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "7c760d59-99e6-4713-b8d0-52dae9794016"
+  },
+  {
+    "norwegian": "På onsdag jobber jeg hjemme.",
+    "english": "On Wednesday I work from home.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "51fd8ac8-1174-426d-bf71-1f64a37852a7"
+  },
+  {
+    "norwegian": "I dag ___ han kaffe.",
+    "english": "Today he drinks coffee.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "drikker",
+    "id": "211edb8b-6296-4962-9b53-aba266e87571"
+  },
+  {
+    "norwegian": "Om morgenen ___ barna frokost.",
+    "english": "In the morning the children eat breakfast.",
+    "concept_ids": [
+      "v2-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "spiser",
+    "id": "f8ea7055-a6c4-474f-9cff-d66402812fd0"
+  },
+  {
+    "norwegian": "Jeg kan hjelpe deg.",
+    "english": "I can help you.",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c04419c5-73b9-41e5-b574-1c85dbebafe8"
+  },
+  {
+    "norwegian": "Hun vil lære å lage mat.",
+    "english": "She wants to learn to cook.",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ec43e53b-2968-4672-905a-f4db60a182c6"
+  },
+  {
+    "norwegian": "Vi vil prøve å ___ mat i kveld.",
+    "english": "We want to try to cook food tonight.",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "lage",
+    "id": "546e9374-5a58-4edf-b2f5-193fec423b95"
+  },
+  {
+    "norwegian": "Jakken min er blå.",
+    "english": "My jacket is blue.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1231fefa-1f60-4c1d-86f8-29deeee4bd66"
+  },
+  {
+    "norwegian": "Telefonen hennes er på bordet.",
+    "english": "Her phone is on the table.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dec25cd2-0974-48cd-b297-08dd449877a9"
+  },
+  {
+    "norwegian": "Sekken ___ er tung.",
+    "english": "Our bag is heavy.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "vår",
+    "id": "a418c633-b86d-4977-93b2-09a66ae59831"
+  },
+  {
+    "norwegian": "Jeg hadde ikke tid i går.",
+    "english": "I did not have time yesterday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "60723fb7-8e42-433b-bc5f-f5e4caae3c4f"
+  },
+  {
+    "norwegian": "Han ___ en pakke i går.",
+    "english": "He received a package yesterday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "fikk",
+    "id": "b6c812f7-5a9a-48b4-9d92-e11a0b69ef5d"
+  },
+  {
+    "norwegian": "Vi drakk kaffe sammen forrige lørdag.",
+    "english": "We drank coffee together last Saturday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "322fa395-8b37-4873-a468-a414e2ec7256"
+  },
+  {
+    "norwegian": "Jeg drikker juice om morgenen.",
+    "english": "I drink juice in the morning.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "599a0b34-2178-4b30-86d7-f2bb2d07d846"
+  },
+  {
+    "norwegian": "Mannen leser avisen.",
+    "english": "The man reads the newspaper.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e8b8068c-6ef4-4bbd-9525-02fc28e41239"
+  },
+  {
+    "norwegian": "Gutten kaster ballen.",
+    "english": "The boy throws the ball.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e5b843ff-b900-4469-a6d0-8e684d7d3e85"
   }
 ]
