@@ -213,6 +213,18 @@ Direction set in `docs/ui-1/frontend-representation-brief.md` (engine representa
 | 6.4 | **Server-side AI content generation** — wire `generate` action in `/api/ai` + `ServerAIService.generateContent` through the validation gate; unblocks mobile top-up + AI-generated cloze passages | DEFERRED (rate-limiter budget TBD when built) |
 | 6.5 | **Frontend representation waves** — make the engine visible (session agenda, fingerprint home, weekly rhythm, level-up); 3-wave plan in the representation brief | PLANNED (gated on architect sign-off) |
 
+#### Exercise-system recalibration (2026-06-01, user-approved, architect-reviewed)
+
+A corpus audit found the app declares 10 `ExerciseType` values but only 6 are real (translation ×2, fill-in-blank, word-order, listening-comprehension, speed-round). Full analysis + evidence: `.scout/2026-06-01-exercise-system-recalibration.md`. **Earned-place test:** a type stays only if it adds an error signal an existing type doesn't OR pushes genuine production, AND traces a real fingerprint write. Sequencing locked to **R0 → cloze (6.3) → R1**.
+
+| # | Item | Decision | Status |
+|---|---|---|---|
+| 6.6 | **R0 — phantom honesty** — `sentence-transformation` + `dictation` silently render as Translation/Listening (latent Rule-6 bug). `dictation` ≡ `listening-comprehension`. | Route both fallbacks to the honest `NotYetAvailable` banner (reversible; preserves option). Do FIRST, before cloze — R1 could trip the latent bug. | ✅ DONE 2026-06-01 — ExerciseCard.tsx switch + NOT_YET_LABELS map; tsc clean; no type routes to a wrong renderer |
+| 6.7 | **R1 — B1/B2 content-gap fill** — re-tag B1/B2 sentences with `listening-comprehension` + `speed-round` (audio + TTS already exist; tagging only, no authoring). | Acceptance = fingerprint pre/post diff in a real session (Rule 8 / roadmap.md:25), NOT "tag appears." Runs AFTER cloze. | APPROVED — not started |
+| — | **free-writing** | **CUT** (keep honest banner) — the journal already does focus-biased free writing + AI correction. A 2nd free-writing surface = duplicate surface, no new signal. | Rejected |
+| — | **reading-comprehension** | **DEFER** (keep honest banner) — recognition-heavy, weakest north-star fit. | Backlog |
+| — | **sentence-transformation as a real distinct exercise** | **DEFER to backlog** — building it is a 2nd breadth exception beside cloze. Needs its own explicit Rule-1 override + feature-challenger pass before it can become a sequenced step. Highest unbuilt diagnostic value, but that's also its biggest tell. | Backlog (architect-blocked from sequence) |
+
 ---
 
 ## Parallel Execution Map
