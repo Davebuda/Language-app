@@ -184,8 +184,11 @@ export function gateRow(row: GateRow): GateResult {
   if (/\.\.\.|…/.test(no)) reasons.push('trailing/embedded ellipsis (incomplete)')
   if (/\([^)]*\)/.test(no)) reasons.push('parenthetical generation artifact')
 
-  // 2. Capitalization — every sentence starts with a capital letter.
-  if (no && !/^[«"'(]?[A-ZÆØÅ0-9]/.test(no)) reasons.push('does not start with a capital letter')
+  // 2. Capitalization — every sentence starts with a capital letter. A
+  // fill-in-blank whose blank is the first token (e.g. "___ er fra Norge.")
+  // masks a capitalized word, so the check cannot apply there.
+  const leadsWithBlank = /^_{2,}/.test(no)
+  if (no && !leadsWithBlank && !/^[«"'(]?[A-ZÆØÅ0-9]/.test(no)) reasons.push('does not start with a capital letter')
 
   const t = lc(no)
 

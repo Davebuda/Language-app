@@ -10,13 +10,26 @@ import { FillInBlankExercise } from './exercises/FillInBlankExercise'
 import { SpeedRound } from './exercises/SpeedRound'
 import { ListeningExercise } from './exercises/ListeningExercise'
 import WordOrderExerciseLazy from './exercises/WordOrderExerciseLazy'
+import { ClozePassageExercise } from './exercises/ClozePassageExercise'
+import type { ResolvedClozePassage } from '@/types/content'
 
 interface ExerciseCardProps {
   item: SessionItem
-  sentence: ResolvedContent
+  sentence?: ResolvedContent
   sessionId: string
   onResult: (result: ExerciseResult) => void
   repairPlan?: RepairPlan | null
+  clozePassage?: ResolvedClozePassage | null
+  onClozeResults?: (results: ExerciseResult[]) => void
+}
+
+// Types with no distinct renderer yet. Shown via an honest "kommer snart"
+// banner rather than silently routed to a different exercise (Operating Rule 6).
+const NOT_YET_LABELS: Record<string, string> = {
+  'reading-comprehension': 'Leseforståelse',
+  'free-writing': 'Fri skriving',
+  'sentence-transformation': 'Setningsomforming',
+  dictation: 'Diktat',
 }
 
 function NotYetAvailable({
@@ -28,7 +41,6 @@ function NotYetAvailable({
   type: string
   onResult: (result: ExerciseResult) => void
   item: SessionItem
-  sentence: ResolvedContent
   sessionId: string
 }) {
   return (
@@ -37,7 +49,7 @@ function NotYetAvailable({
         Øvelsestype
       </p>
       <p className="font-display text-[1.45rem] font-bold leading-snug text-[var(--nc-cream-text)]">
-        {type === 'reading-comprehension' ? 'Leseforståelse' : 'Fri skriving'} kommer snart.
+        {NOT_YET_LABELS[type] ?? 'Denne øvelsen'} kommer snart.
       </p>
       <p className="text-pretty text-sm leading-6 text-[var(--nc-cream-muted)]">
         Denne øvelsestypen er ikke tilgjengelig ennå. Trykk for å hoppe over.
@@ -68,6 +80,8 @@ export function ExerciseCard({
   sessionId,
   onResult,
   repairPlan: _,
+  clozePassage,
+  onClozeResults,
 }: ExerciseCardProps) {
   const [shakeKey, setShakeKey] = useState(0)
   const [wasWrong, setWasWrong] = useState(false)
@@ -81,25 +95,50 @@ export function ExerciseCard({
   }
 
   function renderExercise() {
+    // Cloze passage uses clozePassage, not a single sentence.
+    if (item.exerciseType === 'cloze-passage') {
+      if (clozePassage && onClozeResults) {
+        return (
+          <ClozePassageExercise
+            passage={clozePassage}
+            sessionId={sessionId}
+            itemId={item.id}
+            onClozeResults={onClozeResults}
+          />
+        )
+      }
+      // Unresolved cloze (no authored passage): honest banner, never a silent
+      // substitution to another exercise (Operating Rule 6).
+      return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
+    }
+
+    // Every other exercise type requires a resolved sentence.
+    if (!sentence) {
+      return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
+    }
+
     const props = { item, sentence, sessionId, onResult: handleResult }
 
     switch (item.exerciseType) {
       case 'translation-to-norwegian':
       case 'translation-to-english':
-      case 'sentence-transformation':
         return <TranslationExercise {...props} />
       case 'fill-in-blank':
         return <FillInBlankExercise {...props} />
       case 'word-order':
         return <WordOrderExerciseLazy {...props} />
       case 'listening-comprehension':
-      case 'dictation':
         return <ListeningExercise {...props} />
       case 'speed-round':
         return <SpeedRound {...props} />
+      // Phantom types — no distinct renderer + zero seed content. Honest banner
+      // instead of silently rendering as a different exercise (Operating Rule 6).
+      // dictation ≡ listening-comprehension; sentence-transformation ≡ translation.
+      case 'sentence-transformation':
+      case 'dictation':
       case 'reading-comprehension':
       case 'free-writing':
-        return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sentence={sentence} sessionId={sessionId} />
+        return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
       default:
         return <TranslationExercise {...props} />
     }

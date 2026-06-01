@@ -1,0 +1,46 @@
+[
+  {
+    "id": "cz-a1-v2-morning",
+    "cefr_level": "A1",
+    "primary_concept_id": "v2-word-order",
+    "english_gloss": "I like the morning. Every day I drink coffee at seven o'clock. Afterwards I eat breakfast. At eight o'clock I go to work.",
+    "difficulty": 1,
+    "segments": [
+      { "kind": "text", "value": "Jeg liker morgenen. Hver dag " },
+      { "kind": "gap", "answer": "drikker", "concept_id": "v2-word-order", "error_tag": "word-order" },
+      { "kind": "text", "value": " jeg kaffe klokka sju. Etterpå " },
+      { "kind": "gap", "answer": "spiser", "concept_id": "v2-word-order", "error_tag": "word-order" },
+      { "kind": "text", "value": " jeg frokost. Klokka åtte " },
+      { "kind": "gap", "answer": "går", "concept_id": "v2-word-order", "error_tag": "word-order" },
+      { "kind": "text", "value": " jeg på jobb." }
+    ]
+  },
+  {
+    "id": "cz-a1-noun-gender-house",
+    "cefr_level": "A1",
+    "primary_concept_id": "noun-gender",
+    "english_gloss": "I have a cat and a house. The cat is called Per. The house is big and nice.",
+    "difficulty": 1,
+    "segments": [
+      { "kind": "text", "value": "Jeg har en katt og " },
+      { "kind": "gap", "answer": "et", "concept_id": "noun-gender", "error_tag": "noun-gender" },
+      { "kind": "text", "value": " hus. Katten heter Per. " },
+      { "kind": "gap", "answer": "Huset", "concept_id": "noun-gender", "error_tag": "article-use" },
+      { "kind": "text", "value": " er stort og fint." }
+    ]
+  },
+  {
+    "id": "cz-a1-pronouns-friends",
+    "cefr_level": "A1",
+    "primary_concept_id": "personal-pronouns",
+    "english_gloss": "Kari is my friend. I call her every day. Sometimes she visits me too.",
+    "difficulty": 1,
+    "segments": [
+      { "kind": "text", "value": "Kari er vennen min. Jeg ringer " },
+      { "kind": "gap", "answer": "henne", "concept_id": "personal-pronouns", "error_tag": "pronoun-choice" },
+      { "kind": "text", "value": " hver dag. Noen ganger besøker " },
+      { "kind": "gap", "answer": "hun", "concept_id": "personal-pronouns", "error_tag": "pronoun-choice" },
+      { "kind": "text", "value": " meg også." }
+    ]
+  }
+]

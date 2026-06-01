@@ -52,12 +52,14 @@ export function SessionScreen({
     session,
     currentItem,
     currentContent,
+    currentCloze,
     currentItemIndex,
     currentBlock,
     isInRepair,
     repairPlan,
     startNewSession,
     submitResult,
+    submitClozeResults,
     continueAfterRepair,
   } = useSession(sentences, availableSentenceIds)
 
@@ -189,8 +191,15 @@ export function SessionScreen({
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">
-                        {currentItem ? getExerciseTypeLabel(currentItem.exerciseType) : 'Økt'}
+                      <div className="flex items-center gap-1.5">
+                        <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">
+                          {currentItem ? getExerciseTypeLabel(currentItem.exerciseType) : 'Økt'}
+                        </div>
+                        {currentContent?.isReviewFallback ? (
+                          <span className="rounded-[0.3rem] bg-[rgba(10,18,6,0.12)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.1em] text-[rgba(10,18,6,0.6)]">
+                            Repetisjon
+                          </span>
+                        ) : null}
                       </div>
                       <div className="mt-0.5 text-[0.88rem] font-extrabold leading-tight text-[var(--nc-signal-fg)]">
                         Økt
@@ -243,7 +252,7 @@ export function SessionScreen({
               <EmptyState />
             ) : isComplete ? (
               <LoadingSkeleton />
-            ) : currentItem && currentContent ? (
+            ) : currentItem && (currentItem.exerciseType === 'cloze-passage' ? !!currentCloze : !!currentContent) ? (
               <>
                 {currentBlock ? (
                   <BlockHeader
@@ -268,6 +277,8 @@ export function SessionScreen({
                       sessionId={session.id}
                       onResult={handleResult}
                       repairPlan={isInRepair ? repairPlan : null}
+                      clozePassage={currentCloze ?? null}
+                      onClozeResults={submitClozeResults}
                     />
                   </motion.div>
                 </AnimatePresence>

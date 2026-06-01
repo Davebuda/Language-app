@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NorskCoach — Cloze Passage mockups</title>
+<!-- Mockup only: Google Fonts link is fine for a throwaway artifact; production uses next/font. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#0A1206; --bg2:#151718;
+    --signal:#C8FF20; --signal-fg:#0A1206; --signal-tint:rgba(200,255,32,0.10);
+    --card:#151718; --border:rgba(255,255,255,0.08);
+    --text:#EDEEE9; --text-muted:rgba(237,238,233,0.62); --text-dim:rgba(237,238,233,0.40);
+    --cream:#F0F1EC; --cream-text:#11181C; --cream-muted:rgba(17,24,28,0.62); --cream-dim:rgba(17,24,28,0.42);
+    --red:#ff6a55; --teal:#6de5ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Schibsted Grotesk',sans-serif;
+    background:linear-gradient(160deg,var(--bg1),var(--bg2));
+    color:var(--text); min-height:100vh; padding:32px 20px 64px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page-head{max-width:1240px;margin:0 auto 28px}
+  .page-head h1{font-size:1.5rem;font-weight:800;letter-spacing:-0.03em}
+  .page-head p{margin-top:6px;color:var(--text-muted);font-size:0.9rem;max-width:62ch;line-height:1.5}
+  .rec{display:inline-block;margin-top:12px;padding:6px 12px;border-radius:0.4rem;background:var(--signal-tint);
+       border:1px solid rgba(200,255,32,0.25);color:var(--signal);font-size:0.78rem;font-weight:700}
+  .rail{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;max-width:1240px;margin:0 auto}
+  .col{display:flex;flex-direction:column;gap:10px;width:375px}
+  .col-cap{font-size:0.8rem;font-weight:700;letter-spacing:0.02em}
+  .col-sub{font-size:0.72rem;color:var(--text-muted);line-height:1.45;min-height:34px}
+  .tag-prod{color:var(--signal)}
+  .tag-warn{color:var(--red)}
+
+  /* phone frame */
+  .phone{width:375px;border-radius:1.6rem;background:linear-gradient(160deg,var(--bg1),var(--bg2));
+         border:1px solid var(--border);box-shadow:0 30px 60px rgba(0,0,0,0.45);overflow:hidden;
+         padding:14px 12px 18px}
+
+  /* lime session header */
+  .hdr{position:relative;border-radius:0.65rem;background:linear-gradient(135deg,#C8FF20,#B8EF10);
+       color:var(--signal-fg);padding:12px 12px 14px;overflow:hidden}
+  .hdr .ey{display:flex;align-items:center;gap:6px;font-size:8px;font-weight:800;text-transform:uppercase;
+           letter-spacing:0.12em;color:rgba(10,18,6,0.48)}
+  .pill{border-radius:0.3rem;background:rgba(10,18,6,0.12);padding:1px 6px;font-size:8px;font-weight:800;
+        text-transform:uppercase;letter-spacing:0.1em;color:rgba(10,18,6,0.62)}
+  .hdr h2{margin-top:3px;font-size:0.88rem;font-weight:800;line-height:1.1}
+  .bar{margin-top:10px;height:7px;border-radius:999px;background:rgba(10,18,6,0.14);overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:999px;background:rgba(10,18,6,0.82)}
+  .hdr .meta{margin-top:7px;display:flex;justify-content:space-between;font-size:0.7rem;font-weight:700;
+             color:rgba(10,18,6,0.55);font-variant-numeric:tabular-nums}
+
+  /* cream exercise card */
+  .card{margin-top:6px;border-radius:0.6rem;background:var(--cream);color:var(--cream-text);
+        border:1px solid rgba(17,21,24,0.06);padding:16px 14px}
+  .lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--cream-dim)}
+  .passage{margin-top:12px;font-weight:800;font-size:1.18rem;line-height:1.55;letter-spacing:-0.01em;color:var(--cream-text)}
+  .hint{margin-top:14px;font-size:0.8rem;color:var(--cream-muted)}
+  .concept{margin-top:10px;font-size:0.72rem;color:var(--cream-dim);font-weight:600}
+
+  /* gap variants */
+  .gap-empty{display:inline-flex;align-items:center;justify-content:center;min-width:74px;height:30px;
+             margin:0 2px;border-radius:0.45rem;border:1.5px dashed rgba(120,150,20,0.55);
+             background:rgba(200,255,32,0.14);vertical-align:middle}
+  .gap-input{display:inline-flex;align-items:center;min-width:96px;height:34px;margin:0 2px;padding:0 8px;
+             border-radius:0.45rem;border:1.5px solid rgba(17,21,24,0.18);background:#fff;
+             font-weight:800;font-size:1rem;color:var(--cream-text);vertical-align:middle}
+  .gap-input.typed{border-color:rgba(120,150,20,0.7);background:rgba(200,255,32,0.10)}
+  .gap-input.active{border-color:#7a9614;box-shadow:0 0 0 3px rgba(200,255,32,0.30)}
+  .gap-input .caret{width:2px;height:18px;background:var(--cream-text);margin-left:1px;animation:blink 1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .gap-num{display:inline-flex;align-items:center;justify-content:center;width:64px;height:30px;margin:0 2px;
+           border-radius:0.45rem;border:1.5px solid rgba(17,21,24,0.16);background:rgba(17,21,24,0.05);
+           font-size:0.85rem;font-weight:800;color:var(--cream-dim);vertical-align:middle}
+
+  /* word bank */
+  .bank{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+  .word{padding:9px 14px;border-radius:0.55rem;border:1px solid rgba(17,21,24,0.12);
+        background:rgba(17,21,24,0.04);font-weight:700;font-size:0.9rem;color:var(--cream-text)}
+  .word.used{opacity:0.32;text-decoration:line-through}
+
+  /* buttons */
+  .btn{margin-top:16px;width:100%;height:50px;border:none;border-radius:0.6rem;background:var(--signal-fg);
+       color:#fff;font-weight:800;font-size:0.92rem;display:flex;align-items:center;justify-content:center;gap:8px}
+  .btn.lime{background:var(--signal);color:var(--signal-fg)}
+  .step-note{margin-top:14px;font-size:0.78rem;font-weight:600;color:var(--cream-muted)}
+
+  /* keyboard hint strip */
+  .kb{margin-top:12px;height:30px;border-radius:0.4rem;border:1px dashed rgba(17,21,24,0.14);
+      display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--cream-dim);
+      letter-spacing:0.08em;text-transform:uppercase;font-weight:700}
+  .foot{max-width:1240px;margin:34px auto 0;color:var(--text-dim);font-size:0.74rem;line-height:1.5}
+</style>
+</head>
+<body>
+
+  <div class="page-head">
+    <h1>Cloze Passage — three input models (375&nbsp;px)</h1>
+    <p>A cloze <em>passage</em> = a connected 3–5 sentence text with concept-targeted gaps. The decision below is how the learner fills those gaps on a phone — and it sets whether cloze is <strong>production</strong> (typing) or <strong>recognition</strong> (selecting), which the north star cares about.</p>
+    <span class="rec">Recommendation: A — typed inline gaps (most production-aligned, authentic discourse cloze)</span>
+  </div>
+
+  <div class="rail">
+
+    <!-- ───────────── A · TYPED INLINE ───────────── -->
+    <div class="col">
+      <div class="col-cap">A · Typed inline gaps <span class="tag-prod">— production</span></div>
+      <div class="col-sub">All gaps shown in the full passage; learner types each; one “Sjekk svar” grades the whole text. Most authentic discourse cloze.</div>
+      <div class="phone">
+        <div class="hdr">
+          <div class="ey"><span>FYLL INN TEKSTEN</span><span class="pill">Repetisjon? nei</span></div>
+          <h2>Økt</h2>
+          <div class="bar"><i style="width:46%"></i></div>
+          <div class="meta"><span>6 / 13</span><span>Lytt · Lær · Snakk</span></div>
+        </div>
+        <div class="card">
+          <div class="lbl">Fyll inn teksten</div>
+          <div class="passage">
+            Jeg <span class="gap-input typed">står</span> opp tidlig hver dag.
+            Så <span class="gap-input typed">drikker</span> jeg en kopp kaffe.
+            Klokka åtte <span class="gap-input"><span class="caret"></span></span> jeg til jobb.
+          </div>
+          <div class="hint">I get up early every day. Then I drink a cup of coffee. At eight o’clock I leave for work.</div>
+          <div class="concept">3 luker · konsept: V2-regelen</div>
+          <button class="btn">Sjekk svar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────── B · SEQUENTIAL TYPED ───────────── -->
+    <div class="col">
+      <div class="col-cap">B · Sequential typed <span class="tag-prod">— production</span></div>
+      <div class="col-sub">Full passage visible, one gap focused at a time; “Neste luke” advances. Gentler keyboard handling; more drill-like.</div>
+      <div class="phone">
+        <div class="hdr">
+          <div class="ey"><span>FYLL INN</span><span class="pill">Luke 1 av 3</span></div>
+          <h2>Økt</h2>
+          <div class="bar"><i style="width:46%"></i></div>
+          <div class="meta"><span>6 / 13</span><span>Lytt · Lær · Snakk</span></div>
+        </div>
+        <div class="card">
+          <div class="lbl">Fyll inn · luke 1 av 3</div>
+          <div class="passage">
+            Jeg <span class="gap-input active">står<span class="caret"></span></span> opp tidlig hver dag.
+            Så <span class="gap-num">2</span> jeg en kopp kaffe.
+            Klokka åtte <span class="gap-num">3</span> jeg til jobb.
+          </div>
+          <div class="hint">I get up early every day…</div>
+          <div class="kb">skriv verbet i riktig form</div>
+          <button class="btn lime">Neste luke →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────────── C · WORD BANK ───────────── -->
+    <div class="col">
+      <div class="col-cap">C · Word-bank tap-to-fill <span class="tag-warn">— recognition</span></div>
+      <div class="col-sub">Tap a word to fill the next slot. Easiest mobile UX, no keyboard — but it’s selecting, not producing. Works against the north star.</div>
+      <div class="phone">
+        <div class="hdr">
+          <div class="ey"><span>FYLL INN TEKSTEN</span><span class="pill">tapp ord</span></div>
+          <h2>Økt</h2>
+          <div class="bar"><i style="width:46%"></i></div>
+          <div class="meta"><span>6 / 13</span><span>Lytt · Lær · Snakk</span></div>
+        </div>
+        <div class="card">
+          <div class="lbl">Fyll inn teksten</div>
+          <div class="passage">
+            Jeg <span class="gap-input typed">står</span> opp tidlig hver dag.
+            Så <span class="gap-empty"></span> jeg en kopp kaffe.
+            Klokka åtte <span class="gap-empty"></span> jeg til jobb.
+          </div>
+          <div class="bank">
+            <span class="word used">står</span>
+            <span class="word">drikker</span>
+            <span class="word">drar</span>
+            <span class="word">tar</span>
+          </div>
+          <div class="step-note">Tapp et ord for å fylle neste luke.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    Tokens: bg #0A1206→#151718 · signal lime #C8FF20 · cream #F0F1EC exercise card · Schibsted Grotesk · no emoji · radii 0.45–0.65rem.
+    Content shown: morning-routine passage targeting the V2 (verb-second) concept — built by grouping existing concept-tagged sentences.
+    The “Repetisjon” pill mirrors the B1 honest-disclosure badge already shipped.
+  </div>
+
+</body>
+</html>

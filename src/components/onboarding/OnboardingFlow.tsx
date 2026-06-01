@@ -33,7 +33,7 @@ const INTRO_SLIDES = [
   },
   {
     id: 'fingerprint',
-    label: '02 / LÃ¦ringsminne',
+    label: '02 / Læringsminne',
     heading: 'Motoren husker mønstrene dine.',
     body:
       'Etter hvert svar oppdateres læringsprofilen din. Systemet ser hva som sitter, hva som glipper, og hva som må repeteres før du mister det.',
@@ -360,10 +360,10 @@ function IntroSlide({
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45">
-                  Profil
+                  Eksempel
                 </span>
                 <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/30">
-                  Aktiv
+                  Illustrasjon
                 </span>
               </div>
               <div className="space-y-2">
@@ -409,23 +409,6 @@ function IntroSlide({
             </div>
           ) : null}
         </div>
-      </div>
-
-      {/* Cream stat strip */}
-      <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
-        {[
-          { label: 'Mobil', value: 'Klar' },
-          { label: 'AI', value: 'Aktiv' },
-          { label: 'Profil', value: '1 minne' },
-        ].map((item, i) => (
-          <div
-            key={item.label}
-            className={`px-2 py-2.5 text-center${i > 0 ? ' relative before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}
-          >
-            <div className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">{item.value}</div>
-            <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{item.label}</div>
-          </div>
-        ))}
       </div>
 
       <div className="flex-1" />

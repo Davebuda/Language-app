@@ -59,6 +59,35 @@ export interface Scenario {
 export interface ResolvedContent extends Sentence {
   source: 'seed' | 'generated';
   distractors?: string[]; // fill-in-blank: 3 plausible wrong options from AI
+  // True when all seeds for a non-review item are already passed, so this
+  // sentence is shown as a disclosed repetition rather than as new material.
+  // The UI surfaces a "Repetisjon" badge — never silently recycles passed content.
+  isReviewFallback?: boolean;
+}
+
+export type ClozeSegment =
+  | { kind: 'text'; value: string }
+  | {
+      kind: 'gap';
+      answer: string;            // correct word/phrase the learner types
+      acceptedAnswers?: string[]; // optional equivalents
+      conceptId: string;         // concept THIS gap targets
+      errorTag: ErrorTag;        // tag logged on a wrong answer for this gap
+    };
+
+export interface ClozePassage {
+  id: string;
+  cefrLevel: CEFRLevel;
+  primaryConceptId: string;      // drives scheduling/selectionReason
+  englishGloss: string;          // full-passage hint (shown small/muted)
+  segments: ClozeSegment[];
+  difficulty: DifficultyTier;
+  title?: string;
+}
+
+// What the cloze component receives (parallel to ResolvedContent for sentences).
+export interface ResolvedClozePassage extends ClozePassage {
+  source: 'seed' | 'generated';
 }
 
 export interface GrammarExplainer {
