@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { SessionItem, ExerciseResult } from '@/types/session'
 import type { ResolvedContent } from '@/types/content'
 import { gradeAnswer } from '@/app/session/actions'
+import { resolveSeedAudioUrl } from '@/lib/audio-utils'
 
 interface ListeningExerciseProps {
   item: SessionItem
@@ -22,8 +23,15 @@ function useHowlerAudio(audioUrl: string) {
   const howlRef = useRef<HowlInstance | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  // Set when the MP3 fails to load/play (e.g. a file missing on the server).
+  // The component falls back to TTS rather than leaving a dead "Spill av"
+  // button (Operating Rule 6).
+  const [loadFailed, setLoadFailed] = useState(false)
 
   useEffect(() => {
+    if (!audioUrl) return
+    setIsLoaded(false)
+    setLoadFailed(false)
     import('howler').then(({ Howl }) => {
       howlRef.current = new Howl({
         src: [audioUrl],
@@ -32,6 +40,8 @@ function useHowlerAudio(audioUrl: string) {
         onload: () => setIsLoaded(true),
         onplay: () => setIsPlaying(true),
         onend: () => setIsPlaying(false),
+        onloaderror: () => setLoadFailed(true),
+        onplayerror: () => setLoadFailed(true),
       }) as unknown as HowlInstance
     })
     return () => {
@@ -41,7 +51,7 @@ function useHowlerAudio(audioUrl: string) {
 
   const play = () => howlRef.current?.play()
   const setRate = (r: number) => howlRef.current?.rate(r)
-  return { play, setRate, isLoaded, isPlaying }
+  return { play, setRate, isLoaded, isPlaying, loadFailed }
 }
 
 function useTTS(text: string) {
@@ -76,9 +86,14 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
   const [resultAnnouncement, setResultAnnouncement] = useState('')
   const startRef = useRef(Date.now())
 
-  const hasAudioFile = !!sentence.audioUrl
-  const howler = useHowlerAudio(sentence.audioUrl ?? '')
+  // Use the real pre-generated MP3 for seed sentences (100% coverage); TTS is
+  // only a fallback for generated content or a missing file (Rule 6), not the
+  // default. Previously audioUrl was always empty, so every learner heard
+  // robotic browser TTS instead of the nb-NO-PernilleNeural recordings.
+  const resolvedAudioUrl = resolveSeedAudioUrl(sentence.audioUrl, sentence.id, sentence.source)
+  const howler = useHowlerAudio(resolvedAudioUrl ?? '')
   const tts = useTTS(sentence.norwegian)
+  const useMp3 = !!resolvedAudioUrl && !howler.loadFailed
 
   async function submit() {
     if (submitted || !userInput.trim()) return
@@ -113,7 +128,7 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
         Lytt og skriv hva du hørte
       </p>
 
-      {hasAudioFile ? (
+      {useMp3 ? (
         <div className="flex gap-2.5">
           <button
             onClick={() => howler.play()}
