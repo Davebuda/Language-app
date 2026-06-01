@@ -1,7 +1,7 @@
 import type { MistakeFingerprint, InputProductionPreference } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
 import type { Session, SessionItem, SessionBlock, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
-import type { Sentence } from '@/types/content';
+import type { Sentence, ClozePassage } from '@/types/content';
 import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES } from '@/types/session';
 import { isMastered } from './fingerprint';
 import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
@@ -90,6 +90,8 @@ export interface SchedulerInput {
   availableSentenceIds: Record<string, string[]>; // conceptId → sentence IDs
   sentences: Record<string, Sentence>;            // sentenceId → full sentence (for type compatibility check)
   recipe?: Partial<SessionRecipe>;
+  availablePassageIds?: Record<string, string[]>; // primaryConceptId → cloze passage ids
+  passages?: Record<string, ClozePassage>;        // passageId → passage (for level filtering)
 }
 
 export interface SchedulerOutput {
@@ -288,6 +290,27 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     const conceptId = interleavingPool[Math.floor(Math.random() * interleavingPool.length)];
     if (conceptId)
       addItem(conceptId, [...REMEDIATION_EXERCISES, ...REVIEW_EXERCISES], 'interleaving', 'interleaving');
+  }
+
+  // --- Cloze passage: at most one, for the top focus/weak concept that has an
+  // authored passage at or below the learner's level (and not already passed). ---
+  if (input.availablePassageIds && input.passages) {
+    const clozeMaxIdx = LEVEL_ORDER.indexOf(fingerprint.currentLevel as typeof LEVEL_ORDER[number]);
+    const clozeCandidates = [...Array.from(focusIds), ...weakConcepts];
+    for (const conceptId of clozeCandidates) {
+      const pids = input.availablePassageIds[conceptId] ?? [];
+      const hasEligible = pids.some((pid) => {
+        const p = input.passages![pid];
+        if (!p) return false;
+        const pIdx = LEVEL_ORDER.indexOf(p.cefrLevel as typeof LEVEL_ORDER[number]);
+        return pIdx >= 0 && pIdx <= clozeMaxIdx && !passedIds[pid];
+      });
+      if (hasEligible) {
+        const clozeReason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
+        items.push(makeItem(`item-${itemIndex++}`, conceptId, `pending:${conceptId}`, 'cloze-passage', 'new-material', clozeReason));
+        break; // at most one cloze per session
+      }
+    }
   }
 
   // Shuffle: don't let all remediation items cluster at start

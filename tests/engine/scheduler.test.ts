@@ -3,7 +3,7 @@ import { generateSession } from '@/engine/scheduler';
 import type { SchedulerInput } from '@/engine/scheduler';
 import type { MistakeFingerprint } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
-import type { Sentence } from '@/types/content';
+import type { Sentence, ClozePassage } from '@/types/content';
 import { DEFAULT_SESSION_RECIPE } from '@/types/session';
 
 // ── Minimal fixture builders ──────────────────────────────────────────────────
@@ -461,5 +461,68 @@ describe('weekly focus bias', () => {
     // Lær block items should be close to the target
     expect(lærItems.length).toBeGreaterThanOrEqual(Math.max(0, lærTarget - 2));
     expect(lærItems.length).toBeLessThanOrEqual(lærTarget + 2);
+  });
+});
+
+// ── Cloze passage scheduling ──────────────────────────────────────────────────
+
+describe('cloze passage scheduling', () => {
+  it('emits exactly one cloze-passage item when the focus concept has an eligible passage', () => {
+    // v2-word-order is in weeklyFocus AND has a matching A1 passage — expect one cloze item.
+    const s1 = makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']);
+    const passage: ClozePassage = {
+      id: 'cz-test',
+      cefrLevel: 'A1',
+      primaryConceptId: 'v2-word-order',
+      englishGloss: '',
+      difficulty: 1,
+      segments: [{ kind: 'gap', answer: 'x', conceptId: 'v2-word-order', errorTag: 'word-order' }],
+    };
+
+    const input: SchedulerInput = {
+      ...makeInput({
+        conceptIds: ['v2-word-order', 'noun-gender', 'personal-pronouns'],
+        sentences: { s1 },
+        availableSentenceIds: { 'v2-word-order': ['s1'] },
+        fingerprintOverrides: {
+          weeklyFocus: ['v2-word-order'],
+          conceptMastery: {
+            'v2-word-order': makeMastery('v2-word-order', 25),
+            'noun-gender': makeMastery('noun-gender', 30),
+            'personal-pronouns': makeMastery('personal-pronouns', 30),
+          },
+        },
+      }),
+      availablePassageIds: { 'v2-word-order': ['cz-test'] },
+      passages: { 'cz-test': passage },
+    };
+
+    const { session } = generateSession(input);
+    const clozeItems = session.items.filter((i) => i.exerciseType === 'cloze-passage');
+    expect(clozeItems.length).toBe(1);
+    expect(clozeItems[0]!.selectionReason).toBe('weekly_focus');
+  });
+
+  it('emits zero cloze-passage items when availablePassageIds/passages are omitted', () => {
+    const s1 = makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']);
+
+    const input: SchedulerInput = makeInput({
+      conceptIds: ['v2-word-order', 'noun-gender', 'personal-pronouns'],
+      sentences: { s1 },
+      availableSentenceIds: { 'v2-word-order': ['s1'] },
+      fingerprintOverrides: {
+        weeklyFocus: ['v2-word-order'],
+        conceptMastery: {
+          'v2-word-order': makeMastery('v2-word-order', 25),
+          'noun-gender': makeMastery('noun-gender', 30),
+          'personal-pronouns': makeMastery('personal-pronouns', 30),
+        },
+      },
+    });
+    // No availablePassageIds or passages fields — backward-compatible path.
+
+    const { session } = generateSession(input);
+    const clozeItems = session.items.filter((i) => i.exerciseType === 'cloze-passage');
+    expect(clozeItems.length).toBe(0);
   });
 });

@@ -15,6 +15,7 @@ import { LaneTrackRow } from '@/components/dashboard/LaneTrackRow'
 import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { getStreak } from '@/lib/streak'
 import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
+import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool'
 import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { getCoachRecommendation } from '@/lib/coach-recommendation'
@@ -96,6 +97,8 @@ export default function DashboardPage() {
       graph: activeGraph,
       availableSentenceIds: SEED_SENTENCE_IDS,
       sentences: SEED_SENTENCES,
+      availablePassageIds: SEED_PASSAGE_IDS,
+      passages: SEED_PASSAGES,
     })
     setPlan(output)
   }, [fingerprint, status, activeGraph])

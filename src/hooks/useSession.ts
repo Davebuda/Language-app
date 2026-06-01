@@ -219,7 +219,7 @@ export function useSession(
         }
       : {};
 
-    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences, recipe: calibrationRecipe });
+    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences, recipe: calibrationRecipe, availablePassageIds: SEED_PASSAGE_IDS, passages: SEED_PASSAGES });
     contentCache.current.clear();
     passageCache.current.clear();
     sessionStore.startSession(output.session);
