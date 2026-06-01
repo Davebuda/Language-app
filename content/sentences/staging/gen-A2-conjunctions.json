@@ -416,5 +416,195 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "5507fe1a-de4d-49b8-b211-d39ca9c3dac4",
+    "norwegian": "Jeg er trøtt, men jeg må jobbe.",
+    "english": "I am tired, but I have to work.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0e1a2f8a-f13a-4067-9b7f-171e8ae0daf2",
+    "norwegian": "Vi kan gå på kino eller bli hjemme.",
+    "english": "We can go to the cinema or stay home.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5e9b126-d941-4b20-ac3d-7ff0e79bee2d",
+    "norwegian": "Han løp fort, så han rakk bussen.",
+    "english": "He ran fast, so he caught the bus.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9b90720d-89b0-4e5b-a009-ef50b40b0779",
+    "norwegian": "Hun smiler fordi hun er glad.",
+    "english": "She smiles because she is happy.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "602b99dc-ff5a-4e98-8fd7-25741c7cf27f",
+    "norwegian": "Jeg vet at du har rett.",
+    "english": "I know that you are right.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5dff3a6f-2ff7-49dd-b5e6-3d5b2d19fe6c",
+    "norwegian": "Vi blir hjemme når det regner.",
+    "english": "We stay home when it rains.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "484c6ec0-8120-4a01-811e-65902caf0864",
+    "norwegian": "Du kan komme hvis du vil.",
+    "english": "You can come if you want.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ef2f22b6-a7cf-4533-9307-a2f7efe35d1c",
+    "norwegian": "Jeg liker te, men ikke kaffe.",
+    "english": "I like tea, but not coffee.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe512439-9ee4-4013-8881-0a7c3cdcd888",
+    "norwegian": "Han er sliten, for han sov dårlig.",
+    "english": "He is tired because he slept badly.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d9ad1d4a-3ca3-44b2-902b-1b6afb19df59",
+    "norwegian": "Vi ventet til bussen kom.",
+    "english": "We waited until the bus came.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

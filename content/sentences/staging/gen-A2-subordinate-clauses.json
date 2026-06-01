@@ -416,5 +416,157 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "98246964-5a1e-4df5-9f9b-0c65c4c6faab",
+    "norwegian": "Jeg tror at han ikke kommer i dag.",
+    "english": "I think that he is not coming today.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2e654aff-6fa9-4576-bd12-ea2ffede03dd",
+    "norwegian": "Hun sier at hun alltid spiser frokost.",
+    "english": "She says that she always eats breakfast.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bd15ff0e-7cc5-4ea7-a2c4-73121262fd8f",
+    "norwegian": "Vi blir hjemme fordi det regner mye.",
+    "english": "We stay home because it rains a lot.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0d7629ba-421e-45fc-a438-9876cfd073c5",
+    "norwegian": "Når jeg er trøtt, legger jeg meg tidlig.",
+    "english": "When I am tired, I go to bed early.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "204c3958-f417-4f80-82ea-c1d0a38609f3",
+    "norwegian": "Han spurte om jeg ville bli med.",
+    "english": "He asked if I wanted to come along.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c15e2c03-4b4d-4e82-a443-36b4765fc814",
+    "norwegian": "Jeg vet at hun aldri lyver.",
+    "english": "I know that she never lies.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bbdfb827-469b-4ccb-8289-c8f460e5f8ad",
+    "norwegian": "Hvis du ikke skynder deg, mister du toget.",
+    "english": "If you don't hurry, you miss the train.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b37ed9c9-0bda-4ce7-9c9b-c6fe3d83fe45",
+    "norwegian": "Vi venter til alle har kommet.",
+    "english": "We wait until everyone has arrived.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

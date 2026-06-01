@@ -359,5 +359,176 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "e63ae22e-a4d9-40d4-be4a-70816b8d1cf4",
+    "norwegian": "Dette er det største huset i gaten.",
+    "english": "This is the biggest house on the street.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "54691a3a-12aa-4870-97fa-225cf8e9b841",
+    "norwegian": "Hun er den flinkeste i klassen.",
+    "english": "She is the most skilled in the class.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c4d764c3-4147-443f-bb74-92ce35250451",
+    "norwegian": "Galdhøpiggen er det høyeste fjellet i Norge.",
+    "english": "Galdhøpiggen is the highest mountain in Norway.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dfb151e0-121b-417d-9bc6-316918ea572b",
+    "norwegian": "Denne boken er den beste jeg har lest.",
+    "english": "This book is the best I have read.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ae502bd4-3420-4664-930c-c3a96cbbddc6",
+    "norwegian": "Han er den yngste i familien.",
+    "english": "He is the youngest in the family.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "440f7198-1eb9-4080-9273-6e15e8b6db54",
+    "norwegian": "Sommeren er den varmeste årstiden.",
+    "english": "Summer is the warmest season.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1707fb82-9952-48f4-a491-a2e2e40d3466",
+    "norwegian": "Det var den verste dagen i mitt liv.",
+    "english": "It was the worst day of my life.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d897ecb-4e6b-4200-beed-382c21cbde9e",
+    "norwegian": "Hvem er sterkest av dere?",
+    "english": "Who is the strongest of you?",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2de95109-8e50-41cf-8959-5d931b50c9d0",
+    "norwegian": "Dette er den minste byen i landet.",
+    "english": "This is the smallest town in the country.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

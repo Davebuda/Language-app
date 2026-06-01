@@ -12680,5 +12680,1164 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "ae171bc4-5a12-4c9c-87a0-10b91c83ec2c",
+    "norwegian": "Boken ligger på bordet.",
+    "english": "The book is on the table.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "88fdfadc-b120-43f4-a4db-58089ccd22ea",
+    "norwegian": "Vi snakket om filmen etterpå.",
+    "english": "We talked about the film afterwards.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2b354831-80fd-4500-8810-a6af9f0ecf1e",
+    "norwegian": "Hun er flink til å tegne.",
+    "english": "She is good at drawing.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3e95fd7c-4e13-43a4-8152-f3b1dfce668f",
+    "norwegian": "Gaven er fra meg til deg.",
+    "english": "The gift is from me to you.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5951e9d2-b413-4c32-92ab-acf42d99c131",
+    "norwegian": "Katten gjemmer seg under sengen.",
+    "english": "The cat hides under the bed.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "caa233a8-1168-4d0b-8419-9b47d5b3e73e",
+    "norwegian": "Bildet henger over sofaen.",
+    "english": "The picture hangs above the sofa.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "818b5d01-e739-4c11-8b8f-a328b5ba3cd2",
+    "norwegian": "Han bor mellom to butikker.",
+    "english": "He lives between two shops.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2a941610-6cd6-4ccf-9f14-bb761b7d874e",
+    "norwegian": "Jeg er redd for edderkopper.",
+    "english": "I am afraid of spiders.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5507fe1a-de4d-49b8-b211-d39ca9c3dac4",
+    "norwegian": "Jeg er trøtt, men jeg må jobbe.",
+    "english": "I am tired, but I have to work.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0e1a2f8a-f13a-4067-9b7f-171e8ae0daf2",
+    "norwegian": "Vi kan gå på kino eller bli hjemme.",
+    "english": "We can go to the cinema or stay home.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c5e9b126-d941-4b20-ac3d-7ff0e79bee2d",
+    "norwegian": "Han løp fort, så han rakk bussen.",
+    "english": "He ran fast, so he caught the bus.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9b90720d-89b0-4e5b-a009-ef50b40b0779",
+    "norwegian": "Hun smiler fordi hun er glad.",
+    "english": "She smiles because she is happy.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "602b99dc-ff5a-4e98-8fd7-25741c7cf27f",
+    "norwegian": "Jeg vet at du har rett.",
+    "english": "I know that you are right.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5dff3a6f-2ff7-49dd-b5e6-3d5b2d19fe6c",
+    "norwegian": "Vi blir hjemme når det regner.",
+    "english": "We stay home when it rains.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "484c6ec0-8120-4a01-811e-65902caf0864",
+    "norwegian": "Du kan komme hvis du vil.",
+    "english": "You can come if you want.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ef2f22b6-a7cf-4533-9307-a2f7efe35d1c",
+    "norwegian": "Jeg liker te, men ikke kaffe.",
+    "english": "I like tea, but not coffee.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fe512439-9ee4-4013-8881-0a7c3cdcd888",
+    "norwegian": "Han er sliten, for han sov dårlig.",
+    "english": "He is tired because he slept badly.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d9ad1d4a-3ca3-44b2-902b-1b6afb19df59",
+    "norwegian": "Vi ventet til bussen kom.",
+    "english": "We waited until the bus came.",
+    "concept_ids": [
+      "conjunctions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9efdeb67-d817-44b9-842f-663dd3ef8fac",
+    "norwegian": "Jeg skal reise til Bergen i morgen.",
+    "english": "I am going to travel to Bergen tomorrow.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "baa60c37-0352-480b-9ab1-6dbc643d4aa2",
+    "norwegian": "Det kommer til å regne i kveld.",
+    "english": "It is going to rain tonight.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5e5edd6a-9185-449c-814b-d77fbe760ca4",
+    "norwegian": "Vi skal spise middag klokken seks.",
+    "english": "We will eat dinner at six.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fdff256c-21d3-4bef-9653-997d122d70fa",
+    "norwegian": "Hun vil bli lege en dag.",
+    "english": "She wants to become a doctor one day.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "43b616f7-fbe2-4aa6-9579-a024e3cd737f",
+    "norwegian": "Toget kommer til å bli forsinket.",
+    "english": "The train is going to be delayed.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "31b4fe9b-ab7f-425e-ba8d-0fc365474415",
+    "norwegian": "Jeg skal møte vennene mine senere.",
+    "english": "I am going to meet my friends later.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bdae967d-210f-45b8-9df0-3f008e0e593e",
+    "norwegian": "De kommer til å flytte neste år.",
+    "english": "They are going to move next year.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c3ae0022-d7e6-4c9a-913a-31cc9c859c2a",
+    "norwegian": "Vi skal feire bursdagen hans.",
+    "english": "We are going to celebrate his birthday.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "07c307a8-b15f-4d41-a04a-3c5c46fd44a8",
+    "norwegian": "Det skal bli fint vær i helgen.",
+    "english": "It is going to be nice weather this weekend.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f7e5c09e-6bab-4d8f-9c19-6b7329ee56ee",
+    "norwegian": "Jeg kommer til å savne deg.",
+    "english": "I am going to miss you.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "09064d3a-4830-4a87-be35-2c9eaa706b27",
+    "norwegian": "Hun skal begynne på en ny jobb.",
+    "english": "She is going to start a new job.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "10103636-ae26-4493-80b6-774a6d8fb08e",
+    "norwegian": "Mannen som bor ved siden av meg, er lærer.",
+    "english": "The man who lives next to me is a teacher.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "59b62d6a-302b-422a-a4c9-47cce176a02e",
+    "norwegian": "Jeg liker boken som du ga meg.",
+    "english": "I like the book that you gave me.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "362a58b6-537e-4743-9419-6a3145df4727",
+    "norwegian": "Jenta som synger, er søsteren min.",
+    "english": "The girl who is singing is my sister.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "062088df-1d56-4db0-a885-7fffc3db2649",
+    "norwegian": "Vi besøkte byen som ligger ved fjorden.",
+    "english": "We visited the city that lies by the fjord.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "98246964-5a1e-4df5-9f9b-0c65c4c6faab",
+    "norwegian": "Jeg tror at han ikke kommer i dag.",
+    "english": "I think that he is not coming today.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2e654aff-6fa9-4576-bd12-ea2ffede03dd",
+    "norwegian": "Hun sier at hun alltid spiser frokost.",
+    "english": "She says that she always eats breakfast.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bd15ff0e-7cc5-4ea7-a2c4-73121262fd8f",
+    "norwegian": "Vi blir hjemme fordi det regner mye.",
+    "english": "We stay home because it rains a lot.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "0d7629ba-421e-45fc-a438-9876cfd073c5",
+    "norwegian": "Når jeg er trøtt, legger jeg meg tidlig.",
+    "english": "When I am tired, I go to bed early.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "204c3958-f417-4f80-82ea-c1d0a38609f3",
+    "norwegian": "Han spurte om jeg ville bli med.",
+    "english": "He asked if I wanted to come along.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c15e2c03-4b4d-4e82-a443-36b4765fc814",
+    "norwegian": "Jeg vet at hun aldri lyver.",
+    "english": "I know that she never lies.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bbdfb827-469b-4ccb-8289-c8f460e5f8ad",
+    "norwegian": "Hvis du ikke skynder deg, mister du toget.",
+    "english": "If you don't hurry, you miss the train.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "b37ed9c9-0bda-4ce7-9c9b-c6fe3d83fe45",
+    "norwegian": "Vi venter til alle har kommet.",
+    "english": "We wait until everyone has arrived.",
+    "concept_ids": [
+      "subordinate-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement",
+      "reading-parsing"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "e63ae22e-a4d9-40d4-be4a-70816b8d1cf4",
+    "norwegian": "Dette er det største huset i gaten.",
+    "english": "This is the biggest house on the street.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "54691a3a-12aa-4870-97fa-225cf8e9b841",
+    "norwegian": "Hun er den flinkeste i klassen.",
+    "english": "She is the most skilled in the class.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "c4d764c3-4147-443f-bb74-92ce35250451",
+    "norwegian": "Galdhøpiggen er det høyeste fjellet i Norge.",
+    "english": "Galdhøpiggen is the highest mountain in Norway.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "dfb151e0-121b-417d-9bc6-316918ea572b",
+    "norwegian": "Denne boken er den beste jeg har lest.",
+    "english": "This book is the best I have read.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ae502bd4-3420-4664-930c-c3a96cbbddc6",
+    "norwegian": "Han er den yngste i familien.",
+    "english": "He is the youngest in the family.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "440f7198-1eb9-4080-9273-6e15e8b6db54",
+    "norwegian": "Sommeren er den varmeste årstiden.",
+    "english": "Summer is the warmest season.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1707fb82-9952-48f4-a491-a2e2e40d3466",
+    "norwegian": "Det var den verste dagen i mitt liv.",
+    "english": "It was the worst day of my life.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9d897ecb-4e6b-4200-beed-382c21cbde9e",
+    "norwegian": "Hvem er sterkest av dere?",
+    "english": "Who is the strongest of you?",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2de95109-8e50-41cf-8959-5d931b50c9d0",
+    "norwegian": "Dette er den minste byen i landet.",
+    "english": "This is the smallest town in the country.",
+    "concept_ids": [
+      "superlative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use",
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9f0ad421-bf0d-489a-9929-cd25131cebc4",
+    "norwegian": "Vi spiser frokost ved kjøkkenbordet.",
+    "english": "We eat breakfast at the kitchen table.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "589b3c01-0ef8-462e-96d0-34bca9be8dd5",
+    "norwegian": "Barna går på barneskolen.",
+    "english": "The children go to primary school.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "cd5edd36-0acd-49a6-be06-470ae73aad89",
+    "norwegian": "Jeg tar en sykkeltur hver morgen.",
+    "english": "I take a bike ride every morning.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1a4cea1a-d4b4-4059-88cd-b0314a93151c",
+    "norwegian": "Læreren liker jobben sin.",
+    "english": "The teacher likes the job.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "fff0db58-eefd-4f2a-bf67-77431088b031",
+    "norwegian": "Frihet er viktig for alle.",
+    "english": "Freedom is important for everyone.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "13fc9b54-2bbb-4c75-9ae9-46e61326312b",
+    "norwegian": "Hun har en god utdanning.",
+    "english": "She has a good education.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3dffb266-151e-4140-8084-306b2531fc0d",
+    "norwegian": "Naboen er veldig vennlig.",
+    "english": "The neighbour is very friendly.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4870db40-c6de-414b-94d6-95247c375577",
+    "norwegian": "Vi gleder oss til vinterferien.",
+    "english": "We look forward to the winter holiday.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3bd601b2-5dd0-490e-88d4-8adf61346a40",
+    "norwegian": "Bakeren selger ferskt brød.",
+    "english": "The baker sells fresh bread.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "08d4b67b-8181-4c74-9d46-9fd63e43d4da",
+    "norwegian": "Det er mange muligheter her.",
+    "english": "There are many opportunities here.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "bc929c26-164f-4751-a9e0-219495327c75",
+    "norwegian": "Han har en lang arbeidsdag.",
+    "english": "He has a long workday.",
+    "concept_ids": [
+      "word-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "compound-word",
+      "spelling",
+      "noun-gender"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

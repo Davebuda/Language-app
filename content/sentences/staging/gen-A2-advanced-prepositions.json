@@ -416,5 +416,157 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "ae171bc4-5a12-4c9c-87a0-10b91c83ec2c",
+    "norwegian": "Boken ligger på bordet.",
+    "english": "The book is on the table.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "88fdfadc-b120-43f4-a4db-58089ccd22ea",
+    "norwegian": "Vi snakket om filmen etterpå.",
+    "english": "We talked about the film afterwards.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2b354831-80fd-4500-8810-a6af9f0ecf1e",
+    "norwegian": "Hun er flink til å tegne.",
+    "english": "She is good at drawing.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "3e95fd7c-4e13-43a4-8152-f3b1dfce668f",
+    "norwegian": "Gaven er fra meg til deg.",
+    "english": "The gift is from me to you.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "5951e9d2-b413-4c32-92ab-acf42d99c131",
+    "norwegian": "Katten gjemmer seg under sengen.",
+    "english": "The cat hides under the bed.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "caa233a8-1168-4d0b-8419-9b47d5b3e73e",
+    "norwegian": "Bildet henger over sofaen.",
+    "english": "The picture hangs above the sofa.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "818b5d01-e739-4c11-8b8f-a328b5ba3cd2",
+    "norwegian": "Han bor mellom to butikker.",
+    "english": "He lives between two shops.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2a941610-6cd6-4ccf-9f14-bb761b7d874e",
+    "norwegian": "Jeg er redd for edderkopper.",
+    "english": "I am afraid of spiders.",
+    "concept_ids": [
+      "advanced-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition",
+      "wrong-word-same-category",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

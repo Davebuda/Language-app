@@ -872,5 +872,81 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "10103636-ae26-4493-80b6-774a6d8fb08e",
+    "norwegian": "Mannen som bor ved siden av meg, er lærer.",
+    "english": "The man who lives next to me is a teacher.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "59b62d6a-302b-422a-a4c9-47cce176a02e",
+    "norwegian": "Jeg liker boken som du ga meg.",
+    "english": "I like the book that you gave me.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "362a58b6-537e-4743-9419-6a3145df4727",
+    "norwegian": "Jenta som synger, er søsteren min.",
+    "english": "The girl who is singing is my sister.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "062088df-1d56-4db0-a885-7fffc3db2649",
+    "norwegian": "Vi besøkte byen som ligger ved fjorden.",
+    "english": "We visited the city that lies by the fjord.",
+    "concept_ids": [
+      "relative-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order",
+      "reading-parsing",
+      "wrong-word-different-category"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]
