@@ -276,15 +276,10 @@ export default function DashboardPage() {
           <h1 className="mt-1.5 text-balance text-[1.25rem] font-extrabold leading-none">Start dagens økt</h1>
           <div className="mt-1 text-[0.72rem] text-[rgba(10,18,6,0.6)]">{heroSubtitle}</div>
 
-          <div className="relative z-[1] mt-2 grid grid-cols-[1.1fr_0.9fr] gap-1.5">
+          <div className="relative z-[1] mt-2">
             <div className="rounded-[0.35rem] bg-[rgba(255,255,255,0.22)] p-2">
               <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.4)]">Fokus</div>
               <div className="mt-1.5 text-[0.78rem] leading-[1.4] text-[rgba(10,18,6,0.72)]">{focusDescription}</div>
-            </div>
-            <div className="rounded-[0.35rem] bg-[var(--nc-card)] p-2 text-[var(--nc-text)]">
-              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Tips</div>
-              <div className="mt-1.5 text-[0.78rem] font-semibold text-[var(--nc-text)]">V2-regelen</div>
-              <div className="mt-0.5 text-[0.68rem] leading-[1.4] text-[var(--nc-text-muted)]">«I dag spiser jeg» — verbet alltid på plass 2.</div>
             </div>
           </div>
 
