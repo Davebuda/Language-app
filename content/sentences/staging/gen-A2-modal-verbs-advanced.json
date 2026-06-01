@@ -1,26 +1,7 @@
 [
   {
-    "id": "77a401b0-81ac-4156-9ea8-454ddc42cc53",
-    "norwegian": "Jeg burde spise mer frukt.",
-    "english": "I should eat more fruit.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "58d637ae-1390-4704-853c-e2a916cfc1b0",
-    "norwegian": "Du trenge å sove mer.",
+    "norwegian": "Du trenger å sove mer.",
     "english": "You need to sleep more.",
     "concept_ids": [
       "modal-verbs-advanced"
@@ -39,27 +20,8 @@
   },
   {
     "id": "897e3265-d481-4cbc-b138-bf5513aa8245",
-    "norwegian": "Hun tør ikke å svømme.",
+    "norwegian": "Hun tør ikke svømme.",
     "english": "She doesn't dare to swim.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "9a5e63cf-c994-40d5-b5c4-e4a36a9145f9",
-    "norwegian": "Jeg orker ikke å løpe.",
-    "english": "I don't have the energy to run.",
     "concept_ids": [
       "modal-verbs-advanced"
     ],
@@ -96,7 +58,7 @@
   },
   {
     "id": "93ea1e72-fe43-4abb-b43d-27b53950c22f",
-    "norwegian": "Du ikke trenge å kjøpe det.",
+    "norwegian": "Du trenger ikke kjøpe det.",
     "english": "You don't need to buy it.",
     "concept_ids": [
       "modal-verbs-advanced"
@@ -115,27 +77,8 @@
   },
   {
     "id": "41a1d30e-4c31-4c44-8d79-085bf5c2eb31",
-    "norwegian": "Han tør å prøve.",
+    "norwegian": "Han tør prøve.",
     "english": "He dares to try.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "94537fc0-2c1b-441d-a70a-ed2b1a9b44a6",
-    "norwegian": "Jeg orket å fullføre.",
-    "english": "I had the energy to finish.",
     "concept_ids": [
       "modal-verbs-advanced"
     ],
@@ -171,65 +114,8 @@
     ]
   },
   {
-    "id": "8ec7f537-e88a-41b4-a51c-14c997a34579",
-    "norwegian": "Jeg trengte å hvile.",
-    "english": "I needed to rest.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "72a36fc5-3a0b-454b-b536-0692d8e69df9",
-    "norwegian": "Hun tørde å si nei.",
-    "english": "She dared to say no.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "85a7df1a-0865-4c06-bb22-9a3cc4ebbb58",
-    "norwegian": "Vi orket ikke å vente.",
-    "english": "We didn't have the energy to wait.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "09d1b6b0-e132-43ec-8e2e-ab97bcd9bde7",
-    "norwegian": "Jeg burde spise mere frukt.",
+    "norwegian": "Jeg burde spise mer frukt.",
     "english": "I should eat more fruit.",
     "concept_ids": [
       "modal-verbs-advanced"
@@ -247,47 +133,9 @@
     ]
   },
   {
-    "id": "5acd6a2e-6c6a-498b-a410-444aad6337eb",
-    "norwegian": "Hun trenger å løse denne oppgaven.",
-    "english": "She needs to solve this task.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "f1dc91a5-1b4d-4beb-88eb-667dbeaadba2",
-    "norwegian": "Han tør å svømme i havet.",
+    "norwegian": "Han tør svømme i havet.",
     "english": "He dares to swim in the sea.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "436fafb5-cb4d-46bb-8838-9fc9600f0bcd",
-    "norwegian": "Jeg orker ikke å gå lenger.",
-    "english": "I don't have the energy to walk further.",
     "concept_ids": [
       "modal-verbs-advanced"
     ],
@@ -318,101 +166,6 @@
     ],
     "cefr_level": "A2",
     "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "5c2de2c3-d2a1-44b0-b747-c994fde143d9",
-    "norwegian": "Hun trenger ikke å kjøpe nye sko.",
-    "english": "She doesn't need to buy new shoes.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "698580a4-9487-4356-bce2-03499a6cbdfc",
-    "norwegian": "Han tørde å si nei til jobben.",
-    "english": "He dared to say no to the job.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "730f3a5c-6ca3-4276-af18-98c9e78de3a8",
-    "norwegian": "Jeg orket å fullføre maratonløpet.",
-    "english": "I had the energy to finish the marathon.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "e2b3300d-b4a1-49e5-b2c9-e11a5f255c52",
-    "norwegian": "Jeg burde ha spist mer frokost.",
-    "english": "I should have eaten more breakfast.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "a16c0c0b-026d-4f02-a7f4-25283367ecfb",
-    "norwegian": "Hun trengte å snakke med noen.",
-    "english": "She needed to talk to someone.",
-    "concept_ids": [
-      "modal-verbs-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "modal-verb",
-      "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 2,
     "exercise_types": [
       "translation-to-norwegian"
     ]
