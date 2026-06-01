@@ -15,6 +15,7 @@ import {
   refreshDecay,
   seedInitialMastery,
   logError,
+  computeProductionGap,
 } from '@/engine/fingerprint';
 import { createEmptyFingerprint } from '@/types/fingerprint';
 import {
@@ -695,6 +696,138 @@ describe('Test 8b: Diagnosis rules', () => {
     expect(rule?.confidence).toBeCloseTo(0.85, 1);
     expect(rule?.recommendedFocus).toBe('mechanics');
     expect(rule?.affectedConceptIds).toContain('adjective-agreement');
+  });
+
+  it('weakest-evidenced fallback fires when no targeted rule does, naming the weakest evidenced concept', () => {
+    // No error log entries → rules 1/3/4 (tag-based) and rule 2 (productionGap) stay silent.
+    const fp = baseFingerprint('fallback-only', {
+      conceptMastery: {
+        'noun-gender': makeMastery('noun-gender', { rawScore: 30, decayedScore: 28, attemptCount: 12 }),
+        'present-tense': makeMastery('present-tense', { rawScore: 75, decayedScore: 72, attemptCount: 10 }),
+      },
+    });
+    const results = runDiagnosis(fp);
+    expect(results.length).toBe(1);
+    const fb = results[0];
+    expect(fb.rootCauseConceptId).toBe('noun-gender'); // weakest evidenced
+    expect(fb.confidence).toBeCloseTo(0.45, 2);
+    expect(fb.recommendedFocus).toBe('mechanics'); // rawScore < 50
+  });
+
+  it('fallback ignores concepts without real evidence (attempts < 5 or decayedScore >= 50)', () => {
+    const fp = baseFingerprint('no-evidence', {
+      conceptMastery: {
+        // low score but too few attempts
+        'noun-gender': makeMastery('noun-gender', { rawScore: 20, decayedScore: 18, attemptCount: 3 }),
+        // enough attempts but not weak enough
+        'negation': makeMastery('negation', { rawScore: 70, decayedScore: 60, attemptCount: 10 }),
+      },
+    });
+    const results = runDiagnosis(fp);
+    expect(results.length).toBe(0);
+  });
+
+  it('a targeted rule outranks the fallback when both fire (confidence ordering preserved)', () => {
+    let fp = baseFingerprint('targeted-over-fallback', {
+      conceptMastery: {
+        'noun-gender': makeMastery('noun-gender', { rawScore: 28, decayedScore: 25, attemptCount: 12 }),
+        'adjective-agreement': makeMastery('adjective-agreement', { rawScore: 32, decayedScore: 30, attemptCount: 12 }),
+      },
+    });
+    // Trigger rule 1 (article + adjective → noun-gender).
+    for (let i = 0; i < 3; i++) {
+      fp = logError(fp, { conceptId: 'adjective-agreement', errorTag: 'article-use',
+        exerciseType: 'fill-in-blank', wrong: 'et', correct: 'en', sentenceId: 'fb-art' + i });
+    }
+    for (let i = 0; i < 2; i++) {
+      fp = logError(fp, { conceptId: 'adjective-agreement', errorTag: 'adjective-agreement',
+        exerciseType: 'fill-in-blank', wrong: 'stor', correct: 'store', sentenceId: 'fb-adj' + i });
+    }
+    const results = runDiagnosis(fp);
+    // Both the targeted rule (0.85) and the fallback (0.45) should be present.
+    expect(results.some((r) => r.confidence >= 0.8)).toBe(true);
+    expect(results.some((r) => r.confidence === 0.45)).toBe(true);
+    // Sorted by confidence — targeted rule is first, fallback never outranks it.
+    expect(results[0].confidence).toBeGreaterThan(0.45);
+    const fb = results.find((r) => r.confidence === 0.45);
+    const targeted = results.find((r) => r.confidence >= 0.8);
+    expect(results.indexOf(targeted!)).toBeLessThan(results.indexOf(fb!));
+  });
+
+  // ── Rule-2 production-gap gate (E4) ──────────────────────────────────────
+  // Rule 2 may ONLY name a concept that is ALSO evidenced-weak. Before the gate,
+  // a NON-weak concept with a lone writing error saturated its production gap to
+  // 100 and outranked the genuinely weak concept, so diagnosisResults[0] pointed
+  // at the wrong concept (1/4 sim users). The gate stops that.
+  it('rule 2 does NOT fire on a non-weak concept that merely caught a lone writing error', () => {
+    let fp = baseFingerprint('lone-write-error', {
+      conceptMastery: {
+        // Genuinely weak concept — practiced a lot, low decayed score.
+        'v2-word-order': makeMastery('v2-word-order', { rawScore: 30, decayedScore: 28, attemptCount: 18 }),
+        // Non-weak concept — well practiced, healthy score. A single lone writing
+        // error on it must NOT let rule 2 name it.
+        'common-prepositions': makeMastery('common-prepositions', { rawScore: 78, decayedScore: 75, attemptCount: 14 }),
+        'present-tense': makeMastery('present-tense', { rawScore: 80, decayedScore: 78, attemptCount: 12 }),
+      },
+    });
+    // The WEAK concept was practiced in BOTH writing and recognition, so its gap is
+    // POSITIVE but < 100 (~ the real-app shape: ~80). 3 writing + 1 recognition error.
+    for (let i = 0; i < 3; i++) {
+      fp = logError(fp, { conceptId: 'v2-word-order', errorTag: 'word-order',
+        exerciseType: 'translation-to-norwegian', wrong: 'feil', correct: 'riktig', sentenceId: 'w' + i });
+    }
+    fp = logError(fp, { conceptId: 'v2-word-order', errorTag: 'word-order',
+      exerciseType: 'translation-to-english', wrong: 'wrong', correct: 'right', sentenceId: 'wr0' });
+    // One LONE writing error on the NON-weak concept → its productionGap saturates to
+    // 100 and (pre-gate) OUTRANKS the genuinely weak concept. This is the exact bug.
+    fp = logError(fp, { conceptId: 'common-prepositions', errorTag: 'preposition',
+      exerciseType: 'translation-to-norwegian', wrong: 'på', correct: 'i', sentenceId: 'p0' });
+    // Mirror the real recordResult glue: populate productionGap from the error log.
+    fp = { ...fp, productionGap: {
+      'v2-word-order': computeProductionGap(fp.recentErrors, 'v2-word-order'),
+      'common-prepositions': computeProductionGap(fp.recentErrors, 'common-prepositions'),
+    } };
+    // Sanity: the non-weak concept's gap (100) outranks the weak concept's (< 100).
+    expect(fp.productionGap['common-prepositions']).toBeGreaterThan(fp.productionGap['v2-word-order']);
+
+    const results = runDiagnosis(fp);
+    const rule2 = results.find((r) => r.recommendedFocus === 'production');
+    // If rule 2 fires at all, it must NOT be the non-weak concept.
+    expect(rule2?.rootCauseConceptId).not.toBe('common-prepositions');
+    // Top diagnosis must be in the true weak set.
+    expect(results[0].rootCauseConceptId).toBe('v2-word-order');
+  });
+
+  it('rule 2 fires (and outranks fallback) when its production-gap concept IS evidenced-weak', () => {
+    let fp = baseFingerprint('weak-production-gap', {
+      conceptMastery: {
+        // Weak concept with a production gap.
+        'v2-word-order': makeMastery('v2-word-order', { rawScore: 30, decayedScore: 28, attemptCount: 18 }),
+        'svo-word-order': makeMastery('svo-word-order', { rawScore: 32, decayedScore: 30, attemptCount: 16 }),
+      },
+    });
+    // Writing errors on both weak concepts → both gaps positive (>40), >=2 candidates.
+    for (let i = 0; i < 3; i++) {
+      fp = logError(fp, { conceptId: 'v2-word-order', errorTag: 'word-order',
+        exerciseType: 'translation-to-norwegian', wrong: 'feil', correct: 'riktig', sentenceId: 'v' + i });
+    }
+    for (let i = 0; i < 3; i++) {
+      fp = logError(fp, { conceptId: 'svo-word-order', errorTag: 'word-order',
+        exerciseType: 'translation-to-norwegian', wrong: 'feil', correct: 'riktig', sentenceId: 's' + i });
+    }
+    fp = { ...fp, productionGap: {
+      'v2-word-order': computeProductionGap(fp.recentErrors, 'v2-word-order'),
+      'svo-word-order': computeProductionGap(fp.recentErrors, 'svo-word-order'),
+    } };
+    const results = runDiagnosis(fp);
+    const rule2 = results.find((r) => r.recommendedFocus === 'production');
+    expect(rule2).toBeDefined();
+    expect(['v2-word-order', 'svo-word-order']).toContain(rule2!.rootCauseConceptId);
+    expect(rule2!.confidence).toBeCloseTo(0.75, 2);
+    // Rule 2 (0.75) still outranks the fallback (0.45).
+    const fb = results.find((r) => r.confidence === 0.45);
+    if (fb) expect(results.indexOf(rule2!)).toBeLessThan(results.indexOf(fb));
+    expect(results[0].confidence).toBeCloseTo(0.75, 2);
   });
 
   it('struggling learner: weak concepts make up at least 40 percent of session items', () => {

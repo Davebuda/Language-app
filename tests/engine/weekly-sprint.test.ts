@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { selectWeeklyFocus, shouldResetWeek, closeWeek, migrateWeeklySprintFields, openWeek, ensureWeekOpen } from '@/engine/weekly-sprint';
+import { getConceptPhase, isMastered } from '@/engine/fingerprint';
+import { a1Graph, b1Graph, getCumulativeConcepts } from '@/lib/concept-graph-loader';
 import type { MistakeFingerprint, ConceptMastery, WeeklySprintRecord } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
 
@@ -179,6 +181,109 @@ describe('selectWeeklyFocus', () => {
     const graph = makeGraph(ids);
     const result = selectWeeklyFocus(fp, graph, now);
     expect(result).not.toContain('srs-far');
+  });
+});
+
+// ── selectWeeklyFocus cross-level prerequisite resolution (E1) ─────────────────
+// Regression guard for the bug where B1/B2 concepts whose prerequisites live at
+// LOWER levels (e.g. b1 `past-perfect` requires A2 `perfect-tense` + A1
+// `preterite-regular`) were stuck `locked` forever — masteredIds was built from
+// the single-level graph and never contained the cross-level prereqs, so
+// selectWeeklyFocus returned [] and the Weekly Sprint was dead above A2.
+
+describe('selectWeeklyFocus — cross-level prerequisites (E1)', () => {
+  // Builds a fully-mastered mastery record (passes isMastered for any node
+  // whose thresholds are <= these values).
+  function masteredFixture(conceptId: string): ConceptMastery {
+    return makeMastery({
+      conceptId,
+      rawScore: 95,
+      confidenceScore: 0.95,
+      attemptCount: 40,
+      correctCount: 38,
+      uniqueDaysActive: 14,
+      decayedScore: 95,
+    });
+  }
+
+  it('returns NON-empty for a B1 learner whose A1+A2 prerequisites are mastered', () => {
+    const graph = b1Graph;
+    // past-perfect (B1) requires perfect-tense (A2) + preterite-regular (A1).
+    const fp = makeFingerprint({
+      currentLevel: 'B1',
+      conceptMastery: {
+        // Cross-level prereqs, mastered (carried forward from A1/A2).
+        'perfect-tense': masteredFixture('perfect-tense'),
+        'preterite-regular': masteredFixture('preterite-regular'),
+        // The B1 focus concept itself: in-progress and weak.
+        'past-perfect': makeMastery({
+          conceptId: 'past-perfect',
+          rawScore: 40,
+          decayedScore: 40,
+          confidenceScore: 0.3,
+          attemptCount: 6,
+          uniqueDaysActive: 2,
+          nextReviewAt: null,
+        }),
+      },
+    });
+
+    // Without the level arg the single-level graph cannot resolve the A1/A2
+    // prereqs of past-perfect, so it stays locked → empty focus (the old bug).
+    const focus = selectWeeklyFocus(fp, graph, new Date(), 'B1');
+    expect(focus.length).toBeGreaterThan(0);
+    expect(focus).toContain('past-perfect');
+  });
+
+  it('reaches a non-locked phase for the cross-level B1 concept once prereqs are cumulative', () => {
+    const graph = b1Graph;
+    const fp = makeFingerprint({
+      currentLevel: 'B1',
+      conceptMastery: {
+        'perfect-tense': masteredFixture('perfect-tense'),
+        'preterite-regular': masteredFixture('preterite-regular'),
+        'past-perfect': makeMastery({
+          conceptId: 'past-perfect',
+          rawScore: 40,
+          decayedScore: 40,
+          confidenceScore: 0.3,
+          attemptCount: 6,
+          uniqueDaysActive: 2,
+          nextReviewAt: null,
+        }),
+      },
+    });
+
+    const node = graph.concepts.find((c) => c.id === 'past-perfect')!;
+    // Cumulative masteredIds (A1..B1) — what the fix feeds getConceptPhase.
+    const masteredIds = new Set(
+      getCumulativeConcepts('B1')
+        .filter((c) => isMastered(fp.conceptMastery[c.id], c.masteryThreshold, c.minAttempts, c.minDays))
+        .map((c) => c.id),
+    );
+    const phase = getConceptPhase(fp.conceptMastery['past-perfect'], node.prerequisites, masteredIds);
+    expect(phase).not.toBe('locked');
+  });
+
+  it('A1 regression: A1 roots have no prereqs and stay selectable (behavior unchanged)', () => {
+    const graph = a1Graph;
+    // Pick a real A1 root concept (no prerequisites).
+    const root = graph.concepts.find((c) => c.prerequisites.length === 0)!;
+    const fp = makeFingerprint({
+      currentLevel: 'A1',
+      conceptMastery: {
+        [root.id]: makeMastery({
+          conceptId: root.id,
+          rawScore: 35,
+          decayedScore: 35,
+          confidenceScore: 0.4,
+          attemptCount: 8,
+          nextReviewAt: null,
+        }),
+      },
+    });
+    const focus = selectWeeklyFocus(fp, graph, new Date(), 'A1');
+    expect(focus).toContain(root.id);
   });
 });
 

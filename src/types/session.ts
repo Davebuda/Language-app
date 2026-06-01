@@ -15,6 +15,22 @@ export type ExerciseType =
   | 'speed-round'
   | 'cloze-passage';
 
+// Exercise types that have NO distinct renderer yet. The UI shows an honest
+// "kommer snart / Trykk for å hoppe over" banner (NotYetAvailable in
+// ExerciseCard.tsx) for these. Single source of truth — both ExerciseCard
+// (defensive UI fallback, Operating Rule 6) and the scheduler (which must never
+// SCHEDULE a type it cannot render) import this list.
+export const NOT_YET_AVAILABLE_TYPES: readonly ExerciseType[] = [
+  'sentence-transformation',
+  'dictation',
+  'reading-comprehension',
+  'free-writing',
+] as const;
+
+export function isNotYetAvailableType(type: ExerciseType): boolean {
+  return NOT_YET_AVAILABLE_TYPES.includes(type);
+}
+
 export type RepairStep = 'explanation' | 'micro-drill' | 'retry' | 'review-scheduled';
 
 export interface RepairContext {
