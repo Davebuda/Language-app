@@ -129,7 +129,7 @@ export default function AnalyticsPage() {
                 <div className="font-display text-[1.6rem] font-extrabold tabular-nums text-[#5A8A00]">
                   {data.avgRetention !== null ? `${data.avgRetention}%` : '—'}
                 </div>
-                <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">Bevaring</div>
+                <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">Ferskhet</div>
               </div>
               <div className="relative px-3 py-3 text-center before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]">
                 <div className="font-display text-[1.6rem] font-extrabold tabular-nums text-[var(--nc-cream-text)]">
@@ -168,7 +168,7 @@ export default function AnalyticsPage() {
             {/* Retention note — cream */}
             <div className="nc-glass-cream px-3 py-2.5">
               <p className="text-[0.72rem] leading-[1.55] text-[var(--nc-cream-muted)]">
-                Bevaring = forfalt poengsum ÷ rå poengsum for konsepter med 5+ forsøk.
+                Ferskhet = hvor nylig du har øvd (forfalt poengsum ÷ rå poengsum, konsepter med 5+ forsøk). Høy = nylig øvd; lav = klar for repetisjon.
               </p>
             </div>
           </motion.div>
