@@ -226,5 +226,252 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "e84a3ab1-a899-4985-bbad-ee58470a2b5d",
+    "norwegian": "Jeg drakk kaffe i morges.",
+    "english": "I drank coffee this morning.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "1989913f-b924-42e6-8d29-33b8dcf86767",
+    "norwegian": "Hun fant nøklene sine.",
+    "english": "She found her keys.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "4de8f085-4408-40b4-9b32-bdbe43943129",
+    "norwegian": "Vi satt på sofaen hele kvelden.",
+    "english": "We sat on the sofa all evening.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "f84f796d-0607-4ff2-a37e-b707c52bf521",
+    "norwegian": "Han ga meg en gave.",
+    "english": "He gave me a gift.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "ea2378c8-d247-4c9f-9e10-5835438a8113",
+    "norwegian": "De valgte en ny leder.",
+    "english": "They chose a new leader.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6220cee6-09a3-49c4-b5c3-1e4fc3cdf5c6",
+    "norwegian": "Jeg skrev et langt brev.",
+    "english": "I wrote a long letter.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "be590b6a-1e97-4853-a0a4-ba22844520ab",
+    "norwegian": "Barnet sang en fin sang.",
+    "english": "The child sang a nice song.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "95dd273e-f065-4ac8-88e3-7d1690a98cb8",
+    "norwegian": "Hun solgte huset sitt.",
+    "english": "She sold her house.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "97a2fa73-16c1-4b9b-b332-9832e9c27c0f",
+    "norwegian": "Vi sto opp tidlig.",
+    "english": "We got up early.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "2c8f75dc-6ee5-454c-ba96-bc07a49602ea",
+    "norwegian": "Han traff en gammel venn.",
+    "english": "He met an old friend.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "d0b32581-23bc-435f-ba13-f420a1afe827",
+    "norwegian": "Jeg visste ikke svaret.",
+    "english": "I did not know the answer.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "a2ca553c-a7c9-4527-858f-4ab77f9de06f",
+    "norwegian": "Katten lå under bordet.",
+    "english": "The cat lay under the table.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "9f0bea8d-e5a3-4662-a9c2-18074753175b",
+    "norwegian": "Hun spurte om veien.",
+    "english": "She asked about the road.",
+    "concept_ids": [
+      "preterite-irregular-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "spelling",
+      "verb-conjugation"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]

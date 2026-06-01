@@ -112,5 +112,157 @@
     "exercise_types": [
       "translation-to-norwegian"
     ]
+  },
+  {
+    "id": "d8449e36-cc0f-4ca2-b5b8-a01040b71446",
+    "norwegian": "Jeg gleder meg til helgen.",
+    "english": "I look forward to the weekend.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "25b64786-d78b-4a23-81cd-2972f594be5c",
+    "norwegian": "Hun føler seg trøtt i dag.",
+    "english": "She feels tired today.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "6eef2284-d7a8-495f-a384-ddf228200f62",
+    "norwegian": "Vi skynder oss til bussen.",
+    "english": "We hurry to the bus.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "38e5b781-4057-4bd0-aa7f-15670385eaf9",
+    "norwegian": "Barna vasker seg før middag.",
+    "english": "The children wash before dinner.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "35ecb78d-c909-422f-bf10-69e5c5b8d48e",
+    "norwegian": "Han legger seg klokken elleve.",
+    "english": "He goes to bed at eleven.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "789f65dc-c7ef-493e-833e-7875cd564233",
+    "norwegian": "Du må konsentrere deg om oppgaven.",
+    "english": "You must concentrate on the task.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "8af01b5e-6b58-46aa-84da-aec819586464",
+    "norwegian": "Jeg morer meg på festen.",
+    "english": "I am enjoying myself at the party.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
+  },
+  {
+    "id": "7ecb4d04-e5ca-4e55-8ba8-8e6b6474a66d",
+    "norwegian": "De forbereder seg til eksamen.",
+    "english": "They prepare for the exam.",
+    "concept_ids": [
+      "reflexive-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "verb-conjugation",
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ]
   }
 ]
