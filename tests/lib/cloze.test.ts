@@ -53,4 +53,21 @@ describe('buildClozeResults', () => {
     const oneWrong = buildClozeResults({ passage: PASSAGE, answers: ['feil', 'drikker'], sessionId: 's1', itemId: 'i', timeTakenSeconds: 5 });
     expect(oneWrong.some((r) => r.sentenceId === 'cz-1')).toBe(false);
   });
+
+  it('accepts an answer listed in acceptedAnswers (not just the primary answer)', () => {
+    const passage: ClozePassage = {
+      id: 'cz-acc',
+      cefrLevel: 'A1',
+      primaryConceptId: 'noun-gender',
+      englishGloss: 'a/an house',
+      difficulty: 1,
+      segments: [
+        { kind: 'gap', answer: 'et', acceptedAnswers: ['ett'], conceptId: 'noun-gender', errorTag: 'noun-gender' },
+        { kind: 'text', value: ' hus' },
+      ],
+    };
+    const results = buildClozeResults({ passage, answers: ['ett'], sessionId: 's', itemId: 'i', timeTakenSeconds: 4 });
+    expect(results[0].correct).toBe(true);
+    expect(results[0].errorTag).toBeUndefined();
+  });
 });
