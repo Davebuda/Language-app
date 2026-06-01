@@ -59,6 +59,10 @@ export interface Scenario {
 export interface ResolvedContent extends Sentence {
   source: 'seed' | 'generated';
   distractors?: string[]; // fill-in-blank: 3 plausible wrong options from AI
+  // True when all seeds for a non-review item are already passed, so this
+  // sentence is shown as a disclosed repetition rather than as new material.
+  // The UI surfaces a "Repetisjon" badge — never silently recycles passed content.
+  isReviewFallback?: boolean;
 }
 
 export interface GrammarExplainer {

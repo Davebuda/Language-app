@@ -148,11 +148,14 @@ export function useSession(
     const isReviewOrRepair = item.purpose === 'review' || item.isRepairItem;
     const notPassed = isReviewOrRepair ? pool : pool.filter((s) => !passedIds[s.id]);
 
-    // When all seeds are passed for non-review items, trigger AI generation
-    // instead of silently recycling passed content. The scheduler should have
-    // already filtered this concept out, so this is defense-in-depth.
-    if (notPassed.length === 0 && !isReviewOrRepair && aiService.isReady()) {
-      console.warn(`[useSession] all seeds passed for "${conceptId}" — using passed sentence as fallback, AI top-up queued for future items`);
+    // When all seeds are passed for a non-review item, we have no fresh content
+    // for this concept. Rather than silently recycling passed content as if it
+    // were new (a no-silent-substitution violation), we honestly disclose it as
+    // a repetition via isReviewFallback (the UI shows a "Repetisjon" badge) and
+    // queue AI top-up for future items. The scheduler should normally have
+    // filtered this concept out, so this is defense-in-depth.
+    const isReviewFallback = notPassed.length === 0 && !isReviewOrRepair;
+    if (isReviewFallback && aiService.isReady()) {
       void topUpConcept(conceptId, item.exerciseType, seeds);
     }
     const effectivePool = notPassed.length > 0 ? notPassed : pool;
@@ -163,7 +166,7 @@ export function useSession(
     const picked = source[Math.floor(Math.random() * source.length)];
     if (picked) {
       sessionStore.markSentenceUsed(picked.id);
-      contentCache.current.set(item.id, { ...picked, source: 'seed' });
+      contentCache.current.set(item.id, { ...picked, source: 'seed', isReviewFallback });
       forceUpdate((n) => n + 1);
     }
 
