@@ -4746,7 +4746,7 @@
   },
   {
     "id": "b2-sm-018",
-    "norwegian": "Hvis hun hadde lyttet til rådene sine foreldre, ville hun sluppet mange unødvendige problemer.",
+    "norwegian": "Hvis hun hadde lyttet til foreldrenes råd, ville hun sluppet mange unødvendige problemer.",
     "english": "If she had listened to her parents' advice, she would have avoided many unnecessary problems.",
     "concept_ids": [
       "subjunctive-mood"
@@ -5029,7 +5029,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5050,7 +5050,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5071,7 +5071,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5092,7 +5092,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5113,7 +5113,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5134,7 +5134,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5155,7 +5155,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5176,7 +5176,7 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5197,7 +5197,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5218,7 +5218,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5239,7 +5239,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5260,7 +5260,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5281,7 +5281,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5302,7 +5302,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5323,7 +5323,7 @@
       "health"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5344,7 +5344,7 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5365,7 +5365,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5386,7 +5386,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5407,7 +5407,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5428,7 +5428,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5449,7 +5449,7 @@
       "environment"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5470,7 +5470,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5491,7 +5491,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5512,7 +5512,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5533,7 +5533,7 @@
       "economy"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5554,7 +5554,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5575,7 +5575,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5596,7 +5596,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5617,7 +5617,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5638,7 +5638,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "meaning-misunderstood"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5701,7 +5701,7 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "spelling"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5931,7 +5931,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "spelling"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6005,7 +6005,7 @@
   },
   {
     "id": "b2-avf-018",
-    "norwegian": "Et godt _____ argument er mer overbevisende enn et svakt og generelt påstand.",
+    "norwegian": "Et godt _____ argument er mer overbevisende enn en svak og generell påstand.",
     "english": "A well-reasoned argument is more convincing than a weak and general claim.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6118,7 +6118,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "spelling"
     ],
     "cefr_level": "B2",
     "difficulty": 3,

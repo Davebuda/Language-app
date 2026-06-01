@@ -678,7 +678,6 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -721,7 +720,6 @@
       "work"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -785,7 +783,6 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -847,7 +844,6 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -889,7 +885,6 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -930,7 +925,6 @@
       "nature"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -972,7 +966,6 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -1013,7 +1006,6 @@
       "work"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -1056,7 +1048,6 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -1119,7 +1110,6 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -1150,27 +1140,6 @@
       "word-order"
     ],
     "notes": "Hun lå og hørte på musikk i sengen."
-  },
-  {
-    "id": "b1-prp-025",
-    "norwegian": "Det er en _____ (gå) venn av meg som bor i Tromsø.",
-    "english": "It is a close friend of mine who lives in Tromsø.",
-    "concept_ids": [
-      "present-participle"
-    ],
-    "vocab_clusters": [
-      "daily-life"
-    ],
-    "error_tags_detectable": [
-      "verb-conjugation",
-      "adjective-agreement"
-    ],
-    "cefr_level": "B1",
-    "difficulty": 3,
-    "exercise_types": [
-      "fill-in-blank"
-    ],
-    "notes": "gående"
   },
   {
     "id": "b1-prp-026",
@@ -1206,7 +1175,6 @@
       "nature"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -1247,7 +1215,6 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
       "adjective-agreement"
     ],
     "cefr_level": "B1",
@@ -1311,8 +1278,7 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "pronoun-choice",
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1354,8 +1320,7 @@
       "food"
     ],
     "error_tags_detectable": [
-      "pronoun-choice",
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1395,8 +1360,7 @@
       "education"
     ],
     "error_tags_detectable": [
-      "pronoun-choice",
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1439,8 +1403,7 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "pronoun-choice"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1481,8 +1444,7 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "negation-placement"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1564,8 +1526,7 @@
       "news"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "pronoun-choice"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1627,8 +1588,7 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "pronoun-choice"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1669,8 +1629,7 @@
       "work"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "pronoun-choice"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1732,8 +1691,7 @@
       "education"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "negation-placement"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1795,8 +1753,7 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "pronoun-choice"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1858,8 +1815,7 @@
       "food"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "pronoun-choice"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2090,8 +2046,7 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
-      "negation-placement"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2341,8 +2296,7 @@
       "food"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2363,8 +2317,7 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
-      "word-order"
+      "verb-conjugation"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -2447,8 +2400,7 @@
       "weather"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
-      "word-order"
+      "verb-conjugation"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2468,8 +2420,7 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
-      "word-order"
+      "wrong-word-same-category"
     ],
     "cefr_level": "B1",
     "difficulty": 3,
@@ -2531,8 +2482,7 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation",
-      "word-order"
+      "verb-conjugation"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -5155,7 +5105,6 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order",
       "wrong-word-same-category"
     ],
     "cefr_level": "B1",
@@ -5197,7 +5146,6 @@
       "work"
     ],
     "error_tags_detectable": [
-      "word-order",
       "modal-verb"
     ],
     "cefr_level": "B1",
