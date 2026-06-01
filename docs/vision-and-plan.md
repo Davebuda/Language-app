@@ -30,7 +30,7 @@ AND:
 11. **No lies** — Zero placeholder surfaces, zero silent substitutions, zero dead buttons
 12. **Tests pass** — Full test suite green, build clean, deployed to pandoai.no
 
-Items 1-11 are DONE. Item 12 (deploy + tests green on prod) is the remaining ship blocker.
+Items 1-12 are DONE — deployed and live at pandoai.no (Hetzner VPS); Supabase keys rotated 2026-05-29.
 
 ---
 
@@ -42,7 +42,7 @@ Items 1-11 are DONE. Item 12 (deploy + tests green on prod) is the remaining shi
 | **Scheduling** | STRONG | 40/30/20/10 recipe, SRS ladder, weekly focus bias, decay with floor. Upgrade path: FSRS-7 (20-30% efficiency gain, requires usage data). |
 | **Remediation** | FOUNDATIONAL | Template explain + micro-drill + retry + SRS schedule. Externalized queue-only from all production surfaces. Upgrade path: richer explanations, more drill variety, prove it works via analytics. |
 
-The moat is an architectural bet until proven. **The analytics surface is the only way to prove it.** Event logging writes exist; nothing reads them yet.
+The moat is an architectural bet until proven. **The analytics surface is the way to prove it.** Event logging writes exist, and the analytics surface v1 (`/analytics`, Wave 2) now reads them; proving the moat still requires real-user data.
 
 ---
 
@@ -200,6 +200,18 @@ These don't depend on audio or analytics. They can run alongside.
 | 5.3 | **BKT migration** — replace EMA with Bayesian Knowledge Tracing | 3-5 days | Usage data, 5.1 | After 5.1 |
 | 5.4 | **More diagnosis rules** — cross-surface pattern detection, L1-interference | 2-3 days | Analytics surface (Wave 2) | After 2.1 |
 | 5.5 | **Kari session memory** — inject compressed memory of past conversations into system prompt | 1-2 days | Nothing | Anytime |
+
+### Wave 6: Content Depth & Production (ACTIVE — 2026-06-01)
+
+Direction set in `docs/ui-1/frontend-representation-brief.md` (engine representation) and the cloze spec below. **Honesty note:** building net-new exercise surface was an explicit user decision that overrode the architect's depth-not-breadth defer (Operating Rule 1) — recorded here so the deviation is visible.
+
+| # | Item | Status |
+|---|---|---|
+| 6.1 | **Mobile content-supply honesty** — exhausted non-review items show an honest `isReviewFallback` "Repetisjon" badge instead of silently recycling passed content | ✅ DONE 2026-06-01 (commit 8878b9e) |
+| 6.2 | **Onboarding honesty** — removed fabricated demo data, fake status strip, and the static dashboard "Tips" tile | ✅ DONE 2026-06-01 (commit 08e8414) |
+| 6.3 | **Cloze passage** — first discourse-level pushed-output exercise; per-gap fingerprint + repair (Rule 8); non-AI v1. Spec: `docs/superpowers/specs/2026-06-01-cloze-passage-design.md` | IN DESIGN → implementation plan next |
+| 6.4 | **Server-side AI content generation** — wire `generate` action in `/api/ai` + `ServerAIService.generateContent` through the validation gate; unblocks mobile top-up + AI-generated cloze passages | DEFERRED (rate-limiter budget TBD when built) |
+| 6.5 | **Frontend representation waves** — make the engine visible (session agenda, fingerprint home, weekly rhythm, level-up); 3-wave plan in the representation brief | PLANNED (gated on architect sign-off) |
 
 ---
 
