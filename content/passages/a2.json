@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cz-a2-preterite-dinner",
+    "cefr_level": "A2",
+    "primary_concept_id": "preterite-regular",
+    "english_gloss": "Yesterday I ate dinner at Kari's. We talked together for a long time. Afterwards I traveled home by bus.",
+    "difficulty": 2,
+    "segments": [
+      { "kind": "text", "value": "I går " },
+      { "kind": "gap", "answer": "spiste", "concept_id": "preterite-regular", "error_tag": "verb-tense" },
+      { "kind": "text", "value": " jeg middag hos Kari. Vi " },
+      { "kind": "gap", "answer": "snakket", "concept_id": "preterite-regular", "error_tag": "verb-tense" },
+      { "kind": "text", "value": " lenge sammen. Etterpå reiste jeg hjem med bussen." }
+    ]
+  },
+  {
+    "id": "cz-a2-adjective-house",
+    "cefr_level": "A2",
+    "primary_concept_id": "adjective-agreement",
+    "english_gloss": "We live in a big house. The garden is very nice. The old trees give good shade.",
+    "difficulty": 2,
+    "segments": [
+      { "kind": "text", "value": "Vi bor i et " },
+      { "kind": "gap", "answer": "stort", "concept_id": "adjective-agreement", "error_tag": "adjective-agreement" },
+      { "kind": "text", "value": " hus. Hagen er veldig " },
+      { "kind": "gap", "answer": "fin", "concept_id": "adjective-agreement", "error_tag": "adjective-agreement" },
+      { "kind": "text", "value": ". De " },
+      { "kind": "gap", "answer": "gamle", "concept_id": "adjective-agreement", "error_tag": "adjective-agreement" },
+      { "kind": "text", "value": " trærne gir god skygge." }
+    ]
+  }
+]
