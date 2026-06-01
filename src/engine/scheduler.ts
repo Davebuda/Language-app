@@ -300,7 +300,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     for (const conceptId of clozeCandidates) {
       const pids = input.availablePassageIds[conceptId] ?? [];
       const hasEligible = pids.some((pid) => {
-        const p = input.passages![pid];
+        const p = input.passages?.[pid];
         if (!p) return false;
         const pIdx = LEVEL_ORDER.indexOf(p.cefrLevel as typeof LEVEL_ORDER[number]);
         return pIdx >= 0 && pIdx <= clozeMaxIdx && !passedIds[pid];
