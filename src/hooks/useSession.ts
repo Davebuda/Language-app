@@ -8,7 +8,8 @@ import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
 import { emitEvent } from '@/lib/events';
 import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe, SessionBlock } from '@/types/session';
-import type { Sentence, ResolvedContent } from '@/types/content';
+import type { Sentence, ResolvedContent, ResolvedClozePassage } from '@/types/content';
+import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool';
 import { getGraphForLevel } from '@/lib/concept-graph-loader';
 
 const SCENARIOS = [
@@ -69,6 +70,8 @@ export function useSession(
 
   // itemId → resolved content (AI-generated or seed fallback)
   const contentCache = useRef<Map<string, ResolvedContent>>(new Map());
+  // itemId → resolved cloze passage (parallel cache — does not widen contentCache)
+  const passageCache = useRef<Map<string, ResolvedClozePassage>>(new Map());
   // conceptId → sentences that support various exercise types
   const seedsByConceptId = useRef<Map<string, Sentence[]>>(new Map());
   const lastErrorRef = useRef<Parameters<typeof buildRepairPlan>[0] | null>(null);
@@ -79,6 +82,7 @@ export function useSession(
   const { session, currentItemIndex, isInRepair, repairPlan } = sessionStore;
   const currentItem = session?.items[currentItemIndex] ?? null;
   const currentContent = currentItem ? contentCache.current.get(currentItem.id) : undefined;
+  const currentCloze = currentItem ? passageCache.current.get(currentItem.id) : undefined;
 
   // Compute which block the current item belongs to and its 0-based position within
   // that block. Returns null when the session has no blocks (backward compatibility).
@@ -123,6 +127,22 @@ export function useSession(
   // and upgrades the content if it completes before the learner submits the item.
   const resolveItem = useCallback(async (item: SessionItem): Promise<void> => {
     if (contentCache.current.has(item.id)) return;
+
+    // ── Cloze-passage path ───────────────────────────────────────────────────
+    if (item.exerciseType === 'cloze-passage') {
+      if (passageCache.current.has(item.id)) return;
+      const conceptId = item.conceptIds[0] ?? '';
+      const passedIds = useFingerprintStore.getState().fingerprint?.passedSentenceIds ?? {};
+      const candidateIds = (SEED_PASSAGE_IDS[conceptId] ?? []).filter((id) => !passedIds[id]);
+      const pickId = candidateIds[Math.floor(Math.random() * candidateIds.length)]
+        ?? (SEED_PASSAGE_IDS[conceptId] ?? [])[0];
+      const passage = pickId ? SEED_PASSAGES[pickId] : undefined;
+      if (passage) {
+        passageCache.current.set(item.id, { ...passage, source: 'seed' });
+        forceUpdate((n) => n + 1);
+      }
+      return;
+    }
 
     // ── Seed path (synchronous) ──────────────────────────────────────────────
     const conceptId = item.conceptIds[0] ?? '';
@@ -201,6 +221,7 @@ export function useSession(
 
     const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences, recipe: calibrationRecipe });
     contentCache.current.clear();
+    passageCache.current.clear();
     sessionStore.startSession(output.session);
 
     // Kick off background model loading on first session start
@@ -346,6 +367,50 @@ export function useSession(
     lastErrorRef.current = null;
   }, [sessionStore, resolveItem]);
 
+  const submitClozeResults = useCallback((results: ExerciseResult[]) => {
+    const sessionId = useSessionStore.getState().session?.id;
+    const currentIndex = useSessionStore.getState().currentItemIndex;
+
+    for (const r of results) {
+      sessionStore.recordResult(r);
+      recordFingerprintResult(r);
+      emitEvent({
+        eventType: 'exercise_result',
+        mode: 'session',
+        sessionId,
+        conceptIds: [r.conceptId],
+        errorTags: r.errorTag ? [r.errorTag] : [],
+        payload: { correct: r.correct, exerciseType: 'cloze-passage' },
+      });
+    }
+
+    const wrong = results.filter((r) => !r.correct);
+    const repairItems: SessionItem[] = [];
+    for (const r of wrong) {
+      const error = {
+        id: crypto.randomUUID(),
+        conceptId: r.conceptId,
+        errorTag: r.errorTag ?? 'unspecified',
+        exerciseType: 'fill-in-blank' as ExerciseType,
+        wrong: r.userAnswer,
+        correct: r.correctAnswer,
+        timestamp: new Date().toISOString(),
+        sentenceId: undefined,
+      } as const;
+      const plan = buildRepairPlan(error);
+      const conceptSentenceIds = availableSentenceIdsProp[r.conceptId] ?? [];
+      repairItems.push(...makeRepairItems(error, plan, conceptSentenceIds));
+    }
+
+    if (repairItems.length > 0) {
+      void resolveItem(repairItems[0]);
+      repairItems.slice(1).forEach((it) => { resolveItem(it); });
+      useSessionStore.getState().injectRepairItems(repairItems, currentIndex);
+    }
+
+    sessionStore.advanceItem();
+  }, [sessionStore, recordFingerprintResult, availableSentenceIdsProp, resolveItem]);
+
   // NOTE: The 3-second auto-skip useEffect was removed here (P0 item 8).
   // The scheduler guard (item 1+2) ensures all queued items have eligible seeds,
   // so resolveItem always finds content. If content is somehow null, the
@@ -357,12 +422,14 @@ export function useSession(
     session,
     currentItem,
     currentContent,
+    currentCloze,
     currentItemIndex,
     currentBlock,
     isInRepair,
     repairPlan,
     startNewSession,
     submitResult,
+    submitClozeResults,
     continueAfterRepair,
     exitRepair: sessionStore.exitRepair,
   };
