@@ -2,6 +2,7 @@
 
 import { loadContentSentences } from '@/lib/content-loader'
 import { checkAnswer } from '@/lib/answer'
+import { classifyError } from '@/lib/classify-error'
 import { deriveCorrectAnswer } from '@/lib/grade-utils'
 import type { ExerciseType } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
@@ -17,12 +18,6 @@ interface GradeResult {
 // a placeholder result — storing "[unavailable]" as the correct answer was the
 // F011 corruption observed in the third walkthrough.
 export type GradeResponse = GradeResult | null
-
-// Pick the most relevant error tag from those the sentence declares detectable.
-// Returns undefined when the list is empty — callers must handle that case.
-function pickErrorTag(tags: ErrorTag[]): ErrorTag | undefined {
-  return tags.length > 0 ? tags[0] : undefined
-}
 
 export async function gradeAnswer(
   sentenceId: string,
@@ -83,6 +78,10 @@ export async function gradeAnswer(
   return {
     correct,
     correctAnswer,
-    errorTag: correct ? undefined : pickErrorTag(sentence.errorTagsDetectable),
+    // Observed-error tagging: classify the actual diff (biased toward the
+    // sentence's authored detectable tags), not just errorTagsDetectable[0].
+    errorTag: correct
+      ? undefined
+      : classifyError(userAnswer, correctAnswer, exerciseType, sentence.errorTagsDetectable),
   }
 }

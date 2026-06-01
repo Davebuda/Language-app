@@ -6,6 +6,7 @@ import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import type { ErrorTag } from '@/types/taxonomy';
 import { checkAnswer, extractBlank } from '@/lib/answer';
+import { classifyError } from '@/lib/classify-error';
 
 interface FillInBlankExerciseProps {
   item: SessionItem;
@@ -24,12 +25,12 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function MultipleChoice({
-  before, after, correct, options, englishHint, sessionId, item, onResult, errorTag,
+  before, after, correct, options, englishHint, sessionId, item, onResult, candidateTags,
 }: {
   before: string; after: string; correct: string; options: string[];
   englishHint: string; sessionId: string; item: SessionItem;
   onResult: (r: ExerciseResult) => void;
-  errorTag: ErrorTag | undefined;
+  candidateTags: ErrorTag[];
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const startRef = useRef(Date.now());
@@ -45,7 +46,7 @@ function MultipleChoice({
       userAnswer: option,
       correctAnswer: correct,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: isCorrect ? undefined : errorTag,
+      errorTag: isCorrect ? undefined : classifyError(option, correct, 'fill-in-blank', candidateTags),
       conceptId: item.conceptIds[0] ?? '',
     });
   }
@@ -108,11 +109,11 @@ function MultipleChoice({
 }
 
 function FreeText({
-  before, after, correct, englishHint, sessionId, item, onResult, errorTag,
+  before, after, correct, englishHint, sessionId, item, onResult, candidateTags,
 }: {
   before: string; after: string; correct: string; englishHint: string;
   sessionId: string; item: SessionItem; onResult: (r: ExerciseResult) => void;
-  errorTag: ErrorTag | undefined;
+  candidateTags: ErrorTag[];
 }) {
   const [userInput, setUserInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -131,7 +132,7 @@ function FreeText({
       userAnswer: userInput,
       correctAnswer: correct,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: isCorrect ? undefined : errorTag,
+      errorTag: isCorrect ? undefined : classifyError(userInput, correct, 'fill-in-blank', candidateTags),
       conceptId: item.conceptIds[0] ?? '',
     });
   }
@@ -173,9 +174,9 @@ function FreeText({
 export function FillInBlankExercise({ item, sentence, sessionId, onResult }: FillInBlankExerciseProps) {
   const { before, after } = extractBlank(sentence.norwegian);
   const correctAnswer = sentence.notes ?? '';
-  // Take the first declared error tag. For multi-tag sentences this logs the primary
-  // tag, not the specific error the user made — see backlog future-item note.
-  const errorTag = sentence.errorTagsDetectable[0];
+  // The inner components classify the actual diff at submit time against this
+  // candidate set (observed-error tagging) rather than always logging [0].
+  const candidateTags = sentence.errorTagsDetectable;
 
   const options = useMemo(() => {
     if (!sentence.distractors?.length || !correctAnswer) return null;
@@ -188,7 +189,7 @@ export function FillInBlankExercise({ item, sentence, sessionId, onResult }: Fil
         before={before} after={after} correct={correctAnswer}
         options={options} englishHint={sentence.english}
         sessionId={sessionId} item={item} onResult={onResult}
-        errorTag={errorTag}
+        candidateTags={candidateTags}
       />
     );
   }
@@ -198,7 +199,7 @@ export function FillInBlankExercise({ item, sentence, sessionId, onResult }: Fil
       before={before} after={after} correct={correctAnswer}
       englishHint={sentence.english}
       sessionId={sessionId} item={item} onResult={onResult}
-      errorTag={errorTag}
+      candidateTags={candidateTags}
     />
   );
 }

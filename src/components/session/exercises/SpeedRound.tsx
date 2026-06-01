@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import { gradeAnswer } from '@/app/session/actions';
+import { classifyError } from '@/lib/classify-error';
 
 interface SpeedRoundProps {
   item: SessionItem;
@@ -53,7 +54,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         setResultAnnouncement('Kunne ikke vurdere svaret.');
         return;
       }
-      const { correct, correctAnswer, errorTag } = graded;
+      const { correct, correctAnswer } = graded;
       onResult({
         sessionId,
         itemId: item.id,
@@ -61,7 +62,9 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         userAnswer: answer,
         correctAnswer,
         timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-        errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'spelling'),
+        errorTag: correct
+          ? undefined
+          : (classifyError(answer, correctAnswer, item.exerciseType, sentence.errorTagsDetectable) ?? 'unspecified'),
         conceptId: item.conceptIds[0] ?? '',
       });
       setResultAnnouncement(correct ? 'Riktig svar.' : 'Feil svar.');

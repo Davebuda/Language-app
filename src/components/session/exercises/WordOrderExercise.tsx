@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import { normalizeAnswer } from '@/lib/answer';
+import { classifyError } from '@/lib/classify-error';
 
 interface WordOrderExerciseProps {
   item: SessionItem;
@@ -64,7 +65,9 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
       userAnswer: userWords.join(' '),
       correctAnswer: sentence.norwegian,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : (sentence.errorTagsDetectable[0] ?? 'word-order'),
+      errorTag: correct
+        ? undefined
+        : (classifyError(userWords.join(' '), sentence.norwegian, 'word-order', sentence.errorTagsDetectable) ?? 'word-order'),
       conceptId: item.conceptIds[0] ?? '',
     });
   }
