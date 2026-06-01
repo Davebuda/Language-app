@@ -46,14 +46,6 @@ const CAROUSEL_CARDS: CarouselCard[] = [
   },
 ]
 
-const AVATAR_SEEDS = [
-  { initial: 'D', bg: '#C8FF20', fg: '#0A1206' },
-  { initial: 'K', bg: '#6de5ff', fg: '#061017' },
-  { initial: 'M', bg: '#ff8f62', fg: '#1a0a06' },
-  { initial: 'A', bg: '#C8FF20', fg: '#0A1206' },
-  { initial: 'S', bg: '#7dffb2', fg: '#062212' },
-]
-
 // ---------------------------------------------------------------------------
 // Carousel sub-component
 // ---------------------------------------------------------------------------
@@ -114,7 +106,7 @@ function Carousel() {
                 </p>
                 <p
                   className="mt-1 text-[10px] leading-[1.4]"
-                  style={{ color: 'rgba(10,18,6,0.40)' }}
+                  style={{ color: 'rgba(10,18,6,0.62)' }}
                 >
                   {CAROUSEL_CARDS[activeIndex].sub}
                 </p>
@@ -271,14 +263,14 @@ export default function HomePage() {
                 Snakk norsk. Trygt.
                 <span
                   className="mt-[6px] block text-[0.88rem] font-[500] leading-[1.3]"
-                  style={{ color: 'rgba(10,18,6,0.36)' }}
+                  style={{ color: 'rgba(10,18,6,0.62)' }}
                 >
                   Speak Norwegian. Confidently.
                 </span>
               </h1>
               <p
                 className="mt-[10px] text-[12px] leading-[1.5]"
-                style={{ color: 'rgba(10,18,6,0.48)', maxWidth: '250px' }}
+                style={{ color: 'rgba(10,18,6,0.62)', maxWidth: '250px' }}
               >
                 Diagnostisk coaching som finner svakhetene dine og fikser dem.
               </p>
@@ -286,35 +278,6 @@ export default function HomePage() {
 
             {/* Carousel */}
             <Carousel />
-
-            {/* Social proof row */}
-            <div className="flex items-center gap-[10px]">
-              <div className="flex">
-                {AVATAR_SEEDS.map((av, i) => (
-                  <div
-                    key={av.initial}
-                    aria-hidden="true"
-                    className="flex items-center justify-center rounded-full text-[8px] font-[800]"
-                    style={{
-                      width: '24px',
-                      height: '24px',
-                      background: av.bg,
-                      color: av.fg,
-                      marginLeft: i === 0 ? 0 : '-6px',
-                      border: '2px solid rgba(180,220,30,0.4)',
-                      position: 'relative',
-                      zIndex: AVATAR_SEEDS.length - i,
-                    }}
-                  >
-                    {av.initial}
-                  </div>
-                ))}
-              </div>
-              <span className="text-[10px]" style={{ color: 'rgba(10,18,6,0.44)' }}>
-                <strong style={{ fontWeight: 700, color: 'rgba(10,18,6,0.60)' }}>4.9 ★</strong>{' '}
-                fra tidlige brukere
-              </span>
-            </div>
 
             {/* CTA block */}
             <div>
@@ -339,7 +302,7 @@ export default function HomePage() {
               </Link>
               <p
                 className="mt-[5px] text-center text-[9px]"
-                style={{ color: 'rgba(10,18,6,0.28)' }}
+                style={{ color: 'rgba(10,18,6,0.62)' }}
               >
                 2 min · Gratis · Ingen konto
               </p>
@@ -560,7 +523,7 @@ function VoiceOrbCard() {
       </div>
 
       {/* Description */}
-      <p className="relative z-10 mt-1 text-[11px] leading-[1.4]" style={{ color: 'rgba(237,238,233,0.34)' }}>
+      <p className="relative z-10 mt-1 text-[11px] leading-[1.4]" style={{ color: 'rgba(237,238,233,0.55)' }}>
         {orbState === 'idle' ? 'Trykk og snakk norsk. Bare samtale.' : statusText}
       </p>
 
@@ -607,7 +570,7 @@ function VoiceOrbCard() {
       </div>
 
       {/* Status text */}
-      <p className="relative z-10 text-[10px]" style={{ color: 'rgba(237,238,233,0.34)' }}>
+      <p className="relative z-10 text-[10px]" style={{ color: 'rgba(237,238,233,0.55)' }}>
         {orbState === 'idle' ? 'Trykk for å starte' : statusText}
       </p>
 
@@ -673,7 +636,7 @@ function VoiceOrbCard() {
         <Link
           href="/dashboard"
           className="text-[10px]"
-          style={{ color: 'rgba(237,238,233,0.34)' }}
+          style={{ color: 'rgba(237,238,233,0.55)' }}
           aria-label="Allerede bruker — gå til appen"
         >
           Allerede bruker? Se appen →
