@@ -15,7 +15,7 @@ import type { ResolvedClozePassage } from '@/types/content'
 
 interface ExerciseCardProps {
   item: SessionItem
-  sentence: ResolvedContent
+  sentence?: ResolvedContent
   sessionId: string
   onResult: (result: ExerciseResult) => void
   repairPlan?: RepairPlan | null
@@ -41,7 +41,6 @@ function NotYetAvailable({
   type: string
   onResult: (result: ExerciseResult) => void
   item: SessionItem
-  sentence: ResolvedContent
   sessionId: string
 }) {
   return (
@@ -96,6 +95,28 @@ export function ExerciseCard({
   }
 
   function renderExercise() {
+    // Cloze passage uses clozePassage, not a single sentence.
+    if (item.exerciseType === 'cloze-passage') {
+      if (clozePassage && onClozeResults) {
+        return (
+          <ClozePassageExercise
+            passage={clozePassage}
+            sessionId={sessionId}
+            itemId={item.id}
+            onClozeResults={onClozeResults}
+          />
+        )
+      }
+      // Unresolved cloze (no authored passage): honest banner, never a silent
+      // substitution to another exercise (Operating Rule 6).
+      return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
+    }
+
+    // Every other exercise type requires a resolved sentence.
+    if (!sentence) {
+      return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
+    }
+
     const props = { item, sentence, sessionId, onResult: handleResult }
 
     switch (item.exerciseType) {
@@ -117,19 +138,7 @@ export function ExerciseCard({
       case 'dictation':
       case 'reading-comprehension':
       case 'free-writing':
-        return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sentence={sentence} sessionId={sessionId} />
-      case 'cloze-passage':
-        if (clozePassage && onClozeResults) {
-          return (
-            <ClozePassageExercise
-              passage={clozePassage}
-              sessionId={sessionId}
-              itemId={item.id}
-              onClozeResults={onClozeResults}
-            />
-          )
-        }
-        return <TranslationExercise {...props} />
+        return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
       default:
         return <TranslationExercise {...props} />
     }

@@ -52,12 +52,14 @@ export function SessionScreen({
     session,
     currentItem,
     currentContent,
+    currentCloze,
     currentItemIndex,
     currentBlock,
     isInRepair,
     repairPlan,
     startNewSession,
     submitResult,
+    submitClozeResults,
     continueAfterRepair,
   } = useSession(sentences, availableSentenceIds)
 
@@ -250,7 +252,7 @@ export function SessionScreen({
               <EmptyState />
             ) : isComplete ? (
               <LoadingSkeleton />
-            ) : currentItem && currentContent ? (
+            ) : currentItem && (currentItem.exerciseType === 'cloze-passage' ? !!currentCloze : !!currentContent) ? (
               <>
                 {currentBlock ? (
                   <BlockHeader
@@ -275,6 +277,8 @@ export function SessionScreen({
                       sessionId={session.id}
                       onResult={handleResult}
                       repairPlan={isInRepair ? repairPlan : null}
+                      clozePassage={currentCloze ?? null}
+                      onClozeResults={submitClozeResults}
                     />
                   </motion.div>
                 </AnimatePresence>
