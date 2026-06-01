@@ -4683,7 +4683,7 @@
   },
   {
     "id": "b2-sm-015",
-    "norwegian": "Hvis jeg hadde valgt en annen karrierevei, _____ livet mitt sett veldig annerledes ut.",
+    "norwegian": "Hvis jeg hadde valgt en annen karrierevei, ville livet mitt ha sett veldig annerledes ut.",
     "english": "If I had chosen a different career path, my life would have looked very different.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4693,14 +4693,14 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-tense"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
     "exercise_types": [
-      "fill-in-blank"
+      "translation-to-norwegian"
     ],
-    "notes": "ville ha — result clause: 'ville livet mitt sett' — inversion in result clause"
+    "notes": ""
   },
   {
     "id": "b2-sm-016",
@@ -4725,7 +4725,7 @@
   },
   {
     "id": "b2-sm-017",
-    "norwegian": "Jeg skulle ønske at vi _____ bedre kjente hverandre da vi var unge.",
+    "norwegian": "Jeg skulle ønske at vi _____ kjent hverandre bedre da vi var unge.",
     "english": "I wish that we had known each other better when we were young.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4735,14 +4735,14 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-tense"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde — past perfect in wish: 'hadde kjent hverandre bedre'"
+    "notes": "hadde"
   },
   {
     "id": "b2-sm-018",
@@ -5460,8 +5460,8 @@
   },
   {
     "id": "b2-tc-022",
-    "norwegian": "Artikkelen beskriver to teorier. Disse er henholdsvis kjent som evolusjonistisk og skapelsesteorien.",
-    "english": "The article describes two theories. These are respectively known as the evolutionist and creationist theories.",
+    "norwegian": "Artikkelen beskriver to teorier. Disse er henholdsvis kjent som evolusjonsteori og skapelsesteori.",
+    "english": "The article describes two theories. These are respectively known as evolution theory and creation theory.",
     "concept_ids": [
       "text-cohesion"
     ],
@@ -5607,8 +5607,8 @@
   },
   {
     "id": "b2-tc-029",
-    "norwegian": "Forskningsmiljøet er delt i synet på dette. Noen mener X, mens andre hevder det motsatte.",
-    "english": "The research community is divided on this. Some believe X, while others claim the opposite.",
+    "norwegian": "Forskningsmiljøet er delt i synet på dette. Noen mener at klimaendringene er menneskeskapte, mens andre hevder det motsatte.",
+    "english": "The research community is divided on this. Some believe that climate change is man-made, while others claim the opposite.",
     "concept_ids": [
       "text-cohesion"
     ],
@@ -6068,7 +6068,7 @@
   {
     "id": "b2-avf-021",
     "norwegian": "De _____ konsekvensene av klimaendringene er enda ikke fullt ut forstått.",
-    "english": "The long-term consequences of climate change are not yet fully understood.",
+    "english": "The persistent consequences of climate change are not yet fully understood.",
     "concept_ids": [
       "advanced-verb-forms"
     ],
@@ -6077,14 +6077,14 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "adjective-agreement"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "langsiktige — compound adjective (not a participle, but compound adjective in same grammatical slot)"
+    "notes": "vedvarende"
   },
   {
     "id": "b2-avf-022",

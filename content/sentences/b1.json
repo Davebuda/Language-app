@@ -1206,8 +1206,8 @@
   },
   {
     "id": "b1-prp-029",
-    "norwegian": "Det er et _____ (utvikle) land med store muligheter.",
-    "english": "It is a developing country with great opportunities.",
+    "norwegian": "Det var et _____ (utvikle) kurs som lærte meg mye.",
+    "english": "It was an enriching course that taught me a lot.",
     "concept_ids": [
       "present-participle"
     ],
@@ -1615,8 +1615,8 @@
   },
   {
     "id": "b1-cs-019",
-    "norwegian": "Det er _____ (at/som) vi trenger mer tid til prosjektet.",
-    "english": "It is the case that we need more time for the project.",
+    "norwegian": "Det er tidspress _____ gjør prosjektet vanskelig.",
+    "english": "It is time pressure that makes the project difficult.",
     "concept_ids": [
       "cleft-sentences"
     ],
@@ -1631,7 +1631,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "at"
+    "notes": "som"
   },
   {
     "id": "b1-cs-020",
@@ -5098,7 +5098,7 @@
   },
   {
     "id": "b1-cx-005",
-    "norwegian": "Selv om jeg er trøtt, _____ (klare/ville) jeg å fullføre arbeidet.",
+    "norwegian": "Selv om jeg er trøtt, _____ (klarer/vil) jeg å fullføre arbeidet.",
     "english": "Even though I am tired, I will manage to finish the work.",
     "concept_ids": [
       "complex-subordination"
@@ -6240,8 +6240,8 @@
   },
   {
     "id": "b1-fr-029",
-    "norwegian": "Besøkende bes om å _____ (skrive/si) inn i gjestelisten ved inngangen.",
-    "english": "Visitors are requested to sign the guest list at the entrance.",
+    "norwegian": "Besøkende bes om å _____ (skrive/si) seg inn i gjestelisten ved inngangen.",
+    "english": "Visitors are requested to sign themselves into the guest list at the entrance.",
     "concept_ids": [
       "formal-informal-register"
     ],
