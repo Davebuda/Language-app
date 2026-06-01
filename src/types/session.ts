@@ -12,7 +12,8 @@ export type ExerciseType =
   | 'dictation'
   | 'reading-comprehension'
   | 'free-writing'
-  | 'speed-round';
+  | 'speed-round'
+  | 'cloze-passage';
 
 export type RepairStep = 'explanation' | 'micro-drill' | 'retry' | 'review-scheduled';
 
