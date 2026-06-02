@@ -1,0 +1,163 @@
+[
+  {
+    "norwegian": "Kaffen er varm og god.",
+    "english": "The coffee is warm and good.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "food-and-drink"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "9b362470-c1ea-470b-9275-4b49d87827ee"
+  },
+  {
+    "norwegian": "Jeg er ikke sulten nå.",
+    "english": "I am not hungry now.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dcef94c5-e75c-4a61-9574-569d76cd6078"
+  },
+  {
+    "norwegian": "De er ikke hjemme i dag.",
+    "english": "They are not home today.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "de4a0100-62dc-46ae-8b26-02451dae3d44"
+  },
+  {
+    "norwegian": "Er du fra Norge?",
+    "english": "Are you from Norway?",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "personal-information"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d87cfa4a-4f01-4d71-9330-0e77a39b4cf9"
+  },
+  {
+    "norwegian": "Det er fint vær i dag.",
+    "english": "The weather is nice today.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "00a7e618-9afb-449c-8eac-e96561ad0ccb"
+  },
+  {
+    "norwegian": "Rommet er lite, men det er koselig.",
+    "english": "The room is small, but it is cosy.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "home"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5c5105d8-6283-4ae2-bff6-f6659e87c31d"
+  },
+  {
+    "norwegian": "Skolen ___ ikke langt fra her.",
+    "english": "The school is not far from here.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "getting-around"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er",
+    "id": "4a1516a6-f8c4-4ea6-873e-3adac7985a53"
+  },
+  {
+    "norwegian": "Barna ___ veldig trøtte etter skolen.",
+    "english": "The children are very tired after school.",
+    "concept_ids": [
+      "to-be-verb"
+    ],
+    "vocab_clusters": [
+      "family",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er",
+    "id": "d571c10a-0758-4422-a7db-fdb1a5f1801c"
+  }
+]

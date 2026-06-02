@@ -1,0 +1,92 @@
+[
+  {
+    "norwegian": "Jeg ser to gutter i parken.",
+    "english": "I see two boys in the park.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "523eb20b-16a4-4648-bd6f-f275d0ca140e"
+  },
+  {
+    "norwegian": "Hun kjøper tre kaker i butikken.",
+    "english": "She buys three cakes at the shop.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d8028e7b-1b43-47f7-825b-d3ff7cd81bf0"
+  },
+  {
+    "norwegian": "Det er mange ___ på hotellet.",
+    "english": "There are many rooms at the hotel.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "rom",
+    "id": "7c36f641-b166-42d5-bd3c-767b876bfaba"
+  },
+  {
+    "norwegian": "Vi trenger to ___ til festen.",
+    "english": "We need two bags for the party.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "poser",
+    "id": "7a6a04a4-db0a-49d4-b10c-fcee54226b2b"
+  },
+  {
+    "norwegian": "Det er fire vinduer i stuen.",
+    "english": "There are four windows in the living room.",
+    "concept_ids": [
+      "plural-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "0287d746-f92e-4b09-b2b0-23e84ea8a608"
+  }
+]

@@ -1,0 +1,85 @@
+--- status ---
+?? .env.local.bak.1780041363
+--- pull ---
+From https://github.com/Davebuda/Language-app
+ * branch            main       -> FETCH_HEAD
+   6303324..0564574  main       -> origin/main
+Updating 6303324..0564574
+Fast-forward
+ .scout/2026-05-22-phone-ai-architecture.md         |  231 ++
+ .scout/2026-05-28-norskcoach-content-overhaul.md   |  115 +
+ .scout/2026-06-01-exercise-system-recalibration.md |   90 +
+ .scout/codebase.md                                 |   32 +
+ .scout/last-brief.md                               |  264 +--
+ .scout/planner.md                                  |   13 +-
+ CLAUDE.md                                          |    2 +-
+ content/passages/a1.json                           |   46 +
+ content/passages/a2.json                           |   32 +
+ content/sentences/a1.json                          | 2375 ++++++++++++++++++++
+ content/sentences/a2.json                          | 1065 +++++++++
+ docs/superpowers/plans/2026-06-01-cloze-passage.md |  784 +++++++
+ .../specs/2026-06-01-cloze-passage-design.md       |  148 ++
+ docs/ui-1/frontend-representation-brief.md         |  165 ++
+ docs/ui-1/mockups/cloze-passage.html               |  197 ++
+ docs/vision-and-plan.md                            |   28 +-
+ scripts/finalize-deepen.ts                         |   48 +
+ scripts/lib/content-gate.ts                        |    7 +-
+ src/app/dashboard/page.tsx                         |   10 +-
+ src/components/onboarding/OnboardingFlow.tsx       |   23 +-
+ src/components/session/ExerciseCard.tsx            |   51 +-
+ src/components/session/SessionScreen.tsx           |   17 +-
+ .../session/exercises/ClozePassageExercise.tsx     |   98 +
+ src/engine/scheduler.ts                            |   25 +-
+ src/hooks/useSession.ts                            |   86 +-
+ src/lib/cloze.ts                                   |   54 +
+ src/lib/passage-pool.ts                            |   69 +
+ src/types/content.ts                               |   29 +
+ src/types/session.ts                               |    3 +-
+ tests/engine/scheduler.test.ts                     |   65 +-
+ tests/lib/cloze.test.ts                            |   73 +
+ tests/lib/passage-pool.test.ts                     |   27 +
+ 32 files changed, 6025 insertions(+), 247 deletions(-)
+ create mode 100644 .scout/2026-05-22-phone-ai-architecture.md
+ create mode 100644 .scout/2026-05-28-norskcoach-content-overhaul.md
+ create mode 100644 .scout/2026-06-01-exercise-system-recalibration.md
+ create mode 100644 .scout/codebase.md
+ create mode 100644 content/passages/a1.json
+ create mode 100644 content/passages/a2.json
+ create mode 100644 docs/superpowers/plans/2026-06-01-cloze-passage.md
+ create mode 100644 docs/superpowers/specs/2026-06-01-cloze-passage-design.md
+ create mode 100644 docs/ui-1/frontend-representation-brief.md
+ create mode 100644 docs/ui-1/mockups/cloze-passage.html
+ create mode 100644 scripts/finalize-deepen.ts
+ create mode 100644 src/components/session/exercises/ClozePassageExercise.tsx
+ create mode 100644 src/lib/cloze.ts
+ create mode 100644 src/lib/passage-pool.ts
+ create mode 100644 tests/lib/cloze.test.ts
+ create mode 100644 tests/lib/passage-pool.test.ts
+--- npm ci ---
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+--- build ---
+├ ○ /progress                            5.96 kB         234 kB
+├ ○ /reading                             5.63 kB         237 kB
+├ ○ /recalibrate                           138 B         103 kB
+├ ○ /roleplay                            12.8 kB         244 kB
+├ ○ /session                             35.8 kB         275 kB
+├ ○ /session/complete                    5.75 kB         234 kB
+├ ○ /shadow                              6.06 kB         237 kB
+├ ○ /uke                                 4.29 kB         247 kB
+└ ○ /vocab                               2.72 kB         144 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/1255-b28ea36bf0cdbd65.js      46.2 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          2.17 kB
+
+
+ƒ Middleware                             89.2 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+BUILD_DONE_OK

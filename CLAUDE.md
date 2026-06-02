@@ -57,6 +57,8 @@ The adaptive engine is built, traced, and verified correct:
 - **Error tagging** — uses sentence's real `error_tags_detectable`, not guessed from exercise type.
 - **Content dedup** — no repeated sentence within a session. Cross-session: `passedSentenceIds` prevents passed sentences from reappearing in normal progression. When a non-review item's seed pool is fully passed, `useSession.ts` shows the forced repeat with an honest `isReviewFallback` "Repetisjon" badge instead of silently recycling it (Rule 6), and queues AI top-up — but server-side generation is not yet wired (`ServerAIService.generateContent` returns `null`; no `generate` action in `/api/ai`), so fresh generation currently works only on the WebGPU/WebLLM desktop path.
 - **Full pipeline parity** — session, conversation, journal, AND weekly check all feed the identical mastery + SRS pipeline.
+- **Cloze passages (Wave 6.3, shipped + closed 2026-06-02)** — discourse-level fill-in-gap exercise. Per-gap fingerprint write + repair (Rule 8, test-proven), level-honest scheduling (an A1 learner never gets an above-level cloze — test-proven Rule 6), at most one per session. A1/A2 passages live; B1/B2 cloze passages pending (separate content task). See `src/lib/cloze.ts`, `src/lib/passage-pool.ts`, `src/components/session/exercises/ClozePassageExercise.tsx`.
+- **Production-from-surface (2026-06-02)** — `recordProductionFromSurface` in `src/engine/repair-from-surface.ts`: the correct-production sibling of `repairFromSurface`. One mastery brick on a correct written production; no error logged; productionGap untouched. **Guided/scaffolded frames earn reduced weight via an EMA learning-rate scale** (`learningRateScale` on `updateConceptMastery`, default 1) — scales the step, not the outcome, so a correct answer never lowers mastery; guided frames also freeze the SRS ladder. Built for the read-respond WRITE step.
 
 Built features: diagnostic, dashboard (with WeekStrip + mid-week reveal + lane strip), session loop, repair loop, conversation mode (AI tutor + constraints + focus bias), journal (focus-biased prompts), reading (concept-tagged texts with exposure logging), progress, profile (with level display + preference toggle), weekly retrieval check at `/uke`, scripted roleplay at `/roleplay` (focus-aware scenarios), shared repair module (`repairFromSurface`), AudioPlayer component (browser TTS fallback), analytics surface (`/analytics`), AlertDialog primitive.
 
@@ -64,11 +66,15 @@ Retired surfaces: `/vocab` → honest "Kommer i versjon 2" banner. `/recalibrate
 
 Live muntlig modes: `/shadow` (shadowing — listen + repeat + word matching), `/drills` (pronunciation drills — 4 sound groups + heuristic feedback), `/listen` (listen-and-respond — 8 questions with focus-biased ordering). All three feed the fingerprint and lane completion system. Dashboard "Muntlig" section links to all three.
 
-Stubs / not built: vocab SRS, reading comprehension scoring.
+In-session exercise types (real): translation (×2), fill-in-blank, word-order, listening-comprehension, speed-round, **cloze-passage** (A1/A2). Phantom types (`sentence-transformation`, `dictation`) route to an honest `NotYetAvailable` banner (Wave 6.6).
+
+Stubs / not built: vocab SRS, reading comprehension scoring, **read-respond UI** (engine + grader + content built; 3-page `/skriv` UI is the next build — see `output/ui-handoff-brief.md`).
 
 ## Current Phase
 
 **SHIP-READY 2026-05-27.** All 12 ship-ready criteria met. Four-dimensional market-readiness audit passed. See `docs/vision-and-plan.md` for the full execution plan.
+
+**Since ship-ready — Wave 6 exercise pipeline (2026-06-01 → 06-02):** Shipped: cloze passage (6.3, closed with Rule-6 + Rule-8 tests), R0 phantom honesty (6.6), R1 B1/B2 retag (6.7, linguist-gated). Engine/honesty fixes: live `computeProductionGap` + observed-error classifier (`src/lib/classify-error.ts`), Lytt listening-only fix, shadow mistag fix. **read-respond** (read→recite→write skriv module, rows #2+#4): engine helper + deterministic grader + `ReadingPassage` type + 6 linguist-gated B1 passages — **BUILT + tested; UI is the next build (Lane B)**. Not started: B2 nuance-discrimination + conjugation-drill (#3), Nor→Nor transformation (#5), per-level-progression UI. Full status: `docs/vision-and-plan.md` Wave 6.
 
 **What's shipped:**
 - Stream 5.5 Phases 3-8 (all surfaces laned, repair externalized, stubs retired, recalibration retired)

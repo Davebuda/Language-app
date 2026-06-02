@@ -5,12 +5,14 @@ import type { ConceptGraph } from '@/types/concepts'
 import { logError, aggregateErrorPatterns, updateConceptMastery } from './fingerprint'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 
-export type SurfaceKind = 'journal' | 'conversation' | 'roleplay'
+export type SurfaceKind = 'journal' | 'conversation' | 'roleplay' | 'reading'
 
 const SURFACE_EXERCISE_TYPE: Record<SurfaceKind, ExerciseType> = {
   journal: 'free-writing',
   conversation: 'translation-to-norwegian',
   roleplay: 'translation-to-norwegian',
+  // The read→recite→WRITE step is free written production, like the journal.
+  reading: 'free-writing',
 }
 
 export interface RepairInput {

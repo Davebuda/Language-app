@@ -1,0 +1,475 @@
+[
+ {
+  "norwegian": "___ er fra Norge.",
+  "english": "She is from Norway.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": "Hun"
+ },
+ {
+  "norwegian": "___ spiser middag nå.",
+  "english": "They are eating dinner now.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": "De"
+ },
+ {
+  "norwegian": "___ og kona mi bor i Oslo.",
+  "english": "We and my wife live in Oslo.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2,
+  "notes": "Vi"
+ },
+ {
+  "norwegian": "Er ___ hjemme i dag?",
+  "english": "Are you all home today?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3,
+  "notes": "dere"
+ },
+ {
+  "norwegian": "Jeg heter Lars og bor i Bergen.",
+  "english": "My name is Lars and I live in Bergen.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han jobber på sykehuset hver dag.",
+  "english": "He works at the hospital every day.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun liker å gå tur i skogen.",
+  "english": "She likes to go hiking in the forest.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi skal på ferie til Sverige neste uke.",
+  "english": "We are going on holiday to Sweden next week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De har tre barn og bor på landet.",
+  "english": "They have three children and live in the countryside.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun jobber i butikken",
+  "english": "She works in the store",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De er mine venner",
+  "english": "They are my friends",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Du er læreren min",
+  "english": "You are my teacher",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han går til butikken",
+  "english": "He goes to the store",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun spiser lunsj",
+  "english": "She eats lunch",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi går til parken",
+  "english": "We go to the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Dere er vennene mine",
+  "english": "You are my friends",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "De går hjem",
+  "english": "They go home",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg leser en bok",
+  "english": "I am reading a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Du ser på TV",
+  "english": "You are watching TV",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spiller et spill",
+  "english": "He is playing a game",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun er på jobb",
+  "english": "She is at work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De går til skolen",
+  "english": "They go to school",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi ser på filmen",
+  "english": "We are watching the movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun studerer i parken",
+  "english": "She studies in the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De spiller fotball",
+  "english": "They play football",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun studerer norsk",
+  "english": "She studies Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han bor i Oslo",
+  "english": "He lives in Oslo",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Dere skriver",
+  "english": "You are writing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser deg",
+  "english": "I see you",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du hjelper meg",
+  "english": "You help me",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han ser henne",
+  "english": "He sees her",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er student på en skole.",
+  "english": "I am a student at a school.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Du har en fin hund.",
+  "english": "You have a nice dog.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han er ikke hjemme akkurat nå.",
+  "english": "He is not home right now.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi spiser frokost sammen.",
+  "english": "We eat breakfast together.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "De venter på bussen.",
+  "english": "They are waiting for the bus.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Dere kan sitte her.",
+  "english": "You all can sit here.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er boken hennes.",
+  "english": "It is her book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "___ jobber på kontoret i dag.",
+  "english": "She works at the office today.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 1,
+  "notes": "Hun"
+ },
+ {
+  "norwegian": "Kjenner ___ hverandre?",
+  "english": "Do you all know each other?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice"
+  ],
+  "difficulty": 3,
+  "notes": "dere"
+ }
+]

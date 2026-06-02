@@ -1,0 +1,56 @@
+[
+  {
+    "norwegian": "Jeg hadde ikke tid i går.",
+    "english": "I did not have time yesterday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "60723fb7-8e42-433b-bc5f-f5e4caae3c4f"
+  },
+  {
+    "norwegian": "Han ___ en pakke i går.",
+    "english": "He received a package yesterday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "fikk",
+    "id": "b6c812f7-5a9a-48b4-9d92-e11a0b69ef5d"
+  },
+  {
+    "norwegian": "Vi drakk kaffe sammen forrige lørdag.",
+    "english": "We drank coffee together last Saturday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "322fa395-8b37-4873-a468-a414e2ec7256"
+  }
+]

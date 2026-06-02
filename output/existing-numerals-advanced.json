@@ -1,0 +1,536 @@
+[
+ {
+  "norwegian": "Det er ___ gang jeg besøker Tromsø.",
+  "english": "It is the first time I visit Tromsø.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1,
+  "notes": "første"
+ },
+ {
+  "norwegian": "Hun bor i ___ etasje.",
+  "english": "She lives on the third floor.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1,
+  "notes": "tredje"
+ },
+ {
+  "norwegian": "___ av melken er igjen i flasken.",
+  "english": "Half of the milk is left in the bottle.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2,
+  "notes": "Halvparten"
+ },
+ {
+  "norwegian": "___ av elevene hadde gjort leksene.",
+  "english": "Three quarters of the pupils had done the homework.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 3,
+  "notes": "Tre fjerdedeler"
+ },
+ {
+  "norwegian": "Det andre laget vant kampen.",
+  "english": "The second team won the match.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han ble født i to tusen og tre.",
+  "english": "He was born in 2003.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Dette er den tiende dagen av ferien.",
+  "english": "This is the tenth day of the holiday.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "En tredjedel av befolkningen bor i byene.",
+  "english": "One third of the population lives in the cities.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Tusenvis av turister besøker Norge hvert år.",
+  "english": "Thousands of tourists visit Norway every year.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg er første i køen.",
+  "english": "I am first in line",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spiser en halv pizza.",
+  "english": "He eats half a pizza",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er tredje gangen jeg prøver.",
+  "english": "It's the third time I'm trying",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en tredjedel av en time.",
+  "english": "I have one third of an hour",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "To tusen og tolv var et godt år.",
+  "english": "Two thousand and twelve was a good year",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun var syvende i løpet.",
+  "english": "She was seventh in the race",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har tusen norske kroner.",
+  "english": "I have one thousand Norwegian kroner",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er andre gangen jeg ser filmen.",
+  "english": "It's the second time I'm watching the movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en fjerdedel av en liter melk.",
+  "english": "I have a quarter of a liter of milk",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Nittiåra var en spennende tid.",
+  "english": "The nineties were an exciting time",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun er andre i løpet.",
+  "english": "She is second in the race.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ble født i nittiåra.",
+  "english": "I was born in the nineties.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har hundre euro i lommen.",
+  "english": "He has a hundred euros in his pocket.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjøpte en bil for tusen kroner.",
+  "english": "I bought a car for a thousand kroner.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er femte i klassen.",
+  "english": "I am fifth in the class.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er syvende i rekken.",
+  "english": "He is seventh in line.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er første gang.",
+  "english": "It's the first time",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en tredjedel av kaken.",
+  "english": "I have a third of the cake",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er tusen meter til toppen.",
+  "english": "It's a thousand meters to the top",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er andre i konkurransen.",
+  "english": "He is second in the competition",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun spiste en halv pizza.",
+  "english": "She ate half a pizza",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "adjective-agreement",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kom på fjerde plass i konkurransen.",
+  "english": "He came in fourth place in the competition.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Halvparten av pengene er allerede brukt.",
+  "english": "Half of the money is already spent.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Billetten koster to hundre og femti kroner.",
+  "english": "The ticket costs two hundred and fifty kroner.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun fyller år den tjuende januar.",
+  "english": "She has her birthday on the twentieth of January.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "To tredjedeler av kaken er spist.",
+  "english": "Two thirds of the cake are eaten.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er den tolvte gangen han har ringt i dag.",
+  "english": "It is the twelfth time he has called today.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hotellet har tre hundre og tjue rom.",
+  "english": "The hotel has three hundred and twenty rooms.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi bor i ___ etasje.",
+  "english": "We live on the sixth floor.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "sjette"
+ },
+ {
+  "norwegian": "___ av studentene besto eksamen.",
+  "english": "Half of the students passed the exam.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "Halvparten"
+ },
+ {
+  "norwegian": "Jeg er ___ i køen på legekontoret.",
+  "english": "I am eighth in line at the doctor's office.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "åttende"
+ }
+]

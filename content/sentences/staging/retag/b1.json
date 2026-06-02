@@ -1,0 +1,3535 @@
+[
+  {
+    "id": "b1-pp-002",
+    "norwegian": "Jeg hadde aldri smakt rakfisk før jeg besøkte Fagernes.",
+    "english": "I had never tasted rakfisk before I visited Fagernes.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "food",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-012",
+    "norwegian": "Jeg hadde ikke forventet at jobben ville være så krevende.",
+    "english": "I had not expected the job to be so demanding.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-014",
+    "norwegian": "Hun hadde aldri vært i utlandet før hun fikk jobb i Paris.",
+    "english": "She had never been abroad before she got a job in Paris.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-023",
+    "norwegian": "Barna hadde aldri sett så mye snø.",
+    "english": "The children had never seen so much snow.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "weather",
+      "family"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-028",
+    "norwegian": "Jeg / hadde / aldri / prøvd / brunost / før",
+    "english": "I had never tried brunost before.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "food"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Jeg hadde aldri prøvd brunost før."
+  },
+  {
+    "id": "b1-pp-029",
+    "norwegian": "Vi hadde snakket om det mange ganger, men aldri gjort noe med det.",
+    "english": "We had talked about it many times, but never done anything about it.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-prp-001",
+    "norwegian": "Han sitter og leser avisen hver morgen.",
+    "english": "He sits reading the newspaper every morning.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "hobbies"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-prp-002",
+    "norwegian": "Vi så en _____ (løpe) hund i parken.",
+    "english": "We saw a running dog in the park.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "løpende"
+  },
+  {
+    "id": "b1-prp-003",
+    "norwegian": "Barnet lå og gråt i senga si.",
+    "english": "The child lay crying in its bed.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "family",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-prp-004",
+    "norwegian": "Det er en _____ (stige) tendens til at folk jobber hjemmefra.",
+    "english": "There is a rising tendency for people to work from home.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "stigende"
+  },
+  {
+    "id": "b1-prp-005",
+    "norwegian": "Hun sto og ventet på bussen i regnet.",
+    "english": "She stood waiting for the bus in the rain.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-006",
+    "norwegian": "De satt og spilte kort hele kvelden.",
+    "english": "They sat playing cards all evening.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "hobbies",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-007",
+    "norwegian": "Det er en _____ (bekymre) situasjon for mange familier.",
+    "english": "It is a worrying situation for many families.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "family",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "bekymrende"
+  },
+  {
+    "id": "b1-prp-008",
+    "norwegian": "Jeg lå og tenkte på det lenge.",
+    "english": "I lay thinking about it for a long time.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-009",
+    "norwegian": "Han gikk og mumlet noe for seg selv.",
+    "english": "He walked along muttering something to himself.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-010",
+    "norwegian": "Det var en _____ (vokse) kø utenfor butikken.",
+    "english": "There was a growing queue outside the shop.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "voksende"
+  },
+  {
+    "id": "b1-prp-011",
+    "norwegian": "Vi satt og pratet i timevis.",
+    "english": "We sat chatting for hours.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "family"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-012",
+    "norwegian": "Det er et _____ (overraske) resultat fra valget.",
+    "english": "It is a surprising result from the election.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "news"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "overraskende"
+  },
+  {
+    "id": "b1-prp-013",
+    "norwegian": "Hun sto og stirret ut av vinduet.",
+    "english": "She stood staring out of the window.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-014",
+    "norwegian": "Det er et _____ (øke) problem med plastforurensning.",
+    "english": "There is an increasing problem with plastic pollution.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "økende"
+  },
+  {
+    "id": "b1-prp-015",
+    "norwegian": "Barna lå og leste tegneserier på gulvet.",
+    "english": "The children lay reading comics on the floor.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "family",
+      "hobbies"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-016",
+    "norwegian": "Det kom en _____ (smile) dame mot oss.",
+    "english": "A smiling lady came towards us.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "smilende"
+  },
+  {
+    "id": "b1-prp-017",
+    "norwegian": "Han sitter og jobber sent hver kveld.",
+    "english": "He sits working late every evening.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-018",
+    "norwegian": "Det var en _____ (forvirre) beskjed fra sjefen.",
+    "english": "It was a confusing message from the boss.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "forvirrende"
+  },
+  {
+    "id": "b1-prp-019",
+    "norwegian": "Vi stod og så på fjordene fra dekket.",
+    "english": "We stood looking at the fjords from the deck.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-020",
+    "norwegian": "Det er et _____ (love) tegn at han begynte å øve mer.",
+    "english": "It is a promising sign that he started practising more.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "hobbies",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "lovende"
+  },
+  {
+    "id": "b1-prp-021",
+    "norwegian": "Jeg gikk og tenkte på det hele veien hjem.",
+    "english": "I walked thinking about it the whole way home.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-022",
+    "norwegian": "Han / satt / og / spiste / frokost / alene",
+    "english": "He sat eating breakfast alone.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "food",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Han satt og spiste frokost alene.",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation, word-order] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-023",
+    "norwegian": "Det var en _____ (synke) følelse i magen.",
+    "english": "There was a sinking feeling in the stomach.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "synkende"
+  },
+  {
+    "id": "b1-prp-024",
+    "norwegian": "hun / lå / og / hørte / på / musikk / i / sengen",
+    "english": "She lay listening to music in bed.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "hobbies",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Hun lå og hørte på musikk i sengen.",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation, word-order] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-025",
+    "norwegian": "Det er en _____ (gå) venn av meg som bor i Tromsø.",
+    "english": "It is a close friend of mine who lives in Tromsø.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "gående"
+  },
+  {
+    "id": "b1-prp-026",
+    "norwegian": "Vi / satt / og / så / på / TV / hele / ettermiddagen",
+    "english": "We sat watching TV all afternoon.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "hobbies",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Vi satt og så på TV hele ettermiddagen.",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation, word-order] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-027",
+    "norwegian": "Det var et _____ (engasjere) foredrag om klimaet.",
+    "english": "It was an engaging lecture about the climate.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "education",
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "engasjerende"
+  },
+  {
+    "id": "b1-prp-028",
+    "norwegian": "Han sto og ventet utenfor døren i fem minutter.",
+    "english": "He stood waiting outside the door for five minutes.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-prp-029",
+    "norwegian": "Det er et _____ (utvikle) land med store muligheter.",
+    "english": "It is a developing country with great opportunities.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "news"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "utviklende"
+  },
+  {
+    "id": "b1-prp-030",
+    "norwegian": "De gikk og handlet mens barna lå og sov hjemme.",
+    "english": "They went shopping while the children lay sleeping at home.",
+    "concept_ids": [
+      "present-participle"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "family"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation, word-order] were outside the valid union; proposed [verb-tense] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [present-participle] (valid union: [adjective-agreement, spelling, verb-tense])"
+  },
+  {
+    "id": "b1-cs-001",
+    "norwegian": "Det er Kari som har gjort det.",
+    "english": "It is Kari who did it.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-002",
+    "norwegian": "Det er _____ (han/ham) som betaler regningen.",
+    "english": "It is he who pays the bill.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "han"
+  },
+  {
+    "id": "b1-cs-003",
+    "norwegian": "Det var i Bergen at han vokste opp.",
+    "english": "It was in Bergen that he grew up.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-004",
+    "norwegian": "Det er maten _____ gjør restauranten spesiell.",
+    "english": "It is the food that makes the restaurant special.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "som"
+  },
+  {
+    "id": "b1-cs-006",
+    "norwegian": "Det er læreren _____ har ansvaret for klassen.",
+    "english": "It is the teacher who is responsible for the class.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "som"
+  },
+  {
+    "id": "b1-cs-007",
+    "norwegian": "Det var sønnen hennes som vant konkurransen.",
+    "english": "It was her son who won the competition.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "family",
+      "hobbies"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-008",
+    "norwegian": "Det er om sommeren _____ vi pleier å dra til hytta.",
+    "english": "It is in summer that we usually go to the cabin.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "at"
+  },
+  {
+    "id": "b1-cs-010",
+    "norwegian": "Det var ikke pengene _____ motiverte henne, men selve arbeidet.",
+    "english": "It was not the money that motivated her, but the work itself.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "work",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "som"
+  },
+  {
+    "id": "b1-cs-011",
+    "norwegian": "Det er han som vet best hva som skjedde.",
+    "english": "It is he who knows best what happened.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-014",
+    "norwegian": "Det er barna _____ lider mest av konflikten.",
+    "english": "It is the children who suffer most from the conflict.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "family",
+      "news"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "som"
+  },
+  {
+    "id": "b1-cs-017",
+    "norwegian": "Det er naturen _____ tiltrekker flest turister til Norge.",
+    "english": "It is the nature that attracts most tourists to Norway.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "som"
+  },
+  {
+    "id": "b1-cs-019",
+    "norwegian": "Det er _____ (at/som) vi trenger mer tid til prosjektet.",
+    "english": "It is the case that we need more time for the project.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "at"
+  },
+  {
+    "id": "b1-cs-021",
+    "norwegian": "Det / var / moren / sin / som / han / ringte / til",
+    "english": "It was his mother that he called.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "family"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Det var moren sin han ringte til."
+  },
+  {
+    "id": "b1-cs-022",
+    "norwegian": "Det er ikke lett _____ man forstår det uten hjelp.",
+    "english": "It is not easy to understand it without help.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "at"
+  },
+  {
+    "id": "b1-cs-025",
+    "norwegian": "Det er sommeren _____ vi husker best fra barndommen.",
+    "english": "It is the summers that we remember most from childhood.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "family",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "vi"
+  },
+  {
+    "id": "b1-cs-027",
+    "norwegian": "Det er ikke jeg som bestemmer det.",
+    "english": "It is not I who decide that.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-028",
+    "norwegian": "Det var fisken _____ gjorde middagen så god.",
+    "english": "It was the fish that made the dinner so good.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "som"
+  },
+  {
+    "id": "b1-cs-030",
+    "norwegian": "Det / var / vennen / hans / som / ga / ham / rådet",
+    "english": "It was his friend who gave him the advice.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Det var vennen hans som ga ham rådet."
+  },
+  {
+    "id": "b1-pas-009",
+    "norwegian": "Post leveres ikke på søndager.",
+    "english": "Post is not delivered on Sundays.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-021",
+    "norwegian": "Det selges ferske grønnsaker på torget.",
+    "english": "Fresh vegetables are sold at the market.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "food"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-022",
+    "norwegian": "Skogen / ble / hogget / ned / av / et / selskap",
+    "english": "The forest was felled by a company.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "news"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Skogen ble hogget ned av et selskap."
+  },
+  {
+    "id": "b1-pas-026",
+    "norwegian": "Veien / ble / stengt / på / grunn av / flom",
+    "english": "The road was closed due to flooding.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Veien ble stengt på grunn av flom."
+  },
+  {
+    "id": "b1-pas-027",
+    "norwegian": "Det bes om at passasjerene venter ved gate B.",
+    "english": "Passengers are asked to wait at gate B.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-030",
+    "norwegian": "Kandidaten / ble / valgt / av / et / flertall",
+    "english": "The candidate was elected by a majority.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "news"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Kandidaten ble valgt av et flertall."
+  },
+  {
+    "id": "b1-sub-004",
+    "norwegian": "Jeg skulle ønske det ikke regnet så mye her.",
+    "english": "I wish it didn't rain so much here.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-011",
+    "norwegian": "Det ville vært _____ (godt) om vi fikk litt varmere vær.",
+    "english": "It would be great if we got a bit warmer weather.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "godt"
+  },
+  {
+    "id": "b1-sub-024",
+    "norwegian": "Jeg skulle ønske maten her ikke var så dyr.",
+    "english": "I wish the food here wasn't so expensive.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "food",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-001",
+    "norwegian": "Det vet du jo at vi alltid spiser middag klokka fem.",
+    "english": "You know, of course, that we always eat dinner at five.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-003",
+    "norwegian": "Det er vel ikke så farlig om vi kommer litt sent?",
+    "english": "It's probably not such a big deal if we arrive a bit late?",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-005",
+    "norwegian": "Altså, jeg forstår ikke hvorfor de ikke svarte.",
+    "english": "So, I don't understand why they didn't reply.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-009",
+    "norwegian": "Jeg vet jo at det er vanskelig, men vi må prøve.",
+    "english": "I know, of course, that it is difficult, but we have to try.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-010",
+    "norwegian": "Det er _____ (vel/da) ikke verdt å stresse over det?",
+    "english": "It's probably not worth stressing about that?",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "vel"
+  },
+  {
+    "id": "b1-dm-016",
+    "norwegian": "jo / du / at / vet / bergen / er / kjent / for / regnet",
+    "english": "You know, of course, that Bergen is famous for the rain.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Du vet jo at Bergen er kjent for regnet."
+  },
+  {
+    "id": "b1-dm-018",
+    "norwegian": "Altså, jeg synes det er litt for mye lekser.",
+    "english": "I mean, I think there is a bit too much homework.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "education"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-021",
+    "norwegian": "det / er / jo / ikke / gratis / dette",
+    "english": "This isn't free, you know.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Det er jo ikke gratis, dette."
+  },
+  {
+    "id": "b1-dm-023",
+    "norwegian": "Du vet jo at jeg ikke liker når du gjør det.",
+    "english": "You know very well that I don't like it when you do that.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-024",
+    "norwegian": "Altså, det her er _____ (da/jo) ikke normalt.",
+    "english": "I mean, this is really not normal.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "da"
+  },
+  {
+    "id": "b1-dm-025",
+    "norwegian": "Det er nok ikke så enkelt som det ser ut.",
+    "english": "It's probably not as simple as it looks.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dm-026",
+    "norwegian": "altså / jeg / ikke / skjønner / det / her",
+    "english": "I just don't get this.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "education"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Altså, jeg skjønner ikke det her."
+  },
+  {
+    "id": "b1-dm-030",
+    "norwegian": "Altså, det er da klart at vi må finne en bedre løsning.",
+    "english": "So, it's clear that we need to find a better solution.",
+    "concept_ids": [
+      "discourse-markers"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-001",
+    "norwegian": "Jeg ga opp å lære kinesisk etter tre måneder.",
+    "english": "I gave up trying to learn Chinese after three months.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "education",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-002",
+    "norwegian": "Vi fant _____ (ut/opp) at toget var kansellert.",
+    "english": "We found out that the train was cancelled.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ut"
+  },
+  {
+    "id": "b1-pv-003",
+    "norwegian": "Han tok av seg jakken og satte seg ned.",
+    "english": "He took off his jacket and sat down.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-005",
+    "norwegian": "De slo seg ned i en liten by utenfor Stavanger.",
+    "english": "They settled down in a small town outside Stavanger.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-007",
+    "norwegian": "Jeg finner ikke ut av denne oppgaven.",
+    "english": "I can't figure out this task.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "education",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-009",
+    "norwegian": "Han ga ikke opp selv om det var vanskelig.",
+    "english": "He didn't give up even though it was difficult.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-011",
+    "norwegian": "Hun stod opp klokka seks og jogget en runde.",
+    "english": "She got up at six and went for a jog.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "hobbies"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-013",
+    "norwegian": "De slo seg ned i Oslo etter å ha bodd i utlandet.",
+    "english": "They settled in Oslo after having lived abroad.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-015",
+    "norwegian": "Vi måtte gi opp planen på grunn av dårlig vær.",
+    "english": "We had to give up the plan because of bad weather.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-018",
+    "norwegian": "Jeg stod opp for å hjelpe den eldre damen på bussen.",
+    "english": "I stood up to help the elderly lady on the bus.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-019",
+    "norwegian": "Vi fant til slutt _____ (ut/av) hvem som hadde sendt pakken.",
+    "english": "We finally found out who had sent the parcel.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ut"
+  },
+  {
+    "id": "b1-pv-020",
+    "norwegian": "Han tok av seg hatten og hilste pent.",
+    "english": "He took off his hat and greeted politely.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-023",
+    "norwegian": "De fant ut at prisen hadde gått opp med ti prosent.",
+    "english": "They found out that the price had risen by ten percent.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "news"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-025",
+    "norwegian": "Ikke gi opp — du er nesten i mål.",
+    "english": "Don't give up — you're almost at the finish line.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "hobbies",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-027",
+    "norwegian": "Han tok av seg brillene og gned seg i øynene.",
+    "english": "He took off his glasses and rubbed his eyes.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pv-030",
+    "norwegian": "jeg / fant / ut / at / bussen / ikke / gikk / på / søndag",
+    "english": "I found out that the bus didn't run on Sundays.",
+    "concept_ids": [
+      "phrasal-verbs"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "preposition",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Jeg fant ut at bussen ikke gikk på søndag."
+  },
+  {
+    "id": "b1-dd-016",
+    "norwegian": "den / varme / suppen / smaker / godt / på / kalde / dager",
+    "english": "The warm soup tastes good on cold days.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "food",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Den varme suppen smaker godt på kalde dager."
+  },
+  {
+    "id": "b1-dd-019",
+    "norwegian": "Han likte ikke _____ (hard) madrassen på hotellet.",
+    "english": "He didn't like the hard mattress at the hotel.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "den harde"
+  },
+  {
+    "id": "b1-dd-021",
+    "norwegian": "det / gamle / trehuset / ved / elven / er / fremdeles / vakkert",
+    "english": "The old wooden house by the river is still beautiful.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Det gamle trehuset ved elven er fremdeles vakkert."
+  },
+  {
+    "id": "b1-dd-026",
+    "norwegian": "de / nye / naboene / i / blokken / er / veldig / hyggelige",
+    "english": "The new neighbours in the building are very friendly.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "article-use",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "De nye naboene i blokken er veldig hyggelige."
+  },
+  {
+    "id": "b1-cx-001",
+    "norwegian": "Selv om det regnet, bestemte vi oss for å gå tur.",
+    "english": "Even though it was raining, we decided to go for a walk.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "weather",
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-002",
+    "norwegian": "Jeg vet ikke om hun kommer, men hvis hun gjør det, blir vi veldig glade.",
+    "english": "I don't know if she is coming, but if she does, we will be very happy.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-003",
+    "norwegian": "Han sa at han ikke visste _____ (når/om) bussen gikk.",
+    "english": "He said he didn't know when the bus left.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "når"
+  },
+  {
+    "id": "b1-cx-004",
+    "norwegian": "Fordi hun hadde glemt lommeboken hjemme, måtte han betale for henne.",
+    "english": "Because she had forgotten her wallet at home, he had to pay for her.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-005",
+    "norwegian": "Selv om jeg er trøtt, _____ (klare/ville) jeg å fullføre arbeidet.",
+    "english": "Even though I am tired, I will manage to finish the work.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "klarer"
+  },
+  {
+    "id": "b1-cx-006",
+    "norwegian": "Dersom du øver hver dag, vil du bli mye bedre.",
+    "english": "If you practise every day, you will get much better.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "education",
+      "hobbies"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-007",
+    "norwegian": "Han ble overrasket da han hørte at kollegaen _____ (slutte) jobben.",
+    "english": "He was surprised when he heard that his colleague had quit the job.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hadde sluttet"
+  },
+  {
+    "id": "b1-cx-009",
+    "norwegian": "Læreren forklarte at det var viktig at alle _____ (møte) opp i tide.",
+    "english": "The teacher explained that it was important that everyone turned up on time.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "møtte"
+  },
+  {
+    "id": "b1-cx-012",
+    "norwegian": "Hun jobbet hardt slik at hun _____ (kunne) ta fri i jula.",
+    "english": "She worked hard so that she could take time off at Christmas.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "family"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "kunne"
+  },
+  {
+    "id": "b1-cx-013",
+    "norwegian": "Mens barna sov, laget foreldrene julaften-middag.",
+    "english": "While the children slept, the parents made the Christmas Eve dinner.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "family",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-014",
+    "norwegian": "Vi ble enige om at vi skulle dra til hytta, _____ (men/selv om) ikke alle var med.",
+    "english": "We agreed to go to the cabin, even though not everyone was coming.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "family"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "selv om"
+  },
+  {
+    "id": "b1-cx-017",
+    "norwegian": "Når jeg er ferdig med eksamen, _____ (planlegge) jeg en lang ferie.",
+    "english": "When I am done with the exam, I am planning a long holiday.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "education",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "planlegger"
+  },
+  {
+    "id": "b1-cx-019",
+    "norwegian": "Siden vi ikke hadde bil, _____ (måtte) vi ta bussen begge veier.",
+    "english": "Since we didn't have a car, we had to take the bus both ways.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "måtte"
+  },
+  {
+    "id": "b1-cx-020",
+    "norwegian": "Selv om hun var nervøs, holdt hun en flott presentasjon.",
+    "english": "Even though she was nervous, she gave an excellent presentation.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-022",
+    "norwegian": "Han trengte mer tid fordi oppgaven _____ (vise seg) å være vanskeligere enn han trodde.",
+    "english": "He needed more time because the task turned out to be harder than he thought.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "viste seg"
+  },
+  {
+    "id": "b1-cx-024",
+    "norwegian": "Vi skjønte ikke hva som hadde _____ (skje) før vi så nyhetene.",
+    "english": "We didn't understand what had happened until we watched the news.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "news",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skjedd"
+  },
+  {
+    "id": "b1-cx-025",
+    "norwegian": "Innen du er ferdig med å lese den, vil du forstå mye mer.",
+    "english": "By the time you finish reading it, you will understand much more.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "education",
+      "hobbies"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-027",
+    "norwegian": "Hun bestemte seg for å ta eksamen selv om hun ikke _____ (føle) seg klar.",
+    "english": "She decided to take the exam even though she didn't feel ready.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "education",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "følte"
+  },
+  {
+    "id": "b1-cx-029",
+    "norwegian": "Vi spiste ute siden det var _____ (fint) vær og restauranten hadde uteservering.",
+    "english": "We ate out since the weather was nice and the restaurant had outdoor seating.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "food",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "fint"
+  },
+  {
+    "id": "b1-cx-030",
+    "norwegian": "Han forklarte at han ikke kunne komme fordi han var syk, men at han ville prøve å delta på neste møte.",
+    "english": "He explained that he couldn't come because he was ill, but that he would try to attend the next meeting.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-001",
+    "norwegian": "Søknaden sendes per e-post til personalavdelingen.",
+    "english": "The application is sent by email to the HR department.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-002",
+    "norwegian": "Kan _____ (De/du) vennligst fylle ut skjemaet?",
+    "english": "Could you kindly fill in the form? (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "De"
+  },
+  {
+    "id": "b1-fr-004",
+    "norwegian": "Vi ber _____ (Dem/deg) om å bekrefte avtalen skriftlig.",
+    "english": "We ask you to confirm the agreement in writing. (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Dem"
+  },
+  {
+    "id": "b1-fr-005",
+    "norwegian": "Det bes om at alle passasjerer er ombord senest ti minutter før avgang.",
+    "english": "All passengers are requested to be on board at least ten minutes before departure.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-006",
+    "norwegian": "Vedrørende _____ (din/Deres) forespørsel av 3. mai:",
+    "english": "Regarding your enquiry of 3 May: (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Deres"
+  },
+  {
+    "id": "b1-fr-007",
+    "norwegian": "Jeg skriver for å søke på stillingen som markedskoordinator.",
+    "english": "I am writing to apply for the position of marketing coordinator.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-008",
+    "norwegian": "Kunden bes om å _____ (oppgi/si) referansenummeret ved henvendelse.",
+    "english": "Customers are requested to provide the reference number when enquiring.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "oppgi"
+  },
+  {
+    "id": "b1-fr-011",
+    "norwegian": "Vi tillater oss å minne om at fakturaen forfaller 30. mai.",
+    "english": "We take the liberty of reminding you that the invoice falls due on 30 May.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-012",
+    "norwegian": "Har _____ (De/du) anledning til å møte oss på mandag klokka ti?",
+    "english": "Are you available to meet us on Monday at ten? (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "De"
+  },
+  {
+    "id": "b1-fr-013",
+    "norwegian": "Hei Marte! Er du ledig på fredag kveld?",
+    "english": "Hi Marte! Are you free on Friday evening?",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-014",
+    "norwegian": "Kjære _____ (Herr/Hei) Andersen, vi bekrefter mottak av Deres brev.",
+    "english": "Dear Mr Andersen, we confirm receipt of your letter.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Herr"
+  },
+  {
+    "id": "b1-fr-015",
+    "norwegian": "Det vil bli servert kaffe og kake etter møtet.",
+    "english": "Coffee and cake will be served after the meeting.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-016",
+    "norwegian": "med / vennlig / hilsen / og / takk / for / samarbeidet",
+    "english": "Yours sincerely and thank you for the cooperation.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Med vennlig hilsen og takk for samarbeidet."
+  },
+  {
+    "id": "b1-fr-017",
+    "norwegian": "Vi ber _____ (Dem/dere) om å ta kontakt dersom noe er uklart.",
+    "english": "We ask you to get in touch if anything is unclear. (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Dem"
+  },
+  {
+    "id": "b1-fr-018",
+    "norwegian": "Ansatte bes om å registrere seg i resepsjonen ved ankomst.",
+    "english": "Employees are asked to register at reception on arrival.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-019",
+    "norwegian": "Vi ser frem til _____ (å høre/høre) fra Dem.",
+    "english": "We look forward to hearing from you. (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "å høre"
+  },
+  {
+    "id": "b1-fr-020",
+    "norwegian": "Bistanden ytes i henhold til gjeldende regelverk.",
+    "english": "Assistance is provided in accordance with current regulations.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "news"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-021",
+    "norwegian": "vi / ser / frem / til / å / møte / Dem / på / mandag",
+    "english": "We look forward to meeting you on Monday. (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Vi ser frem til å møte Dem på mandag."
+  },
+  {
+    "id": "b1-fr-022",
+    "norwegian": "Tilbudet gjelder _____ (til/inntil) og med 31. desember.",
+    "english": "The offer is valid up to and including 31 December.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "til"
+  },
+  {
+    "id": "b1-fr-025",
+    "norwegian": "Dokumentene fremlegges i original ved oppmøte.",
+    "english": "Documents are to be presented in original at attendance.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-026",
+    "norwegian": "kunden / bes / om / å / oppgi / navn / og / adresse",
+    "english": "The customer is asked to provide their name and address.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Kunden bes om å oppgi navn og adresse.",
+    "_linguistReview": "ambiguous: all original tags [verb-conjugation, word-order] were outside the valid union; proposed [meaning-misunderstood] from concept-preferred primary — confirm this is the right diagnostic signal for concept(s) [formal-informal-register] (valid union: [meaning-misunderstood, reading-parsing, wrong-word-same-category])"
+  },
+  {
+    "id": "b1-fr-027",
+    "norwegian": "Vi ønsker _____ (Dem/dere) velkommen til årskonferansen.",
+    "english": "We welcome you to the annual conference. (formal)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Dem"
+  },
+  {
+    "id": "b1-fr-028",
+    "norwegian": "Fant du boken du lette etter?",
+    "english": "Did you find the book you were looking for?",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "hobbies",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-029",
+    "norwegian": "Besøkende bes om å _____ (skrive/si) inn i gjestelisten ved inngangen.",
+    "english": "Visitors are requested to sign the guest list at the entrance.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skrive"
+  },
+  {
+    "id": "b1-fr-030",
+    "norwegian": "Vi håper å høre fra Dem og ser frem til videre samarbeid.",
+    "english": "We hope to hear from you and look forward to further cooperation.",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-id-010",
+    "norwegian": "Jeg har ikke _____ (lyst til/lov til) å spise mer kake.",
+    "english": "I don't feel like eating more cake.",
+    "concept_ids": [
+      "idiomatic-expressions"
+    ],
+    "vocab_clusters": [
+      "food"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "lyst til"
+  },
+  {
+    "id": "b1-id-016",
+    "norwegian": "hun / stod / på / og / ble / til slutt / lege",
+    "english": "She persevered and eventually became a doctor.",
+    "concept_ids": [
+      "idiomatic-expressions"
+    ],
+    "vocab_clusters": [
+      "work",
+      "education"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Hun stod på og ble til slutt lege."
+  },
+  {
+    "id": "b1-id-018",
+    "norwegian": "Ta det med ro og ikke stress over dette.",
+    "english": "Take it easy and don't stress about this.",
+    "concept_ids": [
+      "idiomatic-expressions"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-id-021",
+    "norwegian": "ta / det / med / ro / og / spis / litt / mer",
+    "english": "Take it easy and eat a bit more.",
+    "concept_ids": [
+      "idiomatic-expressions"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Ta det med ro og spis litt mer."
+  },
+  {
+    "id": "b1-id-024",
+    "norwegian": "Det er ikke alltid lett å _____ (stå på/ta det med ro) når man er stresset.",
+    "english": "It's not always easy to keep going when you are stressed.",
+    "concept_ids": [
+      "idiomatic-expressions"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "stå på"
+  },
+  {
+    "id": "b1-id-026",
+    "norwegian": "jeg / har / det / bra / nå / etter / en / lang / hvil",
+    "english": "I feel great now after a long rest.",
+    "concept_ids": [
+      "idiomatic-expressions"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "meaning-misunderstood"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "Jeg har det bra nå etter en lang hvil."
+  },
+  {
+    "id": "b1-iq-001",
+    "norwegian": "Han spurte om vi hadde spist allerede.",
+    "english": "He asked if we had already eaten.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "food",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-002",
+    "norwegian": "Jeg lurer på _____ (om/hva) toget er forsinket.",
+    "english": "I wonder if the train is delayed.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "om"
+  },
+  {
+    "id": "b1-iq-004",
+    "norwegian": "Kan du si meg _____ (hva/om) bussen koster?",
+    "english": "Can you tell me how much the bus costs?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hva"
+  },
+  {
+    "id": "b1-iq-005",
+    "norwegian": "Hun lurte på om det var plass til dem på hotellet.",
+    "english": "She wondered if there was room for them at the hotel.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-006",
+    "norwegian": "Jeg vet ikke _____ (hvem/hva) som skal lede møtet.",
+    "english": "I don't know who is going to chair the meeting.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hvem"
+  },
+  {
+    "id": "b1-iq-007",
+    "norwegian": "De spurte om vi ville bli med på tur.",
+    "english": "They asked if we wanted to join the trip.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-008",
+    "norwegian": "Kan du fortelle meg _____ (når/om) butikken stenger?",
+    "english": "Can you tell me when the shop closes?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "når"
+  },
+  {
+    "id": "b1-iq-009",
+    "norwegian": "Jeg lurer på hvorfor han ikke svarte på meldingen.",
+    "english": "I wonder why he didn't reply to the message.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-010",
+    "norwegian": "Hun spurte _____ (om/hvor) det var langt til sentrum.",
+    "english": "She asked if it was far to the city centre.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "om"
+  },
+  {
+    "id": "b1-iq-012",
+    "norwegian": "Jeg er ikke sikker på _____ (om/hva) han snakker sant.",
+    "english": "I'm not sure whether he is telling the truth.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "om"
+  },
+  {
+    "id": "b1-iq-013",
+    "norwegian": "Han visste ikke hvor lenge han hadde sovet.",
+    "english": "He didn't know how long he had been sleeping.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-014",
+    "norwegian": "Kan du forklare meg _____ (hvordan/om) man bruker dette apparatet?",
+    "english": "Can you explain to me how to use this device?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hvordan"
+  },
+  {
+    "id": "b1-iq-015",
+    "norwegian": "De lurte på om prisen inkluderte frokost.",
+    "english": "They wondered if the price included breakfast.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-017",
+    "norwegian": "Jeg spurte ham _____ (hva/om) han jobbet med.",
+    "english": "I asked him what he worked with.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hva"
+  },
+  {
+    "id": "b1-iq-019",
+    "norwegian": "Han fortalte ikke _____ (hvem/om) han hadde snakket med.",
+    "english": "He didn't say who he had spoken to.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hvem"
+  },
+  {
+    "id": "b1-iq-022",
+    "norwegian": "Læreren spurte _____ (om/hva) alle hadde forstått oppgaven.",
+    "english": "The teacher asked whether everyone had understood the task.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "om"
+  },
+  {
+    "id": "b1-iq-023",
+    "norwegian": "Jeg vet ikke hva jeg skal si til ham.",
+    "english": "I don't know what to say to him.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-024",
+    "norwegian": "Hun lurte på _____ (hvorfor/hva) flyet var forsinket.",
+    "english": "She wondered why the plane was delayed.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hvorfor"
+  },
+  {
+    "id": "b1-iq-025",
+    "norwegian": "Han spurte om vi hadde sett passet hans.",
+    "english": "He asked if we had seen his passport.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-027",
+    "norwegian": "Jeg spurte _____ (om/når) hun kunne komme.",
+    "english": "I asked when she could come.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "når"
+  },
+  {
+    "id": "b1-iq-028",
+    "norwegian": "Vi vet ikke hvem som betalte for middagen.",
+    "english": "We don't know who paid for the dinner.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "food",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-029",
+    "norwegian": "Kan du si meg _____ (hvor/om) langt det er til grensen?",
+    "english": "Can you tell me how far it is to the border?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "hvor"
+  }
+]

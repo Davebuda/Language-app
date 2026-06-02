@@ -1,0 +1,110 @@
+[
+  {
+    "norwegian": "Det ligger en bok på bordet.",
+    "english": "There is a book on the table.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1c6fa2d5-eae5-4daf-8418-320946e6a785"
+  },
+  {
+    "norwegian": "Det er et vindu i rommet.",
+    "english": "There is a window in the room.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "557902bd-6a3f-4b7f-974a-b2f431d45195"
+  },
+  {
+    "norwegian": "Han drikker et glass melk.",
+    "english": "He drinks a glass of milk.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "47805a7a-2380-44a3-afc1-aade55d2e8d6"
+  },
+  {
+    "norwegian": "Jeg ser en mann på gaten.",
+    "english": "I see a man on the street.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5e7ffcf8-30d7-422b-bd89-4e43e22e0556"
+  },
+  {
+    "norwegian": "Jeg spiser ___ eple til frokost.",
+    "english": "I eat an apple for breakfast.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "et",
+    "id": "560eb307-19c4-46d8-ae6f-5e89b839c549"
+  },
+  {
+    "norwegian": "Jeg trenger ___ paraply i dag.",
+    "english": "I need an umbrella today.",
+    "concept_ids": [
+      "indefinite-articles"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "en",
+    "id": "b372e8ee-214c-418e-8ae9-e571d4139d67"
+  }
+]

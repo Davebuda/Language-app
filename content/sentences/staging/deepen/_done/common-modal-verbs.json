@@ -1,0 +1,164 @@
+[
+  {
+    "norwegian": "Jeg vil ha et glass vann.",
+    "english": "I want a glass of water.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ab7e3be8-9b99-4129-888b-aa0ec251c5bb"
+  },
+  {
+    "norwegian": "Han må sove nå.",
+    "english": "He must sleep now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "cd20720a-e8be-4a00-b96d-c54af5aeabb7"
+  },
+  {
+    "norwegian": "Kan du vente her?",
+    "english": "Can you wait here?",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dbc580e3-3944-4ab1-8d95-991bc516cdb0"
+  },
+  {
+    "norwegian": "Vi skal spise frokost nå.",
+    "english": "We are going to eat breakfast now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a728909d-c08f-49d2-9f0b-c054d1560fb4"
+  },
+  {
+    "norwegian": "Du kan sitte her.",
+    "english": "You can sit here.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d9b0e214-ead0-412e-bab9-d0981b7f54cc"
+  },
+  {
+    "norwegian": "Jeg må betale for maten.",
+    "english": "I must pay for the food.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "8a202249-72f3-4f57-9895-6a559a423f2b"
+  },
+  {
+    "norwegian": "Hun vil lære norsk.",
+    "english": "She wants to learn Norwegian.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "61cd3ac4-66d0-4ad7-a41d-476183457eb5"
+  },
+  {
+    "norwegian": "Jeg ___ drikke mer vann.",
+    "english": "I should drink more water.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "bør",
+    "id": "13178007-99d6-47ec-ad92-d0a0c1c1b493"
+  },
+  {
+    "norwegian": "Vi ___ gå hjem nå.",
+    "english": "We must go home now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "må",
+    "id": "4131447d-f8d7-4368-bc83-99866f541bfa"
+  }
+]

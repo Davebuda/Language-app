@@ -1,0 +1,433 @@
+[
+ {
+  "norwegian": "Kari ___ brød på butikken.",
+  "english": "Kari buys bread at the shop.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1,
+  "notes": "kjøper"
+ },
+ {
+  "norwegian": "Vi ___ fotball i parken på lørdag.",
+  "english": "We play football in the park on Saturday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1,
+  "notes": "spiller"
+ },
+ {
+  "norwegian": "Læreren ___ en spennende bok for klassen.",
+  "english": "The teacher reads an exciting book to the class.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "leser"
+ },
+ {
+  "norwegian": "Gutten ___ den store gule ballen raskt.",
+  "english": "The boy throws the big yellow ball quickly.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3,
+  "notes": "kaster"
+ },
+ {
+  "norwegian": "Per spiser middag klokken seks.",
+  "english": "Per eats dinner at six o'clock.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hunden spiser maten sin.",
+  "english": "The dog eats its food.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jenta leser en bok i sengen.",
+  "english": "The girl reads a book in bed.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Mora lager frokost til hele familien.",
+  "english": "The mother makes breakfast for the whole family.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Studenten sender e-posten til professoren sin.",
+  "english": "The student sends the email to their professor.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun spiser en banan",
+  "english": "She eats a banana",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De går til parken",
+  "english": "They go to the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg reiser til byen",
+  "english": "I go to the city",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun jobber på kontoret",
+  "english": "She works at the office",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun spiser et eple",
+  "english": "She eats an apple",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "De spiller et spill",
+  "english": "They play a game",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg drar til jobb",
+  "english": "I go to work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De går til kino",
+  "english": "They go to the cinema",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg spiser frokost",
+  "english": "I eat breakfast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun studerer engelsk",
+  "english": "She studies English",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "De er venner",
+  "english": "They are friends",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg spiser lunsj",
+  "english": "I eat lunch",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun studerer språk",
+  "english": "She studies language",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De kjører til jobben.",
+  "english": "They drive to work.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg drar til kinoen.",
+  "english": "I go to the movies.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De spiller musikk.",
+  "english": "They play music.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg ser TV.",
+  "english": "I watch TV",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De spiser frokost.",
+  "english": "They eat breakfast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han skriver et brev.",
+  "english": "He writes a letter",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De synger en sang.",
+  "english": "They sing a song",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun tegner et bilde.",
+  "english": "She draws a picture",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spiller fotball.",
+  "english": "He plays soccer",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun kjøper en gave.",
+  "english": "She buys a gift",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han leser en bok.",
+  "english": "He reads a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tar en dusj.",
+  "english": "He takes a shower",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg bruker en datamaskin.",
+  "english": "I use a computer",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi ser en film.",
+  "english": "We watch a movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kjøper frukt.",
+  "english": "He buys fruit",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order"
+  ],
+  "difficulty": 1
+ }
+]

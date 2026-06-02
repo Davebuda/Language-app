@@ -1,0 +1,548 @@
+[
+ {
+  "norwegian": "Hun sa at hun ___ på jobb neste dag.",
+  "english": "She said that she would be at work the next day.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "skulle"
+ },
+ {
+  "norwegian": "Han fortalte at han ___ veldig trøtt etter jobben.",
+  "english": "He said that he had been very tired after work.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "hadde vært"
+ },
+ {
+  "norwegian": "Hun spurte om jeg ___ komme på festen.",
+  "english": "She asked whether I wanted to come to the party.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "ville"
+ },
+ {
+  "norwegian": "Han fortalte at han ___ opp i Bergen.",
+  "english": "He said that he had grown up in Bergen.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 3,
+  "notes": "hadde vokst opp"
+ },
+ {
+  "norwegian": "Hun sa at hun ikke likte regn.",
+  "english": "She said that she didn't like rain.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spurte om vi hadde spist middag.",
+  "english": "He asked whether we had eaten dinner.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Læreren sa at elevene måtte lese kapittel tre til neste gang.",
+  "english": "The teacher said that the students had to read chapter three for next time.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han fortalte at han kjente henne fra universitetet.",
+  "english": "He said that he knew her from university.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun sa at hun hadde glemt å kjøpe melk.",
+  "english": "She said that she had forgotten to buy milk.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Han sa at han var sulten.",
+  "english": "He said that he was hungry",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg fortalte henne at jeg var lei.",
+  "english": "I told her that I was tired",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De spurte om vi hadde penger.",
+  "english": "They asked if we had money",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Læreren sa at elevene var flinke.",
+  "english": "The teacher said that the students were clever",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Moren fortalte barnet at det var tid for å sove.",
+  "english": "The mother told the child that it was time to sleep",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vennen sa at han hadde vært i Paris.",
+  "english": "The friend said that he had been to Paris",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg sa at jeg ikke hadde sett filmen.",
+  "english": "I said that I had not seen the movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De sa at de kom tilbake i morgen.",
+  "english": "They said that they would come back tomorrow",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spurte om jeg hadde sett hunden.",
+  "english": "He asked if I had seen the dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun fortalte meg at hun hadde funnet en ny jobb.",
+  "english": "She told me that she had found a new job",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg sa at jeg ville møte deg i morgen.",
+  "english": "I said that I would meet you tomorrow",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg fortalte henne at jeg gikk hjem.",
+  "english": "I told her that I went home.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun sa at hun hadde sett filmen.",
+  "english": "She said that she had seen the movie.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vennen min sa at han ville komme.",
+  "english": "My friend said that he would come.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg sa at jeg ikke hadde tid.",
+  "english": "I said that I didn't have time.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De fortalte oss at de skulle reise.",
+  "english": "They told us that they would travel.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spurte meg om jeg hadde sett boken.",
+  "english": "He asked me if I had seen the book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg sa at jeg hadde gjort hjemmelekser.",
+  "english": "I said that I had done my homework.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Læreren sa at elevene skulle være stille.",
+  "english": "The teacher said that the students should be quiet.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun fortalte meg at hun hadde en hund.",
+  "english": "She told me that she had a dog.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han sa at han hadde spist frokost.",
+  "english": "He said that he had eaten breakfast.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Læreren spurte oss om vi hadde lest.",
+  "english": "The teacher asked us if we had read.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "pronoun-choice",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Naboen fortalte oss at bussen ikke gikk på søndag.",
+  "english": "The neighbour told us that the bus did not run on Sunday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Kollegaen min sa at møtet begynte klokken ni.",
+  "english": "My colleague said that the meeting started at nine o'clock.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han spurte om vi ville spise ute i kveld.",
+  "english": "He asked whether we wanted to eat out tonight.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun lurte på om jeg hadde sett nøklene hennes.",
+  "english": "She wondered whether I had seen her keys.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Sjefen fortalte oss at vi ikke trengte å komme tidlig.",
+  "english": "The boss told us that we did not need to come in early.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "De spurte om restauranten hadde et ledig bord.",
+  "english": "They asked whether the restaurant had a free table.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg fortalte ham at jeg ikke kjente veien til stasjonen.",
+  "english": "I told him that I did not know the way to the station.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun ___ om billettene allerede var utsolgt.",
+  "english": "She asked whether the tickets were already sold out.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "spurte"
+ },
+ {
+  "norwegian": "Kameraten min fortalte meg ___ han hadde bestått eksamen.",
+  "english": "My friend told me that he had passed the exam.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "at"
+ }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "norwegian": "Når spiser dere middag?",
+    "english": "When do you (all) eat dinner?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b1ab1285-af76-4d24-b6f9-4b9e4bf21efb"
+  },
+  {
+    "norwegian": "Vil du ha vann?",
+    "english": "Do you want water?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a1783ab9-f35a-4fa6-a2fd-26db1346352b"
+  },
+  {
+    "norwegian": "Hvem lager mat i dag?",
+    "english": "Who is making food today?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "99e46bb9-faf6-4bfc-9c72-419affb329e1"
+  },
+  {
+    "norwegian": "___ kommer bussen?",
+    "english": "When does the bus come?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Når",
+    "id": "53ecffdb-cf61-47d4-acaa-ad4689eedb3f"
+  },
+  {
+    "norwegian": "___ heter læreren din?",
+    "english": "What is your teacher's name?",
+    "concept_ids": [
+      "question-formation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Hva",
+    "id": "1c093c23-8ae0-485d-b763-7481510634ad"
+  }
+]

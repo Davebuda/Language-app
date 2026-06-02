@@ -1,0 +1,182 @@
+[
+  {
+    "norwegian": "Jeg måtte vente i over en time på legekontoret.",
+    "english": "I had to wait for over an hour at the doctor's office.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1e561c7c-0ee0-4794-8bf0-c3457572c66b"
+  },
+  {
+    "norwegian": "Han skulle ha ringt meg, men han glemte det.",
+    "english": "He was supposed to have called me, but he forgot.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "8d446040-ab0c-4b3f-b442-b0d2ef792103"
+  },
+  {
+    "norwegian": "Kunne du hjelpe meg med bagasjen?",
+    "english": "Could you help me with the luggage?",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "7f48b2d0-f395-4541-b262-8a8241214727"
+  },
+  {
+    "norwegian": "Vi ville gjerne ha bestilt bord, men restauranten var full.",
+    "english": "We would have liked to book a table, but the restaurant was full.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b0d8f691-47a6-49b5-a852-efef986b8dd7"
+  },
+  {
+    "norwegian": "Du burde ha pakket regnjakken — nå er du gjennomvåt.",
+    "english": "You should have packed the rain jacket — now you are soaked.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "bf2743eb-4fac-4a29-a024-c90d6d0b3a85"
+  },
+  {
+    "norwegian": "Jeg kunne ikke finne nøklene mine da jeg skulle gå.",
+    "english": "I could not find my keys when I was about to leave.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "f1a26a46-6814-4076-92f2-14e4f3b23ae4"
+  },
+  {
+    "norwegian": "Hun måtte ha glemt avtalen, for hun dukket aldri opp.",
+    "english": "She must have forgotten the appointment, because she never showed up.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b792c40e-35f5-4d18-9a5d-696efc7eb766"
+  },
+  {
+    "norwegian": "Jeg ___ ha kjøpt billetten tidligere — nå er alt utsolgt.",
+    "english": "I should have bought the ticket earlier — now everything is sold out.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "burde",
+    "id": "6950e3ad-532a-44bf-a742-0ee0a6d4d327"
+  },
+  {
+    "norwegian": "Vi ___ gjerne bli lenger, men vi har ikke tid.",
+    "english": "We would gladly stay longer, but we don't have time.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ville",
+    "id": "3da9a766-6cf5-487d-824d-a0feebeb7f1d"
+  },
+  {
+    "norwegian": "Han ___ ha tatt feil buss, for han kom aldri frem.",
+    "english": "He must have taken the wrong bus, because he never arrived.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "måtte",
+    "id": "7cc59956-4a8c-47e8-ac66-b0199450c42a"
+  }
+]

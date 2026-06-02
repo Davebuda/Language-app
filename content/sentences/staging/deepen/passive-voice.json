@@ -1,0 +1,146 @@
+[
+  {
+    "norwegian": "Billettene selges ved inngangen.",
+    "english": "The tickets are sold at the entrance.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4a522ff1-f4d7-4837-95d8-0f8f3a1dfa41"
+  },
+  {
+    "norwegian": "Butikken stenges klokken åtte om kvelden.",
+    "english": "The shop is closed at eight in the evening.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d20bcdb6-d9d7-417c-816d-5c211f150ee8"
+  },
+  {
+    "norwegian": "Pakken ble levert i går ettermiddag.",
+    "english": "The package was delivered yesterday afternoon.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "06ddb2ae-d415-4cc2-9b3c-4077db427f26"
+  },
+  {
+    "norwegian": "Kafeen blir åpnet tidlig på søndager.",
+    "english": "The cafe is opened early on Sundays.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e156578c-fc6e-45d9-8773-7068f80fc03f"
+  },
+  {
+    "norwegian": "Søppelet hentes to ganger i uken.",
+    "english": "The rubbish is collected twice a week.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ca7f3418-54e4-42fb-9c97-2db895ef317d"
+  },
+  {
+    "norwegian": "Bilen ble reparert på verkstedet.",
+    "english": "The car was repaired at the garage.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "abbab0c9-9a8b-43f2-bdfa-f520be4f4915"
+  },
+  {
+    "norwegian": "Middag ___ klokken seks hver dag.",
+    "english": "Dinner is served at six every day.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "serveres",
+    "id": "dbdbf98a-2abb-4061-8cfb-7c48a4a81f2e"
+  },
+  {
+    "norwegian": "Vinduene ___ vasket før helgen.",
+    "english": "The windows were washed before the weekend.",
+    "concept_ids": [
+      "passive-voice"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ble",
+    "id": "a5ee99ab-8276-425d-b558-e90d5d017a75"
+  }
+]

@@ -1,0 +1,506 @@
+[
+ {
+  "norwegian": "Jeg ___ snakke norsk.",
+  "english": "I can speak Norwegian.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "kan"
+ },
+ {
+  "norwegian": "Vi ___ spise middag klokken seks.",
+  "english": "We are going to eat dinner at six o'clock.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "skal"
+ },
+ {
+  "norwegian": "Du ___ vaske hendene før du spiser.",
+  "english": "You must wash your hands before you eat.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2,
+  "notes": "må"
+ },
+ {
+  "norwegian": "Jeg vil gjerne ___ deg i helgen.",
+  "english": "I would really like to meet you at the weekend.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 3,
+  "notes": "møte"
+ },
+ {
+  "norwegian": "Hun kan sykle til jobben.",
+  "english": "She can cycle to work.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vil du ha mer kaffe?",
+  "english": "Do you want more coffee?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barna skal reise til Bergen neste uke.",
+  "english": "The children are going to travel to Bergen next week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Du må ikke snakke høyt på biblioteket.",
+  "english": "You must not speak loudly in the library.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Kan du hjelpe meg med leksene mine i kveld?",
+  "english": "Can you help me with my homework tonight?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Kan jeg ta en kaffe?",
+  "english": "Can I have a coffee?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vil du komme på festen?",
+  "english": "Will you come to the party?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Skal jeg hjelpe deg?",
+  "english": "Shall I help you?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kan spise pizza",
+  "english": "I can eat pizza",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skal gå til butikken",
+  "english": "I will go to the store",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Du må gå til skolen",
+  "english": "You must go to school",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg vil gå til butikken.",
+  "english": "I will go to the store.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du må ta medisinen din",
+  "english": "You must take your medicine.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kan gå til butikken.",
+  "english": "I can go to the store.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil kjøpe melk.",
+  "english": "I will buy milk.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skal ta bussen.",
+  "english": "I will take the bus.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg må gå til skolen.",
+  "english": "I must go to school.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kan skrive på bokmål",
+  "english": "I can write in Bokmål",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil reise til Norge",
+  "english": "I will travel to Norway",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg må studere hver dag",
+  "english": "I must study every day",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kan lære norsk",
+  "english": "I can learn Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg vil gå til skolen",
+  "english": "I will go to school",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg skal reise til byen",
+  "english": "I shall travel to the city",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg må jobbe hardt",
+  "english": "I must work hard",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kan lese en bok",
+  "english": "I can read a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg vil lære å snakke engelsk",
+  "english": "I will learn to speak English",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg skal gå til parken",
+  "english": "I shall go to the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil ha et glass vann.",
+  "english": "I want a glass of water.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han må sove nå.",
+  "english": "He must sleep now.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Kan du vente her?",
+  "english": "Can you wait here?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi skal spise frokost nå.",
+  "english": "We are going to eat breakfast now.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Du kan sitte her.",
+  "english": "You can sit here.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg må betale for maten.",
+  "english": "I must pay for the food.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun vil lære norsk.",
+  "english": "She wants to learn Norwegian.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg ___ drikke mer vann.",
+  "english": "I should drink more water.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": "bør"
+ },
+ {
+  "norwegian": "Vi ___ gå hjem nå.",
+  "english": "We must go home now.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": "må"
+ }
+]

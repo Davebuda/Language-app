@@ -1,0 +1,434 @@
+[
+ {
+  "norwegian": "Jeg ___ en hund som heter Max.",
+  "english": "I have a dog called Max.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "har"
+ },
+ {
+  "norwegian": "De ___ tre barn da de bodde i Oslo.",
+  "english": "They had three children when they lived in Oslo.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "hadde"
+ },
+ {
+  "norwegian": "Hun ___ aldri spist sushi før.",
+  "english": "She has never eaten sushi before.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 2,
+  "notes": "har"
+ },
+ {
+  "norwegian": "Vi ___ ikke nok penger til billetten i går.",
+  "english": "We did not have enough money for the ticket yesterday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 3,
+  "notes": "hadde"
+ },
+ {
+  "norwegian": "Jeg har en rød sykkel utenfor skolen.",
+  "english": "I have a red bicycle outside the school.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har alltid kaffe om morgenen.",
+  "english": "He always has coffee in the morning.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi hadde en fin ferie i sommer.",
+  "english": "We had a lovely holiday this summer.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har bodd i Bergen i to år.",
+  "english": "I have lived in Bergen for two years.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De hadde hatt det veldig travelt den uken.",
+  "english": "They had been very busy that week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun har to barn",
+  "english": "She has two children",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har et hus",
+  "english": "We have a house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har en hund",
+  "english": "He has a dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har en bil",
+  "english": "They have a car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en jobb",
+  "english": "She has a job",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har en billett",
+  "english": "We have a ticket",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har en sykkel",
+  "english": "He has a bike",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en telefon",
+  "english": "I have a phone",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en bok",
+  "english": "She has a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har en bil",
+  "english": "He has a car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du har en sykkel",
+  "english": "You have a bike",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har to hunder",
+  "english": "They have two dogs",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har en tv",
+  "english": "We have a tv",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en klokke",
+  "english": "I have a clock",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en bil",
+  "english": "She has a car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har to barn",
+  "english": "He has two children",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har en hest",
+  "english": "They have a horse",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en telefon",
+  "english": "She has a phone",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har en hund",
+  "english": "They have a dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en veske",
+  "english": "She has a bag",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du har en bok",
+  "english": "You have a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har en familie",
+  "english": "We have a family",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har to barn",
+  "english": "They have two children",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har et kjøkken",
+  "english": "We have a kitchen",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har en hage",
+  "english": "They have a garden",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ }
+]

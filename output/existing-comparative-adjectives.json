@@ -1,0 +1,533 @@
+[
+ {
+  "norwegian": "Oslo er ___ enn Bergen.",
+  "english": "Oslo is bigger than Bergen.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "større"
+ },
+ {
+  "norwegian": "Søsteren min er ___ enn meg.",
+  "english": "My sister is younger than me.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "yngre"
+ },
+ {
+  "norwegian": "Det er ___ å ta toget enn å kjøre.",
+  "english": "It is better to take the train than to drive.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "bedre"
+ },
+ {
+  "norwegian": "Denne veien er ___ enn den andre.",
+  "english": "This road is longer than the other one.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "lengre"
+ },
+ {
+  "norwegian": "Katten er mindre enn hunden.",
+  "english": "The cat is smaller than the dog.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er mer interessant å lese enn å se på TV.",
+  "english": "It is more interesting to read than to watch TV.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Været i dag er verre enn i går.",
+  "english": "The weather today is worse than yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er flere studenter på dette kurset enn på det forrige.",
+  "english": "There are more students on this course than on the previous one.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Dårlig vær er verre enn bra vær",
+  "english": "Bad weather is worse than good weather",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg er kortere enn min bror",
+  "english": "I am shorter than my brother",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset mitt er større enn vennens hus",
+  "english": "My house is bigger than my friend's house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Bilen min er lengre enn naboens bil",
+  "english": "My car is longer than my neighbor's car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vinteren er kaldere enn sommeren",
+  "english": "Winter is colder than summer",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Den store byen er større enn den lille",
+  "english": "The big city is bigger than the small",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Huset er større enn leiligheten.",
+  "english": "The house is bigger than the apartment",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette kjøttet er mer mørt enn det andre.",
+  "english": "This meat is softer than the other",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg løper raskere enn deg.",
+  "english": "I run faster than you",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Været i dag er bedre enn i går.",
+  "english": "The weather today is better than yesterday",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg føler meg mer trøtt enn i går.",
+  "english": "I feel more tired than yesterday",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hunden er mer lojal enn katten.",
+  "english": "The dog is more loyal than the cat",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dagens mat var bedre enn i går.",
+  "english": "Today's food was better than yesterday's",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilen er lengre enn sykkelen.",
+  "english": "The car is longer than the bike",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er mer trøtt enn jeg.",
+  "english": "He is more tired than me",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kvelden var varmere enn dagen.",
+  "english": "The evening was warmer than the day",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boka er mer interessant enn filmen.",
+  "english": "The book is more interesting than the movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det nye huset er større enn det gamle.",
+  "english": "The new house is bigger than the old one",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette året er verre enn forrige år.",
+  "english": "This year is worse than last year",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kaffen er bedre i dag enn i går.",
+  "english": "The coffee is better today than yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har et større hus",
+  "english": "I have a bigger house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset mitt er mer komfortabelt",
+  "english": "My house is more comfortable",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg liker musikken bedre",
+  "english": "I like music more",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Denne jakken er finere enn den andre.",
+  "english": "This jacket is nicer than the other one.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Bussen er billigere enn taxien.",
+  "english": "The bus is cheaper than the taxi.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Broren min er eldre enn meg.",
+  "english": "My brother is older than me.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det nye biblioteket er høyere enn rådhuset.",
+  "english": "The new library is taller than the town hall.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Denne restauranten er mer populær enn den forrige.",
+  "english": "This restaurant is more popular than the previous one.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg er mer nervøs før eksamen enn du er.",
+  "english": "I am more nervous before the exam than you are.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Telefonen er nyere enn datamaskinen.",
+  "english": "The phone is newer than the computer.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Rommet er ___ enn jeg trodde.",
+  "english": "The room is nicer than I thought.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": "finere"
+ },
+ {
+  "norwegian": "Det er ___ å gå enn å sitte hele dagen.",
+  "english": "It is more exciting to walk than to sit all day.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 3,
+  "notes": "mer spennende"
+ }
+]

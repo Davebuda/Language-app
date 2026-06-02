@@ -1,0 +1,470 @@
+[
+ {
+  "norwegian": "Jeg liker ___ lese bøker om kvelden.",
+  "english": "I like to read books in the evening.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "å"
+ },
+ {
+  "norwegian": "Han prøver ___ snakke norsk hver dag.",
+  "english": "He tries to speak Norwegian every day.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "å"
+ },
+ {
+  "norwegian": "Hun begynner ___ forstå grammatikken bedre.",
+  "english": "She is starting to understand the grammar better.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "å"
+ },
+ {
+  "norwegian": "Det er viktig ___ øve på uttale.",
+  "english": "It is important to practise pronunciation.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 3,
+  "notes": "å"
+ },
+ {
+  "norwegian": "Jeg vil gjerne lære å spille gitar.",
+  "english": "I would very much like to learn to play guitar.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Å sove nok er bra for deg.",
+  "english": "Sleeping enough is good for you.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er morsomt å lage mat med venner.",
+  "english": "It is fun to cook with friends.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han husker å ta med nøklene sine.",
+  "english": "He remembers to bring his keys.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er vanskelig å forstå fort snakk.",
+  "english": "It is difficult to understand fast speech.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg vil spise",
+  "english": "I will eat",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun kan svømme",
+  "english": "She can swim",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er fint å lese",
+  "english": "It's nice to read",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han skal sove",
+  "english": "He will sleep",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg må løpe",
+  "english": "I must run",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi vil danse",
+  "english": "We will dance",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du kan sykle",
+  "english": "You can cycle",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er greit å gå",
+  "english": "It's okay to walk",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil tegne",
+  "english": "I will draw",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun skal synge",
+  "english": "She will sing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kan skrive",
+  "english": "He can write",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi må hjelpe",
+  "english": "We must help",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er vanskelig å skrive",
+  "english": "It's hard to write",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun kan sy",
+  "english": "She can sew",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han skal løpe",
+  "english": "He will run",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kan svømme",
+  "english": "I can swim",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du må sove",
+  "english": "You must sleep",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er lett å gå",
+  "english": "It is easy to walk",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg skal skrive",
+  "english": "I will write",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun vil tegne",
+  "english": "She will draw",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skal danse",
+  "english": "I will dance",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kan sykle",
+  "english": "He can cycle",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil åpne",
+  "english": "I will open",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun må løpe",
+  "english": "She must run",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er vanskelig å klatre",
+  "english": "It's hard to climb",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kan tegne",
+  "english": "I can draw",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han vil sove",
+  "english": "He will sleep",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun kan synge",
+  "english": "She can sing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ }
+]

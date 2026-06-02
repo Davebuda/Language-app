@@ -1,0 +1,536 @@
+[
+ {
+  "norwegian": "Du ___ ikke betale for det — det er gratis.",
+  "english": "You don't need to pay for it — it's free.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1,
+  "notes": "trenger"
+ },
+ {
+  "norwegian": "Du ___ spise mer grønnsaker — det er sunt.",
+  "english": "You should eat more vegetables — it's healthy.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1,
+  "notes": "burde"
+ },
+ {
+  "norwegian": "Jeg ___ ikke hoppe fra det høye brettet.",
+  "english": "I don't dare to jump from the high diving board.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2,
+  "notes": "tørr"
+ },
+ {
+  "norwegian": "Jeg ___ ha vært mer forsiktig.",
+  "english": "I should have been more careful.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3,
+  "notes": "burde"
+ },
+ {
+  "norwegian": "Du burde ringe legen hvis du fortsatt har feber.",
+  "english": "You should call the doctor if you still have a fever.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du trenger ikke å hjelpe meg — jeg klarer det selv.",
+  "english": "You don't need to help me — I can manage on my own.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg orker ikke lage middag i dag — vi bestiller pizza.",
+  "english": "I don't have the energy to cook dinner today — we're ordering pizza.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun torde endelig si hva hun mente på møtet.",
+  "english": "She finally dared to say what she thought at the meeting.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi burde ha tatt bussen — bilen var for full.",
+  "english": "We should have taken the bus — the car was too full.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg burde spise mer frukt.",
+  "english": "I should eat more fruit.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg orker ikke å løpe.",
+  "english": "I don't have the energy to run.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg orket å fullføre.",
+  "english": "I had the energy to finish.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg trengte å hvile.",
+  "english": "I needed to rest.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun tørde å si nei.",
+  "english": "She dared to say no.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi orket ikke å vente.",
+  "english": "We didn't have the energy to wait.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun trenger å løse denne oppgaven.",
+  "english": "She needs to solve this task.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg orker ikke å gå lenger.",
+  "english": "I don't have the energy to walk further.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun trenger ikke å kjøpe nye sko.",
+  "english": "She doesn't need to buy new shoes.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tørde å si nei til jobben.",
+  "english": "He dared to say no to the job.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg orket å fullføre maratonløpet.",
+  "english": "I had the energy to finish the marathon.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg burde ha spist mer frokost.",
+  "english": "I should have eaten more breakfast.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun trengte å snakke med noen.",
+  "english": "She needed to talk to someone.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Du trenger å sove mer.",
+  "english": "You need to sleep more.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun tør ikke svømme.",
+  "english": "She doesn't dare to swim.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi burde gå tidligere.",
+  "english": "We should leave earlier.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du trenger ikke kjøpe det.",
+  "english": "You don't need to buy it.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tør prøve.",
+  "english": "He dares to try.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De burde være her.",
+  "english": "They should be here.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tør svømme i havet.",
+  "english": "He dares to swim in the sea.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du burde sove mer.",
+  "english": "You should sleep more.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb",
+   "verb-tense",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg måtte vente i over en time på legekontoret.",
+  "english": "I had to wait for over an hour at the doctor's office.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han skulle ha ringt meg, men han glemte det.",
+  "english": "He was supposed to have called me, but he forgot.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Kunne du hjelpe meg med bagasjen?",
+  "english": "Could you help me with the luggage?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi ville gjerne ha bestilt bord, men restauranten var full.",
+  "english": "We would have liked to book a table, but the restaurant was full.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Du burde ha pakket regnjakken — nå er du gjennomvåt.",
+  "english": "You should have packed the rain jacket — now you are soaked.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg kunne ikke finne nøklene mine da jeg skulle gå.",
+  "english": "I could not find my keys when I was about to leave.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun måtte ha glemt avtalen, for hun dukket aldri opp.",
+  "english": "She must have forgotten the appointment, because she never showed up.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg ___ ha kjøpt billetten tidligere — nå er alt utsolgt.",
+  "english": "I should have bought the ticket earlier — now everything is sold out.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": "burde"
+ },
+ {
+  "norwegian": "Vi ___ gjerne bli lenger, men vi har ikke tid.",
+  "english": "We would gladly stay longer, but we don't have time.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 2,
+  "notes": "ville"
+ },
+ {
+  "norwegian": "Han ___ ha tatt feil buss, for han kom aldri frem.",
+  "english": "He must have taken the wrong bus, because he never arrived.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "modal-verb"
+  ],
+  "difficulty": 3,
+  "notes": "måtte"
+ }
+]

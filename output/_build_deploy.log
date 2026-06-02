@@ -1,0 +1,22 @@
+
+> norskcoach@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.18
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 7.7s
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./src/components/skriv/WriteStep.tsx
+15:19  Error: 'useRef' is defined but never used.  @typescript-eslint/no-unused-vars
+16:18  Error: 'AnimatePresence' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/hooks/useSession.ts
+193:6  Warning: React Hook useCallback has a missing dependency: 'sessionStore'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+238:6  Warning: React Hook useCallback has a missing dependency: 'sentences'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules

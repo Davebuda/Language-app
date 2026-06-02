@@ -1,0 +1,446 @@
+[
+ {
+  "norwegian": "___ bor du?",
+  "english": "Where do you live?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "Hvor"
+ },
+ {
+  "norwegian": "Hva ___ du til frokost?",
+  "english": "What do you have for breakfast?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "spiser"
+ },
+ {
+  "norwegian": "Når ___ toget til Bergen?",
+  "english": "When does the train to Bergen leave?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "går"
+ },
+ {
+  "norwegian": "Hvorfor ___ du ikke lenger i Oslo?",
+  "english": "Why do you no longer live in Oslo?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 3,
+  "notes": "bor"
+ },
+ {
+  "norwegian": "Liker du norsk mat?",
+  "english": "Do you like Norwegian food?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hvem er den mannen der borte?",
+  "english": "Who is that man over there?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hva heter søsteren din?",
+  "english": "What is your sister's name?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hvordan kommer du til jobb om vinteren?",
+  "english": "How do you get to work in winter?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Snakker du norsk eller bruker du tolk?",
+  "english": "Do you speak Norwegian or do you use an interpreter?",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Liker du kaffe?",
+  "english": "Do you like coffee?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bor du i Oslo?",
+  "english": "Do you live in Oslo?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hva spiser du?",
+  "english": "What are you eating?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Har du hund?",
+  "english": "Do you have a dog?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kan du svømme?",
+  "english": "Can you swim?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Er du glad?",
+  "english": "Are you happy?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hvor bor du?",
+  "english": "Where do you live?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Liker du musikk?",
+  "english": "Do you like music?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Har du bil?",
+  "english": "Do you have a car?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kan du sykle?",
+  "english": "Can you cycle?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Er du sulten?",
+  "english": "Are you hungry?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hva gjør du?",
+  "english": "What are you doing?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bor du her?",
+  "english": "Do you live here?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hvor bor han?",
+  "english": "Where does he live?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hva heter du?",
+  "english": "What is your name?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Liker han te?",
+  "english": "Does he like tea?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Er du syk?",
+  "english": "Are you sick?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Spiser du frokost?",
+  "english": "Are you eating breakfast?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bor han i Oslo?",
+  "english": "Does he live in Oslo?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Er hun syk?",
+  "english": "Is she ill?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hva gjør han?",
+  "english": "What is he doing?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bor du hjemme?",
+  "english": "Do you live at home?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Liker hun film?",
+  "english": "Does she like movies?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kjøper du en bil?",
+  "english": "Are you buying a car?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Har du en hund?",
+  "english": "Do you have a dog?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Liker hun fisk?",
+  "english": "Does she like fish?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ }
+]

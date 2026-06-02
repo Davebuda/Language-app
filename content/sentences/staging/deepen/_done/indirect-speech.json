@@ -1,0 +1,182 @@
+[
+  {
+    "norwegian": "Naboen fortalte oss at bussen ikke gikk på søndag.",
+    "english": "The neighbour told us that the bus did not run on Sunday.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "subordinator-at"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3af448f5-9d5a-426e-b3c0-f2ee36688293"
+  },
+  {
+    "norwegian": "Kollegaen min sa at møtet begynte klokken ni.",
+    "english": "My colleague said that the meeting started at nine o'clock.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "subordinator-at"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c3fdf79a-3521-4032-a6ad-b7ed7a958a38"
+  },
+  {
+    "norwegian": "Han spurte om vi ville spise ute i kveld.",
+    "english": "He asked whether we wanted to eat out tonight.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "subordinator-om"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "bb0eacb4-de1b-44c8-a2dc-0db51022b37b"
+  },
+  {
+    "norwegian": "Hun lurte på om jeg hadde sett nøklene hennes.",
+    "english": "She wondered whether I had seen her keys.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "subordinator-om"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "6c57e32e-39c7-44d6-b5f8-8ff5501a88c8"
+  },
+  {
+    "norwegian": "Sjefen fortalte oss at vi ikke trengte å komme tidlig.",
+    "english": "The boss told us that we did not need to come in early.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "negation-placement",
+      "subordinator-at"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4b47d339-6805-4687-b826-f43399479719"
+  },
+  {
+    "norwegian": "De spurte om restauranten hadde et ledig bord.",
+    "english": "They asked whether the restaurant had a free table.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "subordinator-om"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a46cb011-aa19-435b-b0fa-8948384a9554"
+  },
+  {
+    "norwegian": "Jeg fortalte ham at jeg ikke kjente veien til stasjonen.",
+    "english": "I told him that I did not know the way to the station.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "negation-placement",
+      "subordinator-at"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "67a9912c-64d0-4ff2-bdea-07844f9cca13"
+  },
+  {
+    "norwegian": "Hun ___ om billettene allerede var utsolgt.",
+    "english": "She asked whether the tickets were already sold out.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "reporting-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "spurte",
+    "id": "f394ff3b-2ea2-47a6-b684-9ab374cca0c7"
+  },
+  {
+    "norwegian": "Kameraten min fortalte meg ___ han hadde bestått eksamen.",
+    "english": "My friend told me that he had passed the exam.",
+    "concept_ids": [
+      "indirect-speech"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order",
+      "subordinator-at"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "at",
+    "id": "7dcfdee1-6281-491a-8bb7-0c373954f8c7"
+  }
+]

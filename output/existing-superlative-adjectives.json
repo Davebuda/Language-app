@@ -1,0 +1,442 @@
+[
+ {
+  "norwegian": "Det er det ___ hotellet i byen.",
+  "english": "It is the best hotel in the city.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "beste"
+ },
+ {
+  "norwegian": "Han er den ___ gutten i klassen.",
+  "english": "He is the tallest boy in the class.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "høyeste"
+ },
+ {
+  "norwegian": "Dette er den ___ veien til sentrum.",
+  "english": "This is the shortest way to the city centre.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "korteste"
+ },
+ {
+  "norwegian": "Det er det ___ været vi har hatt på lenge.",
+  "english": "It is the worst weather we have had in a long time.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "verste"
+ },
+ {
+  "norwegian": "Everest er det høyeste fjellet i verden.",
+  "english": "Everest is the highest mountain in the world.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er den beste eleven i skolen.",
+  "english": "She is the best pupil in the school.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er den lengste dagen i året.",
+  "english": "This is the longest day of the year.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Flest studenter foretrekker å studere om morgenen.",
+  "english": "Most students prefer to study in the morning.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Den minste leiligheten i bygget er likevel den dyreste.",
+  "english": "The smallest apartment in the building is nonetheless the most expensive.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Boken er mest interessant",
+  "english": "The book is the most interesting",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Forfatteren skriver den mest populære boka",
+  "english": "The author writes the most popular book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Biblioteket har flest bøker",
+  "english": "The library has the most books",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Romanen er den beste",
+  "english": "The novel is the best",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun er den vakreste",
+  "english": "She is the most beautiful",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har det største huset",
+  "english": "I have the largest house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vannet er det varmeste i elven",
+  "english": "The water is the warmest in the river",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken er den lengste på hyllen",
+  "english": "The book is the longest on the shelf",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Huset er det høyeste i nabolaget",
+  "english": "The house is the highest in the neighborhood",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Huset er det største",
+  "english": "The house is the biggest",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken er den lengste",
+  "english": "The book is the longest",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har den største",
+  "english": "I have the biggest",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi har den mest komfortable",
+  "english": "We have the most comfortable",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De er de raskeste",
+  "english": "They are the fastest",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er det største huset i gaten.",
+  "english": "This is the biggest house on the street.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun er den flinkeste i klassen.",
+  "english": "She is the most skilled in the class.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Galdhøpiggen er det høyeste fjellet i Norge.",
+  "english": "Galdhøpiggen is the highest mountain in Norway.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Denne boken er den beste jeg har lest.",
+  "english": "This book is the best I have read.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han er den yngste i familien.",
+  "english": "He is the youngest in the family.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Sommeren er den varmeste årstiden.",
+  "english": "Summer is the warmest season.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det var den verste dagen i mitt liv.",
+  "english": "It was the worst day of my life.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hvem er sterkest av dere?",
+  "english": "Who is the strongest of you?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er den minste byen i landet.",
+  "english": "This is the smallest town in the country.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "article-use",
+   "spelling"
+  ],
+  "difficulty": 2
+ }
+]

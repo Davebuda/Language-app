@@ -1,0 +1,498 @@
+[
+ {
+  "norwegian": "Jeg ___ veldig trøtt etter jobben.",
+  "english": "I am very tired after work.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "er"
+ },
+ {
+  "norwegian": "Hun ___ ikke hjemme da jeg ringte.",
+  "english": "She was not home when I called.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "var"
+ },
+ {
+  "norwegian": "Det har aldri ___ kaldt her om sommeren.",
+  "english": "It has never been cold here in summer.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 2,
+  "notes": "vært"
+ },
+ {
+  "norwegian": "Hvor lenge har du ___ lærer?",
+  "english": "How long have you been a teacher?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 3,
+  "notes": "vært"
+ },
+ {
+  "norwegian": "Butikken er åpen til klokken åtte.",
+  "english": "The shop is open until eight o'clock.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han var syk hele forrige uke.",
+  "english": "He was ill all of last week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er mange folk på torget lørdag morgen.",
+  "english": "There are many people at the market on Saturday morning.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg er lærer.",
+  "english": "I am a teacher.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er hjemme.",
+  "english": "She is at home.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi er venner.",
+  "english": "We are friends.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er student.",
+  "english": "He is a student.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er boken.",
+  "english": "This is the book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er syk.",
+  "english": "I am sick.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du er norsk.",
+  "english": "You are Norwegian.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er lærerinne.",
+  "english": "She is a teacher.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi er her.",
+  "english": "We are here.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er huset.",
+  "english": "This is the house.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er glad.",
+  "english": "He is happy.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er trøtt.",
+  "english": "I am tired.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er glad.",
+  "english": "I am happy.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du er stor.",
+  "english": "You are big.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er en bil.",
+  "english": "It is a car.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er syk.",
+  "english": "She is sick.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er ung.",
+  "english": "He is young.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er kaldt.",
+  "english": "It is cold.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er syk.",
+  "english": "He is sick.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er en bil.",
+  "english": "This is a car.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er student.",
+  "english": "She is a student.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er en hund.",
+  "english": "It is a dog.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er norsk.",
+  "english": "He is Norwegian.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er sulten.",
+  "english": "I am hungry.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er en stol.",
+  "english": "This is a chair.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation",
+   "verb-tense"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kaffen er varm og god.",
+  "english": "The coffee is warm and good.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg er ikke sulten nå.",
+  "english": "I am not hungry now.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "De er ikke hjemme i dag.",
+  "english": "They are not home today.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Er du fra Norge?",
+  "english": "Are you from Norway?",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er fint vær i dag.",
+  "english": "The weather is nice today.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Rommet er lite, men det er koselig.",
+  "english": "The room is small, but it is cosy.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Skolen ___ ikke langt fra her.",
+  "english": "The school is not far from here.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 2,
+  "notes": "er"
+ },
+ {
+  "norwegian": "Barna ___ veldig trøtte etter skolen.",
+  "english": "The children are very tired after school.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-conjugation"
+  ],
+  "difficulty": 2,
+  "notes": "er"
+ }
+]

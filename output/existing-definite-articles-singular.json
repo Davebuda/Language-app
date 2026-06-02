@@ -1,0 +1,470 @@
+[
+ {
+  "norwegian": "Kan du lukke ___?",
+  "english": "Can you close the door?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1,
+  "notes": "døra"
+ },
+ {
+  "norwegian": "Jeg ser ___ fra vinduet.",
+  "english": "I can see the mountain from the window.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1,
+  "notes": "fjellet"
+ },
+ {
+  "norwegian": "Hunden sover under ___.",
+  "english": "The dog is sleeping under the table.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 2,
+  "notes": "bordet"
+ },
+ {
+  "norwegian": "Hvem tok ___?",
+  "english": "Who took the newspaper?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 3,
+  "notes": "avisa"
+ },
+ {
+  "norwegian": "Bilen er rød.",
+  "english": "The car is red.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten sitter på stolen.",
+  "english": "The cat is sitting on the chair.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset er veldig gammelt.",
+  "english": "The house is very old.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jenta spiller piano om kvelden.",
+  "english": "The girl plays piano in the evening.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Læreren forklarer leksen til elevene.",
+  "english": "The teacher explains the lesson to the students.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg leser boken.",
+  "english": "I read the book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han åpner døren.",
+  "english": "He opens the door.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten sover.",
+  "english": "The cat sleeps.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset står på fjellet.",
+  "english": "The house stands on the mountain.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser huset.",
+  "english": "I see the house.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jenta har boken.",
+  "english": "The girl has the book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg åpner døren",
+  "english": "I open the door",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spiser eplet",
+  "english": "He eats the apple",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg lukker døren",
+  "english": "I close the door",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten sover i senga",
+  "english": "The cat sleeps in the bed",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han leser boken",
+  "english": "He reads the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser bilen",
+  "english": "I see the car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun synger sangen",
+  "english": "She sings the song",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spiser brødet",
+  "english": "He eats the bread",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jenta leker",
+  "english": "The girl is playing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har hunden",
+  "english": "She has the dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har boken",
+  "english": "He has the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg åpner vinduet",
+  "english": "I open the window",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun åpner døren",
+  "english": "She opens the door",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten sover i huset",
+  "english": "The cat sleeps in the house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tar bilen",
+  "english": "He takes the car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun holder hunden",
+  "english": "She holds the dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skriver i boken",
+  "english": "I write in the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han lukker vinduet",
+  "english": "He closes the window",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har bilen",
+  "english": "She has the car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har boken",
+  "english": "I have the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kjører bilen",
+  "english": "He drives the car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tar boksen",
+  "english": "He takes the box",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender"
+  ],
+  "difficulty": 1
+ }
+]

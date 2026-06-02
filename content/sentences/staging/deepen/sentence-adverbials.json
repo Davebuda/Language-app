@@ -1,0 +1,164 @@
+[
+  {
+    "norwegian": "Dessverre er toget allerede gått.",
+    "english": "Unfortunately, the train has already left.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "39e44142-d2b9-4808-adea-f6d1db699dd4"
+  },
+  {
+    "norwegian": "Heldigvis fant hun lommeboken sin på benken.",
+    "english": "Luckily, she found her wallet on the bench.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "2e62b9c9-3727-44dc-aff0-577fef13aac5"
+  },
+  {
+    "norwegian": "Faktisk liker jeg ikke kaffe.",
+    "english": "Actually, I don't like coffee.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "8854dbde-1936-4f23-916b-08103ae089f5"
+  },
+  {
+    "norwegian": "Sannsynligvis kommer hun ikke på festen i kveld.",
+    "english": "She probably won't come to the party tonight.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5890398c-91c2-4427-9542-ffe8e0d98701"
+  },
+  {
+    "norwegian": "Jeg er glad for at han heldigvis ikke ble skadet.",
+    "english": "I'm glad that he luckily wasn't hurt.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "6ecff152-3b75-4f3a-a0d0-65d29072f54c"
+  },
+  {
+    "norwegian": "Det er synd at hun dessverre ikke kan hjelpe oss.",
+    "english": "It's a shame that she unfortunately can't help us.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c6cd9796-be2e-43ef-bb15-0729b148669a"
+  },
+  {
+    "norwegian": "Jeg tror at han faktisk aldri har vært i Bergen.",
+    "english": "I think that he actually has never been to Bergen.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "d1da03b2-3578-4d19-8119-83405cb49ab9"
+  },
+  {
+    "norwegian": "Bussen er ___ forsinket i dag.",
+    "english": "The bus is unfortunately delayed today.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "dessverre",
+    "id": "b50e4b4b-e53a-4238-ba24-65dbfcb9acc9"
+  },
+  {
+    "norwegian": "Jeg er glad for at bussen ___ kom i tide.",
+    "english": "I'm glad that the bus luckily came on time.",
+    "concept_ids": [
+      "sentence-adverbials"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "heldigvis",
+    "id": "99b8e71b-32cf-4ce0-8ee3-cae94e6509dd"
+  }
+]

@@ -1,0 +1,498 @@
+[
+ {
+  "norwegian": "Jeg liker ___ kaffe om morgenen.",
+  "english": "I do not like coffee in the morning.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "Han spiser ___ kjøtt.",
+  "english": "He does not eat meat.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "Hun sier at hun ___ forstår spørsmålet.",
+  "english": "She says that she does not understand the question.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "Jeg vet at han ___ kommer hit i dag.",
+  "english": "I know that he is not coming here today.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "Jeg liker ikke å stå opp tidlig.",
+  "english": "I do not like getting up early.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi snakker ikke russisk hjemme.",
+  "english": "We do not speak Russian at home.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kommer ikke fordi han er syk.",
+  "english": "He is not coming because he is ill.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg vil ikke ha en kopp te",
+  "english": "I will not have a cup of tea",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun er ikke hjemme",
+  "english": "She is not at home",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi har ikke biler",
+  "english": "We have no cars",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Han er ikke i rommet",
+  "english": "He is not in the room",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun skriver ikke brevet",
+  "english": "She does not write the letter",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi går ikke til kinoen",
+  "english": "We do not go to the cinema",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg liker ikke pizza",
+  "english": "I do not like pizza",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er ikke i butikken",
+  "english": "He is not in the store",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Vi går ikke til stranden",
+  "english": "We do not go to the beach",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg liker ikke katten",
+  "english": "I do not like the cat",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil ikke lese",
+  "english": "I will not read",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "De liker ikke musikk",
+  "english": "They don't like music",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De prøver ikke å være venner",
+  "english": "They try not to be friends",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De ønsker ikke å dra hjem",
+  "english": "They don't want to go home",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg liker ikke kaffe",
+  "english": "I do not like coffee",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han spiser ikke frokost",
+  "english": "He does not eat breakfast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun løper ikke raskt",
+  "english": "She does not run fast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi danser ikke godt",
+  "english": "We do not dance well",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De synger ikke høyt",
+  "english": "They do not sing loudly",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg forstår ikke norsk",
+  "english": "I do not understand Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han leser ikke bøker",
+  "english": "He does not read books",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har ikke hund",
+  "english": "She does not have a dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har ikke bil",
+  "english": "We do not have a car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De spiser ikke middag",
+  "english": "They do not eat dinner",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han liker ikke film",
+  "english": "He does not like movies",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun liker ikke hunder",
+  "english": "She doesn't like dogs",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg drikker ikke vann om morgenen.",
+  "english": "I do not drink water in the morning.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun jobber ikke på mandag.",
+  "english": "She does not work on Monday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han snakker ___ norsk.",
+  "english": "He does not speak Norwegian.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 1,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "Vi bor ikke i Bergen.",
+  "english": "We do not live in Bergen.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg kjenner ___ ham.",
+  "english": "I do not know him.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 2,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "De har ikke penger til billetten.",
+  "english": "They do not have money for the ticket.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg tar ikke bussen til skolen.",
+  "english": "I do not take the bus to school.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ }
+]

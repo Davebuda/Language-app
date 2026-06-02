@@ -1,0 +1,56 @@
+[
+  {
+    "norwegian": "Jakken min er blå.",
+    "english": "My jacket is blue.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1231fefa-1f60-4c1d-86f8-29deeee4bd66"
+  },
+  {
+    "norwegian": "Telefonen hennes er på bordet.",
+    "english": "Her phone is on the table.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dec25cd2-0974-48cd-b297-08dd449877a9"
+  },
+  {
+    "norwegian": "Sekken ___ er tung.",
+    "english": "Our bag is heavy.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "vår",
+    "id": "a418c633-b86d-4977-93b2-09a66ae59831"
+  }
+]

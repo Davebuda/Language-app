@@ -1,0 +1,429 @@
+[
+ {
+  "norwegian": "Han kommer ___ på torsdag.",
+  "english": "He will probably come on Thursday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "kanskje"
+ },
+ {
+  "norwegian": "Jeg tror at han ___ vet svaret.",
+  "english": "I think that he doesn't know the answer.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "ikke"
+ },
+ {
+  "norwegian": "Hun er ___ glad for å høre det.",
+  "english": "She is certainly happy to hear that.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "nok"
+ },
+ {
+  "norwegian": "Jeg vet ikke om han ___ kommer hjem i dag.",
+  "english": "I don't know whether he always comes home today.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "alltid"
+ },
+ {
+  "norwegian": "Det vet du jo allerede.",
+  "english": "You already know that, of course.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg liker ikke at han aldri hører etter.",
+  "english": "I don't like that he never listens.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun er nok sliten etter den lange dagen.",
+  "english": "She is probably tired after the long day.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg tror kanskje vi bør vente litt til.",
+  "english": "I think maybe we should wait a little longer.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han sa at han vel ikke hadde tid til å møtes.",
+  "english": "He said that he probably didn't have time to meet.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg spiser aldri frokost.",
+  "english": "I never eat breakfast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kommer nok i morgen.",
+  "english": "He will probably come tomorrow",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi går alltid til parken.",
+  "english": "We always go to the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har aldri vært i Oslo.",
+  "english": "He has never been to Oslo",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi skal nok være der.",
+  "english": "We will probably be there",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er alltid på tid.",
+  "english": "She is always on time",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har vel gjort det før.",
+  "english": "I have probably done it before",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han kommer nok tilbake.",
+  "english": "He will probably come back",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi kommer vel til å se deg i morgen.",
+  "english": "We will probably see you tomorrow",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har alltid likt å lese.",
+  "english": "I have always liked reading",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har nok gjort det selv.",
+  "english": "He has probably done it himself",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Kanskje hun er syk i dag.",
+  "english": "Maybe she is sick today.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har ikke sett filmen.",
+  "english": "I have not seen the movie.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg vet ikke hvorfor han ikke kommer.",
+  "english": "I do not know why he is not coming.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er kanskje fordi jeg er lat.",
+  "english": "It is perhaps because I am lazy.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han kommer ikke før i morgen.",
+  "english": "He is not coming until tomorrow.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De har ikke sett filmen.",
+  "english": "They haven't seen the movie.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har alltid gjort det slik.",
+  "english": "I have always done it this way.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er kanskje bedre å vente.",
+  "english": "It is perhaps better to wait.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han har aldri vært i Paris.",
+  "english": "He has never been to Paris.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har ikke sett henne på lenge.",
+  "english": "I haven't seen her in a long time.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De kommer ikke til å være der.",
+  "english": "They won't be there.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "negation-placement",
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ }
+]

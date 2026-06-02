@@ -1,0 +1,146 @@
+[
+  {
+    "norwegian": "Vi skal ta toget til Oslo i morgen tidlig.",
+    "english": "We are going to take the train to Oslo early tomorrow morning.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "eb67bd29-9299-465e-bd15-740dd3d9d414"
+  },
+  {
+    "norwegian": "Han skal levere rapporten innen fredag.",
+    "english": "He is going to hand in the report by Friday.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c959f3cf-93b5-4fa4-915c-e9e0946ce1e3"
+  },
+  {
+    "norwegian": "Til sommeren kommer vi til å leie en hytte ved sjøen.",
+    "english": "This summer we are going to rent a cabin by the sea.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a021b2f1-5bb2-4424-b2d9-bb4d7b431b2d"
+  },
+  {
+    "norwegian": "De kommer til å åpne en ny restaurant i sentrum neste måned.",
+    "english": "They are going to open a new restaurant in the city centre next month.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "715f907d-29f4-4718-8b28-d857d3e046f1"
+  },
+  {
+    "norwegian": "Jeg skal ringe deg når jeg er ferdig på jobb.",
+    "english": "I am going to call you when I finish work.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5e48f846-731b-4824-89aa-f28bdebfca2f"
+  },
+  {
+    "norwegian": "Det kommer til å bli kaldt neste uke.",
+    "english": "It is going to be cold next week.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b3ad9182-d7e6-47a8-bc55-626d7eb394c1"
+  },
+  {
+    "norwegian": "Hun ___ til å begynne på norskkurs i januar.",
+    "english": "She is going to start a Norwegian course in January.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "kommer",
+    "id": "a0dad410-bc3c-438e-acb7-a5a8becc9e98"
+  },
+  {
+    "norwegian": "Vi ___ møte kollegene våre på kontoret i morgen.",
+    "english": "We are going to meet our colleagues at the office tomorrow.",
+    "concept_ids": [
+      "future-constructions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skal",
+    "id": "312329dd-a13c-4a0e-81d9-b741b1ba483e"
+  }
+]

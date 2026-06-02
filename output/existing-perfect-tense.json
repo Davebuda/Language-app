@@ -1,0 +1,438 @@
+[
+ {
+  "norwegian": "Jeg har allerede ___ frokost.",
+  "english": "I have already eaten breakfast.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "spist"
+ },
+ {
+  "norwegian": "Hun har nettopp ___ hjem fra jobb.",
+  "english": "She has just come home from work.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "kommet"
+ },
+ {
+  "norwegian": "Vi har aldri ___ til Oslo med tog.",
+  "english": "We have never travelled to Oslo by train.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "reist"
+ },
+ {
+  "norwegian": "De har ___ mange ganger til det restauranten.",
+  "english": "They have been to that restaurant many times.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "vært"
+ },
+ {
+  "norwegian": "Jeg har allerede sett den filmen.",
+  "english": "I have already seen that film.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har nettopp tatt bussen.",
+  "english": "He has just taken the bus.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har aldri bodd i en leilighet før.",
+  "english": "We have never lived in an apartment before.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De har mange ganger gått tur i fjellet.",
+  "english": "They have gone hiking in the mountains many times.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har spist.",
+  "english": "I have eaten.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har skrevet en historie",
+  "english": "He has written a story",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi har sett en film",
+  "english": "We have seen a movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har lest boken",
+  "english": "She has read the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har sett filmen",
+  "english": "They have seen the movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har spist en sandwich",
+  "english": "I have eaten a sandwich",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har jobbet hardt hele dagen",
+  "english": "I have worked hard all day",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "De har gått tur i fjellet",
+  "english": "They have gone hiking",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han har studert engelsk",
+  "english": "He has studied English",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Vi har laget mat sammen",
+  "english": "We have made food together",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har jobbet hardt i år",
+  "english": "I have worked hard this year",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "De har besøkt byen",
+  "english": "They have visited the city",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han har lest boken",
+  "english": "He has read the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har reist til landet",
+  "english": "We have traveled to the country",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De har snakket norsk sammen",
+  "english": "They have spoken Norwegian together",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Vi har gått tur i parken",
+  "english": "We have gone hiking in the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har spilt musikk sammen",
+  "english": "They have played music together",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han har jobbet hardt i år",
+  "english": "He has worked hard this year",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har spist middagen min",
+  "english": "I have eaten my dinner",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har jobbet på kontoret mitt",
+  "english": "I have worked at my office",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har skrevet brevet mitt",
+  "english": "I have written my letter",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har kjøpt boken min",
+  "english": "I have bought my book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har gått på tur",
+  "english": "I have gone on a hike",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har forberedt meg til eksamen",
+  "english": "I have prepared for the exam",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ }
+]

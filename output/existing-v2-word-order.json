@@ -1,0 +1,434 @@
+[
+ {
+  "norwegian": "I morgen ___ vi på kino.",
+  "english": "Tomorrow we are going to the cinema.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "går"
+ },
+ {
+  "norwegian": "Her ___ mange studenter norsk.",
+  "english": "Here many students study Norwegian.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "lærer"
+ },
+ {
+  "norwegian": "Ofte ___ han på kafé om morgenen.",
+  "english": "He often goes to a café in the morning.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "sitter"
+ },
+ {
+  "norwegian": "Hver søndag ___ hele familien middag sammen.",
+  "english": "Every Sunday the whole family eats dinner together.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 3,
+  "notes": "spiser"
+ },
+ {
+  "norwegian": "I dag spiser jeg frokost hjemme.",
+  "english": "Today I am eating breakfast at home.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I kveld ser vi på film.",
+  "english": "This evening we are watching a film.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Der borte bor bestemoren min.",
+  "english": "Over there lives my grandmother.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Neste uke reiser hun til Tromsø.",
+  "english": "Next week she is travelling to Tromsø.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Plutselig stoppet hele toget på broen.",
+  "english": "Suddenly the whole train stopped on the bridge.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "I dag spiser jeg frokost.",
+  "english": "Today I eat breakfast.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Om morgenen drikker hun kaffe.",
+  "english": "In the morning she drinks coffee.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På mandag går vi på skolen.",
+  "english": "On Monday we go to school.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I morgen reiser jeg til Oslo.",
+  "english": "Tomorrow I travel to Oslo.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hjemme spiller han dataspill.",
+  "english": "At home he plays computer games.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På lørdag går vi på kino.",
+  "english": "On Saturday we go to the cinema.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I dag kjøper jeg nye sko.",
+  "english": "Today I buy new shoes.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På tirsdag kommer vi hjem.",
+  "english": "On Tuesday we come home.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I morgen møter jeg vennene mine.",
+  "english": "Tomorrow I meet my friends.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På lørdag kjøper jeg mat",
+  "english": "On Saturday I buy food",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I kveld ser jeg TV.",
+  "english": "Tonight I watch TV.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Om ettermiddagen leser han bok.",
+  "english": "In the afternoon he reads a book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På lørdag går jeg på kino.",
+  "english": "On Saturday I go to the cinema.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hjemme spiller jeg piano.",
+  "english": "At home I play the piano.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Om natten sover jeg godt.",
+  "english": "At night I sleep well.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På søndag går vi på tur.",
+  "english": "On Sunday we go for a hike.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I dag skriver jeg brev.",
+  "english": "Today I write a letter.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På søndag besøker jeg familien.",
+  "english": "On Sunday I visit my family.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På torsdag møter jeg vennene mine.",
+  "english": "On Thursday I meet my friends.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I kveld leser jeg bok.",
+  "english": "This evening I read a book.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Om ettermiddagen spiller jeg fotball.",
+  "english": "In the afternoon I play soccer.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hvert år besøker jeg bestemor.",
+  "english": "Every year I visit my grandmother.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "I morgen kjører han bil.",
+  "english": "Tomorrow he drives a car.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hver dag drikker jeg vann.",
+  "english": "Every day I drink water.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "På tirsdag møter jeg venner.",
+  "english": "On Tuesday I meet friends.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "word-order",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ }
+]

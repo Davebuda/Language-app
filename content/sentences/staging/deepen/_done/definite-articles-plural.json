@@ -1,0 +1,128 @@
+[
+  {
+    "norwegian": "Nøklene ligger på bordet.",
+    "english": "The keys are on the table.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "6df85154-e2ac-48b2-bc9a-f6b48b95383e"
+  },
+  {
+    "norwegian": "Skoene mine er svarte.",
+    "english": "My shoes are black.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4340f7ad-e33f-4b17-8958-5e438bafe6d9"
+  },
+  {
+    "norwegian": "Fuglene synger om morgenen.",
+    "english": "The birds sing in the morning.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "654706f7-8a7a-4b54-b9f3-9939cd20cddf"
+  },
+  {
+    "norwegian": "Rommene på hotellet er store.",
+    "english": "The rooms at the hotel are big.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "01ef8079-420c-4c05-8bd7-f93116da29cb"
+  },
+  {
+    "norwegian": "Vennene mine bor i Oslo.",
+    "english": "My friends live in Oslo.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "70f1b991-262e-45db-83e4-90eb6dca4f8b"
+  },
+  {
+    "norwegian": "___ er under stolen.",
+    "english": "The shoes are under the chair.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Skoene",
+    "id": "9170e58f-72ae-4446-a2af-a0090259b70b"
+  },
+  {
+    "norwegian": "Jeg finner ikke ___.",
+    "english": "I cannot find the keys.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "nøklene",
+    "id": "d825e9be-4d2a-40af-8660-1ebfef21ef3b"
+  }
+]

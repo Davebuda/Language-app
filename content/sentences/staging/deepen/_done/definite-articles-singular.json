@@ -1,0 +1,56 @@
+[
+  {
+    "norwegian": "Gutten drikker melken.",
+    "english": "The boy drinks the milk.",
+    "concept_ids": [
+      "definite-articles-singular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "dec52eb5-9b0e-4876-9d02-a1ad0ecdc06c"
+  },
+  {
+    "norwegian": "Katten sover på sofaen.",
+    "english": "The cat is sleeping on the sofa.",
+    "concept_ids": [
+      "definite-articles-singular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "41bb180d-ff2d-4ab7-9e70-5286b84a72ec"
+  },
+  {
+    "norwegian": "Kan du hente ___ fra kjøkkenet?",
+    "english": "Can you get the milk from the kitchen?",
+    "concept_ids": [
+      "definite-articles-singular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "melken",
+    "id": "dd27017a-eede-48e7-a861-0b537f2580ce"
+  }
+]

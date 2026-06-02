@@ -1,0 +1,56 @@
+[
+  {
+    "norwegian": "Jeg drikker juice om morgenen.",
+    "english": "I drink juice in the morning.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "599a0b34-2178-4b30-86d7-f2bb2d07d846"
+  },
+  {
+    "norwegian": "Mannen leser avisen.",
+    "english": "The man reads the newspaper.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e8b8068c-6ef4-4bbd-9525-02fc28e41239"
+  },
+  {
+    "norwegian": "Gutten kaster ballen.",
+    "english": "The boy throws the ball.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e5b843ff-b900-4469-a6d0-8e684d7d3e85"
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "norwegian": "Jeg drikker ikke vann om morgenen.",
+    "english": "I do not drink water in the morning.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ce19c0d9-ee0d-40c1-b377-fdc24d4102b4"
+  },
+  {
+    "norwegian": "Hun jobber ikke på mandag.",
+    "english": "She does not work on Monday.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "9ed0e5bc-a900-4c39-b807-dfe8fdb72c16"
+  },
+  {
+    "norwegian": "Han snakker ___ norsk.",
+    "english": "He does not speak Norwegian.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ikke",
+    "id": "4ad7a94d-3778-40f1-8dc3-253ee77f01b4"
+  },
+  {
+    "norwegian": "Vi bor ikke i Bergen.",
+    "english": "We do not live in Bergen.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a23d54b3-11f5-45c1-95b6-14cc1d2f4bdc"
+  },
+  {
+    "norwegian": "Jeg kjenner ___ ham.",
+    "english": "I do not know him.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ikke",
+    "id": "bca0b03e-4011-4a84-a336-b674e8be41ea"
+  },
+  {
+    "norwegian": "De har ikke penger til billetten.",
+    "english": "They do not have money for the ticket.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e332aa14-e820-4be7-8c85-8f758b78b36b"
+  },
+  {
+    "norwegian": "Jeg tar ikke bussen til skolen.",
+    "english": "I do not take the bus to school.",
+    "concept_ids": [
+      "negation"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "negation-placement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "3d4916aa-910d-4d0d-9b01-9e43eb424fa3"
+  }
+]

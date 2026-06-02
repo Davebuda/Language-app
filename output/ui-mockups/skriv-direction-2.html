@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NorskCoach — /skriv · Direction 2 "Tre takter" + Placement B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --page:#0a0a10; --card:#12121a; --card-2:#16161f; --border:rgba(255,255,255,.08);
+    --border-2:rgba(255,255,255,.12);
+    --text:#f3f2ef; --text-muted:rgba(243,242,239,.66); --text-dim:rgba(243,242,239,.40);
+    --signal:#c8ff20; --signal-fg:#0a1206; --signal-tint:rgba(200,255,32,.10); --signal-border:rgba(200,255,32,.22);
+    --teal:#3fd0c9; --teal-dim:#1a8cb0;
+    --cream:#f4efe3; --cream-text:#15140f; --cream-muted:rgba(21,20,15,.62); --cream-dim:rgba(21,20,15,.42); --cream-line:rgba(21,20,15,.10);
+    --green:#7bd88f; --green-tint:rgba(60,180,100,.12); --green-border:rgba(60,180,100,.30);
+    --amber:#f5b942; --amber-tint:rgba(245,185,66,.12); --amber-border:rgba(245,185,66,.34);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Schibsted Grotesk',sans-serif;background:#050509;color:var(--text);
+    -webkit-font-smoothing:antialiased;padding:34px 20px 80px;
+    background-image:radial-gradient(1100px 520px at 18% -8%,rgba(200,255,32,.05),transparent),radial-gradient(900px 480px at 100% 0%,rgba(63,208,201,.045),transparent);}
+  .lede{max-width:1180px;margin:0 auto 30px}
+  .lede h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+  .lede h1 .mut{color:var(--text-dim);font-weight:600}
+  .lede p{margin-top:9px;color:var(--text-muted);font-size:14.5px;max-width:760px;line-height:1.55}
+  .rails{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+  .rail{font-size:11px;font-weight:600;color:var(--text-muted);border:1px solid var(--border);
+    background:rgba(255,255,255,.025);padding:5px 10px;border-radius:7px}
+  .rail b{color:var(--signal);font-weight:700}
+  .gallery{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start}
+  .frame{width:375px;flex:0 0 auto}
+  .frame > .cap{display:flex;align-items:baseline;gap:8px;margin-bottom:9px;padding:0 2px}
+  .cap .step{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--signal)}
+  .cap .ttl{font-size:13px;font-weight:700}
+  .cap .note{font-size:11px;color:var(--text-dim);margin-left:auto}
+  .phone{height:760px;border-radius:30px;border:1px solid var(--border-2);background:var(--page);
+    overflow:hidden;position:relative;box-shadow:0 30px 70px -34px rgba(0,0,0,.85),0 0 0 7px #0d0d13}
+  .scr{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column}
+
+  /* shared chrome */
+  .stepbar{display:flex;align-items:center;gap:9px;padding:13px 14px 11px}
+  .seg{height:4px;flex:1;border-radius:99px;background:rgba(255,255,255,.10);position:relative;overflow:hidden}
+  .seg.done{background:var(--signal)}
+  .seg.now{background:rgba(255,255,255,.14)}
+  .seg.now::after{content:"";position:absolute;inset:0;width:58%;background:var(--signal);border-radius:99px}
+  .stepmeta{display:flex;align-items:center;justify-content:space-between;padding:0 15px 4px}
+  .stepmeta .which{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim)}
+  .stepmeta .bricks{display:flex;gap:4px;align-items:center}
+  .brik{width:13px;height:9px;border-radius:2px;border:1px solid var(--border-2);background:transparent}
+  .brik.laid{background:var(--signal);border-color:var(--signal)}
+  .brik.laid.t{background:var(--teal);border-color:var(--teal)}
+  .body{flex:1;overflow:auto;padding:6px 15px 14px}
+  .body::-webkit-scrollbar{width:0}
+  .foot{padding:12px 15px 16px;border-top:1px solid var(--border)}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;cursor:pointer;
+    font-family:inherit;font-weight:700;font-size:15px;border-radius:13px;padding:14px;
+    background:var(--signal);color:var(--signal-fg)}
+  .btn svg{width:17px;height:17px}
+  .btn.ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border-2);font-weight:600}
+  .icon{width:17px;height:17px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* READ — cream editorial slab */
+  .read-head{display:flex;align-items:center;justify-content:space-between;padding:2px 1px 10px}
+  .kick{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-dim)}
+  .gloss-tog{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--text-muted);
+    border:1px solid var(--border-2);border-radius:8px;padding:5px 9px;background:transparent}
+  .slab{background:var(--cream);border-radius:16px 16px 20px 14px;padding:18px 17px 19px;color:var(--cream-text)}
+  .slab h2{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.06;margin-bottom:3px}
+  .slab .by{font-size:11px;font-weight:600;color:var(--cream-dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:13px}
+  .slab p{font-size:16.5px;line-height:1.62;margin-bottom:12px;font-weight:400}
+  .slab p:last-child{margin-bottom:0}
+  .slab .lead::first-letter{font-size:46px;font-weight:800;float:left;line-height:.84;padding:5px 9px 0 0;color:var(--cream-text)}
+  .gl{display:block;font-size:12.5px;color:var(--cream-dim);font-style:italic;margin-top:3px}
+  .meterline{display:flex;align-items:center;gap:9px;padding:11px 2px 2px;font-size:11px;color:var(--text-dim);font-weight:600}
+  .meterline .bar{flex:1;height:3px;border-radius:99px;background:rgba(255,255,255,.08)}
+  .meterline .bar i{display:block;height:100%;width:30%;border-radius:99px;background:var(--text-dim)}
+
+  /* RECITE — docked passage + speaking */
+  .dock{background:var(--cream);border-radius:12px;padding:10px 13px;color:var(--cream-text);display:flex;gap:10px;align-items:center}
+  .dock .d-k{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim)}
+  .dock .d-t{font-size:13px;font-weight:700;line-height:1.2;margin-top:2px}
+  .dock .d-ic{margin-left:auto;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(21,20,15,.07);color:var(--cream-muted);flex:0 0 auto}
+  .recite-card{margin-top:13px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 15px}
+  .rc-k{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:11px}
+  .target{font-size:19px;line-height:1.5;font-weight:500;letter-spacing:-.01em}
+  .target .w{color:var(--text-dim)}
+  .target .w.heard{color:var(--text)}
+  .target .w.green{color:var(--signal)}
+  .assist-note{margin-top:10px;font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:6px}
+  .dot{width:7px;height:7px;border-radius:99px;background:var(--signal);display:inline-block}
+  .play2{display:flex;gap:9px;margin-top:15px}
+  .play2 button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--card-2);
+    border:1px solid var(--border-2);color:var(--text);font-family:inherit;font-weight:600;font-size:12.5px;
+    border-radius:11px;padding:11px 8px;cursor:pointer}
+  .play2 button .icon{width:15px;height:15px;color:var(--teal)}
+  .microw{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:16px}
+  .micbtn{width:58px;height:58px;border-radius:99px;background:var(--teal);border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 0 7px rgba(63,208,201,.13)}
+  .micbtn .icon{width:23px;height:23px;stroke:#06201f;color:#06201f}
+  .miccap{font-size:11.5px;color:var(--text-muted);text-align:center;margin-top:9px;font-weight:600}
+  .selfreport{margin-top:16px}
+  .sr-k{font-size:11px;color:var(--text-dim);font-weight:600;text-align:center;margin-bottom:10px}
+  .sr-row{display:flex;gap:8px}
+  .sr{flex:1;border-radius:11px;padding:11px 6px;font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;text-align:center;border:1px solid var(--border-2);background:var(--card-2);color:var(--text)}
+  .sr.good{border-color:var(--signal-border);background:var(--signal-tint);color:var(--signal)}
+  .sr.mid{color:var(--text-muted)}
+  .sr.no{color:var(--text-dim)}
+  .sr small{display:block;font-size:9.5px;font-weight:600;color:var(--text-dim);margin-top:3px;text-transform:uppercase;letter-spacing:.06em}
+  .nomic{margin-top:13px;font-size:11px;color:var(--amber);background:var(--amber-tint);border:1px solid var(--amber-border);border-radius:9px;padding:9px 11px;line-height:1.4}
+
+  /* WRITE */
+  .chip{display:inline-flex;align-items:center;gap:7px;background:var(--cream);color:var(--cream-text);border-radius:10px;padding:7px 11px;font-size:12px;font-weight:700;cursor:pointer}
+  .chip .icon{width:13px;height:13px;color:var(--cream-muted)}
+  .prompt{margin-top:13px;font-size:16px;font-weight:600;line-height:1.4;letter-spacing:-.01em}
+  .prompt .small{display:block;font-size:12px;font-weight:500;color:var(--text-dim);margin-top:5px}
+  .ta{margin-top:12px;background:var(--card);border:1px solid var(--border-2);border-radius:13px;padding:13px;min-height:138px;font-size:15.5px;line-height:1.55;color:var(--text)}
+  .ta .cursor{display:inline-block;width:2px;height:18px;background:var(--signal);vertical-align:-3px;animation:bl 1s steps(1) infinite}
+  @keyframes bl{50%{opacity:0}}
+  .ta .ph{color:var(--text-dim)}
+  .checklist{margin-top:13px;border:1px solid var(--border);border-radius:13px;overflow:hidden;background:var(--card)}
+  .cl-head{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:1px solid var(--border)}
+  .cl-head .t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
+  .cl-head .count{font-size:12px;font-weight:700;color:var(--text-muted);font-variant-numeric:tabular-nums}
+  .cl-head .count b{color:var(--signal)}
+  .cl-item{display:flex;align-items:center;gap:11px;padding:11px 13px;border-bottom:1px solid var(--border)}
+  .cl-item:last-child{border-bottom:0}
+  .tick{width:19px;height:19px;border-radius:99px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;border:1.6px solid var(--border-2)}
+  .tick.ok{background:var(--signal);border-color:var(--signal)}
+  .tick.ok .icon{width:11px;height:11px;stroke:var(--signal-fg);color:var(--signal-fg);stroke-width:3}
+  .tick.pend{border-style:dashed}
+  .cl-item .lab{font-size:13.5px;font-weight:500}
+  .cl-item.met .lab{color:var(--text)}
+  .cl-item.pend .lab{color:var(--text-dim)}
+  .cl-item .lab em{font-style:normal;color:var(--signal);font-weight:700}
+
+  /* WRITE results */
+  .verdict{border-radius:15px;padding:15px 15px 16px;margin-top:2px}
+  .verdict.pass{background:var(--green-tint);border:1px solid var(--green-border)}
+  .verdict.almost{background:var(--amber-tint);border:1px solid var(--amber-border)}
+  .v-top{display:flex;align-items:center;gap:10px}
+  .v-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .verdict.pass .v-ic{background:var(--green);color:#06210f}
+  .verdict.almost .v-ic{background:var(--amber);color:#2a1c00}
+  .v-ic .icon{width:17px;height:17px;stroke-width:2.4}
+  .v-h{font-size:16px;font-weight:800;letter-spacing:-.01em}
+  .verdict.pass .v-h{color:var(--green)}
+  .verdict.almost .v-h{color:var(--amber)}
+  .v-sub{font-size:12.5px;color:var(--text-muted);margin-top:1px}
+  .credit{display:flex;align-items:center;gap:8px;margin-top:13px;flex-wrap:wrap}
+  .tag{font-size:10.5px;font-weight:700;border-radius:7px;padding:4px 9px;letter-spacing:.02em}
+  .tag.fritt{background:var(--signal);color:var(--signal-fg)}
+  .tag.stotte{background:transparent;border:1px dashed var(--border-2);color:var(--text-dim)}
+  .tag.brick{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-muted);display:inline-flex;align-items:center;gap:6px}
+  .tag.brick i{width:11px;height:8px;border-radius:2px;background:var(--teal);display:inline-block}
+  .src{margin-top:14px;border-top:1px solid var(--border);padding-top:13px}
+  .src-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:7px;padding:4px 9px}
+  .src-badge.ai{background:var(--signal-tint);color:var(--signal);border:1px solid var(--signal-border)}
+  .src-badge.basic{background:var(--amber-tint);color:var(--amber);border:1px solid var(--amber-border)}
+  .corr{margin-top:11px;font-size:13.5px;line-height:1.5}
+  .corr .strike{color:var(--text-dim);text-decoration:line-through;text-decoration-color:rgba(245,185,66,.6)}
+  .corr .fix{color:var(--text);font-weight:600}
+  .praise{margin-top:9px;font-size:12.5px;color:var(--text-muted);line-height:1.5}
+  .drill{margin-top:13px;background:var(--card-2);border:1px solid var(--amber-border);border-radius:12px;padding:13px}
+  .drill .dk{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
+  .drill .dq{font-size:14px;font-weight:500;line-height:1.45}
+  .drill .dq b{color:var(--signal);font-weight:700}
+  .basic-note{margin-top:11px;font-size:12.5px;color:var(--text-muted);line-height:1.5}
+
+  /* DASHBOARD placement B */
+  .d-shell{flex:1;overflow:auto;padding:11px 12px 16px;display:flex;flex-direction:column;gap:7px}
+  .d-head{display:flex;gap:7px;align-items:stretch}
+  .d-id{flex:1;display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:9px 10px}
+  .av{width:31px;height:31px;border-radius:8px;background:linear-gradient(135deg,var(--signal),#a8e010);color:var(--signal-fg);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .d-id .nm{font-size:13px;font-weight:700;line-height:1.1}
+  .d-id .lv{margin-top:3px;display:flex;gap:6px;align-items:center}
+  .d-id .lv .dt{font-size:8.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
+  .d-id .lv .bdg{font-size:8px;font-weight:800;letter-spacing:.07em;color:var(--signal);background:var(--signal-tint);border:1px solid var(--signal-border);border-radius:5px;padding:2px 6px}
+  .d-stat{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:7px 12px;min-width:50px}
+  .d-stat .n{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+  .d-stat .l{font-size:7.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
+  .hero{position:relative;overflow:hidden;border-radius:14px;background:linear-gradient(135deg,#c8ff20,#b8ef10);color:var(--signal-fg);padding:12px 13px}
+  .hero .hk{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(10,18,6,.5)}
+  .hero h3{font-size:20px;font-weight:800;line-height:1;margin-top:6px}
+  .hero .hs{font-size:11.5px;color:rgba(10,18,6,.62);margin-top:4px}
+  .hero .hb{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:rgba(10,18,6,.9);color:#fff;border-radius:9px;padding:8px 13px;font-size:12.5px;font-weight:700}
+  .hero .hb .icon{width:13px;height:13px}
+
+  /* the re-skinned WALL (was the thin Uke bar) */
+  .wall{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:11px 12px 12px}
+  .wall .wt{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px}
+  .wall .wt .lhs{display:flex;align-items:baseline;gap:8px}
+  .wall .wt .lens{font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--text-dim)}
+  .wall .wt .big{font-size:15px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
+  .wall .wt .big .u{font-size:11px;font-weight:600;color:var(--text-muted)}
+  .wall .wt .goal{font-size:10.5px;font-weight:600;color:var(--text-dim);font-variant-numeric:tabular-nums}
+  .courses{display:flex;flex-direction:column;gap:5px}
+  .course{display:flex;gap:4px}
+  .b{flex:1;height:15px;border-radius:3px;border:1px solid var(--border)}
+  .b.lytt{background:rgba(63,208,201,.85);border-color:transparent}
+  .b.snakk{background:var(--signal);border-color:transparent}
+  .b.snakk.w{background:linear-gradient(135deg,var(--signal),#a8e010);border-color:transparent}
+  .b.empty{background:rgba(255,255,255,.04)}
+  .b.partial{background:repeating-linear-gradient(135deg,rgba(200,255,32,.5) 0 4px,transparent 4px 8px);border-color:var(--signal-border)}
+  .walllegend{display:flex;gap:13px;margin-top:10px;flex-wrap:wrap}
+  .lg{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-dim);font-weight:600}
+  .lg i{width:10px;height:8px;border-radius:2px;display:inline-block}
+  .lg i.lytt{background:rgba(63,208,201,.85)} .lg i.snakk{background:var(--signal)}
+  .lg i.empty{background:rgba(255,255,255,.06);border:1px solid var(--border)}
+
+  /* weekly sprint (was Ukeoversikt) */
+  .sprint{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden}
+  .sprint .sh{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--border)}
+  .sprint .sh .t{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim)}
+  .sprint .sh .pill{font-size:8px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:var(--signal);color:var(--signal-fg);border-radius:99px;padding:3px 8px}
+  .week7{display:flex;gap:5px;padding:12px}
+  .day{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .day .col{width:100%;height:46px;border-radius:5px;background:rgba(255,255,255,.04);border:1px solid var(--border);position:relative;overflow:hidden;display:flex;flex-direction:column-reverse}
+  .day .col .fill{width:100%;background:var(--signal);opacity:.9}
+  .day .col .fill.t{background:var(--teal)}
+  .day.today .col{border-color:var(--signal-border)}
+  .day .dl{font-size:8.5px;font-weight:700;color:var(--text-dim);text-transform:uppercase}
+  .day.today .dl{color:var(--signal)}
+  .sprint .trend{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-top:1px solid var(--border)}
+  .sprint .trend .lbl{font-size:11px;color:var(--text-muted);font-weight:600}
+  .sprint .trend .val{font-size:12px;font-weight:800;color:var(--signal);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:5px}
+  .sprint .trend .val .icon{width:13px;height:13px}
+  .callout{max-width:1180px;margin:30px auto 0;border:1px solid var(--border);border-radius:14px;background:var(--card);padding:17px 19px}
+  .callout h4{font-size:13px;font-weight:800;letter-spacing:.02em;margin-bottom:9px;color:var(--signal)}
+  .callout ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 26px}
+  .callout li{font-size:13px;color:var(--text-muted);line-height:1.5;padding-left:15px;position:relative}
+  .callout li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px;background:var(--signal)}
+  .callout li b{color:var(--text);font-weight:700}
+  @media(max-width:520px){.callout ul{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div class="lede">
+    <h1>NorskCoach · <span class="mut">Direction 2 «Tre takter» + Placement B</span></h1>
+    <p>Mockups at 375px (the primary canvas). One surface, three morphing modes — the passage is the persistent spine (full slab → docked strip → reference chip). Progress re-skins existing dashboard real estate; the brick is laid at the point of action. Static HTML for direction-selection only — not the production build.</p>
+    <div class="rails">
+      <span class="rail"><b>No %</b> anywhere — self-report + binary criteria</span>
+      <span class="rail">Unmet criterion = <b>neutral</b>, never red</span>
+      <span class="rail">AI-down = <b>amber additive subset</b>, not an error</span>
+      <span class="rail"><b>3 bricks</b>, write non-optional</span>
+      <span class="rail">Guided <b>worth less</b> than free, visibly</span>
+      <span class="rail">Schibsted Grotesk · no emoji · lime/teal/cream</span>
+    </div>
+  </div>
+
+  <div class="gallery">
+
+    <!-- ============ FRAME 1 — READ ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Takt 1</span><span class="ttl">LES</span><span class="note">passage owns the screen</span></div>
+      <div class="phone"><div class="scr">
+        <div class="stepbar"><div class="seg now"></div><div class="seg"></div><div class="seg"></div></div>
+        <div class="stepmeta"><span class="which">Les · Si · Skriv</span>
+          <span class="bricks"><span class="brik"></span><span class="brik"></span><span class="brik"></span></span></div>
+        <div class="body">
+          <div class="read-head">
+            <span class="kick">Tekst · B1</span>
+            <button class="gloss-tog"><svg class="icon" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Vis engelsk</button>
+          </div>
+          <div class="slab">
+            <h2>Søndagsstengte butikker</h2>
+            <div class="by">Meningstekst</div>
+            <p class="lead">I Norge er de fleste butikker stengt på søndager, og det har vært slik i lang tid. Mange mener at dette er en god tradisjon som gir folk en hviledag.</p>
+            <p>Andre synes derimot at det er upraktisk, særlig for dem som jobber mye i ukedagene. De argumenterer for at man burde få bestemme selv når man vil handle.</p>
+            <p>Tilhengerne av ordningen peker på at ansatte i butikkene også fortjener fri. Hvis butikkene holdt åpent hver dag, ville mange måttet jobbe enda mer i helgene.<span class="gl">Supporters point out that shop employees deserve time off too.</span></p>
+          </div>
+          <div class="meterline"><span>Lest</span><div class="bar"><i></i></div><span>~1 min igjen</span></div>
+        </div>
+        <div class="foot">
+          <button class="btn">Les ferdig
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ============ FRAME 2 — RECITE ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Takt 2</span><span class="ttl">SI</span><span class="note">compare, don't grade · no %</span></div>
+      <div class="phone"><div class="scr">
+        <div class="stepbar"><div class="seg done"></div><div class="seg now"></div><div class="seg"></div></div>
+        <div class="stepmeta"><span class="which">Les · Si · Skriv</span>
+          <span class="bricks"><span class="brik laid t"></span><span class="brik"></span><span class="brik"></span></span></div>
+        <div class="body">
+          <div class="dock">
+            <div><div class="d-k">Teksten</div><div class="d-t">Søndagsstengte butikker</div></div>
+            <div class="d-ic"><svg class="icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          </div>
+          <div class="recite-card">
+            <div class="rc-k">Si setningen høyt</div>
+            <div class="target">
+              <span class="w green">Mange</span> <span class="w green">mener</span> <span class="w green">at</span> <span class="w heard">dette</span> <span class="w green">er</span> <span class="w heard">en</span> <span class="w">god</span> <span class="w green">tradisjon</span><span class="w heard">.</span>
+            </div>
+            <div class="assist-note"><span class="dot"></span> Grønt = hørt av mikrofonen. Dette er bare en hjelp — ikke en karakter.</div>
+
+            <div class="play2">
+              <button><svg class="icon" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>Hør modellen</button>
+              <button><svg class="icon" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>Hør deg selv</button>
+            </div>
+
+            <div class="microw">
+              <button class="micbtn"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></button>
+            </div>
+            <div class="miccap">Trykk for å ta opp på nytt</div>
+
+            <div class="selfreport">
+              <div class="sr-k">Hvordan gikk det?</div>
+              <div class="sr-row">
+                <button class="sr good">Traff det</button>
+                <button class="sr mid">Nesten</button>
+                <button class="sr no">Ikke ennå</button>
+              </div>
+            </div>
+            <div class="nomic">Ingen mikrofon? Les setningen høyt og trykk «Traff det». Taletiden teller fortsatt.</div>
+          </div>
+        </div>
+        <div class="foot">
+          <button class="btn">Videre
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ============ FRAME 3 — WRITE (typing) ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Takt 3</span><span class="ttl">SKRIV</span><span class="note">checklist climbs · count not %</span></div>
+      <div class="phone"><div class="scr">
+        <div class="stepbar"><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div></div>
+        <div class="stepmeta"><span class="which">Les · Si · Skriv</span>
+          <span class="bricks"><span class="brik laid t"></span><span class="brik laid t"></span><span class="brik"></span></span></div>
+        <div class="body">
+          <span class="chip"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Teksten</span>
+          <div class="prompt">Hva mener du om søndagsstengte butikker?
+            <span class="small">Skriv 4–6 setninger. Bruk minst én bindestruktur.</span></div>
+          <div class="ta">Jeg synes søndagsstengte butikker er en god ordning. Folk trenger en dag uten stress, og ansatte fortjener også fri<span class="cursor"></span></div>
+          <div class="checklist">
+            <div class="cl-head"><span class="t">Sjekkliste</span><span class="count"><b>2</b> av 3</span></div>
+            <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Minst 30 ord</span></div>
+            <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Knyttet til teksten</span></div>
+            <div class="cl-item pend"><span class="tick pend"></span><span class="lab">Bruk en bindestruktur (<em>«fordi»</em>)</span></div>
+          </div>
+        </div>
+        <div class="foot">
+          <button class="btn">Sjekk svar
+            <svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ============ FRAME 4 — WRITE result: PASS (AI up) ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Resultat</span><span class="ttl">GODKJENT · AI oppe</span><span class="note">free = full credit</span></div>
+      <div class="phone"><div class="scr">
+        <div class="stepbar"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div></div>
+        <div class="stepmeta"><span class="which">Passasje fullført</span>
+          <span class="bricks"><span class="brik laid t"></span><span class="brik laid t"></span><span class="brik laid"></span></span></div>
+        <div class="body">
+          <div class="verdict pass">
+            <div class="v-top">
+              <span class="v-ic"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><div class="v-h">Godkjent — dette teller</div><div class="v-sub">Produksjon registrert på <b>bindestrukturer</b></div></div>
+            </div>
+            <div class="credit">
+              <span class="tag fritt">Fritt · full kreditt</span>
+              <span class="tag brick"><i></i> 3. murstein lagt</span>
+            </div>
+            <div class="src">
+              <span class="src-badge ai"><svg class="icon" viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg>AI-tilbakemelding</span>
+              <div class="corr"><span class="strike">en god ordning fordi folk</span> → <span class="fix">en god ordning, fordi folk</span> — komma før «fordi».</div>
+              <div class="praise">Fin bruk av «og» for å binde sammen to grunner. Prøv «selv om» neste gang for å vise et motargument.</div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <button class="btn">Til neste passasje
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ============ FRAME 5 — WRITE result: STRUCTURE-MISSING ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Resultat</span><span class="ttl">NESTEN · struktur mangler</span><span class="note">amber · micro-drill</span></div>
+      <div class="phone"><div class="scr">
+        <div class="stepbar"><div class="seg done"></div><div class="seg done"></div><div class="seg now"></div></div>
+        <div class="stepmeta"><span class="which">Les · Si · Skriv</span>
+          <span class="bricks"><span class="brik laid t"></span><span class="brik laid t"></span><span class="brik"></span></span></div>
+        <div class="body">
+          <div class="verdict almost">
+            <div class="v-top">
+              <span class="v-ic"><svg class="icon" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+              <div><div class="v-h">Nesten der</div><div class="v-sub">Du skrev nok og holdt deg til teksten — men uten en bindestruktur.</div></div>
+            </div>
+            <div class="checklist" style="margin-top:13px">
+              <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Minst 30 ord</span></div>
+              <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Knyttet til teksten</span></div>
+              <div class="cl-item pend"><span class="tick pend"></span><span class="lab">Bruk en bindestruktur (<em>«fordi»</em>)</span></div>
+            </div>
+            <div class="drill">
+              <div class="dk">Mikroøvelse</div>
+              <div class="dq">Bind sammen: «Butikkene bør være stengt. Ansatte trenger fri.» → Butikkene bør være stengt <b>fordi</b> …</div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <button class="btn">Prøv øvelsen
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+          <button class="btn ghost" style="margin-top:8px">Skriv om svaret</button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ============ FRAME 6 — WRITE result: AI DOWN ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Resultat</span><span class="ttl">GODKJENT · AI nede</span><span class="note">basic mode, not broken</span></div>
+      <div class="phone"><div class="scr">
+        <div class="stepbar"><div class="seg done"></div><div class="seg done"></div><div class="seg done"></div></div>
+        <div class="stepmeta"><span class="which">Passasje fullført</span>
+          <span class="bricks"><span class="brik laid t"></span><span class="brik laid t"></span><span class="brik laid"></span></span></div>
+        <div class="body">
+          <div class="verdict pass">
+            <div class="v-top">
+              <span class="v-ic"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><div class="v-h">Godkjent — dette teller</div><div class="v-sub">Alle krav i sjekklista er oppfylt</div></div>
+            </div>
+            <div class="credit">
+              <span class="tag stotte">Med støtte · redusert kreditt</span>
+              <span class="tag brick"><i></i> 3. murstein lagt</span>
+            </div>
+            <div class="src">
+              <span class="src-badge basic"><svg class="icon" viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M20 6 9 17l-5-5"/></svg>Grunnsjekk</span>
+              <div class="basic-note">Grunnsjekk i dag — rettelsene dine er registrert og produksjonen teller. Detaljert AI-tilbakemelding kommer når den er tilgjengelig igjen.</div>
+              <div class="checklist" style="margin-top:12px">
+                <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Minst 30 ord</span></div>
+                <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Knyttet til teksten</span></div>
+                <div class="cl-item met"><span class="tick ok"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="lab">Bindestruktur brukt</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <button class="btn">Til neste passasje
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- ============ FRAME 7 — DASHBOARD (Placement B) ============ -->
+    <div class="frame">
+      <div class="cap"><span class="step">Placement B</span><span class="ttl">DASHBOARD · re-skin</span><span class="note">no new panels</span></div>
+      <div class="phone"><div class="scr">
+        <div class="d-shell">
+          <div class="d-head">
+            <div class="d-id"><div class="av">D</div>
+              <div><div class="nm">David</div><div class="lv"><span class="dt">man. 2. juni</span><span class="bdg">B1</span></div></div></div>
+            <div class="d-stat"><div class="n" style="color:var(--teal)">12</div><div class="l">Min talt</div></div>
+            <div class="d-stat"><div class="n">7</div><div class="l">Rekke</div></div>
+          </div>
+
+          <div class="hero">
+            <div class="hk">Anbefalt</div><h3>Dagens passasje</h3>
+            <div class="hs">Les → Si → Skriv · ca. 8 min · legger 3 murstein</div>
+            <span class="hb">Start /skriv <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          </div>
+
+          <!-- the WALL — was the thin "Uke 3 av 9" bar, now the daily brick wall, B1 lens -->
+          <div class="wall">
+            <div class="wt">
+              <div class="lhs"><span class="lens">I dag · Setninger bygd</span><span class="big">5<span class="u"> / 8</span></span></div>
+              <span class="goal">produksjon + lytting</span>
+            </div>
+            <div class="courses">
+              <div class="course">
+                <span class="b snakk w"></span><span class="b snakk w"></span><span class="b snakk"></span><span class="b partial"></span><span class="b empty"></span>
+              </div>
+              <div class="course">
+                <span class="b lytt"></span><span class="b lytt"></span><span class="b empty"></span><span class="b empty"></span><span class="b empty"></span>
+              </div>
+            </div>
+            <div class="walllegend">
+              <span class="lg"><i class="snakk"></i>Snakk · produksjon</span>
+              <span class="lg"><i class="lytt"></i>Lytt · gjenkjenning</span>
+              <span class="lg"><i class="empty"></i>Igjen i dag</span>
+            </div>
+          </div>
+
+          <!-- weekly sprint — was "Ukeoversikt", now re-framed trend -->
+          <div class="sprint">
+            <div class="sh"><span class="t">Ukens sprint</span><span class="pill">Denne uka</span></div>
+            <div class="week7">
+              <div class="day"><div class="col"><span class="fill" style="height:60%"></span></div><span class="dl">ma</span></div>
+              <div class="day"><div class="col"><span class="fill" style="height:85%"></span></div><span class="dl">ti</span></div>
+              <div class="day"><div class="col"><span class="fill" style="height:40%"></span><span class="fill t" style="height:25%"></span></div><span class="dl">on</span></div>
+              <div class="day today"><div class="col"><span class="fill" style="height:55%"></span></div><span class="dl">to</span></div>
+              <div class="day"><div class="col"></div><span class="dl">fr</span></div>
+              <div class="day"><div class="col"></div><span class="dl">lø</span></div>
+              <div class="day"><div class="col"></div><span class="dl">sø</span></div>
+            </div>
+            <div class="trend">
+              <span class="lbl">Produksjonsgap på fokus-konsept</span>
+              <span class="val"><svg class="icon" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg> −14 %</span>
+            </div>
+          </div>
+        </div>
+        <div class="foot" style="border-top:1px solid var(--border)">
+          <button class="btn ghost">Lørdag: ukesjekk</button>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <h4>What each frame proves (every claim traces to a real engine write)</h4>
+    <ul>
+      <li><b>Takt 1 LES</b> — cream editorial slab, Norwegian dominates, English gloss is opt-in per paragraph. "Les ferdig" → <b>recordExposure</b> (no mastery; reading ≠ producing).</li>
+      <li><b>Takt 2 SI</b> — passage docks to the strip; word-colour is labelled "bare en hjelp"; <b>no percentage</b>; self-report tap → speakingMinutes + recognition brick. Non-mic fallback shown.</li>
+      <li><b>Takt 3 SKRIV</b> — live checklist flips muted→lime, count "<b>2 av 3</b>" not %, unmet row is dashed-neutral (never red), passage shrinks to a tappable chip.</li>
+      <li><b>Godkjent (AI up)</b> — green "dette teller", <b>Fritt · full kreditt</b>, the 3rd brick lays, AI corrections in an additive lime-badged block.</li>
+      <li><b>Nesten</b> — amber not red, two ticks kept, the structure row stays open with a specific nudge → routed straight to a micro-drill (the repair loop).</li>
+      <li><b>Godkjent (AI down)</b> — same card, <b>amber "Grunnsjekk"</b> badge, copy reads as a normal mode; <b>Med støtte · redusert kreditt</b> makes guided visibly worth less than free.</li>
+      <li><b>Dashboard B</b> — the old thin "Uke" bar becomes the daily <b>brick wall</b> ("Setninger bygd" — the B1 lens); the old "Ukeoversikt" becomes the <b>weekly sprint</b> with a real production-gap trend. Zero net-new panels.</li>
+    </ul>
+  </div>
+</body>
+</html>
