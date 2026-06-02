@@ -132,6 +132,32 @@ export function recordProductionFromSurface(
   return bumpDailyBrick(withMastery, guided ? 'guided' : 'production')
 }
 
+export interface SpeakingProductionInput {
+  /** Minutes of spoken Norwegian (estimate or measured) — ALWAYS credited. */
+  minutes: number
+  /** Whether the learner self-reported producing it (Flytende/Nølende vs Bommet). */
+  produced: boolean
+}
+
+/**
+ * Pure: credit a self-reported speaking production (the daily Snakk block,
+ * shadowing). `speakingMinutesTotal` ALWAYS accrues (they spoke — time is the
+ * one objective signal). A guided (reduced-weight) production brick lands ONLY
+ * when produced. It NEVER touches mastery, the error log, or productionGap — a
+ * self-rating is too gameable to be an objective judge (Rule 8). Caller persists.
+ */
+export function recordSpeakingProductionToFingerprint(
+  fp: MistakeFingerprint,
+  input: SpeakingProductionInput,
+): MistakeFingerprint {
+  const withMinutes: MistakeFingerprint = {
+    ...fp,
+    speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + Math.max(0, input.minutes),
+    updatedAt: new Date().toISOString(),
+  }
+  return input.produced ? bumpDailyBrick(withMinutes, 'guided') : withMinutes
+}
+
 /**
  * Fold multiple errors from a single surface submission.
  */

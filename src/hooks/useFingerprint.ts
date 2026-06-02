@@ -22,6 +22,7 @@ import {
   seedInitialMastery,
 } from '@/engine';
 import type { VocabResultInput } from '@/engine';
+import { recordSpeakingProductionToFingerprint } from '@/engine/repair-from-surface';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
 import { logWeeklyCheckComplete, logConceptExposure } from '@/lib/logEvents';
@@ -518,12 +519,7 @@ export function useFingerprint() {
     ({ minutes, produced }: { minutes: number; produced: boolean }) => {
       const fp = useFingerprintStore.getState().fingerprint;
       if (!fp) return;
-      let updated: MistakeFingerprint = {
-        ...fp,
-        speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + Math.max(0, minutes),
-        updatedAt: new Date().toISOString(),
-      };
-      if (produced) updated = bumpDailyBrick(updated, 'guided');
+      const updated = recordSpeakingProductionToFingerprint(fp, { minutes, produced });
       setFingerprint(updated);
       saveFingerprint(updated).catch(console.warn);
       if (user) saveFingerprintToSupabase(updated).catch(console.warn);
