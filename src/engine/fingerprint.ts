@@ -76,7 +76,15 @@ export function updateConceptMastery(
   existing: ConceptMastery | undefined,
   correct: boolean,
   minAttempts: number,
-  minDays: number
+  minDays: number,
+  /**
+   * Scales the EMA step size (learning rate α). Default 1 = unchanged behavior.
+   * Values < 1 produce a gentler move toward the outcome — used for guided /
+   * scaffolded correct production (recordProductionFromSurface) so a copied
+   * frame earns a real-but-smaller mastery brick than free production. Scales
+   * the step, NOT the outcome, so a correct answer always moves mastery UP.
+   */
+  learningRateScale = 1
 ): ConceptMastery {
   const now = new Date().toISOString();
   const today = new Date().toDateString();
@@ -109,7 +117,7 @@ export function updateConceptMastery(
   const nextRecentOutcomes = [correct, ...(prev.recentOutcomes ?? [])].slice(0, MAX_RECENT_OUTCOMES);
 
   // Phase-adaptive EMA with slip weighting
-  const α = learningRate(prev.attemptCount, prev.rawScore);
+  const α = learningRate(prev.attemptCount, prev.rawScore) * learningRateScale;
   // Wrong answer on strong concept (slip) carries 30% of normal weight
   const effectiveOutcome = (!correct && isSlip(prev.recentOutcomes ?? [])) ? 0.30 : (correct ? 1 : 0);
   const rawScore = Math.round(prev.rawScore * (1 - α) + effectiveOutcome * 100 * α);
