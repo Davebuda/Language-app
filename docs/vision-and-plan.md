@@ -244,6 +244,16 @@ A corpus audit found the app declares 10 `ExerciseType` values but only 6 are re
 
 **What changed vs the prior Wave-6 decisions (honest delta):** only two items' verdicts moved, and only on the new production-attached grounds above — `reading-comprehension` (DEFER → BUILD, *bundled with production*) and `sentence-transformation` (backlog → sequenced *after #2*, Rule-1 override granted). Everything else (spine, gate, free-writing CUT, one-at-a-time, linguist-blocking) is unchanged.
 
+#### Read-respond (skriv restructure) — verdict (2026-06-02)
+
+Roadmap rows #2 + #4 are concretized as **one module: `read-respond`** — read a level-scaled Norwegian passage (A1 3–5 lines → A2 ~2 paragraphs → B1 ~4–5 → B2 ~8–9), then on a second page write an opinion (A1 one guided frame `Jeg liker ___ fordi ___` → B2 a developed argue-with-counterpoint paragraph). **Alongside the journal, not replacing it.** Full spec + schemas: `output/skriv-readwrite-design.md`. **Build B1 first.**
+
+- **Honest grading (Rules 6/8) — 3 tiers:** (T1) a **deterministic gate** (length floor + target-structure presence + on-topic token overlap) ALWAYS runs and writes a guaranteed production brick — this is the non-AI fallback; (T2) AI rubric via the journal's existing `reviewWriting → repairBatchFromSurface` path; (T3) optional self-report. **No numeric score** (opinion writing has no "correct").
+- **Honesty bug it fixes:** the *current* journal writes **nothing** to the fingerprint when AI is down (`StubAIService.reviewWriting` returns `errors:[]` → `pushErrorsToFingerprint` early-returns). T1's deterministic floor guarantees a brick regardless — but needs a new engine helper **`recordProductionFromSurface`** (a *correct-attempt* sibling of `repairFromSurface`, which today only models wrong answers). **Architect sign-off required (analysis-first).**
+- **Content:** author new coherent passages in a new `content/reading/{level}.json` (linguist-gated). Rejected: stitching corpus sentences (incoherent); AI-generation (server-gen deferred, item 6.4). Distinct `ReadingPassage` kind (prose, no gaps) vs `ClozePassage`.
+- **Per-level fit:** a B1+ task (A1 = foundations/form). A1 reading-heavy production yields no clean signal → defer or 1-guided-frame only. Order: **B1 → B2 → A2 → A1(min/defer)**.
+- **Gate (unchanged):** new exercise type = explicit Rule-1 override + architect sign-off (as with cloze), then linguist-gated content, then a Rule-8 live trace before "done." 7 open decisions in spec §7.
+
 ---
 
 ## Parallel Execution Map
