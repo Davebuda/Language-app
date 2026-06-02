@@ -112,7 +112,7 @@ export const LENS_CONFIG: Record<CEFRLevel, LensConfig> = {
     wallNote: 'gjenkjenning teller ikke her',
     rollupLabel: 'Ukens sprint · produksjonsgap',
     interim:
-      'Ordforråd-sporet kommer. B2 måles snart på ord du ikke lenger bommer på — ikke ennå bygget, så vi viser ærlig produksjon i mellomtiden.',
+      'Ordforråd-sporet kommer — og B2 har foreløpig færre øvingstyper (lytting og hurtigrunde mangler ennå), så øktene er mer produksjons- og gjenkjenningstunge. Du måles snart på ord du ikke lenger bommer på; i mellomtiden viser vi ærlig produksjon.',
     heroWeights: PROD_AND_GUIDED,
     rollupDetail: (labels, gap) =>
       labels.length
