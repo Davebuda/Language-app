@@ -57,7 +57,7 @@ export function ProductionWall({ view }: { view: ProductionWallView }) {
         <span className="text-[11px] font-bold text-[var(--nc-text-muted)]">{view.heroUnit}</span>
         <span className="ml-auto text-right text-[10px] leading-[1.5] tabular-nums text-[var(--nc-text-dim)]">
           <b className="font-bold text-[var(--nc-text)]">{view.speakingMinutes}</b> min snakket
-          {view.gapConceptCount > 0 ? (
+          {!view.lexical && view.gapConceptCount > 0 ? (
             <>
               <br />
               produksjonsgap · <b className="font-bold text-[var(--nc-text)]">{view.gapConceptCount}</b>{' '}
@@ -66,6 +66,13 @@ export function ProductionWall({ view }: { view: ProductionWallView }) {
           ) : null}
         </span>
       </div>
+
+      {/* B2 lexical denominator — honest "of N you've missed", full-width to avoid the hero-row squeeze */}
+      {view.lexical && view.lexical.missed > 0 ? (
+        <div className="mt-1 text-[10px] text-[var(--nc-text-dim)]">
+          av <b className="font-bold text-[var(--nc-text)]">{view.lexical.missed}</b> ord du har bommet på
+        </div>
+      ) : null}
 
       {/* ── Brick wall ── */}
       <div className="mt-3 rounded-lg bg-[rgba(0,0,0,0.18)] p-2.5">

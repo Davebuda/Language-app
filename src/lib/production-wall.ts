@@ -4,9 +4,11 @@
 // rules (what counts toward the hero, what the wall is called) are in one place.
 //
 // Honesty rails (CLAUDE.md Rule 6/8):
-//  - The hero count is a REAL count of production+guided bricks, never a %.
+//  - The hero count is a REAL count, never a %. A1/A2/B1: production+guided bricks.
 //  - Recognition bricks render but NEVER count toward the hero (B1/B2 say so).
-//  - B2 shows an honest interim note, not a fabricated lexical meter.
+//  - B2's hero is a REAL lexical-coverage count (vocabCoverage): words produced
+//    correctly after being missed ("ord du ikke lenger bommer på") — decay-gated,
+//    can go down. Not a fabricated meter.
 
 import type {
   MistakeFingerprint,
@@ -14,6 +16,8 @@ import type {
   BrickWeight,
 } from '@/types/fingerprint'
 import type { WeeklyProgressEntry } from '@/lib/weekly-progress'
+import { vocabCoverage } from '@/engine'
+import type { VocabCoverage } from '@/engine'
 
 export type BrickCellWeight = BrickWeight | 'empty'
 
@@ -45,8 +49,10 @@ export interface ProductionWallView {
   weekBars: WeekBar[]
   rollupLabel: string
   rollupDetail: string
-  /** B2 only: honest "lexical track coming" note. */
+  /** B2 only: honest exercise-variety disclosure (lytt/hurtigrunde not yet at B2). */
   interim?: string
+  /** B2 only: honest lexical-coverage meter (activated/missed/total words). */
+  lexical?: VocabCoverage
   legendShowsGuided: boolean
 }
 
@@ -61,6 +67,8 @@ interface LensConfig {
   interim?: string
   /** Which brick weights count toward the hero number (never recognition/exposure). */
   heroWeights: BrickWeight[]
+  /** B2: the hero is vocabCoverage.activated (words mastered), not a brick sum. */
+  lexicalMeter?: boolean
   rollupDetail: (improvedLabels: string[], gapCount: number) => string
 }
 
@@ -105,21 +113,19 @@ export const LENS_CONFIG: Record<CEFRLevel, LensConfig> = {
           : 'Produser på ukens fokus.',
   },
   B2: {
-    kicker: 'Dagens mål · produksjon',
-    title: 'Produser i lengre kontekst',
-    heroUnit: 'lange setninger',
+    kicker: 'Dagens mål · ordforråd',
+    title: 'Aktiver ordforrådet',
+    heroUnit: 'ord du mestrer',
     wallCaption: 'Dagens produksjonsmur',
     wallNote: 'gjenkjenning teller ikke her',
-    rollupLabel: 'Ukens sprint · produksjonsgap',
+    rollupLabel: 'Ukens sprint · ordforråd',
+    // Honest exercise-variety disclosure (the ordforråd track now exists — see lexical meter).
     interim:
-      'Ordforråd-sporet kommer — og B2 har foreløpig færre øvingstyper (lytting og hurtigrunde mangler ennå), så øktene er mer produksjons- og gjenkjenningstunge. Du måles snart på ord du ikke lenger bommer på; i mellomtiden viser vi ærlig produksjon.',
+      'B2 har foreløpig færre øvingstyper (lytting og hurtigrunde kommer). Bøyningsdrillen aktiverer ord du har bommet på.',
     heroWeights: PROD_AND_GUIDED,
-    rollupDetail: (labels, gap) =>
-      labels.length
-        ? `Gap faller på ${labels.join(', ')}.`
-        : gap > 0
-          ? `Produksjonsgap på ${gap} begrep${gap === 1 ? '' : 'er'}.`
-          : 'Produser i lengre kontekst denne uka.',
+    lexicalMeter: true,
+    rollupDetail: () =>
+      'Et ord teller når du produserer det riktig etter å ha bommet på det.',
   },
 }
 
@@ -165,7 +171,10 @@ export function deriveProductionWallView(
   const todayRec = fp.dailyProgress.find((d) => d.date === todayStr)
   const tally = { ...EMPTY_BRICKS, ...(todayRec?.bricks ?? {}) }
 
-  const heroCount = lens.heroWeights.reduce((sum, w) => sum + tally[w], 0)
+  const brickHero = lens.heroWeights.reduce((sum, w) => sum + tally[w], 0)
+  // B2: the hero is the honest lexical-coverage count (words activated), not bricks.
+  const lexical = lens.lexicalMeter ? vocabCoverage(fp) : undefined
+  const heroCount = lexical ? lexical.activated : brickHero
 
   // Visible cells: production first (never pushed off the grid), then guided,
   // recognition, exposure; pad to the grid; the last filled cell "lands".
@@ -209,6 +218,7 @@ export function deriveProductionWallView(
     rollupLabel: lens.rollupLabel,
     rollupDetail: lens.rollupDetail(improved, gapConceptCount),
     interim: lens.interim,
+    lexical,
     // Only advertise the "Med stillas" legend entry when guided bricks are
     // actually on the wall — no legend/grid mismatch.
     legendShowsGuided: tally.guided > 0,

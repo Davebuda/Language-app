@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { deriveProductionWallView, LENS_CONFIG } from '@/lib/production-wall'
+import { recordVocabResult } from '@/engine'
 import { createEmptyFingerprint } from '@/types/fingerprint'
 import type { MistakeFingerprint, DailyProgress, CEFRLevel } from '@/types/fingerprint'
 
@@ -60,14 +61,27 @@ describe('deriveProductionWallView — per-level lens', () => {
     expect(view.interim).toBeUndefined()
   })
 
-  it('B2 shows an honest interim note and NO fabricated lexical meter', () => {
-    const fp = fpWith('B2', { production: 1, guided: 0, recognition: 0, exposure: 0 })
+  it('B2 hero is the lexical-coverage meter (vocabCoverage), NOT a brick sum', () => {
+    // bricks present but NO vocab activated → the lexical hero stays 0 (bricks must not inflate it)
+    const fp = fpWith('B2', { production: 5, guided: 1, recognition: 0, exposure: 0 })
     const view = deriveProductionWallView(fp, [], TODAY)
-    expect(view.interim).toBeDefined()
-    expect(view.interim).toMatch(/Ordforråd-sporet kommer/)
-    // hero is still real production, never a vocab %
+    expect(view.heroUnit).toBe('ord du mestrer')
+    expect(view.heroCount).toBe(0)
+    expect(view.lexical).toBeDefined()
+    expect(view.lexical!.activated).toBe(0)
+    // honest variety disclosure; the track now exists so it no longer says "kommer"
+    expect(view.interim).toMatch(/færre øvingstyper/)
+    expect(view.interim).not.toMatch(/Ordforråd-sporet kommer/)
+  })
+
+  it('B2 hero reflects activated vocab words (missed → produced correctly)', () => {
+    let fp = fpWith('B2')
+    fp = recordVocabResult(fp, { clusterId: 'c1', wordId: 'w1', correct: false, isProduction: true, totalWordCount: 5 })
+    fp = recordVocabResult(fp, { clusterId: 'c1', wordId: 'w1', correct: true, isProduction: true, totalWordCount: 5 })
+    const view = deriveProductionWallView(fp, [], TODAY)
     expect(view.heroCount).toBe(1)
-    expect(view.heroUnit).toBe('lange setninger')
+    expect(view.lexical!.activated).toBe(1)
+    expect(view.lexical!.missed).toBe(1)
   })
 
   it('every CEFR level has a lens config', () => {
