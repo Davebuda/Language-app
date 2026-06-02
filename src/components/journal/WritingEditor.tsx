@@ -11,7 +11,7 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
-import { repairBatchFromSurface } from '@/engine/repair-from-surface'
+import { repairBatchFromSurface, recordProductionFromSurface } from '@/engine/repair-from-surface'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
@@ -56,6 +56,10 @@ export function WritingEditor() {
   const [inputMode, setInputMode] = useState<'voice' | 'text'>('text')
   const [isListening, setIsListening] = useState(false)
   const recognitionRef = useRef<SpeechRecA | null>(null)
+  // Last text we already wrote a brick for — guards against a second "Analyser"
+  // press on unchanged text double-crediting production (honesty: one real
+  // production = one brick).
+  const lastCommittedTextRef = useRef<string | null>(null)
   useEffect(() => {
     const ctor = getSpeechCtor()
     if (ctor) {
@@ -144,17 +148,58 @@ export function WritingEditor() {
     } catch { /* silent */ }
   }
 
-  function pushErrorsToFingerprint(result: WritingFeedback): void {
-    if (!fingerprint || result.errors.length === 0) return
+  // Fold a journal submission into the fingerprint with BOTH directions of the
+  // engine: errors → repair (negative mastery), and correct FREE production →
+  // one full mastery brick. Previously this only handled errors and returned
+  // early on a clean entry, so a flawless journal post — the most productive act
+  // in the app — wrote nothing to mastery (Rule 8 failure). Now a clean entry
+  // earns a real production brick on the prompt's focus concept.
+  function commitJournalToFingerprint(result: WritingFeedback): void {
+    if (!fingerprint) return
+    // Re-submit guard: a clean re-submit is now a real write (it lays a brick),
+    // so skip it if the text is unchanged since the last committed entry.
+    if (lastCommittedTextRef.current === text.trim()) return
     const activeGraph = getGraphForLevel(fingerprint.currentLevel)
-    const inputs = result.errors.map((err) => ({
-      surfaceKind: 'journal' as const,
-      errorTag: err.tag,
-      conceptId: errorTagToConceptId(err.tag),
-      wrong: err.wrong,
-      correct: err.correct,
-    }))
-    const updated = repairBatchFromSurface(fingerprint, inputs, activeGraph)
+
+    // Concepts the learner got WRONG in this entry — applied as repairs AND used
+    // as the double-count guard below.
+    const errorConceptIds = new Set(
+      result.errors.map((err) => errorTagToConceptId(err.tag)),
+    )
+
+    let updated = fingerprint
+
+    // 1. Errors → repair (negative mastery), only when present.
+    if (result.errors.length > 0) {
+      const inputs = result.errors.map((err) => ({
+        surfaceKind: 'journal' as const,
+        errorTag: err.tag,
+        conceptId: errorTagToConceptId(err.tag),
+        wrong: err.wrong,
+        correct: err.correct,
+      }))
+      updated = repairBatchFromSurface(updated, inputs, activeGraph)
+    }
+
+    // 2. Correct FREE production → one full mastery brick on the prompt's focus
+    //    concept. Guards:
+    //    - Only when the prompt resolved a focus concept; otherwise lay NO brick
+    //      (honesty over a fabricated brick — never credit a guessed concept).
+    //    - Double-count guard: skip if the SAME submission flagged that concept
+    //      as wrong (don't both penalize and reward one concept in one entry).
+    //    Journal is free production → guided:false (full step, advances SRS).
+    //    (recordProductionFromSurface also lays today's production brick internally.)
+    const creditConceptId = journalPrompt.focusConceptId
+    if (creditConceptId && !errorConceptIds.has(creditConceptId)) {
+      updated = recordProductionFromSurface(
+        updated,
+        { conceptId: creditConceptId, guided: false },
+        activeGraph,
+      )
+    }
+
+    if (updated === fingerprint) return // nothing changed — no write
+    lastCommittedTextRef.current = text.trim()
     setFingerprint(updated)
     saveFingerprint(updated).catch(console.warn)
   }
@@ -167,7 +212,7 @@ export function WritingEditor() {
       const result = await aiService.reviewWriting({ userText: text, prompt, level: fingerprint?.currentLevel ?? 'A1' })
       setFeedback(result)
       void persistSubmission(result)
-      pushErrorsToFingerprint(result)
+      commitJournalToFingerprint(result)
       markLaneDone('journal')
     } finally {
       setIsAnalyzing(false)

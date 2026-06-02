@@ -21,6 +21,8 @@ import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { getCoachRecommendation } from '@/lib/coach-recommendation'
 import { CORE_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
+import { ProductionWall } from '@/components/dashboard/ProductionWall'
+import { deriveProductionWallView } from '@/lib/production-wall'
 
 const CONCEPT_TO_TOPIC: Record<string, string> = {
   'v2-word-order': 'daglig rutine',
@@ -216,6 +218,12 @@ export default function DashboardPage() {
     return summarizeWeeklyProgress(fingerprint, activeGraph)
   }, [fingerprint, activeGraph])
 
+  // Production wall view — all-levels, level-aware lens. Null pre-hydration.
+  const wallView = useMemo(
+    () => (fingerprint ? deriveProductionWallView(fingerprint, progressEntries) : null),
+    [fingerprint, progressEntries],
+  )
+
   const statTiles = [
     { label: 'Rekke', value: String(streak), tone: 'text-white' },
     { label: 'Min talt', value: String(speakingMins), tone: 'text-[var(--nc-teal)]' },
@@ -280,6 +288,9 @@ export default function DashboardPage() {
             <AIStatusBadge />
           </div>
         </div>
+
+        {/* ── Production wall (lead block; all-levels, level-aware lens) ── */}
+        {wallView ? <ProductionWall view={wallView} /> : null}
 
         {/* ── Hero Card (Lime) ── */}
         <div className="relative overflow-hidden rounded-[0.65rem] bg-[linear-gradient(135deg,#C8FF20_0%,#B8EF10_100%)] p-2.5 text-[var(--nc-signal-fg)]">
@@ -351,11 +362,7 @@ export default function DashboardPage() {
           </div>
         ) : null}
 
-        {fingerprint?.currentLevel === 'B2' ? (
-          <div className="nc-glass rounded-lg px-3 py-3 text-[0.84rem] leading-5 text-[var(--nc-text-muted)]">
-            B2-innhold er under utvikling. Foreløpig trener du på B1-materiale med høyere intensitet.
-          </div>
-        ) : null}
+        {/* B2 interim note now lives inside <ProductionWall> (interim slot) — no duplicate banner. */}
 
         {/* ── Lane Panel (Cream) ── */}
         <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">

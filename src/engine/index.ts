@@ -7,6 +7,8 @@ export {
   aggregateErrorPatterns,
   isMastered,
   computeProductionGap,
+  brickWeightForExercise,
+  bumpDailyBrick,
   getConceptPhase,
   seedInitialMastery,
 } from './fingerprint';

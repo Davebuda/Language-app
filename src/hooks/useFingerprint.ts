@@ -13,6 +13,8 @@ import {
   logError,
   aggregateErrorPatterns,
   computeProductionGap,
+  brickWeightForExercise,
+  bumpDailyBrick,
   ensureWeekOpen,
   closeWeek,
   openWeek,
@@ -359,6 +361,17 @@ export function useFingerprint() {
         try { localStorage.setItem('norskcoach_levelup_pending', '1'); } catch { /* ignore */ }
       }
 
+      // ── Daily brick tally (production wall) ────────────────────────────
+      // One correct in-session answer lays one brick, weighted by exercise type
+      // (production vs recognition). A wrong answer lays NO brick — errors live
+      // in the repair loop, not on the progress wall.
+      if (result.correct) {
+        const sessionItems = useSessionStore.getState().session?.items ?? [];
+        const item = sessionItems.find((i) => i.id === result.itemId);
+        const weight = item ? brickWeightForExercise(item.exerciseType) : 'recognition';
+        updated = bumpDailyBrick(updated, weight);
+      }
+
       setFingerprint(updated);
       saveFingerprint(updated).catch(console.warn);
       if (user) { saveFingerprintToSupabase(updated).catch(console.warn); }
@@ -431,10 +444,12 @@ export function useFingerprint() {
     }
     next.updatedAt = now
 
-    setFingerprint(next)
-    saveFingerprint(next).catch(console.warn)
+    // Exposure lays the faintest brick on today's wall (read/heard, not produced).
+    const withBrick = bumpDailyBrick(next, 'exposure')
+    setFingerprint(withBrick)
+    saveFingerprint(withBrick).catch(console.warn)
     if (user) {
-      saveFingerprintToSupabase(next).catch(console.warn)
+      saveFingerprintToSupabase(withBrick).catch(console.warn)
       logConceptExposure(user.id, unique)
     }
   }, [setFingerprint, user])

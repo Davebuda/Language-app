@@ -74,6 +74,10 @@ export interface DailyBlockProgress {
   correct: number
 }
 
+// Production-wall brick weights. Each graded outcome lays one brick of one
+// weight onto the day's wall; the daily/weekly progress surface reads this tally.
+export type BrickWeight = 'exposure' | 'recognition' | 'production' | 'guided'
+
 export interface DailyProgress {
   date: string  // YYYY-MM-DD
   blocks: {
@@ -82,6 +86,9 @@ export interface DailyProgress {
     snakk: DailyBlockProgress
   }
   completedAt: string | null
+  // Per-weight brick tally for the production wall. Optional for back-compat:
+  // legacy day records (pre-2026-06) lack it and are treated as all-zeros.
+  bricks?: { exposure: number; recognition: number; production: number; guided: number }
 }
 
 export interface MistakeFingerprint {

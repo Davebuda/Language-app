@@ -2,7 +2,7 @@ import type { MistakeFingerprint } from '@/types/fingerprint'
 import type { ErrorTag } from '@/types/taxonomy'
 import type { ExerciseType } from '@/types/session'
 import type { ConceptGraph } from '@/types/concepts'
-import { logError, aggregateErrorPatterns, updateConceptMastery } from './fingerprint'
+import { logError, aggregateErrorPatterns, updateConceptMastery, bumpDailyBrick } from './fingerprint'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 
 export type SurfaceKind = 'journal' | 'conversation' | 'roleplay' | 'reading'
@@ -119,7 +119,7 @@ export function recordProductionFromSurface(
     }
   }
 
-  return {
+  const withMastery: MistakeFingerprint = {
     ...fp,
     conceptMastery: {
       ...fp.conceptMastery,
@@ -127,6 +127,9 @@ export function recordProductionFromSurface(
     },
     updatedAt: new Date().toISOString(),
   }
+  // Lay one production brick on today's wall — full-weight for free production,
+  // the dampened 'guided' weight for scaffolded frames.
+  return bumpDailyBrick(withMastery, guided ? 'guided' : 'production')
 }
 
 /**

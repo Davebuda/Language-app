@@ -3,6 +3,8 @@ import type {
   ConceptMastery,
   ErrorLogEntry,
   ErrorPattern,
+  DailyProgress,
+  BrickWeight,
 } from '@/types/fingerprint';
 import type { ErrorTag } from '@/types/taxonomy';
 import type { ExerciseType } from '@/types/session';
@@ -300,6 +302,63 @@ export function computeProductionGap(
   return Math.round(
     ((writingErrors - recognitionErrors) / (writingErrors + recognitionErrors)) * 100
   );
+}
+
+// ── Daily brick tally (production wall) ──────────────────────────────────
+
+// Which in-session CORRECT answer counts as PRODUCTION vs RECOGNITION on the
+// daily wall. Data, not branching — so the "recognition can't move the
+// production meter" guarantee is deterministic and lives in one place. Source
+// of truth is the ExerciseType union; anything not listed is recognition.
+// (word-order is scaffolded production; fill-in-blank/listening/speed-round are
+// recognition; the non-session free-writing surfaces credit production directly
+// via recordProductionFromSurface, not through this map.)
+const PRODUCTION_EXERCISE_TYPES: ReadonlySet<ExerciseType> = new Set<ExerciseType>([
+  'translation-to-norwegian',
+  'word-order',
+  'free-writing',
+  'cloze-passage',
+]);
+
+export function brickWeightForExercise(type: ExerciseType): 'production' | 'recognition' {
+  return PRODUCTION_EXERCISE_TYPES.has(type) ? 'production' : 'recognition';
+}
+
+const EMPTY_BRICKS = { exposure: 0, recognition: 0, production: 0, guided: 0 };
+
+/**
+ * Pure: add `count` bricks of one weight to TODAY's DailyProgress record,
+ * creating the day record if absent and preserving the rolling 7-day window.
+ * Legacy day records without `bricks` are treated as zeros. Mirrors the
+ * find-or-create shape of recordBlockProgress; never mutates in place.
+ */
+export function bumpDailyBrick(
+  fp: MistakeFingerprint,
+  weight: BrickWeight,
+  count = 1,
+): MistakeFingerprint {
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  const existing = fp.dailyProgress.find((d) => d.date === today);
+  const base: DailyProgress = existing ?? {
+    date: today,
+    blocks: {
+      lytt: { completed: 0, total: 0, correct: 0 },
+      lær: { completed: 0, total: 0, correct: 0 },
+      snakk: { completed: 0, total: 0, correct: 0 },
+    },
+    completedAt: null,
+  };
+  const bricks = { ...EMPTY_BRICKS, ...(base.bricks ?? {}) };
+  const nextDay: DailyProgress = {
+    ...base,
+    bricks: { ...bricks, [weight]: bricks[weight] + count },
+  };
+  const otherDays = fp.dailyProgress.filter((d) => d.date !== today);
+  return {
+    ...fp,
+    dailyProgress: [nextDay, ...otherDays].slice(0, 7),
+    updatedAt: new Date().toISOString(),
+  };
 }
 
 // ── Phase Model ────────────────────────────────────────────────────────
