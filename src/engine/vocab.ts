@@ -45,11 +45,14 @@ export function recordVocabResult(fp: MistakeFingerprint, input: VocabResultInpu
   const { clusterId, wordId, correct, isProduction, totalWordCount } = input
   const existing = fp.vocabularyMastery[clusterId] ?? emptyCluster(clusterId, totalWordCount)
 
-  let { missedWordIds, activatedWordIds } = existing
+  // Defensive defaults: a legacy/partial cluster record (e.g. truncated sync)
+  // may lack the arrays — never throw inside a React state update.
+  let missedWordIds = existing.missedWordIds ?? []
+  let activatedWordIds = existing.activatedWordIds ?? []
   if (!correct) {
     // record the miss (the "was" behind "no longer miss")
     missedWordIds = addUnique(missedWordIds, wordId)
-  } else if (isProduction && existing.missedWordIds.includes(wordId)) {
+  } else if (isProduction && missedWordIds.includes(wordId)) {
     // produced correctly a word you previously missed → activated
     activatedWordIds = addUnique(activatedWordIds, wordId)
   }
@@ -91,10 +94,10 @@ export function vocabCoverage(
   let missed = 0
   let total = 0
   for (const c of Object.values(fp.vocabularyMastery)) {
-    total += c.totalWordCount
+    total += c.totalWordCount ?? 0
     if (c.score >= floor) {
-      activated += c.activatedWordIds.length
-      missed += c.missedWordIds.length
+      activated += (c.activatedWordIds ?? []).length
+      missed += (c.missedWordIds ?? []).length
     }
   }
   return { activated, missed, total }

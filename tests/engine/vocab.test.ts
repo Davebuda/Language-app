@@ -51,6 +51,17 @@ describe('recordVocabResult — activation gate', () => {
     recordVocabResult(fp, input({ correct: false }))
     expect(JSON.stringify(fp.vocabularyMastery)).toBe(before)
   })
+
+  it('handles a legacy/partial cluster record (missing arrays) without throwing', () => {
+    const fp = base()
+    // simulate a truncated/legacy record lacking the new arrays
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ;(fp.vocabularyMastery as any).c1 = { clusterId: 'c1', score: 70, totalWordCount: 12 }
+    expect(() => recordVocabResult(fp, input({ correct: true }))).not.toThrow()
+    expect(() => vocabCoverage(fp)).not.toThrow()
+    const out = recordVocabResult(fp, input({ correct: false }))
+    expect(out.vocabularyMastery.c1.missedWordIds).toEqual(['w1'])
+  })
 })
 
 describe('vocabCoverage — honest, decay-gated meter', () => {

@@ -16,8 +16,8 @@ export function ConjugationDrillScreen() {
   const router = useRouter()
   const { recordVocabAnswer } = useFingerprint()
 
-  // Per-mount seed so repeat visits vary; deterministic within a session.
-  const seedOffset = useState(() => new Date().getDate() + new Date().getHours())[0]
+  // Seed varies per visit AND advances on "Ny drill" so a replay isn't identical.
+  const [seedOffset, setSeedOffset] = useState(() => new Date().getDate() + new Date().getHours())
   const drill = useMemo<DrillItem[]>(() => buildConjugationDrill(DRILL_SIZE, seedOffset), [seedOffset])
 
   const [phase, setPhase] = useState<Phase>('intro')
@@ -168,7 +168,7 @@ export function ConjugationDrillScreen() {
                 </p>
               </div>
               <div className="flex w-full flex-col gap-2">
-                <button onClick={() => { setPhase('intro'); setIndex(0); setCorrectCount(0); setAnswer(''); setGrade(null) }} className="nc-button-primary w-full py-3.5 text-[0.875rem] font-bold" aria-label="Ny drill">Ny drill</button>
+                <button onClick={() => { setSeedOffset((s) => s + DRILL_SIZE); setPhase('intro'); setIndex(0); setCorrectCount(0); setAnswer(''); setGrade(null) }} className="nc-button-primary w-full py-3.5 text-[0.875rem] font-bold" aria-label="Ny drill">Ny drill</button>
                 <button onClick={() => router.push('/dashboard')} className="nc-button-dark w-full rounded-[var(--radius)] py-3 text-[0.875rem] font-semibold" aria-label="Tilbake til dashboard">Tilbake til dashboard</button>
               </div>
             </motion.div>
