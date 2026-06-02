@@ -45,7 +45,13 @@ const NEW_MATERIAL_EXERCISES: ExerciseType[] = [
 ];
 
 // Exercise pools for named blocks
-const LYTT_EXERCISES_BLOCK: ExerciseType[] = ['listening-comprehension', 'translation-to-english'];
+// Listening-only — a block labelled "Lytt" (Listen) must actually be listening.
+// Previously this fell back to translation-to-english, so at levels with no
+// listening content (B2 has 0 listening-comprehension sentences) the "Lytt"
+// block silently filled with read-and-translate items (Rule 6 violation). Now
+// the block only takes genuine listening items; if a level has none, the block
+// is empty and gets dropped below — honest absence over silent substitution.
+const LYTT_EXERCISES_BLOCK: ExerciseType[] = ['listening-comprehension'];
 const SNAKK_EXERCISES_BLOCK: ExerciseType[] = ['translation-to-norwegian', 'word-order'];
 
 // Resolve which exercise pool to use based on productionGap signal AND
@@ -443,7 +449,9 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
 
   // Compose: lytt → lær → snakk
   // session.items is the flat union — preserves backward compatibility for all existing consumers.
-  const blocks: SessionBlock[] = [lyttBlock, lærBlock, snakkBlock];
+  // Drop empty blocks so the UI never shows a block with no items (e.g. an empty
+  // "Lytt" at a level with no listening content). Honest absence over a dead tab.
+  const blocks: SessionBlock[] = [lyttBlock, lærBlock, snakkBlock].filter((b) => b.items.length > 0);
   const allItems = blocks.flatMap((b) => b.items);
 
   const session: Session = {
