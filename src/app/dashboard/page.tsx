@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -186,6 +185,7 @@ export default function DashboardPage() {
       drills: 'Uttaleøvelser',
       shadow: 'Skyggelesing',
       uke: 'Ukens repetisjon',
+      ord: 'Skriv riktige verbformer',
     } satisfies Record<LaneId, string>
   }, [plan, fingerprint, activeGraph, levelLabel, dayOfWeek])
 
@@ -206,13 +206,18 @@ export default function DashboardPage() {
     drills: false,
     shadow: false,
     uke: true,
+    ord: false,
   }), [fingerprint?.weeklyFocus, focusSet.size])
 
-  const uncompletedLanes = CORE_LANES
+  // B2 elevates the conjugation drill (/ord) into the daily lane set so it counts
+  // toward daily completion. Other levels don't have it, so their denominator is
+  // unchanged (no phantom lane for A1/A2/B1).
+  const coreLanes: LaneId[] = levelLabel === 'B2' ? [...CORE_LANES, 'ord'] : CORE_LANES
+  const uncompletedLanes = coreLanes
     .filter((laneId) => !completedLanes.has(laneId) && recommendation?.laneId !== laneId)
-  const doneLanes = CORE_LANES.filter((laneId) => completedLanes.has(laneId))
+  const doneLanes = coreLanes.filter((laneId) => completedLanes.has(laneId))
   const completedCount = doneLanes.length
-  const completionPct = Math.round((completedCount / CORE_LANES.length) * 100)
+  const completionPct = Math.round((completedCount / coreLanes.length) * 100)
   const progressEntries = useMemo(() => {
     if (!fingerprint) return []
     return summarizeWeeklyProgress(fingerprint, activeGraph)
@@ -296,23 +301,9 @@ export default function DashboardPage() {
           <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} />
         ) : null}
 
-        {/* B2 vocab track entry — conjugation drill (Slice 3.3) */}
-        {fingerprint?.currentLevel === 'B2' ? (
-          <Link
-            href="/ord"
-            aria-label="Åpne bøyningsdrill"
-            className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-2.5"
-          >
-            <div>
-              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-signal-dim,#9ec01a)]">B2 · ordforråd</div>
-              <div className="mt-0.5 text-[0.9rem] font-bold text-[var(--nc-text)]">Bøyningsdrill</div>
-              <div className="mt-px text-[0.72rem] text-[var(--nc-text-muted)]">Skriv riktige verbformer · hverdagsverb</div>
-            </div>
-            <ArrowRight size={15} aria-hidden="true" className="text-[var(--nc-text-dim)]" />
-          </Link>
-        ) : null}
-
-        {/* Hero CTA + coach reason now live inside the merged "I dag" card above. */}
+        {/* B2 conjugation drill (/ord) is now a tracked daily lane in "Neste valg"
+            below (Slice 3.5) — the standalone entry card was removed to avoid a
+            duplicate /ord link. Hero CTA + coach reason live in the "I dag" card above. */}
 
         {/* ── Stat Strip (Cream) ── */}
         <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
@@ -330,7 +321,7 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
           <div className="flex items-center gap-2">
             <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Uke</span>
-            <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {CORE_LANES.length}</span>
+            <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
@@ -370,7 +361,7 @@ export default function DashboardPage() {
         <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
           <div className="flex items-center justify-between px-1 pb-1.5">
             <span className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">Neste valg</span>
-            <span className="text-[0.68rem] tabular-nums text-[var(--nc-cream-dim)]">{completedCount}/{CORE_LANES.length}</span>
+            <span className="text-[0.68rem] tabular-nums text-[var(--nc-cream-dim)]">{completedCount}/{coreLanes.length}</span>
           </div>
 
           <div className="flex flex-col">

@@ -6,6 +6,7 @@ import {
   ArrowRight,
   BookOpenText,
   Check,
+  Languages,
   MessageSquareText,
   NotebookPen,
   Sparkles,
@@ -24,6 +25,7 @@ const LANE_CONFIG: Record<LaneId, { Icon: ElementType; name: string; href: strin
   drills: { Icon: MessageSquareText, name: 'Uttale', href: '/drills' },
   shadow: { Icon: MessageSquareText, name: 'Skygging', href: '/shadow' },
   uke: { Icon: Sparkles, name: 'Ukens sjekk', href: '/uke' },
+  ord: { Icon: Languages, name: 'Bøyningsdrill', href: '/ord' },
 }
 
 interface LaneTrackRowProps {

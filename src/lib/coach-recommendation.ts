@@ -27,6 +27,7 @@ const LANE_META: Record<LaneId, { label: string; href: string; ctaLabel: string 
   drills:       { label: 'UTTALE',       href: '/drills',       ctaLabel: 'Øv uttale' },
   shadow:       { label: 'SKYGGING',     href: '/shadow',       ctaLabel: 'Start skygging' },
   uke:          { label: 'UKENS SJEKK', href: '/uke',          ctaLabel: 'Ta sjekken' },
+  ord:          { label: 'BØYNINGSDRILL', href: '/ord',        ctaLabel: 'Start drill' },
 }
 
 const CONCEPT_TO_TOPIC: Record<string, string> = {

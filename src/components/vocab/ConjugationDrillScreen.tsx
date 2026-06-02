@@ -8,6 +8,7 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { buildConjugationDrill, type DrillItem } from '@/lib/conjugation-drill'
 import { gradeConjugation, TENSE_LABELS } from '@/lib/grade-conjugation'
 import { clusterTotalWords, carrierFor } from '@/lib/vocab-loader'
+import { markLaneDone } from '@/lib/lane-completion'
 
 type Phase = 'intro' | 'drilling' | 'complete'
 const DRILL_SIZE = 10
@@ -48,6 +49,7 @@ export function ConjugationDrillScreen() {
     setAnswer('')
     setGrade(null)
     if (ni >= drill.length) {
+      markLaneDone('ord') // drill finished → counts toward today's B2 lane completion
       setPhase('complete')
     } else {
       setIndex(ni)
