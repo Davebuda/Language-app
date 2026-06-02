@@ -225,6 +225,25 @@ A corpus audit found the app declares 10 `ExerciseType` values but only 6 are re
 | — | **reading-comprehension** | **DEFER** (keep honest banner) — recognition-heavy, weakest north-star fit. | Backlog |
 | — | **sentence-transformation as a real distinct exercise** | **DEFER to backlog** — building it is a 2nd breadth exception beside cloze. Needs its own explicit Rule-1 override + feature-challenger pass before it can become a sequenced step. Highest unbuilt diagnostic value, but that's also its biggest tell. | Backlog (architect-blocked from sequence) |
 
+#### Exercise-structure roadmap — fit to vision (2026-06-02)
+
+**Course unchanged.** The moat (Diagnosis → Scheduling → Remediation) and the north star (production + speaking) remain the spine. The B1/B2 exercise structures below are **substrate ranked only by how much each strengthens those** — never breadth for its own sake. They pass through the same earned-place test (adds a diagnosis signal an existing type can't, OR pushes genuine production, AND traces a real fingerprint write — Rule 8). Sequencing stays **behind the Move-2 engine + honesty fixes**, one type at a time, each linguist-gated. Sources: `docs/per-level-progression-proposal.md`, `output/b2-exercise-types-design.md`, `output/b1b2-corpus-gap.md`.
+
+**The recognition anomaly (why the B2 mix must shift):** B2 is currently 116 `translation-to-english` (recognition) vs 83 production — backwards for a level whose development area is production + lexical nuance. The roadmap **rebalances B2 scheduling weight away from English-translation recognition toward the production structures below** as they land. No content is deleted; new structures displace it in selection weight.
+
+| Rank | Structure | Level | Earns its place because | Verdict |
+|---|---|---|---|---|
+| 1 | **Cloze passage** (item 6.3) | B1→B2 | New discourse-level pushed-output; per-gap observed-error tags. Highest content leverage — **0 passages exist at B1/B2**. | BUILD FIRST (already in design) |
+| 2 | **Guided one-sentence production** from a paragraph | B1 | Strongest north-star fit — Swain "pushed output" in a gradeable frame; deterministic-diff error tags (word-order/tense/article) feed diagnosis. **Rescues reading by attaching production.** | BUILD — pair with #4 |
+| 3 | **Nuance-discrimination** + **conjugation-drill** (B2 track) | B2 | The genuine B2 development area: new lexical signal (`wrong-word-same-category` at nuance) + morphology signal (`verb-conjugation` across the infinitiv→presens→preteritum→perfektum ladder). Approved. Nuance first (cheapest, reuses submitResult), conjugation second. | BUILD (approved) |
+| 4 | **Single-paragraph reading + Nor→Nor comprehension** | B1 (→ multi-para B2) | Adds a diagnosis signal sentence-level types can't: main-idea vs detail vs inference vs reference. **Supersedes the earlier `reading-comprehension` DEFER** — that deferral was "recognition-heavy / weak north-star"; bundling #2's production question changes the verdict. Pure-recognition reading alone stays deferred. | BUILD reading+production as ONE unit; multi-para B2 backlog until the frame proves out |
+| 5 | **Nor→Nor transformation** (tense shift, statement→question, connector swap) | B1→B2 | Strong structural-control diagnosis signal, deterministic-diff-friendly; semi-production. **= reviving `sentence-transformation`** with the production angle — the Rule-1 override is now explicitly granted on these grounds. | BUILD after #2 (shares the diff classifier) |
+| — | **Structured short writing** | B2 | Production, but overlaps the journal (focus-biased free writing + AI repair — `free-writing` was CUT for exactly this duplication). | DEFER — revisit only as an occasional B2 weekly-sprint capstone |
+
+**Hard gate (unchanged):** no row above starts before Move-2 (journal-mastery verify, B1/B2 silent-degradation banner, phantom cleanup) + the diagnosis fixes land. Every row's content runs content-author → **norwegian-linguist (blocking)** → finalize-deepen → seed. **More single-sentence translation/fill-in-blank volume is explicitly NOT on this roadmap** — it lengthens time-to-exhaustion without serving the moat or production (a "longer A1", which fails the north-star test).
+
+**What changed vs the prior Wave-6 decisions (honest delta):** only two items' verdicts moved, and only on the new production-attached grounds above — `reading-comprehension` (DEFER → BUILD, *bundled with production*) and `sentence-transformation` (backlog → sequenced *after #2*, Rule-1 override granted). Everything else (spine, gate, free-writing CUT, one-at-a-time, linguist-blocking) is unchanged.
+
 ---
 
 ## Parallel Execution Map
