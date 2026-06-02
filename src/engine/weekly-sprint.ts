@@ -1,6 +1,7 @@
-import type { ConceptMastery, MistakeFingerprint, WeeklySprintRecord } from '@/types/fingerprint';
-import type { ConceptGraph } from '@/types/concepts';
+import type { CEFRLevel, ConceptMastery, MistakeFingerprint, WeeklySprintRecord } from '@/types/fingerprint';
+import type { ConceptGraph, ConceptNode } from '@/types/concepts';
 import { getConceptPhase, isMastered } from './fingerprint';
+import { getCumulativeConcepts } from '@/lib/concept-graph-loader';
 
 // ── Migration helper ──────────────────────────────────────────────────────────
 
@@ -46,12 +47,28 @@ export function selectWeeklyFocus(
   fp: MistakeFingerprint,
   graph: ConceptGraph,
   now: Date = new Date(),
+  level?: CEFRLevel,
 ): string[] {
   const weekEnd = new Date(now.getTime() + WEEK_DURATION_MS).toISOString();
 
   // Build masteredIds set so getConceptPhase can evaluate prerequisites.
+  // CROSS-LEVEL FIX (E1): a B1/B2 concept's prerequisites can live at LOWER
+  // levels (e.g. b1 `past-perfect` requires A2 `perfect-tense`). A single-level
+  // graph never contains those prereqs, so the concept would read `locked`
+  // forever and weeklyFocus would be empty above A2. Resolve mastery over the
+  // CUMULATIVE concept set (A1..level) when a level is supplied; otherwise fall
+  // back to the passed graph (preserves synthetic-graph test behavior).
+  // TODO(pre-launch): when concepts retroactively unlock as a learner crosses
+  // levels, surface a short "nye konsepter låst opp" notice (silent for now,
+  // per user decision).
+  // Node lookup spans the passed `graph` (authoritative for current-level /
+  // test-synthetic concepts) AND the cumulative set (cross-level prereqs).
+  const prereqById = new Map<string, ConceptNode>(graph.concepts.map((c) => [c.id, c]));
+  if (level !== undefined) {
+    for (const c of getCumulativeConcepts(level)) prereqById.set(c.id, c);
+  }
   const masteredIds = new Set(
-    graph.concepts
+    [...prereqById.values()]
       .filter((c) =>
         isMastered(
           fp.conceptMastery[c.id],
@@ -188,9 +205,10 @@ export function openWeek(
   fp: MistakeFingerprint,
   graph: ConceptGraph,
   now: Date = new Date(),
+  level?: CEFRLevel,
 ): MistakeFingerprint {
   if (fp.weekStartedAt !== null) return fp; // already open
-  const focus = selectWeeklyFocus(fp, graph, now);
+  const focus = selectWeeklyFocus(fp, graph, now, level ?? fp.currentLevel);
   const weekStartSnapshots: MistakeFingerprint['weekStartSnapshots'] = {};
   for (const conceptId of focus) {
     const m = fp.conceptMastery[conceptId];
@@ -220,13 +238,14 @@ export function ensureWeekOpen(
   fp: MistakeFingerprint,
   graph: ConceptGraph,
   now: Date = new Date(),
+  level?: CEFRLevel,
 ): MistakeFingerprint {
   if (shouldResetWeek(fp, now)) {
     const closed = closeWeek(fp, graph, { status: 'abandoned', checkResult: null, now });
-    return openWeek(closed, graph, now);
+    return openWeek(closed, graph, now, level);
   }
   if (fp.weekStartedAt === null) {
-    return openWeek(fp, graph, now);
+    return openWeek(fp, graph, now, level);
   }
   return fp;
 }

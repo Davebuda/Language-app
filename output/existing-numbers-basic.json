@@ -1,0 +1,498 @@
+[
+ {
+  "norwegian": "Bussen koster ___ kroner én vei.",
+  "english": "The bus costs forty kroner one way.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1,
+  "notes": "førti"
+ },
+ {
+  "norwegian": "Hun er ___ år gammel.",
+  "english": "She is twelve years old.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1,
+  "notes": "tolv"
+ },
+ {
+  "norwegian": "Vi trenger ___ egg til kaken.",
+  "english": "We need twenty eggs for the cake.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 2,
+  "notes": "tjue"
+ },
+ {
+  "norwegian": "Toget går klokken ___ minutter over to.",
+  "english": "The train leaves at thirty-five minutes past two.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 3,
+  "notes": "trettifem"
+ },
+ {
+  "norwegian": "Jeg har to katter og en hund.",
+  "english": "I have two cats and one dog.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er syv dager i en uke.",
+  "english": "There are seven days in a week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Melken koster tjueto kroner i denne butikken.",
+  "english": "The milk costs twenty-two kroner in this shop.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg er 25 år gammel",
+  "english": "I am 25 years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har 3 epler",
+  "english": "I have 3 apples",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg er 20 år gammel",
+  "english": "I am 20 years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har 3 søsken.",
+  "english": "I have 3 siblings.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Han er 30 år gammel",
+  "english": "He is 30 years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi har 20 kopper",
+  "english": "We have 20 cups",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har to bøker",
+  "english": "I have two books",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er 15 minutter igjen",
+  "english": "It's 15 minutes left",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg er 30 år",
+  "english": "I am 30 years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har 5 epler",
+  "english": "I have 5 apples",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har 5 bøker",
+  "english": "I have 5 books",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er 12 år",
+  "english": "She is 12 years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det koster 20 kroner",
+  "english": "It costs 20 crowns",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har 15 venner",
+  "english": "He has 15 friends",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er 25 år",
+  "english": "I am 25 years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er 40 grader",
+  "english": "It is 40 degrees",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjøper 11 blomster",
+  "english": "I buy 11 flowers",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har 99 poeng",
+  "english": "She has 99 points",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er tjue år",
+  "english": "I am twenty years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er elleve grader",
+  "english": "It is eleven degrees",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er sytten år",
+  "english": "She is seventeen years old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det koster åtte kroner",
+  "english": "It costs eight crowns",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det koster femten kroner.",
+  "english": "It costs fifteen crowns",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har nitten bøker.",
+  "english": "He has nineteen books",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er åtte hus.",
+  "english": "There are eight houses",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har fjorten dager.",
+  "english": "I have fourteen days",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun kjøper tjueen billetter.",
+  "english": "She buys twenty-one tickets",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "listening-recognition"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har tre søstre.",
+  "english": "I have three sisters.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er seks stoler rundt bordet.",
+  "english": "There are six chairs around the table.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg har fire epler i kurven.",
+  "english": "I have four apples in the basket.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi venter i ti minutter.",
+  "english": "We wait for ten minutes.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Butikken er åpen i ___ timer om dagen.",
+  "english": "The shop is open for nine hours a day.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "ni"
+ },
+ {
+  "norwegian": "Han kjøper ___ appelsiner på markedet.",
+  "english": "He buys eight oranges at the market.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "åtte"
+ }
+]

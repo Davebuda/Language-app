@@ -1,0 +1,536 @@
+[
+ {
+  "norwegian": "Dette er ___ hus.",
+  "english": "This is Lars's house.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "Lars'"
+ },
+ {
+  "norwegian": "___ hovedstad er Oslo.",
+  "english": "Norway's capital is Oslo.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "Norges"
+ },
+ {
+  "norwegian": "Jeg bruker ___ bil til jobb.",
+  "english": "I use my neighbour's car for work.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "naboens"
+ },
+ {
+  "norwegian": "Vi fant ___ veske på benken.",
+  "english": "We found the teacher's bag on the bench.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "lærerens"
+ },
+ {
+  "norwegian": "Marias søster bor i Bergen.",
+  "english": "Maria's sister lives in Bergen.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken til Kari er veldig interessant.",
+  "english": "Kari's book is very interesting.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Oslos gater er veldig brede.",
+  "english": "Oslo's streets are very wide.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg lånte sykkelen til broren min.",
+  "english": "I borrowed my brother's bicycle.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kongens palasset ligger i sentrum.",
+  "english": "The king's palace is located in the centre.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Mannens hatt er svart.",
+  "english": "The man's hat is black",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Lærerens bok er tung.",
+  "english": "The teacher's book is heavy",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Sønnens drøm er å fly.",
+  "english": "The son's dream is to fly",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Datterens sang er fin.",
+  "english": "The daughter's song is nice",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Søsterens kjole er fin.",
+  "english": "The sister's dress is nice",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Brorens sykkel er rød.",
+  "english": "The brother's bike is red",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Pappas jobb er vanskelig.",
+  "english": "Dad's job is difficult",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Guttas sykkel er blå.",
+  "english": "The boy's bike is blue",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kvinnens sko er brune.",
+  "english": "The woman's shoes are brown",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Sønnens rom er stort.",
+  "english": "The son's room is big",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Morens kjole er grønn.",
+  "english": "The mother's dress is green",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jentens leker er fine.",
+  "english": "The girl's toys are nice.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Morens smykke er vakkert.",
+  "english": "The mother's jewel is beautiful.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Gutten liker farens bil.",
+  "english": "The boy likes his father's car.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Kvinnens hår er langt.",
+  "english": "The woman's hair is long.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jens' bil er rød.",
+  "english": "Jens' car is red.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Karis hund er stor.",
+  "english": "Kari's dog is big.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Lærerens bok er gammel",
+  "english": "The teacher's book is old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Søsterens leke er fin",
+  "english": "Sister's toy is nice",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Datterens leker er fine.",
+  "english": "The daughter's toys are nice.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Farens hus er gammelt.",
+  "english": "The father's house is old.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling",
+   "wrong-word-different-category",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Sjefen til Kristine er veldig streng.",
+  "english": "Kristine's boss is very strict.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Elevenes lekser var veldig lange i dag.",
+  "english": "The pupils' homework was very long today.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Taket på garasjen er gammelt.",
+  "english": "The roof of the garage is old.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Nøklene til leiligheten henger ved døren.",
+  "english": "The keys to the apartment are hanging by the door.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hundens mat står på kjøkkengulvet.",
+  "english": "The dog's food is on the kitchen floor.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Barnas rom er alltid rotete.",
+  "english": "The children's room is always messy.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Andrés telefon er ny.",
+  "english": "André's phone is new.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg tok ___ jakke fra gangen.",
+  "english": "I took my friend's jacket from the hallway.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "vennens"
+ },
+ {
+  "norwegian": "___ kontor er i andre etasje.",
+  "english": "The director's office is on the second floor.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "Direktørens"
+ },
+ {
+  "norwegian": "Vi hørte ___ musikk fra naborommet.",
+  "english": "We heard the boys' music from the next room.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "guttenes"
+ }
+]

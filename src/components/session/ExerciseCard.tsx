@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { ExerciseResult, SessionItem } from '@/types/session'
+import { isNotYetAvailableType } from '@/types/session'
 import type { ResolvedContent } from '@/types/content'
 import type { RepairPlan } from '@/engine/repair-loop'
 import { TranslationExercise } from './exercises/TranslationExercise'
@@ -23,8 +24,11 @@ interface ExerciseCardProps {
   onClozeResults?: (results: ExerciseResult[]) => void
 }
 
-// Types with no distinct renderer yet. Shown via an honest "kommer snart"
-// banner rather than silently routed to a different exercise (Operating Rule 6).
+// Display labels for the phantom/not-yet-available types. The canonical SET of
+// such types lives in @/types/session (NOT_YET_AVAILABLE_TYPES) and is shared
+// with the scheduler so it never schedules a type it cannot render. This map
+// only supplies the Norwegian label for the honest "kommer snart" banner
+// (Operating Rule 6).
 const NOT_YET_LABELS: Record<string, string> = {
   'reading-comprehension': 'Leseforståelse',
   'free-writing': 'Fri skriving',
@@ -117,6 +121,14 @@ export function ExerciseCard({
       return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
     }
 
+    // Defensive fallback (Operating Rule 6): the scheduler now excludes phantom
+    // types (NOT_YET_AVAILABLE_TYPES) so one should never reach here — but if it
+    // ever does, show the honest "kommer snart" banner instead of silently
+    // rendering as a different exercise.
+    if (isNotYetAvailableType(item.exerciseType)) {
+      return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
+    }
+
     const props = { item, sentence, sessionId, onResult: handleResult }
 
     switch (item.exerciseType) {
@@ -131,14 +143,6 @@ export function ExerciseCard({
         return <ListeningExercise {...props} />
       case 'speed-round':
         return <SpeedRound {...props} />
-      // Phantom types — no distinct renderer + zero seed content. Honest banner
-      // instead of silently rendering as a different exercise (Operating Rule 6).
-      // dictation ≡ listening-comprehension; sentence-transformation ≡ translation.
-      case 'sentence-transformation':
-      case 'dictation':
-      case 'reading-comprehension':
-      case 'free-writing':
-        return <NotYetAvailable type={item.exerciseType} onResult={onResult} item={item} sessionId={sessionId} />
       default:
         return <TranslationExercise {...props} />
     }

@@ -90,6 +90,39 @@ export interface ResolvedClozePassage extends ClozePassage {
   source: 'seed' | 'generated';
 }
 
+// One artifact powering the read → recite → write flow (the "skriv" module).
+// The learner READS it, RECITES bounded key sentences aloud, then WRITES an
+// opinion. See output/unified-read-recite-write-design.md.
+export interface ReadingPassage {
+  id: string;
+  cefrLevel: CEFRLevel;
+  title?: string;
+  primaryConceptId: string;        // drives scheduling/selectionReason
+  conceptIds: string[];            // all concepts the passage exposes (READ → recordExposure)
+  difficulty: DifficultyTier;
+
+  // READ
+  paragraphs: string[];            // passage body, one entry per paragraph
+  englishGloss?: string;           // optional muted, opt-in translation
+
+  // RECITE — bounded to the highest-value sentence(s), level-scaled, never the
+  // whole passage (reciting a long text is recognition, not production).
+  sentences: string[];             // flat list of speakable sentences
+  reciteTargetIndices: number[];   // indices into `sentences` that form the recite scope
+
+  // WRITE
+  writePrompt: string;             // the opinion prompt shown on the WRITE page
+  writeFrame?: string;             // optional scaffold (A1/A2); presence ⇒ guided ⇒ reduced-weight brick
+  targetConnectors: string[];      // structure markers the WRITE step targets (e.g. ['fordi','selv om'])
+  targetStructureTag: ErrorTag;    // tag logged by the grader when the target structure is absent
+  passageContentWords: string[];   // curated content words (lowercased) for on-topic overlap
+}
+
+// What the read-respond component receives (parallel to ResolvedClozePassage).
+export interface ResolvedReadingPassage extends ReadingPassage {
+  source: 'seed' | 'generated';
+}
+
 export interface GrammarExplainer {
   id: string;
   conceptId: string;

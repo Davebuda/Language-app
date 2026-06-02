@@ -1,0 +1,442 @@
+[
+ {
+  "norwegian": "Jeg vasker ___ før jeg går på jobb.",
+  "english": "I wash myself before going to work.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1,
+  "notes": "meg"
+ },
+ {
+  "norwegian": "De giftet ___ i sommer.",
+  "english": "They got married this summer.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1,
+  "notes": "seg"
+ },
+ {
+  "norwegian": "Du må kle på ___ raskt, bussen kommer snart.",
+  "english": "You must get dressed quickly, the bus is coming soon.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2,
+  "notes": "deg"
+ },
+ {
+  "norwegian": "Vi må skynde ___ hvis vi skal rekke toget.",
+  "english": "We must hurry if we are to catch the train.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3,
+  "notes": "oss"
+ },
+ {
+  "norwegian": "Han setter seg ned og slapper av.",
+  "english": "He sits down and relaxes.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barnet vasker seg selv nå.",
+  "english": "The child washes themselves now.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De kledde på seg og gikk ut i kulden.",
+  "english": "They got dressed and went out into the cold.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi satte oss ved vinduet og bestilte kaffe.",
+  "english": "We sat down by the window and ordered coffee.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun giftet seg med en norsk mann og flyttet til Tromsø.",
+  "english": "She got married to a Norwegian man and moved to Tromsø.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg vasker meg",
+  "english": "I wash myself",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du kler på deg",
+  "english": "You get dressed",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun gifter seg med meg",
+  "english": "She gets married to me",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Du vasker deg selv",
+  "english": "You wash yourself.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg setter meg ved bordet.",
+  "english": "I sit down at the table.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Han kler seg selv",
+  "english": "He dresses himself",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg gifter meg med henne",
+  "english": "I marry her.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg setter meg ned",
+  "english": "I sit down.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kler på meg selv",
+  "english": "I dress myself.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kler på meg.",
+  "english": "I get dressed.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg setter meg.",
+  "english": "I sit down.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg gifter meg med deg.",
+  "english": "I am getting married to you.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du kler på deg selv.",
+  "english": "You get dressed yourself.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Du setter deg selv.",
+  "english": "You sit down yourself.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kler på deg.",
+  "english": "I dress you.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg gleder meg til helgen.",
+  "english": "I look forward to the weekend.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun føler seg trøtt i dag.",
+  "english": "She feels tired today.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi skynder oss til bussen.",
+  "english": "We hurry to the bus.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Barna vasker seg før middag.",
+  "english": "The children wash before dinner.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han legger seg klokken elleve.",
+  "english": "He goes to bed at eleven.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du må konsentrere deg om oppgaven.",
+  "english": "You must concentrate on the task.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg morer meg på festen.",
+  "english": "I am enjoying myself at the party.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De forbereder seg til eksamen.",
+  "english": "They prepare for the exam.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "verb-conjugation",
+   "meaning-misunderstood"
+  ],
+  "difficulty": 2
+ }
+]

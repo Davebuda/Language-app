@@ -2,10 +2,11 @@ import type { MistakeFingerprint, InputProductionPreference } from '@/types/fing
 import type { ConceptGraph } from '@/types/concepts';
 import type { Session, SessionItem, SessionBlock, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
 import type { Sentence, ClozePassage } from '@/types/content';
-import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES } from '@/types/session';
+import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES, isNotYetAvailableType } from '@/types/session';
 import { isMastered } from './fingerprint';
 import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
 import { getUnlockedConcepts } from '@/types/concepts';
+import { getCumulativeConcepts } from '@/lib/concept-graph-loader';
 
 const AVG_EXERCISE_SECONDS = 45; // average exercise duration
 
@@ -44,7 +45,13 @@ const NEW_MATERIAL_EXERCISES: ExerciseType[] = [
 ];
 
 // Exercise pools for named blocks
-const LYTT_EXERCISES_BLOCK: ExerciseType[] = ['listening-comprehension', 'translation-to-english'];
+// Listening-only — a block labelled "Lytt" (Listen) must actually be listening.
+// Previously this fell back to translation-to-english, so at levels with no
+// listening content (B2 has 0 listening-comprehension sentences) the "Lytt"
+// block silently filled with read-and-translate items (Rule 6 violation). Now
+// the block only takes genuine listening items; if a level has none, the block
+// is empty and gets dropped below — honest absence over silent substitution.
+const LYTT_EXERCISES_BLOCK: ExerciseType[] = ['listening-comprehension'];
 const SNAKK_EXERCISES_BLOCK: ExerciseType[] = ['translation-to-norwegian', 'word-order'];
 
 // Resolve which exercise pool to use based on productionGap signal AND
@@ -108,10 +115,27 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   const recipe: SessionRecipe = { ...DEFAULT_SESSION_RECIPE, ...input.recipe };
   const passedIds = fingerprint.passedSentenceIds ?? {};
 
+  // CROSS-LEVEL FIX (E1): resolve mastery over the CUMULATIVE concept set
+  // (A1..currentLevel), not just the current-level graph. A B1/B2 concept's
+  // prerequisites can live at lower levels (e.g. b1 `past-perfect` requires A2
+  // `perfect-tense`); those prereqs are carried forward in conceptMastery but
+  // are absent from the single-level `graph`, so the old `graph.concepts.find`
+  // lookup dropped them — leaving every cross-level concept `locked`. Building
+  // masteredIds over the cumulative set lets getUnlockedConcepts /
+  // getConceptPhase resolve cross-level prerequisites. Focus stays current-level
+  // because getUnlockedConcepts(graph, ...) still scans only `graph`.
+  // TODO(pre-launch): when concepts retroactively unlock as a learner crosses
+  // levels, surface a short "nye konsepter låst opp" notice (silent for now).
+  // Node lookup spans the cumulative set (for cross-level prereqs) AND the
+  // passed `graph` (authoritative for current-level / test-synthetic concepts).
+  // Cumulative entries win on id collision; graph fills any concept not present
+  // in the cumulative set (e.g. synthetic test graphs).
+  const nodeById = new Map(graph.concepts.map((c) => [c.id, c]));
+  for (const c of getCumulativeConcepts(fingerprint.currentLevel)) nodeById.set(c.id, c);
   const masteredIds = new Set(
     Object.entries(fingerprint.conceptMastery)
       .filter(([id, m]) => {
-        const node = graph.concepts.find((c) => c.id === id);
+        const node = nodeById.get(id);
         if (!node) return false;
         return isMastered(m, node.masteryThreshold, node.minAttempts, node.minDays);
       })
@@ -156,7 +180,12 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
       ? allIds.filter((id) => !passedIds[id])
       : allIds;
     if (ids.length === 0) return null;
+    // T5: never schedule a phantom/not-yet-renderable type. Exclude them from
+    // the candidate set so only real, renderable types are considered. If this
+    // leaves a sentence with no eligible real type, return null → the concept is
+    // skipped gracefully (same path as the "no unpassed sentence" skip).
     for (const type of candidates) {
+      if (isNotYetAvailableType(type)) continue;
       if (ids.some((id) => sentences[id]?.exerciseTypes.includes(type))) {
         return type;
       }
@@ -420,7 +449,9 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
 
   // Compose: lytt → lær → snakk
   // session.items is the flat union — preserves backward compatibility for all existing consumers.
-  const blocks: SessionBlock[] = [lyttBlock, lærBlock, snakkBlock];
+  // Drop empty blocks so the UI never shows a block with no items (e.g. an empty
+  // "Lytt" at a level with no listening content). Honest absence over a dead tab.
+  const blocks: SessionBlock[] = [lyttBlock, lærBlock, snakkBlock].filter((b) => b.items.length > 0);
   const allItems = blocks.flatMap((b) => b.items);
 
   const session: Session = {

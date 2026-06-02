@@ -1,0 +1,442 @@
+[
+ {
+  "norwegian": "Huset ble ___ forrige måned.",
+  "english": "The house was sold last month.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "solgt"
+ },
+ {
+  "norwegian": "Boken ___ av mange studenter hvert år.",
+  "english": "The book is read by many students every year.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "leses"
+ },
+ {
+  "norwegian": "Filmen ___ av tusenvis av folk hvert år.",
+  "english": "The film is seen by thousands of people every year.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "ses"
+ },
+ {
+  "norwegian": "Maten ___ ferdig for en time siden.",
+  "english": "The food was prepared an hour ago.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3,
+  "notes": "ble laget"
+ },
+ {
+  "norwegian": "Vinduet ble knust av en ball.",
+  "english": "The window was broken by a ball.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Norsk snakkes av mange mennesker i verden.",
+  "english": "Norwegian is spoken by many people in the world.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Brevet ble sendt i går morges.",
+  "english": "The letter was sent yesterday morning.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Parken brukes av folk i alle aldre.",
+  "english": "The park is used by people of all ages.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Mange av de gamle bygningene i sentrum ble revet på 1970-tallet.",
+  "english": "Many of the old buildings in the city centre were demolished in the 1970s.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Boken leses av John",
+  "english": "The book is read by John",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Prosjektet er ferdigstilt av teamet",
+  "english": "The project is completed by the team",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Rapporten leses av komiteen",
+  "english": "The report is read by the committee",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken leses av eleven",
+  "english": "The book is read by the student",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "E-posten skrives av vennen",
+  "english": "The email is written by the friend",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Brevet blir sendt til sjefen",
+  "english": "The letter is sent to the manager",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Artikkelen blir skrevet av forskeren",
+  "english": "The article is written by the researcher",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Boken leses av læreren",
+  "english": "The book is read by the teacher",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "E-posten blir skrevet av eleven",
+  "english": "The email is written by the student",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken leses",
+  "english": "The book is read",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Møtet blir forsinket på grunn av problemene",
+  "english": "The meeting is delayed due to problems",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "E-posten blir sendt til sjefen",
+  "english": "The email is sent to the manager.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Møtet blir forsinket på grunn av været",
+  "english": "The meeting is delayed due to the weather",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "E-posten blir sendt til kollegaen",
+  "english": "The email is sent to the colleague.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Rapporten leses av oss",
+  "english": "We read the report",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "E-posten blir skrevet av en venn.",
+  "english": "The email is written by a friend.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Maten blir laget klokken fem.",
+  "english": "The food is made at five.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilen vaskes hver uke.",
+  "english": "The car is washed every week.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Brevet ble sendt i går.",
+  "english": "The letter was sent yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Døren åpnes klokken ni.",
+  "english": "The door is opened at nine.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Huset ble bygd i fjor.",
+  "english": "The house was built last year.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Norsk snakkes i Norge.",
+  "english": "Norwegian is spoken in Norway.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Rommet blir rengjort hver dag.",
+  "english": "The room is cleaned every day.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ }
+]

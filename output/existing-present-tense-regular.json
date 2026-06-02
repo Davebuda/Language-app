@@ -1,0 +1,458 @@
+[
+ {
+  "norwegian": "Hva ___ du til middag?",
+  "english": "What are you having for dinner?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1,
+  "notes": "spiser"
+ },
+ {
+  "norwegian": "Jeg ___ norsk hver dag.",
+  "english": "I study Norwegian every day.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1,
+  "notes": "lærer"
+ },
+ {
+  "norwegian": "Han ___ i Oslo.",
+  "english": "He lives in Oslo.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 2,
+  "notes": "bor"
+ },
+ {
+  "norwegian": "Jeg ___ at det er en god idé.",
+  "english": "I believe that it is a good idea.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 3,
+  "notes": "tror"
+ },
+ {
+  "norwegian": "Jeg drikker kaffe om morgenen.",
+  "english": "I drink coffee in the morning.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du snakker veldig bra norsk.",
+  "english": "You speak Norwegian very well.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun jobber på et sykehus i Bergen.",
+  "english": "She works at a hospital in Bergen.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi reiser til Sverige neste uke.",
+  "english": "We are travelling to Sweden next week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Legen undersøker pasienten og skriver ut en resept.",
+  "english": "The doctor examines the patient and writes a prescription.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun leser boken",
+  "english": "She reads the book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han jobber hardt",
+  "english": "He works hard",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi snakker norsk",
+  "english": "We speak Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du drikker vann",
+  "english": "You drink water",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skriver brev",
+  "english": "I write letters",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi spiser middag",
+  "english": "We eat dinner",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du leser avisen",
+  "english": "You read the newspaper",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg løper raskt",
+  "english": "I run fast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun danser godt",
+  "english": "She dances well",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun leser en bok",
+  "english": "She reads a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han jobber hjemme",
+  "english": "He works at home",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du skriver en tekst",
+  "english": "You write a text",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg drikker vann",
+  "english": "I drink water",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun synger en sang",
+  "english": "She sings a song",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han løper i parken",
+  "english": "He runs in the park",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg snakker norsk",
+  "english": "I am speaking Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De leser avisen",
+  "english": "They are reading the newspaper",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han kaster ballen",
+  "english": "He is throwing the ball",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi danser sammen",
+  "english": "We are dancing together",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun tegner bildet",
+  "english": "She is drawing the picture",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du synger sangen",
+  "english": "You sing the song",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjøper maten",
+  "english": "I buy the food",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun skriver brevet",
+  "english": "She writes the letter",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han ser på TV",
+  "english": "He watches TV",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi løper raskt",
+  "english": "We run fast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Du tegner bildet",
+  "english": "You draw the picture",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg hører musikken",
+  "english": "I hear the music",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation"
+  ],
+  "difficulty": 1
+ }
+]

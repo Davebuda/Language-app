@@ -1,7 +1,0 @@
-{
-  "_comment": "A2 wave 1 (2026-05-29, autopilot): Groq-70B generation + 5 parallel norwegian-linguist reviews of 10 previously-never-generated A2 concepts. 210 candidates -> 118 KEEP seeded (~56%). Terminal periods normalized; 'igår'->'i går' fixed. word-formation/numerals-advanced/imperative got 0 (Groq TPM exhaustion at run tail) -> regenerate in wave 2.",
-  "kept_per_file": {"conjunctions":"13/22","advanced-prepositions":"15/22","time-expressions":"11/22","modal-verbs-advanced":"13/22","indirect-speech":"20/22","conditional-clauses":"8/22","sentence-adverbials":"11/22","genitive":"11/22","infinitive-clauses":"7/22","preterite-irregular-advanced":"9/12"},
-  "total_kept":118,"total_reviewed":210,
-  "a2_result":"A2 305->423, avg 13.6->19.0",
-  "linguist_caught":"B1 counterfactual conditionals (Om jeg hadde penger, kjøpte jeg...), Danisms (ven/cykel/mere), tør-å vs tør modal error, V2 violation after fronted kanskje, malformed genitives (Jensas/Farenas/Kvinneens), starte-å calque, off-concept nominal infinitives, jo-particle translation mismatches"
-}

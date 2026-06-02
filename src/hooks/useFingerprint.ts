@@ -12,6 +12,7 @@ import {
   refreshDecay,
   logError,
   aggregateErrorPatterns,
+  computeProductionGap,
   ensureWeekOpen,
   closeWeek,
   openWeek,
@@ -303,6 +304,20 @@ export function useFingerprint() {
         });
         updated = { ...updated, errorPatterns: aggregateErrorPatterns(updated) };
       }
+
+      // ── Production-vs-recognition gap ────────────────────────────────────
+      // Recompute for this concept from the (possibly just-updated) error log.
+      // Previously computeProductionGap was never called, so productionGap
+      // stayed {} forever and the scheduler's production/recognition pool
+      // selection (resolveExercisePool) and the diagnosis rule both read a
+      // constant 0. Wiring it here gives them a real signal.
+      updated = {
+        ...updated,
+        productionGap: {
+          ...updated.productionGap,
+          [result.conceptId]: computeProductionGap(updated.recentErrors, result.conceptId),
+        },
+      };
 
       // ── Passed sentence tracking ────────────────────────────────────────
       if (result.correct && result.sentenceId) {

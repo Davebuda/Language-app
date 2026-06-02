@@ -1,0 +1,503 @@
+[
+ {
+  "norwegian": "Jeg har mistet nøklene ___.",
+  "english": "I have lost my keys.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": "mine"
+ },
+ {
+  "norwegian": "Er dette boken ___?",
+  "english": "Is this your book?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": "din"
+ },
+ {
+  "norwegian": "Han glemte mobilen ___ hjemme.",
+  "english": "He forgot his phone at home.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": "sin"
+ },
+ {
+  "norwegian": "Vi vasker huset ___ hver lørdag.",
+  "english": "We clean our house every Saturday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3,
+  "notes": "vårt"
+ },
+ {
+  "norwegian": "Katten min sover på sofaen.",
+  "english": "My cat is sleeping on the sofa.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilen hans er gammel, men den fungerer bra.",
+  "english": "His car is old, but it works well.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun liker jobben sin veldig godt.",
+  "english": "She likes her job very much.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi inviterte naboene våre på middag i helgen.",
+  "english": "We invited our neighbours to dinner at the weekend.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "boken min",
+  "english": "my book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "huset ditt",
+  "english": "your house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "bilen hans",
+  "english": "his car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "boken din",
+  "english": "your book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "huset mitt",
+  "english": "my house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "bilen vår",
+  "english": "our car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "boken hans",
+  "english": "his book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "bilen hennes",
+  "english": "her car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "boken vår",
+  "english": "our book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Huset ditt er vakkert.",
+  "english": "Your house is beautiful.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Bilen hans er rask.",
+  "english": "His car is fast.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Den boken er hans",
+  "english": "That book is his",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilen min er ny",
+  "english": "My car is new",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Bilen hans er gammel",
+  "english": "His car is old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Den boken er hennes",
+  "english": "That book is hers",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Bilen min er på veien",
+  "english": "My car is on the road",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Bilen min er rød",
+  "english": "My car is red",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset ditt er stort",
+  "english": "Your house is big",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken hans er ny",
+  "english": "His book is new",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Datteren min spiser",
+  "english": "My daughter is eating",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Sønnen din løper",
+  "english": "Your son is running",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hunden hans er glad",
+  "english": "His dog is happy",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vennen min kommer",
+  "english": "My friend is coming",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Skolen din er nær",
+  "english": "Your school is near",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Faren min arbeider",
+  "english": "My father is working",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Moren din synger",
+  "english": "Your mother is singing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Broren min leser",
+  "english": "My brother is reading",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Søsteren din sover",
+  "english": "Your sister is sleeping",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken din er tung",
+  "english": "Your book is heavy",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "pronoun-choice",
+   "noun-gender",
+   "adjective-agreement"
+  ],
+  "difficulty": 1
+ }
+]

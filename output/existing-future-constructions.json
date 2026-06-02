@@ -1,0 +1,442 @@
+[
+ {
+  "norwegian": "Vi ___ møte deg på stasjonen klokken tre.",
+  "english": "We will meet you at the station at three o'clock.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "skal"
+ },
+ {
+  "norwegian": "Jeg ___ kjøpe ny jakke i morgen.",
+  "english": "I am going to buy a new jacket tomorrow.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1,
+  "notes": "skal"
+ },
+ {
+  "norwegian": "Det ___ bli mye snø i vinter.",
+  "english": "There is going to be a lot of snow this winter.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2,
+  "notes": "kommer til å"
+ },
+ {
+  "norwegian": "Han ___ ikke komme på festen i kveld.",
+  "english": "He will not come to the party tonight.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 3,
+  "notes": "vil"
+ },
+ {
+  "norwegian": "De skal reise til Bergen neste uke.",
+  "english": "They are going to travel to Bergen next week.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vil gjerne ha en kopp kaffe.",
+  "english": "I would like to have a cup of coffee.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det kommer til å bli varmt i helgen.",
+  "english": "It is going to be warm this weekend.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun skal begynne på universitetet til høsten.",
+  "english": "She is going to start university in the autumn.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi kommer til å trenge mer tid for å fullføre prosjektet.",
+  "english": "We are going to need more time to finish the project.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg skal besøke bestemor neste uke",
+  "english": "I will visit my grandmother next week",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun kommer til å dra på ferie om sommeren",
+  "english": "She will go on vacation this summer",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg skal besøke moren min neste uke",
+  "english": "I will visit my mother next week",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Foreldrene mine kommer til å dra på ferie om en måned",
+  "english": "My parents will go on a vacation in one month",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg skal reise til Paris neste år",
+  "english": "I will travel to Paris next year",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi kommer til å studere norsk i morgen",
+  "english": "We will study Norwegian tomorrow",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun skal jobbe på kontoret hele uken",
+  "english": "She will work at the office all week",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skal gå til butikken i morgen",
+  "english": "I will go to the store tomorrow",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi kommer til å besøke vennene våre i helgen",
+  "english": "We will visit our friends this weekend",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg skal studere i morgen.",
+  "english": "I will study tomorrow.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun kommer til å reise neste uke.",
+  "english": "She will travel next week.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De skal jobbe sent i kveld.",
+  "english": "They will work late tonight.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg skal reise til Bergen i morgen.",
+  "english": "I am going to travel to Bergen tomorrow.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det kommer til å regne i kveld.",
+  "english": "It is going to rain tonight.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi skal spise middag klokken seks.",
+  "english": "We will eat dinner at six.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun vil bli lege en dag.",
+  "english": "She wants to become a doctor one day.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Toget kommer til å bli forsinket.",
+  "english": "The train is going to be delayed.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg skal møte vennene mine senere.",
+  "english": "I am going to meet my friends later.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De kommer til å flytte neste år.",
+  "english": "They are going to move next year.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi skal feire bursdagen hans.",
+  "english": "We are going to celebrate his birthday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det skal bli fint vær i helgen.",
+  "english": "It is going to be nice weather this weekend.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kommer til å savne deg.",
+  "english": "I am going to miss you.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun skal begynne på en ny jobb.",
+  "english": "She is going to start a new job.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "modal-verb",
+   "reading-parsing"
+  ],
+  "difficulty": 1
+ }
+]

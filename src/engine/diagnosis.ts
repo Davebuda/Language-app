@@ -1,4 +1,5 @@
 import type { MistakeFingerprint } from '@/types/fingerprint';
+import { getCumulativeConcepts } from '@/lib/concept-graph-loader';
 
 export interface DiagnosisResult {
   rootCauseConceptId: string;
@@ -40,7 +41,24 @@ const DIAGNOSIS_RULES: Array<{
   {
     name: 'production-failure-but-recognition-success',
     detect(fp) {
-      const productionGaps = Object.entries(fp.productionGap).filter(([, gap]) => gap > 40);
+      // GATE (E4): a production gap is only diagnostic when the concept is ALSO
+      // evidenced-weak. Without this gate, a NON-weak concept that caught a single
+      // lone writing error saturates computeProductionGap to 100 and outranks the
+      // genuinely weak concept (which scores lower because it was practiced in both
+      // writing and recognition). That made diagnosisResults[0] name the wrong
+      // concept. We gate the rule, not the signal: rule 2 may only fire on a concept
+      // that is among the learner's primary weak concepts (low decayedScore with
+      // enough attempts to trust the score). A lone writing error on a healthy
+      // concept can no longer hijack the top diagnosis.
+      const evidencedWeak = new Set(
+        getPrimaryWeakConcepts(fp, 5).filter((id) => {
+          const m = fp.conceptMastery[id];
+          return m != null && m.attemptCount >= 5 && m.decayedScore < 50;
+        }),
+      );
+      const productionGaps = Object.entries(fp.productionGap).filter(
+        ([id, gap]) => gap > 40 && evidencedWeak.has(id),
+      );
       if (productionGaps.length >= 2) {
         const [conceptId] = productionGaps.sort(([, a], [, b]) => b - a)[0];
         return {
@@ -103,6 +121,46 @@ const DIAGNOSIS_RULES: Array<{
         };
       }
       return null;
+    },
+  },
+  {
+    // LOWEST-priority fallback. Targeted rules (1–4) reason about specific
+    // cross-concept error signatures; they often stay silent. When they do, this
+    // rule names the learner's weakest *evidenced* concept so the diagnosis card
+    // and repair targeting still point somewhere honest. It deliberately makes no
+    // root-cause claim (Operating Rule 6) — it reports the weakest surface, not a
+    // fabricated cause. Confidence 0.45 sits below every targeted rule so it never
+    // outranks a real signal in `runDiagnosis`'s confidence sort.
+    name: 'weakest-evidenced-concept-fallback',
+    detect(fp) {
+      // Fix 2: filter FIRST (evidence gate), then sort by decayedScore, then pick
+      // weakest. The old approach sliced to top-3 by decayed score first, so a
+      // genuinely evidenced-weak concept at rank 4 was silently missed.
+      const evidenced = Object.values(fp.conceptMastery)
+        .filter((m) => m.attemptCount >= 5 && m.decayedScore < 50)
+        .sort((a, b) => a.decayedScore - b.decayedScore);
+      const weakest = evidenced[0];
+      if (!weakest) return null;
+
+      // Fix 1: resolve the concept's human-readable label instead of exposing the
+      // raw slug (e.g. "noun-gender") verbatim on the Norwegian dashboard.
+      const label =
+        getCumulativeConcepts(fp.currentLevel).find((c) => c.id === weakest.conceptId)?.label ??
+        weakest.conceptId.replace(/-/g, ' ');
+
+      // Data-derived focus (not hardcoded): a low rawScore means the form itself
+      // is still shaky (mechanics); a decayed-but-once-higher score means it was
+      // learned and is fading (recognition/review).
+      const recommendedFocus: DiagnosisResult['recommendedFocus'] =
+        weakest.rawScore < 50 ? 'mechanics' : 'recognition';
+
+      return {
+        rootCauseConceptId: weakest.conceptId,
+        confidence: 0.45,
+        reasoning: `Din svakeste flate nå er ${label} — vi fokuserer øvingen der.`,
+        affectedConceptIds: evidenced.slice(0, 3).map((m) => m.conceptId),
+        recommendedFocus,
+      };
     },
   },
 ];

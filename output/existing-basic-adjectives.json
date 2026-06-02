@@ -1,0 +1,506 @@
+[
+ {
+  "norwegian": "Det er en ___ dag i dag.",
+  "english": "It is a nice day today.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1,
+  "notes": "fin"
+ },
+ {
+  "norwegian": "Jeg har en ___ bil.",
+  "english": "I have a new car.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1,
+  "notes": "ny"
+ },
+ {
+  "norwegian": "Det er en ___ vei til skolen.",
+  "english": "It is a long road to school.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2,
+  "notes": "lang"
+ },
+ {
+  "norwegian": "Denne vesken er ___, ikke lett.",
+  "english": "This bag is heavy, not light.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3,
+  "notes": "tung"
+ },
+ {
+  "norwegian": "Maten er god.",
+  "english": "The food is good.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kaffen er varm.",
+  "english": "The coffee is warm.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er kaldt ute i dag.",
+  "english": "It is cold outside today.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han bor i et gammelt hus på landet.",
+  "english": "He lives in an old house in the countryside.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Den lille katten sov på den varme sofaen.",
+  "english": "The small cat slept on the warm sofa.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun er stor",
+  "english": "She is big",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset er lite",
+  "english": "The house is small",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Boken er gammel",
+  "english": "The book is old",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er kort",
+  "english": "She is short",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hun er god",
+  "english": "She is good",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De er gode",
+  "english": "They are good",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har en stor bok",
+  "english": "I have a big book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken er liten",
+  "english": "The book is small",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Den er ny",
+  "english": "It is new",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg leser en lang historie",
+  "english": "I am reading a long story",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Boken er stor.",
+  "english": "The book is big.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vinen er dårlig.",
+  "english": "The wine is bad.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Rommet er gammelt.",
+  "english": "The room is old.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Filmen er kort.",
+  "english": "The movie is short.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er en god bil",
+  "english": "This is a good car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser en lang vei",
+  "english": "I see a long road",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er en gammel bok",
+  "english": "This is an old book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjøper en liten gave",
+  "english": "I buy a small gift",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en stor veske",
+  "english": "She has a big bag",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dette er en dårlig idé",
+  "english": "This is a bad idea",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hunden er stor",
+  "english": "The dog is big",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Været er dårlig",
+  "english": "The weather is bad",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilen er ny",
+  "english": "The car is new",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jakken er blå.",
+  "english": "The jacket is blue.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg er sulten etter skolen.",
+  "english": "I am hungry after school.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun er snill mot alle.",
+  "english": "She is kind to everyone.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Toget er raskt.",
+  "english": "The train is fast.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg kjøper en pen kjole til festen.",
+  "english": "I am buying a pretty dress for the party.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Bordet er rent etter middagen.",
+  "english": "The table is clean after dinner.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er et ___ glass på kjøkkenet.",
+  "english": "There is a cold glass in the kitchen.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": "kaldt"
+ },
+ {
+  "norwegian": "Filmen var ___.",
+  "english": "The film was funny.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 3,
+  "notes": "morsom"
+ }
+]

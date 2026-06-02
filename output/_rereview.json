@@ -1,0 +1,597 @@
+[
+  {
+    "norwegian": "Jeg er student.",
+    "english": "I am a student.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "77cff811-aaff-475f-b237-cabf84388975"
+  },
+  {
+    "norwegian": "Du er norsk.",
+    "english": "You are Norwegian.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "cda4e20b-5595-4f96-866b-40956422de39"
+  },
+  {
+    "norwegian": "Dere kan sitte her.",
+    "english": "All of you can sit here.",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "0992b277-a097-4523-99ae-9f12c34d467a"
+  },
+  {
+    "norwegian": "Det er boken hennes.",
+    "english": "It is her book.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "eed234ab-50b4-4d3e-b156-f536409ce82f"
+  },
+  {
+    "norwegian": "Kjenner ___ ham?",
+    "english": "Do you all know him?",
+    "concept_ids": [
+      "personal-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "dere",
+    "id": "20c7107d-5c81-4dfb-91f2-5fbda9d0da4c"
+  },
+  {
+    "norwegian": "Bordet er rent.",
+    "english": "The table is clean.",
+    "concept_ids": [
+      "basic-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "bb043819-f05f-402d-82db-e0af0da0cf97"
+  },
+  {
+    "norwegian": "Jeg bør drikke mer vann.",
+    "english": "I should drink more water.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "13178007-99d6-47ec-ad92-d0a0c1c1b493"
+  },
+  {
+    "norwegian": "Vi må gå hjem nå.",
+    "english": "We must go home now.",
+    "concept_ids": [
+      "common-modal-verbs"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4131447d-f8d7-4368-bc83-99866f541bfa"
+  },
+  {
+    "norwegian": "Stolen står ___ bordet.",
+    "english": "The chair is by the table.",
+    "concept_ids": [
+      "common-prepositions"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "preposition"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ved",
+    "id": "f362bc29-1752-4b3d-878a-8865e9cb502d"
+  },
+  {
+    "norwegian": "Vi bestiller ___ rom på hotellet.",
+    "english": "We book a room at the hotel.",
+    "concept_ids": [
+      "noun-gender"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "noun-gender"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "et",
+    "id": "1d1f74a5-2187-4215-8968-855ff0155e55"
+  },
+  {
+    "norwegian": "Jeg drikker et glass kaldt vann.",
+    "english": "I drink a glass of cold water.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "02e28ed1-7ced-4cbd-a0e9-c136f4478109"
+  },
+  {
+    "norwegian": "De har to store hunder.",
+    "english": "They have two big dogs.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "49913d15-d9f0-4bb0-9af7-cb8e72d03fa0"
+  },
+  {
+    "norwegian": "Vi bor i et lite hus.",
+    "english": "We live in a small house.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a2f80d96-ac6c-44b1-a0ff-250be2b2faa9"
+  },
+  {
+    "norwegian": "Han spiser et stort eple hver dag.",
+    "english": "He eats a big apple every day.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "1e95ef8a-2dc7-4a40-b7c9-aa8279c09288"
+  },
+  {
+    "norwegian": "Jeg har en ___ venn.",
+    "english": "I have a good friend.",
+    "concept_ids": [
+      "adjective-agreement"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "god",
+    "id": "27a89584-3327-472c-b7dd-39b71a261113"
+  },
+  {
+    "norwegian": "Jeg ser ikke ___.",
+    "english": "I do not see the keys.",
+    "concept_ids": [
+      "definite-articles-plural"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "article-use"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "nøklene",
+    "id": "d825e9be-4d2a-40af-8660-1ebfef21ef3b"
+  },
+  {
+    "norwegian": "Vi ___ middag hjemme i går.",
+    "english": "We made dinner at home yesterday.",
+    "concept_ids": [
+      "preterite-regular"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "laget",
+    "id": "51a7d71b-ab38-4369-81b9-056ec18d0ce4"
+  },
+  {
+    "norwegian": "Jeg kan hjelpe deg.",
+    "english": "I can help you.",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "c04419c5-73b9-41e5-b574-1c85dbebafe8"
+  },
+  {
+    "norwegian": "Hun liker å lage mat.",
+    "english": "She likes to cook.",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "ec43e53b-2968-4672-905a-f4db60a182c6"
+  },
+  {
+    "norwegian": "Vi vil lage mat i kveld.",
+    "english": "We want to cook food tonight.",
+    "concept_ids": [
+      "infinitive-form"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "546e9374-5a58-4edf-b2f5-193fec423b95"
+  },
+  {
+    "norwegian": "Sekken vår er tung.",
+    "english": "Our bag is heavy.",
+    "concept_ids": [
+      "possessive-pronouns"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "pronoun-choice"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "a418c633-b86d-4977-93b2-09a66ae59831"
+  },
+  {
+    "norwegian": "Han ___ en gave i går.",
+    "english": "He got a gift yesterday.",
+    "concept_ids": [
+      "preterite-irregular-core"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "fikk",
+    "id": "b6c812f7-5a9a-48b4-9d92-e11a0b69ef5d"
+  },
+  {
+    "norwegian": "Mannen leser en bok.",
+    "english": "The man reads a book.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e8b8068c-6ef4-4bbd-9525-02fc28e41239"
+  },
+  {
+    "norwegian": "Gutten kaster en ball.",
+    "english": "The boy throws a ball.",
+    "concept_ids": [
+      "svo-word-order"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "A1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "e5b843ff-b900-4469-a6d0-8e684d7d3e85"
+  },
+  {
+    "norwegian": "Biblioteket er høyere enn rådhuset.",
+    "english": "The library is taller than the town hall.",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "683269c0-55eb-49bd-9949-c47421434b89"
+  },
+  {
+    "norwegian": "Det er ___ å lese enn å se på TV.",
+    "english": "It is more exciting to read than to watch TV.",
+    "concept_ids": [
+      "comparative-adjectives"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "adjective-agreement"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "mer spennende",
+    "id": "e0f548da-fcdf-4bee-aa54-0fbd18b037fd"
+  },
+  {
+    "norwegian": "Dersom det er sol i morgen, sykler vi til stranden.",
+    "english": "If there is sun tomorrow, we will cycle to the beach.",
+    "concept_ids": [
+      "conditional-clauses"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "5e287b1a-58fc-465d-8a3e-23518c0c5a98"
+  },
+  {
+    "norwegian": "Jeg hentet ___ jakke fra gangen.",
+    "english": "I picked up my friend's jacket from the hallway.",
+    "concept_ids": [
+      "genitive"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "vennens",
+    "id": "c5ad4247-ac26-4969-93b1-69411c9b534c"
+  },
+  {
+    "norwegian": "Vi ville gjerne bestille bord, men restauranten var full.",
+    "english": "We wanted to book a table, but the restaurant was full.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b0d8f691-47a6-49b5-a852-efef986b8dd7"
+  },
+  {
+    "norwegian": "Du burde ta med regnjakken.",
+    "english": "You should bring the rain jacket.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "bf2743eb-4fac-4a29-a024-c90d6d0b3a85"
+  },
+  {
+    "norwegian": "Hun måtte jobbe sent, så hun kom ikke.",
+    "english": "She had to work late, so she did not come.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "b792c40e-35f5-4d18-9a5d-696efc7eb766"
+  },
+  {
+    "norwegian": "Han ___ ta en annen buss for å komme dit.",
+    "english": "He had to take a different bus to get there.",
+    "concept_ids": [
+      "modal-verbs-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "modal-verb"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "måtte",
+    "id": "7cc59956-4a8c-47e8-ac66-b0199450c42a"
+  },
+  {
+    "norwegian": "To tredjedeler av kaken er spist.",
+    "english": "Two thirds of the cake has been eaten.",
+    "concept_ids": [
+      "numerals-advanced"
+    ],
+    "vocab_clusters": [],
+    "error_tags_detectable": [
+      "spelling"
+    ],
+    "cefr_level": "A2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "",
+    "id": "4b56de1c-5259-49c0-b109-17953b65a477"
+  }
+]

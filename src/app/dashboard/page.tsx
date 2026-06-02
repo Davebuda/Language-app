@@ -242,7 +242,7 @@ export default function DashboardPage() {
 
   const heroSubtitle = plan
     ? `${plan.session.items.length} oppgaver · ca. ${Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))} min`
-    : '12 oppgaver · ca. 3 min'
+    : '25 oppgaver · ca. 19 min'
 
   const focusDescription = recommendation?.reason ?? 'Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.'
 

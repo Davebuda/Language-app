@@ -1,0 +1,503 @@
+[
+ {
+  "norwegian": "Han ___ hjem etter jobben i går.",
+  "english": "He went home after work yesterday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "gikk"
+ },
+ {
+  "norwegian": "Hun ___ at hun var sliten.",
+  "english": "She said that she was tired.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "sa"
+ },
+ {
+  "norwegian": "Jeg ___ henne i parken forrige uke.",
+  "english": "I saw her in the park last week.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "så"
+ },
+ {
+  "norwegian": "De ___ veldig glade da de hørte nyhetene.",
+  "english": "They became very happy when they heard the news.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "ble"
+ },
+ {
+  "norwegian": "Toget kom ti minutter for sent i går.",
+  "english": "The train came ten minutes late yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tok bussen til sentrum forrige tirsdag.",
+  "english": "He took the bus to the city centre last Tuesday.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun dro til Bergen alene i fjor sommer.",
+  "english": "She went to Bergen alone last summer.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi ga blomster til læreren på den siste dagen.",
+  "english": "We gave flowers to the teacher on the last day.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg gikk til butikken",
+  "english": "I went to the store",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg sa hei",
+  "english": "I said hello",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ble trøtt",
+  "english": "I got tired",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De kom til meg",
+  "english": "They came to me",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg tok en bok",
+  "english": "I took a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kom fra jobb",
+  "english": "I came from work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg ga en gave",
+  "english": "I gave a gift",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg sa ikke hei",
+  "english": "I did not say hello",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kom ikke fra jobb",
+  "english": "I did not come from work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg ga ikke en gave",
+  "english": "I did not give a gift",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg sa noe morsomt",
+  "english": "I said something funny",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi sa noe viktig",
+  "english": "We said something important",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De sa noe interessant",
+  "english": "They said something interesting",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg gikk hjem",
+  "english": "I walked home",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han sa nei",
+  "english": "He said no",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg så filmen",
+  "english": "I saw the movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun ble syk",
+  "english": "She became ill",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De kom hjem",
+  "english": "They came home",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg tok bussen",
+  "english": "I took the bus",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han ga meg mat",
+  "english": "He gave me food",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg visste det",
+  "english": "I knew it",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun gikk til skolen",
+  "english": "She went to school",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi så TV",
+  "english": "We watched TV",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kom for sent",
+  "english": "I came too late",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han tok en kopp kaffe",
+  "english": "He took a cup of coffee",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun sa ja",
+  "english": "She said yes",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ble syk",
+  "english": "I got sick",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han ga meg en gave",
+  "english": "He gave me a gift",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg visste svaret",
+  "english": "I knew the answer",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "verb-conjugation",
+   "spelling"
+  ],
+  "difficulty": 1
+ }
+]

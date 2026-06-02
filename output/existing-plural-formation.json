@@ -1,0 +1,481 @@
+[
+ {
+  "norwegian": "Det er mange ___ i parken.",
+  "english": "There are many dogs in the park.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "hunder"
+ },
+ {
+  "norwegian": "Jeg liker å lese ___.",
+  "english": "I like to read books.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "bøker"
+ },
+ {
+  "norwegian": "Det er to ___ på bordet.",
+  "english": "There are two glasses on the table.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "glass"
+ },
+ {
+  "norwegian": "Hun kjøper mange ___.",
+  "english": "She buys many flowers.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "blomster"
+ },
+ {
+  "norwegian": "Det er tre stoler rundt bordet.",
+  "english": "There are three chairs around the table.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barna leker i hagen.",
+  "english": "The children are playing in the garden.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi har to katter og tre hunder.",
+  "english": "We have two cats and three dogs.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg trenger nye sko til jobben.",
+  "english": "I need new shoes for work.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det er mange problemer med den gamle maskinen.",
+  "english": "There are many problems with the old machine.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har biler.",
+  "english": "I have cars.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun ser bøker.",
+  "english": "She sees books.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har hunder.",
+  "english": "I have dogs.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har blomster.",
+  "english": "She has flowers.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser hus.",
+  "english": "I see houses.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barn leker med baller.",
+  "english": "Children play with balls.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har sko.",
+  "english": "She has shoes.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten har unger.",
+  "english": "The cat has kittens.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser damer.",
+  "english": "I see ladies.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har bøker",
+  "english": "I have books",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun ser biler",
+  "english": "She sees cars",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har barn",
+  "english": "I have children",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De spiser epler",
+  "english": "They eat apples",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har sko",
+  "english": "I have shoes",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har hus",
+  "english": "They have houses",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser fugler",
+  "english": "I see birds",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har boller",
+  "english": "She has buns",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har nøkler",
+  "english": "I have keys",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De har sykler",
+  "english": "They have bicycles",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har hunder",
+  "english": "She has dogs",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barnene leker med biler",
+  "english": "The children play with cars",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barnene har sko",
+  "english": "The children have shoes",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun ser fugler",
+  "english": "She sees birds",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hundene er små",
+  "english": "The dogs are small",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kattene er flotte",
+  "english": "The cats are nice",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har hus",
+  "english": "I have houses",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ }
+]

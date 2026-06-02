@@ -81,7 +81,7 @@ export function makeReviewDueMastery(conceptId: string): ConceptMastery {
   });
 }
 
-export function makeSentence(id: string, conceptId: string, types: ExerciseType[] = ['translation-to-norwegian', 'fill-in-blank', 'word-order', 'translation-to-english']): Sentence {
+export function makeSentence(id: string, conceptId: string, types: ExerciseType[] = ['translation-to-norwegian', 'fill-in-blank', 'word-order', 'translation-to-english', 'listening-comprehension']): Sentence {
   return {
     id,
     norwegian: `Norsk ${id}`,

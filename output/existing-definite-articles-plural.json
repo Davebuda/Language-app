@@ -1,0 +1,539 @@
+[
+ {
+  "norwegian": "Alle ___ er borte.",
+  "english": "All the children are gone.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "barna"
+ },
+ {
+  "norwegian": "Jeg vasker ___ etter middag.",
+  "english": "I wash the dishes after dinner.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "tallerkenene"
+ },
+ {
+  "norwegian": "Han leser ___ høyt for barna.",
+  "english": "He reads the books aloud for the children.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "bøkene"
+ },
+ {
+  "norwegian": "Kan du flytte ___?",
+  "english": "Can you move the chairs?",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "stolene"
+ },
+ {
+  "norwegian": "Bilene står utenfor huset.",
+  "english": "The cars are outside the house.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hundene er sultne.",
+  "english": "The dogs are hungry.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Husene i denne gaten er veldig fine.",
+  "english": "The houses on this street are very nice.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Elevene liker lærerne sine.",
+  "english": "The students like their teachers.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Trærne i parken mister bladene om høsten.",
+  "english": "The trees in the park lose their leaves in autumn.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Barna leker",
+  "english": "The children are playing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hundene løper",
+  "english": "The dogs are running",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilene kjører",
+  "english": "The cars are driving",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bøkene ligger",
+  "english": "The books are lying",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barna spiser",
+  "english": "The children are eating",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Kattene sover",
+  "english": "The cats are sleeping",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Husene står",
+  "english": "The houses are standing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Gatene er brede",
+  "english": "The streets are wide",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Skolene er store",
+  "english": "The schools are big",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Barna synger",
+  "english": "The children are singing",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bøkene er mine.",
+  "english": "The books are mine.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilene er nye.",
+  "english": "The cars are new.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Husene er store.",
+  "english": "The houses are big.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Guttene leker.",
+  "english": "The boys are playing.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jentene synger.",
+  "english": "The girls are singing.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Dørene er åpne.",
+  "english": "The doors are open.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vinduene er små.",
+  "english": "The windows are small.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Stolene er gamle.",
+  "english": "The chairs are old.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bordene er rene.",
+  "english": "The tables are clean.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bilene er røde.",
+  "english": "The cars are red.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vinduene er høye.",
+  "english": "The windows are high.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Stolene er nye.",
+  "english": "The chairs are new.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Lampene er lyse.",
+  "english": "The lamps are bright.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Bordene er lange.",
+  "english": "The tables are long.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Nøklene ligger på bordet.",
+  "english": "The keys are on the table.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Skoene mine er svarte.",
+  "english": "My shoes are black.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Fuglene synger om morgenen.",
+  "english": "The birds sing in the morning.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Rommene på hotellet er store.",
+  "english": "The rooms at the hotel are big.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vennene mine bor i Oslo.",
+  "english": "My friends live in Oslo.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "___ er under stolen.",
+  "english": "The shoes are under the chair.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 1,
+  "notes": "Skoene"
+ },
+ {
+  "norwegian": "Jeg finner ikke ___.",
+  "english": "I cannot find the keys.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "article-use"
+  ],
+  "difficulty": 3,
+  "notes": "nøklene"
+ }
+]

@@ -1,0 +1,502 @@
+[
+ {
+  "norwegian": "Han bor ___ en liten by nord i landet.",
+  "english": "He lives in a small town in the north of the country.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1,
+  "notes": "i"
+ },
+ {
+  "norwegian": "Vi reiser ___ Oslo i morgen tidlig.",
+  "english": "We are travelling to Oslo early tomorrow.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1,
+  "notes": "til"
+ },
+ {
+  "norwegian": "Familien min kommer ___ Polen opprinnelig.",
+  "english": "My family originally comes from Poland.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2,
+  "notes": "fra"
+ },
+ {
+  "norwegian": "Hun snakker ___ sjefen sin lønn neste uke.",
+  "english": "She will speak with her boss about salary next week.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3,
+  "notes": "med"
+ },
+ {
+  "norwegian": "Boken ligger på bordet i stuen.",
+  "english": "The book is lying on the table in the living room.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg går til skolen med bestevennen min.",
+  "english": "I walk to school with my best friend.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi spiser middag i stuen på søndager.",
+  "english": "We eat dinner in the living room on Sundays.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Pakken fra Sverige kom med posten i dag.",
+  "english": "The parcel from Sweden arrived by post today.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg går til butikken med en venn",
+  "english": "I go to the store with a friend",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjøper et brød på bakeriet",
+  "english": "I buy a bread at the bakery",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg bruker en hammer fra verktøykassen",
+  "english": "I use a hammer from the toolbox",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg drar til jobb i bilen min",
+  "english": "I go to work in my car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg tar en bok fra hylla",
+  "english": "I take a book from the shelf",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg spiser lunsj med familien min",
+  "english": "I eat lunch with my family",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg jobber med en partner på kontoret",
+  "english": "I work with a partner at the office",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg drar fra byen til landet",
+  "english": "I go from the city to the countryside",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg drar til butikken i dag",
+  "english": "I go to the store today",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han jobber med prosjektet",
+  "english": "He works on the project",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi går ut med venner",
+  "english": "We go out with friends",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg besøker vennen min på fredag",
+  "english": "I visit my friend on Friday",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun går til butikken med meg",
+  "english": "She goes to the store with me",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi sitter i parken om sommeren",
+  "english": "We sit in the park in summer",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en bok på bordet",
+  "english": "I have a book on the table",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi er i et møte med min sjef",
+  "english": "We are in a meeting with my boss",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg er på restauranten",
+  "english": "I am at the restaurant",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg bor i Oslo",
+  "english": "I live in Oslo",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Boken ligger på bordet",
+  "english": "The book is on the table",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg går til skolen",
+  "english": "I'm going to school",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kommer fra Norge",
+  "english": "I come from Norway",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg snakker om været",
+  "english": "I'm talking about the weather",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er i klassen",
+  "english": "I am in the class",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg går på kino",
+  "english": "I'm going to the movies",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er på skolen",
+  "english": "I am at school",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition",
+   "wrong-word-same-category"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten sitter ved døren.",
+  "english": "The cat is sitting by the door.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Barnet sover under teppet.",
+  "english": "The child is sleeping under the blanket.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg venter ___ deg utenfor butikken.",
+  "english": "I am waiting for you outside the shop.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 2,
+  "notes": "på"
+ },
+ {
+  "norwegian": "Stolen står ___ bordet.",
+  "english": "The chair stands by the table.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 2,
+  "notes": "ved"
+ },
+ {
+  "norwegian": "Toget går fra Oslo til Bergen.",
+  "english": "The train goes from Oslo to Bergen.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Flyet flyr over byen.",
+  "english": "The plane flies over the city.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi snakker om ferien vår.",
+  "english": "We are talking about our holiday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "preposition"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ }
+]

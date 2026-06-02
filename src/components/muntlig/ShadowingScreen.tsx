@@ -80,7 +80,13 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
       timeTakenSeconds: 0,
       conceptId,
       sentenceId: sentence.id,
-      errorTag: correct ? undefined : 'listening-recognition',
+      // A low shadowing match is a recitation/pronunciation miss, NOT a
+      // listening-recognition failure — the heuristic word-match score is not
+      // an honest judge of a specific error category (Rule 8). Tagging it
+      // 'listening-recognition' poisoned listening diagnosis + productionGap.
+      // Leave errorTag undefined: mastery still updates from correct/incorrect,
+      // but we no longer fabricate a listening error the learner didn't make.
+      errorTag: undefined,
     }
 
     recordResult(result)

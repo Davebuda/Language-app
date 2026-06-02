@@ -1,0 +1,502 @@
+[
+ {
+  "norwegian": "Vi ___ norsk på skolen i går.",
+  "english": "We practised Norwegian at school yesterday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "øvde"
+ },
+ {
+  "norwegian": "Han ___ på kafé forrige lørdag.",
+  "english": "He worked at a café last Saturday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "jobbet"
+ },
+ {
+  "norwegian": "De ___ til Oslo med tog i forrige uke.",
+  "english": "They travelled to Oslo by train last week.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "reiste"
+ },
+ {
+  "norwegian": "Hun ___ med naboen sin om problemet da.",
+  "english": "She spoke with her neighbour about the problem then.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "snakket"
+ },
+ {
+  "norwegian": "Jeg kjøpte melk i butikken i går.",
+  "english": "I bought milk at the shop yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De laget pizza til middag i går kveld.",
+  "english": "They made pizza for dinner yesterday evening.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun ringte moren sin forrige mandag.",
+  "english": "She called her mother last Monday.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi møtte læreren vår på butikken da.",
+  "english": "We ran into our teacher at the shop then.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg spiste frokost klokken 8",
+  "english": "I ate breakfast at 8 o'clock",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjørte til butikken",
+  "english": "I drove to the store",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Han kjørte til jobb",
+  "english": "He drove to work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kjøpte en bok",
+  "english": "I bought a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun studerte hele natten",
+  "english": "She studied the whole night",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg kjørte bilen i går",
+  "english": "I drove the car yesterday",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun snakket med vennen sin",
+  "english": "She spoke with her friend",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjørte til butikken i går",
+  "english": "I drove to the store yesterday",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg kjørte til jobb",
+  "english": "I drove to work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg bodde i en liten by",
+  "english": "I lived in a small town",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg spiste",
+  "english": "I ate",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han bodde",
+  "english": "He lived",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De leste",
+  "english": "They read",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg hørte",
+  "english": "I heard",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han snakket",
+  "english": "He spoke",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi kjøpte",
+  "english": "We bought",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg spiste frokost",
+  "english": "I ate breakfast",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun bodde i Oslo",
+  "english": "She lived in Oslo",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg leste en bok",
+  "english": "I read a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi danset sammen",
+  "english": "We danced together",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "De snakket norsk",
+  "english": "They spoke Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han bodde i Oslo.",
+  "english": "He lived in Oslo",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi snakket norsk.",
+  "english": "We spoke Norwegian",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun tegnet bildet.",
+  "english": "She drew the picture",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Vi hørte musikken.",
+  "english": "We heard the music",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg vasket hendene før middag i går.",
+  "english": "I washed my hands before dinner yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han bestilte mat på restauranten i går kveld.",
+  "english": "He ordered food at the restaurant yesterday evening.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi besøkte bestemoren vår forrige søndag.",
+  "english": "We visited our grandmother last Sunday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg pakket sekken min før skolen i går morges.",
+  "english": "I packed my bag before school yesterday morning.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun betalte for maten på kafeen i går.",
+  "english": "She paid for the food at the café yesterday.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi ___ middag hjemme i går.",
+  "english": "We made dinner at home yesterday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 1,
+  "notes": "lagde"
+ },
+ {
+  "norwegian": "Han ___ rommet sitt forrige lørdag.",
+  "english": "He tidied his room last Saturday.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "verb-tense"
+  ],
+  "difficulty": 2,
+  "notes": "ryddet"
+ }
+]

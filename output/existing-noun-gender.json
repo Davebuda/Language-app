@@ -1,0 +1,502 @@
+[
+ {
+  "norwegian": "Det er ___ stol ved vinduet.",
+  "english": "There is a chair by the window.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1,
+  "notes": "en"
+ },
+ {
+  "norwegian": "Han kjøper ___ avis på butikken.",
+  "english": "He buys a newspaper at the shop.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1,
+  "notes": "ei"
+ },
+ {
+  "norwegian": "Vi har ___ stort hus utenfor byen.",
+  "english": "We have a big house outside the city.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2,
+  "notes": "et"
+ },
+ {
+  "norwegian": "Hun leste ___ bok til barna sine.",
+  "english": "She read a book to her children.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3,
+  "notes": "ei"
+ },
+ {
+  "norwegian": "En hund ligger foran døren.",
+  "english": "A dog is lying in front of the door.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Et eple koster fem kroner i dag.",
+  "english": "An apple costs five kroner today.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Ei jente og en gutt leker i parken.",
+  "english": "A girl and a boy are playing in the park.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "En lærer forklarer reglene til en ny elev.",
+  "english": "A teacher explains the rules to a new pupil.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har en venn.",
+  "english": "I have a friend.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er et hus",
+  "english": "It is a house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg kjøper en bok",
+  "english": "I buy a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Han er en student",
+  "english": "He is a student",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har et kjæledyr",
+  "english": "I have a pet",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De er søsken",
+  "english": "They are siblings",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har en bok",
+  "english": "I have a book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en katt",
+  "english": "I have a cat",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har et hus",
+  "english": "I have a house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg er en student",
+  "english": "I am a student",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg er en lærer",
+  "english": "I am a teacher",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg skriver et brev",
+  "english": "I write a letter",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun har et hus",
+  "english": "She has a house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi har et bord",
+  "english": "We have a table",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg får en e-post",
+  "english": "I get an email",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun får en pakke",
+  "english": "She gets a package",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi får et brev",
+  "english": "We get a letter",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun går til jobben",
+  "english": "She goes to work",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi går til kinoen",
+  "english": "We go to the cinema",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun skal på festen",
+  "english": "She is going to the party",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi skal på møtet",
+  "english": "We are going to the meeting",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Hun liker te",
+  "english": "She likes tea",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Vi liker mat",
+  "english": "We like food",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender",
+   "article-use"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg vil ha en kopp kaffe.",
+  "english": "I want a cup of coffee.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er et glass på bordet.",
+  "english": "There is a glass on the table.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han har en sønn.",
+  "english": "He has a son.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Jeg finner en nøkkel på gulvet.",
+  "english": "I find a key on the floor.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Hun kjøper en jakke i butikken.",
+  "english": "She buys a jacket in the shop.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi venter på et tog.",
+  "english": "We are waiting for a train.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han leier et rom i sentrum.",
+  "english": "He rents a room in the city centre.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er ___ gate like ved skolen.",
+  "english": "There is a street right by the school.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 2,
+  "notes": "en"
+ },
+ {
+  "norwegian": "Vi bestiller ___ rom på hotellet.",
+  "english": "We order a room at the hotel.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "noun-gender"
+  ],
+  "difficulty": 3,
+  "notes": "et"
+ }
+]

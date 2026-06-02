@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
 import { gradeAnswer } from '@/app/session/actions';
+import { classifyError } from '@/lib/classify-error';
 import { aiService } from '@/ai';
 import { useFingerprintStore } from '@/stores/fingerprint-store';
 import type { CEFRLevel } from '@/types/fingerprint';
@@ -68,7 +69,7 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
       return;
     }
 
-    const { correct: serverCorrect, correctAnswer: serverAnswer, errorTag } = graded;
+    const { correct: serverCorrect, correctAnswer: serverAnswer } = graded;
     let correct = serverCorrect;
 
     // Semantic upgrade for Norwegian translations when AI model is loaded.
@@ -87,7 +88,9 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
       userAnswer: userInput,
       correctAnswer: serverAnswer,
       timeTakenSeconds: (Date.now() - startRef.current) / 1000,
-      errorTag: correct ? undefined : (errorTag ?? sentence.errorTagsDetectable[0] ?? 'unspecified'),
+      errorTag: correct
+        ? undefined
+        : (classifyError(userInput, serverAnswer, item.exerciseType, sentence.errorTagsDetectable) ?? 'unspecified'),
       conceptId: item.conceptIds[0] ?? '',
     };
     onResult(result);

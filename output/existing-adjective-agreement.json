@@ -1,0 +1,539 @@
+[
+ {
+  "norwegian": "Det er et ___ hus på hjørnet.",
+  "english": "There is a big house on the corner.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "stort"
+ },
+ {
+  "norwegian": "Jeg har et ___ barn.",
+  "english": "I have a small child.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1,
+  "notes": "lite"
+ },
+ {
+  "norwegian": "Den ___ jenta heter Sara.",
+  "english": "The nice girl is called Sara.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2,
+  "notes": "fine"
+ },
+ {
+  "norwegian": "Vi spiser på de ___ restaurantene i byen.",
+  "english": "We eat at the good restaurants in the city.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3,
+  "notes": "gode"
+ },
+ {
+  "norwegian": "Et nytt år begynner i januar.",
+  "english": "A new year begins in January.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg leser en god bok.",
+  "english": "I am reading a good book.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Den gamle mannen sitter i parken.",
+  "english": "The old man is sitting in the park.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Det nye biblioteket er veldig stort.",
+  "english": "The new library is very big.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "De lange dagene om sommeren gjør meg glad.",
+  "english": "The long days in summer make me happy.",
+  "exercise_types": [
+   "translation-to-norwegian",
+   "translation-to-english",
+   "word-order",
+   "speed-round",
+   "listening-comprehension"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har en liten hund",
+  "english": "I have a small dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hunden er veldig glad",
+  "english": "The dog is very happy",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har en vakker katt.",
+  "english": "I have a beautiful cat.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Katten er svart.",
+  "english": "The cat is black.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Hunden er glad",
+  "english": "The dog is happy",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en fin bok",
+  "english": "I have a nice book",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har to fine katter",
+  "english": "She has two nice cats",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 3
+ },
+ {
+  "norwegian": "Jeg har en vakker hund",
+  "english": "I have a beautiful dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Huset er veldig stort",
+  "english": "The house is very big",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har en ny bil",
+  "english": "I have a new car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han er veldig glad",
+  "english": "He is very happy",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 2
+ },
+ {
+  "norwegian": "Jeg har en stor hund",
+  "english": "I have a big dog",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er en glad kvinne",
+  "english": "She is a happy woman",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er et stort hus",
+  "english": "It is a big house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har en liten bil",
+  "english": "He has a small car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser en fin film",
+  "english": "I see a nice movie",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun har en ny sykkel",
+  "english": "She has a new bike",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Han har en god venn",
+  "english": "He has a good friend",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg har en stor kopp",
+  "english": "I have a big cup",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Hun er en snill jente",
+  "english": "She is a kind girl",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er et fint hus",
+  "english": "It is a nice house",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Det er en stor bil",
+  "english": "It is a big car",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Et stort fly flyr",
+  "english": "A big plane flies",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg ser en liten fugl",
+  "english": "I see a small bird",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement",
+   "noun-gender",
+   "spelling"
+  ],
+  "difficulty": 1
+ },
+ {
+  "norwegian": "Jeg drikker et kaldt glass vann.",
+  "english": "I drink a cold glass of water.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "Rommet er rent etter middagen.",
+  "english": "The room is clean after dinner.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": ""
+ },
+ {
+  "norwegian": "De har to store barn.",
+  "english": "They have two big children.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Vi bor i et lite, hvitt hus på landet.",
+  "english": "We live in a small, white house in the countryside.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": ""
+ },
+ {
+  "norwegian": "Han spiser et ferskt eple hver dag.",
+  "english": "He eats a fresh apple every day.",
+  "exercise_types": [
+   "translation-to-norwegian"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 3,
+  "notes": ""
+ },
+ {
+  "norwegian": "Det er et ___ rom på hotellet.",
+  "english": "There is a clean room at the hotel.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 1,
+  "notes": "rent"
+ },
+ {
+  "norwegian": "Jeg har mange ___ venner på skolen.",
+  "english": "I have many good friends at school.",
+  "exercise_types": [
+   "fill-in-blank"
+  ],
+  "error_tags_detectable": [
+   "adjective-agreement"
+  ],
+  "difficulty": 2,
+  "notes": "gode"
+ }
+]
