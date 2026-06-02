@@ -55,6 +55,9 @@ export function allLanesDone(): boolean {
   return CORE_LANES.every((laneId) => state.lanes[laneId])
 }
 
-export const CORE_LANES: LaneId[] = ['session', 'journal', 'conversation', 'roleplay', 'reading']
+// Order drives the dashboard "Neste valg" list. reading (the B1/B2 "Les og skriv"
+// read→recite→write module) leads; journal trails last. session is normally the
+// recommended hero lane, so it rarely appears in the list itself.
+export const CORE_LANES: LaneId[] = ['reading', 'session', 'conversation', 'roleplay', 'journal']
 export const MUNTLIG_LANES: LaneId[] = ['listen', 'drills', 'shadow']
 export const ALL_LANES: LaneId[] = [...CORE_LANES, ...MUNTLIG_LANES]

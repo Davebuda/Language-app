@@ -187,6 +187,12 @@ export default function DashboardPage() {
     } satisfies Record<LaneId, string>
   }, [plan, fingerprint, activeGraph, levelLabel, dayOfWeek])
 
+  // At B1/B2 the read→recite→write module (/skriv) replaces the reading lane:
+  // the "Les" lane becomes "Les og skriv" → /skriv. A1/A2 keep plain reading
+  // (/reading), where their reading texts live. Distinct from the journal lane,
+  // which keeps its own "Skriv" label.
+  const skrivReplacesReading = levelLabel === 'B1' || levelLabel === 'B2'
+
   const focusSet = new Set(fingerprint?.weeklyFocus ?? [])
   const laneFocusMap: Record<LaneId, boolean> = useMemo(() => ({
     session: true,
@@ -366,11 +372,19 @@ export default function DashboardPage() {
                 hint={laneHints[laneId]}
                 done={false}
                 focusBadge={laneFocusMap[laneId]}
-                href={laneId === 'reading' && (levelLabel === 'B1' || levelLabel === 'B2') ? '/skriv' : undefined}
+                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
               />
             ))}
             {doneLanes.map((laneId) => (
-              <LaneTrackRow key={laneId} laneId={laneId} hint={laneHints[laneId]} done={true} />
+              <LaneTrackRow
+                key={laneId}
+                laneId={laneId}
+                hint={laneHints[laneId]}
+                done={true}
+                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
+              />
             ))}
           </div>
 
