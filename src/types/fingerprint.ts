@@ -61,8 +61,9 @@ export interface ErrorPattern {
 
 export interface VocabularyClusterMastery {
   clusterId: string;
-  score: number; // 0–100
-  knownWordCount: number;
+  score: number;              // 0–100 EMA — drives scheduling + decay-gates the coverage meter
+  activatedWordIds: string[]; // words missed-then-produced-correctly ("ord du ikke lenger bommer på")
+  missedWordIds: string[];    // words ever answered wrong (the "was" behind "no longer miss")
   totalWordCount: number;
 }
 
