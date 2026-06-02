@@ -289,8 +289,12 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* ── Production wall (lead block; all-levels, level-aware lens) ── */}
-        {wallView ? <ProductionWall view={wallView} /> : null}
+        {/* ── "I dag" command card — merged production meter + start-økt CTA
+            (lead block; all-levels, level-aware lens). Replaces the standalone
+            lime hero below. ── */}
+        {wallView ? (
+          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} />
+        ) : null}
 
         {/* B2 vocab track entry — conjugation drill (Slice 3.3) */}
         {fingerprint?.currentLevel === 'B2' ? (
@@ -308,25 +312,7 @@ export default function DashboardPage() {
           </Link>
         ) : null}
 
-        {/* ── Hero Card (Lime) ── */}
-        <div className="relative overflow-hidden rounded-[0.65rem] bg-[linear-gradient(135deg,#C8FF20_0%,#B8EF10_100%)] p-2.5 text-[var(--nc-signal-fg)]">
-          <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Anbefalt</div>
-          <h1 className="mt-1.5 text-balance text-[1.25rem] font-extrabold leading-none">Start dagens økt</h1>
-          <div className="mt-1 text-[0.72rem] text-[rgba(10,18,6,0.6)]">{heroSubtitle}</div>
-
-          <div className="relative z-[1] mt-2">
-            <div className="rounded-[0.35rem] bg-[rgba(255,255,255,0.22)] p-2">
-              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.4)]">Fokus</div>
-              <div className="mt-1.5 text-[0.78rem] leading-[1.4] text-[rgba(10,18,6,0.72)]">{focusDescription}</div>
-            </div>
-          </div>
-
-          <div className="relative z-[1] mt-2 flex justify-end gap-2">
-            <Link href="/session" className="inline-flex items-center gap-1.5 rounded-[0.35rem] bg-[rgba(10,18,6,0.90)] px-3.5 py-2 text-[0.78rem] font-semibold text-white">
-              Start økt <ArrowRight size={13} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
+        {/* Hero CTA + coach reason now live inside the merged "I dag" card above. */}
 
         {/* ── Stat Strip (Cream) ── */}
         <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
