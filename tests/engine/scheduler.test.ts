@@ -525,4 +525,82 @@ describe('cloze passage scheduling', () => {
     const clozeItems = session.items.filter((i) => i.exerciseType === 'cloze-passage');
     expect(clozeItems.length).toBe(0);
   });
+
+  it('does NOT schedule a passage above the learner\'s level (Rule 6: no silent above-level cloze)', () => {
+    // A1 learner whose focus concept has ONLY a B1 passage. The level gate
+    // (pIdx <= clozeMaxIdx) must exclude it — an A1 learner never gets a B1
+    // cloze even for a shared concept. This is the no-silent-substitution
+    // guarantee for the whole cloze type at B1/B2 (where no passages exist).
+    const s1 = makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']);
+    const b1Passage: ClozePassage = {
+      id: 'cz-b1',
+      cefrLevel: 'B1',
+      primaryConceptId: 'v2-word-order',
+      englishGloss: '',
+      difficulty: 3,
+      segments: [{ kind: 'gap', answer: 'x', conceptId: 'v2-word-order', errorTag: 'word-order' }],
+    };
+
+    const input: SchedulerInput = {
+      ...makeInput({
+        conceptIds: ['v2-word-order', 'noun-gender', 'personal-pronouns'],
+        sentences: { s1 },
+        availableSentenceIds: { 'v2-word-order': ['s1'] },
+        fingerprintOverrides: {
+          currentLevel: 'A1',
+          weeklyFocus: ['v2-word-order'],
+          conceptMastery: {
+            'v2-word-order': makeMastery('v2-word-order', 25),
+            'noun-gender': makeMastery('noun-gender', 30),
+            'personal-pronouns': makeMastery('personal-pronouns', 30),
+          },
+        },
+      }),
+      availablePassageIds: { 'v2-word-order': ['cz-b1'] },
+      passages: { 'cz-b1': b1Passage },
+    };
+
+    const { session } = generateSession(input);
+    const clozeItems = session.items.filter((i) => i.exerciseType === 'cloze-passage');
+    expect(clozeItems.length).toBe(0);
+  });
+
+  it('DOES schedule a below-level passage for a shared concept (legitimate spaced review)', () => {
+    // B1 learner; focus concept has an A1 passage. A1 <= B1, so it is eligible
+    // — reviewing a lower-level cloze for a shared concept is intended, not
+    // substitution. Guards against an over-eager level filter that excludes
+    // everything below the current level.
+    const s1 = makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']);
+    const a1Passage: ClozePassage = {
+      id: 'cz-a1',
+      cefrLevel: 'A1',
+      primaryConceptId: 'v2-word-order',
+      englishGloss: '',
+      difficulty: 1,
+      segments: [{ kind: 'gap', answer: 'x', conceptId: 'v2-word-order', errorTag: 'word-order' }],
+    };
+
+    const input: SchedulerInput = {
+      ...makeInput({
+        conceptIds: ['v2-word-order', 'noun-gender', 'personal-pronouns'],
+        sentences: { s1 },
+        availableSentenceIds: { 'v2-word-order': ['s1'] },
+        fingerprintOverrides: {
+          currentLevel: 'B1',
+          weeklyFocus: ['v2-word-order'],
+          conceptMastery: {
+            'v2-word-order': makeMastery('v2-word-order', 25),
+            'noun-gender': makeMastery('noun-gender', 30),
+            'personal-pronouns': makeMastery('personal-pronouns', 30),
+          },
+        },
+      }),
+      availablePassageIds: { 'v2-word-order': ['cz-a1'] },
+      passages: { 'cz-a1': a1Passage },
+    };
+
+    const { session } = generateSession(input);
+    const clozeItems = session.items.filter((i) => i.exerciseType === 'cloze-passage');
+    expect(clozeItems.length).toBe(1);
+  });
 });

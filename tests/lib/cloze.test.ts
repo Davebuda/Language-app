@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { getClozeGaps, buildClozeResults } from '@/lib/cloze';
+import { updateConceptMastery, logError } from '@/engine/fingerprint';
+import { createEmptyFingerprint } from '@/types/fingerprint';
+import type { MistakeFingerprint } from '@/types/fingerprint';
 import type { ClozePassage } from '@/types/content';
 
 const PASSAGE: ClozePassage = {
@@ -52,6 +55,51 @@ describe('buildClozeResults', () => {
   it('does NOT mark passed when any gap wrong: no result carries passage id', () => {
     const oneWrong = buildClozeResults({ passage: PASSAGE, answers: ['feil', 'drikker'], sessionId: 's1', itemId: 'i', timeTakenSeconds: 5 });
     expect(oneWrong.some((r) => r.sentenceId === 'cz-1')).toBe(false);
+  });
+
+  // ── Rule-8 write trace ──────────────────────────────────────────────────
+  // Proves cloze results produce REAL, independent per-gap diagnosis through
+  // the actual fingerprint engine — not in theory. Mirrors the per-result loop
+  // submitClozeResults runs (useFingerprint.ts recordResult, lines ~282-306):
+  // updateConceptMastery for every gap; logError only on wrong gaps.
+  // This is the contract that the cloze surface genuinely feeds the engine.
+  it('feeds the engine: one passage diagnoses two concepts independently (Rule 8)', () => {
+    const results = buildClozeResults({
+      passage: PASSAGE, answers: ['feil', 'drikker'], sessionId: 's1', itemId: 'item1', timeTakenSeconds: 20,
+    });
+    // gap0 (v2-word-order) WRONG, gap1 (present-tense-regular) CORRECT.
+
+    let fp: MistakeFingerprint = createEmptyFingerprint('cloze-trace-user');
+    for (const r of results) {
+      const existing = fp.conceptMastery[r.conceptId];
+      const mastery = updateConceptMastery(existing, r.correct, 3, 1);
+      fp = {
+        ...fp,
+        conceptMastery: { ...fp.conceptMastery, [r.conceptId]: { ...mastery, conceptId: r.conceptId } },
+      };
+      if (!r.correct && r.errorTag) {
+        fp = logError(fp, {
+          conceptId: r.conceptId,
+          errorTag: r.errorTag,
+          exerciseType: 'cloze-passage',
+          wrong: r.userAnswer,
+          correct: r.correctAnswer,
+          sentenceId: r.itemId,
+        });
+      }
+    }
+
+    // Error log: exactly one entry — the wrong gap only, with ITS concept + tag.
+    expect(fp.recentErrors).toHaveLength(1);
+    expect(fp.recentErrors[0]).toMatchObject({
+      conceptId: 'v2-word-order',
+      errorTag: 'word-order',
+    });
+
+    // Mastery moved independently per gap: wrong gap's last outcome false,
+    // correct gap's last outcome true. Both concepts exist in the fingerprint.
+    expect(fp.conceptMastery['v2-word-order'].recentOutcomes.at(-1)).toBe(false);
+    expect(fp.conceptMastery['present-tense-regular'].recentOutcomes.at(-1)).toBe(true);
   });
 
   it('accepts an answer listed in acceptedAnswers (not just the primary answer)', () => {
