@@ -9,7 +9,7 @@
 //            when AI is up, per-error repair bricks; structure-miss → repair brick.
 // Standalone /skriv lane. B1-only v1 (honest level gate for A1/A2).
 
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ChevronDown, BookOpen } from 'lucide-react'
@@ -77,7 +77,7 @@ function PassageDock({ passage }: { passage: ReadingPassage }) {
           >
             <div className="flex flex-col gap-2 border-t border-[rgba(17,21,24,0.06)] px-3.5 py-3">
               {passage.paragraphs.map((p, i) => (
-                <p key={i} className="text-[0.86rem] leading-[1.55] text-[var(--nc-cream-muted)]">{p}</p>
+                <p key={i} className="text-pretty text-[0.86rem] leading-[1.55] text-[var(--nc-cream-muted)]">{p}</p>
               ))}
             </div>
           </motion.div>
@@ -97,6 +97,9 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
   const [phase, setPhase] = useState<Phase>('read')
   const [showGloss, setShowGloss] = useState(false)
   const [bricks, setBricks] = useState({ read: false, recite: false, write: false })
+  // A structure-missing revise loop must not stack repeated repair penalties on
+  // one passage (Rule 8 — one honest write per real signal). Book the repair once.
+  const repairBookedRef = useRef(false)
 
   const level = (fingerprint?.currentLevel ?? 'A1') as CEFRLevel
   const maxIdx = LEVEL_ORDER.indexOf(level)
@@ -119,7 +122,9 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
     if (!passage) return
     recordExposure(passage.conceptIds)
     setBricks((b) => ({ ...b, read: true }))
-    setPhase('recite')
+    // Defensive: a passage with no valid recite targets skips straight to WRITE
+    // rather than stranding the learner on an empty recite step.
+    setPhase(reciteSentences.length > 0 ? 'recite' : 'write')
   }
 
   // ── RECITE → speaking minutes + one recognition brick ──────────────────────
@@ -183,6 +188,10 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
         updated = repairBatchFromSurface(updated, inputs, graph)
       }
     } else if (grade.outcome === 'structure-missing' && grade.missingStructureTag) {
+      // Only book the repair brick on the FIRST structure-missing; a revise loop
+      // must not stack identical penalties + duplicate error-log rows.
+      if (repairBookedRef.current) return
+      repairBookedRef.current = true
       updated = repairFromSurface(
         updated,
         { surfaceKind: 'reading', errorTag: grade.missingStructureTag, conceptId: passage.primaryConceptId },
@@ -210,8 +219,10 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
         word_count: grade.wordCount,
         cefr_level: level,
       })
-    } catch {
-      /* silent — IndexedDB fingerprint write is the source of truth (Rule 8) */
+    } catch (err) {
+      // Non-fatal: the IndexedDB fingerprint write is the source of truth (Rule 8).
+      // Warn (don't swallow) so a writing_submissions schema drift stays observable.
+      console.warn('[skriv] writing_submissions insert failed', err)
     }
   }
 
@@ -226,8 +237,8 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
       <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
         <main className="nc-mobile-shell nc-flow-shell flex flex-1 flex-col justify-center gap-3">
           <div className="nc-glass rounded-[0.65rem] p-5 text-center">
-            <h1 className="text-[1.1rem] font-bold text-[var(--nc-text)]">Skriv-modulen er på B1-nivå</h1>
-            <p className="mt-2 text-[0.86rem] leading-relaxed text-[var(--nc-text-muted)]">
+            <h1 className="text-balance text-[1.1rem] font-bold text-[var(--nc-text)]">Skriv-modulen er på B1-nivå</h1>
+            <p className="mt-2 text-pretty text-[0.86rem] leading-relaxed text-[var(--nc-text-muted)]">
               Les → si → skriv kommer for ditt nivå senere. Fortsett med dagens økt for nå.
             </p>
             <button onClick={() => router.push('/dashboard')} className="nc-button-primary mt-4 w-full py-3 text-[0.875rem] font-bold">
@@ -302,10 +313,10 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
                   <h1 className="text-balance text-[1.5rem] font-extrabold leading-[1.05] text-[var(--nc-cream-text)]">{passage.title}</h1>
                 ) : null}
                 {passage.paragraphs.map((p, i) => (
-                  <p key={i} className="text-[1.02rem] leading-[1.62] text-[var(--nc-cream-text)]">{p}</p>
+                  <p key={i} className="text-pretty text-[1.02rem] leading-[1.62] text-[var(--nc-cream-text)]">{p}</p>
                 ))}
                 {showGloss && passage.englishGloss ? (
-                  <p className="mt-1 border-t border-[rgba(17,21,24,0.08)] pt-3 text-[0.84rem] italic leading-[1.5] text-[var(--nc-cream-muted)]">
+                  <p className="mt-1 border-t border-[rgba(17,21,24,0.08)] pt-3 text-pretty text-[0.84rem] italic leading-[1.5] text-[var(--nc-cream-muted)]">
                     {passage.englishGloss}
                   </p>
                 ) : null}

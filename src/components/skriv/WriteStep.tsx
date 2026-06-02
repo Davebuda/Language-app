@@ -137,7 +137,7 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
               </span>
             )}
           </div>
-          <p className="mt-1.5 text-[0.95rem] font-bold leading-snug text-[var(--nc-cream-text)]">
+          <p className="mt-1.5 text-pretty text-[0.95rem] font-bold leading-snug text-[var(--nc-cream-text)]">
             {passage.writePrompt}
           </p>
         </div>
@@ -163,7 +163,12 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
         <div className="overflow-hidden rounded-[0.65rem] border border-[var(--nc-border)] bg-[var(--nc-card)]">
           <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-3.5 py-2.5">
             <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Sjekkliste</span>
-            <span className="text-[0.75rem] font-bold tabular-nums text-[var(--nc-text-muted)]">
+            <span
+              className="text-[0.75rem] font-bold tabular-nums text-[var(--nc-text-muted)]"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-label={`${metCount} av ${totalCount} krav oppfylt`}
+            >
               <span className="text-[var(--nc-signal)]">{metCount}</span> av {totalCount}
             </span>
           </div>
@@ -222,6 +227,8 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
       className="flex flex-col gap-3"
     >
       <div
+        role="status"
+        aria-live="polite"
         className="rounded-[0.85rem] p-4"
         style={
           isPass
@@ -274,7 +281,7 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
         {!isPass ? (
           <div className="mt-3 rounded-[0.6rem] border bg-[var(--nc-card)] p-3" style={{ borderColor: AMBER_BORDER }}>
             <div className="text-[9px] font-bold uppercase tracking-[0.1em]" style={{ color: AMBER }}>Mikroøvelse</div>
-            <p className="mt-1.5 text-[0.84rem] leading-snug text-[var(--nc-text)]">
+            <p className="mt-1.5 text-pretty text-[0.84rem] leading-snug text-[var(--nc-text)]">
               Bind sammen to setninger med <span className="font-bold text-[var(--nc-signal)]">«{passage.targetConnectors[0] ?? 'fordi'}»</span> i svaret ditt.
             </p>
           </div>
@@ -290,7 +297,7 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
                   AI-tilbakemelding
                 </span>
                 {feedback?.praise ? (
-                  <p className="mt-2.5 text-[0.82rem] leading-relaxed text-[var(--nc-text-muted)]">{feedback.praise}</p>
+                  <p className="mt-2.5 text-pretty text-[0.82rem] leading-relaxed text-[var(--nc-text-muted)]">{feedback.praise}</p>
                 ) : null}
                 {feedback && feedback.errors.length > 0 ? (
                   <div className="mt-2.5 flex flex-col gap-1.5">
@@ -314,7 +321,7 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
                   <ShieldCheck size={11} aria-hidden="true" />
                   Grunnsjekk
                 </span>
-                <p className="mt-2.5 text-[0.82rem] leading-relaxed text-[var(--nc-text-muted)]">
+                <p className="mt-2.5 text-pretty text-[0.82rem] leading-relaxed text-[var(--nc-text-muted)]">
                   Grunnsjekk i dag — rettelsene dine er registrert og produksjonen teller. Detaljert
                   tilbakemelding kommer når AI-en er tilgjengelig igjen.
                 </p>
