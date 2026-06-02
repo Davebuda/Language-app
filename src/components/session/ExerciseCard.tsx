@@ -12,6 +12,7 @@ import { SpeedRound } from './exercises/SpeedRound'
 import { ListeningExercise } from './exercises/ListeningExercise'
 import WordOrderExerciseLazy from './exercises/WordOrderExerciseLazy'
 import { ClozePassageExercise } from './exercises/ClozePassageExercise'
+import { SpeakingProductionExercise } from './exercises/SpeakingProductionExercise'
 import type { ResolvedClozePassage } from '@/types/content'
 
 interface ExerciseCardProps {
@@ -22,6 +23,7 @@ interface ExerciseCardProps {
   repairPlan?: RepairPlan | null
   clozePassage?: ResolvedClozePassage | null
   onClozeResults?: (results: ExerciseResult[]) => void
+  onSpeakingResult?: (outcome: { produced: boolean; conceptId: string; itemId: string }) => void
 }
 
 // Display labels for the phantom/not-yet-available types. The canonical SET of
@@ -86,6 +88,7 @@ export function ExerciseCard({
   repairPlan: _,
   clozePassage,
   onClozeResults,
+  onSpeakingResult,
 }: ExerciseCardProps) {
   const [shakeKey, setShakeKey] = useState(0)
   const [wasWrong, setWasWrong] = useState(false)
@@ -143,6 +146,19 @@ export function ExerciseCard({
         return <ListeningExercise {...props} />
       case 'speed-round':
         return <SpeedRound {...props} />
+      case 'speaking-production':
+        return (
+          <SpeakingProductionExercise
+            sentence={sentence}
+            onComplete={(produced) =>
+              onSpeakingResult?.({
+                produced,
+                conceptId: item.conceptIds[0] ?? '',
+                itemId: item.id,
+              })
+            }
+          />
+        )
       default:
         return <TranslationExercise {...props} />
     }

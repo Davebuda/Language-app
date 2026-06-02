@@ -13,7 +13,8 @@ export type ExerciseType =
   | 'reading-comprehension'
   | 'free-writing'
   | 'speed-round'
-  | 'cloze-passage';
+  | 'cloze-passage'
+  | 'speaking-production';   // say the Norwegian aloud — self-report graded, never ASR-as-judge
 
 // Exercise types that have NO distinct renderer yet. The UI shows an honest
 // "kommer snart / Trykk for å hoppe over" banner (NotYetAvailable in
@@ -29,6 +30,20 @@ export const NOT_YET_AVAILABLE_TYPES: readonly ExerciseType[] = [
 
 export function isNotYetAvailableType(type: ExerciseType): boolean {
   return NOT_YET_AVAILABLE_TYPES.includes(type);
+}
+
+// Content-eligibility alias. `speaking-production` reuses translation-to-norwegian
+// content — the learner sees the cue and SAYS the Norwegian aloud — so no separate
+// corpus is needed. A sentence that supports translation-to-norwegian therefore
+// supports speaking-production. Both the scheduler (firstEligibleType) and the
+// session content resolver consult this so they agree on what counts as eligible.
+export function sentenceSupportsType(
+  exerciseTypes: readonly ExerciseType[],
+  type: ExerciseType,
+): boolean {
+  if (exerciseTypes.includes(type)) return true;
+  if (type === 'speaking-production') return exerciseTypes.includes('translation-to-norwegian');
+  return false;
 }
 
 export type RepairStep = 'explanation' | 'micro-drill' | 'retry' | 'review-scheduled';

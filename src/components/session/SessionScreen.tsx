@@ -39,6 +39,7 @@ function getExerciseTypeLabel(type: string): string {
     'listening-comprehension': 'Lytting',
     'speed-round': 'Hurtigrunde',
     'sentence-transformation': 'Setningsomforming',
+    'speaking-production': 'Si høyt',
     dictation: 'Diktat',
   }
   return map[type] ?? 'Øvelse'
@@ -60,6 +61,7 @@ export function SessionScreen({
     startNewSession,
     submitResult,
     submitClozeResults,
+    submitSpeakingResult,
     continueAfterRepair,
   } = useSession(sentences, availableSentenceIds)
 
@@ -279,6 +281,7 @@ export function SessionScreen({
                       repairPlan={isInRepair ? repairPlan : null}
                       clozePassage={currentCloze ?? null}
                       onClozeResults={submitClozeResults}
+                      onSpeakingResult={submitSpeakingResult}
                     />
                   </motion.div>
                 </AnimatePresence>

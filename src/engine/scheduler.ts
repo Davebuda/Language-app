@@ -2,7 +2,7 @@ import type { MistakeFingerprint, InputProductionPreference } from '@/types/fing
 import type { ConceptGraph } from '@/types/concepts';
 import type { Session, SessionItem, SessionBlock, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
 import type { Sentence, ClozePassage } from '@/types/content';
-import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES, isNotYetAvailableType } from '@/types/session';
+import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES, isNotYetAvailableType, sentenceSupportsType } from '@/types/session';
 import { isMastered } from './fingerprint';
 import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
 import { getUnlockedConcepts } from '@/types/concepts';
@@ -53,7 +53,12 @@ const NEW_MATERIAL_EXERCISES: ExerciseType[] = [
 // the block only takes genuine listening items; if a level has none, the block
 // is empty and gets dropped below — honest absence over silent substitution.
 const LYTT_EXERCISES_BLOCK: ExerciseType[] = ['listening-comprehension'];
-const SNAKK_EXERCISES_BLOCK: ExerciseType[] = ['translation-to-norwegian', 'word-order'];
+// The Snakk block is genuine SPEAKING now: the learner says the Norwegian aloud
+// (self-report graded, mic-optional, never ASR-as-judge). speaking-production
+// reuses translation-to-norwegian content via sentenceSupportsType — no separate
+// corpus. If a concept has no eligible content the block stays empty and is
+// dropped below (honest absence over the old typed-as-speak substitution).
+const SNAKK_EXERCISES_BLOCK: ExerciseType[] = ['speaking-production'];
 
 // Resolve which exercise pool to use based on productionGap signal AND
 // the user's explicit input/production preference.
@@ -187,7 +192,10 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     // skipped gracefully (same path as the "no unpassed sentence" skip).
     for (const type of candidates) {
       if (isNotYetAvailableType(type)) continue;
-      if (ids.some((id) => sentences[id]?.exerciseTypes.includes(type))) {
+      if (ids.some((id) => {
+        const s = sentences[id];
+        return s ? sentenceSupportsType(s.exerciseTypes, type) : false;
+      })) {
         return type;
       }
     }

@@ -32,7 +32,7 @@ interface ShadowingScreenProps {
 
 export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
   const router = useRouter()
-  const { fingerprint, recordResult } = useFingerprint()
+  const { fingerprint, recordResult, recordSpeakingProduction } = useFingerprint()
   const { status } = useFingerprintStore()
   const { user } = useAuth()
 
@@ -90,6 +90,10 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
     }
 
     recordResult(result)
+    // Shadowing IS spoken Norwegian — credit the speaking-minutes metric (this
+    // was previously missing). Recitation, not free production: minutes only,
+    // no production brick (produced:false), no mastery beyond recordResult above.
+    recordSpeakingProduction({ minutes: 0.1, produced: false })
     if (user?.id) {
       logExerciseResult(user.id, result)
     }

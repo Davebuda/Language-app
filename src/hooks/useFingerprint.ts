@@ -507,5 +507,29 @@ export function useFingerprint() {
     if (user) saveFingerprintToSupabase(updated).catch(console.warn);
   }, [setFingerprint, user]);
 
-  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress, recordVocabAnswer };
+  // ── Speaking production (the daily Snakk block + shadowing) ──────────────
+  // Honest, self-report-only crediting for spoken Norwegian:
+  //   - `minutes` ALWAYS accrues to speakingMinutesTotal (the learner spoke —
+  //     time is the one objective signal a self-report can stand behind).
+  //   - a GUIDED (reduced-weight) production brick lands ONLY when `produced`
+  //     is true (Flytende/Nølende). It NEVER moves mastery and NEVER logs an
+  //     error: a self-rating is too gameable to be an objective judge (Rule 8).
+  const recordSpeakingProduction = useCallback(
+    ({ minutes, produced }: { minutes: number; produced: boolean }) => {
+      const fp = useFingerprintStore.getState().fingerprint;
+      if (!fp) return;
+      let updated: MistakeFingerprint = {
+        ...fp,
+        speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + Math.max(0, minutes),
+        updatedAt: new Date().toISOString(),
+      };
+      if (produced) updated = bumpDailyBrick(updated, 'guided');
+      setFingerprint(updated);
+      saveFingerprint(updated).catch(console.warn);
+      if (user) saveFingerprintToSupabase(updated).catch(console.warn);
+    },
+    [setFingerprint, user]
+  );
+
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress, recordVocabAnswer, recordSpeakingProduction };
 }

@@ -138,10 +138,36 @@ describe('generateSession — exercise-type guard', () => {
     const { session } = generateSession(input);
     // Exempt the derived cloze-passage type (auto-cloze) — the guard is about
     // sentence-backed items using only the sentence's declared exerciseTypes.
+    // 'speaking-production' is legitimately allowed here: it reuses
+    // translation-to-norwegian content via sentenceSupportsType (say the
+    // Norwegian aloud), so a sentence declaring translation-to-norwegian
+    // supports it. The guard still rejects truly-undeclared types (e.g. word-order).
     for (const item of session.items.filter(
       (i) => i.conceptIds.includes('v2-word-order') && i.exerciseType !== 'cloze-passage',
     )) {
-      expect(['translation-to-norwegian', 'fill-in-blank']).toContain(item.exerciseType);
+      expect(['translation-to-norwegian', 'fill-in-blank', 'speaking-production']).toContain(item.exerciseType);
+    }
+  });
+
+  it('Snakk block is genuine speaking — only speaking-production, never typed exercises (Rule 6/8)', () => {
+    // Regression guard for the old violation where the "Snakk" (Speak) block was
+    // filled with translation/word-order typed exercises and mislabelled speech.
+    const sentences: Record<string, Sentence> = {
+      a: makeSentence('a', ['noun-gender'], ['translation-to-norwegian']),
+      b: makeSentence('b', ['v2-word-order'], ['translation-to-norwegian']),
+      c: makeSentence('c', ['personal-pronouns'], ['translation-to-norwegian']),
+    };
+    const input = makeInput({
+      conceptIds: ['noun-gender', 'v2-word-order', 'personal-pronouns'],
+      sentences,
+      availableSentenceIds: { 'noun-gender': ['a'], 'v2-word-order': ['b'], 'personal-pronouns': ['c'] },
+    });
+    const { session } = generateSession(input);
+    const snakk = session.blocks?.find((blk) => blk.type === 'snakk');
+    expect(snakk).toBeDefined();
+    expect(snakk!.items.length).toBeGreaterThan(0);
+    for (const item of snakk!.items) {
+      expect(item.exerciseType).toBe('speaking-production');
     }
   });
 

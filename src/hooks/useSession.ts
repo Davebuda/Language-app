@@ -8,6 +8,7 @@ import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
 import { emitEvent } from '@/lib/events';
 import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe, SessionBlock } from '@/types/session';
+import { sentenceSupportsType } from '@/types/session';
 import type { Sentence, ResolvedContent, ResolvedClozePassage } from '@/types/content';
 import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool';
 import { getGraphForLevel } from '@/lib/concept-graph-loader';
@@ -67,7 +68,7 @@ export function useSession(
   availableSentenceIdsProp: Record<string, string[]> = {},
 ) {
   const sessionStore = useSessionStore();
-  const { recordResult: recordFingerprintResult, ensureWeekOpenAndPersist } = useFingerprint();
+  const { recordResult: recordFingerprintResult, ensureWeekOpenAndPersist, recordSpeakingProduction } = useFingerprint();
 
   // itemId → resolved content (AI-generated or seed fallback)
   const contentCache = useRef<Map<string, ResolvedContent>>(new Map());
@@ -180,7 +181,7 @@ export function useSession(
     const isFillBlank = item.exerciseType === 'fill-in-blank';
     const eligible = isFillBlank ? seeds : seeds.filter((s) => !s.norwegian.includes('___'));
 
-    const compatible = eligible.filter((s) => s.exerciseTypes.includes(item.exerciseType));
+    const compatible = eligible.filter((s) => sentenceSupportsType(s.exerciseTypes, item.exerciseType));
     const pool = compatible.length > 0 ? compatible : eligible;
 
     // Exclude passed sentences from normal progression; allow for review/repair
@@ -431,6 +432,40 @@ export function useSession(
     sessionStore.advanceItem();
   }, [sessionStore, recordFingerprintResult, availableSentenceIdsProp, resolveItem]);
 
+  // ── Speaking-production submit (the Snakk block) ─────────────────────────
+  // Self-report only: the learner says the Norwegian aloud, then rates it. We
+  // record SESSION progress (so the complete screen + exit guard work) but do
+  // NOT call recordFingerprintResult — a self-rating must not move mastery or
+  // trigger the repair loop. Honest crediting (minutes always; a guided brick
+  // only when produced) goes through recordSpeakingProduction. ~6s/utterance
+  // estimate matches the existing listen-respond speaking-minutes convention.
+  const submitSpeakingResult = useCallback(
+    ({ produced, conceptId, itemId }: { produced: boolean; conceptId: string; itemId: string }) => {
+      const SPOKEN_MINUTES_PER_UTTERANCE = 0.1;
+      const sessionId = useSessionStore.getState().session?.id;
+      sessionStore.recordResult({
+        sessionId: sessionId ?? '',
+        itemId,
+        correct: produced,
+        userAnswer: '[spoken]',
+        correctAnswer: '[spoken]',
+        timeTakenSeconds: Math.round(SPOKEN_MINUTES_PER_UTTERANCE * 60),
+        conceptId,
+      });
+      recordSpeakingProduction({ minutes: SPOKEN_MINUTES_PER_UTTERANCE, produced });
+      emitEvent({
+        eventType: 'exercise_result',
+        mode: 'session',
+        sessionId,
+        conceptIds: [conceptId],
+        errorTags: [],
+        payload: { correct: produced, exerciseType: 'speaking-production' },
+      });
+      sessionStore.advanceItem();
+    },
+    [sessionStore, recordSpeakingProduction],
+  );
+
   // NOTE: The 3-second auto-skip useEffect was removed here (P0 item 8).
   // The scheduler guard (item 1+2) ensures all queued items have eligible seeds,
   // so resolveItem always finds content. If content is somehow null, the
@@ -450,6 +485,7 @@ export function useSession(
     startNewSession,
     submitResult,
     submitClozeResults,
+    submitSpeakingResult,
     continueAfterRepair,
     exitRepair: sessionStore.exitRepair,
   };
