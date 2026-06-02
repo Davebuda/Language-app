@@ -1,0 +1,1886 @@
+{
+  "level": "B2",
+  "source": "norsk_b2_hverdagsord.md",
+  "generatedBy": "scripts/parse-b2-vocab.mjs (deterministic; linguist-gated 2026-06-02)",
+  "clusters": [
+    {
+      "id": "kroppsreaksjoner-smabevegelser",
+      "index": 1,
+      "name": "Kroppsreaksjoner & småbevegelser",
+      "wordIds": [
+        "nyse",
+        "gjespe",
+        "klo",
+        "blunke",
+        "sukke",
+        "riste",
+        "svelge",
+        "skjelve",
+        "myse",
+        "stirre",
+        "plystre",
+        "rodme"
+      ],
+      "sentenceIds": [
+        "b2v-1",
+        "b2v-2",
+        "b2v-3",
+        "b2v-4",
+        "b2v-5",
+        "b2v-6",
+        "b2v-7",
+        "b2v-8",
+        "b2v-9",
+        "b2v-10",
+        "b2v-11"
+      ]
+    },
+    {
+      "id": "skyve-dra-lene-snuble",
+      "index": 2,
+      "name": "Skyve, dra, lene, snuble",
+      "wordIds": [
+        "dytte",
+        "trekke",
+        "lene",
+        "snuble",
+        "boye",
+        "strekke",
+        "gli",
+        "banke",
+        "gripe",
+        "dra",
+        "slippe",
+        "vippe"
+      ],
+      "sentenceIds": [
+        "b2v-12",
+        "b2v-13",
+        "b2v-14",
+        "b2v-15",
+        "b2v-16",
+        "b2v-17",
+        "b2v-18",
+        "b2v-19",
+        "b2v-20",
+        "b2v-21",
+        "b2v-22"
+      ]
+    },
+    {
+      "id": "hverdagshandlinger-i-hjemmet",
+      "index": 3,
+      "name": "Hverdagshandlinger i hjemmet",
+      "wordIds": [
+        "helle",
+        "sole",
+        "skylle",
+        "brette",
+        "torke",
+        "dryppe",
+        "trykke",
+        "stramme",
+        "skru",
+        "gni",
+        "klemme"
+      ],
+      "sentenceIds": [
+        "b2v-23",
+        "b2v-24",
+        "b2v-25",
+        "b2v-26",
+        "b2v-27",
+        "b2v-28",
+        "b2v-29",
+        "b2v-30",
+        "b2v-31",
+        "b2v-32"
+      ]
+    },
+    {
+      "id": "kommunikasjon-med-nyanse",
+      "index": 4,
+      "name": "Kommunikasjon med nyanse",
+      "wordIds": [
+        "mumle",
+        "hviske",
+        "vinke",
+        "nikke",
+        "peke",
+        "antyde",
+        "papeke",
+        "benekte",
+        "innromme",
+        "rynke",
+        "tvile",
+        "nole"
+      ],
+      "sentenceIds": [
+        "b2v-33",
+        "b2v-34",
+        "b2v-35",
+        "b2v-36",
+        "b2v-37",
+        "b2v-38",
+        "b2v-39",
+        "b2v-40",
+        "b2v-41",
+        "b2v-42"
+      ]
+    },
+    {
+      "id": "tvile-slite-takle-mestre",
+      "index": 5,
+      "name": "Tvile, slite, takle, mestre",
+      "wordIds": [
+        "mistenke",
+        "slite",
+        "takle",
+        "mestre",
+        "overtale",
+        "unnga",
+        "frarade",
+        "beherske",
+        "samle",
+        "vegre-seg",
+        "rekke"
+      ],
+      "sentenceIds": [
+        "b2v-43",
+        "b2v-44",
+        "b2v-45",
+        "b2v-46",
+        "b2v-47",
+        "b2v-48",
+        "b2v-49",
+        "b2v-50",
+        "b2v-51",
+        "b2v-52"
+      ]
+    },
+    {
+      "id": "smaord-og-ting-rundt-deg",
+      "index": 6,
+      "name": "Småord og ting rundt deg",
+      "wordIds": [
+        "ligge",
+        "torre",
+        "flytte",
+        "merke",
+        "ga",
+        "gjemme",
+        "finne",
+        "gnage"
+      ],
+      "sentenceIds": [
+        "b2v-53",
+        "b2v-54",
+        "b2v-55",
+        "b2v-56",
+        "b2v-57",
+        "b2v-58"
+      ]
+    }
+  ],
+  "words": [
+    {
+      "id": "nyse",
+      "infinitive": "å nyse",
+      "lemma": "nyse",
+      "presens": "nyser",
+      "preteritum": "nøs",
+      "perfektum": "har nyst",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "gjespe",
+      "infinitive": "å gjespe",
+      "lemma": "gjespe",
+      "presens": "gjesper",
+      "preteritum": "gjespet",
+      "perfektum": "har gjespet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "klo",
+      "infinitive": "å klø (seg)",
+      "lemma": "klø",
+      "presens": "klør",
+      "preteritum": "klødde",
+      "perfektum": "har klødd",
+      "irregular": false,
+      "ablautGroup": "group-3",
+      "reflexive": true,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "blunke",
+      "infinitive": "å blunke",
+      "lemma": "blunke",
+      "presens": "blunker",
+      "preteritum": "blunket",
+      "perfektum": "har blunket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "sukke",
+      "infinitive": "å sukke",
+      "lemma": "sukke",
+      "presens": "sukker",
+      "preteritum": "sukket",
+      "perfektum": "har sukket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "riste",
+      "infinitive": "å riste",
+      "lemma": "riste",
+      "presens": "rister",
+      "preteritum": "ristet",
+      "perfektum": "har ristet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "svelge",
+      "infinitive": "å svelge",
+      "lemma": "svelge",
+      "presens": "svelger",
+      "preteritum": "svelget",
+      "perfektum": "har svelget",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "skjelve",
+      "infinitive": "å skjelve",
+      "lemma": "skjelve",
+      "presens": "skjelver",
+      "preteritum": "skalv",
+      "perfektum": "har skjelvet",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "myse",
+      "infinitive": "å myse",
+      "lemma": "myse",
+      "presens": "myser",
+      "preteritum": "myste",
+      "perfektum": "har myst",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "stirre",
+      "infinitive": "å stirre",
+      "lemma": "stirre",
+      "presens": "stirrer",
+      "preteritum": "stirret",
+      "perfektum": "har stirret",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "plystre",
+      "infinitive": "å plystre",
+      "lemma": "plystre",
+      "presens": "plystrer",
+      "preteritum": "plystret",
+      "perfektum": "har plystret",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "rodme",
+      "infinitive": "å rødme",
+      "lemma": "rødme",
+      "presens": "rødmer",
+      "preteritum": "rødmet",
+      "perfektum": "har rødmet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "gloss": null
+    },
+    {
+      "id": "dytte",
+      "infinitive": "å dytte",
+      "lemma": "dytte",
+      "presens": "dytter",
+      "preteritum": "dyttet",
+      "perfektum": "har dyttet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "trekke",
+      "infinitive": "å trekke",
+      "lemma": "trekke",
+      "presens": "trekker",
+      "preteritum": "trakk",
+      "perfektum": "har trukket",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "lene",
+      "infinitive": "å lene (seg)",
+      "lemma": "lene",
+      "presens": "lener",
+      "preteritum": "lente",
+      "perfektum": "har lent",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": true,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "snuble",
+      "infinitive": "å snuble",
+      "lemma": "snuble",
+      "presens": "snubler",
+      "preteritum": "snublet",
+      "perfektum": "har snublet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "boye",
+      "infinitive": "å bøye (seg)",
+      "lemma": "bøye",
+      "presens": "bøyer",
+      "preteritum": "bøyde",
+      "perfektum": "har bøyd",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": true,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "strekke",
+      "infinitive": "å strekke (seg)",
+      "lemma": "strekke",
+      "presens": "strekker",
+      "preteritum": "strakk",
+      "perfektum": "har strukket",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": true,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "gli",
+      "infinitive": "å gli",
+      "lemma": "gli",
+      "presens": "glir",
+      "preteritum": "gled",
+      "perfektum": "har glidd",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "banke",
+      "infinitive": "å banke (på)",
+      "lemma": "banke",
+      "presens": "banker",
+      "preteritum": "banket",
+      "perfektum": "har banket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": "på",
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "gripe",
+      "infinitive": "å gripe",
+      "lemma": "gripe",
+      "presens": "griper",
+      "preteritum": "grep",
+      "perfektum": "har grepet",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "dra",
+      "infinitive": "å dra",
+      "lemma": "dra",
+      "presens": "drar",
+      "preteritum": "dro",
+      "perfektum": "har dratt",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "slippe",
+      "infinitive": "å slippe",
+      "lemma": "slippe",
+      "presens": "slipper",
+      "preteritum": "slapp",
+      "perfektum": "har sluppet",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "vippe",
+      "infinitive": "å vippe",
+      "lemma": "vippe",
+      "presens": "vipper",
+      "preteritum": "vippet",
+      "perfektum": "har vippet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "skyve-dra-lene-snuble",
+      "gloss": null
+    },
+    {
+      "id": "helle",
+      "infinitive": "å helle",
+      "lemma": "helle",
+      "presens": "heller",
+      "preteritum": "helte",
+      "perfektum": "har helt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "sole",
+      "infinitive": "å søle",
+      "lemma": "søle",
+      "presens": "søler",
+      "preteritum": "sølte",
+      "perfektum": "har sølt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "skylle",
+      "infinitive": "å skylle",
+      "lemma": "skylle",
+      "presens": "skyller",
+      "preteritum": "skylte",
+      "perfektum": "har skylt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "brette",
+      "infinitive": "å brette",
+      "lemma": "brette",
+      "presens": "bretter",
+      "preteritum": "brettet",
+      "perfektum": "har brettet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "torke",
+      "infinitive": "å tørke",
+      "lemma": "tørke",
+      "presens": "tørker",
+      "preteritum": "tørket",
+      "perfektum": "har tørket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "dryppe",
+      "infinitive": "å dryppe",
+      "lemma": "dryppe",
+      "presens": "drypper",
+      "preteritum": "dryppet",
+      "perfektum": "har dryppet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "trykke",
+      "infinitive": "å trykke (på)",
+      "lemma": "trykke",
+      "presens": "trykker",
+      "preteritum": "trykket",
+      "perfektum": "har trykket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": "på",
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "stramme",
+      "infinitive": "å stramme",
+      "lemma": "stramme",
+      "presens": "strammer",
+      "preteritum": "strammet",
+      "perfektum": "har strammet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "skru",
+      "infinitive": "å skru (igjen / på / av)",
+      "lemma": "skru",
+      "presens": "skrur",
+      "preteritum": "skrudde",
+      "perfektum": "har skrudd",
+      "irregular": false,
+      "ablautGroup": "group-3",
+      "reflexive": false,
+      "particle": "igjen / på / av",
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "gni",
+      "infinitive": "å gni (seg)",
+      "lemma": "gni",
+      "presens": "gnir",
+      "preteritum": "gnidde",
+      "perfektum": "har gnidd",
+      "irregular": false,
+      "ablautGroup": "group-3",
+      "reflexive": true,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "klemme",
+      "infinitive": "å klemme",
+      "lemma": "klemme",
+      "presens": "klemmer",
+      "preteritum": "klemte",
+      "perfektum": "har klemt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "gloss": null
+    },
+    {
+      "id": "mumle",
+      "infinitive": "å mumle",
+      "lemma": "mumle",
+      "presens": "mumler",
+      "preteritum": "mumlet",
+      "perfektum": "har mumlet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "hviske",
+      "infinitive": "å hviske",
+      "lemma": "hviske",
+      "presens": "hvisker",
+      "preteritum": "hvisket",
+      "perfektum": "har hvisket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "vinke",
+      "infinitive": "å vinke (til)",
+      "lemma": "vinke",
+      "presens": "vinker",
+      "preteritum": "vinket",
+      "perfektum": "har vinket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": "til",
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "nikke",
+      "infinitive": "å nikke",
+      "lemma": "nikke",
+      "presens": "nikker",
+      "preteritum": "nikket",
+      "perfektum": "har nikket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "peke",
+      "infinitive": "å peke (på)",
+      "lemma": "peke",
+      "presens": "peker",
+      "preteritum": "pekte",
+      "perfektum": "har pekt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": "på",
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "antyde",
+      "infinitive": "å antyde",
+      "lemma": "antyde",
+      "presens": "antyder",
+      "preteritum": "antydet",
+      "perfektum": "har antydet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "papeke",
+      "infinitive": "å påpeke",
+      "lemma": "påpeke",
+      "presens": "påpeker",
+      "preteritum": "påpekte",
+      "perfektum": "har påpekt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "benekte",
+      "infinitive": "å benekte",
+      "lemma": "benekte",
+      "presens": "benekter",
+      "preteritum": "benektet",
+      "perfektum": "har benektet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "innromme",
+      "infinitive": "å innrømme",
+      "lemma": "innrømme",
+      "presens": "innrømmer",
+      "preteritum": "innrømmet",
+      "perfektum": "har innrømmet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "rynke",
+      "infinitive": "å rynke",
+      "lemma": "rynke",
+      "presens": "rynker",
+      "preteritum": "rynket",
+      "perfektum": "har rynket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "tvile",
+      "infinitive": "å tvile (på)",
+      "lemma": "tvile",
+      "presens": "tviler",
+      "preteritum": "tvilte",
+      "perfektum": "har tvilt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": "på",
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "nole",
+      "infinitive": "å nøle",
+      "lemma": "nøle",
+      "presens": "nøler",
+      "preteritum": "nølte",
+      "perfektum": "har nølt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "kommunikasjon-med-nyanse",
+      "gloss": null
+    },
+    {
+      "id": "mistenke",
+      "infinitive": "å mistenke",
+      "lemma": "mistenke",
+      "presens": "mistenker",
+      "preteritum": "mistenkte",
+      "perfektum": "har mistenkt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "slite",
+      "infinitive": "å slite (med)",
+      "lemma": "slite",
+      "presens": "sliter",
+      "preteritum": "slet",
+      "perfektum": "har slitt",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": "med",
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "takle",
+      "infinitive": "å takle",
+      "lemma": "takle",
+      "presens": "takler",
+      "preteritum": "taklet",
+      "perfektum": "har taklet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "mestre",
+      "infinitive": "å mestre",
+      "lemma": "mestre",
+      "presens": "mestrer",
+      "preteritum": "mestret",
+      "perfektum": "har mestret",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "overtale",
+      "infinitive": "å overtale",
+      "lemma": "overtale",
+      "presens": "overtaler",
+      "preteritum": "overtalte",
+      "perfektum": "har overtalt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "unnga",
+      "infinitive": "å unngå",
+      "lemma": "unngå",
+      "presens": "unngår",
+      "preteritum": "unngikk",
+      "perfektum": "har unngått",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "frarade",
+      "infinitive": "å fraråde",
+      "lemma": "fraråde",
+      "presens": "fraråder",
+      "preteritum": "frarådet / frarådde",
+      "perfektum": "har frarådet / frarådd",
+      "irregular": false,
+      "ablautGroup": "group-3",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "beherske",
+      "infinitive": "å beherske (seg)",
+      "lemma": "beherske",
+      "presens": "behersker",
+      "preteritum": "behersket",
+      "perfektum": "har behersket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": true,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "samle",
+      "infinitive": "å samle",
+      "lemma": "samle",
+      "presens": "samler",
+      "preteritum": "samlet",
+      "perfektum": "har samlet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "vegre-seg",
+      "infinitive": "å vegre seg (for)",
+      "lemma": "vegre seg",
+      "presens": "vegrer seg",
+      "preteritum": "vegret seg",
+      "perfektum": "har vegret seg",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": true,
+      "particle": "for",
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "rekke",
+      "infinitive": "å rekke",
+      "lemma": "rekke",
+      "presens": "rekker",
+      "preteritum": "rakk",
+      "perfektum": "har rukket",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "tvile-slite-takle-mestre",
+      "gloss": null
+    },
+    {
+      "id": "ligge",
+      "infinitive": "å ligge",
+      "lemma": "ligge",
+      "presens": "ligger",
+      "preteritum": "lå",
+      "perfektum": "har ligget",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "torre",
+      "infinitive": "å tørre",
+      "lemma": "tørre",
+      "presens": "tør",
+      "preteritum": "torde",
+      "perfektum": "har tort",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "flytte",
+      "infinitive": "å flytte (inn)",
+      "lemma": "flytte",
+      "presens": "flytter",
+      "preteritum": "flyttet",
+      "perfektum": "har flyttet",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": "inn",
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "merke",
+      "infinitive": "å merke",
+      "lemma": "merke",
+      "presens": "merker",
+      "preteritum": "merket",
+      "perfektum": "har merket",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "ga",
+      "infinitive": "å gå",
+      "lemma": "gå",
+      "presens": "går",
+      "preteritum": "gikk",
+      "perfektum": "har gått",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "gjemme",
+      "infinitive": "å gjemme",
+      "lemma": "gjemme",
+      "presens": "gjemmer",
+      "preteritum": "gjemte",
+      "perfektum": "har gjemt",
+      "irregular": false,
+      "ablautGroup": "group-2",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "finne",
+      "infinitive": "å finne",
+      "lemma": "finne",
+      "presens": "finner",
+      "preteritum": "fant",
+      "perfektum": "har funnet",
+      "irregular": true,
+      "ablautGroup": "strong",
+      "reflexive": false,
+      "particle": null,
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    },
+    {
+      "id": "gnage",
+      "infinitive": "å gnage (på)",
+      "lemma": "gnage",
+      "presens": "gnager",
+      "preteritum": "gnagde / gnaget",
+      "perfektum": "har gnagd / gnaget",
+      "irregular": false,
+      "ablautGroup": "group-1",
+      "reflexive": false,
+      "particle": "på",
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "gloss": null
+    }
+  ],
+  "sentences": [
+    {
+      "id": "b2v-1",
+      "no": "Jeg måtte nyse så høyt at hele klasserommet snudde seg mot meg.",
+      "en": "I had to sneeze so loudly the whole classroom turned toward me.",
+      "targetSurfaces": [
+        "nyse"
+      ],
+      "wordIds": [
+        "nyse"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-2",
+      "no": "Hver gang han gjesper på møtene, later sjefen som om hun ikke merker det.",
+      "en": "Every time he yawns in meetings, the boss pretends she doesn't notice.",
+      "targetSurfaces": [
+        "gjesper"
+      ],
+      "wordIds": [
+        "gjespe"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-3",
+      "no": "Hun klødde seg i nakken mens hun prøvde å huske hva passordet var.",
+      "en": "She scratched her neck while trying to remember what the password was.",
+      "targetSurfaces": [
+        "klødde"
+      ],
+      "wordIds": [
+        "klo"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-4",
+      "no": "Jeg blunket flere ganger fordi jeg ikke kunne tro det jeg så foran meg.",
+      "en": "I blinked several times because I couldn't believe what I saw in front of me.",
+      "targetSurfaces": [
+        "blunket"
+      ],
+      "wordIds": [
+        "blunke"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-5",
+      "no": "Han sukket tungt og ristet på hodet før han endelig innrømmet at han hadde tatt feil.",
+      "en": "He sighed heavily and shook his head before finally admitting he'd been wrong.",
+      "targetSurfaces": [
+        "sukket",
+        "ristet på hodet"
+      ],
+      "wordIds": [
+        "sukke",
+        "riste"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-6",
+      "no": "Hun svelget hardt før hun begynte å fortelle om det som hadde skjedd.",
+      "en": "She swallowed hard before she started telling about what had happened.",
+      "targetSurfaces": [
+        "svelget"
+      ],
+      "wordIds": [
+        "svelge"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-7",
+      "no": "Skjelvende av kulde tok hun på seg en ekstra genser og kokte litt te.",
+      "en": "Trembling with cold, she put on an extra sweater and made some tea.",
+      "targetSurfaces": [
+        "Skjelvende"
+      ],
+      "wordIds": [
+        "skjelve"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-8",
+      "no": "Jeg myste mot solen og klarte så vidt å se hvem som vinket fra båten.",
+      "en": "I squinted toward the sun and could barely see who was waving from the boat.",
+      "targetSurfaces": [
+        "myste"
+      ],
+      "wordIds": [
+        "myse"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-9",
+      "no": "Hun stirret tomt ut av vinduet og svarte ikke da jeg sa navnet hennes.",
+      "en": "She stared blankly out the window and didn't answer when I said her name.",
+      "targetSurfaces": [
+        "stirret"
+      ],
+      "wordIds": [
+        "stirre"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-10",
+      "no": "Han plystret en kjent melodi mens han ventet på bussen i regnet.",
+      "en": "He whistled a familiar tune while waiting for the bus in the rain.",
+      "targetSurfaces": [
+        "plystret"
+      ],
+      "wordIds": [
+        "plystre"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-11",
+      "no": "Hun rødmet kraftig da han hvisket noe morsomt i øret hennes midt under foredraget.",
+      "en": "She blushed deeply when he whispered something funny in her ear during the lecture.",
+      "targetSurfaces": [
+        "rødmet"
+      ],
+      "wordIds": [
+        "rodme"
+      ],
+      "clusterId": "kroppsreaksjoner-smabevegelser",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-12",
+      "no": "Dersom du dytter døra litt hardere, vil den endelig gå opp uten problemer.",
+      "en": "If you push the door a bit harder, it'll finally open without any trouble.",
+      "targetSurfaces": [
+        "dytter"
+      ],
+      "wordIds": [
+        "dytte"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-13",
+      "no": "Han trakk i håndtaket flere ganger før han skjønte at han måtte dytte i stedet.",
+      "en": "He pulled the handle several times before realizing he had to push instead.",
+      "targetSurfaces": [
+        "trakk",
+        "dytte"
+      ],
+      "wordIds": [
+        "trekke",
+        "dytte"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-14",
+      "no": "Barna lente seg så langt ut av vinduet at moren ble nesten skrekkslagen.",
+      "en": "The kids leaned so far out the window the mother was almost terrified.",
+      "targetSurfaces": [
+        "lente"
+      ],
+      "wordIds": [
+        "lene"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-15",
+      "no": "Jeg snublet i teppekanten og søsteren min lo i flere minutter etterpå.",
+      "en": "I tripped on the edge of the rug and my sister laughed for several minutes afterward.",
+      "targetSurfaces": [
+        "snublet"
+      ],
+      "wordIds": [
+        "snuble"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-16",
+      "no": "Etter å ha bøyd seg ned for å knytte skoene, kjente han et stikk i ryggen.",
+      "en": "After bending down to tie his shoes, he felt a sting in his back.",
+      "targetSurfaces": [
+        "bøyd"
+      ],
+      "wordIds": [
+        "boye"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-17",
+      "no": "Hun strakk seg etter krydderet på den øverste hylla, men nådde det ikke.",
+      "en": "She stretched for the spice on the top shelf, but couldn't reach it.",
+      "targetSurfaces": [
+        "strakk"
+      ],
+      "wordIds": [
+        "strekke"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-18",
+      "no": "Glasset gled ut av hånden hennes og knuste mot flisene på kjøkkengulvet.",
+      "en": "The glass slid out of her hand and shattered on the kitchen tiles.",
+      "targetSurfaces": [
+        "gled"
+      ],
+      "wordIds": [
+        "gli"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-19",
+      "no": "Han banket forsiktig på døra før han åpnet den og tittet inn i rommet.",
+      "en": "He knocked carefully before opening the door and peeking into the room.",
+      "targetSurfaces": [
+        "banket"
+      ],
+      "wordIds": [
+        "banke"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-20",
+      "no": "Hun grep tak i armen min og dro meg vekk fra trafikken i siste sekund.",
+      "en": "She grabbed my arm and pulled me away from the traffic at the last second.",
+      "targetSurfaces": [
+        "grep tak",
+        "dro"
+      ],
+      "wordIds": [
+        "gripe",
+        "dra"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-21",
+      "no": "Han slapp koppen i sjokk da han hørte hva som hadde skjedd med bilen.",
+      "en": "He dropped the cup in shock when he heard what had happened to the car.",
+      "targetSurfaces": [
+        "slapp"
+      ],
+      "wordIds": [
+        "slippe"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-22",
+      "no": "Bordet vippet litt hver gang noen lente seg på den ene siden av det.",
+      "en": "The table tilted a bit every time someone leaned on one side.",
+      "targetSurfaces": [
+        "vippet"
+      ],
+      "wordIds": [
+        "vippe"
+      ],
+      "clusterId": "skyve-dra-lene-snuble",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-23",
+      "no": "Hun helte kaffen så raskt at halvparten sølte over kanten av koppen.",
+      "en": "She poured the coffee so quickly that half of it spilled over the rim of the cup.",
+      "targetSurfaces": [
+        "helte",
+        "sølte"
+      ],
+      "wordIds": [
+        "helle",
+        "sole"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-24",
+      "no": "Husk å skylle tallerkenene før du setter dem i oppvaskmaskinen, ellers blir de ikke rene.",
+      "en": "Remember to rinse the plates before putting them in the dishwasher, or they won't get clean.",
+      "targetSurfaces": [
+        "skylle"
+      ],
+      "wordIds": [
+        "skylle"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-25",
+      "no": "Jeg brettet klærne mens jeg så på en serie jeg egentlig hadde sett før.",
+      "en": "I folded the clothes while watching a series I'd actually seen before.",
+      "targetSurfaces": [
+        "brettet"
+      ],
+      "wordIds": [
+        "brette"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-26",
+      "no": "Han tørket svetten av panna med ermet på genseren før han fortsatte å løpe.",
+      "en": "He wiped the sweat off his forehead with his sweater sleeve before continuing to run.",
+      "targetSurfaces": [
+        "tørket"
+      ],
+      "wordIds": [
+        "torke"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-27",
+      "no": "Vannet dryppet fra taket i timevis før noen endelig gadd å sjekke.",
+      "en": "Water dripped from the ceiling for hours before someone finally bothered to check.",
+      "targetSurfaces": [
+        "dryppet"
+      ],
+      "wordIds": [
+        "dryppe"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-28",
+      "no": "Hvis du trykker for hardt på knappen, risikerer du å ødelegge hele apparatet.",
+      "en": "If you press too hard on the button, you risk damaging the whole device.",
+      "targetSurfaces": [
+        "trykker"
+      ],
+      "wordIds": [
+        "trykke"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-29",
+      "no": "Hun strammet skjerfet rundt halsen før hun gikk ut i den iskalde vinden.",
+      "en": "She tightened the scarf around her neck before going out into the icy wind.",
+      "targetSurfaces": [
+        "strammet"
+      ],
+      "wordIds": [
+        "stramme"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-30",
+      "no": "Han glemte å skru igjen kranen, og hele baderomsgulvet ble oversvømmet om natten.",
+      "en": "He forgot to turn off the tap, and the whole bathroom floor was flooded overnight.",
+      "targetSurfaces": [
+        "skru igjen"
+      ],
+      "wordIds": [
+        "skru"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-31",
+      "no": "Katten gnir seg alltid mot beina mine når jeg prøver å lage middag.",
+      "en": "The cat always rubs against my legs when I'm trying to make dinner.",
+      "targetSurfaces": [
+        "gnir"
+      ],
+      "wordIds": [
+        "gni"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-32",
+      "no": "Jeg klemte ham hardt fordi jeg ikke hadde sett ham på over to år.",
+      "en": "I hugged him tight because I hadn't seen him in over two years.",
+      "targetSurfaces": [
+        "klemte"
+      ],
+      "wordIds": [
+        "klemme"
+      ],
+      "clusterId": "hverdagshandlinger-i-hjemmet",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-33",
+      "no": "Når jeg er nervøs, har jeg en tendens til å mumle i stedet for å snakke tydelig.",
+      "en": "When I'm nervous, I tend to mumble instead of speaking clearly.",
+      "targetSurfaces": [
+        "mumle"
+      ],
+      "wordIds": [
+        "mumle"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-34",
+      "no": "Hun hvisket noe i øret hans som fikk ham til å le høyt med en gang.",
+      "en": "She whispered something in his ear that made him laugh out loud right away.",
+      "targetSurfaces": [
+        "hvisket"
+      ],
+      "wordIds": [
+        "hviske"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-35",
+      "no": "Hun vinket til naboen fra kjøkkenvinduet selv om de aldri egentlig hadde snakket sammen.",
+      "en": "She waved to the neighbor from the kitchen window even though they'd never really talked.",
+      "targetSurfaces": [
+        "vinket"
+      ],
+      "wordIds": [
+        "vinke"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-36",
+      "no": "Han nikket høflig, men man kunne se at han ikke var enig i det hele tatt.",
+      "en": "He nodded politely, but you could tell he didn't agree at all.",
+      "targetSurfaces": [
+        "nikket"
+      ],
+      "wordIds": [
+        "nikke"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-37",
+      "no": "Det er irriterende når noen peker på feilene dine uten å tilby noen løsning selv.",
+      "en": "It's annoying when someone points out your mistakes without offering any solution themselves.",
+      "targetSurfaces": [
+        "peker på"
+      ],
+      "wordIds": [
+        "peke"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-38",
+      "no": "Han antydet flere ganger at han var misfornøyd, men sa det aldri rett ut.",
+      "en": "He hinted several times that he was unhappy, but never said it outright.",
+      "targetSurfaces": [
+        "antydet"
+      ],
+      "wordIds": [
+        "antyde"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-39",
+      "no": "Hvis ingen påpeker problemet snart, kommer det til å vokse seg mye større.",
+      "en": "If no one points out the problem soon, it's going to grow much bigger.",
+      "targetSurfaces": [
+        "påpeker"
+      ],
+      "wordIds": [
+        "papeke"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-40",
+      "no": "Selv om hun benektet det først, måtte hun til slutt innrømme at hun hadde løyet.",
+      "en": "Even though she denied it at first, she eventually had to admit she'd lied.",
+      "targetSurfaces": [
+        "benektet",
+        "innrømme"
+      ],
+      "wordIds": [
+        "benekte",
+        "innromme"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-41",
+      "no": "Hun rynket pannen og tvilte tydelig på alt jeg prøvde å forklare henne.",
+      "en": "She frowned and clearly doubted everything I was trying to explain to her.",
+      "targetSurfaces": [
+        "rynket",
+        "tvilte"
+      ],
+      "wordIds": [
+        "rynke",
+        "tvile"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-42",
+      "no": "Jeg nølte litt før jeg svarte, fordi jeg ikke ville såre følelsene hans.",
+      "en": "I hesitated a bit before answering, because I didn't want to hurt his feelings.",
+      "targetSurfaces": [
+        "nølte"
+      ],
+      "wordIds": [
+        "nole"
+      ],
+      "clusterId": "kommunikasjon-med-nyanse",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-43",
+      "no": "Han mistenkte at noen hadde rotet i tingene hans mens han var bortreist.",
+      "en": "He suspected someone had been rummaging through his things while he was away.",
+      "targetSurfaces": [
+        "mistenkte"
+      ],
+      "wordIds": [
+        "mistenke"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-44",
+      "no": "Jeg har slitt med å takle den nye arbeidsmengden siden vi mistet to kollegaer.",
+      "en": "I've struggled to handle the new workload since we lost two colleagues.",
+      "targetSurfaces": [
+        "slitt",
+        "takle"
+      ],
+      "wordIds": [
+        "slite",
+        "takle"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-45",
+      "no": "Det krever mye tålmodighet å mestre et språk som har så mange uregelrette verb.",
+      "en": "It takes a lot of patience to master a language with so many irregular verbs.",
+      "targetSurfaces": [
+        "mestre"
+      ],
+      "wordIds": [
+        "mestre"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-46",
+      "no": "Han prøvde å overtale meg til å bli med, men jeg klarte å si nei.",
+      "en": "He tried to persuade me to come along, but I managed to say no.",
+      "targetSurfaces": [
+        "overtale"
+      ],
+      "wordIds": [
+        "overtale"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-47",
+      "no": "Hun pleier å unngå konflikter ved å late som om hun ikke har hørt kommentarene.",
+      "en": "She tends to avoid conflicts by pretending she hasn't heard the comments.",
+      "targetSurfaces": [
+        "unngå"
+      ],
+      "wordIds": [
+        "unnga"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-48",
+      "no": "Han ble nødt til å gi opp ideen etter at flere venner frarådet ham sterkt.",
+      "en": "He had to give up the idea after several friends strongly advised against it.",
+      "targetSurfaces": [
+        "frarådet"
+      ],
+      "wordIds": [
+        "frarade"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-49",
+      "no": "Hun klarte å beherske seg selv om hun egentlig hadde lyst til å rope.",
+      "en": "She managed to control herself even though she really wanted to shout.",
+      "targetSurfaces": [
+        "beherske"
+      ],
+      "wordIds": [
+        "beherske"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-50",
+      "no": "Det er ikke nok å samle bevisene; man må også presentere dem på en overbevisende måte.",
+      "en": "It's not enough to gather the evidence; you also have to present it convincingly.",
+      "targetSurfaces": [
+        "samle"
+      ],
+      "wordIds": [
+        "samle"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-51",
+      "no": "Hun vegret seg for å dele nyheten, redd for hvordan familien ville reagere.",
+      "en": "She was reluctant to share the news, afraid of how the family would react.",
+      "targetSurfaces": [
+        "vegret seg"
+      ],
+      "wordIds": [
+        "vegre-seg"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-52",
+      "no": "Jeg rakk ikke toget fordi jeg hadde rotet bort billetten i en av jakkene.",
+      "en": "I didn't make the train because I'd misplaced the ticket in one of the jackets.",
+      "targetSurfaces": [
+        "rakk"
+      ],
+      "wordIds": [
+        "rekke"
+      ],
+      "clusterId": "tvile-slite-takle-mestre",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-53",
+      "no": "Det ligger alltid en haug med papirer i den nederste skuffen som ingen tør å rydde i.",
+      "en": "There's always a pile of papers in the bottom drawer that no one dares to tidy.",
+      "targetSurfaces": [
+        "haug",
+        "skuffen"
+      ],
+      "wordIds": [
+        "ligge",
+        "torre"
+      ],
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-54",
+      "no": "Det lå støv i hver eneste krok i leiligheten da jeg endelig flyttet inn.",
+      "en": "There was dust in every single corner of the apartment when I finally moved in.",
+      "targetSurfaces": [
+        "støv",
+        "krok"
+      ],
+      "wordIds": [
+        "flytte"
+      ],
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-55",
+      "no": "Jeg merket en flekk på skjorta først etter at hele møtet var ferdig.",
+      "en": "I noticed a stain on my shirt only after the whole meeting was over.",
+      "targetSurfaces": [
+        "flekk"
+      ],
+      "wordIds": [
+        "merke"
+      ],
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-56",
+      "no": "Det går en sprekk i veggen som blir tydeligere for hvert år som går.",
+      "en": "There's a crack in the wall that gets more visible with each passing year.",
+      "targetSurfaces": [
+        "sprekk"
+      ],
+      "wordIds": [
+        "ga"
+      ],
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-57",
+      "no": "Hun gjemte nøklene så godt at hun selv ikke fant dem igjen om kvelden.",
+      "en": "She hid the keys so well that even she couldn't find them again that evening.",
+      "targetSurfaces": [
+        "gjemte",
+        "fant"
+      ],
+      "wordIds": [
+        "gjemme",
+        "finne"
+      ],
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "cefrLevel": "B2"
+    },
+    {
+      "id": "b2v-58",
+      "no": "Han gnagde på blyanten mens han forsøkte å løse den siste matteoppgaven.",
+      "en": "He chewed on the pencil while trying to solve the last math problem.",
+      "targetSurfaces": [
+        "gnagde"
+      ],
+      "wordIds": [
+        "gnage"
+      ],
+      "clusterId": "smaord-og-ting-rundt-deg",
+      "cefrLevel": "B2"
+    }
+  ]
+}
