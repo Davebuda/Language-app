@@ -118,8 +118,10 @@ describe('generateSession — exercise-type guard', () => {
 
     const { session } = generateSession(input);
     for (const item of session.items) {
-      if (item.conceptIds.includes('noun-gender')) {
-        // noun-gender can only appear with translation-to-english — never a production type
+      // cloze-passage is a DERIVED type (resolved separately from a passage or an
+      // auto-cloze, not from the sentence's declared exerciseTypes). The guard
+      // applies to sentence-backed items only — exempt the derived cloze.
+      if (item.conceptIds.includes('noun-gender') && item.exerciseType !== 'cloze-passage') {
         expect(item.exerciseType).toBe('translation-to-english');
       }
     }
@@ -134,7 +136,11 @@ describe('generateSession — exercise-type guard', () => {
     });
 
     const { session } = generateSession(input);
-    for (const item of session.items.filter((i) => i.conceptIds.includes('v2-word-order'))) {
+    // Exempt the derived cloze-passage type (auto-cloze) — the guard is about
+    // sentence-backed items using only the sentence's declared exerciseTypes.
+    for (const item of session.items.filter(
+      (i) => i.conceptIds.includes('v2-word-order') && i.exerciseType !== 'cloze-passage',
+    )) {
       expect(['translation-to-norwegian', 'fill-in-blank']).toContain(item.exerciseType);
     }
   });
@@ -503,7 +509,12 @@ describe('cloze passage scheduling', () => {
     expect(clozeItems[0]!.selectionReason).toBe('weekly_focus');
   });
 
-  it('emits zero cloze-passage items when availablePassageIds/passages are omitted', () => {
+  it('emits an auto-cloze item from a buildable sentence when authored passages are omitted (Move A)', () => {
+    // Move A intentionally replaces the old "no authored passage → no cloze"
+    // contract: with no passages, the scheduler falls back to an AUTO-CLOZE built
+    // from a buildable sentence (error tag + blankable word), so the cloze type
+    // exists at levels with no authored passages (B1/B2). makeSentence is buildable.
+    // (Non-buildable sentences yield NO cloze — covered in scheduler-autocloze.test.ts.)
     const s1 = makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']);
 
     const input: SchedulerInput = makeInput({
@@ -519,11 +530,11 @@ describe('cloze passage scheduling', () => {
         },
       },
     });
-    // No availablePassageIds or passages fields — backward-compatible path.
+    // No availablePassageIds or passages fields → auto-cloze path.
 
     const { session } = generateSession(input);
     const clozeItems = session.items.filter((i) => i.exerciseType === 'cloze-passage');
-    expect(clozeItems.length).toBe(0);
+    expect(clozeItems.length).toBe(1); // at most one cloze, and auto-cloze fills it
   });
 
   it('does NOT schedule a passage above the learner\'s level (Rule 6: no silent above-level cloze)', () => {
@@ -531,7 +542,13 @@ describe('cloze passage scheduling', () => {
     // (pIdx <= clozeMaxIdx) must exclude it — an A1 learner never gets a B1
     // cloze even for a shared concept. This is the no-silent-substitution
     // guarantee for the whole cloze type at B1/B2 (where no passages exist).
-    const s1 = makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']);
+    // Non-buildable (no detectable error tag) so this test isolates its real guard
+    // — the ABOVE-LEVEL AUTHORED passage must be excluded — without the separate
+    // auto-cloze feature adding an in-level cloze (auto-cloze tested elsewhere).
+    const s1: Sentence = {
+      ...makeSentence('s1', ['v2-word-order'], ['translation-to-norwegian', 'word-order']),
+      errorTagsDetectable: [],
+    };
     const b1Passage: ClozePassage = {
       id: 'cz-b1',
       cefrLevel: 'B1',

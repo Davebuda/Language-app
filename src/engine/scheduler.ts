@@ -7,6 +7,7 @@ import { isMastered } from './fingerprint';
 import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
 import { getUnlockedConcepts } from '@/types/concepts';
 import { getCumulativeConcepts } from '@/lib/concept-graph-loader';
+import { buildClozeFromSentence } from '@/lib/auto-cloze';
 
 const AVG_EXERCISE_SECONDS = 45; // average exercise duration
 
@@ -321,20 +322,35 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
       addItem(conceptId, [...REMEDIATION_EXERCISES, ...REVIEW_EXERCISES], 'interleaving', 'interleaving');
   }
 
-  // --- Cloze passage: at most one, for the top focus/weak concept that has an
-  // authored passage at or below the learner's level (and not already passed). ---
-  if (input.availablePassageIds && input.passages) {
+  // --- Cloze passage: at most one, for the top focus/weak concept. Prefer an
+  // authored passage at/below level (and not passed); otherwise fall back to an
+  // AUTO-CLOZE built from an eligible sentence, so the cloze type exists at
+  // levels with no authored passages (B1/B2). The auto-eligibility check runs the
+  // real builder so the useSession resolver is guaranteed to produce a cloze. ---
+  {
     const clozeMaxIdx = LEVEL_ORDER.indexOf(fingerprint.currentLevel as typeof LEVEL_ORDER[number]);
     const clozeCandidates = [...Array.from(focusIds), ...weakConcepts];
     for (const conceptId of clozeCandidates) {
-      const pids = input.availablePassageIds[conceptId] ?? [];
-      const hasEligible = pids.some((pid) => {
+      const pids = input.availablePassageIds?.[conceptId] ?? [];
+      const authoredEligible = pids.some((pid) => {
         const p = input.passages?.[pid];
         if (!p) return false;
         const pIdx = LEVEL_ORDER.indexOf(p.cefrLevel as typeof LEVEL_ORDER[number]);
         return pIdx >= 0 && pIdx <= clozeMaxIdx && !passedIds[pid];
       });
-      if (hasEligible) {
+      let autoEligible = false;
+      if (!authoredEligible) {
+        const sentIds = filterSentencesByLevel(
+          availableSentenceIds[conceptId] ?? [],
+          fingerprint.currentLevel,
+          sentences,
+        ).filter((id) => !passedIds[id]);
+        autoEligible = sentIds.some((id) => {
+          const s = sentences[id];
+          return !!s && buildClozeFromSentence(s) !== null;
+        });
+      }
+      if (authoredEligible || autoEligible) {
         const clozeReason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
         items.push(makeItem(`item-${itemIndex++}`, conceptId, `pending:${conceptId}`, 'cloze-passage', 'new-material', clozeReason));
         break; // at most one cloze per session

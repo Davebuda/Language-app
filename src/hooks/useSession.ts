@@ -11,6 +11,7 @@ import type { ExerciseResult, SessionItem, ExerciseType, SessionRecipe, SessionB
 import type { Sentence, ResolvedContent, ResolvedClozePassage } from '@/types/content';
 import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool';
 import { getGraphForLevel } from '@/lib/concept-graph-loader';
+import { buildClozeFromSentence } from '@/lib/auto-cloze';
 
 const SCENARIOS = [
   'daily-routine', 'food', 'transport', 'family',
@@ -140,6 +141,25 @@ export function useSession(
       if (passage) {
         passageCache.current.set(item.id, { ...passage, source: 'seed' });
         forceUpdate((n) => n + 1);
+        return;
+      }
+      // Auto-cloze fallback: no authored passage (e.g. B1/B2) → build a single-gap
+      // cloze from an eligible, unpassed, at-or-below-level seed sentence. Honest:
+      // source:'generated' marks it as derived from a vetted sentence (Rule 6).
+      const levelOrder = ['A1', 'A2', 'B1', 'B2'];
+      const maxLevelIdx = levelOrder.indexOf(
+        useFingerprintStore.getState().fingerprint?.currentLevel ?? 'A1',
+      );
+      const seeds = seedsByConceptId.current.get(conceptId) ?? [];
+      for (const s of seeds) {
+        if (s.norwegian.includes('___') || passedIds[s.id]) continue;
+        if (levelOrder.indexOf(s.cefrLevel) > maxLevelIdx) continue;
+        const built = buildClozeFromSentence(s);
+        if (built) {
+          passageCache.current.set(item.id, { ...built, source: 'generated' });
+          forceUpdate((n) => n + 1);
+          return;
+        }
       }
       return;
     }
