@@ -177,7 +177,9 @@ export default function DashboardPage() {
           : JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length])
         : 'Skriv i journalen',
       roleplay: focusLabel ? `Anbefalt for ${focusLabel}` : '3 scenarier tilgjengelig',
-      reading: textsAtLevel > 0 ? `${textsAtLevel} tekster på ${levelLabel}-nivå` : 'Tekster tilgjengelig',
+      reading: (levelLabel === 'B1' || levelLabel === 'B2')
+        ? 'Les → si → skriv · én passasje'
+        : (textsAtLevel > 0 ? `${textsAtLevel} tekster på ${levelLabel}-nivå` : 'Tekster tilgjengelig'),
       listen: 'Lytt og svar',
       drills: 'Uttaleøvelser',
       shadow: 'Skyggelesing',
@@ -358,7 +360,14 @@ export default function DashboardPage() {
 
           <div className="flex flex-col">
             {uncompletedLanes.map((laneId) => (
-              <LaneTrackRow key={laneId} laneId={laneId} hint={laneHints[laneId]} done={false} focusBadge={laneFocusMap[laneId]} />
+              <LaneTrackRow
+                key={laneId}
+                laneId={laneId}
+                hint={laneHints[laneId]}
+                done={false}
+                focusBadge={laneFocusMap[laneId]}
+                href={laneId === 'reading' && (levelLabel === 'B1' || levelLabel === 'B2') ? '/skriv' : undefined}
+              />
             ))}
             {doneLanes.map((laneId) => (
               <LaneTrackRow key={laneId} laneId={laneId} hint={laneHints[laneId]} done={true} />

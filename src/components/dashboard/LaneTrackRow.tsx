@@ -32,11 +32,14 @@ interface LaneTrackRowProps {
   done: boolean
   focusBadge?: boolean
   isLast?: boolean
+  /** Overrides the lane's default href (e.g. reading → /skriv at B1+). */
+  href?: string
 }
 
-export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast }: LaneTrackRowProps) {
+export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href }: LaneTrackRowProps) {
   const config = LANE_CONFIG[laneId]
   const Icon = config.Icon
+  const destination = href ?? config.href
 
   if (done) {
     return (
@@ -57,7 +60,7 @@ export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast }: LaneTra
 
   return (
     <Link
-      href={config.href}
+      href={destination}
       className={`flex items-center gap-2 rounded-[0.25rem] px-1 py-[7px] transition-colors hover:bg-[rgba(17,21,24,0.03)]${isLast ? '' : ' border-b border-[rgba(17,21,24,0.06)]'}`}
       aria-label={`Åpne ${config.name}`}
     >
