@@ -20,6 +20,13 @@ reports/
 # Playwright MCP artifacts
 .playwright-mcp/
 
+# Scratch / working files under output/ (logs, temp data, throwaway scripts).
+# Intentional docs live as output/<name>.md and stay tracked.
+output/_*
+
+# Council devserver log
+.council/*.log
+
 # Build logs
 .next-logs/
 

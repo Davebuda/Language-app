@@ -1,8 +1,0 @@
-[    6340ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
-[    6523ms] Error: Could not find the module "[project]/node_modules/next/dist/client/components/builtin/global-error.js#default" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
-    at stringify (<anonymous>:1:18)
-    at resolveErrorDev (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:371673)
-    at processFullStringRow (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:381519)
-    at <unknown> (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:386767)
-    at processBinaryChunk (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:386839)
-    at progress (file://C:\Users\daveb\Documents\GitHub\Language-app\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:2:388367)

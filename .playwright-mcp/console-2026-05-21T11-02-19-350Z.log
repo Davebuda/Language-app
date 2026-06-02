@@ -1,7 +1,0 @@
-[     878ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/favicon.ico:0
-[     987ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_88c3f3a5._.js:741
-[     988ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_88c3f3a5._.js:741
-[     988ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_88c3f3a5._.js:741
-[     989ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_88c3f3a5._.js:741
-[     989ms] [WARNING] [scheduler] skipping "negation-placement" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_88c3f3a5._.js:741
-[     990ms] [WARNING] [scheduler] skipping "modal-verbs" — no eligible sentence for any type in pool @ http://localhost:3000/_next/static/chunks/_88c3f3a5._.js:741

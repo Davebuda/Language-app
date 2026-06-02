@@ -1,9 +1,0 @@
-
- RUN  v4.1.5 C:/Users/daveb/Documents/GitHub/Language-app
-
-
- Test Files  37 passed (37)
-      Tests  540 passed (540)
-   Start at  05:53:47
-   Duration  11.60s (transform 4.47s, setup 8.34s, import 6.36s, tests 862ms, environment 104.33s)
-
