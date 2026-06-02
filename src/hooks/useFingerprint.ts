@@ -15,11 +15,13 @@ import {
   computeProductionGap,
   brickWeightForExercise,
   bumpDailyBrick,
+  recordVocabResult,
   ensureWeekOpen,
   closeWeek,
   openWeek,
   seedInitialMastery,
 } from '@/engine';
+import type { VocabResultInput } from '@/engine';
 import { migrateWeeklySprintFields } from '@/engine/weekly-sprint';
 import { emitEvent } from '@/lib/events';
 import { logWeeklyCheckComplete, logConceptExposure } from '@/lib/logEvents';
@@ -489,5 +491,21 @@ export function useFingerprint() {
     [setFingerprint, user]
   );
 
-  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress };
+  // ── Vocab track (B2 conjugation drill, Slice 3.3) ────────────────────────
+  // Fold one vocab answer into cluster mastery (activation gate) and, on a
+  // correct production, lay a production brick on today's wall. Mirrors
+  // recordResult's persist pattern.
+  const recordVocabAnswer = useCallback((input: VocabResultInput) => {
+    const fp = useFingerprintStore.getState().fingerprint;
+    if (!fp) return;
+    let updated = recordVocabResult(fp, input);
+    if (input.correct) {
+      updated = bumpDailyBrick(updated, input.isProduction ? 'production' : 'recognition');
+    }
+    setFingerprint(updated);
+    saveFingerprint(updated).catch(console.warn);
+    if (user) saveFingerprintToSupabase(updated).catch(console.warn);
+  }, [setFingerprint, user]);
+
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress, recordVocabAnswer };
 }

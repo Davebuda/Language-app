@@ -292,6 +292,22 @@ export default function DashboardPage() {
         {/* ── Production wall (lead block; all-levels, level-aware lens) ── */}
         {wallView ? <ProductionWall view={wallView} /> : null}
 
+        {/* B2 vocab track entry — conjugation drill (Slice 3.3) */}
+        {fingerprint?.currentLevel === 'B2' ? (
+          <Link
+            href="/ord"
+            aria-label="Åpne bøyningsdrill"
+            className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-2.5"
+          >
+            <div>
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-signal-dim,#9ec01a)]">B2 · ordforråd</div>
+              <div className="mt-0.5 text-[0.9rem] font-bold text-[var(--nc-text)]">Bøyningsdrill</div>
+              <div className="mt-px text-[0.72rem] text-[var(--nc-text-muted)]">Skriv riktige verbformer · hverdagsverb</div>
+            </div>
+            <ArrowRight size={15} aria-hidden="true" className="text-[var(--nc-text-dim)]" />
+          </Link>
+        ) : null}
+
         {/* ── Hero Card (Lime) ── */}
         <div className="relative overflow-hidden rounded-[0.65rem] bg-[linear-gradient(135deg,#C8FF20_0%,#B8EF10_100%)] p-2.5 text-[var(--nc-signal-fg)]">
           <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Anbefalt</div>
