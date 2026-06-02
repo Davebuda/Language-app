@@ -12,8 +12,8 @@
 //     honest "Grunnsjekk" subset, never an error state.
 //   - Guided (writeFrame present) is tagged "Med støtte" and earns reduced credit.
 
-import { useMemo, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import { Check, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react'
 import type { CEFRLevel } from '@/types/fingerprint'
 import type { ReadingPassage } from '@/types/content'
