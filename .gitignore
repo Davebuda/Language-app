@@ -28,3 +28,9 @@ test-results/
 
 # Audit screenshots
 audit-*.png
+
+# Pre-seed staging drafts (never shipped; live content is content/<area>/<level>.json)
+content/**/staging/
+
+# Scheduler lock (local session state)
+.claude/scheduled_tasks.lock
