@@ -45,6 +45,20 @@ function getExerciseTypeLabel(type: string): string {
   return map[type] ?? 'Øvelse'
 }
 
+// The scheduler tags every SessionItem with a selectionReason — the honest
+// answer to "why am I doing this exercise?". Surfacing it in-session makes the
+// coaching intelligence (diagnosis + scheduling) felt, not just computed.
+const WHY_LABELS: Record<string, string> = {
+  weak_concept: 'Svakt punkt',
+  review_due: 'Gjennomgang',
+  decaying: 'Vedlikehold',
+  new_material: 'Nytt',
+  interleaving: 'Variasjon',
+  weekly_focus: 'Ukens fokus',
+  repair_target: 'Reparasjon',
+  cold_start: 'Kartlegging',
+}
+
 export function SessionScreen({
   sentences,
   availableSentenceIds,
@@ -197,6 +211,14 @@ export function SessionScreen({
                         <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">
                           {currentItem ? getExerciseTypeLabel(currentItem.exerciseType) : 'Økt'}
                         </div>
+                        {currentItem ? (
+                          <span
+                            aria-label={`Valgt fordi: ${WHY_LABELS[currentItem.selectionReason] ?? 'tilpasset deg'}`}
+                            className="rounded-[0.3rem] border border-[rgba(10,18,6,0.22)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.1em] text-[rgba(10,18,6,0.6)]"
+                          >
+                            {WHY_LABELS[currentItem.selectionReason] ?? 'Tilpasset deg'}
+                          </span>
+                        ) : null}
                         {currentContent?.isReviewFallback ? (
                           <span className="rounded-[0.3rem] bg-[rgba(10,18,6,0.12)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.1em] text-[rgba(10,18,6,0.6)]">
                             Repetisjon
