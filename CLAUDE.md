@@ -97,7 +97,7 @@ Stubs / not built: vocab SRS, reading comprehension scoring, **read-respond UI**
 
 2. **Analysis-first on decisions; direct on mechanics.** If a task involves a reversible architectural or design choice, produce an analysis with 2–3 options and tradeoffs and STOP for approval. If a task is mechanical and well-understood, do it directly and show the diff. Do not run analysis loops on one-line fixes; do not build architectural changes without analysis.
 
-3. **Verify, don't assume.** Before declaring anything done, produce a concrete trace against stated acceptance criteria. "It should work" is not verification. A wrong audit was caught this way; conversation parity was confirmed this way. This is mandatory.
+3. **Verify, don't assume.** Before declaring anything done, produce a concrete trace against stated acceptance criteria. "It should work" is not verification. A wrong audit was caught this way; conversation parity was confirmed this way. This is mandatory. **Verification must include a returning-user fingerprint, not only a fresh guest** — a fingerprint persisted under an older schema is the real production population, and guest-only live smoke shipped a returning-user dashboard crash on 2026-06-03. The locked guard is `tests/integration/returning-user-read-safety.test.ts` + `tests/types/returning-user-fixture.ts`: any read surface that assumes a field a legacy fingerprint lacks must fail there. When adding a field to `MistakeFingerprint`, confirm `normalizeFingerprint` backfills it and extend the fixture.
 
 4. **One move at a time.** Finish the current move, verify it, summarize what changed, then stop. Do not chain into the next move unprompted.
 

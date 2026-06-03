@@ -161,5 +161,17 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
  * missing top-level keys only and never mutates existing nested data.
  */
 export function normalizeFingerprint(raw: MistakeFingerprint): MistakeFingerprint {
-  return { ...createEmptyFingerprint(raw.userId), ...raw };
+  const base = { ...createEmptyFingerprint(raw.userId), ...raw };
+  // Deepen ONLY the one nested shape that crashes a reader when absent: a
+  // weeklySprintHistory record persisted before `focusOutcomes` existed makes
+  // `Object.values(record.focusOutcomes)` throw on the progress page. Default it
+  // to {} (empty outcomes → zero, never a throw).
+  // We deliberately do NOT backfill ConceptMastery row fields here: a default
+  // `decayedScore`/`rawScore` would silently change a displayed mastery score.
+  // Readers guard those numerically instead (comparison-on-undefined → false).
+  base.weeklySprintHistory = (base.weeklySprintHistory ?? []).map((r) => ({
+    ...r,
+    focusOutcomes: r?.focusOutcomes ?? {},
+  }));
+  return base;
 }
