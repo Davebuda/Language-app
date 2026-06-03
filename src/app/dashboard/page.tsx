@@ -107,6 +107,11 @@ export default function DashboardPage() {
 
   const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
   const levelLabel = fingerprint?.currentLevel ?? 'A1'
+  // Displayed level chip: show "–" while the fingerprint is still hydrating so a
+  // returning B1/B2 learner never sees a wrong "A1" flash before their real level
+  // loads (matches /profile's guard). levelLabel above stays 'A1'-default for LOGIC
+  // (graph/lanes/reading), which must not become "–".
+  const levelDisplay = fingerprint?.currentLevel ?? (status === 'loading' ? '–' : 'A1')
 
   const recommendation = useMemo(() => {
     if (!fingerprint) return null
@@ -281,7 +286,7 @@ export default function DashboardPage() {
               <div className="text-[0.82rem] font-bold leading-tight text-[var(--nc-text)]">{displayName}</div>
               <div className="mt-px flex items-center gap-1.5">
                 <span className="text-[9px] font-medium uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">{today || 'I dag'}</span>
-                <span className="rounded-[0.2rem] border border-[rgba(200,255,32,0.18)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelLabel}</span>
+                <span className="rounded-[0.2rem] border border-[rgba(200,255,32,0.18)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelDisplay}</span>
               </div>
             </div>
           </div>
