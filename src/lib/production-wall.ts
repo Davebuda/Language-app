@@ -142,7 +142,7 @@ function buildWeekBars(fp: MistakeFingerprint, todayStr: string): WeekBar[] {
   const monday = new Date(today)
   monday.setUTCDate(today.getUTCDate() - mondayOffset)
 
-  const byDate = new Map(fp.dailyProgress.map((d) => [d.date, d]))
+  const byDate = new Map((fp.dailyProgress ?? []).map((d) => [d.date, d]))
 
   return WEEKDAY_LABELS.map((weekday, i) => {
     const dt = new Date(monday)
@@ -168,7 +168,7 @@ export function deriveProductionWallView(
   const level = fp.currentLevel
   const lens = LENS_CONFIG[level]
 
-  const todayRec = fp.dailyProgress.find((d) => d.date === todayStr)
+  const todayRec = (fp.dailyProgress ?? []).find((d) => d.date === todayStr)
   const tally = { ...EMPTY_BRICKS, ...(todayRec?.bricks ?? {}) }
 
   const brickHero = lens.heroWeights.reduce((sum, w) => sum + tally[w], 0)
@@ -200,7 +200,7 @@ export function deriveProductionWallView(
   }
   while (cells.length < DISPLAY_BRICK_SLOTS) cells.push({ weight: 'empty' })
 
-  const gapConceptCount = fp.weeklyFocus.filter((id) => (fp.productionGap[id] ?? 0) > 0).length
+  const gapConceptCount = (fp.weeklyFocus ?? []).filter((id) => (fp.productionGap?.[id] ?? 0) > 0).length
   const improved = weeklyEntries.filter((e) => e.deltaDecayed > 0).slice(0, 2).map((e) => e.label)
 
   return {
@@ -209,7 +209,7 @@ export function deriveProductionWallView(
     objectiveTitle: lens.title,
     heroCount,
     heroUnit: lens.heroUnit,
-    speakingMinutes: Math.round(fp.speakingMinutesTotal),
+    speakingMinutes: Math.round(fp.speakingMinutesTotal ?? 0),
     gapConceptCount,
     bricks: cells,
     wallCaption: lens.wallCaption,

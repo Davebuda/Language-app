@@ -145,4 +145,32 @@ describe('deriveProductionWallView — robustness', () => {
     const view = deriveProductionWallView(fp, [], TODAY)
     expect(view.gapConceptCount).toBe(2) // a and c have gap > 0
   })
+
+  // Regression (prod incident 2026-06-03): a fingerprint persisted BEFORE the
+  // weekly-sprint/production-wall fields existed loads with `dailyProgress`,
+  // `weeklyFocus`, `productionGap` and `speakingMinutesTotal` entirely absent.
+  // The dashboard crashed with "Noe gikk galt" because the view-model called
+  // `fp.dailyProgress.find(...)` on undefined. The view-model must tolerate the
+  // whole-array-missing shape (the loader also backfills it — defense in depth).
+  it('does not throw on a legacy fingerprint missing dailyProgress/weeklyFocus entirely', () => {
+    const fp = fpWith('A1')
+    // Simulate the pre-migration persisted shape: delete the fields the loader
+    // would normally backfill, to prove the view-model itself is defensive.
+    const legacy = { ...fp } as Record<string, unknown>
+    delete legacy.dailyProgress
+    delete legacy.weeklyFocus
+    delete legacy.productionGap
+    delete legacy.speakingMinutesTotal
+
+    expect(() =>
+      deriveProductionWallView(legacy as unknown as MistakeFingerprint, [], TODAY),
+    ).not.toThrow()
+
+    const view = deriveProductionWallView(legacy as unknown as MistakeFingerprint, [], TODAY)
+    expect(view.heroCount).toBe(0)
+    expect(view.bricks).toHaveLength(12)
+    expect(view.weekBars).toHaveLength(7)
+    expect(view.gapConceptCount).toBe(0)
+    expect(view.speakingMinutes).toBe(0)
+  })
 })
