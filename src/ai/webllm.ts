@@ -222,6 +222,17 @@ export class WebLLMService implements AIService {
           console.warn('[WebLLM] Suspected fabricated compound in:', content.norwegian)
           continue
         }
+        // P0.5-06: Norwegian-validity gate. generateContent was the only AI
+        // surface without it — validateGenerated checks structure/chars/length
+        // but not Norwegian-ness, so English-as-Norwegian or gibberish could
+        // ship. Strip the fill-in-blank marker first (mirrors checkContent) so
+        // the underscores themselves don't trip the char check. Invalid → retry,
+        // then null (existing fallback semantics).
+        const norskValidity = validateNorwegianOutput(content.norwegian.replace(/___/g, ' '))
+        if (!norskValidity.valid) {
+          console.warn(`[WebLLM.generateContent] dropping invalid Norwegian (${norskValidity.reason}): ${content.norwegian.slice(0, 80)}`)
+          continue
+        }
         return {
           id: crypto.randomUUID(),
           norwegian: content.norwegian,
