@@ -8,6 +8,8 @@ interface ConceptProgressRowProps {
   score: number
   locked?: boolean
   prereqLabel?: string
+  /** Pre-formatted SRS due phrase (e.g. "Om 3 dager"); omitted when empty. */
+  nextReview?: string
   className?: string
   /** 'cream' uses cream text colors (default); 'dark' uses nc-text colors for dark card backgrounds */
   variant?: 'cream' | 'dark'
@@ -19,6 +21,7 @@ export function ConceptProgressRow({
   score,
   locked = false,
   prereqLabel,
+  nextReview,
   className,
   variant = 'cream',
 }: ConceptProgressRowProps) {
@@ -75,6 +78,12 @@ export function ConceptProgressRow({
             />
           ) : null}
         </div>
+
+        {!locked && nextReview ? (
+          <div className="mt-1.5 text-[10px] text-[var(--nc-text-dim)]">
+            Neste repetisjon: {nextReview}
+          </div>
+        ) : null}
       </div>
     </div>
   )

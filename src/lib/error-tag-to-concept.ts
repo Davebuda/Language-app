@@ -53,3 +53,16 @@ export function errorTagToConceptId(tag: string | undefined | null): string {
   if (!tag) return FALLBACK_CONCEPT_ID
   return ERROR_TAG_TO_CONCEPT_ID[tag as ErrorTag] ?? FALLBACK_CONCEPT_ID
 }
+
+// Like errorTagToConceptId, but returns null when the tag only resolves via the
+// catch-all fallback (vocabulary, comprehension, meta tags). Use on USER-FACING
+// surfaces that render a concept's grammar rule: attributing a fallback tag to
+// `noun-gender` is fine for mastery bookkeeping, but surfacing the noun-gender
+// rule under e.g. "Lytteforståelse" would be a wrong-explanation claim (Rule 6).
+export function errorTagToGrammarConceptId(tag: string | undefined | null): string | null {
+  if (!tag) return null
+  const mapped = ERROR_TAG_TO_CONCEPT_ID[tag as ErrorTag]
+  if (mapped === undefined) return null
+  if (mapped === FALLBACK_CONCEPT_ID && tag !== 'noun-gender') return null
+  return mapped
+}

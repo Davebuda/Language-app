@@ -228,6 +228,11 @@ export function SessionScreen({
                       <div className="mt-0.5 text-[0.88rem] font-extrabold leading-tight text-[var(--nc-signal-fg)]">
                         Økt
                       </div>
+                      {currentContent?.isReviewFallback ? (
+                        <div className="mt-1 max-w-[22rem] text-[10px] font-medium leading-snug text-[rgba(10,18,6,0.6)]">
+                          Repetisjonsmodus — nytt innhold er øvd opp. Vi repeterer til mer er klart.
+                        </div>
+                      ) : null}
                     </div>
                     <AIStatusBadge />
                   </div>

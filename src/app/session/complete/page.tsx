@@ -16,23 +16,8 @@ import { incrementStreak } from '@/lib/streak'
 import { createClient } from '@/lib/supabase/client'
 import { getConceptPhase, isMastered } from '@/engine'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
-
-const ERROR_TAG_LABELS: Partial<Record<string, string>> = {
-  'word-order': 'Ordstilling',
-  'verb-tense': 'Verbtid',
-  'verb-conjugation': 'Verbform',
-  'noun-gender': 'Substantivkjønn',
-  'article-use': 'Artikkelbruk',
-  'adjective-agreement': 'Adjektivsamsvar',
-  'pronoun-choice': 'Pronomen',
-  preposition: 'Preposisjon',
-  'modal-verb': 'Modalverb',
-  'negation-placement': 'Negasjon',
-  'compound-word': 'Sammensatt ord',
-  spelling: 'Stavefeil',
-  'wrong-word-same-category': 'Feil ord',
-  unspecified: 'Grammatikk',
-}
+import { formatNextReview } from '@/lib/srs-format'
+import { ERROR_TAG_LABELS } from '@/lib/error-tag-labels'
 
 const PHASE_STYLES: Record<string, string> = {
   locked: 'bg-[rgba(255,255,255,0.04)] text-[var(--nc-text-dim)] border border-[rgba(255,255,255,0.06)]',
@@ -50,14 +35,6 @@ const PHASE_LABELS: Record<string, string> = {
 }
 
 type RepairEntry = { conceptId: string; label: string; tags: string[] }
-
-function formatNextReview(isoDate: string | null | undefined): string {
-  if (!isoDate) return ''
-  const days = Math.ceil((new Date(isoDate).getTime() - Date.now()) / 86400000)
-  if (days <= 0) return 'I dag'
-  if (days === 1) return 'I morgen'
-  return `Om ${days} dager`
-}
 
 const REFLECTION_PROMPTS = [
   'Hva føltes vanskeligst akkurat nå?',

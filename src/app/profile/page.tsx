@@ -12,6 +12,10 @@ import { getStreak } from '@/lib/streak'
 import { BottomNav } from '@/components/layout/BottomNav'
 import type { InputProductionPreference } from '@/types/fingerprint'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { formatNextReview } from '@/lib/srs-format'
+import { ERROR_TAG_LABELS } from '@/lib/error-tag-labels'
+import { GRAMMAR_EXPLAINERS } from '@/lib/grammar-explainers'
+import { errorTagToGrammarConceptId } from '@/lib/error-tag-to-concept'
 
 const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
   { value: 'input_heavy', label: 'Lytting og lesing', desc: 'Mer input og forståelse' },
@@ -46,6 +50,7 @@ export default function ProfilePage() {
 
   const totalConcepts = conceptGraph.concepts.length
   const topErrors = (fingerprint?.errorPatterns ?? [])
+    .filter((pattern) => pattern.errorTags[0])
     .slice(0, 3)
     .map((pattern) => ({ tag: pattern.errorTags[0], frequency: pattern.frequency }))
 
@@ -57,6 +62,7 @@ export default function ProfilePage() {
       id,
       label: conceptGraph.concepts.find((concept) => concept.id === id)?.label ?? id,
       score: mastery.decayedScore ?? 0,
+      nextReview: formatNextReview(mastery.nextReviewAt),
     }))
 
   const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'
@@ -156,12 +162,19 @@ export default function ProfilePage() {
               {weakConcepts.map((concept) => (
                 <div
                   key={concept.id}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-[rgba(17,21,24,0.07)] bg-[rgba(255,255,255,0.5)] px-3 py-2"
+                  className="rounded-lg border border-[rgba(17,21,24,0.07)] bg-[rgba(255,255,255,0.5)] px-3 py-2"
                 >
-                  <span className="text-[0.82rem] font-medium text-[var(--nc-cream-text)]">{concept.label}</span>
-                  <span className="rounded-full bg-[rgba(17,21,24,0.07)] px-3 py-1 text-[0.72rem] font-bold text-[var(--nc-cream-muted)]">
-                    {Math.round(concept.score)}%
-                  </span>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-[0.82rem] font-medium text-[var(--nc-cream-text)]">{concept.label}</span>
+                    <span className="rounded-full bg-[rgba(17,21,24,0.07)] px-3 py-1 text-[0.72rem] font-bold text-[var(--nc-cream-muted)]">
+                      {Math.round(concept.score)}%
+                    </span>
+                  </div>
+                  {concept.nextReview ? (
+                    <div className="mt-1 text-[0.68rem] text-[var(--nc-cream-muted)]">
+                      Neste repetisjon: {concept.nextReview}
+                    </div>
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -172,15 +185,28 @@ export default function ProfilePage() {
         {topErrors.length > 0 ? (
           <section className="nc-glass p-2.5">
             <div className="nc-label">Tilbakevendende feil</div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {topErrors.map((error) => (
-                <span
-                  key={error.tag}
-                  className="rounded-full border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-3 py-1.5 text-[0.72rem] font-medium text-[var(--nc-text)]"
-                >
-                  {error.tag} · {error.frequency}x
-                </span>
-              ))}
+            <div className="mt-2 flex flex-col gap-1.5">
+              {topErrors.map((error) => {
+                const label = ERROR_TAG_LABELS[error.tag] ?? error.tag
+                const grammarConceptId = errorTagToGrammarConceptId(error.tag)
+                const rule = grammarConceptId ? GRAMMAR_EXPLAINERS[grammarConceptId]?.shortRule : undefined
+                return (
+                  <div
+                    key={error.tag}
+                    className="rounded-lg border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-3 py-2"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[0.82rem] font-medium text-[var(--nc-text)]">{label}</span>
+                      <span className="rounded-full bg-[rgba(255,255,255,0.08)] px-2.5 py-0.5 text-[0.7rem] font-bold text-[var(--nc-text-muted)]">
+                        {error.frequency}x
+                      </span>
+                    </div>
+                    {rule ? (
+                      <p className="mt-1 text-[0.7rem] leading-snug text-[var(--nc-text-muted)]">{rule}</p>
+                    ) : null}
+                  </div>
+                )
+              })}
             </div>
           </section>
         ) : null}

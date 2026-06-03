@@ -7,6 +7,7 @@ import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
 import { vocabCoverage } from '@/engine'
 import { runDiagnosis } from '@/engine/diagnosis'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { formatNextReview } from '@/lib/srs-format'
 
 // The lock for the returning-user crash/honesty class (incident 2026-06-03).
 // A fingerprint persisted under an older schema — missing top-level fields AND
@@ -95,5 +96,16 @@ describe('returning-user surface reads survive a legacy mastery row missing deca
     const wall = deriveProductionWallView(fp, entries, TODAY)
     expect(Number.isFinite(wall.heroCount)).toBe(true)
     expect(Number.isFinite(wall.speakingMinutes)).toBe(true)
+  })
+
+  // SRS next-review line (Progress rows + Profile weak list) reads nextReviewAt
+  // off the mastery row. normalizeFingerprint does NOT backfill row fields, so the
+  // legacy row lacks nextReviewAt — the reader must guard it to '' (omit the line),
+  // never throw. A populated row must still format to a real Norwegian phrase.
+  it('next-review read is safe on a legacy row missing nextReviewAt', () => {
+    const ids = Object.keys(fp.conceptMastery)
+    expect(() => formatNextReview(fp.conceptMastery[ids[0]].nextReviewAt)).not.toThrow()
+    expect(formatNextReview(fp.conceptMastery[ids[0]].nextReviewAt)).toBe('')
+    expect(formatNextReview(fp.conceptMastery[ids[1]].nextReviewAt)).not.toBe('')
   })
 })

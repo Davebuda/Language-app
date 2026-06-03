@@ -97,8 +97,8 @@ export function makeFingerprintWithLegacyMasteryRow(): MistakeFingerprint {
     streak: 1,
     recentOutcomes: [true, false, true],
     srsLevel: 1,
-    nextReviewAt: '2026-06-10T00:00:00Z',
-    // decayedScore and rawScore INTENTIONALLY absent — this is the legacy shape.
+    // decayedScore, rawScore, and nextReviewAt INTENTIONALLY absent — this is the
+    // legacy shape (predates both the decayedScore and the SRS-schedule fields).
   } as unknown as ConceptMastery
 
   const fullRow = (id: string): ConceptMastery => ({

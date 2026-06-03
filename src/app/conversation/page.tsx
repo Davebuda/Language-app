@@ -110,6 +110,10 @@ export default function ConversationPage() {
   const summaryErrorCountRef = useRef(0)
   const summaryTopicRef = useRef<string>('')
   const micStartRef = useRef<number>(0)
+  // Accumulates only the speaking minutes actually written this session (≥0.05 gate),
+  // so the end-summary confirmation is gated on the real fingerprint write (Rule 8).
+  const speakingMinutesRef = useRef(0)
+  const summarySpeakingMinutesRef = useRef(0)
   const [activeConstraint, setActiveConstraint] = useState<ResponseConstraint | null>(null)
   const [constraintResult, setConstraintResult] = useState<{ met: boolean; feedback?: string } | null>(null)
 
@@ -302,6 +306,7 @@ export default function ConversationPage() {
     const updated = { ...fp, speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + minutes, updatedAt: new Date().toISOString() }
     setFingerprint(updated)
     saveFingerprint(updated).catch(console.warn)
+    speakingMinutesRef.current += minutes
   }
 
   function toggleListening() {
@@ -515,6 +520,7 @@ export default function ConversationPage() {
                       onClick={() => {
                         summaryTurnCountRef.current = turnIndexRef.current
                         summaryErrorCountRef.current = errorCountRef.current
+                        summarySpeakingMinutesRef.current = speakingMinutesRef.current
                         summaryTopicRef.current = selectedTopic ?? ''
                         void persistSessionEnd()
                         window.speechSynthesis?.cancel()
@@ -705,6 +711,14 @@ export default function ConversationPage() {
                     </div>
                   </div>
                 </div>
+
+                {summarySpeakingMinutesRef.current > 0 ? (
+                  <p className="mt-2 text-[11px] font-semibold text-[rgba(6,16,23,0.7)]">
+                    {summarySpeakingMinutesRef.current >= 1
+                      ? `+${Math.round(summarySpeakingMinutesRef.current)} min snakk lagt til`
+                      : 'Snakketid lagt til'}
+                  </p>
+                ) : null}
               </div>
 
               {/* Actions */}

@@ -115,6 +115,17 @@ function buildSessionRecommendation(
   const minutes = Math.max(1, Math.ceil((itemCount * 45) / 60))
   const diagnosis = plan?.diagnosisResults?.[0] ?? null
 
+  // When no root-cause diagnosis has fired (cold-start or no evidenced weakness),
+  // compose an honest reason instead of leaving it null (which renders a generic
+  // whisper). A real focus exists only if the scheduler or the week chose one —
+  // the 'noun-gender' default in primaryConcept is NOT a real focus.
+  const hasRealFocus = Boolean(plan?.primaryFocus ?? fp.weeklyFocus[0])
+  const reason =
+    diagnosis?.reasoning ??
+    (hasRealFocus && primaryConcept
+      ? `Vi øver på ${primaryConcept.label} nå og holder resten ved like.`
+      : 'Vi kartlegger nivået ditt de første øktene for å finne hva du bør øve på.')
+
   const badges: CoachRecommendation['compositionBadges'] = []
   if (plan) {
     const rem = plan.session.items.filter((i) => i.purpose === 'remediation').length
@@ -130,7 +141,7 @@ function buildSessionRecommendation(
     ...LANE_META.session,
     title,
     subtitle: `${itemCount} oppgaver · ca. ${minutes} min`,
-    reason: diagnosis?.reasoning ?? null,
+    reason,
     compositionBadges: badges.length > 0 ? badges : undefined,
     grammarTip: maybeGrammarTip(),
   }

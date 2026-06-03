@@ -6,6 +6,7 @@ import { isMastered, getConceptPhase } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
+import { formatNextReview } from '@/lib/srs-format'
 import { WeeklyTrajectory } from '@/components/progress/WeeklyTrajectory'
 import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
@@ -192,6 +193,7 @@ export default function ProgressPage() {
                     score={Math.round(fingerprint?.conceptMastery[concept.id]?.decayedScore ?? 0)}
                     locked={phase === 'locked'}
                     prereqLabel={phase === 'locked' ? getPrereqLabel(concept, conceptGraph.concepts) : undefined}
+                    nextReview={phase === 'locked' ? undefined : formatNextReview(fingerprint?.conceptMastery[concept.id]?.nextReviewAt)}
                     variant="dark"
                   />
                 ))}
