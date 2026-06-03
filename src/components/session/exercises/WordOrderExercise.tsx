@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { SessionItem, ExerciseResult } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
-import { normalizeAnswer } from '@/lib/answer';
+import { checkWordOrder } from '@/lib/word-order';
 import { classifyError } from '@/lib/classify-error';
 
 interface WordOrderExerciseProps {
@@ -54,9 +54,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
     if (submitted || sourceTiles.length > 0) return;
     setSubmitted(true);
     const userWords = answerTiles.map((t) => t.word);
-    const correct =
-      userWords.length === correctWords.length &&
-      userWords.every((w, i) => normalizeAnswer(w) === normalizeAnswer(correctWords[i] ?? ''));
+    const correct = checkWordOrder(userWords, sentence.norwegian, sentence.acceptedOrders);
     setResultAnnouncement(correct ? 'Riktig svar.' : 'Feil svar.');
     onResult({
       sessionId,

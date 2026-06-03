@@ -15,6 +15,7 @@ interface RawSentence {
   notes?: string
   audio_url?: string
   scenario_id?: string
+  accepted_orders?: string[]
 }
 
 function mapRow(raw: RawSentence): Sentence {
@@ -31,6 +32,7 @@ function mapRow(raw: RawSentence): Sentence {
     notes: raw.notes,
     audioUrl: raw.audio_url,
     scenarioId: raw.scenario_id,
+    acceptedOrders: raw.accepted_orders,
   }
 }
 

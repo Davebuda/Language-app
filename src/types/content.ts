@@ -17,6 +17,12 @@ export interface Sentence {
   audioUrl?: string;              // Azure Blob Storage URL
   exerciseTypes: ExerciseType[];  // which exercise types this sentence supports
   notes?: string;                 // internal authoring note
+  // word-order: optional author-supplied alternative orderings that are also
+  // grammatically valid (e.g. legal V2 fronting variants). When present, the
+  // word-order grader accepts the canonical order OR any of these. When absent,
+  // only the canonical `norwegian` order passes — so existing content is never
+  // affected. Conservative + opt-in by design.
+  acceptedOrders?: string[];
 }
 
 export interface VocabItem {
