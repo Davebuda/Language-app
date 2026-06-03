@@ -6,7 +6,7 @@ import type { ExerciseResult } from '@/types/session'
  * SHA-256 of the user ID, hex-encoded, first 16 chars.
  * Gives per-learner longitudinal continuity without exposing real user IDs.
  */
-async function hashUserId(userId: string): Promise<string> {
+export async function hashUserId(userId: string): Promise<string> {
   const encoded = new TextEncoder().encode(userId)
   const digest = await crypto.subtle.digest('SHA-256', encoded)
   const hex = Array.from(new Uint8Array(digest))

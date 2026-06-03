@@ -54,6 +54,7 @@ export function WeeklyCheckScreen({
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
+  const [skippedCount, setSkippedCount] = useState(0)
   const [isComplete, setIsComplete] = useState(false)
 
   // Use the store fingerprint directly for latest state
@@ -80,23 +81,35 @@ export function WeeklyCheckScreen({
   // Weekly check session id — stable per mount
   const sessionId = useMemo(() => `weekly-check-${Date.now()}`, [])
 
-  function handleResult(result: ExerciseResult) {
-    recordResult(result)
-
-    const correct = result.correct
-    const nextCorrect = correct ? correctCount + 1 : correctCount
+  // Advance the check, scoring against ANSWERED items only. Skipped items (no
+  // level-eligible content for their exercise type) are excluded from the
+  // denominator — counting them would penalize the learner for a content gap,
+  // the same phantom-denominator dishonesty as the dashboard "-50".
+  function advance(nextCorrect: number, nextSkipped: number) {
     const nextIndex = currentIndex + 1
-
+    setCorrectCount(nextCorrect)
+    setSkippedCount(nextSkipped)
     if (nextIndex >= totalItems) {
-      const score = totalItems > 0 ? Math.round((nextCorrect / totalItems) * 100) : 0
-      recordWeeklyCheckResult({ score, items: totalItems })
+      const answered = totalItems - nextSkipped
+      const score = answered > 0 ? Math.round((nextCorrect / answered) * 100) : 0
+      recordWeeklyCheckResult({ score, items: answered })
       markLaneDone('uke')
-      setCorrectCount(nextCorrect)
       setIsComplete(true)
     } else {
-      setCorrectCount(nextCorrect)
       setCurrentIndex(nextIndex)
     }
+  }
+
+  function handleResult(result: ExerciseResult) {
+    recordResult(result)
+    advance(result.correct ? correctCount + 1 : correctCount, skippedCount)
+  }
+
+  // A skipped item is unanswerable, not wrong. Excluding it from the denominator
+  // also fixes the latent hang where skipping the LAST item never completed the
+  // check (it only bumped the index past the end).
+  function handleSkip() {
+    advance(correctCount, skippedCount + 1)
   }
 
   // ── Loading state ────────────────────────────────────────────────────────────
@@ -145,14 +158,15 @@ export function WeeklyCheckScreen({
 
   // ── Complete ─────────────────────────────────────────────────────────────────
   if (isComplete) {
-    const score = totalItems > 0 ? Math.round((correctCount / totalItems) * 100) : 0
+    const answered = totalItems - skippedCount
+    const score = answered > 0 ? Math.round((correctCount / answered) * 100) : 0
     return (
       <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
         <WeeklyHeader totalItems={totalItems} progressValue={totalItems} />
         <div className="nc-mobile-shell mx-auto flex w-full flex-1 flex-col gap-[6px] px-1.5 pb-32 pt-3">
           <CompletePanel
             correctCount={correctCount}
-            totalItems={totalItems}
+            totalItems={answered}
             score={score}
             onDashboard={() => router.push('/dashboard')}
           />
@@ -184,7 +198,7 @@ export function WeeklyCheckScreen({
             </motion.div>
           </AnimatePresence>
         ) : currentItem && !currentContent ? (
-          <SkippedCard onContinue={() => setCurrentIndex((i) => i + 1)} />
+          <SkippedCard onContinue={handleSkip} />
         ) : (
           <LoadingSkeleton />
         )}

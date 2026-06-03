@@ -12,6 +12,7 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { emitEvent } from '@/lib/events'
 import { logSessionResults } from '@/lib/logEvents'
 import { markLaneDone } from '@/lib/lane-completion'
+import { incrementStreak } from '@/lib/streak'
 import { createClient } from '@/lib/supabase/client'
 import { getConceptPhase, isMastered } from '@/engine'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
@@ -117,6 +118,10 @@ export default function SessionCompletePage() {
         setFingerprint(updated)
         saveFingerprint(updated).catch(console.warn)
         markLaneDone('session')
+        // Count today toward the day-streak. incrementStreak is idempotent per
+        // day; without this call the "Rekke" tile was permanently 0 (it had no
+        // writer anywhere in the app).
+        incrementStreak()
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

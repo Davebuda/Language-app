@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { createClient } from '@/lib/supabase/client'
+import { hashUserId } from '@/lib/logEvents'
 
 interface AnalyticsData {
   totalEvents: number | null
@@ -29,17 +30,24 @@ export default function AnalyticsPage() {
     async function fetchAnalytics() {
       if (!user) { setLoading(false); return }
       const supabase = createClient()
+      // learning_events_log is anonymized — rows carry anonymous_session_id
+      // (a hash of the user id), not user_id. Scope every query to THIS user's
+      // hash; without it the counts summed ALL learners' rows into a stat
+      // labelled as the user's own.
+      const anonId = await hashUserId(user.id)
 
-      // Query 1: Total events
+      // Query 1: Total events (this user)
       const { count } = await supabase
         .from('learning_events_log')
         .select('*', { count: 'exact', head: true })
+        .eq('anonymous_session_id', anonId)
 
       // Query 2: Top 5 error tags — fetch and aggregate client-side
       // (Supabase JS client does not support GROUP BY natively)
       const { data: errorRows } = await supabase
         .from('learning_events_log')
         .select('error_tag')
+        .eq('anonymous_session_id', anonId)
         .not('error_tag', 'is', null)
         .limit(1000)
 
@@ -60,8 +68,12 @@ export default function AnalyticsPage() {
       // after decay. Only computed for concepts with >5 attempts (enough signal).
       let avgRetention: number | null = null
       if (fingerprint) {
-        const entries = Object.values(fingerprint.conceptMastery).filter(
-          (m) => m.attemptCount > 5,
+        // Exclude seeded/exposure-only concepts: rawScore still sitting at the
+        // neutral 50 seed means the learner never truly practiced it (exposure
+        // bumps attemptCount but not rawScore). Averaging their decayedScore/50
+        // ratio in produced a meaningless ~100% that drowned the real signal.
+        const entries = Object.values(fingerprint.conceptMastery ?? {}).filter(
+          (m) => m.attemptCount > 5 && m.rawScore !== 50,
         )
         if (entries.length > 0) {
           const totalRetention = entries.reduce((sum, m) => {

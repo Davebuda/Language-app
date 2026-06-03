@@ -147,7 +147,11 @@ export default function ProfilePage() {
         {/* ── Weak concepts (Cream) ── */}
         {weakConcepts.length > 0 ? (
           <section className="nc-glass-cream p-2.5">
-            <div className="nc-label">Trenger mer trening</div>
+            {/* These are ordered by decayedScore, which falls with time since
+                practice — so the honest frame is "due for review", not "you are
+                weak at this". A concept you mastered then left for weeks belongs
+                here without it being a failure. */}
+            <div className="nc-label">Klar for repetisjon</div>
             <div className="mt-2 flex flex-col gap-1">
               {weakConcepts.map((concept) => (
                 <div
@@ -155,7 +159,7 @@ export default function ProfilePage() {
                   className="flex items-center justify-between gap-3 rounded-lg border border-[rgba(17,21,24,0.07)] bg-[rgba(255,255,255,0.5)] px-3 py-2"
                 >
                   <span className="text-[0.82rem] font-medium text-[var(--nc-cream-text)]">{concept.label}</span>
-                  <span className="rounded-full bg-[rgba(255,106,85,0.12)] px-3 py-1 text-[0.72rem] font-bold text-[var(--nc-red)]">
+                  <span className="rounded-full bg-[rgba(17,21,24,0.07)] px-3 py-1 text-[0.72rem] font-bold text-[var(--nc-cream-muted)]">
                     {Math.round(concept.score)}%
                   </span>
                 </div>
