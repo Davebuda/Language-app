@@ -150,3 +150,16 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     dailyProgress: [],
   };
 }
+
+/**
+ * Backfill a loaded fingerprint so every field added after it was last saved is
+ * present. Stored values always win over defaults (spread order). This is the
+ * single schema-migration-on-load used by BOTH persistence paths (IndexedDB and
+ * Supabase) — a returning user whose fingerprint predates a field (e.g.
+ * `dailyProgress`, `vocabularyMastery`, `productionGap`) would otherwise crash
+ * any reader that assumes the field is present. Shallow by design: it fills
+ * missing top-level keys only and never mutates existing nested data.
+ */
+export function normalizeFingerprint(raw: MistakeFingerprint): MistakeFingerprint {
+  return { ...createEmptyFingerprint(raw.userId), ...raw };
+}

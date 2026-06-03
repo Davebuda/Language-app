@@ -5,7 +5,7 @@ import type { User } from '@supabase/supabase-js';
 import { useFingerprintStore } from '@/stores/fingerprint-store';
 import { useSessionStore } from '@/stores/session-store';
 import { loadFingerprint, saveFingerprint } from '@/storage/indexeddb';
-import { createEmptyFingerprint } from '@/types/fingerprint';
+import { createEmptyFingerprint, normalizeFingerprint } from '@/types/fingerprint';
 import type { MistakeFingerprint, DailyProgress } from '@/types/fingerprint';
 import {
   updateConceptMastery,
@@ -80,7 +80,10 @@ async function loadFingerprintFromSupabase(userId: string): Promise<MistakeFinge
   if (error || !data) return null;
   const raw = data.data;
   if (raw && typeof raw === 'object' && 'userId' in raw && 'conceptMastery' in raw && 'recentErrors' in raw) {
-    return raw as MistakeFingerprint;
+    // Backfill fields added since this remote fingerprint was last synced, same
+    // as the local path — a legacy Supabase fp (e.g. missing dailyProgress or
+    // vocabularyMastery) must not reach render unbackfilled and crash a reader.
+    return normalizeFingerprint(raw as MistakeFingerprint);
   }
   return null;
 }

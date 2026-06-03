@@ -2,7 +2,7 @@
 // The fingerprint lives on the device — it never leaves without user consent.
 
 import { openDB, type IDBPDatabase } from 'idb';
-import { createEmptyFingerprint, type MistakeFingerprint } from '@/types/fingerprint';
+import { normalizeFingerprint, type MistakeFingerprint } from '@/types/fingerprint';
 
 const DB_NAME = 'norsk-coach';
 const DB_VERSION = 1;
@@ -44,15 +44,11 @@ export async function loadFingerprint(userId: string): Promise<MistakeFingerprin
     console.warn('[indexeddb] Corrupt fingerprint detected, treating as empty');
     return null;
   }
-  // Schema migration on load: backfill any fields added after this fingerprint
-  // was last saved. A fingerprint persisted before the weekly-sprint /
-  // production-wall fields existed (e.g. `dailyProgress`, `weeklyFocus`) would
-  // otherwise crash every surface that assumes those arrays are present — the
-  // dashboard's production wall calls `fp.dailyProgress.find(...)` unguarded.
-  // Stored values always win over the empty defaults (the spread order ensures
-  // present keys override). This is shallow by design: it only fills *missing*
-  // top-level keys, never mutates existing nested data.
-  return { ...createEmptyFingerprint(result.userId), ...result };
+  // Schema migration on load: backfill any field added after this fingerprint
+  // was last saved (shared with the Supabase load path via normalizeFingerprint).
+  // A fingerprint persisted before the weekly-sprint / production-wall / vocab
+  // fields existed would otherwise crash readers that assume them present.
+  return normalizeFingerprint(result);
 }
 
 export async function deleteFingerprint(userId: string): Promise<void> {

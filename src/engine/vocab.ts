@@ -93,7 +93,7 @@ export function vocabCoverage(
   let activated = 0
   let missed = 0
   let total = 0
-  for (const c of Object.values(fp.vocabularyMastery)) {
+  for (const c of Object.values(fp.vocabularyMastery ?? {})) {
     total += c.totalWordCount ?? 0
     if (c.score >= floor) {
       activated += (c.activatedWordIds ?? []).length
