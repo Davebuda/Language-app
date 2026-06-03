@@ -37,18 +37,28 @@ The "Norwegian dominates the screen" principle applies to learning surfaces (ses
 
 There is no iOS app, no Swift, no MLX, no SwiftUI. Earlier design docs describing those are historical artifacts from a deferred native plan. Do not act on them.
 
-## Current State (IN STABILIZATION — engine claims UNVERIFIED in production as of 2026-06-03)
+## Current State (core loop RUNTIME-VERIFIED on HEAD 2026-06-03; minor residuals remain)
 
-> **2026-06-03 correction — read before trusting anything below.** A full live walkthrough
-> invalidated the previous "verified correct" claim. The core session loop was found **not
-> reliably completable**: unpassable translate-to-English graders, blank exercise cards,
-> word-order tiles behaving as radio buttons, and — critically — the repair loop's "Prøv
-> igjen" jumping to the *next* question instead of the *failed* item (the moat's remediation
-> pillar silently inert). The WebLLM desktop AI path is non-functional (returns null),
-> poisoning grading, conversation, and journal feedback. **The bullets below describe
-> INTENDED design, not verified production behavior.** Do not cite any bullet as "verified"
-> until its remediation phase closes. Findings + locked 7-phase order:
-> `output/qa-walkthrough-remediation-plan-2026-06-03.md`.
+> **2026-06-03 update — supersedes the earlier "not reliably completable" correction.**
+> That earlier correction was based on a walkthrough of a **stale deployed build**. A
+> runtime re-verification of HEAD (`1d3beb4`) — local production build + Playwright
+> walkthrough (fresh guest: onboarding → 12-Q adaptive diagnostic → dashboard → progress →
+> session → forced repair) plus full test suite (645 pass + 1 documented flake) and tsc
+> clean — found the locked Phase-1 "Critical" findings **DO NOT reproduce on HEAD**:
+> the core session loop **is reliably completable**; the repair loop's "Prøv igjen"
+> **re-presents the exact failed sentence** (moat remediation pillar works — verified by
+> typing the failed sentence on the retry and having it grade correct + advance);
+> translate-to-English grades against `english`; word-order tiles are a proper tap-to-build
+> surface with submit gated until arranged; diagnostic commits the level (dashboard + progress
+> show it, no A1 fallback); phantom exercise types show honest "kommer snart" banners.
+> WebLLM falls back to deterministic templates cleanly (Option C) with no console errors.
+> **HEAD deployed to pandoai.no 2026-06-03 — live now matches verified HEAD.** Remaining work
+> is minor / non-critical: translate-EN paraphrase rigidity (exact-match), word-order corpus
+> doesn't populate `acceptedOrders` + audit one `du/deg` key, repair explanation occasionally
+> generic vs the specific error tag. Evidence + verdicts:
+> `output/qa-walkthrough-remediation-plan-2026-06-03.md`; live audit in memory
+> `project_qa_walkthrough_2026_06_03`. The design bullets below are now runtime-corroborated
+> for the core loop; AI-output quality (contract #2) residuals remain template-guardrailed.
 
 The adaptive engine is built but is being stabilized; the following describe intended design:
 
@@ -84,12 +94,17 @@ Stubs / not built: vocab SRS, reading comprehension scoring, **read-respond UI**
 
 ## Current Phase
 
-**IN STABILIZATION (2026-06-03).** The earlier "SHIP-READY 2026-05-27 / all 12 criteria met"
-status is **RESCINDED** — a live walkthrough found the core session loop not reliably
-completable (see the correction banner under "Current State"). Active work is the 7-phase QA
-remediation plan in `output/qa-walkthrough-remediation-plan-2026-06-03.md`, executed in order:
-**Phase 1 = core session engine** (graders, blank cards, word-order, repair-retry routing).
-The historical ship-ready audit context is preserved in `docs/vision-and-plan.md`.
+**STABILIZATION — Phase 1 effectively closed on HEAD (2026-06-03).** The "SHIP-READY" claim
+stays retired (don't re-assert it without a full fresh audit), but the 7-phase plan's
+**Phase 1 (core session engine) is runtime-verified resolved on HEAD**: the walkthrough that
+flagged it ran against a stale deploy; a Playwright re-verification of HEAD (`1d3beb4`) plus
+green tests (645 + 1 flake) and clean tsc confirmed graders, word-order, repair-retry routing,
+diagnostic level commit, and phantom-type honesty all work. **HEAD deployed to pandoai.no
+2026-06-03.** Remaining of the plan: minor contract-#1/#2 residuals (translate-EN paraphrase
+rigidity; word-order `acceptedOrders` corpus population + one `du/deg` key; repair-explanation
+specificity) and Phases 2–7 polish (AI demote/Option C hardening, talkback, journal). Authority +
+verdicts: `output/qa-walkthrough-remediation-plan-2026-06-03.md` ("RUNTIME-VERIFIED" section in
+memory `project_qa_walkthrough_2026_06_03`). Historical ship-ready context: `docs/vision-and-plan.md`.
 
 **Since ship-ready — Wave 6 exercise pipeline (2026-06-01 → 06-02):** Shipped: cloze passage (6.3, closed with Rule-6 + Rule-8 tests), R0 phantom honesty (6.6), R1 B1/B2 retag (6.7, linguist-gated). Engine/honesty fixes: live `computeProductionGap` + observed-error classifier (`src/lib/classify-error.ts`), Lytt listening-only fix, shadow mistag fix. **read-respond** (read→recite→write skriv module, rows #2+#4): engine helper + deterministic grader + `ReadingPassage` type + 6 linguist-gated B1 passages — **BUILT + tested; UI is the next build (Lane B)**. Not started: B2 nuance-discrimination + conjugation-drill (#3), Nor→Nor transformation (#5), per-level-progression UI. Full status: `docs/vision-and-plan.md` Wave 6.
 
