@@ -169,6 +169,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "De har gått tur i fjellet mange ganger."
     ]
   },
   {
@@ -295,6 +298,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Jeg vil gjerne ha en kopp med kaffe."
     ]
   },
   {
@@ -318,6 +324,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Det blir varmt i helgen.",
+      "Det vil bli varmt i helgen."
     ]
   },
   {
@@ -1121,6 +1131,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Hun ble gift med en norsk mann og flyttet til Tromsø."
     ]
   },
   {
@@ -1456,6 +1469,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Hun var hjemme fordi hun ikke følte seg bra."
     ]
   },
   {
@@ -1846,6 +1862,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Mens hun studerte, hørte han på musikk."
     ]
   },
   {
@@ -1869,6 +1888,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Ettersom jeg ikke har bil, tar jeg alltid toget."
     ]
   },
   {
@@ -1995,6 +2017,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_orders": [
+      "I går kveld spiste vi middag hos vennen min."
     ]
   },
   {
@@ -2190,6 +2215,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_orders": [
+      "På lørdag åpner butikken klokken ni."
     ]
   },
   {
@@ -2236,6 +2264,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_orders": [
+      "Om to uker reiser de til Spania."
     ]
   },
   {
@@ -2259,6 +2290,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_orders": [
+      "For tre dager siden ringte han meg og ba om hjelp."
     ]
   },
   {
@@ -2580,6 +2614,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Vi drakk kaffe og spiste kake hele ettermiddagen i stuen."
     ]
   },
   {
@@ -2607,7 +2644,7 @@
   },
   {
     "id": "542ad280-ca8e-4bd9-86de-dc7cbe2c1217",
-    "norwegian": "De løp til stasjonen, men de holdt igjen toget i likevel.",
+    "norwegian": "De løp til stasjonen, men de rakk ikke toget likevel.",
     "english": "They ran to the station, but they still missed the train.",
     "concept_ids": [
       "preterite-irregular-advanced"
@@ -3456,7 +3493,7 @@
   },
   {
     "id": "9bde0ff4-da4f-409d-a06b-e2931a0fdfa3",
-    "norwegian": "Kongens palasset ligger i sentrum.",
+    "norwegian": "Kongens palass ligger i sentrum.",
     "english": "The king's palace is located in the centre.",
     "concept_ids": [
       "genitive"
