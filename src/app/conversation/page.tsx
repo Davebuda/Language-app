@@ -7,7 +7,6 @@ import { Mic, MicOff, Send, X, MessageSquare } from 'lucide-react'
 import { aiService } from '@/ai'
 import type { ConversationMessage, ConversationTurnResult } from '@/ai/types'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
@@ -92,6 +91,10 @@ export default function ConversationPage() {
   const [messages, setMessages] = useState<DisplayMessage[]>([])
   const [isListening, setIsListening] = useState(false)
   const [isThinking, setIsThinking] = useState(false)
+  // Actual source of Kari's responses. Conversation routes through the server path
+  // (Groq when reachable, else template) — NEVER the local 1B — so the badge reflects
+  // this per-surface source, not the global webllm mode. 'ai' = Groq (Sky), 'template' = Maler.
+  const [convSource, setConvSource] = useState<'ai' | 'template' | null>(null)
   const [inputText, setInputText] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
   const recognitionRef = useRef<SpeechRec | null>(null)
@@ -238,6 +241,7 @@ export default function ConversationPage() {
 
       const topicLabel = TOPICS.find((t) => t.id === selectedTopic)?.label ?? 'daglig rutine'
       const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix)
+      setConvSource(result.source)
       setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
@@ -492,7 +496,17 @@ export default function ConversationPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <AIStatusBadge />
+                    {convSource === 'template' ? (
+                      <div className="inline-flex items-center gap-2 rounded-full border border-[var(--nc-red-border)] bg-[rgba(255,106,85,0.12)] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--nc-red)]" title="Maler-svar (AI utilgjengelig)">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--nc-red)]" />
+                        Maler
+                      </div>
+                    ) : (
+                      <div className="nc-chip-signal inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em]" title="Sky-AI (Kari svarer via server)">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[var(--nc-signal-fg)]" />
+                        Sky
+                      </div>
+                    )}
                     <button
                       onClick={() => {
                         summaryTurnCountRef.current = turnIndexRef.current
