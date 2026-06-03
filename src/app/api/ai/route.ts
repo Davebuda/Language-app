@@ -4,6 +4,7 @@ import {
   buildWritingFeedbackPrompt, buildErrorDetectionPrompt,
 } from '@/ai/prompts'
 import { validateNorwegianOutput } from '@/ai/validate'
+import { stripTutorScaffolding } from '@/lib/conversation-format'
 import type {
   ExplainParams, ConversationMessage, TaggedError,
 } from '@/ai/types'
@@ -113,11 +114,10 @@ async function handleConversation(params: {
   const missedMatch = raw.match(/\nCONSTRAINT_MISSED: (.+)/)
   if (missedMatch) { constraintMet = false; constraintFeedback = missedMatch[1]?.trim() }
 
-  const tutorResponse = raw
-    .replace(/\nCORRECTION:\{.*?\}/s, '')
-    .replace(/\nCONSTRAINT_MET/, '')
-    .replace(/\nCONSTRAINT_MISSED:.*/, '')
-    .trim()
+  // Robust scaffolding strip — the model doesn't always emit the exact JSON shape
+  // (e.g. " CORRECTION: None"), so split on the markers rather than match a rigid regex.
+  // The CORRECTION JSON is still parsed from `raw` above when present.
+  const tutorResponse = stripTutorScaffolding(raw)
 
   const validity = validateNorwegianOutput(tutorResponse, { minWords: 3 })
   if (!validity.valid) return { tutorResponse: fallback(params.messages), source: 'template' as const }
