@@ -234,7 +234,10 @@ export default function DashboardPage() {
     { label: 'Min talt', value: String(speakingMins), tone: 'text-[var(--nc-teal)]' },
     {
       label: 'Treff',
-      value: (fingerprint?.totalSessionsCompleted ?? 0) > 0 && attemptedMastery.length > 0 ? `${accuracy}%` : '—',
+      // Gate on real attempt data only. totalSessionsCompleted is never
+      // incremented in the session write path, so requiring it hid a true
+      // accuracy from anyone who has actually practiced.
+      value: attemptedMastery.length > 0 ? `${accuracy}%` : '—',
       tone: 'text-[var(--nc-signal)]',
     },
   ] as const
@@ -324,7 +327,7 @@ export default function DashboardPage() {
         {/* ── Week Bar (Dark) ── */}
         <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
           <div className="flex items-center gap-2">
-            <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Uke</span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">I dag</span>
             <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
           </div>
           <div className="flex items-center gap-2">
