@@ -41,3 +41,7 @@ content/**/staging/
 
 # Scheduler lock (local session state)
 .claude/scheduled_tasks.lock
+
+# QA walkthrough screenshots (throwaway; keep the .md write-ups)
+test-reports/**/*.png
+prod-dashboard-*.png
