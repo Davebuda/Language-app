@@ -23,9 +23,13 @@ function formatWeekLabel(isoDate: string): string {
 }
 
 function computeAvgEndScore(record: WeeklySprintRecord): number {
-  const outcomes = Object.values(record.focusOutcomes)
+  // focusOutcomes is nested inside a weeklySprintHistory record; a record
+  // persisted under an older schema may lack it, which normalizeFingerprint
+  // (shallow, top-level only) does not repair. Guard so a returning user with
+  // a legacy closed week doesn't crash the progress page.
+  const outcomes = Object.values(record.focusOutcomes ?? {})
   if (outcomes.length === 0) return 0
-  const sum = outcomes.reduce((acc, o) => acc + o.endScore, 0)
+  const sum = outcomes.reduce((acc, o) => acc + (o.endScore ?? 0), 0)
   return Math.round(sum / outcomes.length)
 }
 
@@ -38,7 +42,7 @@ export function WeeklyTrajectory({ history }: WeeklyTrajectoryProps) {
       label: formatWeekLabel(record.weekStartedAt),
       avgEndScore: computeAvgEndScore(record),
       checkScore: record.checkResult ? Math.round(record.checkResult.score) : null,
-      graduatedCount: Object.values(record.focusOutcomes).filter((o) => o.graduated).length,
+      graduatedCount: Object.values(record.focusOutcomes ?? {}).filter((o) => o.graduated).length,
       weekIndex: i,
     }))
 

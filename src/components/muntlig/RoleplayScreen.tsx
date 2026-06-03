@@ -102,7 +102,7 @@ interface RoleplayTurnExerciseProps {
   turn: RoleplayTurn
   turnIndex: number
   totalTurns: number
-  onComplete: (passed: boolean, transcript: string) => void
+  onComplete: (passed: boolean, transcript: string, skipped?: boolean) => void
 }
 
 function RoleplayTurnExercise({
@@ -204,7 +204,9 @@ function RoleplayTurnExercise({
   function handleSkip() {
     if (timerRef.current) clearInterval(timerRef.current)
     stop()
-    onComplete(false, '')
+    // Abstention — the learner never attempted this turn. Mark it skipped so the
+    // parent does not log a diagnosed grammar error against a turn they declined.
+    onComplete(false, '', true)
   }
 
   function handleRetryAfterFallback() {
@@ -217,7 +219,9 @@ function RoleplayTurnExercise({
   }
 
   function handleContinueFromFallback() {
-    onComplete(false, currentTranscript)
+    // If no speech was captured, this is an abstention, not a failed attempt —
+    // don't let an empty turn poison the error log.
+    onComplete(false, currentTranscript, currentTranscript.trim().length === 0)
   }
 
   function handleNext() {
@@ -518,26 +522,33 @@ export function RoleplayScreen() {
     setScreenPhase('turn')
   }
 
-  function handleTurnComplete(passed: boolean, transcript: string) {
+  function handleTurnComplete(passed: boolean, transcript: string, skipped = false) {
     if (!activeScenario) return
 
     const turn = activeScenario.turns[turnIndex]
     if (!turn) return
 
-    const result: ExerciseResult = {
-      sessionId: 'roleplay',
-      itemId: `roleplay-${activeScenario.id}-${turn.id}`,
-      correct: passed,
-      userAnswer: transcript,
-      correctAnswer: turn.modelAnswer,
-      timeTakenSeconds: LISTEN_SECONDS,
-      conceptId: turn.targetConceptId,
-      sentenceId: undefined,
-      errorTag: passed ? undefined : turn.errorTag,
-    }
-    recordResult(result)
-    if (user?.id) {
-      logExerciseResult(user.id, result)
+    // An abstention (skipped, or no speech captured) is not a diagnosed mistake.
+    // Recording a wrong result here would penalize mastery AND write a false
+    // grammar error into recentErrors/productionGap — corrupting the very
+    // diagnosis the product is built on. Only write a result for a real attempt.
+    const attempted = !skipped && transcript.trim().length > 0
+    if (passed || attempted) {
+      const result: ExerciseResult = {
+        sessionId: 'roleplay',
+        itemId: `roleplay-${activeScenario.id}-${turn.id}`,
+        correct: passed,
+        userAnswer: transcript,
+        correctAnswer: turn.modelAnswer,
+        timeTakenSeconds: LISTEN_SECONDS,
+        conceptId: turn.targetConceptId,
+        sentenceId: undefined,
+        errorTag: passed ? undefined : turn.errorTag,
+      }
+      recordResult(result)
+      if (user?.id) {
+        logExerciseResult(user.id, result)
+      }
     }
 
     const newScores = [...scores, passed]
