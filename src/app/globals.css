@@ -260,6 +260,11 @@
 
   .nc-signal-panel {
     position: relative;
+    /* Establish a stacking context so the decorative ::before/::after rings can
+       sit at z-index:-1 (above this panel's own background, below the heading
+       text) instead of painting over the headline. Without this, the rings
+       overlapped the h1 on login/onboarding at mobile widths. */
+    z-index: 0;
     overflow: hidden;
     border-radius: calc(var(--radius) + 0.2rem);
     background: linear-gradient(135deg, var(--nc-signal) 0%, #b8ef10 100%);
@@ -270,6 +275,7 @@
   .nc-signal-panel::before {
     content: '';
     position: absolute;
+    z-index: -1;
     right: -24px;
     top: 10px;
     width: 98px;
@@ -282,6 +288,7 @@
   .nc-signal-panel::after {
     content: '';
     position: absolute;
+    z-index: -1;
     right: 12px;
     top: 24px;
     width: 52px;
