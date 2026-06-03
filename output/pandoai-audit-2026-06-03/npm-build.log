@@ -1,0 +1,68 @@
+
+> norskcoach@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.18
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.2s
+   Linting and checking validity of types ...
+
+./src/components/vocab/ConjugationDrillScreen.tsx
+118:62  Warning: Expected an assignment or function call and instead saw an expression.  @typescript-eslint/no-unused-expressions
+
+./src/hooks/useSession.ts
+214:6  Warning: React Hook useCallback has a missing dependency: 'sessionStore'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+259:6  Warning: React Hook useCallback has a missing dependency: 'sentences'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+ ⚠ Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/28) ...
+   Generating static pages (7/28) 
+   Generating static pages (14/28) 
+   Generating static pages (21/28) 
+ ✓ Generating static pages (28/28)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    7.41 kB         149 kB
+├ ○ /_not-found                            998 B         104 kB
+├ ○ /analytics                           4.42 kB         236 kB
+├ ƒ /api/ai                                138 B         103 kB
+├ ƒ /auth/callback                         138 B         103 kB
+├ ○ /conversation                        9.13 kB         248 kB
+├ ○ /dashboard                            173 kB         407 kB
+├ ○ /drills                              7.57 kB         242 kB
+├ ○ /eval                                5.66 kB         153 kB
+├ ○ /help/mobile-reset                     165 B         106 kB
+├ ƒ /icon                                  138 B         103 kB
+├ ○ /journal                             6.78 kB         250 kB
+├ ○ /listen                              9.73 kB         244 kB
+├ ○ /login                               3.78 kB         210 kB
+├ ○ /onboarding                          13.7 kB         152 kB
+├ ○ /ord                                 12.6 kB         247 kB
+├ ○ /profile                             6.23 kB         202 kB
+├ ○ /progress                            5.98 kB         237 kB
+├ ○ /reading                             5.63 kB         240 kB
+├ ○ /recalibrate                           138 B         103 kB
+├ ○ /roleplay                            12.8 kB         247 kB
+├ ○ /session                             36.4 kB         281 kB
+├ ○ /session/complete                    5.93 kB         236 kB
+├ ○ /shadow                              6.09 kB         240 kB
+├ ○ /skriv                               10.1 kB         253 kB
+├ ○ /uke                                 4.44 kB         252 kB
+└ ○ /vocab                               2.72 kB         145 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/1255-b28ea36bf0cdbd65.js      46.2 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          2.21 kB
+
+
+ƒ Middleware                             89.2 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

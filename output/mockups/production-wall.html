@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NorskCoach — Brick → Wall → Sprint (all-levels mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0d0d13; --surface:#15161c; --card:#1b1d25; --border:rgba(255,255,255,.10);
+    --signal:#c8ff20; --signal-dim:#9ec01a;
+    --text:#ededea; --text-muted:rgba(237,238,233,.62); --text-dim:rgba(237,238,233,.40);
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#08080c;font-family:'Schibsted Grotesk',sans-serif;color:var(--text);
+    display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:flex-start;padding:34px 18px 60px}
+  .frame{width:375px;background:var(--bg);border-radius:26px;border:1px solid var(--border);
+    overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .frame-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);
+    text-align:center;margin-bottom:10px;font-weight:700}
+  .col{display:flex;flex-direction:column}
+  .scr{padding:16px 14px 22px}
+  /* header */
+  .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+  .lvl{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);
+    background:var(--signal);padding:4px 8px;border-radius:6px}
+  .day{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim)}
+  /* hero meter */
+  .hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 15px;margin-bottom:12px}
+  .hero .obj{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--signal-dim);margin-bottom:8px}
+  .hero h1{margin:0;font-weight:800;letter-spacing:-.03em;line-height:.98;font-size:21px}
+  .hero .why{font-size:11.5px;color:var(--text-muted);margin-top:7px;line-height:1.45}
+  .stat{display:flex;align-items:baseline;gap:8px;margin-top:14px}
+  .stat .big{font-weight:800;font-size:54px;line-height:.8;letter-spacing:-.04em;color:var(--signal);
+    font-variant-numeric:tabular-nums}
+  .stat .unit{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--text-muted);text-transform:lowercase}
+  .stat .sub{margin-left:auto;text-align:right;font-size:10px;color:var(--text-dim);line-height:1.5;font-variant-numeric:tabular-nums}
+  .stat .sub b{color:var(--text);font-weight:700}
+  /* wall */
+  .wall{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 13px;margin-bottom:12px}
+  .wall .cap{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+  .wall .cap .t{font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-dim)}
+  .wall .cap .c{font-size:10px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+  .bricks{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+  .b{height:20px;border-radius:4px;position:relative}
+  /* brick weights — distinguished by FILL/TEXTURE, not color alone (a11y) */
+  .b.exp{background:transparent;border:1px dashed rgba(237,238,233,.22)}                 /* exposure: faint outline */
+  .b.rec{background:repeating-linear-gradient(135deg,rgba(200,255,32,.16)0 3px,transparent 3px 6px);
+    border:1px solid rgba(200,255,32,.20)}                                              /* recognition: half-fill hatch */
+  .b.prod{background:var(--signal);box-shadow:0 0 0 1px var(--signal-dim) inset}         /* production: solid */
+  .b.guided{background:var(--signal);}                                                  /* guided prod: solid + notch */
+  .b.guided::after{content:"";position:absolute;top:3px;right:3px;width:5px;height:5px;
+    border-top:1.5px solid rgba(13,13,19,.65);border-right:1.5px solid rgba(13,13,19,.65)}
+  .b.empty{background:rgba(255,255,255,.04)}
+  .b.land{animation:land .4s ease-out}
+  @keyframes land{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+  /* legend */
+  .legend{display:flex;flex-wrap:wrap;gap:9px 13px;margin-top:12px;padding-top:11px;border-top:1px solid var(--border)}
+  .lg{display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--text-muted)}
+  .sw{width:15px;height:12px;border-radius:3px;flex:0 0 auto}
+  /* weekly sprint */
+  .week{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 13px 14px}
+  .week .t{font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text-dim);margin-bottom:11px}
+  .days{display:flex;gap:6px;align-items:flex-end;height:46px}
+  .dcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .bar{width:100%;border-radius:3px;background:rgba(200,255,32,.20)}
+  .dcol.live .bar{background:var(--signal)}
+  .dcol .dl{font-size:8.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em}
+  .dcol.live .dl{color:var(--signal);font-weight:800}
+  .week .roll{font-size:10.5px;color:var(--text-muted);margin-top:11px;line-height:1.45}
+  .week .roll b{color:var(--text);font-weight:700}
+  /* interim badge */
+  .interim{margin-top:10px;font-size:10px;color:var(--text-dim);background:rgba(255,255,255,.04);
+    border:1px solid var(--border);border-radius:8px;padding:8px 9px;line-height:1.45}
+  .interim b{color:var(--text-muted);font-weight:700}
+  .note{max-width:680px;color:rgba(237,238,233,.7);font-size:13px;line-height:1.6;margin:6px auto 0;
+    font-family:'Schibsted Grotesk',sans-serif}
+  .note code{background:#1b1d25;padding:1px 5px;border-radius:4px;font-size:12px;color:#c8ff20}
+  .note h3{color:#fff;margin:18px 0 4px;font-size:14px;letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<!-- ============ A1 — FOUNDATIONS LENS ============ -->
+<div class="col">
+  <div class="frame-label">A1 · foundations lens</div>
+  <div class="frame"><div class="scr">
+    <div class="top"><span class="lvl">A1</span><span class="day">I dag · tirsdag</span></div>
+    <div class="hero">
+      <div class="obj">Dagens mål · grunnmur</div>
+      <h1>Bygg substantiv&shy;kjønn og å&nbsp;være</h1>
+      <p class="why">Fordi disse to bærer alt annet du skal si.</p>
+      <div class="stat">
+        <span class="big">3</span><span class="unit">grunnsteiner rørt</span>
+        <span class="sub"><b>1</b> mot mestring<br><b>9</b> igjen på nivået</span>
+      </div>
+    </div>
+    <div class="wall">
+      <div class="cap"><span class="t">Dagens mur</span><span class="c">8 av 12 brikker</span></div>
+      <div class="bricks">
+        <div class="b prod land"></div><div class="b prod"></div><div class="b rec"></div>
+        <div class="b prod"></div><div class="b rec"></div><div class="b exp"></div>
+        <div class="b rec"></div><div class="b prod"></div>
+        <div class="b empty"></div><div class="b empty"></div><div class="b empty"></div><div class="b empty"></div>
+      </div>
+      <div class="legend">
+        <span class="lg"><span class="sw" style="background:var(--signal)"></span>Produksjon</span>
+        <span class="lg"><span class="sw" style="background:repeating-linear-gradient(135deg,rgba(200,255,32,.16)0 3px,transparent 3px 6px);border:1px solid rgba(200,255,32,.2)"></span>Gjenkjenning</span>
+        <span class="lg"><span class="sw" style="background:transparent;border:1px dashed rgba(237,238,233,.22)"></span>Eksponering</span>
+      </div>
+    </div>
+    <div class="week">
+      <div class="t">Ukens sprint · grunnmur graduert</div>
+      <div class="days">
+        <div class="dcol"><div class="bar" style="height:18px"></div><div class="dl">ma</div></div>
+        <div class="dcol live"><div class="bar" style="height:30px"></div><div class="dl">ti</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">on</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">to</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">fr</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">lø</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">sø</div></div>
+      </div>
+      <p class="roll"><b>2 grunnsteiner</b> graduert denne uka.</p>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ B1 — PRODUCTION LENS (the exemplar) ============ -->
+<div class="col">
+  <div class="frame-label">B1 · production lens — “the meter recognition can’t move”</div>
+  <div class="frame"><div class="scr">
+    <div class="top"><span class="lvl">B1</span><span class="day">I dag · tirsdag</span></div>
+    <div class="hero">
+      <div class="obj">Dagens mål · produksjon</div>
+      <h1>Produser leddsetninger med <span style="color:var(--signal)">fordi / som</span></h1>
+      <p class="why">Du gjenkjenner dem — i dag skal du lage dem selv.</p>
+      <div class="stat">
+        <span class="big">7</span><span class="unit">setninger produsert</span>
+        <span class="sub"><b>12</b> min snakket<br>gap ↓ <b>på 3</b> begreper</span>
+      </div>
+    </div>
+    <div class="wall">
+      <div class="cap"><span class="t">Dagens produksjonsmur</span><span class="c">gjenkjenning teller ikke her</span></div>
+      <div class="bricks">
+        <div class="b prod land"></div><div class="b prod"></div><div class="b guided"></div>
+        <div class="b prod"></div><div class="b prod"></div><div class="b guided"></div>
+        <div class="b prod"></div><div class="b rec"></div>
+        <div class="b empty"></div><div class="b empty"></div><div class="b empty"></div><div class="b empty"></div>
+      </div>
+      <div class="legend">
+        <span class="lg"><span class="sw" style="background:var(--signal)"></span>Fri produksjon</span>
+        <span class="lg"><span class="sw" style="position:relative;background:var(--signal)"><span style="position:absolute;top:2px;right:2px;width:4px;height:4px;border-top:1.3px solid rgba(13,13,19,.65);border-right:1.3px solid rgba(13,13,19,.65)"></span></span>Med stillas</span>
+        <span class="lg"><span class="sw" style="background:repeating-linear-gradient(135deg,rgba(200,255,32,.16)0 3px,transparent 3px 6px);border:1px solid rgba(200,255,32,.2)"></span>Gjenkjenning (review)</span>
+      </div>
+    </div>
+    <div class="week">
+      <div class="t">Ukens sprint · produksjonsgap lukkes</div>
+      <div class="days">
+        <div class="dcol"><div class="bar" style="height:14px"></div><div class="dl">ma</div></div>
+        <div class="dcol live"><div class="bar" style="height:38px"></div><div class="dl">ti</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">on</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">to</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">fr</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">lø</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">sø</div></div>
+      </div>
+      <p class="roll">Gap mellom gjenkjenning og produksjon faller på <b>leddsetninger</b> og <b>indirekte tale</b>.</p>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ B2 — HONEST INTERIM LENS ============ -->
+<div class="col">
+  <div class="frame-label">B2 · honest interim (production lens + “lexical track coming”)</div>
+  <div class="frame"><div class="scr">
+    <div class="top"><span class="lvl">B2</span><span class="day">I dag · tirsdag</span></div>
+    <div class="hero">
+      <div class="obj">Dagens mål · produksjon</div>
+      <h1>Produser i sammen&shy;hengende, lengre kontekst</h1>
+      <p class="why">Du gjenkjenner nyansene — i dag bruker du dem.</p>
+      <div class="stat">
+        <span class="big">5</span><span class="unit">lange setninger</span>
+        <span class="sub"><b>9</b> min snakket<br>gap ↓ <b>på 2</b> begreper</span>
+      </div>
+    </div>
+    <div class="wall">
+      <div class="cap"><span class="t">Dagens produksjonsmur</span><span class="c">gjenkjenning teller ikke her</span></div>
+      <div class="bricks">
+        <div class="b prod land"></div><div class="b prod"></div><div class="b rec"></div>
+        <div class="b prod"></div><div class="b guided"></div><div class="b prod"></div>
+        <div class="b rec"></div><div class="b prod"></div>
+        <div class="b empty"></div><div class="b empty"></div><div class="b empty"></div><div class="b empty"></div>
+      </div>
+      <div class="interim">
+        <b>Ordforråd-sporet kommer.</b> B2 måles snart på «ord du ikke lenger bommer på» og nyanse —
+        ikke ennå bygget, så vi viser ærlig produksjon i mellomtiden (ingen falsk ordforråd-måler).
+      </div>
+    </div>
+    <div class="week">
+      <div class="t">Ukens sprint · produksjonsgap lukkes</div>
+      <div class="days">
+        <div class="dcol"><div class="bar" style="height:12px"></div><div class="dl">ma</div></div>
+        <div class="dcol live"><div class="bar" style="height:28px"></div><div class="dl">ti</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">on</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">to</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">fr</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">lø</div></div>
+        <div class="dcol"><div class="bar" style="height:6px"></div><div class="dl">sø</div></div>
+      </div>
+      <p class="roll">Produksjon i lang kontekst — <b>ordforråd-måler aktiveres når sporet bygges</b>.</p>
+    </div>
+  </div></div>
+</div>
+
+<p class="note">
+  <b>Same component, three lenses.</b> One <code>&lt;ProductionWall level={...} /&gt;</code> renders for every user.
+  The brick grid, the moment-of-contribution landing animation, the daily→weekly stacking, and the
+  honesty legend are identical. Only the <b>objective header</b>, the <b>hero count</b> (foundations rørt /
+  setninger produsert / lange setninger — never a %), and the <b>weekly roll-up label</b> change per level.
+  Brick weight is encoded by fill + texture, never color alone (WCAG AA).
+  <span style="color:#c8ff20">B2 shows an honest interim</span> — no fake lexical meter until that engine track exists.
+</p>
+
+</body>
+</html>

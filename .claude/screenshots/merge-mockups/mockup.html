@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nc-bg:#0A1206; --nc-paper:#151718; --nc-card:#151718; --nc-card-soft:#1C1E1F;
+    --nc-signal:#C8FF20; --nc-signal-tint:rgba(200,255,32,0.12); --nc-signal-border:rgba(200,255,32,0.28); --nc-signal-fg:#0A1206; --nc-signal-dim:#9ec01a;
+    --nc-border:rgba(255,255,255,0.08); --nc-text:#EDEEE9; --nc-text-muted:rgba(237,238,233,0.58); --nc-text-dim:rgba(237,238,233,0.34);
+    --nc-teal:#6de5ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Schibsted Grotesk',sans-serif; color:var(--nc-text);
+    background:
+      radial-gradient(circle at 14% 0%, rgba(200,255,32,0.08) 0%, transparent 26%),
+      radial-gradient(circle at 88% 12%, rgba(109,229,255,0.06) 0%, transparent 18%),
+      linear-gradient(180deg, var(--nc-bg) 0%, var(--nc-paper) 100%);
+    -webkit-font-smoothing:antialiased; padding:16px 0 40px;
+  }
+  .shell{max-width:375px;margin:0 auto;padding:0 6px;}
+  h1,h2{font-weight:800;letter-spacing:-0.03em;}
+  .caption{display:flex;align-items:center;gap:8px;margin:22px 2px 8px;}
+  .caption .tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--nc-signal-fg);background:var(--nc-signal);padding:3px 7px;border-radius:5px;}
+  .caption .desc{font-size:10px;color:var(--nc-text-dim);}
+  .kicker{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--nc-signal-dim);}
+  .chev{color:var(--nc-text-dim);font-size:16px;line-height:1;}
+  .reason{font-size:10.5px;line-height:1.45;color:var(--nc-text-muted);}
+  .meta{font-size:10px;color:var(--nc-text-dim);}
+
+  /* week sparkline */
+  .spark{display:flex;align-items:flex-end;gap:3px;height:22px;}
+  .spark i{width:6px;border-radius:2px;background:rgba(200,255,32,0.22);display:block;}
+  .spark i.live{background:var(--nc-signal);}
+  .spark.on-lime i{background:rgba(10,18,6,0.22);}
+  .spark.on-lime i.live{background:rgba(10,18,6,0.78);}
+  .sparkwrap{display:flex;align-items:center;gap:6px;}
+  .sparklbl{font-size:8.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--nc-text-dim);}
+
+  /* ── Option A ── */
+  .cardA{background:var(--nc-card);border:1px solid var(--nc-border);border-radius:0.65rem;padding:13px;}
+  .cardA .head{display:flex;align-items:center;justify-content:space-between;}
+  .cardA .title{font-size:1.05rem;font-weight:800;color:var(--nc-text);margin-top:3px;letter-spacing:-0.03em;}
+  .cardA .glance{display:flex;align-items:flex-end;justify-content:space-between;margin-top:12px;}
+  .cardA .count{display:flex;align-items:baseline;gap:6px;}
+  .cardA .count b{font-size:2.1rem;font-weight:900;color:var(--nc-signal);line-height:0.8;font-variant-numeric:tabular-nums;}
+  .cardA .count span{font-size:10px;font-weight:700;color:var(--nc-text-muted);}
+  .cardA .reason{margin-top:12px;}
+  .ctaBar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;background:linear-gradient(135deg,#C8FF20 0%,#B8EF10 100%);border-radius:0.4rem;padding:11px 13px;}
+  .ctaBar .lbl{font-size:0.84rem;font-weight:800;color:var(--nc-signal-fg);letter-spacing:-0.02em;}
+  .ctaBar .sub{font-size:9.5px;font-weight:700;color:rgba(10,18,6,0.62);margin-top:1px;}
+  .ctaBar .arrow{width:26px;height:26px;border-radius:50%;background:rgba(10,18,6,0.9);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+
+  /* ── Option B ── */
+  .cardB{background:linear-gradient(135deg,#C8FF20 0%,#B8EF10 100%);border-radius:0.65rem;padding:13px;color:var(--nc-signal-fg);}
+  .cardB .kicker{color:rgba(10,18,6,0.48);}
+  .cardB h1{font-size:1.5rem;margin-top:4px;color:var(--nc-signal-fg);}
+  .cardB .actrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;}
+  .cardB .actrow .sub{font-size:11px;color:rgba(10,18,6,0.62);font-weight:600;}
+  .cardB .startbtn{display:inline-flex;align-items:center;gap:6px;background:rgba(10,18,6,0.9);color:#fff;font-size:0.8rem;font-weight:700;padding:9px 15px;border-radius:0.4rem;}
+  .cardB .divider{height:1px;background:rgba(10,18,6,0.16);margin:11px 0;}
+  .cardB .strip{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .cardB .strip .c{font-size:0.82rem;font-weight:800;color:var(--nc-signal-fg);}
+  .cardB .strip .c b{font-size:1.15rem;font-variant-numeric:tabular-nums;}
+  .cardB .reason{color:rgba(10,18,6,0.6);margin-top:8px;font-size:10px;}
+  .cardB .chev{color:rgba(10,18,6,0.5);}
+
+  /* ── Option C ── */
+  .cardC{background:var(--nc-card);border:1px solid var(--nc-border);border-radius:0.65rem;overflow:hidden;}
+  .cardC .top{padding:13px;}
+  .cardC .title{font-size:1.05rem;font-weight:800;color:var(--nc-text);margin-top:3px;}
+  .cardC .glance{display:flex;align-items:flex-end;justify-content:space-between;margin-top:11px;}
+  .cardC .count{display:flex;align-items:baseline;gap:6px;}
+  .cardC .count b{font-size:1.7rem;font-weight:900;color:var(--nc-signal);line-height:0.8;font-variant-numeric:tabular-nums;}
+  .cardC .count span{font-size:10px;font-weight:700;color:var(--nc-text-muted);}
+  .cardC .bottom{background:linear-gradient(135deg,#C8FF20 0%,#B8EF10 100%);padding:12px 13px;color:var(--nc-signal-fg);}
+  .cardC .bottom .reason{color:rgba(10,18,6,0.66);margin-bottom:9px;font-size:10px;}
+  .cardC .bottom .actrow{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .cardC .bottom .lbl{font-size:0.92rem;font-weight:800;color:var(--nc-signal-fg);letter-spacing:-0.02em;}
+  .cardC .bottom .sub{font-size:9.5px;font-weight:700;color:rgba(10,18,6,0.6);margin-top:1px;}
+  .cardC .bottom .arrow{width:28px;height:28px;border-radius:50%;background:rgba(10,18,6,0.9);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ OPTION A ============ -->
+  <div class="caption"><span class="tag">A · Goal-led calm card</span><span class="desc">recommended</span></div>
+  <div class="cardA">
+    <div class="head">
+      <div class="kicker">Dagens mål · produksjon</div>
+      <div class="chev">⌄</div>
+    </div>
+    <div class="title">Produser leddsetninger</div>
+    <div class="glance">
+      <div class="count"><b>6</b><span>produsert<br>i dag</span></div>
+      <div class="sparkwrap">
+        <div class="spark">
+          <i style="height:8px"></i><i style="height:15px"></i><i style="height:6px"></i><i style="height:11px"></i><i class="live" style="height:18px"></i><i style="height:3px"></i><i style="height:3px"></i>
+        </div>
+        <span class="sparklbl">uka</span>
+      </div>
+    </div>
+    <div class="reason">«Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.»</div>
+    <div class="ctaBar">
+      <div>
+        <div class="lbl">Start dagens økt</div>
+        <div class="sub">25 oppgaver · ca. 19 min</div>
+      </div>
+      <div class="arrow">→</div>
+    </div>
+  </div>
+
+  <!-- ============ OPTION B ============ -->
+  <div class="caption"><span class="tag">B · Action-led lime card</span><span class="desc">loudest CTA</span></div>
+  <div class="cardB">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="kicker">Anbefalt · produksjon</div>
+    </div>
+    <h1>Start dagens økt</h1>
+    <div class="actrow">
+      <div class="sub">25 oppgaver · ca. 19 min</div>
+      <div class="startbtn">Start <span>→</span></div>
+    </div>
+    <div class="divider"></div>
+    <div class="strip">
+      <div class="c"><b>6</b> produsert i dag · <span style="opacity:.7">Produser leddsetninger</span></div>
+      <div class="sparkwrap">
+        <div class="spark on-lime">
+          <i style="height:8px"></i><i style="height:15px"></i><i style="height:6px"></i><i style="height:11px"></i><i class="live" style="height:18px"></i><i style="height:3px"></i><i style="height:3px"></i>
+        </div>
+        <span class="chev">⌄</span>
+      </div>
+    </div>
+    <div class="reason">«…prioriterer dette nå fordi det gir mest læring med minst friksjon.»</div>
+  </div>
+
+  <!-- ============ OPTION C ============ -->
+  <div class="caption"><span class="tag">C · Split-the-card</span><span class="desc">all visible, no collapse</span></div>
+  <div class="cardC">
+    <div class="top">
+      <div class="kicker">Dagens mål · produksjon</div>
+      <div class="title">Produser leddsetninger</div>
+      <div class="glance">
+        <div class="count"><b>6</b><span>produsert i dag</span></div>
+        <div class="sparkwrap">
+          <div class="spark">
+            <i style="height:8px"></i><i style="height:15px"></i><i style="height:6px"></i><i style="height:11px"></i><i class="live" style="height:18px"></i><i style="height:3px"></i><i style="height:3px"></i>
+          </div>
+          <span class="sparklbl">uka</span>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="reason">«Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.»</div>
+      <div class="actrow">
+        <div>
+          <div class="lbl">Start dagens økt</div>
+          <div class="sub">25 oppgaver · ca. 19 min</div>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

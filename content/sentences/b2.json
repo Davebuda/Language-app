@@ -10436,5 +10436,1787 @@
       "translation-to-norwegian"
     ],
     "notes": "'Presisere' (clarify/specify), 'med mindre annet er skriftlig avtalt' — standard commercial contract clause; 'med mindre' (unless) is formal. Key register marker: 'med mindre' vs. informal 'hvis ikke'."
+  },
+  {
+    "id": "b2-tc-301",
+    "norwegian": "Først og fremst må vi se på de økonomiske konsekvensene. Dernest bør vi vurdere de sosiale følgene.",
+    "english": "First and foremost we must look at the economic consequences. Next we should consider the social implications.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Additive listing connectors 'først og fremst' / 'dernest' signal paragraph-level theme progression."
+  },
+  {
+    "id": "b2-tc-302",
+    "norwegian": "Rapporten tar for seg tre hovedtemaer. Det første handler om klimaendringer, det andre om energiforbruk og det tredje om politiske tiltak.",
+    "english": "The report addresses three main themes. The first concerns climate change, the second energy consumption, and the third political measures.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "environment",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Enumeration reference chain: 'det første … det andre … det tredje' — anaphoric listing that holds paragraph together."
+  },
+  {
+    "id": "b2-tc-304",
+    "norwegian": "Resultatene peker i samme retning som tidligere forskning. Dette styrker tilliten til funnene ytterligere.",
+    "english": "The results point in the same direction as earlier research. This strengthens confidence in the findings further.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Demonstrative 'dette' as sentence-initial topic reference to the entire prior proposition — classic theme-rheme continuity."
+  },
+  {
+    "id": "b2-tc-305",
+    "norwegian": "Tiltaket ble godt mottatt i nord. I sør var situasjonen en helt annen, og det ble klart at tiltaket ikke ville fungere uten lokale tilpasninger. _____ valgte myndighetene å revidere planen for den sørlige regionen.",
+    "english": "The measure was well received in the north. In the south the situation was completely different, and it became clear that the measure would not work without local adaptations. Consequently, the authorities chose to revise the plan for the southern region.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Følgelig — consecutive connector; fronted position triggers V2 inversion. Cannot be replaced by 'imidlertid' or 'likevel' because the clause expresses a consequence, not a concession."
+  },
+  {
+    "id": "b2-tc-306",
+    "norwegian": "Mange faktorer spiller inn. Den viktigste av disse er likevel den langsiktige finansieringen av prosjektet.",
+    "english": "Many factors come into play. The most important of these is, however, the long-term financing of the project.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "economy",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Den viktigste av disse' — anaphoric superlative reference; 'likevel' signals the ranking concession within the set."
+  },
+  {
+    "id": "b2-tc-308",
+    "norwegian": "Befolkningens tillit til institusjonene er høy i Norge. Dette skyldes blant annet et transparent rettssystem og lav korrupsjon.",
+    "english": "Public trust in institutions is high in Norway. This is due in part to a transparent legal system and low corruption.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Dette skyldes' — causal cohesive link where 'dette' picks up the entire prior sentence as its antecedent."
+  },
+  {
+    "id": "b2-tc-309",
+    "norwegian": "Artikkelen behandler tre problemstillinger: for det første spørsmålet om representasjon, for det andre fordelingen av ressurser og _____ spørsmålet om legitimitet.",
+    "english": "The article addresses three questions: first the issue of representation, second the distribution of resources, and third the question of legitimacy.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "for det tredje — completes the enumeration series 'for det første … for det andre … for det tredje'."
+  },
+  {
+    "id": "b2-tc-310",
+    "norwegian": "Innledningen presenterer bakgrunnen for studien. I tillegg gis det en oversikt over relevant litteratur.",
+    "english": "The introduction presents the background for the study. In addition an overview of relevant literature is provided.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "word-order"
+    ],
+    "notes": "'I tillegg' fronted — additive connector triggering V2; impersonal passive 'gis det' in the second clause."
+  },
+  {
+    "id": "b2-tc-311",
+    "norwegian": "Prosjektet ble forsinket på grunn av tekniske problemer. Som et resultat av dette ble budsjettet overskredet.",
+    "english": "The project was delayed because of technical problems. As a result of this the budget was exceeded.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Som et resultat av dette' — consequential connector with anaphoric 'dette'; entire phrase fronted with V2."
+  },
+  {
+    "id": "b2-tc-313",
+    "norwegian": "Undersøkelsen avdekket store regionale variasjoner. Disse variasjonene kan dels forklares med demografiske forskjeller og dels med ulik tilgang til ressurser.",
+    "english": "The study revealed large regional variations. These variations can partly be explained by demographic differences and partly by differing access to resources.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Disse variasjonene' — noun-phrase anaphora recycling the rheme of sentence 1 as the theme of sentence 2; 'dels … dels' parallel partitive structure."
+  },
+  {
+    "id": "b2-tc-314",
+    "norwegian": "Funnene er interessante, men den lille utvalgsstørrelsen begrenser mulighetene for generalisering. _____ gir studien et solid grunnlag for videre forskning.",
+    "english": "The findings are interesting, but the small sample size limits the possibilities for generalisation. Nonetheless, the study provides a solid foundation for further research.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Likevel — concessive connector; fronted position triggers V2 inversion. 'Ikke desto mindre' is C1-register and three tokens; at B2 'Likevel' is the expected single-word target."
+  },
+  {
+    "id": "b2-tc-315",
+    "norwegian": "Teorien er godt dokumentert i vestlig forskning. Det samme gjelder imidlertid ikke nødvendigvis i andre kulturelle kontekster.",
+    "english": "The theory is well documented in Western research. The same does not necessarily apply, however, in other cultural contexts.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Det samme' — pronominal reference to the prior proposition; 'imidlertid' inserted parenthetically to soften the contrast."
+  },
+  {
+    "id": "b2-tc-317",
+    "norwegian": "Det er bred enighet om at noe må gjøres. Spørsmålet er snarere hva som bør gjøres og hvem som skal finansiere det.",
+    "english": "There is broad agreement that something must be done. The question is rather what should be done and who should finance it.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Snarere' — scalar contrast marker shifting the discourse from a settled to an open question; topic shift signalled lexically."
+  },
+  {
+    "id": "b2-tc-318",
+    "norwegian": "Dataene ble innhentet over en periode på to år. _____ ble de analysert ved hjelp av statistiske metoder.",
+    "english": "The data were collected over a period of two years. Thereafter they were analysed using statistical methods.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Deretter — sequential connector; 'de' is anaphoric pronoun referring back to 'dataene'; V2 inversion after fronted connector."
+  },
+  {
+    "id": "b2-tc-319",
+    "norwegian": "Rapporten konkluderer med at tiltakene har hatt begrenset effekt. Denne konklusjonen er i tråd med funnene fra andre studier på feltet.",
+    "english": "The report concludes that the measures have had limited effect. This conclusion is in line with the findings from other studies in the field.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Denne konklusjonen' — noun-phrase anaphora that both echoes and elevates the prior rheme into the new theme."
+  },
+  {
+    "id": "b2-tc-321",
+    "norwegian": "Den første studien fokuserte på kortsiktige effekter. Den foreliggende studien tar derimot sikte på å kartlegge langsiktige virkninger.",
+    "english": "The first study focused on short-term effects. The present study, by contrast, aims to map long-term impacts.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Derimot' — contrastive connector mid-clause signalling opposition between old and new research; 'den foreliggende' is formal anaphoric adjective."
+  },
+  {
+    "id": "b2-tc-322",
+    "norwegian": "Problemet er velkjent. _____ mangler det fortsatt effektive løsninger på nasjonalt nivå.",
+    "english": "The problem is well known. Nevertheless, effective solutions are still lacking at the national level.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "Likevel — concessive connector; fronted position triggers V2 with expletive subject 'det': 'likevel mangler det'."
+  },
+  {
+    "id": "b2-tc-323",
+    "norwegian": "Studien har flere sterke sider. Den er metodisk solid, utvalget er representativt og dataene er innhentet på en pålitelig måte. Alt i alt gir dette et godt grunnlag for konklusjonene.",
+    "english": "The study has several strong points. It is methodologically sound, the sample is representative and the data have been collected reliably. All in all this provides a good basis for the conclusions.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Alt i alt' — summarising connector at paragraph boundary; 'dette' picks up all three preceding clauses as a complex antecedent."
+  },
+  {
+    "id": "b2-tc-325",
+    "norwegian": "De kvantitative dataene viser en klar trend. De kvalitative intervjuene nyanserer imidlertid dette bildet betraktelig.",
+    "english": "The quantitative data show a clear trend. The qualitative interviews, however, nuance this picture considerably.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'dette bildet' — anaphoric noun phrase that packages the prior claim as a referent; 'imidlertid' inserted parenthetically for formal contrast."
+  },
+  {
+    "id": "b2-tc-327",
+    "norwegian": "Det er bred politisk enighet om målet. Midlene for å nå dette målet er det derimot stor uenighet om.",
+    "english": "There is broad political agreement on the goal. The means of reaching this goal are, by contrast, a matter of great disagreement.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'dette målet' — anaphoric reference; object fronted for contrastive focus ('Midlene … er det … uenighet om') — theme-rheme reversal."
+  },
+  {
+    "id": "b2-tc-329",
+    "norwegian": "Hypotesen ble bekreftet av de kvantitative dataene. De kvalitative funnene pekte i samme retning. Samlet sett er dette et overbevisende resultat.",
+    "english": "The hypothesis was confirmed by the quantitative data. The qualitative findings pointed in the same direction. Taken together, this is a convincing result.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Samlet sett' — summarising frame connector; 'dette' at sentence start picks up both prior sentences as a complex antecedent."
+  },
+  {
+    "id": "b2-tc-330",
+    "norwegian": "Avhandlingen består av fem kapitler. Tre av disse er viet en analyse av det empiriske materialet, _____ de to siste tar for seg teoretiske implikasjoner.",
+    "english": "The thesis consists of five chapters. Three of these are devoted to an analysis of the empirical material, while the last two address theoretical implications.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "mens — contrastive connector linking two partitive clauses that account for all five chapters; 'disse' is anaphoric to 'fem kapitler'."
+  },
+  {
+    "id": "b2-tc-331",
+    "norwegian": "Innledningen reiser et sentralt spørsmål: i hvilken grad påvirker sosial bakgrunn akademiske prestasjoner? Resten av artikkelen forsøker å besvare nettopp dette spørsmålet.",
+    "english": "The introduction raises a central question: to what extent does social background affect academic achievement? The rest of the article attempts to answer precisely this question.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "education",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'nettopp dette spørsmålet' — intensified anaphoric noun phrase that explicitly closes the thematic loop opened in sentence 1."
+  },
+  {
+    "id": "b2-tc-332",
+    "norwegian": "Studien har avdekket tre mønstre. Det første mønsteret er kjennetegnet av rask fremgang, det andre av stagnasjon og _____ av gradvis tilbakegang.",
+    "english": "The study has revealed three patterns. The first pattern is characterised by rapid progress, the second by stagnation, and the third by gradual regression.",
+    "concept_ids": [
+      "text-cohesion"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "missing-connector",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "det tredje — final term in a parallel tripartite anaphoric series; ellipsis of the verb recovers from prior parallel structure."
+  },
+  {
+    "id": "b2-aw3-301",
+    "norwegian": "I denne artikkelen argumenteres det for at en sterkere regulering av finansmarkedene er nødvendig for å hindre fremtidige kriser.",
+    "english": "In this article it is argued that stronger regulation of financial markets is necessary to prevent future crises.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "economy",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Impersonal passive 'argumenteres det for at' — standard academic framing for presenting a thesis without a personal subject."
+  },
+  {
+    "id": "b2-aw3-302",
+    "norwegian": "Nominalisering er et sentralt trekk ved akademisk skriving. I stedet for å skrive 'å analysere' velger forfattere ofte formen '_____ av data'.",
+    "english": "Nominalisation is a central feature of academic writing. Instead of writing 'to analyse', authors often choose the form 'analysis of data'.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "analyse — nominalisation of 'å analysere'; the pattern verb → noun is core to the formal density of academic prose."
+  },
+  {
+    "id": "b2-aw3-303",
+    "norwegian": "Ifølge Smith og Jones (2021) er det grunn til å anta at sammenhengen er sterkere enn tidligere antatt.",
+    "english": "According to Smith and Jones (2021) there is reason to assume that the relationship is stronger than previously assumed.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Citation framing with 'ifølge' + parenthetical reference; hedging via 'er det grunn til å anta at'."
+  },
+  {
+    "id": "b2-aw3-305",
+    "norwegian": "Det kan ikke utelukkes at de observerte effektene skyldes konfunderende variabler snarere enn selve intervensjonen.",
+    "english": "It cannot be excluded that the observed effects are due to confounding variables rather than the intervention itself.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'det kan ikke utelukkes at' — strong hedging via double negation; 'snarere enn' (rather than) — formal scalar contrast."
+  },
+  {
+    "id": "b2-aw3-306",
+    "norwegian": "Studien benytter seg av en triangulerende tilnærming der kvantitative og kvalitative metoder _____ hverandre.",
+    "english": "The study employs a triangulating approach in which quantitative and qualitative methods complement each other.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "utfyller — 'utfylle hverandre' (to complement each other); cannot be 'supplerer' in this reciprocal structure without changing meaning."
+  },
+  {
+    "id": "b2-aw3-307",
+    "norwegian": "Det foreligger sterk empirisk støtte for at regelmessig fysisk aktivitet reduserer risikoen for hjerte- og karsykdommer.",
+    "english": "There is strong empirical support for the claim that regular physical activity reduces the risk of cardiovascular disease.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "health",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'det foreligger' — formal existential; 'empirisk støtte for at' — academic claim-support framing."
+  },
+  {
+    "id": "b2-aw3-309",
+    "norwegian": "Det bør presiseres at begrepet brukes i en snever teknisk forstand i denne sammenhengen.",
+    "english": "It should be specified that the term is used in a narrow technical sense in this context.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'det bør presiseres at' — terminological caveat marker; 'i en snever teknisk forstand' — lexical hedging of concept scope."
+  },
+  {
+    "id": "b2-aw3-310",
+    "norwegian": "Tidligere forskning har i stor grad fokusert på makronivå. Den _____ studien skiller seg fra dette ved å ta et mikroperspektiv.",
+    "english": "Earlier research has to a large extent focused on the macro level. The present study distinguishes itself from this by taking a micro perspective.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "foreliggende — 'den foreliggende studien' is the standard academic phrase for 'the present study'; marks the author's own work."
+  },
+  {
+    "id": "b2-aw3-311",
+    "norwegian": "Funnene gir grunnlag for å hevde at det eksisterer en kausal sammenheng mellom de to variablene.",
+    "english": "The findings provide grounds for claiming that a causal relationship exists between the two variables.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'gir grunnlag for å hevde at' — calibrated claim strength; stronger than 'antyder' but avoids the certainty of 'beviser'."
+  },
+  {
+    "id": "b2-aw3-313",
+    "norwegian": "Som tidligere nevnt er det nødvendig å skille mellom kortsiktige og langsiktige effekter av politikken.",
+    "english": "As previously mentioned, it is necessary to distinguish between the short-term and long-term effects of the policy.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Som tidligere nevnt' — intertextual backward reference marker; 'å skille mellom' — standard academic precision verb."
+  },
+  {
+    "id": "b2-aw3-314",
+    "norwegian": "Teorien har vunnet bred _____ i faglitteraturen, men er ikke uten kritikere.",
+    "english": "The theory has gained broad acceptance in the academic literature, but is not without its critics.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "tilslutning — 'vinne bred tilslutning' is the idiomatic collocation; 'støtte' takes 'få'/'ha' not 'vinne', so 'vunnet' forecloses it."
+  },
+  {
+    "id": "b2-aw3-315",
+    "norwegian": "Metodiske begrensninger til side, gir studien et verdifullt bidrag til forståelsen av fenomenet.",
+    "english": "Methodological limitations aside, the study makes a valuable contribution to the understanding of the phenomenon.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Fronted absolute phrase 'metodiske begrensninger til side' — formal academic hedging that brackets a caveat before the main claim."
+  },
+  {
+    "id": "b2-aw3-317",
+    "norwegian": "Det er rimelig å slutte seg til at årsaksforholdet går i én retning snarere enn å være gjensidig.",
+    "english": "It is reasonable to conclude that the causal relationship runs in one direction rather than being mutual.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'slutte seg til at' — academic conclusion verb; 'snarere enn å være' introduces the scalar alternative."
+  },
+  {
+    "id": "b2-aw3-319",
+    "norwegian": "På grunnlag av de foreliggende dataene er det ikke mulig å trekke entydige slutninger om årsaksforholdet.",
+    "english": "On the basis of the available data it is not possible to draw unambiguous conclusions about the causal relationship.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'entydige slutninger' — precision hedging noun phrase; 'på grunnlag av' is the formal equivalent of 'basert på'."
+  },
+  {
+    "id": "b2-aw3-320",
+    "norwegian": "Det undersøkes i denne studien hvorvidt eksponering for støy i barndommen _____ risikoen for hørselstap i voksen alder.",
+    "english": "This study examines whether exposure to noise in childhood increases the risk of hearing loss in adult life.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "health",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "øker — subject-verb agreement in embedded 'hvorvidt'-clause; 'hvorvidt' is the formal academic equivalent of 'om' in indirect questions."
+  },
+  {
+    "id": "b2-aw3-321",
+    "norwegian": "Til tross for disse innvendingene holder konklusjonene seg robuste på tvers av ulike analytiske tilnærminger.",
+    "english": "Despite these objections, the conclusions remain robust across different analytical approaches.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'holder seg robuste på tvers av' — formal robustness claim; 'disse innvendingene' is anaphoric reference to anticipated objections."
+  },
+  {
+    "id": "b2-aw3-322",
+    "norwegian": "Det er all grunn til å anta at funnene kan _____ til andre populasjoner med lignende demografiske kjennetegn.",
+    "english": "There is every reason to assume that the findings can be generalised to other populations with similar demographic characteristics.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "generaliseres — modal s-passive in embedded 'at'-clause; 'generalisere til' is the standard academic verb for extending findings."
+  },
+  {
+    "id": "b2-aw3-323",
+    "norwegian": "Behovet for ytterligere forskning er tydelig, særlig med tanke på de langsiktige effektene av intervensjonen.",
+    "english": "The need for further research is clear, particularly with regard to the long-term effects of the intervention.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'med tanke på' — formal prepositional phrase for scope specification; nominalised subject 'behovet' is more formal than 'vi trenger'."
+  },
+  {
+    "id": "b2-aw3-324",
+    "norwegian": "Det er viktig å _____ at de her presenterte dataene er hentet fra et begrenset geografisk område.",
+    "english": "It is important to emphasise that the data presented here are taken from a limited geographical area.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "understreke — infinitive after 'å'; the frame 'det er viktig å understreke at' is a standard academic caveat. 'Presisere'/'påpeke' are not accepted (different meaning)."
+  },
+  {
+    "id": "b2-aw3-325",
+    "norwegian": "Denne studien supplerer eksisterende forskning ved å tilby et komparativt perspektiv som tidligere har manglet i litteraturen.",
+    "english": "This study supplements existing research by offering a comparative perspective that has previously been absent from the literature.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'supplerer … ved å tilby' — formal gap-filling contribution framing; 'som tidligere har manglet i litteraturen' identifies the gap."
+  },
+  {
+    "id": "b2-aw3-326",
+    "norwegian": "Funnene er i stor grad forenlige med de teoretiske _____ som ble fremsatt i innledningen.",
+    "english": "The findings are largely compatible with the theoretical predictions that were put forward in the introduction.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "prediksjonene — 'teoretiske prediksjoner' (theoretical predictions); 'forenlig med' is the formal equivalent of 'i samsvar med'."
+  },
+  {
+    "id": "b2-aw3-327",
+    "norwegian": "Studiens fremste begrensning er det relativt lille utvalget, noe som svekker den statistiske styrken til analysene.",
+    "english": "The study's foremost limitation is the relatively small sample, which reduces the statistical power of the analyses.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'noe som' — non-restrictive relative clause referring to the entire preceding proposition; 'statistisk styrke' is a technical academic term."
+  },
+  {
+    "id": "b2-aw3-328",
+    "norwegian": "Det vil si at hypotesen kun kan avvises dersom det foreligger statistisk signifikante bevis til _____ for nullhypotesen.",
+    "english": "That is to say, the hypothesis can only be rejected if there is statistically significant evidence in favour of the null hypothesis.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "fordel — 'til fordel for' (in favour of); 'det vil si at' is a formal clarification connector used to explicate a prior statement."
+  },
+  {
+    "id": "b2-aw3-329",
+    "norwegian": "I lys av den pågående debatten tar denne studien sikte på å kaste nytt lys over et lenge omstridt spørsmål.",
+    "english": "In light of the ongoing debate, this study aims to shed new light on a long-contested question.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'tar sikte på å kaste nytt lys over' — academic purpose framing; 'lenge omstridt' is a formal participial adjective."
+  },
+  {
+    "id": "b2-aw3-330",
+    "norwegian": "Det er påvist at eksponering for høye lydnivåer over tid kan _____ til permanente hørselsskader.",
+    "english": "It has been demonstrated that exposure to high noise levels over time can lead to permanent hearing damage.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "health",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "føre — 'kan føre til' (can lead to); 'det er påvist at' is a formal evidential frame signalling empirically established fact."
+  },
+  {
+    "id": "b2-aw3-331",
+    "norwegian": "Forfatteren anerkjenner at de valgte metodene ikke er perfekte, men argumenterer likevel for at de er de best egnede for dette formålet.",
+    "english": "The author acknowledges that the chosen methods are not perfect, but nonetheless argues that they are the most appropriate for this purpose.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'anerkjenner at … men argumenterer likevel for at' — concessive-claim structure; 'best egnede' is a formal superlative for suitability."
+  },
+  {
+    "id": "b2-aw3-332",
+    "norwegian": "Avslutningsvis kan det konstateres at de oppstilte målene i _____ grad er nådd.",
+    "english": "In conclusion it can be established that the stated goals have largely been reached.",
+    "concept_ids": [
+      "academic-writing"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "stor — 'i stor grad' (largely); standard B2 academic hedging. 'Liten' contradicts the conclusion and is not accepted."
+  },
+  {
+    "id": "b2-ap-301",
+    "norwegian": "Det diskuteres fortsatt om reformen bør gjennomføres, og ingen endelig beslutning er tatt.",
+    "english": "It is still being discussed whether the reform should be implemented, and no final decision has been taken.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "S-passive 'diskuteres' — agentless ongoing process; coordinated with stative passive 'er tatt' to contrast process vs. resulting state."
+  },
+  {
+    "id": "b2-ap-302",
+    "norwegian": "Budsjettet ble vedtatt med knappest mulig flertall og _____ allerede neste kvartal.",
+    "english": "The budget was passed with the slimmest possible majority and will be revised already next quarter.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "economy",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "revideres — future s-passive (bare infinitive form used as present/future); contrast with prior 'ble vedtatt' (bli-passive past)."
+  },
+  {
+    "id": "b2-ap-303",
+    "norwegian": "Alle søknadene vil bli behandlet fortløpende, og svar kan forventes innen tre uker.",
+    "english": "All applications will be processed on a rolling basis, and a reply can be expected within three weeks.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Two passive types: future bli-passive 'vil bli behandlet' and modal s-passive 'kan forventes' — both agentless in administrative register."
+  },
+  {
+    "id": "b2-ap-304",
+    "norwegian": "Det rapporteres at flere ansatte er blitt utsatt for trakassering på arbeidsplassen.",
+    "english": "It is reported that several employees have been subjected to harassment in the workplace.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Nested passives: s-passive 'rapporteres' + present perfect bli-passive 'er blitt utsatt for' in the embedded clause."
+  },
+  {
+    "id": "b2-ap-306",
+    "norwegian": "Prøvene ble tatt på mandag og sendes nå til analyse ved et eksternt laboratorium.",
+    "english": "The samples were taken on Monday and are now being sent for analysis at an external laboratory.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "health",
+      "research"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ble tatt' (bli-passive past) contrasted with 'sendes' (s-passive present) — tense shift illustrating temporal contrast within same sentence."
+  },
+  {
+    "id": "b2-ap-307",
+    "norwegian": "Kontrakten er ennå ikke _____, selv om forhandlingene ble avsluttet for to uker siden.",
+    "english": "The contract has not yet been signed, even though the negotiations were concluded two weeks ago.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "signert — stative passive 'er ikke signert' (resulting state not yet achieved); contrast with dynamic bli-passive 'ble avsluttet'."
+  },
+  {
+    "id": "b2-ap-308",
+    "norwegian": "Det er ikke kjent hvem som ga ordren, men den ble fulgt av alle tilstedeværende.",
+    "english": "It is not known who gave the order, but it was followed by all those present.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Stative passive 'er ikke kjent' (unknown state) + agentive bli-passive 'ble fulgt av'; impersonal 'det'-subject in both."
+  },
+  {
+    "id": "b2-ap-309",
+    "norwegian": "Nye retningslinjer er utarbeidet av komiteen og vil _____ til alle ansatte i løpet av neste uke.",
+    "english": "New guidelines have been drawn up by the committee and will be distributed to all employees during next week.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "bli distribuert — future passive coordinated with stative perfect passive 'er utarbeidet av'; 'av komiteen' is explicit agent."
+  },
+  {
+    "id": "b2-ap-310",
+    "norwegian": "Det hevdes i rapporten at en stor andel av utslippene skyldes transportsektoren.",
+    "english": "It is claimed in the report that a large proportion of the emissions are caused by the transport sector.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "environment",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'det hevdes i rapporten at' — s-passive of reporting verb; agentless impersonal construction used to attribute a claim to a source."
+  },
+  {
+    "id": "b2-ap-311",
+    "norwegian": "Feilen ble oppdaget tidlig og _____ umiddelbart av det ansvarlige vedlikeholdsselskapet.",
+    "english": "The fault was detected early and was immediately rectified by the responsible maintenance company.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "technology",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ble utbedret — coordinated bli-passives; 'av det ansvarlige vedlikeholdsselskapet' is an agentive phrase identifying the actor."
+  },
+  {
+    "id": "b2-ap-312",
+    "norwegian": "Saken er til behandling og kan ikke kommenteres offentlig før en avgjørelse er truffet.",
+    "english": "The matter is under consideration and cannot be commented on publicly before a decision has been reached.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Modal s-passive 'kan ikke kommenteres'; stative passive 'er truffet' in subordinate temporal clause — passive in subordinate clause target."
+  },
+  {
+    "id": "b2-ap-313",
+    "norwegian": "Pengene ble overført, men transaksjonen _____ dessverre ikke bekreftet av banken.",
+    "english": "The money was transferred, but the transaction was unfortunately not confirmed by the bank.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "economy",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "ble — coordinated bli-passives with negation in the second clause; 'av banken' identifies the confirming agent."
+  },
+  {
+    "id": "b2-ap-314",
+    "norwegian": "Det konstateres i studien at en sammenheng mellom de to faktorene ikke kan utelukkes.",
+    "english": "The study establishes that a relationship between the two factors cannot be excluded.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "S-passive of epistemic verb 'konstateres' + modal s-passive 'kan utelukkes' in embedded clause — double passive structure."
+  },
+  {
+    "id": "b2-ap-315",
+    "norwegian": "Det ble ikke tatt hensyn til de lokale forholdene da planen ble utformet.",
+    "english": "No account was taken of local conditions when the plan was drawn up.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Impersonal passive 'ble tatt hensyn til' — the idiom 'ta hensyn til' passivised; passive in subordinate 'da'-clause in the same sentence."
+  },
+  {
+    "id": "b2-ap-317",
+    "norwegian": "Prisene justeres automatisk hvert år i henhold til konsumprisindeksen.",
+    "english": "Prices are adjusted automatically every year in accordance with the consumer price index.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "economy",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "S-passive 'justeres' — agentless habitual passive describing a rule-governed process; no 'bli' needed for generic present."
+  },
+  {
+    "id": "b2-ap-318",
+    "norwegian": "Boken er oversatt til over tjue språk og _____ i mer enn femti land.",
+    "english": "The book has been translated into over twenty languages and is sold in more than fifty countries.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "culture",
+      "media"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "selges — s-passive present coordinated with stative passive 'er oversatt'; both agentless, together describing the book's global reach."
+  },
+  {
+    "id": "b2-ap-319",
+    "norwegian": "Det må erkjennes at ikke alle målene som ble satt i starten av prosjektet, er blitt nådd.",
+    "english": "It must be acknowledged that not all the goals set at the start of the project have been reached.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Modal s-passive 'må erkjennes' at matrix level; relative clause with passive 'som ble satt'; present perfect passive 'er blitt nådd' — three passive constructions."
+  },
+  {
+    "id": "b2-ap-320",
+    "norwegian": "Undersøkelsen viser at mange pasienter _____ for lenge uten riktig diagnose.",
+    "english": "The survey shows that many patients are treated for too long without a correct diagnosis.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "health",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "behandles — s-passive in embedded 'at'-clause; agentless because the focus is on the patient experience, not the treating actor."
+  },
+  {
+    "id": "b2-ap-321",
+    "norwegian": "Avtalen ble undertegnet i Oslo og trer i kraft fra den første i neste måned.",
+    "english": "The agreement was signed in Oslo and comes into force from the first of next month.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ble undertegnet' — agentless bli-passive; followed by active idiom 'trer i kraft' — the contrast between passive event and active process."
+  },
+  {
+    "id": "b2-ap-322",
+    "norwegian": "Det _____ av tallene i årsrapporten at selskapet har hatt et underskudd tre år på rad.",
+    "english": "It emerges from the figures in the annual report that the company has had a deficit for three consecutive years.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "economy",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "fremgår — 'det fremgår av' takes 'av + source' and signals information read off a document; cannot be 'hevdes'/'rapporteres' (which take 'i + source')."
+  },
+  {
+    "id": "b2-ap-323",
+    "norwegian": "Journalisten ble ikke gitt innsyn i dokumentene, selv om hun hadde bedt om dette gjentatte ganger.",
+    "english": "The journalist was not given access to the documents, even though she had requested this repeatedly.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "media",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ble ikke gitt innsyn i' — indirect-object passive; the recipient becomes the grammatical subject; 'selv om'-clause adds subordinate context."
+  },
+  {
+    "id": "b2-ap-324",
+    "norwegian": "Systemet er utviklet over mange år og _____ nå av over en million brukere daglig.",
+    "english": "The system has been developed over many years and is now used by over one million users daily.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "technology",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "brukes — s-passive present coordinated with stative perfect passive 'er utviklet'; 'av over en million brukere' is a quantified agent phrase."
+  },
+  {
+    "id": "b2-ap-325",
+    "norwegian": "De nye reglene er blitt kritisert av næringslivet, men støttes av et flertall i befolkningen.",
+    "english": "The new rules have been criticised by business, but are supported by a majority of the population.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "society",
+      "economy"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Present perfect bli-passive 'er blitt kritisert av' contrasted with s-passive 'støttes av' — two passive types in one sentence, both agentive."
+  },
+  {
+    "id": "b2-ap-326",
+    "norwegian": "Det ble stilt strenge krav til leverandørene, og disse kravene er _____ i den reviderte kontrakten.",
+    "english": "Strict requirements were placed on the suppliers, and these requirements are enshrined in the revised contract.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "nedfelt — 'er nedfelt i' is the fixed legal/contractual stative passive for requirements enshrined in a document; cannot be 'fremgår' (takes 'av') or 'fastsatt' (act, not state)."
+  },
+  {
+    "id": "b2-ap-327",
+    "norwegian": "Tillatelsen er søkt, men ennå ikke innvilget av kommunen.",
+    "english": "The permit has been applied for, but has not yet been granted by the municipality.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Stative perfect passive 'er søkt' elliptical (applied for) paired with negated stative passive 'ikke innvilget av kommunen' — common administrative pattern."
+  },
+  {
+    "id": "b2-ap-328",
+    "norwegian": "Det er sjelden at en slik pris _____ til en forsker som ennå ikke har fylt førti år.",
+    "english": "It is rare for such a prize to be awarded to a researcher who has not yet turned forty.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "tildeles — s-passive in embedded 'at'-clause after expletive 'det er sjelden at'; indirect object 'til en forsker' preserved."
+  },
+  {
+    "id": "b2-ap-329",
+    "norwegian": "Hele bydelen måtte evakueres etter at en gasstank var blitt skadet under arbeider på stedet.",
+    "english": "The entire district had to be evacuated after a gas tank had been damaged during work at the site.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "society",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Modal s-passive 'måtte evakueres' in main clause; pluperfect passive 'var blitt skadet' in 'etter at'-subordinate — passive in subordinate clause."
+  },
+  {
+    "id": "b2-ap-330",
+    "norwegian": "Det bekreftes nå at alle planlagte avganger _____ innstilt på grunn av det ekstreme uværet.",
+    "english": "It is now confirmed that all planned departures have been cancelled due to the extreme weather.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "transport",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er blitt — present perfect bli-passive in embedded 'at'-clause; matrix s-passive 'bekreftes' frames the announcement."
+  },
+  {
+    "id": "b2-ap-331",
+    "norwegian": "Ansvaret for ulykken er foreløpig ikke plassert, men en gransking er igangsatt av Luftfartstilsynet.",
+    "english": "Responsibility for the accident has not yet been allocated, but an investigation has been initiated by the Civil Aviation Authority.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "society",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Two stative passives with different agents: agentless 'er ikke plassert' and agentive 'er igangsatt av Luftfartstilsynet' — choice of s-passive vs. bli-passive."
+  },
+  {
+    "id": "b2-ap-332",
+    "norwegian": "Det forutsettes at alle deltakerne _____ seg til de etiske retningslinjene som er fastsatt av komiteen.",
+    "english": "It is presupposed that all participants will adhere to the ethical guidelines that have been established by the committee.",
+    "concept_ids": [
+      "advanced-passive"
+    ],
+    "vocab_clusters": [
+      "research",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "holder — 'holder seg til' (adheres to); matrix s-passive 'forutsettes'; relative clause with passive 'som er fastsatt av' — passive in subordinate clause target."
   }
 ]

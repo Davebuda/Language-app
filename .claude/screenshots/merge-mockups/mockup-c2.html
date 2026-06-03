@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nc-bg:#0A1206; --nc-paper:#151718; --nc-card:#151718;
+    --nc-signal:#C8FF20; --nc-signal-tint:rgba(200,255,32,0.12); --nc-signal-border:rgba(200,255,32,0.28); --nc-signal-fg:#0A1206; --nc-signal-dim:#9ec01a;
+    --nc-border:rgba(255,255,255,0.08); --nc-text:#EDEEE9; --nc-text-muted:rgba(237,238,233,0.58); --nc-text-dim:rgba(237,238,233,0.34);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Schibsted Grotesk',sans-serif; color:var(--nc-text);
+    background:
+      radial-gradient(circle at 14% 0%, rgba(200,255,32,0.08) 0%, transparent 26%),
+      radial-gradient(circle at 88% 12%, rgba(109,229,255,0.06) 0%, transparent 18%),
+      linear-gradient(180deg, var(--nc-bg) 0%, var(--nc-paper) 100%);
+    -webkit-font-smoothing:antialiased; padding:22px 0 30px;
+  }
+  .shell{max-width:375px;margin:0 auto;padding:0 6px;}
+
+  .cardC{background:var(--nc-card);border:1px solid var(--nc-border);border-radius:0.65rem;overflow:hidden;box-shadow:0 18px 48px rgba(0,0,0,0.35);}
+
+  /* ── DARK half: STATUS zone ── */
+  .top{padding:14px 14px 15px;}
+  .toprow{display:flex;align-items:center;justify-content:space-between;}
+  /* Tier 4 — kicker (ambient orientation) */
+  .kicker{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--nc-signal-dim);}
+  .lvl{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--nc-signal);background:var(--nc-signal-tint);border:1px solid var(--nc-signal-border);padding:2px 6px;border-radius:4px;}
+  /* Tier 2 — objective (the "what") */
+  .title{font-size:1rem;font-weight:800;color:var(--nc-text);letter-spacing:-0.03em;margin-top:5px;}
+  /* proof row */
+  .proof{display:flex;align-items:flex-end;justify-content:space-between;margin-top:13px;}
+  .count{display:flex;align-items:baseline;gap:7px;}
+  /* Tier 1 — the production number (anchor) */
+  .count b{font-size:2.6rem;font-weight:900;color:var(--nc-signal);line-height:0.78;font-variant-numeric:tabular-nums;letter-spacing:-0.04em;}
+  /* Tier 3 — count unit */
+  .count span{font-size:10px;font-weight:700;color:var(--nc-text-muted);line-height:1.15;}
+  /* Tier 4 — week sparkline (ambient proof) */
+  .sparkwrap{display:flex;align-items:center;gap:7px;padding-bottom:2px;}
+  .spark{display:flex;align-items:flex-end;gap:3px;height:26px;}
+  .spark i{width:6px;border-radius:2px;background:rgba(200,255,32,0.20);display:block;}
+  .spark i.live{background:var(--nc-signal);}
+  .sparklbl{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--nc-text-dim);}
+
+  /* ── boundary ── */
+  .divider{height:1px;background:var(--nc-border);}
+
+  /* ── LIME half: ACT zone ── */
+  .bottom{background:linear-gradient(135deg,#C8FF20 0%,#B8EF10 100%);padding:12px 14px 13px;color:var(--nc-signal-fg);}
+  /* Tier 5 — coach reason (whisper, justifies the button) */
+  .reason{font-size:9.5px;line-height:1.42;color:rgba(10,18,6,0.56);margin-bottom:11px;}
+  .actrow{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  /* Tier 1 — Start CTA (anchor) */
+  .lbl{font-size:1.1rem;font-weight:800;color:var(--nc-signal-fg);letter-spacing:-0.03em;line-height:1;}
+  /* Tier 3 — CTA meta */
+  .sub{font-size:9.5px;font-weight:700;color:rgba(10,18,6,0.6);margin-top:3px;}
+  .arrow{width:32px;height:32px;border-radius:50%;background:rgba(10,18,6,0.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="cardC">
+    <!-- STATUS -->
+    <div class="top">
+      <div class="toprow">
+        <div class="kicker">Dagens mål</div>
+        <div class="lvl">B1</div>
+      </div>
+      <div class="title">Produser leddsetninger</div>
+      <div class="proof">
+        <div class="count"><b>6</b><span>produsert<br>i dag</span></div>
+        <div class="sparkwrap">
+          <div class="spark">
+            <i style="height:9px"></i><i style="height:17px"></i><i style="height:7px"></i><i style="height:13px"></i><i class="live" style="height:22px"></i><i style="height:4px"></i><i style="height:4px"></i>
+          </div>
+          <span class="sparklbl">uka</span>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <!-- ACT -->
+    <div class="bottom">
+      <div class="reason">«Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.»</div>
+      <div class="actrow">
+        <div>
+          <div class="lbl">Start dagens økt</div>
+          <div class="sub">25 oppgaver · ca. 19 min</div>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
