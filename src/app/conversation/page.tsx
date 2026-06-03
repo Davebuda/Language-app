@@ -138,6 +138,10 @@ export default function ConversationPage() {
   }
 
   async function persistTurn(role: 'user' | 'tutor', content: string, correction?: ConversationTurnResult['correction']): Promise<void> {
+    // Count every turn for the in-session summary regardless of auth. This counter was
+    // previously incremented only inside the auth-gated insert below, so guests (the
+    // default mode) always saw "0 Utvekslinger" in the end summary. The DB row reuses it.
+    const turnIndex = turnIndexRef.current++
     if (!user || !dbSessionIdRef.current) return
     try {
       const supabase = createClient()
@@ -148,7 +152,7 @@ export default function ConversationPage() {
         corrected_content: correction ? correction.corrected : null,
         error_tags: correction ? [correction.errorTag] : [],
         concept_ids: correction ? [errorTagToConceptId(correction.errorTag)] : [],
-        turn_index: turnIndexRef.current++,
+        turn_index: turnIndex,
       })
     } catch {
       // silent
