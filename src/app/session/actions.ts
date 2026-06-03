@@ -1,7 +1,7 @@
 'use server'
 
 import { loadContentSentences } from '@/lib/content-loader'
-import { checkAnswer } from '@/lib/answer'
+import { checkAnswerWithAlternatives } from '@/lib/answer'
 import { classifyError } from '@/lib/classify-error'
 import { deriveCorrectAnswer } from '@/lib/grade-utils'
 import type { ExerciseType } from '@/types/session'
@@ -74,7 +74,11 @@ export async function gradeAnswer(
     sentence.notes,
   )
 
-  const correct = checkAnswer(userAnswer, correctAnswer)
+  const correct = checkAnswerWithAlternatives(
+    userAnswer,
+    correctAnswer,
+    sentence.acceptedAnswers ?? [],
+  )
   return {
     correct,
     correctAnswer,

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { normalizeAnswer, checkAnswer } from '@/lib/answer';
+import { normalizeAnswer, checkAnswer, checkAnswerWithAlternatives } from '@/lib/answer';
 
 describe('normalizeAnswer', () => {
   it('trims whitespace', () => {
@@ -40,10 +40,41 @@ describe('checkAnswer — formatting tolerance (3a residual, safe class only)', 
     expect(checkAnswer('I don’t know', "I don't know")).toBe(true);
   });
 
+  it('accepts contraction vs expansion (don’t ⇔ do not)', () => {
+    expect(checkAnswer('I do not know', "I don't know")).toBe(true);
+    expect(checkAnswer("she isn't here", 'she is not here')).toBe(true);
+    expect(checkAnswer("I can't swim", 'I cannot swim')).toBe(true);
+  });
+
   it('still rejects a genuine paraphrase (must not false-positive)', () => {
-    // Semantic alternatives are NOT accepted by normalization — that is the
-    // per-sentence accepted-answers design decision, deliberately out of scope here.
-    expect(checkAnswer('I do not know', "I don't know")).toBe(false);
+    // Semantic alternatives (different words) are NOT accepted by normalization
+    // or contraction expansion — those require an explicit per-sentence
+    // acceptedAnswers list (linguist-authored), tested below.
+    expect(checkAnswer('I have no idea', "I don't know")).toBe(false);
+  });
+});
+
+describe('checkAnswerWithAlternatives — per-sentence accepted paraphrases', () => {
+  it('accepts the canonical answer', () => {
+    expect(checkAnswerWithAlternatives('jeg er trøtt', 'jeg er trøtt', [])).toBe(true);
+  });
+
+  it('accepts a listed alternative', () => {
+    expect(
+      checkAnswerWithAlternatives('jeg er sliten', 'jeg er trøtt', ['jeg er sliten']),
+    ).toBe(true);
+  });
+
+  it('applies formatting + contraction tolerance to alternatives too', () => {
+    expect(
+      checkAnswerWithAlternatives("I'm tired", 'I am exhausted', ['I am tired']),
+    ).toBe(true);
+  });
+
+  it('rejects an answer matching neither canonical nor any alternative', () => {
+    expect(
+      checkAnswerWithAlternatives('jeg er glad', 'jeg er trøtt', ['jeg er sliten']),
+    ).toBe(false);
   });
 });
 

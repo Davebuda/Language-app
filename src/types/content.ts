@@ -23,6 +23,13 @@ export interface Sentence {
   // only the canonical `norwegian` order passes — so existing content is never
   // affected. Conservative + opt-in by design.
   acceptedOrders?: string[];
+  // translation: optional author-supplied alternative correct answers (valid
+  // paraphrases / synonyms) for translation exercises. When present, the grader
+  // accepts the canonical answer OR any of these (each compared with the same
+  // formatting + contraction tolerance). When absent, only the canonical answer
+  // passes — existing content is never affected. Linguist-gated, opt-in by design.
+  // (Parallel to ClozeSegment gap.acceptedAnswers.)
+  acceptedAnswers?: string[];
 }
 
 export interface VocabItem {
