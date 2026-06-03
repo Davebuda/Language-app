@@ -46,8 +46,14 @@ class HybridAIService implements AIService {
   generateContent: AIService['generateContent'] = (params) => this.active.generateContent(params)
   detectErrors: AIService['detectErrors'] = (text, level) => this.active.detectErrors(text, level)
   reviewWriting: AIService['reviewWriting'] = (params) => this.active.reviewWriting(params)
+  // Conversation NEVER routes through the local 1B WebLLM. The 2026-06-03 live audit
+  // caught Kari emitting garbled non-Norwegian ("Hvapondparticles…") that the heuristic
+  // validity gate cannot reliably catch (real Norwegian markers + short non-words slip
+  // through). The 1B model is too weak for free-form conversation. Route to the server:
+  // it returns Groq-8B output when reachable, else a deterministic Norwegian template —
+  // both safe, never the 1B. See docs/decisions/2026-06-03-conversation-no-local-1b.md.
   conversationTurn: AIService['conversationTurn'] = (messages, level, topic, suffix) =>
-    this.active.conversationTurn(messages, level, topic, suffix)
+    this.server.conversationTurn(messages, level, topic, suffix)
 }
 
 export const aiService = new HybridAIService()
