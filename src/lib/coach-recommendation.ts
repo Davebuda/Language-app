@@ -80,7 +80,7 @@ function scoreLane(
     case 'session': {
       const gaps = fp.weeklyFocus.reduce((sum, cid) => {
         const m = fp.conceptMastery[cid]
-        return sum + (m ? Math.max(0, 80 - m.decayedScore) : 40)
+        return sum + (m ? Math.max(0, 80 - (m.decayedScore ?? 0)) : 40)
       }, 0)
       return 100 + gaps
     }

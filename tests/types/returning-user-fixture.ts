@@ -69,3 +69,63 @@ export function makeReturningUserFingerprint(): MistakeFingerprint {
 
   return legacy as unknown as MistakeFingerprint
 }
+
+/**
+ * A returning user with a ConceptMastery ROW that predates `decayedScore`/
+ * `rawScore`: the row is PRESENT (so `if (!mastery) continue` existence guards
+ * pass) but these numeric fields are ABSENT. normalizeFingerprint deliberately
+ * does NOT backfill ConceptMastery row fields, so an unguarded reader doing
+ * `Math.round(row.decayedScore)` or `a.decayedScore - b.decayedScore` produces
+ * NaN. This fixture is the lock that forces every decayedScore reader to guard
+ * the field (returning-user read-safety contract, Operating Rule 3).
+ *
+ * `totalSessionsCompleted > 0` and `attemptCount > 0` so the dashboard accuracy
+ * tile actually reaches the averaging math instead of short-circuiting to "—".
+ */
+export function makeFingerprintWithLegacyMasteryRow(): MistakeFingerprint {
+  const graph = getGraphForLevel('B1')
+  const [c1, c2, c3] = graph.concepts.map((c) => c.id)
+
+  const legacyRow = {
+    conceptId: c1,
+    confidenceScore: 0.6,
+    attemptCount: 8,
+    correctCount: 5,
+    uniqueDaysActive: 3,
+    lastAttemptAt: '2026-05-20T00:00:00Z',
+    lastCorrectAt: '2026-05-20T00:00:00Z',
+    streak: 1,
+    recentOutcomes: [true, false, true],
+    srsLevel: 1,
+    nextReviewAt: '2026-06-10T00:00:00Z',
+    // decayedScore and rawScore INTENTIONALLY absent — this is the legacy shape.
+  } as unknown as ConceptMastery
+
+  const fullRow = (id: string): ConceptMastery => ({
+    conceptId: id,
+    rawScore: 55,
+    confidenceScore: 0.6,
+    decayedScore: 50,
+    attemptCount: 6,
+    correctCount: 4,
+    uniqueDaysActive: 3,
+    lastAttemptAt: '2026-05-20T00:00:00Z',
+    lastCorrectAt: '2026-05-20T00:00:00Z',
+    streak: 1,
+    recentOutcomes: [true, true, false],
+    srsLevel: 1,
+    nextReviewAt: '2026-06-10T00:00:00Z',
+  })
+
+  return {
+    ...createEmptyFingerprint('returning-user-legacy-row'),
+    currentLevel: 'B1',
+    totalSessionsCompleted: 3,
+    conceptMastery: {
+      [c1]: legacyRow,
+      [c2]: fullRow(c2),
+      [c3]: fullRow(c3),
+    },
+    weeklyFocus: [c1, c2, c3],
+  } as MistakeFingerprint
+}

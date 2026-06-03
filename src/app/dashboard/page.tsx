@@ -17,6 +17,7 @@ import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
 import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool'
 import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
 import { getCoachRecommendation } from '@/lib/coach-recommendation'
 import { CORE_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
@@ -112,15 +113,10 @@ export default function DashboardPage() {
     return getCoachRecommendation(fingerprint, activeGraph, plan)
   }, [fingerprint, activeGraph, plan])
 
-  const attemptedMastery = Object.values(fingerprint?.conceptMastery ?? {}).filter(
-    (mastery) => mastery.attemptCount > 0,
-  )
-  const accuracy = attemptedMastery.length > 0
-    ? Math.round(
-      attemptedMastery.reduce((sum, mastery) => sum + mastery.decayedScore, 0) /
-      attemptedMastery.length,
-    )
-    : 0
+  // F018/F020: accuracy is a practice stat, gated on a real completed session so
+  // it never shows a diagnostic-only number that vanishes on refresh. See
+  // deriveAccuracyDisplay for the full rationale.
+  const accuracyDisplay = deriveAccuracyDisplay(fingerprint)
   const speakingMins = Math.round(fingerprint?.speakingMinutesTotal ?? 0)
 
   const activeConcepts = useMemo(() => {
@@ -143,7 +139,7 @@ export default function DashboardPage() {
           id: concept.id,
           label: concept.label,
           phase,
-          score: mastery ? Math.round(mastery.decayedScore) : 0,
+          score: mastery ? Math.round(mastery.decayedScore ?? 0) : 0,
           color: getConceptColor(concept.id, index),
         }
       })
@@ -234,10 +230,7 @@ export default function DashboardPage() {
     { label: 'Min talt', value: String(speakingMins), tone: 'text-[var(--nc-teal)]' },
     {
       label: 'Treff',
-      // Gate on real attempt data only. totalSessionsCompleted is never
-      // incremented in the session write path, so requiring it hid a true
-      // accuracy from anyone who has actually practiced.
-      value: attemptedMastery.length > 0 ? `${accuracy}%` : '—',
+      value: accuracyDisplay,
       tone: 'text-[var(--nc-signal)]',
     },
   ] as const

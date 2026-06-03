@@ -51,12 +51,12 @@ export default function ProfilePage() {
 
   const weakConcepts = Object.entries(fingerprint?.conceptMastery ?? {})
     .filter(([, mastery]) => mastery.attemptCount >= 3)
-    .sort(([, left], [, right]) => left.decayedScore - right.decayedScore)
+    .sort(([, left], [, right]) => (left.decayedScore ?? 0) - (right.decayedScore ?? 0))
     .slice(0, 3)
     .map(([id, mastery]) => ({
       id,
       label: conceptGraph.concepts.find((concept) => concept.id === id)?.label ?? id,
-      score: mastery.decayedScore,
+      score: mastery.decayedScore ?? 0,
     }))
 
   const displayName = user?.user_metadata?.full_name ?? user?.email?.split('@')[0] ?? 'Gjest'

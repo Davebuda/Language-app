@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { normalizeFingerprint } from '@/types/fingerprint'
-import { makeReturningUserFingerprint } from '../types/returning-user-fixture'
+import { makeReturningUserFingerprint, makeFingerprintWithLegacyMasteryRow } from '../types/returning-user-fixture'
 import { deriveProductionWallView } from '@/lib/production-wall'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
+import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
 import { vocabCoverage } from '@/engine'
 import { runDiagnosis } from '@/engine/diagnosis'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
@@ -63,5 +64,36 @@ describe('returning-user read-path safety (locked class)', () => {
     expect(Number.isFinite(cov.activated)).toBe(true)
     expect(Number.isFinite(cov.total)).toBe(true)
     expect(() => runDiagnosis(fp)).not.toThrow()
+  })
+})
+
+// Surface-read lock: a ConceptMastery ROW present but missing decayedScore (a
+// pre-decayedScore legacy row) must not produce NaN in any read surface. The
+// dashboard accuracy tile and the weekly-progress strip both read decayedScore
+// off the row directly; before guarding, both yielded NaN here.
+describe('returning-user surface reads survive a legacy mastery row missing decayedScore', () => {
+  const fp = normalizeFingerprint(makeFingerprintWithLegacyMasteryRow())
+  const graph = getGraphForLevel(fp.currentLevel)
+
+  it('dashboard accuracy tile (deriveAccuracyDisplay) never renders "NaN%"', () => {
+    const display = deriveAccuracyDisplay(fp)
+    expect(display).not.toContain('NaN')
+    expect(display).toMatch(/^(\d+%|—)$/)
+  })
+
+  it('weekly-progress strip yields finite deltas for the legacy row', () => {
+    const entries = summarizeWeeklyProgress(fp, graph)
+    expect(entries.length).toBeGreaterThan(0)
+    for (const e of entries) {
+      expect(Number.isFinite(e.deltaDecayed)).toBe(true)
+      expect(Number.isFinite(e.attemptsThisWeek)).toBe(true)
+    }
+  })
+
+  it('production wall hero stays finite with the legacy row', () => {
+    const entries = summarizeWeeklyProgress(fp, graph)
+    const wall = deriveProductionWallView(fp, entries, TODAY)
+    expect(Number.isFinite(wall.heroCount)).toBe(true)
+    expect(Number.isFinite(wall.speakingMinutes)).toBe(true)
   })
 })
