@@ -7531,5 +7531,1288 @@
       "translation-to-norwegian"
     ],
     "notes": "'avslutningsvis' — in closing/to conclude (formal adverb); V2 inversion after fronting"
+  },
+  {
+    "id": "b2-sv-101",
+    "norwegian": "Selv om resultatene var lovende, er det for tidlig å trekke sikre konklusjoner.",
+    "english": "Although the results were promising, it is too early to draw firm conclusions.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Concessive 'selv om'-clause fronted for rhetorical effect; same meaning as 'resultatene var lovende, men det er for tidlig...' — teaches how fronting shifts stylistic weight"
+  },
+  {
+    "id": "b2-sv-102",
+    "norwegian": "Ikke bare er prisen høy, men kvaliteten er heller ikke det man kunne forvente.",
+    "english": "Not only is the price high, but the quality is not what one might expect either.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "commerce",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "Fronted negative 'ikke bare' triggers inversion; stylistic contrast with a neutral SVO equivalent"
+  },
+  {
+    "id": "b2-sv-103",
+    "norwegian": "Det som overrasket oss mest, var at deltakerne svarte så raskt.",
+    "english": "What surprised us most was that the participants responded so quickly.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Cleft construction 'det som ... var at' — fronts the point of surprise; compare plain 'vi ble mest overrasket over at...'"
+  },
+  {
+    "id": "b2-sv-104",
+    "norwegian": "Hadde vi hatt mer tid, ville vi ha gjennomført en grundigere analyse.",
+    "english": "Had we had more time, we would have carried out a more thorough analysis.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "research",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "Inverted conditional without 'hvis' — formal/literary register; contrast with 'hvis vi hadde hatt mer tid'"
+  },
+  {
+    "id": "b2-sv-105",
+    "norwegian": "Rapporten er skrevet på en klar og konsis måte, noe som gjør den lett tilgjengelig.",
+    "english": "The report is written in a clear and concise way, which makes it easily accessible.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "relative-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'noe som' as a non-restrictive relative pronoun referring to the whole preceding clause — a stylistic device absent in everyday speech"
+  },
+  {
+    "id": "b2-sv-107",
+    "norwegian": "Det er en ting å love endringer; en helt annen ting er å faktisk gjennomføre dem.",
+    "english": "It is one thing to promise changes; quite another thing is to actually implement them.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "politics",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "contrast"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Rhetorical antithesis using ellipsis in the second clause; stylistically stronger than 'det er vanskelig å gjennomføre det man lover'"
+  },
+  {
+    "id": "b2-sv-108",
+    "norwegian": "Tiltaket har hatt en positiv effekt — om enn begrenset — på arbeidsledigheten i regionen.",
+    "english": "The measure has had a positive effect — albeit limited — on unemployment in the region.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "society",
+      "economy"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "Parenthetical concession 'om enn' (albeit) inserted mid-sentence — a formal stylistic hedge; contrast with a separate concessive clause"
+  },
+  {
+    "id": "b2-sv-109",
+    "norwegian": "Snarere enn å avvise forslaget, burde man vurdere det grundig.",
+    "english": "Rather than rejecting the proposal, one should consider it thoroughly.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "'snarere enn å' (rather than + infinitive) — formal contrastive framing; inversion after fronted adverbial"
+  },
+  {
+    "id": "b2-sv-110",
+    "norwegian": "Problemet er ikke mangel på ressurser, men snarere mangel på vilje til å bruke dem.",
+    "english": "The problem is not a lack of resources, but rather a lack of willingness to use them.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "politics",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ikke ... men snarere' (not ... but rather) — stylistic correction construction that redirects the reader's frame"
+  },
+  {
+    "id": "b2-sv-111",
+    "norwegian": "Så vel ledelsen som de ansatte var enige om at endringen var nødvendig.",
+    "english": "Both management and employees agreed that the change was necessary.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "agreement"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'så vel ... som' (both ... and) — formal correlative; more elevated register than 'både ... og'"
+  },
+  {
+    "id": "b2-sv-112",
+    "norwegian": "Hva angår budsjettet, _____ det nødvendig med ytterligere diskusjon.",
+    "english": "As for the budget, further discussion is necessary.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er — V2 after fronted topic phrase 'hva angår budsjettet'; 'hva angår' is a formal topic-fronting device"
+  },
+  {
+    "id": "b2-sv-113",
+    "norwegian": "Nettopp fordi situasjonen er kompleks, krever den en nyansert tilnærming.",
+    "english": "Precisely because the situation is complex, it requires a nuanced approach.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "Fronted causal clause with emphatic 'nettopp' — intensifies the logical connection; stylistically more forceful than 'siden situasjonen er kompleks'"
+  },
+  {
+    "id": "b2-sv-114",
+    "norwegian": "Langt fra å løse problemet, har tiltaket skapt nye utfordringer.",
+    "english": "Far from solving the problem, the measure has created new challenges.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "politics",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'langt fra å' (far from + infinitive) — formal adversative construction; inversion after fronted phrase"
+  },
+  {
+    "id": "b2-sv-115",
+    "norwegian": "Det er ikke alltid at den raskeste løsningen er den beste.",
+    "english": "It is not always the case that the quickest solution is the best one.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "general",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Cleft-like construction 'det er ikke alltid at' — formal generalisation device; stylistically heavier than 'den raskeste løsningen er ikke alltid den beste'"
+  },
+  {
+    "id": "b2-sv-116",
+    "norwegian": "Uavhengig av utfallet vil erfaringene vi har gjort, være verdifulle for fremtidige prosjekter.",
+    "english": "Regardless of the outcome, the experience we have gained will be valuable for future projects.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "relative-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'uavhengig av' (regardless of) — formal fronted preposition phrase; embedded relative clause 'vi har gjort' with zero relative pronoun"
+  },
+  {
+    "id": "b2-sv-117",
+    "norwegian": "Enten man liker det eller ikke, er globalisering et faktum vi må forholde oss til.",
+    "english": "Whether one likes it or not, globalisation is a fact we must relate to.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "society",
+      "politics"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Concessive 'enten ... eller ikke' fronted with V2; stylistic alternative to 'selv om mange ikke liker det'"
+  },
+  {
+    "id": "b2-sv-118",
+    "norwegian": "Til tross for at rapporten ble levert i tide, ble konklusjonene møtt med skepsis.",
+    "english": "Despite the report being delivered on time, the conclusions were met with scepticism.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "'til tross for at' (despite the fact that) — formal concessive; contrast with informal 'selv om'"
+  },
+  {
+    "id": "b2-sv-119",
+    "norwegian": "Det er nettopp i møtet mellom ulike perspektiver at de beste ideene oppstår.",
+    "english": "It is precisely in the meeting of different perspectives that the best ideas arise.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "academic",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "cleft"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "Full cleft 'det er ... at' with a prepositional phrase as the focus; literary/formal register"
+  },
+  {
+    "id": "b2-sv-120",
+    "norwegian": "Verken mangel på penger eller mangel på tid kan forklare den svake fremgangen.",
+    "english": "Neither a lack of money nor a lack of time can explain the weak progress.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Fronted 'verken ... eller' (neither ... nor) — formal double negation; inversion after fronted negative subject"
+  },
+  {
+    "id": "b2-nr-101",
+    "norwegian": "Jeg er litt usikker på om forslaget egentlig holder mål, for å si det ærlig.",
+    "english": "I am a bit unsure whether the proposal really holds up, to be honest.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Informal hedging: 'litt usikker på om', 'for å si det ærlig' — contrast with formal 'det kan stilles spørsmål ved om forslaget er tilstrekkelig'"
+  },
+  {
+    "id": "b2-nr-102",
+    "norwegian": "Vi tillater oss å bemerke at de avtalte fristene ikke er overholdt.",
+    "english": "We allow ourselves to note that the agreed deadlines have not been met.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'tillater oss å bemerke' — highly formal, almost legalistic register for raising a complaint; contrast with informal 'vi synes dere ikke har holdt fristene'"
+  },
+  {
+    "id": "b2-nr-103",
+    "norwegian": "Mellom oss sagt er det ingen som tror at dette prosjektet vil lykkes.",
+    "english": "Between us, nobody really believes this project will succeed.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'mellom oss sagt' — colloquial confidence-marker (between you and me); signals informal register shift; V2 after fronted phrase"
+  },
+  {
+    "id": "b2-nr-104",
+    "norwegian": "Departementet _____ til at saken vil bli behandlet innen utgangen av kvartalet.",
+    "english": "The ministry points to the matter being handled by the end of the quarter.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "politics"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "viser — 'departementet viser til at' is a fixed formal bureaucratic phrase meaning the ministry refers/points to; not interchangeable with casual 'sier'"
+  },
+  {
+    "id": "b2-nr-105",
+    "norwegian": "Det er ikke akkurat slik vi hadde sett for oss at samarbeidet ville utvikle seg.",
+    "english": "This is not quite how we had envisioned the collaboration would develop.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "Understated informal criticism; utvikle seg (develop) is the natural verb; contrast with formal samarbeidet har ikke innfridd forventningene"
+  },
+  {
+    "id": "b2-nr-106",
+    "norwegian": "Det fremkommer av dokumentasjonen at selskapet ikke har fulgt gjeldende regelverk.",
+    "english": "It emerges from the documentation that the company has not followed the applicable regulations.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "legal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'det fremkommer av' — formal/official register for 'it emerges from'; 'gjeldende regelverk' (applicable regulations) is bureaucratic vocabulary"
+  },
+  {
+    "id": "b2-nr-107",
+    "norwegian": "Jeg skjønner hva du mener, men jeg er ikke helt enig i konklusjonen din.",
+    "english": "I understand what you mean, but I do not entirely agree with your conclusion.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ikke helt enig' (not entirely in agreement) — the partial negation softens the disagreement; informal spoken register; contrast with formal 'vi finner ikke grunnlag for å slutte oss til konklusjonen'"
+  },
+  {
+    "id": "b2-nr-108",
+    "norwegian": "Det er en sak for styret å avgjøre, og vi ber om at den behandles i henhold til vedtektene.",
+    "english": "This is a matter for the board to decide, and we request that it be handled in accordance with the statutes.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "legal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'ber om at' + subjunctive-like construction; 'i henhold til vedtektene' — formal legal register; note the tonal distance from everyday speech"
+  },
+  {
+    "id": "b2-nr-109",
+    "norwegian": "Æsj, jeg visste jo at det kom til å gå galt — det var bare et tidsspørsmål.",
+    "english": "Ugh, I knew it was going to go wrong — it was only a matter of time.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Colloquial register: discourse particle 'æsj', epistemic 'jo' (as you'd expect); 'et tidsspørsmål' — informal spoken Norwegian"
+  },
+  {
+    "id": "b2-nr-110",
+    "norwegian": "Jeg tillater meg å stille spørsmål ved om de fremlagte tallene er pålitelige.",
+    "english": "I allow myself to question whether the presented figures are reliable.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'tillater meg å stille spørsmål ved om' — extremely formal critical register; the indirectness is the register signal; contrast with blunt 'jeg tror ikke tallene stemmer'"
+  },
+  {
+    "id": "b2-nr-111",
+    "norwegian": "Kollegaen min er flink nok, men han har en tendens til å _____ ting unødvendig.",
+    "english": "My colleague is capable enough, but he has a tendency to overcomplicate things.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "komplisere — komplisere ting unødvendig = overcomplicate; overkomplisere is not a real Norwegian word"
+  },
+  {
+    "id": "b2-nr-112",
+    "norwegian": "Herved bekreftes det at søknaden er mottatt og vil bli behandlet innen tre virkedager.",
+    "english": "It is hereby confirmed that the application has been received and will be processed within three working days.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "legal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'herved bekreftes det at' — archaic/official formula used in formal correspondence and receipts; entirely absent from informal register"
+  },
+  {
+    "id": "b2-nr-113",
+    "norwegian": "Han snakket i vei om alt mulig, uten å egentlig si noe som helst av substans.",
+    "english": "He talked on and on about everything, without actually saying anything of substance.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'snakke i vei' (talk on and on) — informal idiomatic phrase; 'alt mulig' and 'noe som helst' reinforce informal register"
+  },
+  {
+    "id": "b2-nr-114",
+    "norwegian": "Partene er blitt enige om at tvisten skal løses ved voldgift fremfor domstolsbehandling.",
+    "english": "The parties have agreed that the dispute shall be resolved by arbitration rather than court proceedings.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "legal",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'er blitt enige om at' + 'fremfor' — formal contractual register; 'voldgift' and 'domstolsbehandling' are technical legal vocabulary"
+  },
+  {
+    "id": "b2-nr-115",
+    "norwegian": "Å si det rett ut: planene holder ikke vann, og det vet alle i rommet.",
+    "english": "To put it plainly: the plans do not hold water, and everyone in the room knows it.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'å si det rett ut' — meta-discourse marker announcing a register shift to blunt directness; 'holde vann' is a semi-formal idiom"
+  },
+  {
+    "id": "b2-nr-116",
+    "norwegian": "I den grad det er mulig, bør man unngå å trekke forhastede konklusjoner.",
+    "english": "To the extent that it is possible, one should avoid drawing hasty conclusions.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "'i den grad det er mulig' — formal hedging quantifier phrase; V2 after fronted clause; contrast with informal 'hvis det er mulig'"
+  },
+  {
+    "id": "b2-nr-117",
+    "norwegian": "Det var egentlig et ganske kjedelig møte, men sjefen virket fornøyd, så.",
+    "english": "It was actually quite a boring meeting, but the boss seemed satisfied, so.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "Spoken informal: trailing så particle; neuter møte needs article et"
+  },
+  {
+    "id": "b2-nr-118",
+    "norwegian": "Saksbehandlingstiden _____ ikke overstige seks uker fra søknadsdato.",
+    "english": "The processing time shall not exceed six weeks from the date of application.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "legal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skal — deontic 'skal' in official/legal language; 'saksbehandlingstid' and 'søknadsdato' are bureaucratic compound nouns"
+  },
+  {
+    "id": "b2-nr-119",
+    "norwegian": "Det er jo ikke verdens undergang om vi ikke rekker fristen, da.",
+    "english": "It is not the end of the world if we do not make the deadline, you know.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Informal oral register: discourse particles 'jo' and 'da'; hyperbole 'verdens undergang'; contrast with formal deadline correspondence"
+  },
+  {
+    "id": "b2-nr-120",
+    "norwegian": "Klagen er fremsatt innen fristen og vil bli undergitt en grundig saksbehandling.",
+    "english": "The complaint has been lodged within the deadline and will be subjected to a thorough case review.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "legal",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'fremsatt' (lodged/submitted) and 'undergitt en grundig saksbehandling' — formal administrative language found in official responses to complaints"
+  },
+  {
+    "id": "b2-pn-101",
+    "norwegian": "Vi ber om at tilbudet bekreftes skriftlig innen fredag den femte.",
+    "english": "We request that the offer be confirmed in writing by Friday the fifth.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ber om at ... bekreftes' — standard business correspondence formula; s-passive in subordinate clause"
+  },
+  {
+    "id": "b2-pn-102",
+    "norwegian": "Stillingen krever dokumentert erfaring fra prosjektledelse og gode kommunikasjonsevner.",
+    "english": "The position requires documented experience in project management and strong communication skills.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Job advertisement register: 'dokumentert erfaring fra' + noun phrase; compound 'kommunikasjonsevner' — core professional vocabulary"
+  },
+  {
+    "id": "b2-pn-103",
+    "norwegian": "Vedlagt finner du vår oppdaterte prisliste samt de generelle leveringsbetingelsene.",
+    "english": "Enclosed you will find our updated price list as well as the general delivery terms.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "commerce"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian",
+      "word-order"
+    ],
+    "notes": "'vedlagt finner du' — fronted participial phrase triggers inversion; standard email/letter opener in commercial correspondence"
+  },
+  {
+    "id": "b2-pn-104",
+    "norwegian": "Styret har vedtatt å iverksette en ekstern gjennomgang av selskapets økonomi.",
+    "english": "The board has resolved to initiate an external review of the company's finances.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'vedtatt å iverksette' (resolved to initiate) — boardroom register; 'ekstern gjennomgang' (external review) is standard corporate governance vocabulary"
+  },
+  {
+    "id": "b2-pn-105",
+    "norwegian": "Vi viser til din e-post av 28. mai og _____ den sene tilbakemeldingen.",
+    "english": "We refer to your email of 28 May and apologise for the late response.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "beklager — beklage takes a direct object, no for (unlike English apologise for); answer: beklager"
+  },
+  {
+    "id": "b2-pn-106",
+    "norwegian": "Søkeren må dokumentere at vedkommende behersker norsk på minimum B2-nivå.",
+    "english": "The applicant must document that they command Norwegian at a minimum B2 level.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'vedkommende' — formal gender-neutral third person pronoun used in official documents; 'beherske' (to command/master) is a professional register verb"
+  },
+  {
+    "id": "b2-pn-107",
+    "norwegian": "Etter en grundig vurdering har vi besluttet å ikke gå videre med din søknad på dette tidspunktet.",
+    "english": "After a thorough assessment, we have decided not to proceed with your application at this time.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'etter en grundig vurdering' — formal rejection letter opener; 'besluttet å ikke' vs 'ikke besluttet å' — placement of negation with infinitive"
+  },
+  {
+    "id": "b2-pn-108",
+    "norwegian": "Alle ansatte _____ om å gjøre seg kjent med den nye personalpolitikken innen 1. juli.",
+    "english": "All employees are asked to familiarise themselves with the new personnel policy by 1 July.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "anmodes — anmodes om å (never til); answer: anmodes"
+  },
+  {
+    "id": "b2-pn-109",
+    "norwegian": "Konferansen samler ledende eksperter innen bærekraft, innovasjon og digital transformasjon.",
+    "english": "The conference brings together leading experts in sustainability, innovation, and digital transformation.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'samler ledende eksperter innen' — professional event description register; 'innen' (within/in the field of) vs 'i' — preposition choice in professional contexts"
+  },
+  {
+    "id": "b2-pn-110",
+    "norwegian": "Det er et krav at alle tilbydere leverer et fullstendig anbud med relevante referanser.",
+    "english": "It is a requirement that all tenderers submit a complete bid with relevant references.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "commerce"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'tilbydere' (tenderers) and 'anbud' (tender/bid) are procurement vocabulary; 'det er et krav at' — formal obligation construction"
+  },
+  {
+    "id": "b2-pn-111",
+    "norwegian": "Rapporten skal overleveres til oppdragsgiver senest to uker etter at feltarbeidet er avsluttet.",
+    "english": "The report shall be delivered to the client no later than two weeks after the fieldwork has been completed.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'oppdragsgiver' (client/principal) — project management vocabulary; 'senest' (no later than) and 'overleveres' (be delivered) are formal contractual terms"
+  },
+  {
+    "id": "b2-pn-112",
+    "norwegian": "Vi tar sikte på å ferdigstille prosjektet innen avtalt tidsfrist og innenfor det oppsatte budsjettet.",
+    "english": "We aim to complete the project within the agreed deadline and within the set budget.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "commerce"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'tar sikte på å' (aim to) — standard professional goal statement; 'ferdigstille' vs 'fullføre' — register distinction; 'oppsatt budsjett' (set/established budget)"
+  },
+  {
+    "id": "b2-pn-113",
+    "norwegian": "Kandidater med relevant mastergrad vil bli foretrukket, men det er ikke et absolutt krav.",
+    "english": "Candidates with a relevant master's degree will be preferred, but it is not an absolute requirement.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "education"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'vil bli foretrukket' — future passive in job advertisement register; hedging 'men det er ikke et absolutt krav' is a standard qualification softener"
+  },
+  {
+    "id": "b2-pn-114",
+    "norwegian": "Eventuelle innsigelser mot vedtaket må fremsettes skriftlig innen klagefristen på tre uker.",
+    "english": "Any objections to the decision must be submitted in writing within the three-week appeal period.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "legal",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'eventuelle innsigelser' (any objections) — formal legal/administrative vocabulary; 'klagefrist' (appeal deadline) is a key legal term; 'fremsettes skriftlig' — formal passive imperative"
+  },
+  {
+    "id": "b2-pn-115",
+    "norwegian": "Tilbudet er gyldig i 30 dager fra tilbudsdato, med mindre annet er avtalt skriftlig.",
+    "english": "The offer is valid for 30 days from the date of the offer, unless otherwise agreed in writing.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "commerce",
+      "legal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'med mindre annet er avtalt skriftlig' — standard commercial clause; 'tilbudsdato' (date of offer) is a commerce compound; tests ability to produce formal contract language"
+  },
+  {
+    "id": "b2-pn-117",
+    "norwegian": "Partene er enige om at tvister som oppstår i tilknytning til denne avtalen, skal behandles etter norsk rett.",
+    "english": "The parties agree that disputes arising in connection with this agreement shall be governed by Norwegian law.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "legal",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'i tilknytning til' (in connection with) — formal legal prepositional phrase; 'etter norsk rett' (under Norwegian law) is standard contract language"
+  },
+  {
+    "id": "b2-pn-118",
+    "norwegian": "Vi setter stor pris på det gode samarbeidet og ser frem til å videreføre dette i det kommende året.",
+    "english": "We greatly appreciate the good collaboration and look forward to continuing it in the coming year.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'setter stor pris på' + 'ser frem til å' — paired professional courtesy phrases used in partnership correspondence and year-end communications"
+  },
+  {
+    "id": "b2-pn-119",
+    "norwegian": "Avdelingsleder er ansvarlig for at alle medarbeidere gjennomfører det obligatoriske sikkerhetskurset.",
+    "english": "The department manager is responsible for ensuring that all staff complete the mandatory safety course.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "subordinate-clause"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'ansvarlig for at' + subordinate clause — formal management responsibility construction; 'medarbeidere' (staff/co-workers) is the neutral professional term vs 'ansatte'"
+  },
+  {
+    "id": "b2-pn-120",
+    "norwegian": "Arbeidsgiver forbeholder seg retten til å endre arbeidsoppgaver innenfor rammen av stillingsbeskrivelsen.",
+    "english": "The employer reserves the right to change work tasks within the scope of the job description.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "legal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-english"
+    ],
+    "notes": "'forbeholder seg retten til å' (reserves the right to) — standard employment contract formula; 'innenfor rammen av' (within the scope/framework of) is formal register"
   }
 ]
