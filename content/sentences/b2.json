@@ -8814,5 +8814,1627 @@
       "translation-to-english"
     ],
     "notes": "'forbeholder seg retten til å' (reserves the right to) — standard employment contract formula; 'innenfor rammen av' (within the scope/framework of) is formal register"
+  },
+  {
+    "id": "b2-sv2-201",
+    "norwegian": "Huset brant ned til grunnen fordi noen hadde glemt å slukke stearinlyset.",
+    "english": "The house burned down to the ground because someone had forgotten to blow out the candle.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Plain neutral register baseline — no stylistic elevation. Compare with formal variant using 'nedbrente' or literary inversion."
+  },
+  {
+    "id": "b2-sv2-202",
+    "norwegian": "Ned til grunnen brente huset — ikke én murstein stod igjen.",
+    "english": "Down to the ground the house burned — not a single brick remained.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Literary/rhetorical register: fronted adverbial for dramatic effect + short asyndetic follow-up clause. V2 inversion required after fronted element."
+  },
+  {
+    "id": "b2-sv2-203",
+    "norwegian": "Møtet ble avholdt i henhold til gjeldende prosedyrer og uten nevneverdige avvik.",
+    "english": "The meeting was held in accordance with current procedures and without noteworthy deviations.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Bureaucratic/administrative register: 'avholdt', 'i henhold til', 'gjeldende', 'nevneverdige avvik' are formal register markers."
+  },
+  {
+    "id": "b2-sv2-204",
+    "norwegian": "Vi fikk beskjed om at møtet var ferdig, og at alt gikk bra.",
+    "english": "We were told that the meeting was over and that everything went well.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Neutral conversational register baseline. Contrast with the formal version b2-sv2-203 — same event, very different register."
+  },
+  {
+    "id": "b2-sv2-205",
+    "norwegian": "Stille lå fjorden da solen gikk ned bak fjellene.",
+    "english": "Still lay the fjord as the sun went down behind the mountains.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Poetic/literary register: fronted predicate adjective 'stille' triggers subject-verb inversion — a hallmark of literary Bokmål style."
+  },
+  {
+    "id": "b2-sv2-206",
+    "norwegian": "Fjorden var stille da solen gikk ned bak fjellene.",
+    "english": "The fjord was still as the sun went down behind the mountains.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Neutral register version of b2-sv2-205. Gap version: 'Fjorden var _____ da solen gikk ned bak fjellene.' Expected answer: stille"
+  },
+  {
+    "id": "b2-sv2-207",
+    "norwegian": "Da vi kom hjem, var pengene allerede _____ brukt, og ingenting var igjen av arven.",
+    "english": "When we came home, the money was already spent, and nothing remained of the inheritance.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "economy"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "var — stative passive. The pluperfect framing ('da vi kom hjem') and 'allerede' require a resultant-state reading, blocking 'ble brukt' (which describes the action/event, not the resulting state). Expected answer: var"
+  },
+  {
+    "id": "b2-sv2-208",
+    "norwegian": "Borte var pengene, og ingenting var igjen av arven.",
+    "english": "Gone was the money, and nothing remained of the inheritance.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "economy"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Literary register: fronted predicative adjective 'borte' triggers inversion 'var pengene'. Same content as gap b2-sv2-207 but rhetorically elevated."
+  },
+  {
+    "id": "b2-sv2-209",
+    "norwegian": "Det skal bemerkes at rapporten ikke dekker perioden etter 2020.",
+    "english": "It should be noted that the report does not cover the period after 2020.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "research",
+      "academic"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Academic/formal register: impersonal 'det skal bemerkes at' — a register-specific hedging formula. Contrast with spoken 'jeg vil bare si at rapporten ikke...'"
+  },
+  {
+    "id": "b2-sv2-210",
+    "norwegian": "Barnet gråt. Ingenting hjalp — ikke sang, ikke kos, ikke mat.",
+    "english": "The child wept. Nothing helped — not singing, not cuddling, not food.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "family"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Narrative literary register: short staccato opening sentence + tricolon with anaphoric 'ikke'. This rhetorical patterning marks literary prose style. Note: 'ingenting' is always one word in Bokmål; 'verken ... verken ... verken' is not a standard Bokmål correlative pattern — use 'ikke ... ikke ... ikke' for anaphoraic negation across a list."
+  },
+  {
+    "id": "b2-sv2-211",
+    "norwegian": "Vi ber om at kunden _____ seg til nærmeste filial for videre veiledning.",
+    "english": "We ask that the customer contact the nearest branch for further guidance.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "henvender — formal customer-service register. 'Be om at' + present tense in subordinate clause is a formal instruction pattern."
+  },
+  {
+    "id": "b2-sv2-212",
+    "norwegian": "Sakte, sakte steg solen over horisonten og farget himmelen i rosa og gull.",
+    "english": "Slowly, slowly the sun rose over the horizon and coloured the sky in pink and gold.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Literary register: doubled adverb 'sakte, sakte' for rhythmic effect + V2 inversion. The repetition is a deliberate stylistic device, not an error."
+  },
+  {
+    "id": "b2-sv2-213",
+    "norwegian": "Selskapet har til dags dato ikke mottatt noen skriftlig bekreftelse på ordren.",
+    "english": "The company has to date not received any written confirmation of the order.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'til dags dato' — formal temporal phrase (to date/as of today); 'skriftlig bekreftelse' — formal noun phrase. Register markers throughout."
+  },
+  {
+    "id": "b2-sv2-214",
+    "norwegian": "Vinden tok tak i håret hennes og _____ det ut over skuldrene som et vilt flagg.",
+    "english": "The wind caught her hair and spread it across her shoulders like a wild flag.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "spredte — literary/narrative register. Coordinated past tense verbs; the simile 'som et vilt flagg' signals literary style. Expected answer: spredte"
+  },
+  {
+    "id": "b2-sv2-215",
+    "norwegian": "Ovennevnte forhold tilsier at kontrakten bør reforhandles innen utgangen av inneværende kvartal.",
+    "english": "The above-mentioned circumstances suggest that the contract should be renegotiated by the end of the current quarter.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Ovennevnte' (above-mentioned), 'tilsier' (suggest/indicate), 'inneværende kvartal' (current quarter) — all high-register administrative markers."
+  },
+  {
+    "id": "b2-sv2-216",
+    "norwegian": "Han hadde alltid lurt på hva som lå bak det stille smilet hennes.",
+    "english": "He had always wondered what lay behind her quiet smile.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Neutral narrative register — plain prose, no rhetorical elevation. Good baseline for comparing against literary variants."
+  },
+  {
+    "id": "b2-sv2-217",
+    "norwegian": "Hvem var hun egentlig, denne kvinnen med det stille smilet som aldri rakk øynene?",
+    "english": "Who was she really, this woman with the quiet smile that never reached her eyes?",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Literary register: rhetorical question + appositive 'denne kvinnen' placed after subject for emphasis — a hallmark of literary Bokmål prose style."
+  },
+  {
+    "id": "b2-sv2-218",
+    "norwegian": "Klagen _____ behandlet i samsvar med selskapets gjeldende reklamasjonsprosedyrer.",
+    "english": "The complaint will be handled in accordance with the company's current complaints procedures.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "vil bli — future passive in formal customer-service/legal register. 'Reklamasjonsprosedyrer' is a compound noun typical of administrative Bokmål."
+  },
+  {
+    "id": "b2-sv2-219",
+    "norwegian": "Den kvelden tenkte hun på alt det hun aldri hadde sagt til ham.",
+    "english": "That evening she thought of everything she had never said to him.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "social",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Literary narrative register: fronted time expression, understated emotional content. The unsaid ('aldri hadde sagt til ham') is a common literary device. Note: 'si noe til noen' requires the preposition 'til' in standard modern Bokmål — 'sagt ham' without 'til' is archaic."
+  },
+  {
+    "id": "b2-sv2-220",
+    "norwegian": "Vi ser ikke bort fra at ytterligere tiltak kan bli nødvendige på et senere tidspunkt.",
+    "english": "We do not rule out that further measures may become necessary at a later stage.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Ser ikke bort fra' (do not rule out) + 'på et senere tidspunkt' (at a later stage) — formal hedging constructions typical of press releases and official statements."
+  },
+  {
+    "id": "b2-sv2-221",
+    "norwegian": "Hva vet vi egentlig om hva som skjer i hodet på folk når de sover?",
+    "english": "What do we really know about what happens in people's heads when they sleep?",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "health",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Popular-science/journalistic register: accessible rhetorical question to engage readers. Contrast with academic 'det foreligger begrenset forskning på...' (b2-aw-007)."
+  },
+  {
+    "id": "b2-sv2-222",
+    "norwegian": "Søknaden ble avslått under henvisning til manglende dokumentasjon av de _____ opplysningene.",
+    "english": "The application was rejected with reference to insufficient documentation of the required information.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "etterspurte — bureaucratic register. 'Avslått under henvisning til' is a standard administrative rejection formula. Expected answer: etterspurte (required/requested)"
+  },
+  {
+    "id": "b2-sv2-223",
+    "norwegian": "Foran ham lå byen, glittrende og ubønnhørlig som alltid.",
+    "english": "Before him lay the city, glittering and relentless as always.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Literary register: fronted place adverbial + inversion 'lå byen'; participial and adjectival appositive after noun — typical of literary descriptive prose."
+  },
+  {
+    "id": "b2-sv2-224",
+    "norwegian": "Departementet _____ med denne muligheten til å minne om at fristen for innsending er 1. mars.",
+    "english": "The Ministry takes this opportunity to remind that the deadline for submission is 1 March.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "benytter — formal institutional register. 'Benytte anledningen til å' is a set bureaucratic formula. Expected answer: benytter"
+  },
+  {
+    "id": "b2-sv2-225",
+    "norwegian": "Noen ganger er det de enkle ordene som treffer hardest: 'Jeg vet ikke.'",
+    "english": "Sometimes it is the simple words that hit hardest: 'I don't know.'",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Essay/reflective register: cleft construction for emphasis + colon + quoted fragment for stylistic punch. A recognisable feature of opinion journalism."
+  },
+  {
+    "id": "b2-sv2-226",
+    "norwegian": "Det er vanskelig å overvurdere betydningen av god kommunikasjon i en krisesituasjon.",
+    "english": "It is difficult to overestimate the importance of good communication in a crisis situation.",
+    "concept_ids": [
+      "stylistic-variation"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Det er vanskelig å overvurdere betydningen av' — formal evaluative framing used in reports, speeches and opinion pieces."
+  },
+  {
+    "id": "b2-nr2-201",
+    "norwegian": "Det er synd du ikke kunne komme — vi savnet deg på festen!",
+    "english": "It's a shame you couldn't come — we missed you at the party!",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Warm informal register: 'synd', 'savnet', exclamation mark. Fully inappropriate in a formal letter; teaches learners to recognise register through multiple markers at once."
+  },
+  {
+    "id": "b2-nr2-202",
+    "norwegian": "Selskapet beklager det inntrufne og vil iverksette tiltak for å hindre gjentakelse.",
+    "english": "The company regrets what has occurred and will implement measures to prevent a recurrence.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Det inntrufne' (what has occurred — nominalised past participle), 'iverksette tiltak', 'hindre gjentakelse' — formal corporate apology register."
+  },
+  {
+    "id": "b2-nr2-203",
+    "norwegian": "Har du snakket med ham siden? Jeg hørte det ble litt kleint mellom dere.",
+    "english": "Have you spoken to him since? I heard things got a bit awkward between you.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Informal spoken register: 'kleint' (awkward/uncomfortable) — colloquial adjective; 'siden' as casual time adverb. Impossible to render in formal Bokmål without register shift."
+  },
+  {
+    "id": "b2-nr2-204",
+    "norwegian": "Partene er enige om at tvisten _____ løst ved mekling før eventuelt søksmål reises.",
+    "english": "The parties agree that the dispute shall be resolved through mediation before any lawsuit is filed.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skal — legal/contractual register. 'Tvist' (dispute), 'mekling' (mediation), 'søksmål reises' (lawsuit is filed) — all legal Bokmål. Note: 'iverksette' is not used with lawsuits; correct verbs are 'reises' or 'anlegges'. Expected answer: skal"
+  },
+  {
+    "id": "b2-nr2-205",
+    "norwegian": "Apropos helgen — har du lyst til å bli med på tur til Nordmarka på lørdag?",
+    "english": "Speaking of the weekend — do you fancy coming on a trip to Nordmarka on Saturday?",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Apropos' as casual discourse marker; 'ha lyst til å bli med' — informal invitation formula. Teaches learners to recognise and produce informal register transitions."
+  },
+  {
+    "id": "b2-nr2-206",
+    "norwegian": "I samsvar med punkt 4.2 i avtalen _____ leverandøren forpliktet til å utbedre manglene innen ti virkedager.",
+    "english": "In accordance with clause 4.2 of the agreement, the supplier is obligated to remedy the deficiencies within ten working days.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er — legal-contractual register. 'I samsvar med', 'forpliktet til å utbedre', 'virkedager' — high-register legal markers. Expected answer: er"
+  },
+  {
+    "id": "b2-nr2-207",
+    "norwegian": "Æsj, den sausen var helt på trynet! Hvordan klarte de å ødelegge noe så enkelt?",
+    "english": "Ugh, that sauce was absolutely terrible! How did they manage to ruin something so simple?",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'På trynet' — very informal/slangy expression meaning awful/face-down. Register markers: 'æsj', 'helt på trynet', emphatic rhetorical question."
+  },
+  {
+    "id": "b2-nr2-208",
+    "norwegian": "Kunden _____ herved om at garantiperioden for det aktuelle produktet er utløpt.",
+    "english": "The customer is hereby informed that the warranty period for the product in question has expired.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "informeres — standard s-passive in formal notification register. 'Herved', 'det aktuelle produktet', 'utløpt' are formal register markers. 'Kunden informeres herved om at' is the canonical Norwegian formal notification formula. 'Gjøres informert' is a non-native calque and should not be used. Expected answer: informeres"
+  },
+  {
+    "id": "b2-nr2-209",
+    "norwegian": "Tusen takk for i går — det var kjempegøy og maten var helt fantastisk!",
+    "english": "Thanks so much for yesterday — it was great fun and the food was absolutely fantastic!",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Informal thank-you message register: 'kjempegøy', 'helt fantastisk' — informal intensifiers; 'for i går' — casual Norwegian social formula."
+  },
+  {
+    "id": "b2-nr2-210",
+    "norwegian": "Styret ønsker med dette å uttrykke sin anerkjennelse for den innsatsen direktøren har ytt i sin funksjonsperiode.",
+    "english": "The board wishes herewith to express its appreciation for the contribution the director has made during his term of office.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Med dette' (herewith), 'anerkjennelse' (appreciation/recognition), 'ytt' (past participle of 'yte' — to contribute/render), 'funksjonsperiode' — all very high formal register."
+  },
+  {
+    "id": "b2-nr2-211",
+    "norwegian": "Dere, jeg tror jeg dumpet eksamen. Vet ikke hva jeg skal si til foreldrene mine.",
+    "english": "Guys, I think I failed the exam. Don't know what to tell my parents.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "education",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Dere' as informal group address; 'dumpe eksamen' — informal verb for failing. Sentence-initial 'vet ikke' (no subject) — informal ellipsis."
+  },
+  {
+    "id": "b2-nr2-212",
+    "norwegian": "Det fremgår av saksdokumentene at beslutningen ble fattet uten tilstrekkelig forankring i styret.",
+    "english": "It is clear from the case documents that the decision was made without sufficient grounding in the board.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Fremgår av saksdokumentene' (is apparent from the case documents), 'tilstrekkelig forankring' (sufficient grounding/anchoring) — formal investigative/governance register."
+  },
+  {
+    "id": "b2-nr2-213",
+    "norwegian": "Nå som vi er ferdige med eksamen, _____ vi bare legge oss på sofaen og gjøre absolutt ingenting.",
+    "english": "Now that we've finished the exams, we can just lie on the sofa and do absolutely nothing.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "kan — informal spoken register with 'bare' as softener. Expected answer: kan. Note informal 'legge oss på sofaen og gjøre absolutt ingenting' — hyperbolic informality."
+  },
+  {
+    "id": "b2-nr2-214",
+    "norwegian": "Vi viser til Deres klage datert 3. juni og ønsker å redegjøre for saksforløpet.",
+    "english": "We refer to your complaint dated 3 June and wish to account for the course of events.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Viser til' (refer to), 'datert' (dated), 'redegjøre for' (account for), 'saksforløpet' (course of events) — formal written complaint-response register."
+  },
+  {
+    "id": "b2-nr2-215",
+    "norwegian": "Hei, bare en rask beskjed — jeg blir litt sen i dag, maks kvarter.",
+    "english": "Hi, just a quick message — I'll be a bit late today, fifteen minutes at most.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Casual workplace message register (chat/SMS to colleague): 'bare en rask beskjed', 'maks kvarter' — informal brevity markers. Compare with formal absence notification."
+  },
+  {
+    "id": "b2-nr2-216",
+    "norwegian": "Det er grunn til å anta at saken vil medføre ytterligere kostnader, og _____ bør selskapet sette av midler.",
+    "english": "There is reason to assume that the matter will entail further costs, and the company should therefore set aside funds.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "derfor — formal connector in a second main clause with V2 inversion ('og derfor bør selskapet...'). 'Medføre' (entail), 'sette av midler' (set aside funds) — financial-formal register. Note: 'hvorfor' as a relative connector meaning 'for which reason' is archaic in modern Bokmål and should not be taught as a current form. Expected answer: derfor"
+  },
+  {
+    "id": "b2-nr2-217",
+    "norwegian": "Å nei, ikke fortell meg at kampen er i kveld — jeg hadde totalt glemt det!",
+    "english": "Oh no, don't tell me the match is tonight — I had totally forgotten!",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Informal spoken outburst: 'å nei', 'ikke fortell meg at', 'totalt glemt' — informal intensifier and exclamatory register. Teaches contrast with neutral 'jeg hadde ikke husket at...'."
+  },
+  {
+    "id": "b2-nr2-218",
+    "norwegian": "Undertegnede har gjennomgått sakens dokumenter og kan bekrefte at alle formelle krav er oppfylt.",
+    "english": "The undersigned has reviewed the case documents and can confirm that all formal requirements have been met.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Undertegnede' (the undersigned) — very formal self-reference; 'gjennomgått sakens dokumenter', 'formelle krav er oppfylt' — legal/bureaucratic register."
+  },
+  {
+    "id": "b2-nr2-219",
+    "norwegian": "Det var ikke meningen å snakke lenge, men når man først begynner, er det vanskelig å stoppe.",
+    "english": "It wasn't intended to talk for long, but once you start, it's difficult to stop.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Neutral-informal register: self-deprecating conversational opener. Note the shift from 'man' (generic) to implied personal — a neutral spoken register pattern."
+  },
+  {
+    "id": "b2-nr2-220",
+    "norwegian": "Saken _____ oversendt kompetent myndighet for videre behandling og endelig avgjørelse.",
+    "english": "The matter has been forwarded to the competent authority for further processing and final decision.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "er blitt — or simply 'er' — formal bureaucratic passive. 'Kompetent myndighet', 'videre behandling', 'endelig avgjørelse' — administrative register markers. Expected answer: er"
+  },
+  {
+    "id": "b2-nr2-221",
+    "norwegian": "Jeg synes du fortjener litt ros — du har virkelig slitt hardt dette semesteret.",
+    "english": "I think you deserve a bit of praise — you have really worked hard this semester.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "education",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Warm spoken register: 'fortjene ros', 'slite hardt' — informal but sincere praise. Not as slangy as b2-nr2-207; teaches middle ground between formal and very informal."
+  },
+  {
+    "id": "b2-nr2-222",
+    "norwegian": "På vegne av organisasjonen vil jeg takke alle bidragsytere for deres uvurderlige innsats.",
+    "english": "On behalf of the organisation, I would like to thank all contributors for their invaluable efforts.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'På vegne av' (on behalf of), 'bidragsytere' (contributors), 'uvurderlig innsats' (invaluable effort) — formal ceremonial register for speeches and official correspondence."
+  },
+  {
+    "id": "b2-nr2-223",
+    "norwegian": "Oi, det visste jeg faktisk ikke! Lærer noe nytt hver dag, liksom.",
+    "english": "Oh, I actually didn't know that! You learn something new every day, you know.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "social",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Informal conversational register: 'oi' (mild surprise), 'faktisk' (actually — spoken filler), 'liksom' — informal discourse particle. Subject-less final clause is informal ellipsis."
+  },
+  {
+    "id": "b2-nr2-224",
+    "norwegian": "Kommunen _____ ha mottatt søknaden innen 15. august for at den skal tas under behandling.",
+    "english": "The municipality must have received the application by 15 August for it to be considered.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "formal",
+      "society"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "må — formal administrative instruction. 'Tas under behandling' — formal passive for 'be processed/considered'. Expected answer: må"
+  },
+  {
+    "id": "b2-nr2-225",
+    "norwegian": "Jeg skjønner ikke helt hva de er ute etter, men det virker som de vil ha noe konkret.",
+    "english": "I don't quite understand what they're after, but it seems like they want something concrete.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "informal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Neutral-informal spoken register: 'ikke helt', 'ute etter' (after/looking for), 'virker som' — common informal hedging expressions."
+  },
+  {
+    "id": "b2-nr2-226",
+    "norwegian": "Vi tillater oss å påpeke at de oppgitte opplysningene avviker fra de dokumenter vi sitter inne med.",
+    "english": "We take the liberty of pointing out that the stated information deviates from the documents in our possession.",
+    "concept_ids": [
+      "nuanced-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Tillater oss å påpeke' (take the liberty of pointing out), 'de oppgitte opplysningene' (the stated information), 'sitter inne med' (possess/have in our possession) — very high formal register."
+  },
+  {
+    "id": "b2-pn2-201",
+    "norwegian": "Viser til telefonsamtale av i dag og bekrefter herved vår bestilling av 50 enheter.",
+    "english": "With reference to today's telephone conversation, we hereby confirm our order of 50 units.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Subject-ellipsis in opening: 'viser til' (we refer to) — a standard Norwegian business letter formula where the subject 'vi' is omitted. 'Herved bekrefter' is the full form."
+  },
+  {
+    "id": "b2-pn2-202",
+    "norwegian": "Det vil bli avholdt et informasjonsmøte for alle ansatte tirsdag 10. juni klokken 10:00 i møterom A.",
+    "english": "An information meeting will be held for all employees on Tuesday 10 June at 10:00 in meeting room A.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Det vil bli avholdt' — future passive existential construction standard in workplace announcements. Note Norwegian date format and no comma before month."
+  },
+  {
+    "id": "b2-pn2-203",
+    "norwegian": "Vi anmoder om at fakturaen _____ vedlagt ved innsending av den fullstendige dokumentasjonen.",
+    "english": "We request that the invoice be enclosed when submitting the complete documentation.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "legges — 'anmode om at' takes present tense in subordinate clause; correct preposition: 'anmode om' (NOT 'anmode for'). Expected answer: legges"
+  },
+  {
+    "id": "b2-pn2-204",
+    "norwegian": "Stillingen krever dokumentert erfaring fra en tilsvarende rolle samt gode samarbeidsevner.",
+    "english": "The position requires documented experience from a comparable role as well as good collaborative skills.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Dokumentert erfaring' (documented experience), 'tilsvarende rolle' (comparable role), 'samarbeidsevner' (collaborative skills) — standard job-advertisement register in Norwegian."
+  },
+  {
+    "id": "b2-pn2-205",
+    "norwegian": "Som avtalt sender vi over den reviderte kontrakten for gjennomlesing og godkjenning.",
+    "english": "As agreed, we are forwarding the revised contract for review and approval.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Som avtalt' (as agreed) — standard email opening formula in Norwegian business communication. 'Sende over' is the informal-professional equivalent of the more formal 'oversende'."
+  },
+  {
+    "id": "b2-pn2-206",
+    "norwegian": "Vedlagt _____ årsrapport for 2024 samt revisors beretning.",
+    "english": "Enclosed please find the annual report for 2024 together with the auditor's report.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "følger — fronted 'vedlagt' triggers V2 inversion: 'vedlagt følger årsrapport'. This is a standard Norwegian formal letter enclosure formula. Expected answer: følger"
+  },
+  {
+    "id": "b2-pn2-207",
+    "norwegian": "Kandidaten bør ha erfaring med prosjektledelse og beherske norsk og engelsk flytende, både skriftlig og muntlig.",
+    "english": "The candidate should have project management experience and be fluent in Norwegian and English, both written and spoken.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Beherske ... flytende' (be fluent in) — standard CV/job-ad phrase. 'Skriftlig og muntlig' — the Norwegian paired formula for language proficiency."
+  },
+  {
+    "id": "b2-pn2-208",
+    "norwegian": "Sykefraværet i avdelingen _____ stabilt på rundt fem prosent gjennom hele kvartalet.",
+    "english": "Sickness absence in the department remained stable at around five per cent throughout the quarter.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "holdt seg — 'holde seg stabilt' is the standard HR/management register phrase for 'remained stable'. Expected answer: holdt seg"
+  },
+  {
+    "id": "b2-pn2-209",
+    "norwegian": "Vi setter pris på Deres interesse for stillingen og inviterer Dem herved til intervju torsdag 20. juni.",
+    "english": "We appreciate your interest in the position and hereby invite you to an interview on Thursday 20 June.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Formal job-interview invitation: 'Dem/Deres' formal address, 'herved inviterer' — formal placement of adverb. Note: Norwegian invitation letters use the formal T/V distinction more than everyday speech."
+  },
+  {
+    "id": "b2-pn2-210",
+    "norwegian": "For ytterligere informasjon ber vi Dem ta kontakt med vår kundeservice på telefon eller e-post.",
+    "english": "For further information, we ask that you contact our customer service by telephone or email.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Standard Norwegian customer-service closing formula: 'ber vi Dem ta kontakt med' — formal address with V2 after fronted prepositional phrase."
+  },
+  {
+    "id": "b2-pn2-211",
+    "norwegian": "Arbeidsavtalen regulerer partenes rettigheter og plikter og _____ av begge parter innen 14 dager.",
+    "english": "The employment contract regulates the rights and obligations of both parties and must be signed by both parties within 14 days.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skal signeres — modal passive in legal-employment register. 'Plikter' (obligations), 'regulerer' — formal legal language. Expected answer: skal signeres"
+  },
+  {
+    "id": "b2-pn2-212",
+    "norwegian": "Vi viser til vår tidligere korrespondanse og ønsker å informere om at saken nå er avklart.",
+    "english": "We refer to our previous correspondence and wish to inform you that the matter has now been resolved.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Viser til vår tidligere korrespondanse' — standard professional letter continuation formula. 'Avklart' (resolved/clarified) — professional register word for resolved."
+  },
+  {
+    "id": "b2-pn2-213",
+    "norwegian": "Med forbehold om endringer forbeholder selskapet seg retten til å justere prisene med tre måneders varsel.",
+    "english": "Subject to changes, the company reserves the right to adjust prices with three months' notice.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Med forbehold om' (subject to), 'forbeholder seg retten til' (reserves the right to) — legal-commercial register. 'Med tre måneders varsel' (with three months' notice) — the genitive-s on 'måneders' is obligatory in this construction; 'tre måneder varsel' without the genitive-s is incorrect."
+  },
+  {
+    "id": "b2-pn2-214",
+    "norwegian": "Rapporten _____ til den administrative ledelsen innen utgangen av neste uke.",
+    "english": "The report must be submitted to the administrative management by the end of next week.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 2,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skal leveres — modal passive; 'den administrative ledelsen' (the administrative management) is standard workplace Norwegian. Expected answer: skal leveres"
+  },
+  {
+    "id": "b2-pn2-215",
+    "norwegian": "Vi takker for godt samarbeid og ser frem til å videreføre forretningsforbindelsen i kommende år.",
+    "english": "We thank you for the good cooperation and look forward to continuing the business relationship in the coming years.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "Standard professional closing formula: 'takke for godt samarbeid', 'videreføre forretningsforbindelsen' — set phrases in Norwegian business letters."
+  },
+  {
+    "id": "b2-pn2-216",
+    "norwegian": "Det er dessverre ikke mulig å imøtekomme søknaden da stillingen allerede er besatt.",
+    "english": "Unfortunately it is not possible to accommodate the application as the position has already been filled.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Imøtekomme søknaden' (accommodate/grant the application) — formal rejection formula; 'stillingen er besatt' (the position is filled) — standard HR register."
+  },
+  {
+    "id": "b2-pn2-217",
+    "norwegian": "Som ledd i internkontrollarbeidet _____ alle ansatte om å gjennomføre det obligatoriske HMS-kurset innen 31. desember.",
+    "english": "As part of the internal control work, all employees are reminded to complete the mandatory HSE course by 31 December.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "påminnes — s-passive of 'påminne om' (to remind of/about). 'Som ledd i' (as part of) is a standard workplace framing phrase; 'HMS' (helse, miljø og sikkerhet — health, safety and environment) is ubiquitous in Norwegian workplace communication. IMPORTANT: 'minnes' means 'to be commemorated / to remember the dead' and is completely wrong here. Expected answer: påminnes"
+  },
+  {
+    "id": "b2-pn2-218",
+    "norwegian": "Stillingen er fast og lønnes etter statens regulativ, lønnsgruppe 50–55 avhengig av kvalifikasjoner.",
+    "english": "The position is permanent and paid according to the state pay scale, pay grade 50–55 depending on qualifications.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Lønnes etter statens regulativ' — the Norwegian public sector standard salary formula; 'lønnsgruppe' (pay grade) — specific to Norwegian public employment. Teaches authentic register."
+  },
+  {
+    "id": "b2-pn2-219",
+    "norwegian": "Vi gjør oppmerksom på at garantien ikke dekker skader som skyldes feilbruk eller ytre påvirkning.",
+    "english": "We would like to draw your attention to the fact that the warranty does not cover damage caused by misuse or external influence.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Gjøre oppmerksom på at' — formal attention-drawing formula (cf. b2-nr-022); 'feilbruk' (misuse), 'ytre påvirkning' (external influence) — standard warranty-document register."
+  },
+  {
+    "id": "b2-pn2-220",
+    "norwegian": "Eventuelle merknader til det vedlagte utkastet _____ innen 1. august til prosjektansvarlig.",
+    "english": "Any comments on the attached draft should be sent to the project manager by 1 August.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "sendes — s-passive in professional instruction; 'eventuelle merknader' (any comments — with 'eventuelle' as formal hedging adjective), 'vedlagte utkastet' — professional document language. Expected answer: sendes"
+  },
+  {
+    "id": "b2-pn2-221",
+    "norwegian": "Vi ber om bekreftelse på at de avtalte leveringsbetingelsene er akseptable for begge parter.",
+    "english": "We ask for confirmation that the agreed delivery terms are acceptable to both parties.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Be om bekreftelse på at' — formal request for confirmation; 'leveringsbetingelser' (delivery terms) — commercial Norwegian compound."
+  },
+  {
+    "id": "b2-pn2-222",
+    "norwegian": "Det er en forutsetning for ansettelse at søkeren kan fremlegge tilfredsstillende politiattest.",
+    "english": "A prerequisite for employment is that the applicant can provide a satisfactory police certificate.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Forutsetning for ansettelse' (prerequisite for employment), 'fremlegge politiattest' (produce a police certificate) — standard Norwegian public sector and childcare-sector hiring formula."
+  },
+  {
+    "id": "b2-pn2-223",
+    "norwegian": "Iht. gjeldende personopplysningslov _____ alle innsamlede data anonymiseres etter prosjektets avslutning.",
+    "english": "According to the applicable personal data act, all collected data must be anonymised after the conclusion of the project.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "skal — modal that takes the s-passive infinitive 'anonymiseres' (already present in the sentence). 'Iht.' (abbreviation of 'i henhold til' — in accordance with) is standard in Norwegian professional documents and appropriate at B2; 'personopplysningslov' refers to the Norwegian law implementing GDPR. Expected answer: skal"
+  },
+  {
+    "id": "b2-pn2-224",
+    "norwegian": "Vi har gleden av å meddele at budet på prosjektet er akseptert, og at kontraktsforhandlingene begynner mandag.",
+    "english": "We are pleased to inform you that the bid for the project has been accepted and that contract negotiations begin on Monday.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Har gleden av å meddele' — the standard idiomatic Norwegian formal positive-notification formula. 'Glade for å meddele' is a direct anglicism and should be avoided. 'Budet er akseptert' (the bid is accepted), 'kontraktsforhandlinger' — professional procurement register."
+  },
+  {
+    "id": "b2-pn2-225",
+    "norwegian": "Dersom fakturaen ikke er betalt innen forfall, _____ forsinkelsesrenter i samsvar med forsinkelsesrenteloven.",
+    "english": "If the invoice is not paid by the due date, late payment interest will be charged in accordance with the Late Payment Interest Act.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "fill-in-blank"
+    ],
+    "notes": "påløper — or 'vil bli beregnet' — standard invoice/payment-reminder register. 'Forsinkelsesrenter' (late payment interest), 'forsinkelsesrenteloven' — Norwegian law reference. Expected answer: påløper"
+  },
+  {
+    "id": "b2-pn2-226",
+    "norwegian": "Vi ønsker å presisere at ansvaret for eventuelle skader under transport er leverandørens, med mindre annet er skriftlig avtalt.",
+    "english": "We wish to clarify that responsibility for any damage during transport lies with the supplier, unless otherwise agreed in writing.",
+    "concept_ids": [
+      "professional-norwegian"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "formal"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B2",
+    "difficulty": 4,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": "'Presisere' (clarify/specify), 'med mindre annet er skriftlig avtalt' — standard commercial contract clause; 'med mindre' (unless) is formal. Key register marker: 'med mindre' vs. informal 'hvis ikke'."
   }
 ]
