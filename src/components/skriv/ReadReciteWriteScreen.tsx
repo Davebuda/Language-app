@@ -164,7 +164,11 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
       saveFingerprint(updated).catch(console.warn)
     }
 
-    setBricks((b) => ({ ...b, recite: true }))
+    // Light the "Sagt" brick only when recite was actually credited (a real
+    // mastery brick lands only on `correct`). A self-reported struggle moves
+    // mastery DOWN and lays no brick — claiming one would be a false production
+    // signal (Rule 8). The brick visual must mirror the real write.
+    setBricks((b) => ({ ...b, recite: correct }))
     setPhase('write')
   }
 
@@ -201,7 +205,10 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
 
     setFingerprint(updated)
     saveFingerprint(updated).catch(console.warn)
-    setBricks((b) => ({ ...b, write: true }))
+    // Light the "Skrevet" brick only on a real production pass. A
+    // structure-missing outcome books a repair (mastery DOWN, no production
+    // brick) — it must not render as a brick laid.
+    setBricks((b) => ({ ...b, write: grade.outcome === 'pass' }))
     void persistWriting(grade, feedback, writtenText)
   }
 
@@ -375,7 +382,7 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
             >
               <div className="nc-signal-panel p-4 text-center">
                 <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Passasje fullført</div>
-                <h2 className="mt-2 text-balance text-[1.6rem] font-extrabold leading-[0.98] text-[var(--nc-signal-fg)]">Tre murstein lagt</h2>
+                <h2 className="mt-2 text-balance text-[1.6rem] font-extrabold leading-[0.98] text-[var(--nc-signal-fg)]">{[bricks.read, bricks.recite, bricks.write].filter(Boolean).length} murstein lagt</h2>
                 <div className="mt-4 grid grid-cols-3 gap-1.5">
                   {[
                     { k: 'Lest', on: bricks.read },

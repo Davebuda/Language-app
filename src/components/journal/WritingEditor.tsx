@@ -51,6 +51,10 @@ export function WritingEditor() {
   const [feedback, setFeedback] = useState<WritingFeedback | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showCorrected, setShowCorrected] = useState(false)
+  // Whether THIS submission laid a real production brick (only when the prompt
+  // resolved a focus concept). Drives an honest credit signal so a fallback
+  // entry — praised identically — isn't mistaken for one that moved mastery.
+  const [productionCredited, setProductionCredited] = useState(false)
   // Voice mode: 'text' is the stable SSR/first-paint default; user opts into voice via the toggle.
   const [hasSpeechAPI, setHasSpeechAPI] = useState(false)
   const [inputMode, setInputMode] = useState<'voice' | 'text'>('text')
@@ -196,6 +200,7 @@ export function WritingEditor() {
         { conceptId: creditConceptId, guided: false },
         activeGraph,
       )
+      setProductionCredited(true)
     }
 
     if (updated === fingerprint) return // nothing changed — no write
@@ -208,6 +213,7 @@ export function WritingEditor() {
     setIsAnalyzing(true)
     setFeedback(null)
     setShowCorrected(false)
+    setProductionCredited(false)
     try {
       const result = await aiService.reviewWriting({ userText: text, prompt, level: fingerprint?.currentLevel ?? 'A1' })
       setFeedback(result)
@@ -363,6 +369,20 @@ export function WritingEditor() {
               <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Tilbakemelding</div>
               <p className="mt-1 text-[0.82rem] leading-[1.5] text-[var(--nc-cream-text)]">{feedback.praise}</p>
             </div>
+
+            {/* Honest credit signal: a brick is laid only when the prompt
+                resolved a focus concept. Show it when it happened; when a clean
+                entry credited nothing (fallback prompt), say so plainly rather
+                than letting identical praise imply mastery moved. */}
+            {productionCredited ? (
+              <div className="rounded-lg border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-3 py-2 text-[0.75rem] font-semibold text-[var(--nc-signal)]">
+                Murstein lagt · produksjon registrert
+              </div>
+            ) : feedback.errors.length === 0 ? (
+              <div className="rounded-lg border border-[var(--nc-border)] bg-[rgba(255,255,255,0.03)] px-3 py-2 text-[0.75rem] text-[var(--nc-text-dim)]">
+                Lagret som skrivetrening — ingen ny murstein denne gangen.
+              </div>
+            ) : null}
 
             {/* Errors — dark cards with red left accent */}
             {orderedErrors.length > 0 ? (
