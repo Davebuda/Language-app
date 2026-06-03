@@ -37,9 +37,20 @@ The "Norwegian dominates the screen" principle applies to learning surfaces (ses
 
 There is no iOS app, no Swift, no MLX, no SwiftUI. Earlier design docs describing those are historical artifacts from a deferred native plan. Do not act on them.
 
-## Current State (VERIFIED — the engine is complete)
+## Current State (IN STABILIZATION — engine claims UNVERIFIED in production as of 2026-06-03)
 
-The adaptive engine is built, traced, and verified correct:
+> **2026-06-03 correction — read before trusting anything below.** A full live walkthrough
+> invalidated the previous "verified correct" claim. The core session loop was found **not
+> reliably completable**: unpassable translate-to-English graders, blank exercise cards,
+> word-order tiles behaving as radio buttons, and — critically — the repair loop's "Prøv
+> igjen" jumping to the *next* question instead of the *failed* item (the moat's remediation
+> pillar silently inert). The WebLLM desktop AI path is non-functional (returns null),
+> poisoning grading, conversation, and journal feedback. **The bullets below describe
+> INTENDED design, not verified production behavior.** Do not cite any bullet as "verified"
+> until its remediation phase closes. Findings + locked 7-phase order:
+> `output/qa-walkthrough-remediation-plan-2026-06-03.md`.
+
+The adaptive engine is built but is being stabilized; the following describe intended design:
 
 - **Diagnostic placement** — IRT-style adaptive quiz, seeds the fingerprint (rawScore is pure accuracy: correctCount/attemptCount × 100, confidence 0.4). Cold-start traced and confirmed: new users get real adaptation from session one. Note: DiagnosticResult.rawScore is 0-1 IRT scale, distinct from ConceptMastery.rawScore which is 0-100 EMA scale.
 - **Mistake fingerprint** — JSON blob in IndexedDB + Supabase. Per-concept: rawScore, confidenceScore, decayedScore, attempts, uniqueDaysActive, streak, recentOutcomes, SRS state (nextReviewAt, srsLevel). Plus error log (200 cap), error patterns, production gap, speaking minutes, input/production preference.
@@ -73,7 +84,12 @@ Stubs / not built: vocab SRS, reading comprehension scoring, **read-respond UI**
 
 ## Current Phase
 
-**SHIP-READY 2026-05-27.** All 12 ship-ready criteria met. Four-dimensional market-readiness audit passed. See `docs/vision-and-plan.md` for the full execution plan.
+**IN STABILIZATION (2026-06-03).** The earlier "SHIP-READY 2026-05-27 / all 12 criteria met"
+status is **RESCINDED** — a live walkthrough found the core session loop not reliably
+completable (see the correction banner under "Current State"). Active work is the 7-phase QA
+remediation plan in `output/qa-walkthrough-remediation-plan-2026-06-03.md`, executed in order:
+**Phase 1 = core session engine** (graders, blank cards, word-order, repair-retry routing).
+The historical ship-ready audit context is preserved in `docs/vision-and-plan.md`.
 
 **Since ship-ready — Wave 6 exercise pipeline (2026-06-01 → 06-02):** Shipped: cloze passage (6.3, closed with Rule-6 + Rule-8 tests), R0 phantom honesty (6.6), R1 B1/B2 retag (6.7, linguist-gated). Engine/honesty fixes: live `computeProductionGap` + observed-error classifier (`src/lib/classify-error.ts`), Lytt listening-only fix, shadow mistag fix. **read-respond** (read→recite→write skriv module, rows #2+#4): engine helper + deterministic grader + `ReadingPassage` type + 6 linguist-gated B1 passages — **BUILT + tested; UI is the next build (Lane B)**. Not started: B2 nuance-discrimination + conjugation-drill (#3), Nor→Nor transformation (#5), per-level-progression UI. Full status: `docs/vision-and-plan.md` Wave 6.
 
