@@ -245,12 +245,12 @@ export default function HomePage() {
                 NorskCoach
               </span>
               <Link
-                href="/onboarding"
+                href="/login"
                 className="rounded-[0.4rem] px-[14px] py-[6px] text-[11px] font-[600] text-white"
                 style={{ background: '#0A1206' }}
-                aria-label="Start kartlegging"
+                aria-label="Logg inn"
               >
-                Start
+                Logg inn
               </Link>
             </div>
 
