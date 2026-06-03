@@ -240,18 +240,22 @@ export default function DashboardPage() {
   ] as const
 
   const focusPreview = progressEntries.length > 0
-    ? progressEntries.slice(0, 5).map((entry) => ({
-      id: entry.conceptId,
-      label: entry.label,
-      meta: (() => {
-        const deltaStr = entry.deltaDecayed > 0 ? `+${entry.deltaDecayed}` : `${entry.deltaDecayed}`
-        const attemptsStr = entry.attemptsThisWeek > 0 ? `${entry.attemptsThisWeek} forsøk` : 'Ingen nye forsøk'
-        return `${deltaStr} · ${attemptsStr}`
-      })(),
-      stat: entry.deltaDecayed > 0 ? `+${entry.deltaDecayed}` : `${entry.deltaDecayed}`,
-      tone: entry.deltaDecayed > 0 ? 'text-[var(--nc-signal-fg)]' : 'text-[var(--nc-cream-dim)]',
-      color: undefined,
-    }))
+    ? progressEntries.slice(0, 5).map((entry) => {
+      // No attempts this week → any score delta is pure decay drift, not earned
+      // change. Showing "-50" to a learner who practiced nothing this week is a
+      // false claim that they got worse. Render a neutral state instead; only
+      // show a signed delta once there is real activity to attribute it to.
+      const noAttempts = entry.attemptsThisWeek <= 0
+      const deltaStr = entry.deltaDecayed > 0 ? `+${entry.deltaDecayed}` : `${entry.deltaDecayed}`
+      return {
+        id: entry.conceptId,
+        label: entry.label,
+        meta: noAttempts ? 'Ingen nye forsøk' : `${deltaStr} · ${entry.attemptsThisWeek} forsøk`,
+        stat: noAttempts ? '—' : deltaStr,
+        tone: 'text-[var(--nc-cream-dim)]',
+        color: undefined,
+      }
+    })
     : activeConcepts.slice(0, 5).map((concept) => ({
       id: concept.id,
       label: concept.label,
