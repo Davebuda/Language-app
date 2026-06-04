@@ -2,15 +2,17 @@
 
 import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 
 function LoginForm() {
-  const { signIn } = useAuth()
+  const { signIn, verifyCode } = useAuth()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
+  const [code, setCode] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
@@ -39,6 +41,22 @@ function LoginForm() {
 
     setSubmitted(true)
     setLoading(false)
+  }
+
+  async function handleVerify(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setLoading(true)
+    setErrorMsg(null)
+    const { error } = await verifyCode(email, code)
+
+    if (error) {
+      setErrorMsg('Koden er ugyldig eller utløpt. Prøv igjen.')
+      setLoading(false)
+      return
+    }
+
+    // onAuthStateChange in useAuth picks up the new session; route into the app.
+    router.push('/dashboard')
   }
 
   return (
@@ -84,19 +102,72 @@ function LoginForm() {
 
             <AnimatePresence mode="wait">
               {submitted ? (
-                <motion.div
-                  key="success"
+                <motion.form
+                  key="code"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="mt-4 rounded-[var(--radius)] border border-[rgba(17,21,24,0.10)] bg-[rgba(17,21,24,0.05)] px-4 py-4"
+                  onSubmit={handleVerify}
+                  className="mt-4 flex flex-col gap-3"
                 >
-                  <div className="nc-label">Sjekk innboksen</div>
-                  <p className="mt-1.5 text-[0.82rem] leading-[1.55] text-[var(--nc-cream-muted)]">
-                    Vi sendte en lenke til{' '}
-                    <span className="font-semibold text-[var(--nc-cream-text)]">{email}</span>.
-                  </p>
-                </motion.div>
+                  <div className="rounded-[var(--radius)] border border-[rgba(17,21,24,0.10)] bg-[rgba(17,21,24,0.05)] px-4 py-3">
+                    <div className="nc-label">Sjekk innboksen</div>
+                    <p className="mt-1.5 text-[0.82rem] leading-[1.55] text-[var(--nc-cream-muted)]">
+                      Vi sendte en kode til{' '}
+                      <span className="font-semibold text-[var(--nc-cream-text)]">{email}</span>.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="code"
+                      className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--nc-cream-muted)]"
+                    >
+                      Engangskode
+                    </label>
+                    <input
+                      id="code"
+                      type="text"
+                      inputMode="numeric"
+                      autoComplete="one-time-code"
+                      pattern="[0-9]*"
+                      maxLength={6}
+                      required
+                      autoFocus
+                      placeholder="123456"
+                      value={code}
+                      onChange={(event) => setCode(event.target.value.replace(/\D/g, ''))}
+                      className="nc-input-cream text-center text-lg font-semibold tracking-[0.4em]"
+                    />
+                  </div>
+
+                  {errorMsg ? (
+                    <p className="rounded-[var(--radius)] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-3 py-2.5 text-[0.82rem] text-[var(--nc-red)]">
+                      {errorMsg}
+                    </p>
+                  ) : null}
+
+                  <button
+                    type="submit"
+                    disabled={loading || code.length < 6}
+                    className="nc-button-dark inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-4 py-3 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35"
+                  >
+                    <span>{loading ? 'Logger inn…' : 'Logg inn'}</span>
+                    {!loading ? <ArrowRight size={15} aria-hidden="true" /> : null}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false)
+                      setCode('')
+                      setErrorMsg(null)
+                    }}
+                    className="text-[0.78rem] font-semibold text-[var(--nc-cream-muted)] transition-opacity hover:opacity-80"
+                  >
+                    Bruk en annen e-post
+                  </button>
+                </motion.form>
               ) : (
                 <motion.form
                   key="form"
@@ -136,7 +207,7 @@ function LoginForm() {
                     disabled={loading || !email}
                     className="nc-button-dark inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-4 py-3 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35"
                   >
-                    <span>{loading ? 'Sender…' : 'Send innloggingslenke'}</span>
+                    <span>{loading ? 'Sender…' : 'Send kode'}</span>
                     {!loading ? <ArrowRight size={15} aria-hidden="true" /> : null}
                   </button>
                 </motion.form>

@@ -13,6 +13,7 @@ interface AuthState {
 
 interface UseAuthReturn extends AuthState {
   signIn: (email: string) => Promise<{ error: string | null }>
+  verifyCode: (email: string, token: string) => Promise<{ error: string | null }>
   signOut: () => Promise<void>
 }
 
@@ -50,20 +51,25 @@ export function useAuth(): UseAuthReturn {
 
   const signIn = useCallback(async (email: string): Promise<{ error: string | null }> => {
     const supabase = createClient()
-    // Prefer the canonical site URL (set in production env) over window.location.origin.
-    // Without this, magic-link emails sent from a deployed build redirect users to
-    // whatever origin the email-send happened from — which can be localhost during
-    // a dev session or a staging URL when production is intended. NEXT_PUBLIC_APP_URL
-    // is baked at build time and is the source of truth for the canonical site URL.
-    const origin = process.env.NEXT_PUBLIC_APP_URL || window.location.origin
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${origin}/auth/callback`,
-      },
-    })
+    // Send a 6-digit OTP code (no emailRedirectTo) rather than a magic link.
+    // The magic-link ?code= path is PKCE: its code_verifier is stored locally in
+    // the browser that requested the link, so the exchange can only complete on
+    // that same device — which silently breaks cross-device login (request on
+    // desktop, open on phone). verifyOtp below is stateless (email + typed code,
+    // no verifier cookie), so the code works on any device. The email contains a
+    // code instead of a link only when the Magic Link template emits {{ .Token }}.
+    const { error } = await supabase.auth.signInWithOtp({ email })
     return { error: error?.message ?? null }
   }, [])
+
+  const verifyCode = useCallback(
+    async (email: string, token: string): Promise<{ error: string | null }> => {
+      const supabase = createClient()
+      const { error } = await supabase.auth.verifyOtp({ email, token, type: 'email' })
+      return { error: error?.message ?? null }
+    },
+    [],
+  )
 
   const signOut = useCallback(async () => {
     const supabase = createClient()
@@ -71,5 +77,5 @@ export function useAuth(): UseAuthReturn {
     router.push('/')
   }, [router])
 
-  return { ...state, signIn, signOut }
+  return { ...state, signIn, verifyCode, signOut }
 }
