@@ -11121,5 +11121,1348 @@
       "translation-to-norwegian"
     ],
     "notes": ""
+  },
+  {
+    "id": "b1-iq-031",
+    "norwegian": "Jeg lurer på hvor toget stopper.",
+    "english": "I wonder where the train stops.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "transport"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-032",
+    "norwegian": "Vet du når butikken stenger?",
+    "english": "Do you know when the shop closes?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-033",
+    "norwegian": "Husker du ikke hva hun sa?",
+    "english": "Don't you remember what she said?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "social",
+      "conversation"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-034",
+    "norwegian": "Jeg vet ikke om møtet er avlyst.",
+    "english": "I don't know if the meeting is cancelled.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-035",
+    "norwegian": "Hun spurte hvem som skulle ta notater.",
+    "english": "She asked who would take the notes.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work",
+      "study"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-036",
+    "norwegian": "Fortell meg hvordan du kom deg hit.",
+    "english": "Tell me how you got here.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-037",
+    "norwegian": "Vet du hvorfor flyet ble forsinket?",
+    "english": "Do you know why the plane was delayed?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-038",
+    "norwegian": "Han spurte om jeg hadde lyst til å bli med.",
+    "english": "He asked if I wanted to come along.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-039",
+    "norwegian": "Jeg husker ikke hva vi bestemte oss for.",
+    "english": "I don't remember what we decided on.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-040",
+    "norwegian": "Kan du fortelle meg hvor jeg kan finne billettautomaten?",
+    "english": "Can you tell me where I can find the ticket machine?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "transport"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-041",
+    "norwegian": "Hun vet ikke hvem som ringte.",
+    "english": "She doesn't know who called.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "social",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-042",
+    "norwegian": "Læreren spurte hvorfor vi ikke hadde gjort leksene.",
+    "english": "The teacher asked why we hadn't done the homework.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "study"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-043",
+    "norwegian": "Vet du hvor lenge de har bodd her?",
+    "english": "Do you know how long they have lived here?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "social",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-044",
+    "norwegian": "Han spurte hvordan jeg hadde lært norsk.",
+    "english": "He asked how I had learned Norwegian.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "social",
+      "study"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-045",
+    "norwegian": "Fortell meg hva du synes om forslaget.",
+    "english": "Tell me what you think about the proposal.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-046",
+    "norwegian": "Vet du om bussen går om natten?",
+    "english": "Do you know if the bus runs at night?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "transport"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-047",
+    "norwegian": "Hun spurte om vi ville ha kaffe eller te.",
+    "english": "She asked if we would like coffee or tea.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "social",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-048",
+    "norwegian": "Kan du fortelle meg når kontoret åpner igjen?",
+    "english": "Can you tell me when the office opens again?",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-049",
+    "norwegian": "Lederen spurte hvem som hadde sendt e-posten.",
+    "english": "The manager asked who had sent the email.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-050",
+    "norwegian": "Vi spurte reiselederen om turen var inkludert i prisen.",
+    "english": "We asked the guide if the trip was included in the price.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-iq-051",
+    "norwegian": "Læreren fortalte oss ikke hva som kom på prøven.",
+    "english": "The teacher didn't tell us what was going to be on the test.",
+    "concept_ids": [
+      "indirect-questions"
+    ],
+    "vocab_clusters": [
+      "study"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-031",
+    "norwegian": "Butikken åpnes klokka åtte hver morgen.",
+    "english": "The shop is opened at eight every morning.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-032",
+    "norwegian": "Billetter selges i skranken.",
+    "english": "Tickets are sold at the counter.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-033",
+    "norwegian": "Søknader sendes inn innen fredag.",
+    "english": "Applications are submitted by Friday.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-034",
+    "norwegian": "Maten serveres varm fra klokka tolv.",
+    "english": "The food is served warm from twelve o'clock.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "food",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-035",
+    "norwegian": "Pakkene hentes på postkontoret.",
+    "english": "Parcels are collected at the post office.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "public-services",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-036",
+    "norwegian": "Dørene låses automatisk klokka ti.",
+    "english": "The doors are locked automatically at ten o'clock.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "home",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-037",
+    "norwegian": "Klagene behandles av kundeservice.",
+    "english": "Complaints are handled by customer service.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work",
+      "public-services"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-038",
+    "norwegian": "Lønnen utbetales den femtende hver måned.",
+    "english": "The salary is paid out on the fifteenth of each month.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-039",
+    "norwegian": "Avfall sorteres i tre ulike beholdere her.",
+    "english": "Waste is sorted into three different containers here.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "home",
+      "rules-signs"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-040",
+    "norwegian": "Kontrakten signeres av begge parter.",
+    "english": "The contract is signed by both parties.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-041",
+    "norwegian": "Huset ble bygget i 1952.",
+    "english": "The house was built in 1952.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "home"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-042",
+    "norwegian": "Brevet ble sendt av sjefen i går.",
+    "english": "The letter was sent by the manager yesterday.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-043",
+    "norwegian": "Maten ble servert kald, og gjestene klaget.",
+    "english": "The food was served cold, and the guests complained.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "food"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-044",
+    "norwegian": "Vinduet ble knust av en stein.",
+    "english": "The window was broken by a stone.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "home"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-045",
+    "norwegian": "Passet ble fornyet på politistasjonen forrige uke.",
+    "english": "The passport was renewed at the police station last week.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "public-services",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-046",
+    "norwegian": "Han ble ansatt som leder i fjor.",
+    "english": "He was hired as manager last year.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-047",
+    "norwegian": "Møtet ble avlyst fordi sjefen var syk.",
+    "english": "The meeting was cancelled because the manager was ill.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-048",
+    "norwegian": "Flyet ble omdirigert til Bergen på grunn av tåke.",
+    "english": "The plane was diverted to Bergen due to fog.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-049",
+    "norwegian": "Søknaden ble avslått fordi dokumentene manglet.",
+    "english": "The application was rejected because the documents were missing.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "public-services",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-050",
+    "norwegian": "Prosjektet ble godkjent av styret på mandag.",
+    "english": "The project was approved by the board on Monday.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pas-051",
+    "norwegian": "Avtalen ble inngått etter lange forhandlinger.",
+    "english": "The agreement was reached after lengthy negotiations.",
+    "concept_ids": [
+      "s-passive-vs-bli-passive"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-conjugation",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-031",
+    "norwegian": "Jeg vil gjerne bestille et bord til to personer.",
+    "english": "I would like to book a table for two. (formal/polite — restaurant)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "restaurant",
+      "polite-requests"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-032",
+    "norwegian": "Jeg vil ha et bord til to.",
+    "english": "I want a table for two. (casual — talking to a friend who works there)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "restaurant",
+      "casual-speech"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-033",
+    "norwegian": "Kunne du være så snill å sende meg rapporten?",
+    "english": "Could you please send me the report? (formal — workplace email)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "polite-requests"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-034",
+    "norwegian": "Kan du sende meg rapporten?",
+    "english": "Can you send me the report? (casual — asking a colleague directly)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "workplace",
+      "casual-speech"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-035",
+    "norwegian": "Vennligst fyll ut skjemaet og send det til oss.",
+    "english": "Please fill in the form and send it to us. (formal — official office letter)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "official-office",
+      "written-instructions"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-036",
+    "norwegian": "Jeg beklager ulempen dette har medført.",
+    "english": "I apologise for the inconvenience this has caused. (formal — customer service email)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "customer-service",
+      "apology"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-037",
+    "norwegian": "Unnskyld, jeg kom litt sent i dag.",
+    "english": "Sorry, I'm a bit late today. (casual — to a friend)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "casual-speech",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-038",
+    "norwegian": "Med vennlig hilsen, Kari Larsen.",
+    "english": "Yours sincerely, Kari Larsen. (formal — closing a business email)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "written-correspondence",
+      "email"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-039",
+    "norwegian": "Ses snart! Klem, Kari.",
+    "english": "See you soon! Hugs, Kari. (casual — closing a message to a friend)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "casual-speech",
+      "written-correspondence"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-040",
+    "norwegian": "Hei, går det bra med deg?",
+    "english": "Hey, how are you doing? (casual — greeting a friend)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "greetings",
+      "casual-speech"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-041",
+    "norwegian": "Jeg skriver til dere angående søknaden min.",
+    "english": "I am writing to you regarding my application. (formal — email to an employer)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "job-application",
+      "written-correspondence"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-042",
+    "norwegian": "Jeg er svært interessert i stillingen som er lyst ut.",
+    "english": "I am very interested in the advertised position. (formal — job application)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "job-application",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-043",
+    "norwegian": "Kan du hjelpe meg litt?",
+    "english": "Can you help me out? (casual — asking a friend at the café)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "café",
+      "casual-speech"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-044",
+    "norwegian": "Kunne du hjelpe meg med dette, takk?",
+    "english": "Could you help me with this, please? (formal/polite — asking staff at an office)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "official-office",
+      "polite-requests"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-045",
+    "norwegian": "Jeg vil gjerne ha en time hos legen så snart som mulig.",
+    "english": "I would like an appointment with the doctor as soon as possible. (formal — calling the surgery)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "doctor",
+      "polite-requests"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-046",
+    "norwegian": "Hei! Er du klar for å dra?",
+    "english": "Hey! Ready to go? (casual — texting a friend)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "casual-speech",
+      "getting-around"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-047",
+    "norwegian": "Vi setter pris på tilbakemeldingen din.",
+    "english": "We appreciate your feedback. (formal — company reply to a customer)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "customer-service",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-048",
+    "norwegian": "Takk for at du sa ifra!",
+    "english": "Thanks for letting me know! (casual — friend or colleague in chat)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "casual-speech",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-049",
+    "norwegian": "Jeg ønsker å søke på stillingen som regnskapsfører.",
+    "english": "I wish to apply for the position of accountant. (formal — job interview / cover letter)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "job-application",
+      "workplace"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-050",
+    "norwegian": "Jeg synes jobben høres ganske kul ut.",
+    "english": "I think the job sounds pretty cool. (casual — talking to a friend about a job)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "job-application",
+      "casual-speech"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-fr-051",
+    "norwegian": "Hei, hva koster en kopp kaffe her?",
+    "english": "Hi, how much is a coffee here? (casual — at a café counter)",
+    "concept_ids": [
+      "formal-informal-register"
+    ],
+    "vocab_clusters": [
+      "café",
+      "casual-speech"
+    ],
+    "error_tags_detectable": [
+      "wrong-word-same-category"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
   }
 ]
