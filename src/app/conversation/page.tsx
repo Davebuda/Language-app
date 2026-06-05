@@ -240,6 +240,16 @@ export default function ConversationPage() {
     }
   }, [messages, isThinking])
 
+  // Conversation grammar corrections are SUSPENDED (council verdict 2026-06-05). The Groq
+  // 8B produced wrong-but-VALID corrections (live: "jobb" → "et jobb"; jobb is masculine →
+  // "en jobb") that were shown as truth AND written to the fingerprint via repairFromSurface,
+  // poisoning diagnosis with phantom errors. `validateNorwegianOutput` cannot catch a
+  // grammatically-wrong-but-valid-Norwegian form. Until corrections can be verified
+  // DETERMINISTICALLY (gender/V2/conjugation via the grading engines), the tutor still
+  // converses and models the correct form implicitly (conversation prompt rule #5) but does
+  // NOT assert, persist, or log corrections. Flip to re-enable once a deterministic gate exists.
+  const CONVERSATION_CORRECTIONS_ENABLED: boolean = false
+
   const addTutorMessage = useCallback(async (history: ConversationMessage[], isUserTurn = true) => {
     setIsThinking(true)
     try {
@@ -250,14 +260,17 @@ export default function ConversationPage() {
       const topicLabel = TOPICS.find((t) => t.id === selectedTopic)?.label ?? 'daglig rutine'
       const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix)
       setConvSource(result.source)
+      // Gate corrections (see CONVERSATION_CORRECTIONS_ENABLED above): null them out so they
+      // are never displayed, persisted, or written to the fingerprint while suspended.
+      const correction = CONVERSATION_CORRECTIONS_ENABLED ? result.correction : undefined
       setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
-        correction: result.correction,
+        correction,
       }])
       speakNorwegian(result.tutorResponse)
-      void persistTurn('tutor', result.tutorResponse, result.correction)
-      if (result.correction) logConversationError(result.correction)
+      void persistTurn('tutor', result.tutorResponse, correction)
+      if (correction) logConversationError(correction)
 
       if (result.constraintMet !== undefined && activeConstraint && !constraintResult) {
         setConstraintResult({ met: result.constraintMet, feedback: result.constraintFeedback })
