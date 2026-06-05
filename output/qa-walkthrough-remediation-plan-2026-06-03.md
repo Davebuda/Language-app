@@ -138,8 +138,94 @@ deterministic templates** (architecture already supports "core engine does not d
 - Make eval harness reliable for 1–2 key tasks first (translation, short explanations).
 - Use it as a gate before pushing any AI-dependent change to production.
 
+---
+
+## 2026-06-03 TRACE ANNOTATIONS (Council session — non-binding; do NOT change phase order)
+
+Evidence gathered while verifying a (now-abandoned) "repair graduation gate" Council task.
+Recorded here so Phase 1 doesn't re-litigate settled ground. Full log: `.council/log.md`.
+
+### Finding 3d (repair retry skips failed item) — the fix is NARROWER than it looks
+- **Crediting is ALREADY honest — do not "fix" it.** A wrong retry is not credited as a win
+  anywhere: `recordResult` (`src/hooks/useFingerprint.ts:280`) is identical for repair and
+  normal items — wrong → EMA down, error logged, SRS reset 0/+1d; `passedSentenceIds` set
+  only on correct (`:331`); **daily brick gated on `if(result.correct)` (`:374`)**. So mastery,
+  SRS, and the production wall all already reflect a failed retry correctly.
+- **The real 3d defect is purely PRESENTATION/FLOW: the retry doesn't re-present the SAME
+  failed sentence (and may not be reached at all).** Prime suspects:
+  1. `continueAfterRepair` (`src/hooks/useSession.ts:371-377`) pre-seeds the retry item's
+     cache with the original content, but on a cache miss it logs
+     `"[repair] cache miss for original sentence — retry will use pool fallback"` and the retry
+     then draws a RANDOM pool sentence — i.e. silently tests a different item. This branch was
+     assumed "can't happen live"; the walkthrough shows it does.
+  2. `makeRepairItems` (`src/engine/repair-loop.ts:129`): retry `contentId = error.sentenceId
+     ?? getSentence()` (random). If `error.sentenceId` is undefined (it comes from the content
+     cache at `useSession.ts:301`), the retry is random from creation.
+  3. `continueAfterRepair` ends with unconditional `exitRepair(); advanceItem()`
+     (`useSession.ts:386-387`) — confirm the injected retry item is actually landed on, not
+     advanced past, after the 2 micro-drills.
+- **Phase 1 acceptance for 3d should be:** retry ALWAYS re-presents the exact failed sentence
+  (assert `error.sentenceId` is populated and survives to the retry item), OR honestly marks it
+  skipped per the plan. Lock with a test that fails on the random-pool-fallback path.
+
+### Already-verified-GOOD (do not re-audit in stabilization)
+- Move-1/Move-2 structural writes are real (committed): `classifyError` observed-error tagging
+  wired into all 4 typed exercises; `computeProductionGap` wired in `recordResult`; journal
+  mastery write real (`WritingEditor.tsx:161`); `speaking-production` is a real in-loop type
+  (renderer + `submitSpeakingResult` honest crediting); B1/B2 Lytt/Snakk silent-substitution
+  fixed (honest empty-drop, `scheduler.ts:48-61`). NOTE: "structurally real" ≠ "behaviorally
+  correct" — the walkthrough's contract-2 (AI output) and contract-3 (write lands) breakages
+  sit DOWNSTREAM of these writes; Phases 2/4 still own them.
+
+### Dashboard QA (separate earlier audit) — CLOSED
+- "Dead notifications bell / hamburger / share" = STALE: removed in `6a07db3`, live build fresh
+  (confirmed against pandoai.no). The "Treff" accuracy jump is defensible as-is (diagnostic
+  accuracy is real accuracy; the clean fix needs a fingerprint-model change, disproportionate).
+  No dashboard action required.
+
 ## Rationale for the order
 Session loop leads because a learner reaches zero value if the core loop is
 uncompletable — diagnostic/talkback polish is worthless above a broken core.
 AI simplification comes second because its root (WebLLM dead) poisons grading,
 conversation, and journal feedback simultaneously.
+
+---
+
+## 2026-06-03 RECONCILIATION — corrected track (main-session, after thorough doc + git verification)
+
+Two read-only traces (repair-retry + translate-EN grader), git archaeology, and the
+`.omc/logs/audit-verification-2026-06-03.md` log together **correct the severity of the
+findings table above**. The original walkthrough was run against what appears to be a
+**stale live build**; several "Critical" items are already fixed in HEAD. Verified status:
+
+| # | Original | VERIFIED status (HEAD = main @ 5d32996) | Evidence |
+|---|---|---|---|
+| 1 | grey rectangle (Critical-ish) | **FIXED, not merged** — root = `.nc-signal-panel::before/::after` ring z-index over h1. Fix on divergent branch `10a81e1` + a separate uncommitted `globals.css` edit on main | audit-log L84-87; `git` |
+| 3a | unpassable translate-EN | **DOWNGRADED — not unpassable.** `grade-utils.ts:17-20` grades NO→EN against `english` (fix `affc545`, 2026-05-20, in HEAD). Real residual = exact-match RIGIDITY (valid paraphrases rejected). Fix DETERMINISTICALLY (Option C), not AI re-grade | trace; git; audit-log L39 |
+| 3b | blank cards | **LIKELY STALE-DEPLOY** — phantom types → `NotYetAvailable` banner + scheduler guard shipped Wave 6.6 (in HEAD) | CLAUDE.md; trace |
+| 3e | boilerplate AI / null | **DOWNGRADED → Phase 2** — repair explanations are templates BY DESIGN (safe); WebLLM-null = one validation gap (`f4f0ba3` closed `generateContent` gate) + known server stub | audit-log L30-35 |
+| 5a | journal hydration | **LIKELY STALE-DEPLOY / verify** — F032 closed 2026-05-22 (`9bef843` removed mount `setInputMode('voice')`) | council-log L177-195 |
+| #4 state | inconsistent | **MOSTLY FALSE** — surfaces consistent: `decayedScore` display / `rawScore` gates uniformly | audit-log L44-48 |
+
+### Genuinely-real, in-HEAD Phase 1 scope (NARROWED)
+1. **3d** — repair retry must re-present the EXACT failed sentence. On cache-miss
+   (`useSession.ts:371-377`) or undefined `error.sentenceId` (`repair-loop.ts:129`) it
+   silently tests a RANDOM pool sentence. Lock with a test failing on the random-fallback path.
+2. **3c** — `acceptedOrders` grading landed (`372879b`) but NO corpus uses it; radio-button
+   tile UI, wrong `du/deg` answer key, and keyboard a11y all REMAIN.
+3. **3a residual** — deterministic accept-valid-English-paraphrase (normalization), NOT AI.
+4. **2a / 2b** — diagnostic off-by-one explanation + `currentLevel` commit-at-completion:
+   NOT yet traced — still genuinely open.
+
+### ⚠️ COORDINATION HAZARD (blocks Phase 1 code)
+`git branch` shows **4 `worktree-agent-*` branches** + divergent commit `10a81e1` (real
+F018/F020 + grey-rect fixes, NOT in main) + uncommitted main changes (`globals.css +7`, a
+SECOND grey-rect edit). Multiple agents are editing the same repo in parallel. **Do not
+start Phase 1 source edits on main until:** (a) confirm no worktree agent is mid-flight on
+the same files, and (b) reconcile `10a81e1` + the uncommitted main edits into one clean main.
+
+### Recommended next moves (cheap, high-leverage — convert guesswork to evidence)
+1. Reconcile git → single clean main (land `10a81e1`'s real fixes + uncommitted grey-rect).
+2. Deploy current main + RE-RUN the walkthrough → separates STALE-DEPLOY (1, 3b, 5a,
+   3a-unpassable) from GENUINE HEAD bugs (3d, 3c, 2a, 2b). Phase 1 then fixes only what is
+   actually broken — likely just **3d, 3c, 2a, 2b**.

@@ -736,3 +736,19 @@ Handing to super-orchestrator with option B as the "idea to transform".
 - Audit output: super-orchestrator background agent transcript
 - α.1 + α.2 commit messages contain verification details (test counts, gates passed)
 - This log entry + roadmap.md Current Position section (added 2026-05-22T15:00) carry the disposition record
+
+## 2026-06-03 ESCALATE — repair-retry graduation gate (premise falsified on trace)
+**Trigger:** Council intent = "gate graduation on a passed retry; a failed retry is treated like a passed one (beaten into the schedule, not mastery)." Analysis-first gate + Rule 3 trace BEFORE delegating.
+**Traced (committed code):** submitResult→recordFingerprintResult is identical for repair & normal items; correctness drives all crediting.
+  - Failed retry: updateConceptMastery(false) → EMA DOWN; logError; productionGap recompute; SRS reset 0/+1d; passedSentenceIds NOT set (useFingerprint.ts:331); NO daily brick (useFingerprint.ts:374 `if(result.correct)`).
+  - Passed retry: EMA up; passed marked; SRS ladder progresses; brick laid.
+  - continueAfterRepair (useSession.ts:386-387) `exitRepair(); advanceItem()` is the ONLY unconditional bit = session-flow counter (F027 anti-infinite-loop). SRS returns the failed item next day.
+**Finding:** a failed retry is NOT credited as a win anywhere. The audit's "retry doesn't gate graduation" (Lane B P1, 2026-06-01) is substantially stale/overstated vs current code. No moat-logic fix needed.
+**Residual (only honest gap):** a 2x-capped failed retry advances SILENTLY — no honest "kommer igjen i morgen" acknowledgment. UX-honesty micro-touch, not the briefed graduation gate.
+**Decision:** do NOT delegate the briefed fix. Escalate to user: close as already-satisfied vs small honesty touch vs redirect Council to server-side AI gen (the verified biggest lever).
+**Research gate:** perplexity-cli keyless (unavailable); decision made on code fact, not external pedagogy.
+
+## 2026-06-03 STAND DOWN — superseded by locked QA remediation plan
+Closing the repair-graduation Council task. "A" (graduation-gating is a non-issue) holds, BUT the repair loop is NOT healthy: QA walkthrough finding 3d (retry "Prøv igjen" skips the failed item, never revisits the error) is real + critical + moat-breaking — the exact cache-miss/pool-fallback branch this trace brushed and wrongly dismissed as "can't happen live." It happens live.
+Authoritative next sequence = output/qa-walkthrough-remediation-plan-2026-06-03.md (user-approved 7-phase, nothing implemented yet). Repair-loop fix lives in Phase 1; Phase 0 (CLAUDE.md ship-ready drift) comes first. Council improvisation was running on stale ship-ready context that the walkthrough invalidated. Recommend resuming the locked plan at Phase 0, not ad-hoc Council targeting.
+No code delegated this run. No source changed (memory + .council bookkeeping only).

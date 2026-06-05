@@ -113,7 +113,7 @@ Actual: post-write rawScores show:
 The diagnostic is performing a "set to 100 if seen at level" overwrite, not an accumulating EMA. Wrong answers are not surfaced in raw scores at all.  
 Severity: Critical — this is the diagnosis-engine claim the moat depends on. Wrong answers must show in the mastery score; right now they don't.
 
-### F018 — Dashboard shows "95% accuracy" on `totalSessionsCompleted: 0` (Significant)
+### F018 — Dashboard shows "95% accuracy" on `totalSessionsCompleted: 0` (Significant) — ✅ RESOLVED 2026-06-03 (`10a81e1`): accuracy tile gated on a real completed session via `deriveAccuracyDisplay`; test-locked
 URL: `/dashboard` post-diagnostic  
 Component: dashboard stats card  
 Expected: a "stats" badge for accuracy should not display until at least one session is logged. Possibly show "—" or omit.  
@@ -121,7 +121,7 @@ Actual: badge shows 95% with 0 sessions and 0 streak. Number is plausibly derive
 Evidence: screenshot/snapshot pre and post diagnostic.  
 Severity: Significant — undermines stat honesty.
 
-### F020 — Dashboard accuracy reads stale 95% in-memory vs "—" after refresh (Significant — hydration / state)
+### F020 — Dashboard accuracy reads stale 95% in-memory vs "—" after refresh (Significant — hydration / state) — ✅ RESOLVED 2026-06-03 (`10a81e1`): same gate as F018 makes in-memory and post-refresh agree on "—" until a session is completed
 URL: `/dashboard` (guest, post-diagnostic)  
 Component: dashboard stats card  
 Expected: a consistent accuracy figure or a single empty-state placeholder, not two different presentations from the same underlying fingerprint.  

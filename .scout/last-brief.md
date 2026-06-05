@@ -1,63 +1,78 @@
-# Scout Brief: NorskCoach Phase-3 — B2 lexical track decisions
+# Scout Brief: magic-link-redirect-localhost (v2 — root-caused)
 
-**Date:** 2026-06-02 · **Run mode:** focused (3 decision lanes) · **Keys:** perplexity/Exa fell back to WebSearch/WebFetch (confidence tagged).
-**Purpose:** settle three Phase-3 architecture decisions (vocab data model, exercise design, lexical metrics) with evidence before building. Supersedes the recommendation section of `output/phase-3-per-level-analysis.md`.
-
----
-
-## TL;DR — decisions resolved by evidence
-- **D1 vocab data model → Option C**, with a strict activation gate. Change `VocabularyClusterMastery.knownWordCount: number` → `activatedWordIds: string[]`; keep `score` on the existing cluster EMA; **no FSRS** (premature). An honest coverage meter *requires* a reference lemma list (denominator) + an id set (numerator) — a raw count is a Rule-6 fake. [Confirmed]
-- **D2 exercise types → conjugation-drill FIRST, nuance-discrimination second** — and nuance CAN be production-weighted (forced sentence-write wrap), resolving its north-star tension. [Confirmed]
-- **D3 start → Slice 3.1 (content ingestion) gated by the `norwegian-linguist` agent.** Source is hand-authored, so the gate is mostly extraction-verification + derived-distractor review. [Confirmed]
-- **Bonus:** the "ord du ikke lenger bommer på" meter has an evidence-backed honest formula that maps onto the existing engine (decayedScore + srsLevel + production-flag + prior-miss). [Confirmed]
+**Date:** 2026-06-04
+**Idea:** Why does the email magic link land on `pandoai.no/?code=…` on desktop but `localhost` on mobile — and what's the fix?
+**Run mode:** focused (technical, codebase + Supabase docs) | **Supersedes:** v1 brief (template-hardcode hypothesis)
 
 ---
 
-## D1 — Vocabulary mastery data model (Lane: vocab-models)
-All five reference apps use **per-word state**: Anki/FSRS (Difficulty+Stability+Retrievability), LingQ (status 1–4→Known), Clozemaster (per-sentence proxying per-word), Duolingo HLR (per-word half-life), Memrise (8-rung ladder). [Confirmed]
+## TL;DR — the verdict
+- **You are on the wrong auth flow for email magic links.** The app uses the **PKCE `?code=` + `exchangeCodeForSession`** flow. Supabase's own docs say email magic links should use the **`?token_hash=` + `verifyOtp({type, token_hash})`** flow. [Confirmed — Supabase docs]
+- **PKCE is device-locked.** PKCE stores a `code_verifier` cookie in the browser that *requested* the link. The exchange can only complete in that **same browser**. → A link clicked on a **different device (mobile) can never complete.** This is THE mobile failure, independent of any host/allowlist config. [Confirmed — flow mechanics]
+- **Desktop "worked" by accident.** Your code landed on `pandoai.no/?code=…` — note: **root `/`, not `/auth/callback`**. The only server exchanger is `/auth/callback/route.ts`; `/` has none. Desktop still logged you in **only because** `createBrowserClient` defaults to `detectSessionInUrl:true`, so the client auto-exchanged the `?code=` on the homepage using the local verifier cookie. Same-device rescue; cross-device has no rescue. [Inferred — strong, from code]
+- **Two separate defects, not one:**
+  - **(A) redirect_to is being dropped to the Site URL root** (code on `/` not `/auth/callback`) — template/allowlist issue.
+  - **(B) PKCE device-lock** — the architectural reason mobile fails. Fixing A alone does NOT fix mobile.
+- **The localhost on mobile** is best explained by a **stale earlier email** (you've sent many during testing) generated when the host was localhost, *combined with* the cross-device PKCE failure — NOT a current template hardcode (fresh prod links provably emit `pandoai.no`). The v1 "template hardcodes localhost" prime suspect is **downgraded**. [Inferred]
 
-An honest coverage meter needs **two** things: a **reference lemma list** (denominator) and an **activated-word-id set** (numerator). LingQ's merged "Known" counter is the cautionary tale — untraceable, non-exportable. [Confirmed]
+---
 
-| Option | Honest meter? | New algo? | Storage Δ | Verdict |
-|---|---|---|---|---|
-| A cluster-count-only (`knownWordCount`) | no backing set | no | 0 | **ruled out (Rule 6)** |
-| B full per-word FSRS/EMA | yes | yes (new dimension) | ~0.6–1.2MB | premature — secondary track, no users |
-| **C cluster EMA + `activatedWordIds[]`** | yes | no (reuses EMA) | ~30KB | **CHOSEN — additive, upgrades to B later** |
-
-`score` (EMA) drives scheduling; `activatedWordIds` drives the meter — independent concerns. `ts-fsrs` is the tool *if/when* a dedicated per-word vocab review surface + real users justify it. [Inferred]
-
-## Lexical-coverage metric — honest "words you no longer miss" (Lane: lexical-metrics)
-Vanity-metric pitfalls to avoid: never-decreases, increments on passive exposure, counts word *forms* not lemmas, self-declared, no difficulty floor, receptive-counter-as-production-proxy. (Duolingo XP / LingQ self-declare = the failure cases; Clozemaster can-go-down + Anki downward-trending retention = the trust models.) [Confirmed]
-
-**Activation gate (maps onto existing engine fields):** a word/lemma counts only when —
-| Gate | Value |
+## Decisive evidence (from this session's code read)
+| Fact | Source |
 |---|---|
-| prior miss | ≥1 logged error (you must have *missed* it — "no longer" needs a "was") |
-| production | ≥1 production-flagged correct (not recognition) |
-| spaced survival | `srsLevel ≥ 2` |
-| mastery | `decayedScore ≥ 70` (auto-exits on decay — the count can go DOWN) |
-| unit | **lemma level, not forms** (Norwegian inflection inflates forms 40–60%); show denominator "X av ~Y lemmaer" |
-
-v1 may relax to the cheapest honest subset (miss + production-correct + cluster-level decay); full per-word `srsLevel/decayedScore` gating is the Option-B upgrade. Nation's coverage thresholds (95%/98%) are the conceptual frame. [Confirmed]
-
-## D2 — Exercise design + build order (Lane: exercise-design)
-- **Type-the-form > pick-the-form** for retention (short-answer beats MCQ, g≈0.77). Group Norwegian strong verbs by **ablaut/pattern class** (e.g. trekke→trakk→trukket), drill within-class, then mix in review. Unit shape: **INTRO (forms shown) → GUIDED MCQ within-class → PRODUCTION type-the-form → CLOSE carrier-sentence**. Carrier sentence on the success screen, not as the cue. [Confirmed]
-- **Nuance-discrimination is documented whitespace** (no mainstream app does it). Make it honest + productive: contrastive-pair presentation → gap-fill with *plausible* distractors → **forced production wrap** (write a sentence using the word, graded by presence+length like `gradeReadRespond`) → one-line contrast rule on wrong ("påpeke = state directly; antyde = imply"). Converts recognition into controlled→free production. [Confirmed]
-- **Production wins at B2** (Swain output hypothesis; productive retrieval builds both productive+receptive, receptive builds only receptive). Recognition items belong in the **30% review slot, not the 40% remediation slot** — both new types must honour the existing `PRODUCTION_EXERCISES` boundary. [Confirmed]
-- **Build order: conjugation-drill FIRST** — deterministic grading (`checkAnswer`), near-zero renderer work (fill-in-blank variant), mechanical extraction from the source's conjugation tables, no AI. **nuance-discrimination second** — linguist-gated distractors, new MCQ+context renderer, production-wrap grading; verb-form mastery is a prerequisite for synonym choice. [Confirmed]
+| App requests `${NEXT_PUBLIC_APP_URL}/auth/callback` (baked = pandoai.no on prod) | `src/hooks/useAuth.ts:58-62` |
+| Only PKCE exchanger is `/auth/callback`; it calls `exchangeCodeForSession(code)` | `src/app/auth/callback/route.ts:10-16` |
+| Root `/` has NO code exchanger | no handler; only middleware `getUser()` |
+| Browser client created with **no options** → `@supabase/ssr` defaults: `flowType:'pkce'`, `detectSessionInUrl:true` | `src/lib/supabase/client.ts:9` |
+| Middleware only refreshes session; never exchanges a `?code=` | `src/middleware.ts:34` |
+| Email magic links should carry `?token_hash=` (not `?code=`) + `verifyOtp` | Supabase docs (auth-email-passwordless / nextjs-full example) [Confirmed] |
+| Observed desktop link: `pandoai.no/?code=01470ea9-…` (code on ROOT) | user click-test |
+| Observed mobile link: localhost | user click-test |
 
 ---
 
-## Resulting build sequence (refined from the analysis doc)
-1. **3.1 Content ingestion** — parse `norsk_b2_hverdagsord.md` → clusters/words(+conjugation tables, irregular flag, ablaut class)/carrier-sentences → mechanical validation → **`norwegian-linguist` gate** → seed.
-2. **3.2 `vocabularyMastery` = Option C** + the activation gate (pure helpers + tests; reference lemma list from corpus).
-3. **3.3 conjugation-drill** — fill-in-blank-variant renderer, `checkAnswer` grader, ablaut-class grouping, production brick + `vocabularyMastery` write, Rule-8 trace.
-4. **3.4 B2 lexical wall lens** — `LENS_CONFIG.B2` → "ord du ikke lenger bommer på" meter (reads `activatedWordIds` ∩ reference list); retire the interim note.
-5. **3.5 scheduler vocab pool** — analysis-first; vocab items honour PRODUCTION_EXERCISES + the 40/30 boundary.
-6. **3.6 nuance-discrimination** — contrastive + forced-production wrap; distractors linguist-gated.
+## The fix — ranked (pick ONE primary)
 
-## Conflicts
-None material. Lane 1 (Option C, cluster EMA) and Lane 3 (per-word gate) reconcile: the *data model* is cluster-level + id-set (C); the *activation gate* uses per-word signals where cheaply available, full per-word state is the B upgrade.
+### Option 1 — Canonical token_hash magic link (BEST: keeps "click a link" UX, fixes cross-device)
+Switch email magic links off PKCE-code onto Supabase's recommended SSR email flow. **Not device-locked** (no code_verifier).
+1. Add `src/app/auth/confirm/route.ts`:
+   ```ts
+   const token_hash = searchParams.get('token_hash')
+   const type = searchParams.get('type') as EmailOtpType | null
+   if (token_hash && type) {
+     const { error } = await supabase.auth.verifyOtp({ type, token_hash })
+     if (!error) return NextResponse.redirect(`${origin}${next}`)
+   }
+   ```
+2. Customize the **Magic Link email template** href to:
+   `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/dashboard`
+3. Keep `/auth/callback` for any future OAuth (PKCE is correct there).
+- **Effort:** ~1–2 h. **Fixes:** mobile cross-device + code-on-root. **Cost:** $0. [Confirmed pattern]
+
+### Option 2 — 6-digit OTP code (SIMPLEST, most consumer-robust: no link/redirect at all)
+Template uses `{{ .Token }}`; user types the 6-digit code; `verifyOtp({ email, token, type:'email' })`. **Eliminates redirect / Site-URL / allowlist / device-lock entirely.**
+- **Effort:** ~half-day (adds a code-entry input to `/login`). **Fixes:** everything in this class. **Cost:** $0, same email volume. [Confirmed]
+
+### Option 3 — Band-aid (NOT recommended alone)
+Keep PKCE, just fix the template to `{{ .ConfirmationURL }}` + ensure `https://pandoai.no/auth/callback` (+`/**`) is allowlisted so desktop lands on the exchanger. **Mobile cross-device stays broken.** Only buys a cleaner desktop path. [Confirmed]
+
+### Independent add-ons (unchanged from v1, still recommended)
+- **Google OAuth** one-tap — PKCE is correct here; zero auth emails for those users. ~half-day.
+- **Resend custom SMTP** + raise `rate_limit_email_sent` 30→~200/hr — the built-in mailer 429s after ~2 sends/hr and is not for production.
+
+---
+
+## Recommended single path for NorskCoach
+1. **Ship Option 2 (6-digit OTP)** as the primary email path — it's the most robust on mobile (your actual failure surface) and removes the entire redirect/allowlist/device-lock class in one move. (Option 1 is the fallback if you specifically want to keep a clickable link.)
+2. **Add Google OAuth** as the one-tap shortcut.
+3. **Resend SMTP** + raise the email rate limit before any real-user launch.
+4. Clean the inbox of stale test links; they'll keep producing misleading localhost hits while old PKCE/localhost emails exist.
+
+## What changed vs v1 brief
+- **Promoted:** PKCE device-lock from hypothesis → confirmed root cause of the mobile failure (backed by code: pkce default + same-device-only verifier).
+- **Added:** the `token_hash`/`verifyOtp` option (v1 missed it) — lets you keep magic-link UX without device-lock.
+- **Downgraded:** "email template hardcodes localhost" — fresh prod links emit pandoai.no; mobile localhost is a stale-email + cross-device artifact.
+- **Sharpened:** the code-on-root (`/` vs `/auth/callback`) finding — desktop only survives via `detectSessionInUrl`, which won't save cross-device.
 
 ## Sources
-~30+ across three lanes (Anki/FSRS docs, LingQ forums, Clozemaster, Duolingo HLR/ACL2016, Conjuguemos, Nation lexical-coverage research, Swain output hypothesis, Teng & Xu 2025, desirable-difficulty literature). Key claims tagged inline.
+Supabase docs: auth-email-passwordless.mdx (`verifyOtp` email/token_hash), passwords.mdx (`/auth/confirm` route), examples/auth/nextjs-full (`?token_hash=` not `?code=`); @supabase/ssr defaults (pkce + detectSessionInUrl). Codebase: useAuth.ts, auth/callback/route.ts, lib/supabase/client.ts, middleware.ts.
