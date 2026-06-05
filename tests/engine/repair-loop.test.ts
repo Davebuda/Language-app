@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { buildRepairPlan, makeRepairItems } from '@/engine/repair-loop';
 import type { ErrorLogEntry } from '@/types/fingerprint';
 import type { ExerciseType } from '@/types/session';
+import { isNotYetAvailableType } from '@/types/session';
 
 function makeError(overrides: Partial<ErrorLogEntry> = {}): ErrorLogEntry {
   return {
@@ -30,10 +31,34 @@ const EXERCISE_TYPES: ExerciseType[] = [
 // ── buildRepairPlan ───────────────────────────────────────────────────────────
 
 describe('buildRepairPlan', () => {
-  it('retryExerciseType matches the original exercise type exactly', () => {
+  it('retryExerciseType matches the original for real types, and never returns a phantom', () => {
+    // Retry mirrors the original type for verification — but a phantom (not-yet-available)
+    // type must never be the retry, or the repair would render the "kommer snart / skip"
+    // banner instead of remediating (live bug 2026-06-05). Phantom originals are impossible
+    // in practice (they auto-skip and never log an error) but are guarded regardless.
     for (const exerciseType of EXERCISE_TYPES) {
       const plan = buildRepairPlan(makeError({ exerciseType }));
-      expect(plan.retryExerciseType).toBe(exerciseType);
+      expect(isNotYetAvailableType(plan.retryExerciseType)).toBe(false);
+      if (!isNotYetAvailableType(exerciseType)) {
+        expect(plan.retryExerciseType).toBe(exerciseType);
+      }
+    }
+  });
+
+  it('microDrillExerciseTypes never contain a phantom (not-yet-available) type', () => {
+    // Every error tag's remediation drills must be real, answerable exercises — the moat's
+    // remediation pillar fails if a micro-drill shows the "kommer snart" banner.
+    const ERROR_TAGS = [
+      'word-order', 'verb-tense', 'verb-conjugation', 'noun-gender', 'article-use',
+      'adjective-agreement', 'pronoun-choice', 'preposition', 'modal-verb',
+      'negation-placement', 'listening-recognition', 'reading-parsing', 'unspecified',
+    ] as const;
+    for (const errorTag of ERROR_TAGS) {
+      const plan = buildRepairPlan(makeError({ errorTag }));
+      expect(plan.microDrillExerciseTypes.length).toBeGreaterThan(0);
+      for (const t of plan.microDrillExerciseTypes) {
+        expect(isNotYetAvailableType(t)).toBe(false);
+      }
     }
   });
 

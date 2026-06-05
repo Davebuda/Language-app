@@ -1,5 +1,6 @@
 import type { ErrorLogEntry } from '@/types/fingerprint';
 import type { ExerciseType, SessionItem } from '@/types/session';
+import { isNotYetAvailableType } from '@/types/session';
 import type { ErrorTag } from '@/types/taxonomy';
 
 // Templates for each error type — used when AI is unavailable
@@ -70,14 +71,23 @@ export function buildRepairPlan(error: ErrorLogEntry): RepairPlan {
     EXPLANATION_TEMPLATES[error.errorTag] ??
     'Review this concept and try again. Pay attention to the specific rule being tested.';
 
-  const microDrillTypes = REMEDIATION_EXERCISE_MAP[error.errorTag] ?? [
-    'fill-in-blank',
-    'sentence-transformation',
-  ];
+  // Exclude phantom (not-yet-available) types — `sentence-transformation`, `dictation` —
+  // so a repair micro-drill never renders the honest "kommer snart / skip" banner instead
+  // of actually remediating the error (defeats the moat's remediation pillar; observed live
+  // 2026-06-05). The scheduler already filters these; the repair loop must agree. Fall back
+  // to a guaranteed-real drill set if filtering empties the list.
+  const REAL_FALLBACK: ExerciseType[] = ['fill-in-blank', 'translation-to-norwegian'];
+  const mapped = (REMEDIATION_EXERCISE_MAP[error.errorTag] ?? REAL_FALLBACK).filter(
+    (t) => !isNotYetAvailableType(t)
+  );
+  const microDrillTypes: ExerciseType[] = mapped.length > 0 ? mapped : REAL_FALLBACK;
 
   // Retry uses the same exercise type as the original — its job is verification,
   // not generalisation. Varied practice belongs in the micro-drills, not here.
-  const retryType: ExerciseType = error.exerciseType;
+  // Guard against a phantom original type slipping through to the retry.
+  const retryType: ExerciseType = isNotYetAvailableType(error.exerciseType)
+    ? 'translation-to-norwegian'
+    : error.exerciseType;
 
   // Spaced repetition intervals: 1d → 3d → 7d → 14d → 30d
   const reviewIntervalDays = 1;
