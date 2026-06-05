@@ -535,7 +535,7 @@
   },
   {
     "id": "b1-pp-026",
-    "norwegian": "hadde / hun / laget / allerede / mat / da / kom / han",
+    "norwegian": "Hun hadde allerede laget mat da han kom.",
     "english": "She had already made food when he arrived.",
     "concept_ids": [
       "past-perfect"
@@ -553,7 +553,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Hun hadde allerede laget mat da han kom."
+    "notes": ""
   },
   {
     "id": "b1-pp-027",
@@ -578,7 +578,7 @@
   },
   {
     "id": "b1-pp-028",
-    "norwegian": "Jeg / hadde / aldri / prøvd / brunost / før",
+    "norwegian": "Jeg hadde aldri prøvd brunost før.",
     "english": "I had never tried brunost before.",
     "concept_ids": [
       "past-perfect"
@@ -595,7 +595,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Jeg hadde aldri prøvd brunost før."
+    "notes": ""
   },
   {
     "id": "b1-pp-029",
@@ -619,7 +619,7 @@
   },
   {
     "id": "b1-pp-030",
-    "norwegian": "allerede / hadde / de / da / landet / vi / ankom / flyet",
+    "norwegian": "Flyet hadde allerede landet da vi ankom.",
     "english": "The plane had already landed when we arrived.",
     "concept_ids": [
       "past-perfect"
@@ -636,7 +636,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Flyet hadde allerede landet da vi ankom."
+    "notes": ""
   },
   {
     "id": "b1-prp-001",
@@ -1080,7 +1080,7 @@
   },
   {
     "id": "b1-prp-022",
-    "norwegian": "Han / satt / og / spiste / frokost / alene",
+    "norwegian": "Han satt og spiste frokost alene.",
     "english": "He sat eating breakfast alone.",
     "concept_ids": [
       "present-participle"
@@ -1097,7 +1097,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Han satt og spiste frokost alene."
+    "notes": ""
   },
   {
     "id": "b1-prp-023",
@@ -1122,7 +1122,7 @@
   },
   {
     "id": "b1-prp-024",
-    "norwegian": "hun / lå / og / hørte / på / musikk / i / sengen",
+    "norwegian": "Hun lå og hørte på musikk i sengen.",
     "english": "She lay listening to music in bed.",
     "concept_ids": [
       "present-participle"
@@ -1139,11 +1139,11 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Hun lå og hørte på musikk i sengen."
+    "notes": ""
   },
   {
     "id": "b1-prp-026",
-    "norwegian": "Vi / satt / og / så / på / TV / hele / ettermiddagen",
+    "norwegian": "Vi satt og så på TV hele ettermiddagen.",
     "english": "We sat watching TV all afternoon.",
     "concept_ids": [
       "present-participle"
@@ -1160,7 +1160,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Vi satt og så på TV hele ettermiddagen."
+    "notes": ""
   },
   {
     "id": "b1-prp-027",
@@ -1553,7 +1553,7 @@
   },
   {
     "id": "b1-cs-016",
-    "norwegian": "Det / er / norsk / jeg / lærer / som / studerer",
+    "norwegian": "Det er norsk jeg studerer.",
     "english": "It is Norwegian that I am studying.",
     "concept_ids": [
       "cleft-sentences"
@@ -1569,7 +1569,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det er norsk jeg studerer."
+    "notes": ""
   },
   {
     "id": "b1-cs-017",
@@ -1656,7 +1656,7 @@
   },
   {
     "id": "b1-cs-021",
-    "norwegian": "Det / var / moren / sin / som / han / ringte / til",
+    "norwegian": "Det var moren sin han ringte til.",
     "english": "It was his mother that he called.",
     "concept_ids": [
       "cleft-sentences"
@@ -1672,7 +1672,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det var moren sin han ringte til."
+    "notes": ""
   },
   {
     "id": "b1-cs-022",
@@ -1758,7 +1758,7 @@
   },
   {
     "id": "b1-cs-026",
-    "norwegian": "Det / er / på / lørdag / at / vi / reiser",
+    "norwegian": "Det er på lørdag at vi reiser.",
     "english": "It is on Saturday that we are travelling.",
     "concept_ids": [
       "cleft-sentences"
@@ -1774,7 +1774,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det er på lørdag at vi reiser."
+    "notes": ""
   },
   {
     "id": "b1-cs-027",
@@ -1839,7 +1839,7 @@
   },
   {
     "id": "b1-cs-030",
-    "norwegian": "Det / var / vennen / hans / som / ga / ham / rådet",
+    "norwegian": "Det var vennen hans som ga ham rådet.",
     "english": "It was his friend who gave him the advice.",
     "concept_ids": [
       "cleft-sentences"
@@ -1855,7 +1855,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det var vennen hans som ga ham rådet."
+    "notes": ""
   },
   {
     "id": "b1-pas-001",
@@ -2301,7 +2301,7 @@
   },
   {
     "id": "b1-pas-022",
-    "norwegian": "Skogen / ble / hogget / ned / av / et / selskap",
+    "norwegian": "Skogen ble hogget ned av et selskap.",
     "english": "The forest was felled by a company.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2319,7 +2319,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Skogen ble hogget ned av et selskap."
+    "notes": ""
   },
   {
     "id": "b1-pas-023",
@@ -2385,7 +2385,7 @@
   },
   {
     "id": "b1-pas-026",
-    "norwegian": "Veien / ble / stengt / på / grunn av / flom",
+    "norwegian": "Veien ble stengt på grunn av flom.",
     "english": "The road was closed due to flooding.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2403,7 +2403,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Veien ble stengt på grunn av flom."
+    "notes": ""
   },
   {
     "id": "b1-pas-027",
@@ -2470,7 +2470,7 @@
   },
   {
     "id": "b1-pas-030",
-    "norwegian": "Kandidaten / ble / valgt / av / et / flertall",
+    "norwegian": "Kandidaten ble valgt av et flertall.",
     "english": "The candidate was elected by a majority.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2487,7 +2487,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Kandidaten ble valgt av et flertall."
+    "notes": ""
   },
   {
     "id": "b1-sub-001",
@@ -2812,7 +2812,7 @@
   },
   {
     "id": "b1-sub-016",
-    "norwegian": "skulle / jeg / ønske / at / vi / bodde / på / landet",
+    "norwegian": "Jeg skulle ønske at vi bodde på landet.",
     "english": "I wish we lived in the countryside.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2830,7 +2830,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Jeg skulle ønske at vi bodde på landet."
+    "notes": ""
   },
   {
     "id": "b1-sub-017",
@@ -2877,7 +2877,7 @@
   },
   {
     "id": "b1-sub-019",
-    "norwegian": "ville / det / vært / fint / om / komme / du / kunne / tidlig",
+    "norwegian": "Det ville vært fint om du kunne komme tidlig.",
     "english": "It would be nice if you could come early.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2894,7 +2894,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det ville vært fint om du kunne komme tidlig."
+    "notes": ""
   },
   {
     "id": "b1-sub-020",
@@ -3006,7 +3006,7 @@
   },
   {
     "id": "b1-sub-025",
-    "norwegian": "om / bare / jeg / hadde / spurt / om / hjelp / tidligere",
+    "norwegian": "Om jeg bare hadde spurt om hjelp tidligere.",
     "english": "If only I had asked for help earlier.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -3023,7 +3023,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Om jeg bare hadde spurt om hjelp tidligere."
+    "notes": ""
   },
   {
     "id": "b1-sub-026",
@@ -3441,7 +3441,7 @@
   },
   {
     "id": "b1-dm-016",
-    "norwegian": "jo / du / at / vet / bergen / er / kjent / for / regnet",
+    "norwegian": "Du vet jo at Bergen er kjent for regnet.",
     "english": "You know, of course, that Bergen is famous for the rain.",
     "concept_ids": [
       "discourse-markers"
@@ -3458,7 +3458,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Du vet jo at Bergen er kjent for regnet."
+    "notes": ""
   },
   {
     "id": "b1-dm-017",
@@ -3543,7 +3543,7 @@
   },
   {
     "id": "b1-dm-021",
-    "norwegian": "det / er / jo / ikke / gratis / dette",
+    "norwegian": "Det er jo ikke gratis, dette.",
     "english": "This isn't free, you know.",
     "concept_ids": [
       "discourse-markers"
@@ -3559,7 +3559,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det er jo ikke gratis, dette."
+    "notes": ""
   },
   {
     "id": "b1-dm-022",
@@ -3645,7 +3645,7 @@
   },
   {
     "id": "b1-dm-026",
-    "norwegian": "altså / jeg / ikke / skjønner / det / her",
+    "norwegian": "Altså, jeg skjønner ikke det her.",
     "english": "I just don't get this.",
     "concept_ids": [
       "discourse-markers"
@@ -3662,7 +3662,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Altså, jeg skjønner ikke det her."
+    "notes": ""
   },
   {
     "id": "b1-dm-027",
@@ -4058,7 +4058,7 @@
   },
   {
     "id": "b1-pv-016",
-    "norwegian": "hun / kom / tilbake / fra / biblioteket / med / tre / bøker",
+    "norwegian": "Hun kom tilbake fra biblioteket med tre bøker.",
     "english": "She came back from the library with three books.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4076,7 +4076,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Hun kom tilbake fra biblioteket med tre bøker."
+    "notes": ""
   },
   {
     "id": "b1-pv-017",
@@ -4162,7 +4162,7 @@
   },
   {
     "id": "b1-pv-021",
-    "norwegian": "ga / hun / til slutt / opp / håpet / om / å / vinne",
+    "norwegian": "Hun ga til slutt opp håpet om å vinne.",
     "english": "She finally gave up hope of winning.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4180,7 +4180,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Hun ga til slutt opp håpet om å vinne."
+    "notes": ""
   },
   {
     "id": "b1-pv-022",
@@ -4268,7 +4268,7 @@
   },
   {
     "id": "b1-pv-026",
-    "norwegian": "de / slo / seg / ned / i / en / leilighet / nær / sentrum",
+    "norwegian": "De slo seg ned i en leilighet nær sentrum.",
     "english": "They settled in a flat near the city centre.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4285,7 +4285,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "De slo seg ned i en leilighet nær sentrum."
+    "notes": ""
   },
   {
     "id": "b1-pv-027",
@@ -4350,7 +4350,7 @@
   },
   {
     "id": "b1-pv-030",
-    "norwegian": "jeg / fant / ut / at / bussen / ikke / gikk / på / søndag",
+    "norwegian": "Jeg fant ut at bussen ikke gikk på søndag.",
     "english": "I found out that the bus didn't run on Sundays.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4368,7 +4368,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Jeg fant ut at bussen ikke gikk på søndag."
+    "notes": ""
   },
   {
     "id": "b1-dd-001",
@@ -4694,7 +4694,7 @@
   },
   {
     "id": "b1-dd-016",
-    "norwegian": "den / varme / suppen / smaker / godt / på / kalde / dager",
+    "norwegian": "Den varme suppen smaker godt på kalde dager.",
     "english": "The warm soup tastes good on cold days.",
     "concept_ids": [
       "double-definite"
@@ -4712,7 +4712,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Den varme suppen smaker godt på kalde dager."
+    "notes": ""
   },
   {
     "id": "b1-dd-017",
@@ -4802,7 +4802,7 @@
   },
   {
     "id": "b1-dd-021",
-    "norwegian": "det / gamle / trehuset / ved / elven / er / fremdeles / vakkert",
+    "norwegian": "Det gamle trehuset ved elven er fremdeles vakkert.",
     "english": "The old wooden house by the river is still beautiful.",
     "concept_ids": [
       "double-definite"
@@ -4820,7 +4820,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Det gamle trehuset ved elven er fremdeles vakkert."
+    "notes": ""
   },
   {
     "id": "b1-dd-022",
@@ -4909,7 +4909,7 @@
   },
   {
     "id": "b1-dd-026",
-    "norwegian": "de / nye / naboene / i / blokken / er / veldig / hyggelige",
+    "norwegian": "De nye naboene i blokken er veldig hyggelige.",
     "english": "The new neighbours in the building are very friendly.",
     "concept_ids": [
       "double-definite"
@@ -4926,7 +4926,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "De nye naboene i blokken er veldig hyggelige."
+    "notes": ""
   },
   {
     "id": "b1-dd-027",
@@ -5223,7 +5223,7 @@
   },
   {
     "id": "b1-cx-011",
-    "norwegian": "selv / om / det / var / dyrt / kjøpte / han / billettene",
+    "norwegian": "Selv om det var dyrt, kjøpte han billettene.",
     "english": "Even though it was expensive, he bought the tickets.",
     "concept_ids": [
       "complex-subordination"
@@ -5240,7 +5240,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Selv om det var dyrt, kjøpte han billettene."
+    "notes": ""
   },
   {
     "id": "b1-cx-012",
@@ -5329,7 +5329,7 @@
   },
   {
     "id": "b1-cx-016",
-    "norwegian": "fordi / han / ikke / hadde / spist / ble / han / svimmel",
+    "norwegian": "Fordi han ikke hadde spist, ble han svimmel.",
     "english": "Because he hadn't eaten, he felt dizzy.",
     "concept_ids": [
       "complex-subordination"
@@ -5347,7 +5347,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Fordi han ikke hadde spist, ble han svimmel."
+    "notes": ""
   },
   {
     "id": "b1-cx-017",
@@ -5435,7 +5435,7 @@
   },
   {
     "id": "b1-cx-021",
-    "norwegian": "mens / hun / ventet / leste / hun / en / bok",
+    "norwegian": "Mens hun ventet, leste hun en bok.",
     "english": "While she waited, she read a book.",
     "concept_ids": [
       "complex-subordination"
@@ -5452,7 +5452,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Mens hun ventet, leste hun en bok."
+    "notes": ""
   },
   {
     "id": "b1-cx-022",
@@ -5540,7 +5540,7 @@
   },
   {
     "id": "b1-cx-026",
-    "norwegian": "dersom / du / ikke / melder / deg / på / mister / du / plassen",
+    "norwegian": "Dersom du ikke melder deg på, mister du plassen.",
     "english": "If you don't sign up, you will lose your place.",
     "concept_ids": [
       "complex-subordination"
@@ -5558,7 +5558,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Dersom du ikke melder deg på, mister du plassen."
+    "notes": ""
   },
   {
     "id": "b1-cx-027",
@@ -5965,7 +5965,7 @@
   },
   {
     "id": "b1-fr-016",
-    "norwegian": "med / vennlig / hilsen / og / takk / for / samarbeidet",
+    "norwegian": "Med vennlig hilsen og takk for samarbeidet.",
     "english": "Yours sincerely and thank you for the cooperation.",
     "concept_ids": [
       "formal-informal-register"
@@ -5982,7 +5982,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Med vennlig hilsen og takk for samarbeidet."
+    "notes": ""
   },
   {
     "id": "b1-fr-017",
@@ -6071,7 +6071,7 @@
   },
   {
     "id": "b1-fr-021",
-    "norwegian": "vi / ser / frem / til / å / møte / Dem / på / mandag",
+    "norwegian": "Vi ser frem til å møte Dem på mandag.",
     "english": "We look forward to meeting you on Monday. (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -6088,7 +6088,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Vi ser frem til å møte Dem på mandag."
+    "notes": ""
   },
   {
     "id": "b1-fr-022",
@@ -6176,7 +6176,7 @@
   },
   {
     "id": "b1-fr-026",
-    "norwegian": "kunden / bes / om / å / oppgi / navn / og / adresse",
+    "norwegian": "Kunden bes om å oppgi navn og adresse.",
     "english": "The customer is asked to provide their name and address.",
     "concept_ids": [
       "formal-informal-register"
@@ -6193,7 +6193,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Kunden bes om å oppgi navn og adresse."
+    "notes": ""
   },
   {
     "id": "b1-fr-027",
@@ -6606,7 +6606,7 @@
   },
   {
     "id": "b1-id-016",
-    "norwegian": "hun / stod / på / og / ble / til slutt / lege",
+    "norwegian": "Hun stod på og ble til slutt lege.",
     "english": "She persevered and eventually became a doctor.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6623,7 +6623,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Hun stod på og ble til slutt lege."
+    "notes": ""
   },
   {
     "id": "b1-id-017",
@@ -6711,7 +6711,7 @@
   },
   {
     "id": "b1-id-021",
-    "norwegian": "ta / det / med / ro / og / spis / litt / mer",
+    "norwegian": "Ta det med ro og spis litt mer.",
     "english": "Take it easy and eat a bit more.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6728,7 +6728,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Ta det med ro og spis litt mer."
+    "notes": ""
   },
   {
     "id": "b1-id-022",
@@ -6816,7 +6816,7 @@
   },
   {
     "id": "b1-id-026",
-    "norwegian": "jeg / har / det / bra / nå / etter / en / lang / hvil",
+    "norwegian": "Jeg har det bra nå etter en lang hvil.",
     "english": "I feel great now after a long rest.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6833,7 +6833,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Jeg har det bra nå etter en lang hvil."
+    "notes": ""
   },
   {
     "id": "b1-id-027",
@@ -7225,7 +7225,7 @@
   },
   {
     "id": "b1-iq-016",
-    "norwegian": "jeg / lurer / på / om / hun / er / hjemme / nå",
+    "norwegian": "Jeg lurer på om hun er hjemme nå.",
     "english": "I wonder if she is home now.",
     "concept_ids": [
       "indirect-questions"
@@ -7241,7 +7241,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Jeg lurer på om hun er hjemme nå."
+    "notes": ""
   },
   {
     "id": "b1-iq-017",
@@ -7328,7 +7328,7 @@
   },
   {
     "id": "b1-iq-021",
-    "norwegian": "kan / du / si / meg / hvor / neste / buss / går",
+    "norwegian": "Kan du si meg hvor neste buss går?",
     "english": "Can you tell me when the next bus leaves?",
     "concept_ids": [
       "indirect-questions"
@@ -7344,7 +7344,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Kan du si meg hvor neste buss går?"
+    "notes": ""
   },
   {
     "id": "b1-iq-022",
@@ -7429,7 +7429,7 @@
   },
   {
     "id": "b1-iq-026",
-    "norwegian": "vet / du / om / det / er / ledig / rom / på / hotellet",
+    "norwegian": "Vet du om det er ledig rom på hotellet?",
     "english": "Do you know if there are any rooms available at the hotel?",
     "concept_ids": [
       "indirect-questions"
@@ -7445,7 +7445,7 @@
     "exercise_types": [
       "word-order"
     ],
-    "notes": "Vet du om det er ledig rom på hotellet?"
+    "notes": ""
   },
   {
     "id": "b1-iq-027",
