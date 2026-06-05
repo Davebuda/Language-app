@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { validateNorwegianOutput } from '@/ai/validate'
+import {
+  validateNorwegianOutput, difficultyTier, likelySyntheticCompound,
+} from '@/ai/validate'
 
 // Regression coverage for the AI validity gate. These lock in fixes where the
 // gate was wrongly REJECTING valid Norwegian (accented chars, em-dash, and
@@ -54,5 +56,40 @@ describe('validateNorwegianOutput', () => {
 
   it('passes very short fragments through (too short to classify)', () => {
     expect(validateNorwegianOutput('Takk!').valid).toBe(true)
+  })
+})
+
+// difficultyTier + likelySyntheticCompound moved from webllm.ts to validate.ts so
+// the Groq server route can reuse them without importing @mlc-ai/web-llm. These
+// lock their shared behaviour across the desktop (WebLLM) and mobile (Groq) paths.
+describe('difficultyTier', () => {
+  it.each([
+    ['undefined mastery', undefined, 1],
+    ['below 40', 39, 1],
+    ['exactly 40', 40, 2],
+    ['mid band', 69, 2],
+    ['exactly 70', 70, 3],
+    ['high mastery', 100, 3],
+  ] as const)('maps %s → tier %s', (_label, score, tier) => {
+    expect(difficultyTier(score)).toBe(tier)
+  })
+})
+
+describe('likelySyntheticCompound', () => {
+  it.each([
+    ['plain sentence',            'Jeg går til butikken.'],
+    ['real long word (16 chars)', 'Vi venter på barnehageplassen.'],
+    ['real word togstasjonen',    'Toget står på togstasjonen.'],
+  ])('accepts %s', (_label, text) => {
+    expect(likelySyntheticCompound(text)).toBe(false)
+  })
+
+  it('flags a fabricated >18-char compound', () => {
+    expect(likelySyntheticCompound('Jeg liker superlangtsammensattordet godt')).toBe(true)
+  })
+
+  it('ignores trailing punctuation when measuring word length', () => {
+    // 16-char word with punctuation should not trip the 18-char threshold
+    expect(likelySyntheticCompound('Det er barnehageplassen.')).toBe(false)
   })
 })

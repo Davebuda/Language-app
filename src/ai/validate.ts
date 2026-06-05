@@ -183,6 +183,24 @@ export function validateNorwegianOutput(text: string, opts?: { minWords?: number
   return { valid: true }
 }
 
+// Difficulty tier (1–3) from a 0–100 mastery score, used to tag generated
+// content. Shared by the WebLLM (client) and Groq (server) generation paths —
+// lives here, not in webllm.ts, so the server route can reuse it without
+// importing the browser-only @mlc-ai/web-llm module.
+export function difficultyTier(masteryScore?: number): 1 | 2 | 3 {
+  if (!masteryScore || masteryScore < 40) return 1;
+  if (masteryScore < 70) return 2;
+  return 3;
+}
+
+// Heuristic: flag suspiciously long words that may be fabricated Norwegian
+// compounds. Threshold 18 chars catches true fabrications while allowing real
+// long words (e.g. "barnehageplassen" = 16, "togstasjonen" = 12). Shared by
+// both generation paths (see difficultyTier note above).
+export function likelySyntheticCompound(text: string): boolean {
+  return text.split(/\s+/).some((w) => w.replace(/[.,!?;:«»"']/g, '').length > 18);
+}
+
 export function validateGenerated(
   raw: unknown,
   params: GenerateParams

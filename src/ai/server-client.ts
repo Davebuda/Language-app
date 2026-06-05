@@ -48,8 +48,11 @@ export class ServerAIService implements AIService {
     return result ?? { text: `You wrote "${params.wrong}". The correct answer is "${params.correct}".`, source: 'template' }
   }
 
-  async generateContent(_params: GenerateParams): Promise<ResolvedContent | null> {
-    return null
+  async generateContent(params: GenerateParams): Promise<ResolvedContent | null> {
+    // callServerAI returns null on a non-ok response, a thrown fetch, or a null
+    // body (the route returns NextResponse.json(null) when generation fails the
+    // validation gate). Null → caller's honest "Repetisjon" fallback fires.
+    return callServerAI<ResolvedContent>('generate', params as unknown as Record<string, unknown>)
   }
 
   async detectErrors(text: string, level: CEFRLevel): Promise<TaggedError[]> {

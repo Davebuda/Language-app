@@ -2,13 +2,18 @@ import { NextResponse } from 'next/server'
 import {
   buildExplanationPrompt, buildConversationPrompt,
   buildWritingFeedbackPrompt, buildErrorDetectionPrompt,
+  buildGenerationPrompt,
 } from '@/ai/prompts'
-import { validateNorwegianOutput } from '@/ai/validate'
+import {
+  validateNorwegianOutput, validateGenerated,
+  difficultyTier, likelySyntheticCompound,
+} from '@/ai/validate'
 import { stripTutorScaffolding } from '@/lib/conversation-format'
 import type {
-  ExplainParams, ConversationMessage, TaggedError,
+  ExplainParams, ConversationMessage, TaggedError, GenerateParams,
 } from '@/ai/types'
 import type { CEFRLevel } from '@/types/fingerprint'
+import type { ResolvedContent } from '@/types/content'
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY
 const GROQ_MODEL = process.env.GROQ_MODEL ?? 'llama-3.1-8b-instant'
@@ -41,6 +46,7 @@ async function groqComplete(
   messages: Array<{ role: string; content: string }>,
   maxTokens = 400,
   temperature = 0.7,
+  jsonMode = false,
 ): Promise<string | null> {
   const res = await fetch(GROQ_URL, {
     method: 'POST',
@@ -53,6 +59,9 @@ async function groqComplete(
       messages: [{ role: 'system', content: system }, ...messages],
       max_tokens: maxTokens,
       temperature,
+      // Groq honours OpenAI-compatible JSON mode; the generation prompts already
+      // instruct "Output JSON only", which JSON mode requires.
+      ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
     }),
   })
   if (!res.ok) return null
@@ -177,6 +186,54 @@ async function handleDetect(params: { text: string; level: CEFRLevel }) {
   }
 }
 
+// Server-side content generation — the Groq sibling of WebLLMService.generateContent
+// (src/ai/webllm.ts). Mirrors that recipe exactly so the desktop and mobile paths
+// produce identically-shaped, identically-validated ResolvedContent. Returns null on
+// any failure so the caller's honest "Repetisjon" fallback fires (no silent
+// substitution — see CLAUDE.md Rule 6). Capped at 2 attempts to respect the 30/min
+// rate limiter and the Groq free-tier token budget.
+async function handleGenerate(params: GenerateParams): Promise<ResolvedContent | null> {
+  const { system, user } = buildGenerationPrompt(params)
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const userPrompt = attempt > 0
+      ? `${user}\n\nIMPORTANT: Use only short, common Norwegian words (under 15 characters each). No compound words.`
+      : user
+    const raw = await groqComplete(system, [{ role: 'user', content: userPrompt }], 400, 0.7, true)
+    if (!raw) continue
+
+    let parsed: unknown
+    try { parsed = JSON.parse(raw) } catch { continue }
+
+    const result = validateGenerated(parsed, params)
+    if (!result.valid) continue
+    const { content } = result
+
+    // Same two guards as the desktop path: reject fabricated compounds, then the
+    // Norwegian-validity gate (strip the fill-in-blank marker first so the
+    // underscores don't trip the char check).
+    if (likelySyntheticCompound(content.norwegian)) continue
+    if (!validateNorwegianOutput(content.norwegian.replace(/___/g, ' ')).valid) continue
+
+    return {
+      id: crypto.randomUUID(),
+      norwegian: content.norwegian,
+      english: content.english,
+      notes: content.notes,
+      conceptIds: [params.conceptId],
+      vocabularyClusters: [],
+      errorTagsDetectable: params.recentErrors ?? [],
+      cefrLevel: params.level,
+      difficulty: difficultyTier(params.masteryScore),
+      exerciseTypes: [params.exerciseType],
+      audioUrl: undefined,
+      scenarioId: content.scenarioId,
+      source: 'generated',
+      distractors: content.distractors,
+    }
+  }
+  return null
+}
+
 export async function POST(request: Request) {
   const ip = request.headers.get('x-forwarded-for') ?? 'anonymous'
   if (!checkRateLimit(ip)) {
@@ -205,6 +262,8 @@ export async function POST(request: Request) {
         return NextResponse.json(await handleReview(params as unknown as { userText: string; level: CEFRLevel }))
       case 'detect':
         return NextResponse.json(await handleDetect(params as unknown as { text: string; level: CEFRLevel }))
+      case 'generate':
+        return NextResponse.json(await handleGenerate(params as unknown as GenerateParams))
       default:
         return NextResponse.json({ error: 'Unknown action' }, { status: 400 })
     }

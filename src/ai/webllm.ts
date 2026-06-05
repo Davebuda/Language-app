@@ -10,7 +10,7 @@ import {
   buildConversationPrompt, buildWritingFeedbackPrompt,
   buildErrorDetectionPrompt,
 } from './prompts'
-import { validateGenerated, validateNorwegianOutput } from './validate'
+import { validateGenerated, validateNorwegianOutput, difficultyTier, likelySyntheticCompound } from './validate'
 
 const MODEL_ID = 'Llama-3.2-1B-Instruct-q4f16_1-MLC'
 const MAX_RETRIES = 2
@@ -29,19 +29,6 @@ interface ChatEngine {
       }): Promise<{ choices: Array<{ message: { content: string | null } }> }>
     }
   }
-}
-
-function difficultyTier(masteryScore?: number): 1 | 2 | 3 {
-  if (!masteryScore || masteryScore < 40) return 1
-  if (masteryScore < 70) return 2
-  return 3
-}
-
-// Heuristic: flag suspiciously long words that may be fabricated Norwegian compounds.
-// Threshold 18 chars catches true fabrications while allowing real long words
-// (e.g. "barnehageplassen" = 16, "togstasjonen" = 12).
-function likelySyntheticCompound(text: string): boolean {
-  return text.split(/\s+/).some(w => w.replace(/[.,!?;:«»"']/g, '').length > 18)
 }
 
 function templateExplanation(params: ExplainParams): string {
