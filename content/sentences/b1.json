@@ -12464,5 +12464,712 @@
       "translation-to-norwegian"
     ],
     "notes": ""
+  },
+  {
+    "id": "b1-cx-031",
+    "norwegian": "Jeg tror at han ikke kommer i dag.",
+    "english": "I think that he is not coming today.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-032",
+    "norwegian": "Hun sa at hun alltid spiser frokost.",
+    "english": "She said that she always eats breakfast.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-033",
+    "norwegian": "Sjefen sa at rapporten ikke var ferdig.",
+    "english": "The boss said that the report was not finished.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-034",
+    "norwegian": "Jeg skjønner at du ikke alltid har tid.",
+    "english": "I understand that you do not always have time.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-035",
+    "norwegian": "Kollegaen min sa at han gjerne ville bytte vakt.",
+    "english": "My colleague said that he would gladly swap shifts.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-036",
+    "norwegian": "Fordi det regnet, ble vi hjemme.",
+    "english": "Because it was raining, we stayed home.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-037",
+    "norwegian": "Vi drar tidligere fordi vi ikke vil stå i kø.",
+    "english": "We are leaving earlier because we do not want to stand in a queue.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-038",
+    "norwegian": "Fordi hun ikke visste veien, spurte hun om hjelp.",
+    "english": "Because she did not know the way, she asked for help.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-039",
+    "norwegian": "Selv om jeg var trøtt, jobbet jeg videre.",
+    "english": "Even though I was tired, I kept working.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-040",
+    "norwegian": "Selv om det var dyrt, kjøpte hun billetten.",
+    "english": "Even though it was expensive, she bought the ticket.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-041",
+    "norwegian": "Selv om hun ikke kjente noen der, koste hun seg på festen.",
+    "english": "Even though she did not know anyone there, she enjoyed herself at the party.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "social",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-042",
+    "norwegian": "Hvis du ikke er sulten, trenger du ikke spise.",
+    "english": "If you are not hungry, you do not need to eat.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "food",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-043",
+    "norwegian": "Hvis det ikke snør, kan vi sykle dit.",
+    "english": "If it does not snow, we can cycle there.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-044",
+    "norwegian": "Når han ikke jobber, liker han å gå tur.",
+    "english": "When he is not working, he likes to go for a walk.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "negation-placement",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-045",
+    "norwegian": "Når du er ferdig, kan vi gå.",
+    "english": "When you are finished, we can go.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-046",
+    "norwegian": "Mens hun studerte, lyttet hun alltid til musikk.",
+    "english": "While she was studying, she always listened to music.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "study",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-047",
+    "norwegian": "Mens barna sov, ryddet foreldrene kjøkkenet.",
+    "english": "While the children were sleeping, the parents tidied the kitchen.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-048",
+    "norwegian": "Før hun begynte å jobbe, tok hun en kopp kaffe.",
+    "english": "Before she started working, she had a cup of coffee.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-049",
+    "norwegian": "Slik at alle forstår, snakker hun sakte.",
+    "english": "So that everyone understands, she speaks slowly.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "study",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-050",
+    "norwegian": "Etter at møtet var over, gikk vi på kafé.",
+    "english": "After the meeting was over, we went to a café.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "work",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cx-051",
+    "norwegian": "Han spurte om jeg ofte reiser til utlandet.",
+    "english": "He asked whether I often travel abroad.",
+    "concept_ids": [
+      "complex-subordination"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-031",
+    "norwegian": "Da vi kom til hotellet, hadde de allerede gitt rommet til noen andre.",
+    "english": "When we arrived at the hotel, they had already given the room to someone else.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-032",
+    "norwegian": "Hun hadde skrevet ferdig rapporten før møtet begynte.",
+    "english": "She had finished writing the report before the meeting started.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-033",
+    "norwegian": "Jeg hadde aldri kjørt bil i en storby før jeg begynte å jobbe i Oslo.",
+    "english": "I had never driven a car in a big city before I started working in Oslo.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-034",
+    "norwegian": "De hadde allerede ryddet leiligheten da vennene kom.",
+    "english": "They had already tidied the flat when their friends arrived.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-035",
+    "norwegian": "Etter at toget hadde kjørt, skjønte vi at vi var på feil stasjon.",
+    "english": "After the train had left, we realised we were at the wrong station.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-036",
+    "norwegian": "Jeg visste at kollegaen min hadde søkt på den samme stillingen.",
+    "english": "I knew that my colleague had applied for the same position.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-037",
+    "norwegian": "Da vi endelig fant parkeringsplassen, hadde konserten begynt for lenge siden.",
+    "english": "By the time we finally found the parking space, the concert had started long ago.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-038",
+    "norwegian": "Hun hadde lært seg litt norsk før hun begynte på kurset.",
+    "english": "She had taught herself a little Norwegian before she started the course.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "education",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-039",
+    "norwegian": "Vi oppdaget at noen hadde tatt sykkelen vår.",
+    "english": "We discovered that someone had taken our bike.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-040",
+    "norwegian": "Læreren hadde allerede delt ut oppgavene da jeg kom inn i klasserommet.",
+    "english": "The teacher had already handed out the assignments when I came into the classroom.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "education"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-041",
+    "norwegian": "De hadde sett filmen to ganger, men de ville se den igjen.",
+    "english": "They had seen the film twice, but they wanted to see it again.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "social",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-pp-042",
+    "norwegian": "Vi hadde nettopp kommet hjem da telefonen ringte.",
+    "english": "We had just arrived home when the phone rang.",
+    "concept_ids": [
+      "past-perfect"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "verb-conjugation"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
   }
 ]
