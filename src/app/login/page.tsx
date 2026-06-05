@@ -131,10 +131,10 @@ function LoginForm() {
                       inputMode="numeric"
                       autoComplete="one-time-code"
                       pattern="[0-9]*"
-                      maxLength={6}
+                      maxLength={8}
                       required
                       autoFocus
-                      placeholder="123456"
+                      placeholder="12345678"
                       value={code}
                       onChange={(event) => setCode(event.target.value.replace(/\D/g, ''))}
                       className="nc-input-cream text-center text-lg font-semibold tracking-[0.4em]"
@@ -149,7 +149,7 @@ function LoginForm() {
 
                   <button
                     type="submit"
-                    disabled={loading || code.length < 6}
+                    disabled={loading || code.length < 6 || code.length > 8}
                     className="nc-button-dark inline-flex min-h-[48px] w-full items-center justify-center gap-2 px-4 py-3 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35"
                   >
                     <span>{loading ? 'Logger inn…' : 'Logg inn'}</span>
