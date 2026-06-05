@@ -178,7 +178,7 @@ NorskCoach is a **free, AI-powered Norwegian coach** that:
 ### F16 — Auth
 | Criterion | Standard |
 |-----------|----------|
-| Magic-link login | Email → link → /auth/callback → /dashboard |
+| Email OTP login | Email → 6/8-digit code → `verifyOtp` → /dashboard |
 | Fingerprint sync | IndexedDB → Supabase on auth |
 | Guest mode | Full functionality without login |
 | Auth redirect | Unauthenticated users can use app freely |

@@ -234,7 +234,7 @@ Stream 5 (Weekly Sprint) closure leaves two parallel decision tracks:
 - **E. B1/B2 concept graph + corpus authoring** — content authoring; unlocks honest level switching.
 
 **Pending user actions (unblock options):**
-- Magic-link click for authenticated walkthrough (option D from prior brief).
+- ~~Magic-link click for authenticated walkthrough~~ ✅ DONE — replaced by email OTP login (`verifyOtp`), verified e2e cross-device 2026-06-05.
 - `NEXT_PUBLIC_APP_URL=https://pandoai.no` in production env.
 - Supabase Authentication → URL Configuration → whitelist `https://pandoai.no/auth/callback`.
 

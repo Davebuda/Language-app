@@ -26,7 +26,7 @@ NorskCoach is ship-ready when a learner can:
 AND:
 
 9. **Hear Norwegian** — At least one surface plays real Norwegian audio (not browser TTS)
-10. **Auth works** — Authenticated users sync fingerprint to Supabase; magic-link tested end-to-end
+10. **Auth works** — Authenticated users sync fingerprint to Supabase; 6/8-digit OTP login (`verifyOtp`) tested end-to-end cross-device (replaced magic link 2026-06-05)
 11. **No lies** — Zero placeholder surfaces, zero silent substitutions, zero dead buttons
 12. **Tests pass** — Full test suite green, build clean, deployed to pandoai.no
 
@@ -63,10 +63,10 @@ Legend: ──▶ hard dependency (must exist before)
 │ • Event logging writes                                          │
 └─────────────────────────────────────────────────────────────────┘
         │
-        ├──▶ AUTH COMPLETION ─────────────────────────────────────┐
-        │    Magic-link test, prod env vars, Supabase callback    │
-        │    Blocker: 3 manual user actions                       │
-        │    No code blocked; purely operational                  │
+        ├──▶ AUTH — COMPLETE ─────────────────────────────────────┐
+        │    OTP login (verifyOtp) shipped + verified e2e.        │
+        │    Email OTP, not magic link (no redirect/host).        │
+        │    /auth/callback kept for future Google OAuth.         │
         │                                                         │
         ├──▶ NB-LLAMA-1B COMPILE (Stream 1.1 Step 2) ──────────┐│
         │    MLC compile pipeline → WebGPU WASM → custom config  ││
@@ -137,7 +137,7 @@ These items must complete before inviting real users. Each is small.
 | # | Item | Effort | Depends on | Status |
 |---|---|---|---|---|
 | 0.1 | **CLAUDE.md sync** — update Current Phase to reflect Stream 5.5 complete | 15 min | Nothing | ✅ DONE 2026-05-26 |
-| 0.2 | **Auth completion** — magic-link click, NEXT_PUBLIC_APP_URL, Supabase callback | User actions | Nothing | ⏳ Pending user |
+| 0.2 | **Auth completion** — OTP login (`verifyOtp`) shipped + verified e2e; replaced magic link | User actions | Nothing | ✅ DONE 2026-06-05 |
 | 0.3 | **Surface disposition** — mute `/listen` and `/drills` on dashboard | 30 min | Nothing | ✅ DONE 2026-05-26 |
 | 0.4 | **F027 repair-loop cap** — cap session at 2x original size | 30 min | Nothing | ✅ DONE 2026-05-26 |
 | 0.5 | **NB-Llama-1B compile** (Stream 1.1 Step 2) — MLC compile pipeline | Half day | Nothing | Queued |

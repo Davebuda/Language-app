@@ -117,10 +117,10 @@ memory `project_qa_walkthrough_2026_06_03`). Historical ship-ready context: `doc
 - Wave 4: B1 concept graph (12 concepts), B1 corpus (360 sentences, 30/concept), all 16 files migrated to `getGraphForLevel`, B1 level selectable
 - Wave 4.5: B2 concept graph (12 concepts), B2 corpus (360 sentences, 30/concept), B2 audio (360 MP3s)
 - Norwegian-dominates pass across ALL learning surfaces (~99% Norwegian)
-- Auth redirect confirmed working
+- Auth: email login is **6-digit/8-digit OTP** (`verifyOtp`, device-independent), NOT magic link. Migrated 2026-06-05 from device-locked PKCE magic link (commits `d4ecdef` + `4e018ec`); `/auth/callback` + `exchangeCodeForSession` kept for future Google OAuth. Production email via Resend SMTP (`no-reply@pandoai.no`). Verified end-to-end cross-device live. See memory `project_auth_redirect_config`.
 - Market-readiness audit: security headers, error boundaries (Norwegian), loading skeletons, CEFR sentence filter, API rate limiter (30 req/min), `.env.local.example` credentials cleaned
 
-**Next (operational, not code):** Rotate Supabase keys (old keys in git history), deploy to pandoai.no, auth completion (magic-link end-to-end test). V2 engine (Wave 5) blocked on real users.
+**Next (operational, not code):** ~~Rotate Supabase keys~~ (done 2026-05-29), ~~deploy to pandoai.no~~ (live), ~~auth completion~~ (done — OTP login shipped + verified e2e 2026-06-05). Remaining operational: Google OAuth one-tap (optional; `/auth/callback` already retained for it). V2 engine (Wave 5) blocked on real users.
 
 ## Operating Rules (HARD RAILS — these caused real problems when absent)
 

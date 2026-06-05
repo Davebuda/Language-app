@@ -241,7 +241,7 @@ Learner's mental model: *"I have 5 concepts to lock in this week. The app picks 
 - ✅ 40/30/20/10 scheduler distribution preserved within ±5pp under focus bias — verified via `tests/engine/scheduler.test.ts` `describe('weekly focus bias')` (5 tests).
 - ✅ Dashboard WeekStrip passes the anti-Duolingo aesthetic guard — Phase 7 smoke confirmed no streak number, day-dots only, Norwegian header.
 - ⏵ Three consecutive simulated weekly sprints rotate focus correctly per `engine-tester` — covered by `tests/engine/weekly-sprint.test.ts` (37 tests across Phase 1/3/5a/5b). Live three-week simulation would be additional evidence but is not blocking — graduation + close + open are unit-tested.
-- ⏵ Authenticated path fully traced (Phase 2 walkthrough) — pending user magic-link click + the two manual auth-redirect actions (NEXT_PUBLIC_APP_URL prod env + Supabase callback whitelist). Engineering hygiene only; no unshipped code blocks behind it.
+- ✅ Authenticated path verified — email OTP login (`verifyOtp`) shipped + tested e2e cross-device 2026-06-05 (replaced device-locked PKCE magic link). The old magic-link redirect / callback-whitelist actions are moot for OTP; `/auth/callback` retained only for future Google OAuth.
 - ⏵ Honest-reset banner verified via simulated 8-day absence — `shouldResetWeek` unit-tested at the boundary; the live banner copy will surface organically once any user returns after >7 days. Not blocking.
 
 ### Procedural locks (carried from P0.5)
@@ -396,7 +396,7 @@ The moat is the diagnostic coaching intelligence — but it's an architectural b
 - **Fingerprint-first scheduler rule (2026-05-26):** Passed-sentence filtering in `scheduler.ts` — `firstEligibleType()` excludes passed sentences for remediation/new-material/interleaving, allows them for review (`excludePassed: false`). Every `SessionItem` now carries required `selectionReason` field. Repair items tagged `repair_target` via `repair-loop.ts`. Weekly check items tagged `review_due`. Defense-in-depth in `useSession.ts` triggers AI top-up when seed pool exhausted. Production guarantee respects item purpose. Fallback reason corrected when concept-repeat cap triggers substitution. 36 new tests (10 filtering + 26 harness), 324/324 total green.
 
 ### Pending user actions
-- **Magic-link click** — completes the deferred authenticated-user walkthrough (option D from prior brief). No code blocked behind it.
+- ~~**Magic-link click**~~ ✅ DONE — replaced by email OTP login (`verifyOtp`), verified e2e cross-device 2026-06-05.
 - **`NEXT_PUBLIC_APP_URL=https://pandoai.no`** in production env (Hetzner PM2 ecosystem or `/etc/environment`).
 - **Supabase Authentication → URL Configuration** — whitelist `https://pandoai.no/auth/callback`.
 
