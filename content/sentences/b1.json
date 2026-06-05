@@ -9746,5 +9746,1380 @@
       "translation-to-norwegian"
     ],
     "notes": ""
+  },
+  {
+    "id": "b1-sub-031",
+    "norwegian": "Hvis jeg hadde mer penger, ville jeg reise til Japan.",
+    "english": "If I had more money, I would travel to Japan.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "money",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-032",
+    "norwegian": "Hvis jeg hadde visst det, ville jeg ikke kommet.",
+    "english": "If I had known that, I wouldn't have come.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "social",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-033",
+    "norwegian": "Hvis det ikke regnet, ville vi spist ute.",
+    "english": "If it weren't raining, we would eat outside.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "weather",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-034",
+    "norwegian": "Hvis du hadde spurt meg, ville jeg hjulpet deg.",
+    "english": "If you had asked me, I would have helped you.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "social",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-035",
+    "norwegian": "Om jeg var lege, kunne jeg hjelpe flere mennesker.",
+    "english": "If I were a doctor, I could help more people.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "work",
+      "health"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-036",
+    "norwegian": "Om jeg bodde i Oslo, ville jeg gå på opera oftere.",
+    "english": "If I lived in Oslo, I would go to the opera more often.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-037",
+    "norwegian": "Om jeg snakket bedre norsk, ville jeg søke på den jobben.",
+    "english": "If I spoke better Norwegian, I would apply for that job.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "work",
+      "language-learning"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-038",
+    "norwegian": "Om det hadde vært varmere, ville vi badet i fjorden.",
+    "english": "If it had been warmer, we would have swum in the fjord.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "weather",
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-039",
+    "norwegian": "Tenk om vi bodde i nærheten av havet!",
+    "english": "Imagine if we lived near the sea!",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-040",
+    "norwegian": "Tenk om vi hadde møttes tidligere!",
+    "english": "Imagine if we had met earlier!",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "social",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-041",
+    "norwegian": "Tenk om vi vant i lotto i morgen!",
+    "english": "Imagine if we won the lottery tomorrow!",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "money",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-042",
+    "norwegian": "Jeg skulle ønske jeg kunne spille gitar.",
+    "english": "I wish I could play the guitar.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "feelings",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "modal-verb",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-043",
+    "norwegian": "Jeg skulle ønske sommeren varte lenger.",
+    "english": "I wish summer lasted longer.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "weather",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-044",
+    "norwegian": "Jeg skulle ønske jeg hadde sagt det til ham.",
+    "english": "I wish I had said it to him.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "social",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-045",
+    "norwegian": "Jeg skulle ønske vi bodde nærmere familien.",
+    "english": "I wish we lived closer to the family.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-046",
+    "norwegian": "Hadde jeg bare studert mer, hadde jeg bestått eksamen.",
+    "english": "If only I had studied more, I would have passed the exam.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "school",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-047",
+    "norwegian": "Hadde jeg bare tatt bussen, hadde jeg kommet i tide.",
+    "english": "If only I had taken the bus, I would have arrived on time.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-048",
+    "norwegian": "Hadde jeg ikke glemt nøklene, ville jeg vært hjemme nå.",
+    "english": "If I hadn't forgotten the keys, I would be home now.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-049",
+    "norwegian": "Hadde jeg bare sagt nei, hadde alt vært annerledes.",
+    "english": "If only I had said no, everything would have been different.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "feelings",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-050",
+    "norwegian": "Jeg ville reist til Bergen hvis jeg hadde ferie neste uke.",
+    "english": "I would travel to Bergen if I had holiday next week.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-sub-051",
+    "norwegian": "Jeg ville ikke jobbet overtid hvis jeg ikke trengte pengene.",
+    "english": "I wouldn't work overtime if I didn't need the money.",
+    "concept_ids": [
+      "subjunctive-equivalents"
+    ],
+    "vocab_clusters": [
+      "work",
+      "money"
+    ],
+    "error_tags_detectable": [
+      "verb-tense",
+      "negation-placement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-031",
+    "norwegian": "Den gamle bilen min starter ikke om vinteren.",
+    "english": "My old car doesn't start in winter.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "transport",
+      "home"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-032",
+    "norwegian": "Det nye huset ligger i en rolig gate.",
+    "english": "The new house is on a quiet street.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "home",
+      "neighbourhood"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-033",
+    "norwegian": "De nye skoene er litt for store.",
+    "english": "The new shoes are a little too big.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "shopping",
+      "clothing"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-034",
+    "norwegian": "Det kalde vannet smaker godt etter en lang tur.",
+    "english": "The cold water tastes good after a long hike.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-035",
+    "norwegian": "Den nye kollegen min er veldig hyggelig.",
+    "english": "My new colleague is very friendly.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "work",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-036",
+    "norwegian": "De gamle møblene passer ikke i den nye leiligheten.",
+    "english": "The old furniture doesn't fit in the new apartment.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "home"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-037",
+    "norwegian": "Den lille kaféen på hjørnet er stengt i dag.",
+    "english": "The small café on the corner is closed today.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "food",
+      "neighbourhood"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-038",
+    "norwegian": "Den lange køen gikk veldig sakte.",
+    "english": "The long queue moved very slowly.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "shopping",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-039",
+    "norwegian": "De unge studentene bor i sentrum.",
+    "english": "The young students live in the city centre.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "social",
+      "neighbourhood"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-040",
+    "norwegian": "Dette interessante møtet varte i tre timer.",
+    "english": "This interesting meeting lasted for three hours.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-041",
+    "norwegian": "Det varme brødet luktet fantastisk i butikken.",
+    "english": "The warm bread smelled fantastic in the shop.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "food",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-042",
+    "norwegian": "De røde bærene i skogen er ikke giftige.",
+    "english": "The red berries in the forest are not poisonous.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "nature"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-043",
+    "norwegian": "Den ødelagte sykkelen sto utenfor inngangen.",
+    "english": "The broken bicycle was parked outside the entrance.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "transport",
+      "neighbourhood"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-044",
+    "norwegian": "Det store vinduet gir mye lys om morgenen.",
+    "english": "The large window lets in a lot of light in the morning.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "home"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-045",
+    "norwegian": "Denne korte reisen ga meg mye energi.",
+    "english": "This short trip gave me a lot of energy.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-046",
+    "norwegian": "Det grønne gresset ser friskt ut etter regnet.",
+    "english": "The green grass looks fresh after the rain.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "home"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-047",
+    "norwegian": "Den siste bussen til sentrum gikk for fem minutter siden.",
+    "english": "The last bus to the city centre left five minutes ago.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "transport",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-048",
+    "norwegian": "Det lille rommet ble brukt som kontor.",
+    "english": "The small room was used as an office.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "home",
+      "work"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-049",
+    "norwegian": "Den mørke skogen er vakker om høsten.",
+    "english": "The dark forest is beautiful in autumn.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-050",
+    "norwegian": "De billige flybillettene var utsolgt på én dag.",
+    "english": "The cheap plane tickets sold out in one day.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "shopping"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "article-use"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-dd-051",
+    "norwegian": "Den friske luften på fjellet er vanskelig å beskrive.",
+    "english": "The fresh air on the mountain is difficult to describe.",
+    "concept_ids": [
+      "double-definite"
+    ],
+    "vocab_clusters": [
+      "nature",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "adjective-agreement",
+      "noun-gender"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-031",
+    "norwegian": "Det er Kari som har bilen.",
+    "english": "It is Kari who has the car.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "transport"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-032",
+    "norwegian": "Det er hun som betaler regningen.",
+    "english": "It is she who is paying the bill.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "social",
+      "money"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-033",
+    "norwegian": "Det var læreren som forklarte oppgaven.",
+    "english": "It was the teacher who explained the task.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "education",
+      "study"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-034",
+    "norwegian": "Det er søsteren min som bor i Tromsø.",
+    "english": "It is my sister who lives in Tromsø.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "family",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-035",
+    "norwegian": "Det er sjefen som bestemmer det.",
+    "english": "It is the boss who decides that.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "work"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-036",
+    "norwegian": "Det er musikken som gjør ham glad.",
+    "english": "It is the music that makes him happy.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "feelings",
+      "entertainment"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-037",
+    "norwegian": "Det er kaffen jeg savner mest.",
+    "english": "It is the coffee I miss most.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "food",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-038",
+    "norwegian": "Det er norsk jeg vil lære.",
+    "english": "It is Norwegian I want to learn.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "education",
+      "study"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-039",
+    "norwegian": "Det er den røde jakken jeg liker best.",
+    "english": "It is the red jacket I like best.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "shopping",
+      "daily-life"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "adjective-agreement"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-040",
+    "norwegian": "Det er den filmen vi snakket om.",
+    "english": "It is that film we were talking about.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "social",
+      "entertainment"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-041",
+    "norwegian": "Det er deg jeg vil snakke med.",
+    "english": "It is you I want to speak to.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "social",
+      "communication"
+    ],
+    "error_tags_detectable": [
+      "pronoun-choice",
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-042",
+    "norwegian": "Det var i går jeg så ham.",
+    "english": "It was yesterday that I saw him.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-043",
+    "norwegian": "Det var på fredag møtet ble avlyst.",
+    "english": "It was on Friday that the meeting was cancelled.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "work",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-044",
+    "norwegian": "Det er i sommer vi skal reise til Spania.",
+    "english": "It is this summer that we are going to Spain.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-045",
+    "norwegian": "Det er nå vi må handle.",
+    "english": "It is now that we must act.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "modal-verb"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-046",
+    "norwegian": "Det er Oslo jeg kommer fra.",
+    "english": "It is Oslo I come from.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "social"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-047",
+    "norwegian": "Det er i Bergen det regner mest.",
+    "english": "It is in Bergen that it rains most.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "travel",
+      "weather"
+    ],
+    "error_tags_detectable": [
+      "word-order"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-048",
+    "norwegian": "Det er på kjøkkenet vi spiser frokost.",
+    "english": "It is in the kitchen that we eat breakfast.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "food"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "preposition"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-049",
+    "norwegian": "Det var her vi møttes for første gang.",
+    "english": "It was here that we met for the first time.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "social",
+      "travel"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "verb-tense"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 2,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-050",
+    "norwegian": "Det er derfor jeg kom tidlig.",
+    "english": "That is why I came early.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "time"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 1,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
+  },
+  {
+    "id": "b1-cs-051",
+    "norwegian": "Det var fordi jeg var trøtt at jeg dro hjem.",
+    "english": "It was because I was tired that I went home.",
+    "concept_ids": [
+      "cleft-sentences"
+    ],
+    "vocab_clusters": [
+      "daily-life",
+      "feelings"
+    ],
+    "error_tags_detectable": [
+      "word-order",
+      "pronoun-choice"
+    ],
+    "cefr_level": "B1",
+    "difficulty": 3,
+    "exercise_types": [
+      "translation-to-norwegian"
+    ],
+    "notes": ""
   }
 ]
