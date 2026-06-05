@@ -11883,25 +11883,6 @@
     ]
   },
   {
-    "id": "f84f796d-0607-4ff2-a37e-b707c52bf521",
-    "norwegian": "Han ga meg en gave.",
-    "english": "He gave me a gift.",
-    "concept_ids": [
-      "preterite-irregular-advanced"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "verb-tense",
-      "spelling",
-      "verb-conjugation"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
     "id": "ea2378c8-d247-4c9f-9e10-5835438a8113",
     "norwegian": "De valgte en ny leder.",
     "english": "They chose a new leader.",
@@ -12710,25 +12691,6 @@
     "error_tags_detectable": [
       "modal-verb",
       "verb-tense",
-      "meaning-misunderstood"
-    ],
-    "cefr_level": "A2",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ]
-  },
-  {
-    "id": "ae171bc4-5a12-4c9c-87a0-10b91c83ec2c",
-    "norwegian": "Boken ligger på bordet.",
-    "english": "The book is on the table.",
-    "concept_ids": [
-      "advanced-prepositions"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "preposition",
-      "wrong-word-same-category",
       "meaning-misunderstood"
     ],
     "cefr_level": "A2",

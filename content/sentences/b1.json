@@ -11057,28 +11057,6 @@
     "notes": ""
   },
   {
-    "id": "b1-cs-049",
-    "norwegian": "Det var her vi møttes for første gang.",
-    "english": "It was here that we met for the first time.",
-    "concept_ids": [
-      "cleft-sentences"
-    ],
-    "vocab_clusters": [
-      "social",
-      "travel"
-    ],
-    "error_tags_detectable": [
-      "word-order",
-      "verb-tense"
-    ],
-    "cefr_level": "B1",
-    "difficulty": 2,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ],
-    "notes": ""
-  },
-  {
     "id": "b1-cs-050",
     "norwegian": "Det er derfor jeg kom tidlig.",
     "english": "That is why I came early.",
@@ -12457,28 +12435,6 @@
     ],
     "error_tags_detectable": [
       "wrong-word-same-category"
-    ],
-    "cefr_level": "B1",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ],
-    "notes": ""
-  },
-  {
-    "id": "b1-cx-031",
-    "norwegian": "Jeg tror at han ikke kommer i dag.",
-    "english": "I think that he is not coming today.",
-    "concept_ids": [
-      "complex-subordination"
-    ],
-    "vocab_clusters": [
-      "daily-life",
-      "social"
-    ],
-    "error_tags_detectable": [
-      "negation-placement",
-      "word-order"
     ],
     "cefr_level": "B1",
     "difficulty": 1,

@@ -7544,8 +7544,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -7567,7 +7566,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7589,8 +7588,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -7634,8 +7632,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "relative-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -7656,8 +7653,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "contrast"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7678,8 +7674,7 @@
       "economy"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7724,7 +7719,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -7746,7 +7741,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "agreement"
+      "adjective-agreement"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7789,8 +7784,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7816,7 +7810,7 @@
       "preposition"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -7834,8 +7828,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -7856,8 +7849,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "relative-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7878,8 +7870,7 @@
       "politics"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7900,8 +7891,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7923,11 +7913,10 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "cleft"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -7946,7 +7935,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7967,8 +7956,7 @@
       "social"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8011,8 +7999,7 @@
       "social"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8055,8 +8042,7 @@
       "social"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8100,7 +8086,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8121,11 +8107,10 @@
       "legal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8143,8 +8128,7 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8165,11 +8149,10 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -8213,7 +8196,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8253,11 +8236,10 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -8276,7 +8258,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8297,8 +8279,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8320,8 +8301,7 @@
       "social"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8346,7 +8326,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -8365,7 +8345,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8390,7 +8370,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8519,8 +8499,7 @@
       "education"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8542,7 +8521,7 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation"
+      "negation-placement"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8607,11 +8586,10 @@
       "commerce"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8629,11 +8607,10 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -8699,7 +8676,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8717,8 +8694,7 @@
       "legal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8739,11 +8715,10 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8783,8 +8758,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order",
-      "subordinate-clause"
+      "word-order"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8809,7 +8783,7 @@
       "preposition"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-english"
     ],
@@ -8912,7 +8886,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -8974,7 +8948,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9056,7 +9030,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9118,7 +9092,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9158,7 +9132,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9263,7 +9237,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -9283,7 +9257,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9429,7 +9403,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -9471,7 +9445,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -9555,7 +9529,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9597,7 +9571,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9681,7 +9655,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -9723,7 +9697,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -9891,7 +9865,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10160,7 +10134,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10263,7 +10237,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10368,7 +10342,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -10410,7 +10384,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -10431,7 +10405,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10449,7 +10423,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10471,7 +10445,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10493,7 +10467,6 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10515,7 +10488,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10537,7 +10510,6 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10559,7 +10531,6 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10581,7 +10552,7 @@
       "society"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10603,7 +10574,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10625,7 +10596,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10647,7 +10618,6 @@
       "society"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10669,7 +10639,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10691,7 +10661,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10713,7 +10683,6 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10735,7 +10704,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10757,7 +10726,6 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10779,7 +10747,6 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10801,7 +10768,7 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10823,11 +10790,10 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10845,7 +10811,6 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10867,11 +10832,11 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10889,7 +10854,6 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
@@ -10911,7 +10875,7 @@
       "research"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -10933,11 +10897,10 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -10955,7 +10918,7 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "missing-connector",
+      "wrong-word-same-category",
       "word-order"
     ],
     "cefr_level": "B2",
@@ -11047,7 +11010,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11157,7 +11120,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11223,7 +11186,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11245,7 +11208,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11267,7 +11230,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11289,7 +11252,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -11311,7 +11274,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11333,7 +11296,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -11399,7 +11362,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11443,7 +11406,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11465,7 +11428,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -11487,7 +11450,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11531,7 +11494,7 @@
       "wrong-word-same-category"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11553,7 +11516,7 @@
       "verb-conjugation"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],
@@ -11839,7 +11802,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -11927,7 +11890,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -12147,7 +12110,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -12191,7 +12154,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "translation-to-norwegian"
     ],
@@ -12213,7 +12176,7 @@
       "word-order"
     ],
     "cefr_level": "B2",
-    "difficulty": 4,
+    "difficulty": 3,
     "exercise_types": [
       "fill-in-blank"
     ],

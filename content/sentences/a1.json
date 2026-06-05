@@ -15699,24 +15699,6 @@
     "id": "77cff811-aaff-475f-b237-cabf84388975"
   },
   {
-    "norwegian": "Du er norsk.",
-    "english": "You are Norwegian.",
-    "concept_ids": [
-      "personal-pronouns"
-    ],
-    "vocab_clusters": [],
-    "error_tags_detectable": [
-      "pronoun-choice"
-    ],
-    "cefr_level": "A1",
-    "difficulty": 1,
-    "exercise_types": [
-      "translation-to-norwegian"
-    ],
-    "notes": "",
-    "id": "cda4e20b-5595-4f96-866b-40956422de39"
-  },
-  {
     "norwegian": "Han er ikke hjemme akkurat nå.",
     "english": "He is not home right now.",
     "concept_ids": [
