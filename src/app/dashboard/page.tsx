@@ -7,7 +7,7 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
 import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
-import { getConceptPhase, isMastered } from '@/engine'
+import { getConceptPhase, isMastered, runDiagnosis } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { LaneTrackRow } from '@/components/dashboard/LaneTrackRow'
@@ -270,7 +270,17 @@ export default function DashboardPage() {
     ? `${plan.session.items.length} oppgaver · ca. ${Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))} min`
     : '25 oppgaver · ca. 19 min'
 
-  const focusDescription = recommendation?.reason ?? 'Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.'
+  // Surface the engine's actual root-cause diagnosis as the coach line — the moat
+  // made visible. runDiagnosis is otherwise consumed only by the scheduler for
+  // targeting; its plain-language `reasoning` (now Norwegian) was computed every
+  // session and discarded at the UI layer (engine-knows / UI-hides gap). The top
+  // result is the highest-confidence rule; rules 1–4 give cross-concept root-cause
+  // insight once error data accumulates, the fallback gives an honest weakest-area
+  // line earlier. Falls back to the scheduler reason when no diagnosis fires.
+  const topDiagnosis = fingerprint ? (runDiagnosis(fingerprint)[0] ?? null) : null
+  const focusDescription = topDiagnosis?.reasoning
+    ?? recommendation?.reason
+    ?? 'Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.'
 
   return (
     <div className="nc-gradient-page flex min-h-dvh flex-col">

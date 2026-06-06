@@ -26,7 +26,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'noun-gender',
           confidence: 0.85,
           reasoning:
-            "Frequent article and adjective agreement errors usually share the same root cause: noun gender is not yet reliable. Drilling articles and adjectives separately won't help until gender is solid.",
+            'Feil med artikler og adjektiv har ofte samme rot: substantivets kjønn sitter ikke ennå. Å øve artikler og adjektiv hver for seg hjelper lite før kjønnet er på plass.',
           affectedConceptIds: [
             'indefinite-articles',
             'definite-articles-singular',
@@ -65,7 +65,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: conceptId,
           confidence: 0.75,
           reasoning:
-            'The learner recognizes correct forms but fails to produce them. This is a production gap, not a knowledge gap — more writing and speaking exercises needed, not more drilling.',
+            'Du kjenner igjen de riktige formene, men klarer ikke å produsere dem selv ennå. Dette er et produksjonsgap, ikke et kunnskapsgap — du trenger mer skriving og tale, ikke mer pugging.',
           affectedConceptIds: productionGaps.map(([id]) => id),
           recommendedFocus: 'production',
         };
@@ -87,7 +87,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'listening-comprehension',
           confidence: 0.8,
           reasoning:
-            'A high proportion of errors occur in listening exercises. The learner may know the grammar and vocabulary but cannot process spoken Norwegian at normal speed. Slow audio and more listening exposure needed.',
+            'Mange av feilene kommer i lytteøvelser. Du kan trolig grammatikken og ordene, men oppfatter ikke norsk i normalt taletempo ennå. Vi senker tempoet og gir mer lytting.',
           affectedConceptIds: [],
           recommendedFocus: 'recognition',
         };
@@ -115,7 +115,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'v2-word-order',
           confidence: 0.7,
           reasoning:
-            'Word order errors appear in natural context but not in isolated drills. The learner knows the V2 rule in isolation but cannot apply it automatically yet. Contextual practice needed.',
+            'Ordstillingsfeil dukker opp i naturlige setninger, men ikke i isolerte øvelser. Du kan V2-regelen i teorien, men bruker den ikke automatisk ennå. Vi øver mer i sammenheng.',
           affectedConceptIds: ['v2-word-order', 'svo-word-order'],
           recommendedFocus: 'application',
         };
