@@ -158,6 +158,15 @@ export function WritingEditor() {
   // early on a clean entry, so a flawless journal post — the most productive act
   // in the app — wrote nothing to mastery (Rule 8 failure). Now a clean entry
   // earns a real production brick on the prompt's focus concept.
+  // AI-detected journal errors are NOT written to the fingerprint (decoupled 2026-06-06,
+  // extends the conversation-correction council verdict). The Groq grammar check can produce
+  // wrong-but-valid corrections (e.g. "et jobb" — jobb is masculine) that `validateNorwegianOutput`
+  // can't catch, so writing them via repairBatchFromSurface poisons diagnosis with phantom
+  // errors. The learner still SEES the feedback (praise/suggestion/highlighted corrections),
+  // and the DETERMINISTIC production brick still lands — but unverified AI errors no longer
+  // move mastery. Flip to re-enable once journal errors are deterministically verifiable.
+  const JOURNAL_ERROR_WRITE_ENABLED: boolean = false
+
   function commitJournalToFingerprint(result: WritingFeedback): void {
     if (!fingerprint) return
     // Re-submit guard: a clean re-submit is now a real write (it lays a brick),
@@ -174,7 +183,11 @@ export function WritingEditor() {
     let updated = fingerprint
 
     // 1. Errors → repair (negative mastery), only when present.
-    if (result.errors.length > 0) {
+    //    GATED OFF (see JOURNAL_ERROR_WRITE_ENABLED above): unverified AI-detected errors
+    //    must not move mastery. `errorConceptIds` is still computed (above) and used purely
+    //    as the conservative double-count guard for the production brick below — it can only
+    //    ever BLOCK a brick, never write a phantom error, so it remains safe.
+    if (JOURNAL_ERROR_WRITE_ENABLED && result.errors.length > 0) {
       const inputs = result.errors.map((err) => ({
         surfaceKind: 'journal' as const,
         errorTag: err.tag,
