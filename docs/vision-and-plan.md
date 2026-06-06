@@ -2,6 +2,8 @@
 
 Single source of truth for what NorskCoach is, where it's going, and what to build next. Produced 2026-05-26 from competitive research across 14+ apps, 40+ academic sources, and full project document synthesis. Supersedes scattered planning in roadmap.md for forward-looking sequencing (roadmap.md remains the historical record).
 
+> **Status update 2026-06-06.** Since this plan was written, the app has been stabilized and the moat made visible (all deployed to pandoai.no): server-side Groq generation live, corpus integrity clean (112→0 audit errors), the diagnosis root-cause now surfaced as the dashboard coach line, and unverified AI grammar corrections decoupled from the fingerprint (**hard rule: no unverified AI output moves mastery — show, don't grade**). The deferred-by-decision queue is now: a **deterministic grammar corrector** (gender/V2/conjugation → re-enables conversation + journal corrections; proper fix is NB-Llama), the **MCQ engine** (gated on a 2nd consumer — contract in `docs/mcq-engine-contract.md`), `acceptedOrders` population, and 3a translate-EN paraphrase tolerance. The single highest-leverage remaining lever is **real users** (V2 / Wave 5 blocked on them). Canonical current state: `CLAUDE.md` → "Current State" (2026-06-06 box).
+
 ---
 
 ## The Vision (One Paragraph)
