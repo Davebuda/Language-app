@@ -26,7 +26,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'noun-gender',
           confidence: 0.85,
           reasoning:
-            'Feil med artikler og adjektiv har ofte samme rot: substantivets kjønn sitter ikke ennå. Å øve artikler og adjektiv hver for seg hjelper lite før kjønnet er på plass.',
+            'Artikkel- og adjektivfeilene peker på samme rot: substantivets kjønn sitter ikke ennå.',
           affectedConceptIds: [
             'indefinite-articles',
             'definite-articles-singular',
@@ -65,7 +65,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: conceptId,
           confidence: 0.75,
           reasoning:
-            'Du kjenner igjen de riktige formene, men klarer ikke å produsere dem selv ennå. Dette er et produksjonsgap, ikke et kunnskapsgap — du trenger mer skriving og tale, ikke mer pugging.',
+            'Du kjenner formene igjen, men produserer dem ikke selv ennå — et produksjonsgap, ikke et kunnskapsgap.',
           affectedConceptIds: productionGaps.map(([id]) => id),
           recommendedFocus: 'production',
         };
@@ -87,7 +87,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'listening-comprehension',
           confidence: 0.8,
           reasoning:
-            'Mange av feilene kommer i lytteøvelser. Du kan trolig grammatikken og ordene, men oppfatter ikke norsk i normalt taletempo ennå. Vi senker tempoet og gir mer lytting.',
+            'Mange av feilene kommer i lytting: du kan ordene, men ikke taletempoet ennå.',
           affectedConceptIds: [],
           recommendedFocus: 'recognition',
         };
@@ -115,7 +115,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'v2-word-order',
           confidence: 0.7,
           reasoning:
-            'Ordstillingsfeil dukker opp i naturlige setninger, men ikke i isolerte øvelser. Du kan V2-regelen i teorien, men bruker den ikke automatisk ennå. Vi øver mer i sammenheng.',
+            'Ordstillingen glipper i frie setninger, ikke i øvelser — V2 sitter ikke automatisk ennå.',
           affectedConceptIds: ['v2-word-order', 'svo-word-order'],
           recommendedFocus: 'application',
         };
