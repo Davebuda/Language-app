@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "audit:corpus": "tsx scripts/audit-corpus.ts",
+    "audit:gate": "node scripts/ultraaudit.mjs",
     "council:verify": "playwright test tests/council/ && node .council/scripts/format-report.js",
     "harness": "tsx scripts/run-harness.ts",
     "harness:pw": "playwright test --config tests/harness/playwright.config.ts"

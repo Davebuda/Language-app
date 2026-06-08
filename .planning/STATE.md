@@ -1,30 +1,14 @@
 ---
 gsd_state_version: 1.0
-milestone: stream-5-weekly-sprint
-milestone_name: Stream 5 — Weekly Sprint (Curriculum Cohesion Layer)
+milestone: stabilization
+milestone_name: Stabilization — harden the shipped core loop; prove the moat
 status: in progress
-stopped_at: Phase 1 (data model + selection logic) APPROVED. Phase 2 (authenticated walkthrough) requires user magic-link click OR can be reordered to between Phase 3 and Phase 4.
-last_updated: "2026-05-22"
-last_activity: 2026-05-22T07:20 — AlertDialog primitive ships (922d91e) + roadmap reconciliation (1574d7d). Six 'deferred' items audited as already shipped. Stream 1.1 Step 1, 1.2, 1.3, 1.4 writes, integrity follow-ups #1-3, and AlertDialog all marked COMPLETE in roadmap.
-stopped_at_phase_2_reason: Autonomous backlog mostly polish (F008/F027/F032) or bigger phases (Stream 1.4 reads, NB-Llama compile). Phase 2 (auth walkthrough) still needs user magic-link click.
-progress:
-  stream_5_phase: 1 of 7 complete
-  stream_5_phase: 8 of 8 complete (1, 3, 5a, 4a, 5b, 6, 7, 4b)
-  stream_5_phases:
-    - "1: data model + selection logic — COMPLETE (0821e75)"
-    - "3: scheduler bias toward weeklyFocus — COMPLETE (4fbd654)"
-    - "5a: open-week orchestration — COMPLETE (b73cb35)"
-    - "4a: /uke route + WeeklyCheckScreen (local-only) — COMPLETE (d81b2e4)"
-    - "5b: graduation rule on closeWeek — COMPLETE (85504e4)"
-    - "6: dashboard WeekStrip — COMPLETE (9dd017e)"
-    - "7: smoke + audit on live deploy — COMPLETE (718ca45)"
-    - "4b: weekly_check_complete telemetry wire — COMPLETE (6f01b12); migration 003 was already applied 2026-05-21"
-    - "2: authenticated walkthrough — STILL PENDING USER (magic-link click); does not block any unshipped code"
-  side_quest_completed: "auth-redirect fix (e6a08b2) — magic links now prefer NEXT_PUBLIC_APP_URL over window.location.origin; user must set env var on prod + whitelist URL in Supabase dashboard"
-  phase7_followup_closed: "React #418 hydration mismatch fixed in cf1fcc3 — todayFormatted() + getStreak() deferred to useEffect"
-  p0.5_tasks_complete: 15/15
-  walkthrough_iterations: 3 of (target 4 to seal)
-  test_count: 129 passing (was 106 pre-Stream-5)
+stopped_at: Baseline ultraaudit AUDIT-CLEAN (5/5 PASS) 2026-06-08; recourse four-lever program defined; lever 1 (hygiene + standing gate) in progress.
+last_updated: "2026-06-08"
+last_activity: 2026-06-08 — recourse re-anchor + baseline ultraaudit (AUDIT-CLEAN) + working-tree drift reconciled (benign; corpus already committed) + standing audit:gate codified.
+head: db88cf5
+test_count: 685 passing (tsc clean)
+deployed: pandoai.no (Hetzner) — live matches HEAD
 ---
 
 # Project State
@@ -32,81 +16,55 @@ progress:
 ## Project Reference
 
 **Project:** NorskCoach — diagnostic Norwegian language learning web app
-**Core value:** Diagnosis + Scheduling + Remediation beats lesson-based apps for any motivated learner
-**Current focus:** P0.5 Recovery Bundle — pipeline-honesty re-seal across the surfaces the third walkthrough flagged
+**Moat:** Diagnosis → Scheduling → Remediation (root-cause coaching no competitor does)
+**North star:** make the learner produce + speak Norwegian
+**Current focus:** STABILIZATION — harden the shipped core loop, keep the tree audit-clean, prove the moat with real users.
+
+> **Note (2026-06-08):** This file previously described the long-closed "P0.5 Recovery Bundle"
+> (Stream 5 era, last_updated 2026-05-22). That milestone and the 7-phase QA-walkthrough plan are
+> done. Authoritative current state is `CLAUDE.md` → "Current State" (2026-06-06 box). This file is
+> now the stabilization-phase tracker.
 
 ## Current Position
 
-Phase: P0.5 Recovery Bundle (task 01 — source verification)
-Status: Executing
-Last activity: 2026-05-21 — Third Playwright walkthrough produced 39 findings (10 Critical, 20 Significant, 9 Minor, 4 Edge cases); roadmap restructured
+Phase: STABILIZATION. Phase 1 (core session engine) runtime-verified closed on HEAD (Playwright walkthrough + green suite + clean tsc, 2026-06-03). All 2026-06-05/06 live-bug + moat-visibility sweep fixes deployed (server-side Groq generation, corpus integrity 112→0, 39 B1 word-order keys, repair-loop phantom filter, conversation+journal AI corrections decoupled from the fingerprint, root-cause diagnosis surfaced as the dashboard coach line).
 
-Progress: [████░░░░░░░░░░░░░░░░] P0.5: 0/13 tasks complete
+Verified 2026-06-08 (baseline ultraaudit, 5/5 PASS with evidence):
+- Corpus integrity: `npm run audit:corpus` 0 ERRORS (68 concepts / 2,834 sentences — A1 879 · A2 758 · B1 620 · B2 577; all ≥30/concept).
+- Type safety: `npx tsc --noEmit` 0 errors.
+- Tests: vitest 685/685 green (one tolerable Windows worker-fork teardown flake; resolves on retry).
+- Returning-user read safety: locked guard 10/10; `normalizeFingerprint` (`src/types/fingerprint.ts:163`) backfills.
+- AI-never-grades-mastery: both correction flags hardcoded `false`; AI-error write paths provably dead while gated.
+- Moat visibility: `runDiagnosis()[0].reasoning → dashboard coachReason → ProductionWall` chain intact.
 
-## Honest current state (post-third-walkthrough)
+## Recourse four-lever program (2026-06-08)
 
-The prior STATE.md ("P0 ✅ P1 ✅ Stream 4 ✅ Engine corrections ✅ Shadowing ✅") was true at the time of writing. The third stress walkthrough on 2026-05-21 revealed that four of the five P0 pipeline-honesty patterns CLAUDE.md operating rule 8 names by example are regressed in the live app, and three new Critical AI-quality bugs are shipping. The "everything green" framing is paused while P0.5 Recovery seals the regression set.
+Sequenced to respect HARD RAIL #1 (depth-not-breadth): one code lever in-flight at a time; ops runs parallel.
 
-### What is verified working today (held since prior recovery)
-- Critical-path session loop is reachable end-to-end (start → exercise → wrong answer → repair card → retry → next exercise). Verified during walkthrough.
-- Word-order exercise click-to-arrange model holds.
-- Repair-loop sequence (explain → 2 micro-drills → retry on original sentence) holds.
-- Mic does NOT auto-activate (P1 held).
-- B1/B2 honest banner displays correctly on dashboard level switch (held).
-- Auth callback open-redirect protection holds (CRITICAL from REVIEW.md is fixed).
+| # | Lever | Class | Route | Status |
+|---|---|---|---|---|
+| 1 | Hygiene + standing ultraaudit gate (`npm run audit:gate`) | hygiene | execute directly | IN PROGRESS |
+| 2 | NB-Llama-1B compile (Wave 0.5) | infra | scout → make-plan-pro → executor | QUEUED |
+| 3 | Noun-gender deterministic corrector (re-arms conversation + journal) | build (depth) | scout → council → solve → executor; Rule-8 live trace = acceptance | QUEUED (after/with 2) |
+| 4 | Get real users (unblocks Wave 5 V2 + moat-proof) | ops | feature-challenger (activation funnel) → feature-to-layout | PARALLEL LANE |
 
-### What is broken right now (the P0.5 backlog addresses each)
-- AI grammar explanation in repair card teaches the opposite of the noun-gender rule (F022)
-- Kari (conversation AI) produces non-Norwegian strings (F029)
-- Journal AI invents words and reverses sentence meaning by removing user's negation (F033)
-- Conversation contributes nothing to fingerprint (F030)
-- Journal contributes nothing to fingerprint (F034)
-- All recentErrors collapse to a single `word-order` tag regardless of mistake type (F010)
-- /progress shows every concept at 0% or Locked despite fingerprint having rawScore 100 (F036)
-- /session/complete is directly accessible with no guard (F023)
-- Diagnostic seeds rawScore=100 even when answer was wrong (F017)
-- Session completion counter never increments (F012)
+Critical path: 1 → 2 → 3. Lever 3 can ship on the dictionary path alone if scout finds a clean Norwegian gender source — Council decides whether 2 hard-gates 3.
 
-Full inventory: `test-reports/stress-walkthrough-2026-05-21/report.md`.
+## Deferred-by-decision (parked, not forgotten)
 
-## Muntlig Build Order (per architecture.md) — PAUSED
+- Deterministic V2/conjugation correction (harder than gender; proper fix = NB-Llama) — lever 2/3.
+- MCQ engine — gated on a 2nd consumer (`docs/mcq-engine-contract.md`).
+- `acceptedOrders` population for word-order corpus.
+- Translate-EN paraphrase tolerance (exact-match rigidity).
+- Wave 5 V2 engine (FSRS-7, BKT, adaptive decay) — blocked on real users + usage data.
+- B1/B2 cloze passages (0 exist; separate linguist-gated content task).
 
-| Step | Mode | Status |
-|------|------|--------|
-| 1 | Audio infrastructure | ✅ |
-| 2 | Shadowing | ✅ |
-| 3 | Pronunciation drills | ✅ |
-| 4 | Listen-and-respond | ✅ |
-| 5 | Scripted roleplay | ⏸ **PAUSED until P0.5-13** |
+## Non-blocking content debt (corpus WARN, tracked not gating)
 
-## P0.5 Build Order (re-sequenced after P0.5-01)
+From `audit:corpus`: 334 nonstandard-blank-marker rows (5 underscores vs canonical 3), 39 over-length-for-level, 38 norwegian-invalid (no NO function words), 1 blank-without-fib. Kept as WARN in the standing gate — visible, not blocking.
 
-| Step | Task | Status |
-|------|------|--------|
-| 01 | Verify findings against source | ✅ complete |
-| 02 | Concept-id reconciliation (graph as source of truth) | ✅ complete |
-| 03 | Corpus wiring + orphan placeholder cleanup | ✅ complete |
-| 04 | Shared error-tag → concept-id module | ✅ complete |
-| 05 | Conversation + Journal write-through | ✅ (F028 fixed; F030/F034 fold into 06) |
-| 06 | AI language-validity gate + correction fallback | ✅ complete |
-| 07 | Diagnostic semantics rewrite | ✅ complete |
-| 08 | Session lifecycle — immediate guards | ✅ complete |
-| 09 | Session lifecycle — completion semantics | ✅ complete |
-| 10 | Dashboard stat honesty | ✅ complete |
-| 11 | Profile read-on-render | ✅ complete |
-| 12 | Onboarding mid-flow state persistence | ✅ complete |
-| 13 | Auth/waitlist truthfulness | ✅ complete |
-| 14 | Polish bundle | ✅ complete |
-| 15 | Recovery sign-off | ✅ complete |
+## Decisions logged this session (2026-06-08)
 
-## Decisions logged this session
-
-- 2026-05-21T18:15: RESTRUCTURE — Pause muntlig scripted roleplay; insert P0.5 Recovery Bundle. User-approved direction "make a plan and work through all to the end with guidance from /council and updated documentation for proper paths." See `.council/log.md`.
-- AI output across three surfaces is failing for the same reason: no shared validity gate. P0.5-04 centralises this.
-- Fingerprint pre/post diffs are mandatory acceptance evidence for any task touching engine write paths.
-
-## Deferred
-
-- Stream 1.1 model swap — bridged by P0.5-04 validity gate; revisit after P0.5 sign-off.
-- v2 backlog (FSRS, BKT, adaptive decay, vocab SRS).
-- Authenticated-pass walkthrough — the third walkthrough was guest-only; P0.5-13 should attempt both passes (will require user to click magic link).
+- Ran a 5-dimension baseline ultraaudit as a Workflow → AUDIT-CLEAN. Codified the 4 load-bearing checks as a standing recurring gate (`npm run audit:gate`, `scripts/ultraaudit.mjs`) with a one-retry rule on the Windows vitest flake.
+- Reconciled working-tree drift: the 12 `output/staging-b1-*.json` + merge/fix `.mjs` scripts are build inputs whose content is ALREADY committed (B1 at 50–56/concept). No unlanded content at risk. `output/` scratch + stray PNGs now gitignored.
+- Refreshed this STATE.md (was 2-milestones stale) and corrected the vision-doc content baseline.

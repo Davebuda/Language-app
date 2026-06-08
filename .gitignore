@@ -23,6 +23,9 @@ reports/
 # Scratch / working files under output/ (logs, temp data, throwaway scripts).
 # Intentional docs live as output/<name>.md and stay tracked.
 output/_*
+output/*.mjs
+output/staging-*.json
+output/seed-*.json
 
 # Council devserver log
 .council/*.log
@@ -45,3 +48,5 @@ content/**/staging/
 # QA walkthrough screenshots (throwaway; keep the .md write-ups)
 test-reports/**/*.png
 prod-dashboard-*.png
+dashboard-*.png
+deploy-*.png
