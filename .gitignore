@@ -50,3 +50,6 @@ test-reports/**/*.png
 prod-dashboard-*.png
 dashboard-*.png
 deploy-*.png
+
+# Lever 3 build inputs (ordbank tarball + freq list) — never committed
+.tmp/

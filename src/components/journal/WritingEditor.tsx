@@ -12,6 +12,7 @@ import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { repairBatchFromSurface, recordProductionFromSurface } from '@/engine/repair-from-surface'
+import { verifyGenderCorrection } from '@/lib/gender-verifier'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
@@ -158,14 +159,12 @@ export function WritingEditor() {
   // early on a clean entry, so a flawless journal post — the most productive act
   // in the app — wrote nothing to mastery (Rule 8 failure). Now a clean entry
   // earns a real production brick on the prompt's focus concept.
-  // AI-detected journal errors are NOT written to the fingerprint (decoupled 2026-06-06,
-  // extends the conversation-correction council verdict). The Groq grammar check can produce
-  // wrong-but-valid corrections (e.g. "et jobb" — jobb is masculine) that `validateNorwegianOutput`
-  // can't catch, so writing them via repairBatchFromSurface poisons diagnosis with phantom
-  // errors. The learner still SEES the feedback (praise/suggestion/highlighted corrections),
-  // and the DETERMINISTIC production brick still lands — but unverified AI errors no longer
-  // move mastery. Flip to re-enable once journal errors are deterministically verifiable.
-  const JOURNAL_ERROR_WRITE_ENABLED: boolean = false
+  // AI-detected journal errors are gated through the deterministic gender verifier (Lever 3,
+  // 2026-06-08): ONLY a lexicon-confirmed noun-gender error may move mastery. The Groq grammar
+  // check can produce wrong-but-valid corrections (e.g. "et jobb" — jobb is masculine) that
+  // `validateNorwegianOutput` can't catch; verifyGenderCorrection rejects those. Every other
+  // AI-claimed error class (V2, conjugation, …) stays show-don't-grade. The learner still SEES
+  // all feedback; only the mastery WRITE is gated on the deterministic verdict.
 
   function commitJournalToFingerprint(result: WritingFeedback): void {
     if (!fingerprint) return
@@ -174,28 +173,28 @@ export function WritingEditor() {
     if (lastCommittedTextRef.current === text.trim()) return
     const activeGraph = getGraphForLevel(fingerprint.currentLevel)
 
-    // Concepts the learner got WRONG in this entry — applied as repairs AND used
-    // as the double-count guard below.
-    const errorConceptIds = new Set(
-      result.errors.map((err) => errorTagToConceptId(err.tag)),
-    )
-
-    let updated = fingerprint
-
-    // 1. Errors → repair (negative mastery), only when present.
-    //    GATED OFF (see JOURNAL_ERROR_WRITE_ENABLED above): unverified AI-detected errors
-    //    must not move mastery. `errorConceptIds` is still computed (above) and used purely
-    //    as the conservative double-count guard for the production brick below — it can only
+    // 1. Errors → repair (negative mastery). Only lexicon-CONFIRMED noun-gender errors pass
+    //    the deterministic verifier; every other AI-claimed error is dropped (show-don't-grade).
+    //    The verified concepts double as the production double-count guard below — it can only
     //    ever BLOCK a brick, never write a phantom error, so it remains safe.
-    if (JOURNAL_ERROR_WRITE_ENABLED && result.errors.length > 0) {
-      const inputs = result.errors.map((err) => ({
+    const verifiedGenderInputs = result.errors
+      .filter(
+        (err) =>
+          verifyGenderCorrection({ original: err.wrong ?? '', corrected: err.correct ?? '' }) === 'confirmed',
+      )
+      .map((err) => ({
         surfaceKind: 'journal' as const,
-        errorTag: err.tag,
-        conceptId: errorTagToConceptId(err.tag),
+        errorTag: 'noun-gender' as const,
+        conceptId: errorTagToConceptId('noun-gender'),
         wrong: err.wrong,
         correct: err.correct,
       }))
-      updated = repairBatchFromSurface(updated, inputs, activeGraph)
+    const errorConceptIds = new Set(verifiedGenderInputs.map((i) => i.conceptId))
+
+    let updated = fingerprint
+
+    if (verifiedGenderInputs.length > 0) {
+      updated = repairBatchFromSurface(updated, verifiedGenderInputs, activeGraph)
     }
 
     // 2. Correct FREE production → one full mastery brick on the prompt's focus

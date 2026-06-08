@@ -19,6 +19,7 @@ import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
 import type { ResponseConstraint } from '@/lib/constraints'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
+import { verifyGenderCorrection } from '@/lib/gender-verifier'
 import { logExerciseResult } from '@/lib/logEvents'
 import type { ExerciseResult } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
@@ -240,15 +241,12 @@ export default function ConversationPage() {
     }
   }, [messages, isThinking])
 
-  // Conversation grammar corrections are SUSPENDED (council verdict 2026-06-05). The Groq
-  // 8B produced wrong-but-VALID corrections (live: "jobb" → "et jobb"; jobb is masculine →
-  // "en jobb") that were shown as truth AND written to the fingerprint via repairFromSurface,
-  // poisoning diagnosis with phantom errors. `validateNorwegianOutput` cannot catch a
-  // grammatically-wrong-but-valid-Norwegian form. Until corrections can be verified
-  // DETERMINISTICALLY (gender/V2/conjugation via the grading engines), the tutor still
-  // converses and models the correct form implicitly (conversation prompt rule #5) but does
-  // NOT assert, persist, or log corrections. Flip to re-enable once a deterministic gate exists.
-  const CONVERSATION_CORRECTIONS_ENABLED: boolean = false
+  // Conversation grammar corrections are gated through the deterministic gender verifier
+  // (Lever 3, 2026-06-08). The Groq 8B produced wrong-but-VALID corrections (live: "en jobb"
+  // → "et jobb"; jobb is masculine) that `validateNorwegianOutput` cannot catch; only a
+  // lexicon-CONFIRMED noun-gender correction is now shown, persisted, and written to the
+  // fingerprint. Every other AI-claimed correction class stays suppressed — we never assert
+  // an unverifiable correction as truth. See verifyGenderCorrection.
 
   const addTutorMessage = useCallback(async (history: ConversationMessage[], isUserTurn = true) => {
     setIsThinking(true)
@@ -260,9 +258,14 @@ export default function ConversationPage() {
       const topicLabel = TOPICS.find((t) => t.id === selectedTopic)?.label ?? 'daglig rutine'
       const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix)
       setConvSource(result.source)
-      // Gate corrections (see CONVERSATION_CORRECTIONS_ENABLED above): null them out so they
-      // are never displayed, persisted, or written to the fingerprint while suspended.
-      const correction = CONVERSATION_CORRECTIONS_ENABLED ? result.correction : undefined
+      // Gate corrections through the deterministic verifier: only a lexicon-confirmed gender
+      // correction is shown / persisted / written; everything else is suppressed (we never
+      // assert an unverifiable correction as truth). Re-tag as noun-gender so the write is honest.
+      const c = result.correction
+      const correction =
+        c && verifyGenderCorrection({ original: c.original, corrected: c.corrected }) === 'confirmed'
+          ? { ...c, errorTag: 'noun-gender' }
+          : undefined
       setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
