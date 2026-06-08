@@ -44,7 +44,7 @@ Sequenced to respect HARD RAIL #1 (depth-not-breadth): one code lever in-flight 
 | # | Lever | Class | Route | Status |
 |---|---|---|---|---|
 | 1 | Hygiene + standing ultraaudit gate (`npm run audit:gate`) | hygiene | execute directly | ✅ DONE (`0abbabf`) |
-| 3 | Noun-gender deterministic corrector (re-arms conversation + journal) | build (depth) | scout ✅ → gating ✅ → plan ✅ → BUILT ✅ (8/8 tasks, audit:gate AUDIT-CLEAN, 698 tests) | **CODE COMPLETE 2026-06-08 — uncommitted; live in-browser trace + commit/deploy pending** |
+| 3 | Noun-gender deterministic corrector (re-arms conversation + journal) | build (depth) | scout ✅ → gating ✅ → plan ✅ → BUILT ✅ → committed `467b252` → DEPLOYED ✅ | **DONE 2026-06-08 — live at pandoai.no (routes 200, server HEAD 467b252), audit:gate AUDIT-CLEAN / 698 tests** |
 | 2 | NB-Llama-1B compile (Wave 0.5) | infra | scout ✅ → make-plan-pro → executor | DEFERRED — scout done (`.scout/last-brief.md`); modest/unproven value, does NOT gate Lever 3 |
 | 4 | Get real users (unblocks Wave 5 V2 + moat-proof) | ops | feature-challenger (activation funnel) → feature-to-layout | PARALLEL LANE |
 
@@ -52,9 +52,9 @@ Sequenced to respect HARD RAIL #1 (depth-not-breadth): one code lever in-flight 
 
 **Re-sequenced 2026-06-08:** Lever 2 scout (`.scout/last-brief.md`) found the nb-llama-1B swap cheap but low-impact — NB frames the 1B as an "adaptation probe" with no published proof it beats generic Llama-3.2-1B, and a *deterministic* gender corrector is dictionary-based, independent of which LLM generates content. So **Lever 2 does not gate Lever 3**; the moat win (re-arming gated-off corrections) moves first. New critical path: **3 → (then maybe 2 as content-parity fast-follow). Lever 2 model pick if/when run: `NbAiLab/nb-llama-3.2-1B-Instruct` (drop-in, reuse stock MLC wasm), with a ScandEval verify-before-ship gate.**
 
-## Lever 3 — BUILT 2026-06-08 (code complete, uncommitted)
+## Lever 3 — DONE 2026-06-08 (committed `467b252`, DEPLOYED to pandoai.no)
 
-8/8 tasks, `audit:gate` AUDIT-CLEAN (corpus 0 / tsc clean / 698 tests / returning-user 10/10).
+8/8 tasks, `audit:gate` AUDIT-CLEAN (corpus 0 / tsc clean / 698 tests / returning-user 10/10). Server on HEAD `467b252`; `/conversation` + `/journal` return 200. The same push also caught production up from `db88cf5` → so `0abbabf` (standing gate) is now live too.
 - **Lexicon:** `scripts/build-gender-map.ts` → committed `src/lib/gender-map.ts` (281KB, 21,947 forms / 5,677 lemmas; form→gender-bitmask 1=m·2=f·4=n). Source = Norsk ordbank Bokmål 2005 (CC-BY 4.0) ∪ top-15k OpenSubtitles-freq ∪ corpus nouns; source data lives in gitignored `.tmp/ordbank/`. Two-gender stored as bit-union (bok=3) → no false flag.
 - **Verifier:** `src/lib/gender-verifier.ts` `verifyGenderCorrection({original,corrected}) → confirmed|rejected|not-applicable`. Confirms ONLY on an article-gender mismatch where learner∉set ∧ proposed∈set; OOV/two-gender/definite-swap/spelling → no write. Compound longest-suffix fallback (≥4-char suffix). Ignores the AI's claimed tag.
 - **Gates (filter, not flag):** `src/components/journal/WritingEditor.tsx` + `src/app/conversation/page.tsx` — dead booleans removed; only `confirmed` gender corrections (re-tagged `noun-gender`) reach `repairBatchFromSurface`/`repairFromSurface`. All other AI error classes stay show-don't-grade. `validate.ts` + deterministic fallback provably untouched.
