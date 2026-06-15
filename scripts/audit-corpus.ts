@@ -62,7 +62,14 @@ function wordCount(no: string): number {
 // separately. This audit uses the correct, fuller Norwegian char set so it
 // reports true corpus defects, not gate artifacts.
 const NORWEGIAN_CHARS = /^[a-zA-ZæøåÆØÅéÉèÈêÊàÀçüÜäÄöÖ0-9\s.,!?;:'"«»“”‘’…()\-–—/%&]+$/
-const NORWEGIAN_MARKERS = new Set(['er','har','ikke','jeg','du','vi','de','det','den','en','et','og','eller','men','å','i','på','til','fra','med','av','for','om','som','hva','hvor','hvem','når','hvorfor','kan','vil','skal','må','meg','deg','oss','dem','min','din','sin','han','hun','ham','henne','hans','hennes','dere','deres','seg','dette','disse','vår','var','blir','ble','ha','være'])
+const NORWEGIAN_MARKERS = new Set(['er','har','ikke','jeg','du','vi','de','det','den','en','et','og','eller','men','å','i','på','til','fra','med','av','for','om','som','hva','hvor','hvem','når','hvorfor','kan','vil','skal','må','meg','deg','oss','dem','min','din','sin','han','hun','ham','henne','hans','hennes','dere','deres','seg','dette','disse','vår','var','blir','ble','ha','være',
+  // Common function words the original set omitted — their absence flagged many
+  // perfectly grammatical sentences as "zero function words" (false positives).
+  'ved','under','over','etter','innen','bak','ned','inn','ut','utenfor','mellom','mot','gjennom','uten','hos',
+  'mens','hvis','da','fordi','selv','enn','så',
+  'hadde','kunne','ville','skulle','måtte','vært','blitt',
+  'aldri','alltid','nå','her','der','hver','hvert','sine','sitt','mye','mange','noen','noe','alle',
+  'klokka','klokken'])
 function norwegianValidity(no: string): { ok: boolean; sev: 'ERROR' | 'WARN'; detail: string } | null {
   const test = no.replace(/_+/g, '')
   if (!NORWEGIAN_CHARS.test(test)) {
@@ -74,9 +81,15 @@ function norwegianValidity(no: string): { ok: boolean; sev: 'ERROR' | 'WARN'; de
   if (/_/.test(no)) return null
   const words = test.toLowerCase().replace(/[.,!?;:«»“”‘’…"'()/\-–—%&]/g, ' ').split(/\s+/).filter(Boolean)
   if (words.length < 3) return null
-  const tooLong = words.find((w) => w.length > 18)
+  // Norwegian legitimately forms long compounds (e.g. "kontraktsforhandlingene",
+  // "forretningsforbindelsen"); 18 chars falsely flagged real B2 formal vocabulary.
+  // 25 still catches absurd AI-hallucinated smush-words.
+  const tooLong = words.find((w) => w.length > 25)
   if (tooLong) return { ok: false, sev: 'WARN', detail: `synthetic-compound: ${tooLong}` }
-  if (!words.some((w) => NORWEGIAN_MARKERS.has(w))) return { ok: false, sev: 'WARN', detail: 'zero Norwegian function words' }
+  // Short Norwegian SVO sentences legitimately have zero standalone function words
+  // ("Gutten drikker melken" — definite articles are suffixes). Only meaningful for
+  // longer text, where genuine Norwegian almost always carries a function word.
+  if (words.length >= 6 && !words.some((w) => NORWEGIAN_MARKERS.has(w))) return { ok: false, sev: 'WARN', detail: 'zero Norwegian function words' }
   return null
 }
 
