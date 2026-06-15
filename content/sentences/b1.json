@@ -5626,8 +5626,8 @@
   },
   {
     "id": "b1-cx-030",
-    "norwegian": "Han forklarte at han ikke kunne komme fordi han var syk, men at han ville prøve å delta på neste møte.",
-    "english": "He explained that he couldn't come because he was ill, but that he would try to attend the next meeting.",
+    "norwegian": "Han forklarte at han ikke kunne komme fordi han var syk, men at han ville delta.",
+    "english": "He explained that he couldn't come because he was ill, but that he would attend.",
     "concept_ids": [
       "complex-subordination"
     ],

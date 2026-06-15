@@ -30,7 +30,10 @@ const VALID_ERROR_TAGS = new Set<string>(ALL_ERROR_TAGS)
 const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const
 type Level = (typeof LEVELS)[number]
 const LEVEL_RANK: Record<string, number> = { A1: 1, A2: 2, B1: 3, B2: 4 }
-const LEVEL_MAX_WORDS: Record<Level, number> = { A1: 8, A2: 12, B1: 18, B2: 18 }
+// Per-sentence caps (see maxSentenceWordCount). Step up with level: +4, +6, +6.
+// B2 was previously 18 (== B1) — a miscalibration; B2 formal/academic register
+// routinely runs longer than B1, so it continues the progression to 24.
+const LEVEL_MAX_WORDS: Record<Level, number> = { A1: 8, A2: 12, B1: 18, B2: 24 }
 const DEPTH_TARGET = 30 // matches B1/B2 standard per CLAUDE.md
 
 const ROOT = process.cwd()
