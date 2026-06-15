@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Mic } from 'lucide-react'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
+import { useAuth } from '@/hooks/useAuth'
 import {
   KARI_GREETING,
   KARI_QUESTIONS,
@@ -155,6 +156,10 @@ function Carousel() {
 // ---------------------------------------------------------------------------
 
 export default function HomePage() {
+  // Signed-in visitors skip the login form and go straight to the dashboard;
+  // everyone else (incl. while the session is still resolving) goes to /login.
+  const { user } = useAuth()
+  const loginHref = user ? '/dashboard' : '/login'
   return (
     <main
       className="min-h-dvh"
@@ -245,7 +250,7 @@ export default function HomePage() {
                 NorskCoach
               </span>
               <Link
-                href="/login"
+                href={loginHref}
                 className="rounded-[0.4rem] px-[14px] py-[6px] text-[11px] font-[600] text-white"
                 style={{ background: '#0A1206' }}
                 aria-label="Logg inn"
