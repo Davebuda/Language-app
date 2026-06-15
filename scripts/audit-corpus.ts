@@ -65,7 +65,12 @@ function wordCount(no: string): number {
 // flagged those as over-length even when every component sentence is within range.
 // Splitting on sentence-final punctuation still catches a genuine single run-on.
 function maxSentenceWordCount(no: string): number {
-  return Math.max(...no.split(/(?<=[.!?])\s+/).map(wordCount))
+  // Split only when the next token starts with a capital (real Norwegian sentences do)
+  // or a blank marker '_' (a fill-in-blank gap standing in for a capitalised first word).
+  // Abbreviations/ordinals ("kl. 22.00", "den 15. august") are followed by a digit or
+  // lowercase, so they are NOT mis-split into shorter fragments (which would let a
+  // genuine run-on containing such a period escape the cap).
+  return Math.max(...no.split(/(?<=[.!?])\s+(?=[A-ZÆØÅ_])/).map(wordCount))
 }
 
 // Norwegian validity heuristic. NOTE: src/ai/validate.ts NORWEGIAN_CHARS is
