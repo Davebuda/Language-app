@@ -20,6 +20,7 @@ import type { ResponseConstraint } from '@/lib/constraints'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
 import { verifyGenderCorrection } from '@/lib/gender-verifier'
+import { confirmedGenderRepair } from '@/lib/gender-correction-gate'
 import { logExerciseResult } from '@/lib/logEvents'
 import type { ExerciseResult } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
@@ -182,13 +183,11 @@ export default function ConversationPage() {
   function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>): void {
     const fp = useFingerprintStore.getState().fingerprint
     if (!fp) return
+    // Same shared gate the journal uses — only a verifier-confirmed gender error writes.
+    const input = confirmedGenderRepair({ original: correction.original, corrected: correction.corrected }, 'conversation')
+    if (!input) return
     const activeGraph = getGraphForLevel(fp.currentLevel ?? 'A1')
-    const repaired = repairFromSurface(fp, {
-      surfaceKind: 'conversation',
-      errorTag: correction.errorTag,
-      wrong: correction.original,
-      correct: correction.corrected,
-    }, activeGraph)
+    const repaired = repairFromSurface(fp, input, activeGraph)
     setFingerprint(repaired)
     saveFingerprint(repaired).catch(console.warn)
     errorCountRef.current++

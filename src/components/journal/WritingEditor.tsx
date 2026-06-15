@@ -12,7 +12,7 @@ import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { repairBatchFromSurface, recordProductionFromSurface } from '@/engine/repair-from-surface'
-import { verifyGenderCorrection } from '@/lib/gender-verifier'
+import { confirmedGenderRepair } from '@/lib/gender-correction-gate'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
@@ -178,17 +178,8 @@ export function WritingEditor() {
     //    The verified concepts double as the production double-count guard below — it can only
     //    ever BLOCK a brick, never write a phantom error, so it remains safe.
     const verifiedGenderInputs = result.errors
-      .filter(
-        (err) =>
-          verifyGenderCorrection({ original: err.wrong ?? '', corrected: err.correct ?? '' }) === 'confirmed',
-      )
-      .map((err) => ({
-        surfaceKind: 'journal' as const,
-        errorTag: 'noun-gender' as const,
-        conceptId: errorTagToConceptId('noun-gender'),
-        wrong: err.wrong,
-        correct: err.correct,
-      }))
+      .map((err) => confirmedGenderRepair({ original: err.wrong ?? '', corrected: err.correct ?? '' }, 'journal'))
+      .filter((input) => input !== null)
     const errorConceptIds = new Set(verifiedGenderInputs.map((i) => i.conceptId))
 
     let updated = fingerprint

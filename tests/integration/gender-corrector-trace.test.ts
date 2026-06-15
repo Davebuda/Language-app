@@ -5,7 +5,7 @@
 // case, or a two-gender false flag) leaves the fingerprint BYTE-untouched. This is the exact
 // composition both gates wire up (verifier verdict → repairFromSurface), tested without React.
 import { describe, it, expect } from 'vitest'
-import { verifyGenderCorrection } from '@/lib/gender-verifier'
+import { confirmedGenderRepair } from '@/lib/gender-correction-gate'
 import { repairFromSurface } from '@/engine/repair-from-surface'
 import { createEmptyFingerprint } from '@/types/fingerprint'
 import type { MistakeFingerprint } from '@/types/fingerprint'
@@ -29,18 +29,14 @@ const graph: ConceptGraph = {
   ],
 }
 
-// Mirrors the gate both surfaces apply: only a 'confirmed' gender correction writes,
-// and it is always tagged noun-gender (the verifier, not the AI, decides the class).
+// Drives the REAL shared gate both surfaces use (confirmedGenderRepair) — not a mirror.
+// Only a 'confirmed' gender correction yields a RepairInput; anything else writes nothing.
 function gateAndWrite(
   fp: MistakeFingerprint,
   correction: { original: string; corrected: string },
 ): MistakeFingerprint {
-  if (verifyGenderCorrection(correction) !== 'confirmed') return fp
-  return repairFromSurface(
-    fp,
-    { surfaceKind: 'conversation', errorTag: 'noun-gender', wrong: correction.original, correct: correction.corrected },
-    graph,
-  )
+  const input = confirmedGenderRepair(correction, 'conversation')
+  return input ? repairFromSurface(fp, input, graph) : fp
 }
 
 function seeded(): MistakeFingerprint {
