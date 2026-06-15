@@ -43,7 +43,7 @@
   },
   {
     "id": "b2-aw-003",
-    "norwegian": "Ifølge flere studier _____ digitale hjelpemidler læringsutbyttet i grunnskolen.",
+    "norwegian": "Ifølge flere studier ___ digitale hjelpemidler læringsutbyttet i grunnskolen.",
     "english": "According to several studies, digital tools improve learning outcomes in primary school.",
     "concept_ids": [
       "academic-writing"
@@ -106,7 +106,7 @@
   },
   {
     "id": "b2-aw-006",
-    "norwegian": "Funnene i denne rapporten _____ tidligere forskning på feltet.",
+    "norwegian": "Funnene i denne rapporten ___ tidligere forskning på feltet.",
     "english": "The findings in this report support earlier research in the field.",
     "concept_ids": [
       "academic-writing"
@@ -190,7 +190,7 @@
   },
   {
     "id": "b2-aw-010",
-    "norwegian": "Teorien _____ ikke av alle forskere, og det finnes alternative forklaringsmodeller.",
+    "norwegian": "Teorien ___ ikke av alle forskere, og det finnes alternative forklaringsmodeller.",
     "english": "The theory is not accepted by all researchers, and there are alternative explanatory models.",
     "concept_ids": [
       "academic-writing"
@@ -253,7 +253,7 @@
   },
   {
     "id": "b2-aw-013",
-    "norwegian": "I lys av disse funnene _____ det nødvendig å revidere den eksisterende politikken.",
+    "norwegian": "I lys av disse funnene ___ det nødvendig å revidere den eksisterende politikken.",
     "english": "In light of these findings, it seems necessary to revise the existing policy.",
     "concept_ids": [
       "academic-writing"
@@ -358,7 +358,7 @@
   },
   {
     "id": "b2-aw-018",
-    "norwegian": "Metoden som ble benyttet, _____ i detalj i metodedelen av rapporten.",
+    "norwegian": "Metoden som ble benyttet, ___ i detalj i metodedelen av rapporten.",
     "english": "The method that was used is described in detail in the methodology section of the report.",
     "concept_ids": [
       "academic-writing"
@@ -400,7 +400,7 @@
   },
   {
     "id": "b2-aw-020",
-    "norwegian": "Basert på de foreliggende dataene _____ det vanskelig å fastslå årsaksforholdet med sikkerhet.",
+    "norwegian": "Basert på de foreliggende dataene ___ det vanskelig å fastslå årsaksforholdet med sikkerhet.",
     "english": "Based on the available data, it is difficult to establish the causal relationship with certainty.",
     "concept_ids": [
       "academic-writing"
@@ -484,7 +484,7 @@
   },
   {
     "id": "b2-aw-024",
-    "norwegian": "Funnene _____ at en mer helhetlig tilnærming er nødvendig for å løse problemet effektivt.",
+    "norwegian": "Funnene ___ at en mer helhetlig tilnærming er nødvendig for å løse problemet effektivt.",
     "english": "The findings indicate that a more holistic approach is necessary to solve the problem effectively.",
     "concept_ids": [
       "academic-writing"
@@ -547,7 +547,7 @@
   },
   {
     "id": "b2-aw-027",
-    "norwegian": "I motsetning til tidligere studier _____ denne undersøkelsen også de langsiktige konsekvensene.",
+    "norwegian": "I motsetning til tidligere studier ___ denne undersøkelsen også de langsiktige konsekvensene.",
     "english": "In contrast to earlier studies, this investigation also examines the long-term consequences.",
     "concept_ids": [
       "academic-writing"
@@ -695,7 +695,7 @@
   },
   {
     "id": "b2-nr-004",
-    "norwegian": "I møtet i dag _____ det diskutert flere forslag til effektivisering av arbeidsprosessene.",
+    "norwegian": "I møtet i dag ___ det diskutert flere forslag til effektivisering av arbeidsprosessene.",
     "english": "In today's meeting, several proposals for streamlining work processes were discussed.",
     "concept_ids": [
       "nuanced-register"
@@ -758,7 +758,7 @@
   },
   {
     "id": "b2-nr-007",
-    "norwegian": "Herr direktør, _____ jeg få lov til å presentere våre foreløpige resultater?",
+    "norwegian": "Herr direktør, ___ jeg få lov til å presentere våre foreløpige resultater?",
     "english": "Mr. Director, may I have permission to present our preliminary results?",
     "concept_ids": [
       "nuanced-register"
@@ -884,7 +884,7 @@
   },
   {
     "id": "b2-nr-013",
-    "norwegian": "Styret _____ enstemmig vedtatt å utsette avgjørelsen til neste kvartal.",
+    "norwegian": "Styret ___ enstemmig vedtatt å utsette avgjørelsen til neste kvartal.",
     "english": "The board has unanimously decided to postpone the decision until next quarter.",
     "concept_ids": [
       "nuanced-register"
@@ -947,7 +947,7 @@
   },
   {
     "id": "b2-nr-016",
-    "norwegian": "Gitt selskapets finansielle situasjon _____ det nødvendig å foreta umiddelbare tiltak.",
+    "norwegian": "Gitt selskapets finansielle situasjon ___ det nødvendig å foreta umiddelbare tiltak.",
     "english": "Given the company's financial situation, it is necessary to take immediate action.",
     "concept_ids": [
       "nuanced-register"
@@ -1031,7 +1031,7 @@
   },
   {
     "id": "b2-nr-020",
-    "norwegian": "Departementet _____ at søknadene vil bli behandlet innen to uker fra mottaksdato.",
+    "norwegian": "Departementet ___ at søknadene vil bli behandlet innen to uker fra mottaksdato.",
     "english": "The ministry informs that applications will be processed within two weeks from the date of receipt.",
     "concept_ids": [
       "nuanced-register"
@@ -1094,7 +1094,7 @@
   },
   {
     "id": "b2-nr-023",
-    "norwegian": "Etter en grundig _____ av alternativene anbefaler komitéen å velge det andre forslaget.",
+    "norwegian": "Etter en grundig ___ av alternativene anbefaler komitéen å velge det andre forslaget.",
     "english": "After a thorough assessment of the alternatives, the committee recommends choosing the second proposal.",
     "concept_ids": [
       "nuanced-register"
@@ -1157,7 +1157,7 @@
   },
   {
     "id": "b2-nr-026",
-    "norwegian": "Vi setter stor pris på Deres _____ og gleder oss til å møte Dem personlig.",
+    "norwegian": "Vi setter stor pris på Deres ___ og gleder oss til å møte Dem personlig.",
     "english": "We greatly appreciate your patience and look forward to meeting you in person.",
     "concept_ids": [
       "nuanced-register"
@@ -1241,7 +1241,7 @@
   },
   {
     "id": "b2-nr-030",
-    "norwegian": "Konferansen _____ avholdt på Radisson Blu Hotel, og samtlige presentasjoner vil bli strømmet direkte.",
+    "norwegian": "Konferansen ___ avholdt på Radisson Blu Hotel, og samtlige presentasjoner vil bli strømmet direkte.",
     "english": "The conference will be held at Radisson Blu Hotel, and all presentations will be streamed live.",
     "concept_ids": [
       "nuanced-register"
@@ -1304,7 +1304,7 @@
   },
   {
     "id": "b2-ap-003",
-    "norwegian": "Døren er _____ fra innsiden, og ingen kan komme ut.",
+    "norwegian": "Døren er ___ fra innsiden, og ingen kan komme ut.",
     "english": "The door is locked from the inside, and no one can get out.",
     "concept_ids": [
       "advanced-passive"
@@ -1366,7 +1366,7 @@
   },
   {
     "id": "b2-ap-006",
-    "norwegian": "Resultatene _____ offentliggjort i neste ukes avis.",
+    "norwegian": "Resultatene ___ offentliggjort i neste ukes avis.",
     "english": "The results will be made public in next week's newspaper.",
     "concept_ids": [
       "advanced-passive"
@@ -1408,7 +1408,7 @@
   },
   {
     "id": "b2-ap-008",
-    "norwegian": "Pakken ble sendt mandag og burde allerede _____ mottatt.",
+    "norwegian": "Pakken ble sendt mandag og burde allerede ___ mottatt.",
     "english": "The package was sent on Monday and should already have been received.",
     "concept_ids": [
       "advanced-passive"
@@ -1511,7 +1511,7 @@
   },
   {
     "id": "b2-ap-013",
-    "norwegian": "Det _____ ikke funnet noen feil i systemet etter den grundige gjennomgangen.",
+    "norwegian": "Det ___ ikke funnet noen feil i systemet etter den grundige gjennomgangen.",
     "english": "No faults were found in the system after the thorough review.",
     "concept_ids": [
       "advanced-passive"
@@ -1573,7 +1573,7 @@
   },
   {
     "id": "b2-ap-016",
-    "norwegian": "Alle ble informert om endringen, men ikke alle hadde _____ e-posten.",
+    "norwegian": "Alle ble informert om endringen, men ikke alle hadde ___ e-posten.",
     "english": "Everyone was informed of the change, but not everyone had read the email.",
     "concept_ids": [
       "advanced-passive"
@@ -1594,7 +1594,7 @@
   },
   {
     "id": "b2-ap-017",
-    "norwegian": "Det forventes at alle ansatte _____ for sertifiseringskurset innen utgangen av måneden.",
+    "norwegian": "Det forventes at alle ansatte ___ for sertifiseringskurset innen utgangen av måneden.",
     "english": "It is expected that all employees register for the certification course by the end of the month.",
     "concept_ids": [
       "advanced-passive"
@@ -1657,7 +1657,7 @@
   },
   {
     "id": "b2-ap-020",
-    "norwegian": "Feilen ble oppdaget av en tilfeldig bruker og _____ straks videreformidlet til utviklingsteamet.",
+    "norwegian": "Feilen ble oppdaget av en tilfeldig bruker og ___ straks videreformidlet til utviklingsteamet.",
     "english": "The error was discovered by a random user and was immediately passed on to the development team.",
     "concept_ids": [
       "advanced-passive"
@@ -1699,7 +1699,7 @@
   },
   {
     "id": "b2-ap-022",
-    "norwegian": "Systemet er designet slik at feil automatisk _____ og loggføres.",
+    "norwegian": "Systemet er designet slik at feil automatisk ___ og loggføres.",
     "english": "The system is designed so that errors are automatically detected and logged.",
     "concept_ids": [
       "advanced-passive"
@@ -1761,7 +1761,7 @@
   },
   {
     "id": "b2-ap-025",
-    "norwegian": "Vedlikeholdsarbeidet _____ gjennomført i løpet av natten for å unngå forstyrrelser i arbeidstiden.",
+    "norwegian": "Vedlikeholdsarbeidet ___ gjennomført i løpet av natten for å unngå forstyrrelser i arbeidstiden.",
     "english": "The maintenance work will be carried out during the night to avoid disruptions during working hours.",
     "concept_ids": [
       "advanced-passive"
@@ -1928,7 +1928,7 @@
   },
   {
     "id": "b2-ca-003",
-    "norwegian": "Mange støtter forslaget; _____ er det viktig å høre kritikerne også.",
+    "norwegian": "Mange støtter forslaget; ___ er det viktig å høre kritikerne også.",
     "english": "Many support the proposal; however, it is important to also listen to the critics.",
     "concept_ids": [
       "complex-argumentation"
@@ -1970,7 +1970,7 @@
   },
   {
     "id": "b2-ca-005",
-    "norwegian": "Han er svært intelligent; _____ mangler han evnen til å samarbeide med andre.",
+    "norwegian": "Han er svært intelligent; ___ mangler han evnen til å samarbeide med andre.",
     "english": "He is very intelligent; nevertheless, he lacks the ability to collaborate with others.",
     "concept_ids": [
       "complex-argumentation"
@@ -2012,7 +2012,7 @@
   },
   {
     "id": "b2-ca-007",
-    "norwegian": "Forslaget er interessant; det er _____ for tidlig å si om det vil virke i praksis.",
+    "norwegian": "Forslaget er interessant; det er ___ for tidlig å si om det vil virke i praksis.",
     "english": "The proposal is interesting; it is, however, too early to say whether it will work in practice.",
     "concept_ids": [
       "complex-argumentation"
@@ -2033,7 +2033,7 @@
   },
   {
     "id": "b2-ca-008",
-    "norwegian": "Selv om mange er skeptiske, peker forskningen _____ på at dette er den riktige veien å gå.",
+    "norwegian": "Selv om mange er skeptiske, peker forskningen ___ på at dette er den riktige veien å gå.",
     "english": "Even though many are sceptical, the research nevertheless points to this being the right path.",
     "concept_ids": [
       "complex-argumentation"
@@ -2096,7 +2096,7 @@
   },
   {
     "id": "b2-ca-011",
-    "norwegian": "Selv om prisen er høy, er kvaliteten _____ god nok til å rettferdiggjøre investeringen.",
+    "norwegian": "Selv om prisen er høy, er kvaliteten ___ god nok til å rettferdiggjøre investeringen.",
     "english": "Even though the price is high, the quality is still good enough to justify the investment.",
     "concept_ids": [
       "complex-argumentation"
@@ -2117,7 +2117,7 @@
   },
   {
     "id": "b2-ca-012",
-    "norwegian": "Tiltaket er kostbart; det kan _____ ikke avvises uten videre analyse.",
+    "norwegian": "Tiltaket er kostbart; det kan ___ ikke avvises uten videre analyse.",
     "english": "The measure is costly; it can, however, not be dismissed without further analysis.",
     "concept_ids": [
       "complex-argumentation"
@@ -2138,7 +2138,7 @@
   },
   {
     "id": "b2-ca-013",
-    "norwegian": "Selv om det ikke er noen enkel løsning, må vi _____ gjøre et forsøk på å løse problemet.",
+    "norwegian": "Selv om det ikke er noen enkel løsning, må vi ___ gjøre et forsøk på å løse problemet.",
     "english": "Even though there is no simple solution, we must still make an attempt to solve the problem.",
     "concept_ids": [
       "complex-argumentation"
@@ -2222,7 +2222,7 @@
   },
   {
     "id": "b2-ca-017",
-    "norwegian": "Mange argumenterer for strengere reguleringer; _____ er andre bekymret for konsekvensene for næringslivet.",
+    "norwegian": "Mange argumenterer for strengere reguleringer; ___ er andre bekymret for konsekvensene for næringslivet.",
     "english": "Many argue for stricter regulations; conversely, others are worried about the consequences for business.",
     "concept_ids": [
       "complex-argumentation"
@@ -2264,7 +2264,7 @@
   },
   {
     "id": "b2-ca-019",
-    "norwegian": "Hun jobber hardt og er svært kompetent; _____ har hun ikke fått den anerkjennelsen hun fortjener.",
+    "norwegian": "Hun jobber hardt og er svært kompetent; ___ har hun ikke fått den anerkjennelsen hun fortjener.",
     "english": "She works hard and is very competent; yet she has not received the recognition she deserves.",
     "concept_ids": [
       "complex-argumentation"
@@ -2327,7 +2327,7 @@
   },
   {
     "id": "b2-ca-022",
-    "norwegian": "Norsk økonomi er sterk; _____ er det store ulikheter mellom ulike regioner i landet.",
+    "norwegian": "Norsk økonomi er sterk; ___ er det store ulikheter mellom ulike regioner i landet.",
     "english": "The Norwegian economy is strong; nevertheless, there are great inequalities between different regions of the country.",
     "concept_ids": [
       "complex-argumentation"
@@ -2369,7 +2369,7 @@
   },
   {
     "id": "b2-ca-024",
-    "norwegian": "Tiltaket har skapt mange arbeidsplasser; _____ har det også ført til økt forurensning.",
+    "norwegian": "Tiltaket har skapt mange arbeidsplasser; ___ har det også ført til økt forurensning.",
     "english": "The measure has created many jobs; on the other hand, it has also led to increased pollution.",
     "concept_ids": [
       "complex-argumentation"
@@ -2411,7 +2411,7 @@
   },
   {
     "id": "b2-ca-026",
-    "norwegian": "Selv om bevisene er begrenset, er det _____ grunn til å ta problemet på alvor.",
+    "norwegian": "Selv om bevisene er begrenset, er det ___ grunn til å ta problemet på alvor.",
     "english": "Even though the evidence is limited, there is still reason to take the problem seriously.",
     "concept_ids": [
       "complex-argumentation"
@@ -2432,7 +2432,7 @@
   },
   {
     "id": "b2-ca-027",
-    "norwegian": "Argumentene for tiltaket er overbevisende; _____ er det knyttet stor usikkerhet til finansieringen.",
+    "norwegian": "Argumentene for tiltaket er overbevisende; ___ er det knyttet stor usikkerhet til finansieringen.",
     "english": "The arguments for the measure are convincing; however, there is great uncertainty surrounding the financing.",
     "concept_ids": [
       "complex-argumentation"
@@ -2495,7 +2495,7 @@
   },
   {
     "id": "b2-ca-030",
-    "norwegian": "Selv om uenighetene var dype, bidro dialogen _____ til å bedre forholdet mellom partene.",
+    "norwegian": "Selv om uenighetene var dype, bidro dialogen ___ til å bedre forholdet mellom partene.",
     "english": "Even though the disagreements were deep, the dialogue still contributed to improving relations between the parties.",
     "concept_ids": [
       "complex-argumentation"
@@ -2579,7 +2579,7 @@
   },
   {
     "id": "b2-ni-004",
-    "norwegian": "Han er kjent for å alltid _____ fra munnen og si akkurat det han mener.",
+    "norwegian": "Han er kjent for å alltid ___ fra munnen og si akkurat det han mener.",
     "english": "He is known for always speaking his mind and saying exactly what he thinks.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2599,7 +2599,7 @@
   },
   {
     "id": "b2-ni-005",
-    "norwegian": "Prosjektet begynte bra, men mot slutten gikk det fullstendig i _____ på grunn av manglende ledelse.",
+    "norwegian": "Prosjektet begynte bra, men mot slutten gikk det fullstendig i ___ på grunn av manglende ledelse.",
     "english": "The project started well, but towards the end it completely fell apart due to lack of leadership.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2661,7 +2661,7 @@
   },
   {
     "id": "b2-ni-008",
-    "norwegian": "Selv om han er flink, er han ikke noe vidunderbarn — han er _____ som alle andre.",
+    "norwegian": "Selv om han er flink, er han ikke noe vidunderbarn — han er ___ som alle andre.",
     "english": "Even though he is talented, he is no child prodigy — he is flesh and blood like everyone else.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2723,7 +2723,7 @@
   },
   {
     "id": "b2-ni-011",
-    "norwegian": "Å finne en god leilighet i Oslo til den prisen er ikke _____ — det krever både tålmodighet og flaks.",
+    "norwegian": "Å finne en god leilighet i Oslo til den prisen er ikke ___ — det krever både tålmodighet og flaks.",
     "english": "Finding a good apartment in Oslo at that price is no easy feat — it requires both patience and luck.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2764,7 +2764,7 @@
   },
   {
     "id": "b2-ni-013",
-    "norwegian": "Det er nå engang slik at livet ikke alltid går som man vil, og det er _____ å leve med.",
+    "norwegian": "Det er nå engang slik at livet ikke alltid går som man vil, og det er ___ å leve med.",
     "english": "It is simply the way it is that life does not always go as one wants, and one simply has to live with it.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2826,7 +2826,7 @@
   },
   {
     "id": "b2-ni-016",
-    "norwegian": "Å bygge tillit mellom to land som har vært i konflikt er virkelig ikke _____ .",
+    "norwegian": "Å bygge tillit mellom to land som har vært i konflikt er virkelig ikke ___ .",
     "english": "Building trust between two countries that have been in conflict is truly no small matter.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2910,7 +2910,7 @@
   },
   {
     "id": "b2-ni-020",
-    "norwegian": "Han _____ kortene tett til brystet under hele forhandlingsrunden.",
+    "norwegian": "Han ___ kortene tett til brystet under hele forhandlingsrunden.",
     "english": "He kept his cards close to his chest throughout the entire round of negotiations.",
     "concept_ids": [
       "norwegian-idioms"
@@ -2973,7 +2973,7 @@
   },
   {
     "id": "b2-ni-023",
-    "norwegian": "Ikke _____ bjørnens skinn før bjørnen er skutt — vi vet ikke om vi får tilbudet.",
+    "norwegian": "Ikke ___ bjørnens skinn før bjørnen er skutt — vi vet ikke om vi får tilbudet.",
     "english": "Don't count your chickens before they hatch — we don't know if we'll get the offer.",
     "concept_ids": [
       "norwegian-idioms"
@@ -3036,7 +3036,7 @@
   },
   {
     "id": "b2-ni-026",
-    "norwegian": "Nå som prosjektlederen har sluttet, er det fare for at hele satsingen går _____ .",
+    "norwegian": "Nå som prosjektlederen har sluttet, er det fare for at hele satsingen går ___ .",
     "english": "Now that the project manager has left, there is a risk that the entire initiative will go under.",
     "concept_ids": [
       "norwegian-idioms"
@@ -3076,7 +3076,7 @@
   },
   {
     "id": "b2-ni-028",
-    "norwegian": "Det er ikke gjort i en _____ å lære seg norsk til et flytende nivå.",
+    "norwegian": "Det er ikke gjort i en ___ å lære seg norsk til et flytende nivå.",
     "english": "Learning Norwegian to a fluent level is not done in the blink of an eye.",
     "concept_ids": [
       "norwegian-idioms"
@@ -3180,7 +3180,7 @@
   },
   {
     "id": "b2-awo-003",
-    "norwegian": "Det var nettopp denne muligheten _____ hadde ventet på i årevis.",
+    "norwegian": "Det var nettopp denne muligheten ___ hadde ventet på i årevis.",
     "english": "It was precisely this opportunity that he had been waiting for for years.",
     "concept_ids": [
       "advanced-word-order"
@@ -3221,7 +3221,7 @@
   },
   {
     "id": "b2-awo-005",
-    "norwegian": "Det er nettopp denne forskjellen _____ gjør norsk grammatikk utfordrende for engelsktalende.",
+    "norwegian": "Det er nettopp denne forskjellen ___ gjør norsk grammatikk utfordrende for engelsktalende.",
     "english": "It is precisely this difference that makes Norwegian grammar challenging for English speakers.",
     "concept_ids": [
       "advanced-word-order"
@@ -3304,7 +3304,7 @@
   },
   {
     "id": "b2-awo-009",
-    "norwegian": "Det var ikke penger _____ motiverte ham, men ønsket om å gjøre en forskjell.",
+    "norwegian": "Det var ikke penger ___ motiverte ham, men ønsket om å gjøre en forskjell.",
     "english": "It was not money that motivated him, but the desire to make a difference.",
     "concept_ids": [
       "advanced-word-order"
@@ -3346,7 +3346,7 @@
   },
   {
     "id": "b2-awo-011",
-    "norwegian": "Det var etter denne hendelsen _____ alt forandret seg for familien.",
+    "norwegian": "Det var etter denne hendelsen ___ alt forandret seg for familien.",
     "english": "It was after this event that everything changed for the family.",
     "concept_ids": [
       "advanced-word-order"
@@ -3388,7 +3388,7 @@
   },
   {
     "id": "b2-awo-013",
-    "norwegian": "Det var denne lærerens entusiasme _____ inspirerte ham til å studere videre.",
+    "norwegian": "Det var denne lærerens entusiasme ___ inspirerte ham til å studere videre.",
     "english": "It was this teacher's enthusiasm that inspired him to continue his studies.",
     "concept_ids": [
       "advanced-word-order"
@@ -3450,7 +3450,7 @@
   },
   {
     "id": "b2-awo-016",
-    "norwegian": "Verken tid eller penger _____ manglet på dette prosjektet — det var viljen som sviktet.",
+    "norwegian": "Verken tid eller penger ___ manglet på dette prosjektet — det var viljen som sviktet.",
     "english": "Neither time nor money was lacking on this project — it was the will that failed.",
     "concept_ids": [
       "advanced-word-order"
@@ -3491,7 +3491,7 @@
   },
   {
     "id": "b2-awo-018",
-    "norwegian": "Det er akkurat dette poenget _____ gjør diskusjonen så viktig og relevant.",
+    "norwegian": "Det er akkurat dette poenget ___ gjør diskusjonen så viktig og relevant.",
     "english": "It is exactly this point that makes the discussion so important and relevant.",
     "concept_ids": [
       "advanced-word-order"
@@ -3532,7 +3532,7 @@
   },
   {
     "id": "b2-awo-020",
-    "norwegian": "Det var hennes ro og tålmodighet _____ gjorde henne til en utmerket leder.",
+    "norwegian": "Det var hennes ro og tålmodighet ___ gjorde henne til en utmerket leder.",
     "english": "It was her calm and patience that made her an excellent leader.",
     "concept_ids": [
       "advanced-word-order"
@@ -3616,7 +3616,7 @@
   },
   {
     "id": "b2-awo-024",
-    "norwegian": "Det var under denne konferansen _____ de to forskerne møttes for første gang.",
+    "norwegian": "Det var under denne konferansen ___ de to forskerne møttes for første gang.",
     "english": "It was during this conference that the two researchers met for the first time.",
     "concept_ids": [
       "advanced-word-order"
@@ -3658,7 +3658,7 @@
   },
   {
     "id": "b2-awo-026",
-    "norwegian": "Det er nettopp i slike krevende situasjoner _____ gode ledere skiller seg fra middelmådige.",
+    "norwegian": "Det er nettopp i slike krevende situasjoner ___ gode ledere skiller seg fra middelmådige.",
     "english": "It is precisely in such demanding situations that good leaders distinguish themselves from mediocre ones.",
     "concept_ids": [
       "advanced-word-order"
@@ -3700,7 +3700,7 @@
   },
   {
     "id": "b2-awo-028",
-    "norwegian": "Det var hans tidligere erfaringer fra utlandet _____ ga ham et unikt perspektiv på problemet.",
+    "norwegian": "Det var hans tidligere erfaringer fra utlandet som ga ham et unikt perspektiv på problemet.",
     "english": "It was his earlier experiences from abroad that gave him a unique perspective on the problem.",
     "concept_ids": [
       "advanced-word-order"
@@ -3742,7 +3742,7 @@
   },
   {
     "id": "b2-awo-030",
-    "norwegian": "Det er ikke bare fagkunnskapen, men også evnen til å kommunisere, _____ arbeidsgiverne verdsetter mest.",
+    "norwegian": "Det er ikke bare fagkunnskapen, men også evnen til å kommunisere, ___ arbeidsgiverne verdsetter mest.",
     "english": "It is not just subject knowledge, but also the ability to communicate, that employers value most.",
     "concept_ids": [
       "advanced-word-order"
@@ -3805,7 +3805,7 @@
   },
   {
     "id": "b2-rs-003",
-    "norwegian": "Legen informerte pasienten om at testresultatene _____ klare innen to dager.",
+    "norwegian": "Legen informerte pasienten om at testresultatene ___ klare innen to dager.",
     "english": "The doctor informed the patient that the test results would be ready within two days.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -3847,7 +3847,7 @@
   },
   {
     "id": "b2-rs-005",
-    "norwegian": "Ministeren erkjente at regjeringen _____ for sakte i saken.",
+    "norwegian": "Ministeren erkjente at regjeringen ___ for sakte i saken.",
     "english": "The minister acknowledged that the government had moved too slowly in the matter.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -3889,7 +3889,7 @@
   },
   {
     "id": "b2-rs-007",
-    "norwegian": "Professoren understreket at studentene måtte _____ kildene sine nøye.",
+    "norwegian": "Professoren understreket at studentene måtte ___ kildene sine nøye.",
     "english": "The professor emphasised that students had to check their sources carefully.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -3931,7 +3931,7 @@
   },
   {
     "id": "b2-rs-009",
-    "norwegian": "Sjefen bemerket at salget _____ sterkt det siste kvartalet og at de måtte finne en løsning.",
+    "norwegian": "Sjefen bemerket at salget ___ sterkt det siste kvartalet og at de måtte finne en løsning.",
     "english": "The boss noted that sales had fallen sharply in the last quarter and that they had to find a solution.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -3952,7 +3952,7 @@
   },
   {
     "id": "b2-rs-010",
-    "norwegian": "Naboen klaget over at musikken _____ for høyt og ba dem om å skru ned volumet.",
+    "norwegian": "Naboen klaget over at musikken ___ for høyt og ba dem om å skru ned volumet.",
     "english": "The neighbour complained that the music was being played too loudly and asked them to turn down the volume.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -3994,7 +3994,7 @@
   },
   {
     "id": "b2-rs-012",
-    "norwegian": "De rapporterte at det hadde vært en rekke tekniske problemer, men at disse nå _____ løst.",
+    "norwegian": "De rapporterte at det hadde vært en rekke tekniske problemer, men at disse nå ___ løst.",
     "english": "They reported that there had been a number of technical problems, but that these had now been resolved.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4035,7 +4035,7 @@
   },
   {
     "id": "b2-rs-014",
-    "norwegian": "Han lovet at han _____ tilbake med svar innen fredag.",
+    "norwegian": "Han lovet at han ___ tilbake med svar innen fredag.",
     "english": "He promised that he would come back with an answer by Friday.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4056,7 +4056,7 @@
   },
   {
     "id": "b2-rs-015",
-    "norwegian": "Direktøren kunngjorde at selskapet _____ slå seg sammen med sin største konkurrent.",
+    "norwegian": "Direktøren kunngjorde at selskapet ___ slå seg sammen med sin største konkurrent.",
     "english": "The director announced that the company would merge with its largest competitor.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4098,7 +4098,7 @@
   },
   {
     "id": "b2-rs-017",
-    "norwegian": "Politiet bekreftet at de hadde pågrepet en mistenkt, men at de foreløpig ikke _____ noen tiltalte.",
+    "norwegian": "Politiet bekreftet at de hadde pågrepet en mistenkt, men at de foreløpig ikke ___ noen tiltalte.",
     "english": "The police confirmed that they had arrested a suspect, but that they had not yet charged anyone.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4140,7 +4140,7 @@
   },
   {
     "id": "b2-rs-019",
-    "norwegian": "Hun husket at legen hadde sagt at hun _____ unngå anstrengende aktivitet i to uker.",
+    "norwegian": "Hun husket at legen hadde sagt at hun ___ unngå anstrengende aktivitet i to uker.",
     "english": "She remembered that the doctor had said that she should avoid strenuous activity for two weeks.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4181,7 +4181,7 @@
   },
   {
     "id": "b2-rs-021",
-    "norwegian": "Undersøkelsen viste at de fleste respondentene mente at helsevesenet _____ forbedres betydelig.",
+    "norwegian": "Undersøkelsen viste at de fleste respondentene mente at helsevesenet ___ forbedres betydelig.",
     "english": "The survey showed that most respondents felt that the healthcare system needed to be significantly improved.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4223,7 +4223,7 @@
   },
   {
     "id": "b2-rs-023",
-    "norwegian": "Hun innrømmet at hun _____ kjent til problemet lenge, men ikke sagt noe av frykt for konsekvensene.",
+    "norwegian": "Hun innrømmet at hun ___ kjent til problemet lenge, men ikke sagt noe av frykt for konsekvensene.",
     "english": "She admitted that she had known about the problem for a long time, but had not said anything out of fear of the consequences.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4265,7 +4265,7 @@
   },
   {
     "id": "b2-rs-025",
-    "norwegian": "Kontrakten spesifiserte at alle betalinger _____ gjennomføres innen 30 dager etter fakturadato.",
+    "norwegian": "Kontrakten spesifiserte at alle betalinger ___ gjennomføres innen 30 dager etter fakturadato.",
     "english": "The contract specified that all payments were to be made within 30 days of the invoice date.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4307,7 +4307,7 @@
   },
   {
     "id": "b2-rs-027",
-    "norwegian": "Forskeren konkluderte med at hypotesen _____ bekreftet av dataene og at videre forskning var nødvendig.",
+    "norwegian": "Forskeren konkluderte med at hypotesen ___ bekreftet av dataene og at videre forskning var nødvendig.",
     "english": "The researcher concluded that the hypothesis had been confirmed by the data and that further research was necessary.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4349,7 +4349,7 @@
   },
   {
     "id": "b2-rs-029",
-    "norwegian": "Rapporten antydet at prisene _____ stige ytterligere i løpet av de neste månedene.",
+    "norwegian": "Rapporten antydet at prisene ___ stige ytterligere i løpet av de neste månedene.",
     "english": "The report suggested that prices would rise further over the coming months.",
     "concept_ids": [
       "reported-speech-advanced"
@@ -4432,7 +4432,7 @@
   },
   {
     "id": "b2-sm-003",
-    "norwegian": "Om bare hun _____ søkt om jobben tidligere, hadde hun trolig fått den.",
+    "norwegian": "Om bare hun ___ søkt om jobben tidligere, hadde hun trolig fått den.",
     "english": "If only she had applied for the job earlier, she would probably have got it.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4473,7 +4473,7 @@
   },
   {
     "id": "b2-sm-005",
-    "norwegian": "Jeg skulle ønske at jeg _____ flytte til et varmere land.",
+    "norwegian": "Jeg skulle ønske at jeg ___ flytte til et varmere land.",
     "english": "I wish that I could move to a warmer country.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4515,7 +4515,7 @@
   },
   {
     "id": "b2-sm-007",
-    "norwegian": "Hadde de _____ bedre forberedt, ville utfallet trolig blitt annerledes.",
+    "norwegian": "Hadde de ___ bedre forberedt, ville utfallet trolig blitt annerledes.",
     "english": "Had they been better prepared, the outcome would probably have been different.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4557,7 +4557,7 @@
   },
   {
     "id": "b2-sm-009",
-    "norwegian": "Om jeg bare hadde lest kontrakten grundigere, _____ jeg ikke havnet i denne situasjonen.",
+    "norwegian": "Om jeg bare hadde lest kontrakten grundigere, ___ jeg ikke havnet i denne situasjonen.",
     "english": "If only I had read the contract more thoroughly, I would not have ended up in this situation.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4599,7 +4599,7 @@
   },
   {
     "id": "b2-sm-011",
-    "norwegian": "Jeg skulle ønske at han hadde _____ ærligere mot meg fra begynnelsen av.",
+    "norwegian": "Jeg skulle ønske at han hadde ___ ærligere mot meg fra begynnelsen av.",
     "english": "I wish that he had been more honest with me from the beginning.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4641,7 +4641,7 @@
   },
   {
     "id": "b2-sm-013",
-    "norwegian": "Om bare jeg _____ mer penger, ville jeg reist verden rundt.",
+    "norwegian": "Om bare jeg ___ mer penger, ville jeg reist verden rundt.",
     "english": "If only I had more money, I would travel around the world.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4725,7 +4725,7 @@
   },
   {
     "id": "b2-sm-017",
-    "norwegian": "Jeg skulle ønske at vi _____ kjent hverandre bedre da vi var unge.",
+    "norwegian": "Jeg skulle ønske at vi ___ kjent hverandre bedre da vi var unge.",
     "english": "I wish that we had known each other better when we were young.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4767,7 +4767,7 @@
   },
   {
     "id": "b2-sm-019",
-    "norwegian": "Hadde prosjektet _____ fullfinansiert fra starten, hadde vi kunnet levere resultater mye raskere.",
+    "norwegian": "Hadde prosjektet ___ fullfinansiert fra starten, hadde vi kunnet levere resultater mye raskere.",
     "english": "Had the project been fully funded from the start, we could have delivered results much faster.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4809,7 +4809,7 @@
   },
   {
     "id": "b2-sm-021",
-    "norwegian": "Om bare han hadde _____ litt mer tålmodighet, ville forhandlingene ha gått mye bedre.",
+    "norwegian": "Om bare han hadde ___ litt mer tålmodighet, ville forhandlingene ha gått mye bedre.",
     "english": "If only he had had a little more patience, the negotiations would have gone much better.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4872,7 +4872,7 @@
   },
   {
     "id": "b2-sm-024",
-    "norwegian": "Hvis de hadde investert i fornybar energi tidligere, _____ de nå spart store summer.",
+    "norwegian": "Hvis de hadde investert i fornybar energi tidligere, ___ de nå spart store summer.",
     "english": "If they had invested in renewable energy earlier, they would now have saved large sums.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4914,7 +4914,7 @@
   },
   {
     "id": "b2-sm-026",
-    "norwegian": "Hadde du _____ meg om problemet, hadde jeg hjulpet deg med en gang.",
+    "norwegian": "Hadde du ___ meg om problemet, hadde jeg hjulpet deg med en gang.",
     "english": "Had you told me about the problem, I would have helped you straight away.",
     "concept_ids": [
       "subjunctive-mood"
@@ -4956,7 +4956,7 @@
   },
   {
     "id": "b2-sm-028",
-    "norwegian": "Hvis man hadde satset mer på forebygging, _____ helsevesenet spart store ressurser.",
+    "norwegian": "Hvis man hadde satset mer på forebygging, ___ helsevesenet spart store ressurser.",
     "english": "If more had been invested in prevention, the healthcare system would have saved large resources.",
     "concept_ids": [
       "subjunctive-mood"
@@ -5061,7 +5061,7 @@
   },
   {
     "id": "b2-tc-003",
-    "norwegian": "Metoden ble beskrevet i kapittel to. _____ er det nødvendig å forstå denne metoden godt.",
+    "norwegian": "Metoden ble beskrevet i kapittel to. ___ er det nødvendig å forstå denne metoden godt.",
     "english": "The method was described in chapter two. For this reason, it is necessary to understand this method well.",
     "concept_ids": [
       "text-cohesion"
@@ -5103,7 +5103,7 @@
   },
   {
     "id": "b2-tc-005",
-    "norwegian": "Undersøkelsen viste positive resultater. _____ bør man ikke trekke for raske konklusjoner.",
+    "norwegian": "Undersøkelsen viste positive resultater. ___ bør man ikke trekke for raske konklusjoner.",
     "english": "The survey showed positive results. Nevertheless, one should not draw hasty conclusions.",
     "concept_ids": [
       "text-cohesion"
@@ -5145,7 +5145,7 @@
   },
   {
     "id": "b2-tc-007",
-    "norwegian": "Regjeringen presenterte planen sin i januar. _____ er den blitt møtt med blandet mottakelse.",
+    "norwegian": "Regjeringen presenterte planen sin i januar. ___ er den blitt møtt med blandet mottakelse.",
     "english": "The government presented its plan in January. Since then, it has been met with a mixed reception.",
     "concept_ids": [
       "text-cohesion"
@@ -5187,7 +5187,7 @@
   },
   {
     "id": "b2-tc-009",
-    "norwegian": "Forsøket mislyktes i første omgang. _____ ga ikke teamet opp og prøvde på nytt med en justert metode.",
+    "norwegian": "Forsøket mislyktes i første omgang. ___ ga ikke teamet opp og prøvde på nytt med en justert metode.",
     "english": "The experiment failed on the first attempt. Nevertheless, the team did not give up and tried again with an adjusted method.",
     "concept_ids": [
       "text-cohesion"
@@ -5229,7 +5229,7 @@
   },
   {
     "id": "b2-tc-011",
-    "norwegian": "Resultatene fra den første studien er lovende. _____ er det for tidlig å trekke endelige konklusjoner.",
+    "norwegian": "Resultatene fra den første studien er lovende. ___ er det for tidlig å trekke endelige konklusjoner.",
     "english": "The results from the first study are promising. Even so, it is too early to draw final conclusions.",
     "concept_ids": [
       "text-cohesion"
@@ -5292,7 +5292,7 @@
   },
   {
     "id": "b2-tc-014",
-    "norwegian": "Den nye loven trådte i kraft 1. januar. _____ har det vært stor debatt om dens praktiske konsekvenser.",
+    "norwegian": "Den nye loven trådte i kraft 1. januar. ___ har det vært stor debatt om dens praktiske konsekvenser.",
     "english": "The new law came into force on 1 January. Since then, there has been much debate about its practical consequences.",
     "concept_ids": [
       "text-cohesion"
@@ -5334,7 +5334,7 @@
   },
   {
     "id": "b2-tc-016",
-    "norwegian": "Selskapet ble grunnlagt i 2005 og vokste raskt. _____ slet det med likviditeten i 2018.",
+    "norwegian": "Selskapet ble grunnlagt i 2005 og vokste raskt. ___ slet det med likviditeten i 2018.",
     "english": "The company was founded in 2005 and grew rapidly. However, it struggled with liquidity in 2018.",
     "concept_ids": [
       "text-cohesion"
@@ -5355,7 +5355,7 @@
   },
   {
     "id": "b2-tc-017",
-    "norwegian": "Klimaforskerne har advart om konsekvensene i årevis. _____ har politikerne ikke handlet raskt nok.",
+    "norwegian": "Klimaforskerne har advart om konsekvensene i årevis. ___ har politikerne ikke handlet raskt nok.",
     "english": "Climate scientists have been warning about the consequences for years. Despite this, politicians have not acted quickly enough.",
     "concept_ids": [
       "text-cohesion"
@@ -5397,7 +5397,7 @@
   },
   {
     "id": "b2-tc-019",
-    "norwegian": "Prisen på råolje steg kraftig i fjerde kvartal. _____ ser markedet ut til å stabilisere seg.",
+    "norwegian": "Prisen på råolje steg kraftig i fjerde kvartal. ___ ser markedet ut til å stabilisere seg.",
     "english": "The price of crude oil rose sharply in the fourth quarter. Now, the market appears to be stabilising.",
     "concept_ids": [
       "text-cohesion"
@@ -5439,7 +5439,7 @@
   },
   {
     "id": "b2-tc-021",
-    "norwegian": "Regjeringen innførte nye avgifter på flyreiser. _____ har antallet reiser gått ned med ti prosent.",
+    "norwegian": "Regjeringen innførte nye avgifter på flyreiser. ___ har antallet reiser gått ned med ti prosent.",
     "english": "The government introduced new taxes on air travel. As a result, the number of journeys has fallen by ten per cent.",
     "concept_ids": [
       "text-cohesion"
@@ -5481,7 +5481,7 @@
   },
   {
     "id": "b2-tc-023",
-    "norwegian": "Forhandlingene brøt sammen i mai. _____ kom partene tilbake til bordet i september.",
+    "norwegian": "Forhandlingene brøt sammen i mai. ___ kom partene tilbake til bordet i september.",
     "english": "The negotiations broke down in May. Nevertheless, the parties came back to the table in September.",
     "concept_ids": [
       "text-cohesion"
@@ -5523,7 +5523,7 @@
   },
   {
     "id": "b2-tc-025",
-    "norwegian": "Selskapet investerte tungt i ny teknologi. Det viste seg _____ å være en dårlig beslutning.",
+    "norwegian": "Selskapet investerte tungt i ny teknologi. Det viste seg ___ å være en dårlig beslutning.",
     "english": "The company invested heavily in new technology. This turned out, however, to be a poor decision.",
     "concept_ids": [
       "text-cohesion"
@@ -5565,7 +5565,7 @@
   },
   {
     "id": "b2-tc-027",
-    "norwegian": "Den første løsningen er rask, men kostbar. _____ er den andre løsningen billigere, men tar mer tid.",
+    "norwegian": "Den første løsningen er rask, men kostbar. ___ er den andre løsningen billigere, men tar mer tid.",
     "english": "The first solution is quick but costly. Conversely, the second solution is cheaper but takes more time.",
     "concept_ids": [
       "text-cohesion"
@@ -5586,7 +5586,7 @@
   },
   {
     "id": "b2-tc-028",
-    "norwegian": "Arbeidet med rapporten tok fire måneder. _____ ble den godt mottatt av alle interessenter.",
+    "norwegian": "Arbeidet med rapporten tok fire måneder. ___ ble den godt mottatt av alle interessenter.",
     "english": "The work on the report took four months. In the end, it was well received by all stakeholders.",
     "concept_ids": [
       "text-cohesion"
@@ -5691,7 +5691,7 @@
   },
   {
     "id": "b2-avf-003",
-    "norwegian": "Den _____ mannen satt alene på benken og stirret ut i luften.",
+    "norwegian": "Den ___ mannen satt alene på benken og stirret ut i luften.",
     "english": "The grieving man sat alone on the bench and stared into the air.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -5733,7 +5733,7 @@
   },
   {
     "id": "b2-avf-005",
-    "norwegian": "Det _____ barnet ble funnet trygt og uskadelig etter en times søk.",
+    "norwegian": "Det ___ barnet ble funnet trygt og uskadelig etter en times søk.",
     "english": "The missing child was found safe and unharmed after an hour of searching.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -5775,7 +5775,7 @@
   },
   {
     "id": "b2-avf-007",
-    "norwegian": "De _____ turister spurte oss om veien til hotellet.",
+    "norwegian": "De ___ turister spurte oss om veien til hotellet.",
     "english": "The lost tourists asked us for directions to the hotel.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -5817,7 +5817,7 @@
   },
   {
     "id": "b2-avf-009",
-    "norwegian": "De nylig _____ dataene viser en klar forbedring i pasientenes tilstand.",
+    "norwegian": "De nylig ___ dataene viser en klar forbedring i pasientenes tilstand.",
     "english": "The recently collected data shows a clear improvement in the patients' condition.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -5859,7 +5859,7 @@
   },
   {
     "id": "b2-avf-011",
-    "norwegian": "En _____ student vil alltid finne måter å forbedre seg på.",
+    "norwegian": "En ___ student vil alltid finne måter å forbedre seg på.",
     "english": "A motivated student will always find ways to improve.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -5921,7 +5921,7 @@
   },
   {
     "id": "b2-avf-014",
-    "norwegian": "Den _____ forskningen på feltet har enda ikke gitt noen klare svar.",
+    "norwegian": "Den ___ forskningen på feltet har enda ikke gitt noen klare svar.",
     "english": "The ongoing research in the field has not yet provided any clear answers.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -5963,7 +5963,7 @@
   },
   {
     "id": "b2-avf-016",
-    "norwegian": "Det _____ beløpet vil bli overført til din konto innen tre virkedager.",
+    "norwegian": "Det ___ beløpet vil bli overført til din konto innen tre virkedager.",
     "english": "The agreed amount will be transferred to your account within three working days.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6005,7 +6005,7 @@
   },
   {
     "id": "b2-avf-018",
-    "norwegian": "Et godt _____ argument er mer overbevisende enn en svak og generell påstand.",
+    "norwegian": "Et godt ___ argument er mer overbevisende enn en svak og generell påstand.",
     "english": "A well-reasoned argument is more convincing than a weak and general claim.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6067,7 +6067,7 @@
   },
   {
     "id": "b2-avf-021",
-    "norwegian": "De _____ konsekvensene av klimaendringene er enda ikke fullt ut forstått.",
+    "norwegian": "De ___ konsekvensene av klimaendringene er enda ikke fullt ut forstått.",
     "english": "The persistent consequences of climate change are not yet fully understood.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6108,7 +6108,7 @@
   },
   {
     "id": "b2-avf-023",
-    "norwegian": "Det _____ samarbeidet mellom de to landene har lagt grunnlaget for varig fred.",
+    "norwegian": "Det ___ samarbeidet mellom de to landene har lagt grunnlaget for varig fred.",
     "english": "The sustained cooperation between the two countries has laid the foundation for lasting peace.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6150,7 +6150,7 @@
   },
   {
     "id": "b2-avf-025",
-    "norwegian": "Et _____ forsøk er bedre enn ingen, selv om det ikke lykkes fullt ut.",
+    "norwegian": "Et ___ forsøk er bedre enn ingen, selv om det ikke lykkes fullt ut.",
     "english": "A failed attempt is better than none, even if it does not fully succeed.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6212,7 +6212,7 @@
   },
   {
     "id": "b2-avf-028",
-    "norwegian": "Det _____ resultatet overrasket alle ekspertene som hadde fulgt prosessen nøye.",
+    "norwegian": "Det ___ resultatet overrasket alle ekspertene som hadde fulgt prosessen nøye.",
     "english": "The unexpected result surprised all the experts who had followed the process closely.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6254,7 +6254,7 @@
   },
   {
     "id": "b2-avf-030",
-    "norwegian": "De _____ ressursene må fordeles rettferdig mellom alle involverte parter.",
+    "norwegian": "De ___ ressursene må fordeles rettferdig mellom alle involverte parter.",
     "english": "The limited resources must be distributed fairly between all involved parties.",
     "concept_ids": [
       "advanced-verb-forms"
@@ -6946,7 +6946,7 @@
   },
   {
     "id": "b2-pn-003",
-    "norwegian": "Jeg tillater meg å videresende denne forespørselen til _____ avdeling for videre behandling.",
+    "norwegian": "Jeg tillater meg å videresende denne forespørselen til ___ avdeling for videre behandling.",
     "english": "I take the liberty of forwarding this enquiry to the relevant department for further processing.",
     "concept_ids": [
       "professional-norwegian"
@@ -6988,7 +6988,7 @@
   },
   {
     "id": "b2-pn-005",
-    "norwegian": "På vegne av styret ønsker jeg å ønske alle ansatte en god og _____ ferie.",
+    "norwegian": "På vegne av styret ønsker jeg å ønske alle ansatte en god og ___ ferie.",
     "english": "On behalf of the board, I wish to wish all employees a good and well-deserved holiday.",
     "concept_ids": [
       "professional-norwegian"
@@ -7051,7 +7051,7 @@
   },
   {
     "id": "b2-pn-008",
-    "norwegian": "Saken er nå oversendt til juridisk avdeling for _____ og vi vil holde Dem orientert om fremdriften.",
+    "norwegian": "Saken er nå oversendt til juridisk avdeling for ___ og vi vil holde Dem orientert om fremdriften.",
     "english": "The matter has now been referred to the legal department for review and we will keep you informed of progress.",
     "concept_ids": [
       "professional-norwegian"
@@ -7114,7 +7114,7 @@
   },
   {
     "id": "b2-pn-011",
-    "norwegian": "Takk for godt møte tidligere i dag. Her følger en oppsummering av de viktigste _____ .",
+    "norwegian": "Takk for godt møte tidligere i dag. Her følger en oppsummering av de viktigste ___ .",
     "english": "Thank you for a productive meeting earlier today. Here follows a summary of the key action points.",
     "concept_ids": [
       "professional-norwegian"
@@ -7177,7 +7177,7 @@
   },
   {
     "id": "b2-pn-014",
-    "norwegian": "Vedlegg: _____ , pristilbud datert 20. mai og signert samarbeidsavtale.",
+    "norwegian": "Vedlegg: ___ , pristilbud datert 20. mai og signert samarbeidsavtale.",
     "english": "Attachments: Project description, price quote dated 20 May and signed cooperation agreement.",
     "concept_ids": [
       "professional-norwegian"
@@ -7240,7 +7240,7 @@
   },
   {
     "id": "b2-pn-017",
-    "norwegian": "Agendaen for morgendagens møte er som følger: 1) Status _____ , 2) Budsjettgjennomgang, 3) Eventuelt.",
+    "norwegian": "Agendaen for morgendagens møte er som følger: 1) Status ___ , 2) Budsjettgjennomgang, 3) Eventuelt.",
     "english": "The agenda for tomorrow's meeting is as follows: 1) Project status, 2) Budget review, 3) Any other business.",
     "concept_ids": [
       "professional-norwegian"
@@ -7282,7 +7282,7 @@
   },
   {
     "id": "b2-pn-019",
-    "norwegian": "Referat fra styremøtet den 12. juni vil bli distribuert til alle _____ innen utgangen av denne uken.",
+    "norwegian": "Referat fra styremøtet den 12. juni vil bli distribuert til alle ___ innen utgangen av denne uken.",
     "english": "The minutes from the board meeting on 12 June will be distributed to all board members by the end of this week.",
     "concept_ids": [
       "professional-norwegian"
@@ -7324,7 +7324,7 @@
   },
   {
     "id": "b2-pn-021",
-    "norwegian": "Med forbehold om godkjenning fra styret vil prosjektet _____ i løpet av tredje kvartal.",
+    "norwegian": "Med forbehold om godkjenning fra styret vil prosjektet ___ i løpet av tredje kvartal.",
     "english": "Subject to board approval, the project will be launched during the third quarter.",
     "concept_ids": [
       "professional-norwegian"
@@ -7366,7 +7366,7 @@
   },
   {
     "id": "b2-pn-023",
-    "norwegian": "Som avtalt i møtet vil jeg sende over en revidert versjon av forslaget _____ .",
+    "norwegian": "Som avtalt i møtet vil jeg sende over en revidert versjon av forslaget ___ .",
     "english": "As agreed in the meeting, I will send over a revised version of the proposal by the end of the day.",
     "concept_ids": [
       "professional-norwegian"
@@ -7408,7 +7408,7 @@
   },
   {
     "id": "b2-pn-025",
-    "norwegian": "Vi viser til Deres henvendelse og beklager at vi ikke har kunnet besvare den _____ .",
+    "norwegian": "Vi viser til Deres henvendelse og beklager at vi ikke har kunnet besvare den ___ .",
     "english": "We refer to your enquiry and apologise that we have not been able to respond to it sooner.",
     "concept_ids": [
       "professional-norwegian"
@@ -7450,7 +7450,7 @@
   },
   {
     "id": "b2-pn-027",
-    "norwegian": "Jeg setter stor pris på muligheten til å presentere oss og håper vi kan _____ et møte.",
+    "norwegian": "Jeg setter stor pris på muligheten til å presentere oss og håper vi kan ___ et møte.",
     "english": "I greatly appreciate the opportunity to present ourselves and hope we can arrange a meeting.",
     "concept_ids": [
       "professional-norwegian"
@@ -7752,7 +7752,7 @@
   },
   {
     "id": "b2-sv-112",
-    "norwegian": "Hva angår budsjettet, _____ det nødvendig med ytterligere diskusjon.",
+    "norwegian": "Hva angår budsjettet, ___ det nødvendig med ytterligere diskusjon.",
     "english": "As for the budget, further discussion is necessary.",
     "concept_ids": [
       "stylistic-variation"
@@ -8010,7 +8010,7 @@
   },
   {
     "id": "b2-nr-104",
-    "norwegian": "Departementet _____ til at saken vil bli behandlet innen utgangen av kvartalet.",
+    "norwegian": "Departementet ___ til at saken vil bli behandlet innen utgangen av kvartalet.",
     "english": "The ministry points to the matter being handled by the end of the quarter.",
     "concept_ids": [
       "nuanced-register"
@@ -8160,7 +8160,7 @@
   },
   {
     "id": "b2-nr-111",
-    "norwegian": "Kollegaen min er flink nok, men han har en tendens til å _____ ting unødvendig.",
+    "norwegian": "Kollegaen min er flink nok, men han har en tendens til å ___ ting unødvendig.",
     "english": "My colleague is capable enough, but he has a tendency to overcomplicate things.",
     "concept_ids": [
       "nuanced-register"
@@ -8312,7 +8312,7 @@
   },
   {
     "id": "b2-nr-118",
-    "norwegian": "Saksbehandlingstiden _____ ikke overstige seks uker fra søknadsdato.",
+    "norwegian": "Saksbehandlingstiden ___ ikke overstige seks uker fra søknadsdato.",
     "english": "The processing time shall not exceed six weeks from the date of application.",
     "concept_ids": [
       "nuanced-register"
@@ -8467,7 +8467,7 @@
   },
   {
     "id": "b2-pn-105",
-    "norwegian": "Vi viser til din e-post av 28. mai og _____ den sene tilbakemeldingen.",
+    "norwegian": "Vi viser til din e-post av 28. mai og ___ den sene tilbakemeldingen.",
     "english": "We refer to your email of 28 May and apologise for the late response.",
     "concept_ids": [
       "professional-norwegian"
@@ -8532,7 +8532,7 @@
   },
   {
     "id": "b2-pn-108",
-    "norwegian": "Alle ansatte _____ om å gjøre seg kjent med den nye personalpolitikken innen 1. juli.",
+    "norwegian": "Alle ansatte ___ om å gjøre seg kjent med den nye personalpolitikken innen 1. juli.",
     "english": "All employees are asked to familiarise themselves with the new personnel policy by 1 July.",
     "concept_ids": [
       "professional-norwegian"
@@ -8914,7 +8914,7 @@
   },
   {
     "id": "b2-sv2-207",
-    "norwegian": "Da vi kom hjem, var pengene allerede _____ brukt, og ingenting var igjen av arven.",
+    "norwegian": "Da vi kom hjem, var pengene allerede ___ brukt, og ingenting var igjen av arven.",
     "english": "When we came home, the money was already spent, and nothing remained of the inheritance.",
     "concept_ids": [
       "stylistic-variation"
@@ -8997,7 +8997,7 @@
   },
   {
     "id": "b2-sv2-211",
-    "norwegian": "Vi ber om at kunden _____ seg til nærmeste filial for videre veiledning.",
+    "norwegian": "Vi ber om at kunden ___ seg til nærmeste filial for videre veiledning.",
     "english": "We ask that the customer contact the nearest branch for further guidance.",
     "concept_ids": [
       "stylistic-variation"
@@ -9059,7 +9059,7 @@
   },
   {
     "id": "b2-sv2-214",
-    "norwegian": "Vinden tok tak i håret hennes og _____ det ut over skuldrene som et vilt flagg.",
+    "norwegian": "Vinden tok tak i håret hennes og ___ det ut over skuldrene som et vilt flagg.",
     "english": "The wind caught her hair and spread it across her shoulders like a wild flag.",
     "concept_ids": [
       "stylistic-variation"
@@ -9140,7 +9140,7 @@
   },
   {
     "id": "b2-sv2-218",
-    "norwegian": "Klagen _____ behandlet i samsvar med selskapets gjeldende reklamasjonsprosedyrer.",
+    "norwegian": "Klagen ___ behandlet i samsvar med selskapets gjeldende reklamasjonsprosedyrer.",
     "english": "The complaint will be handled in accordance with the company's current complaints procedures.",
     "concept_ids": [
       "stylistic-variation"
@@ -9224,7 +9224,7 @@
   },
   {
     "id": "b2-sv2-222",
-    "norwegian": "Søknaden ble avslått under henvisning til manglende dokumentasjon av de _____ opplysningene.",
+    "norwegian": "Søknaden ble avslått under henvisning til manglende dokumentasjon av de ___ opplysningene.",
     "english": "The application was rejected with reference to insufficient documentation of the required information.",
     "concept_ids": [
       "stylistic-variation"
@@ -9265,7 +9265,7 @@
   },
   {
     "id": "b2-sv2-224",
-    "norwegian": "Departementet _____ med denne muligheten til å minne om at fristen for innsending er 1. mars.",
+    "norwegian": "Departementet ___ med denne muligheten til å minne om at fristen for innsending er 1. mars.",
     "english": "The Ministry takes this opportunity to remind that the deadline for submission is 1 March.",
     "concept_ids": [
       "stylistic-variation"
@@ -9390,7 +9390,7 @@
   },
   {
     "id": "b2-nr2-204",
-    "norwegian": "Partene er enige om at tvisten _____ løst ved mekling før eventuelt søksmål reises.",
+    "norwegian": "Partene er enige om at tvisten ___ løst ved mekling før eventuelt søksmål reises.",
     "english": "The parties agree that the dispute shall be resolved through mediation before any lawsuit is filed.",
     "concept_ids": [
       "nuanced-register"
@@ -9432,7 +9432,7 @@
   },
   {
     "id": "b2-nr2-206",
-    "norwegian": "I samsvar med punkt 4.2 i avtalen _____ leverandøren forpliktet til å utbedre manglene innen ti virkedager.",
+    "norwegian": "I samsvar med punkt 4.2 i avtalen ___ leverandøren forpliktet til å utbedre manglene innen ti virkedager.",
     "english": "In accordance with clause 4.2 of the agreement, the supplier is obligated to remedy the deficiencies within ten working days.",
     "concept_ids": [
       "nuanced-register"
@@ -9474,7 +9474,7 @@
   },
   {
     "id": "b2-nr2-208",
-    "norwegian": "Kunden _____ herved om at garantiperioden for det aktuelle produktet er utløpt.",
+    "norwegian": "Kunden ___ herved om at garantiperioden for det aktuelle produktet er utløpt.",
     "english": "The customer is hereby informed that the warranty period for the product in question has expired.",
     "concept_ids": [
       "nuanced-register"
@@ -9579,7 +9579,7 @@
   },
   {
     "id": "b2-nr2-213",
-    "norwegian": "Nå som vi er ferdige med eksamen, _____ vi bare legge oss på sofaen og gjøre absolutt ingenting.",
+    "norwegian": "Nå som vi er ferdige med eksamen, ___ vi bare legge oss på sofaen og gjøre absolutt ingenting.",
     "english": "Now that we've finished the exams, we can just lie on the sofa and do absolutely nothing.",
     "concept_ids": [
       "nuanced-register"
@@ -9642,7 +9642,7 @@
   },
   {
     "id": "b2-nr2-216",
-    "norwegian": "Det er grunn til å anta at saken vil medføre ytterligere kostnader, og _____ bør selskapet sette av midler.",
+    "norwegian": "Det er grunn til å anta at saken vil medføre ytterligere kostnader, og ___ bør selskapet sette av midler.",
     "english": "There is reason to assume that the matter will entail further costs, and the company should therefore set aside funds.",
     "concept_ids": [
       "nuanced-register"
@@ -9726,7 +9726,7 @@
   },
   {
     "id": "b2-nr2-220",
-    "norwegian": "Saken _____ oversendt kompetent myndighet for videre behandling og endelig avgjørelse.",
+    "norwegian": "Saken ___ oversendt kompetent myndighet for videre behandling og endelig avgjørelse.",
     "english": "The matter has been forwarded to the competent authority for further processing and final decision.",
     "concept_ids": [
       "nuanced-register"
@@ -9810,7 +9810,7 @@
   },
   {
     "id": "b2-nr2-224",
-    "norwegian": "Kommunen _____ ha mottatt søknaden innen 15. august for at den skal tas under behandling.",
+    "norwegian": "Kommunen ___ ha mottatt søknaden innen 15. august for at den skal tas under behandling.",
     "english": "The municipality must have received the application by 15 August for it to be considered.",
     "concept_ids": [
       "nuanced-register"
@@ -9914,7 +9914,7 @@
   },
   {
     "id": "b2-pn2-203",
-    "norwegian": "Vi anmoder om at fakturaen _____ vedlagt ved innsending av den fullstendige dokumentasjonen.",
+    "norwegian": "Vi anmoder om at fakturaen ___ vedlagt ved innsending av den fullstendige dokumentasjonen.",
     "english": "We request that the invoice be enclosed when submitting the complete documentation.",
     "concept_ids": [
       "professional-norwegian"
@@ -9976,7 +9976,7 @@
   },
   {
     "id": "b2-pn2-206",
-    "norwegian": "Vedlagt _____ årsrapport for 2024 samt revisors beretning.",
+    "norwegian": "Vedlagt ___ årsrapport for 2024 samt revisors beretning.",
     "english": "Enclosed please find the annual report for 2024 together with the auditor's report.",
     "concept_ids": [
       "professional-norwegian"
@@ -10017,7 +10017,7 @@
   },
   {
     "id": "b2-pn2-208",
-    "norwegian": "Sykefraværet i avdelingen _____ stabilt på rundt fem prosent gjennom hele kvartalet.",
+    "norwegian": "Sykefraværet i avdelingen ___ stabilt på rundt fem prosent gjennom hele kvartalet.",
     "english": "Sickness absence in the department remained stable at around five per cent throughout the quarter.",
     "concept_ids": [
       "professional-norwegian"
@@ -10079,7 +10079,7 @@
   },
   {
     "id": "b2-pn2-211",
-    "norwegian": "Arbeidsavtalen regulerer partenes rettigheter og plikter og _____ av begge parter innen 14 dager.",
+    "norwegian": "Arbeidsavtalen regulerer partenes rettigheter og plikter og ___ av begge parter innen 14 dager.",
     "english": "The employment contract regulates the rights and obligations of both parties and must be signed by both parties within 14 days.",
     "concept_ids": [
       "professional-norwegian"
@@ -10142,7 +10142,7 @@
   },
   {
     "id": "b2-pn2-214",
-    "norwegian": "Rapporten _____ til den administrative ledelsen innen utgangen av neste uke.",
+    "norwegian": "Rapporten ___ til den administrative ledelsen innen utgangen av neste uke.",
     "english": "The report must be submitted to the administrative management by the end of next week.",
     "concept_ids": [
       "professional-norwegian"
@@ -10204,7 +10204,7 @@
   },
   {
     "id": "b2-pn2-217",
-    "norwegian": "Som ledd i internkontrollarbeidet _____ alle ansatte om å gjennomføre det obligatoriske HMS-kurset innen 31. desember.",
+    "norwegian": "Som ledd i internkontrollarbeidet ___ alle ansatte om å gjennomføre det obligatoriske HMS-kurset innen 31. desember.",
     "english": "As part of the internal control work, all employees are reminded to complete the mandatory HSE course by 31 December.",
     "concept_ids": [
       "professional-norwegian"
@@ -10266,7 +10266,7 @@
   },
   {
     "id": "b2-pn2-220",
-    "norwegian": "Eventuelle merknader til det vedlagte utkastet _____ innen 1. august til prosjektansvarlig.",
+    "norwegian": "Eventuelle merknader til det vedlagte utkastet ___ innen 1. august til prosjektansvarlig.",
     "english": "Any comments on the attached draft should be sent to the project manager by 1 August.",
     "concept_ids": [
       "professional-norwegian"
@@ -10329,7 +10329,7 @@
   },
   {
     "id": "b2-pn2-223",
-    "norwegian": "Iht. gjeldende personopplysningslov _____ alle innsamlede data anonymiseres etter prosjektets avslutning.",
+    "norwegian": "Iht. gjeldende personopplysningslov ___ alle innsamlede data anonymiseres etter prosjektets avslutning.",
     "english": "According to the applicable personal data act, all collected data must be anonymised after the conclusion of the project.",
     "concept_ids": [
       "professional-norwegian"
@@ -10371,7 +10371,7 @@
   },
   {
     "id": "b2-pn2-225",
-    "norwegian": "Dersom fakturaen ikke er betalt innen forfall, _____ forsinkelsesrenter i samsvar med forsinkelsesrenteloven.",
+    "norwegian": "Dersom fakturaen ikke er betalt innen forfall, ___ forsinkelsesrenter i samsvar med forsinkelsesrenteloven.",
     "english": "If the invoice is not paid by the due date, late payment interest will be charged in accordance with the Late Payment Interest Act.",
     "concept_ids": [
       "professional-norwegian"
@@ -10478,7 +10478,7 @@
   },
   {
     "id": "b2-tc-305",
-    "norwegian": "Tiltaket ble godt mottatt i nord. I sør var situasjonen en helt annen, og det ble klart at tiltaket ikke ville fungere uten lokale tilpasninger. _____ valgte myndighetene å revidere planen for den sørlige regionen.",
+    "norwegian": "Tiltaket ble godt mottatt i nord. I sør var situasjonen en helt annen, og det ble klart at tiltaket ikke ville fungere uten lokale tilpasninger. ___ valgte myndighetene å revidere planen for den sørlige regionen.",
     "english": "The measure was well received in the north. In the south the situation was completely different, and it became clear that the measure would not work without local adaptations. Consequently, the authorities chose to revise the plan for the southern region.",
     "concept_ids": [
       "text-cohesion"
@@ -10542,7 +10542,7 @@
   },
   {
     "id": "b2-tc-309",
-    "norwegian": "Artikkelen behandler tre problemstillinger: for det første spørsmålet om representasjon, for det andre fordelingen av ressurser og _____ spørsmålet om legitimitet.",
+    "norwegian": "Artikkelen behandler tre problemstillinger: for det første spørsmålet om representasjon, for det andre fordelingen av ressurser og ___ spørsmålet om legitimitet.",
     "english": "The article addresses three questions: first the issue of representation, second the distribution of resources, and third the question of legitimacy.",
     "concept_ids": [
       "text-cohesion"
@@ -10629,7 +10629,7 @@
   },
   {
     "id": "b2-tc-314",
-    "norwegian": "Funnene er interessante, men den lille utvalgsstørrelsen begrenser mulighetene for generalisering. _____ gir studien et solid grunnlag for videre forskning.",
+    "norwegian": "Funnene er interessante, men den lille utvalgsstørrelsen begrenser mulighetene for generalisering. ___ gir studien et solid grunnlag for videre forskning.",
     "english": "The findings are interesting, but the small sample size limits the possibilities for generalisation. Nonetheless, the study provides a solid foundation for further research.",
     "concept_ids": [
       "text-cohesion"
@@ -10694,7 +10694,7 @@
   },
   {
     "id": "b2-tc-318",
-    "norwegian": "Dataene ble innhentet over en periode på to år. _____ ble de analysert ved hjelp av statistiske metoder.",
+    "norwegian": "Dataene ble innhentet over en periode på to år. ___ ble de analysert ved hjelp av statistiske metoder.",
     "english": "The data were collected over a period of two years. Thereafter they were analysed using statistical methods.",
     "concept_ids": [
       "text-cohesion"
@@ -10758,7 +10758,7 @@
   },
   {
     "id": "b2-tc-322",
-    "norwegian": "Problemet er velkjent. _____ mangler det fortsatt effektive løsninger på nasjonalt nivå.",
+    "norwegian": "Problemet er velkjent. ___ mangler det fortsatt effektive løsninger på nasjonalt nivå.",
     "english": "The problem is well known. Nevertheless, effective solutions are still lacking at the national level.",
     "concept_ids": [
       "text-cohesion"
@@ -10865,7 +10865,7 @@
   },
   {
     "id": "b2-tc-330",
-    "norwegian": "Avhandlingen består av fem kapitler. Tre av disse er viet en analyse av det empiriske materialet, _____ de to siste tar for seg teoretiske implikasjoner.",
+    "norwegian": "Avhandlingen består av fem kapitler. Tre av disse er viet en analyse av det empiriske materialet, ___ de to siste tar for seg teoretiske implikasjoner.",
     "english": "The thesis consists of five chapters. Three of these are devoted to an analysis of the empirical material, while the last two address theoretical implications.",
     "concept_ids": [
       "text-cohesion"
@@ -10908,7 +10908,7 @@
   },
   {
     "id": "b2-tc-332",
-    "norwegian": "Studien har avdekket tre mønstre. Det første mønsteret er kjennetegnet av rask fremgang, det andre av stagnasjon og _____ av gradvis tilbakegang.",
+    "norwegian": "Studien har avdekket tre mønstre. Det første mønsteret er kjennetegnet av rask fremgang, det andre av stagnasjon og ___ av gradvis tilbakegang.",
     "english": "The study has revealed three patterns. The first pattern is characterised by rapid progress, the second by stagnation, and the third by gradual regression.",
     "concept_ids": [
       "text-cohesion"
@@ -10952,7 +10952,7 @@
   },
   {
     "id": "b2-aw3-302",
-    "norwegian": "Nominalisering er et sentralt trekk ved akademisk skriving. I stedet for å skrive 'å analysere' velger forfattere ofte formen '_____ av data'.",
+    "norwegian": "Nominalisering er et sentralt trekk ved akademisk skriving. I stedet for å skrive 'å analysere' velger forfattere ofte formen '___ av data'.",
     "english": "Nominalisation is a central feature of academic writing. Instead of writing 'to analyse', authors often choose the form 'analysis of data'.",
     "concept_ids": [
       "academic-writing"
@@ -11018,7 +11018,7 @@
   },
   {
     "id": "b2-aw3-306",
-    "norwegian": "Studien benytter seg av en triangulerende tilnærming der kvantitative og kvalitative metoder _____ hverandre.",
+    "norwegian": "Studien benytter seg av en triangulerende tilnærming der kvantitative og kvalitative metoder ___ hverandre.",
     "english": "The study employs a triangulating approach in which quantitative and qualitative methods complement each other.",
     "concept_ids": [
       "academic-writing"
@@ -11084,7 +11084,7 @@
   },
   {
     "id": "b2-aw3-310",
-    "norwegian": "Tidligere forskning har i stor grad fokusert på makronivå. Den _____ studien skiller seg fra dette ved å ta et mikroperspektiv.",
+    "norwegian": "Tidligere forskning har i stor grad fokusert på makronivå. Den ___ studien skiller seg fra dette ved å ta et mikroperspektiv.",
     "english": "Earlier research has to a large extent focused on the macro level. The present study distinguishes itself from this by taking a micro perspective.",
     "concept_ids": [
       "academic-writing"
@@ -11150,7 +11150,7 @@
   },
   {
     "id": "b2-aw3-314",
-    "norwegian": "Teorien har vunnet bred _____ i faglitteraturen, men er ikke uten kritikere.",
+    "norwegian": "Teorien har vunnet bred ___ i faglitteraturen, men er ikke uten kritikere.",
     "english": "The theory has gained broad acceptance in the academic literature, but is not without its critics.",
     "concept_ids": [
       "academic-writing"
@@ -11238,7 +11238,7 @@
   },
   {
     "id": "b2-aw3-320",
-    "norwegian": "Det undersøkes i denne studien hvorvidt eksponering for støy i barndommen _____ risikoen for hørselstap i voksen alder.",
+    "norwegian": "Det undersøkes i denne studien hvorvidt eksponering for støy i barndommen ___ risikoen for hørselstap i voksen alder.",
     "english": "This study examines whether exposure to noise in childhood increases the risk of hearing loss in adult life.",
     "concept_ids": [
       "academic-writing"
@@ -11282,7 +11282,7 @@
   },
   {
     "id": "b2-aw3-322",
-    "norwegian": "Det er all grunn til å anta at funnene kan _____ til andre populasjoner med lignende demografiske kjennetegn.",
+    "norwegian": "Det er all grunn til å anta at funnene kan ___ til andre populasjoner med lignende demografiske kjennetegn.",
     "english": "There is every reason to assume that the findings can be generalised to other populations with similar demographic characteristics.",
     "concept_ids": [
       "academic-writing"
@@ -11326,7 +11326,7 @@
   },
   {
     "id": "b2-aw3-324",
-    "norwegian": "Det er viktig å _____ at de her presenterte dataene er hentet fra et begrenset geografisk område.",
+    "norwegian": "Det er viktig å ___ at de her presenterte dataene er hentet fra et begrenset geografisk område.",
     "english": "It is important to emphasise that the data presented here are taken from a limited geographical area.",
     "concept_ids": [
       "academic-writing"
@@ -11370,7 +11370,7 @@
   },
   {
     "id": "b2-aw3-326",
-    "norwegian": "Funnene er i stor grad forenlige med de teoretiske _____ som ble fremsatt i innledningen.",
+    "norwegian": "Funnene er i stor grad forenlige med de teoretiske ___ som ble fremsatt i innledningen.",
     "english": "The findings are largely compatible with the theoretical predictions that were put forward in the introduction.",
     "concept_ids": [
       "academic-writing"
@@ -11414,7 +11414,7 @@
   },
   {
     "id": "b2-aw3-328",
-    "norwegian": "Det vil si at hypotesen kun kan avvises dersom det foreligger statistisk signifikante bevis til _____ for nullhypotesen.",
+    "norwegian": "Det vil si at hypotesen kun kan avvises dersom det foreligger statistisk signifikante bevis til ___ for nullhypotesen.",
     "english": "That is to say, the hypothesis can only be rejected if there is statistically significant evidence in favour of the null hypothesis.",
     "concept_ids": [
       "academic-writing"
@@ -11458,7 +11458,7 @@
   },
   {
     "id": "b2-aw3-330",
-    "norwegian": "Det er påvist at eksponering for høye lydnivåer over tid kan _____ til permanente hørselsskader.",
+    "norwegian": "Det er påvist at eksponering for høye lydnivåer over tid kan ___ til permanente hørselsskader.",
     "english": "It has been demonstrated that exposure to high noise levels over time can lead to permanent hearing damage.",
     "concept_ids": [
       "academic-writing"
@@ -11502,7 +11502,7 @@
   },
   {
     "id": "b2-aw3-332",
-    "norwegian": "Avslutningsvis kan det konstateres at de oppstilte målene i _____ grad er nådd.",
+    "norwegian": "Avslutningsvis kan det konstateres at de oppstilte målene i ___ grad er nådd.",
     "english": "In conclusion it can be established that the stated goals have largely been reached.",
     "concept_ids": [
       "academic-writing"
@@ -11546,7 +11546,7 @@
   },
   {
     "id": "b2-ap-302",
-    "norwegian": "Budsjettet ble vedtatt med knappest mulig flertall og _____ allerede neste kvartal.",
+    "norwegian": "Budsjettet ble vedtatt med knappest mulig flertall og ___ allerede neste kvartal.",
     "english": "The budget was passed with the slimmest possible majority and will be revised already next quarter.",
     "concept_ids": [
       "advanced-passive"
@@ -11634,7 +11634,7 @@
   },
   {
     "id": "b2-ap-307",
-    "norwegian": "Kontrakten er ennå ikke _____, selv om forhandlingene ble avsluttet for to uker siden.",
+    "norwegian": "Kontrakten er ennå ikke ___, selv om forhandlingene ble avsluttet for to uker siden.",
     "english": "The contract has not yet been signed, even though the negotiations were concluded two weeks ago.",
     "concept_ids": [
       "advanced-passive"
@@ -11678,7 +11678,7 @@
   },
   {
     "id": "b2-ap-309",
-    "norwegian": "Nye retningslinjer er utarbeidet av komiteen og vil _____ til alle ansatte i løpet av neste uke.",
+    "norwegian": "Nye retningslinjer er utarbeidet av komiteen og vil ___ til alle ansatte i løpet av neste uke.",
     "english": "New guidelines have been drawn up by the committee and will be distributed to all employees during next week.",
     "concept_ids": [
       "advanced-passive"
@@ -11722,7 +11722,7 @@
   },
   {
     "id": "b2-ap-311",
-    "norwegian": "Feilen ble oppdaget tidlig og _____ umiddelbart av det ansvarlige vedlikeholdsselskapet.",
+    "norwegian": "Feilen ble oppdaget tidlig og ___ umiddelbart av det ansvarlige vedlikeholdsselskapet.",
     "english": "The fault was detected early and was immediately rectified by the responsible maintenance company.",
     "concept_ids": [
       "advanced-passive"
@@ -11766,7 +11766,7 @@
   },
   {
     "id": "b2-ap-313",
-    "norwegian": "Pengene ble overført, men transaksjonen _____ dessverre ikke bekreftet av banken.",
+    "norwegian": "Pengene ble overført, men transaksjonen ___ dessverre ikke bekreftet av banken.",
     "english": "The money was transferred, but the transaction was unfortunately not confirmed by the bank.",
     "concept_ids": [
       "advanced-passive"
@@ -11854,7 +11854,7 @@
   },
   {
     "id": "b2-ap-318",
-    "norwegian": "Boken er oversatt til over tjue språk og _____ i mer enn femti land.",
+    "norwegian": "Boken er oversatt til over tjue språk og ___ i mer enn femti land.",
     "english": "The book has been translated into over twenty languages and is sold in more than fifty countries.",
     "concept_ids": [
       "advanced-passive"
@@ -11898,7 +11898,7 @@
   },
   {
     "id": "b2-ap-320",
-    "norwegian": "Undersøkelsen viser at mange pasienter _____ for lenge uten riktig diagnose.",
+    "norwegian": "Undersøkelsen viser at mange pasienter ___ for lenge uten riktig diagnose.",
     "english": "The survey shows that many patients are treated for too long without a correct diagnosis.",
     "concept_ids": [
       "advanced-passive"
@@ -11942,7 +11942,7 @@
   },
   {
     "id": "b2-ap-322",
-    "norwegian": "Det _____ av tallene i årsrapporten at selskapet har hatt et underskudd tre år på rad.",
+    "norwegian": "Det ___ av tallene i årsrapporten at selskapet har hatt et underskudd tre år på rad.",
     "english": "It emerges from the figures in the annual report that the company has had a deficit for three consecutive years.",
     "concept_ids": [
       "advanced-passive"
@@ -11986,7 +11986,7 @@
   },
   {
     "id": "b2-ap-324",
-    "norwegian": "Systemet er utviklet over mange år og _____ nå av over en million brukere daglig.",
+    "norwegian": "Systemet er utviklet over mange år og ___ nå av over en million brukere daglig.",
     "english": "The system has been developed over many years and is now used by over one million users daily.",
     "concept_ids": [
       "advanced-passive"
@@ -12030,7 +12030,7 @@
   },
   {
     "id": "b2-ap-326",
-    "norwegian": "Det ble stilt strenge krav til leverandørene, og disse kravene er _____ i den reviderte kontrakten.",
+    "norwegian": "Det ble stilt strenge krav til leverandørene, og disse kravene er ___ i den reviderte kontrakten.",
     "english": "Strict requirements were placed on the suppliers, and these requirements are enshrined in the revised contract.",
     "concept_ids": [
       "advanced-passive"
@@ -12074,7 +12074,7 @@
   },
   {
     "id": "b2-ap-328",
-    "norwegian": "Det er sjelden at en slik pris _____ til en forsker som ennå ikke har fylt førti år.",
+    "norwegian": "Det er sjelden at en slik pris ___ til en forsker som ennå ikke har fylt førti år.",
     "english": "It is rare for such a prize to be awarded to a researcher who has not yet turned forty.",
     "concept_ids": [
       "advanced-passive"
@@ -12118,7 +12118,7 @@
   },
   {
     "id": "b2-ap-330",
-    "norwegian": "Det bekreftes nå at alle planlagte avganger _____ innstilt på grunn av det ekstreme uværet.",
+    "norwegian": "Det bekreftes nå at alle planlagte avganger ___ innstilt på grunn av det ekstreme uværet.",
     "english": "It is now confirmed that all planned departures have been cancelled due to the extreme weather.",
     "concept_ids": [
       "advanced-passive"
@@ -12162,7 +12162,7 @@
   },
   {
     "id": "b2-ap-332",
-    "norwegian": "Det forutsettes at alle deltakerne _____ seg til de etiske retningslinjene som er fastsatt av komiteen.",
+    "norwegian": "Det forutsettes at alle deltakerne ___ seg til de etiske retningslinjene som er fastsatt av komiteen.",
     "english": "It is presupposed that all participants will adhere to the ethical guidelines that have been established by the committee.",
     "concept_ids": [
       "advanced-passive"

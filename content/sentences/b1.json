@@ -44,7 +44,7 @@
   },
   {
     "id": "b1-pp-003",
-    "norwegian": "Hun hadde _____ (sove) i to timer da alarmen ringte.",
+    "norwegian": "Hun hadde ___ (sove) i to timer da alarmen ringte.",
     "english": "She had slept for two hours when the alarm rang.",
     "concept_ids": [
       "past-perfect"
@@ -88,7 +88,7 @@
   },
   {
     "id": "b1-pp-005",
-    "norwegian": "Han hadde _____ (jobbe) der i ti år da han sluttet.",
+    "norwegian": "Han hadde ___ (jobbe) der i ti år da han sluttet.",
     "english": "He had worked there for ten years when he quit.",
     "concept_ids": [
       "past-perfect"
@@ -130,7 +130,7 @@
   },
   {
     "id": "b1-pp-007",
-    "norwegian": "Jeg skjønte at jeg hadde _____ (ta) feil buss.",
+    "norwegian": "Jeg skjønte at jeg hadde ___ (ta) feil buss.",
     "english": "I realized I had taken the wrong bus.",
     "concept_ids": [
       "past-perfect"
@@ -174,7 +174,7 @@
   },
   {
     "id": "b1-pp-009",
-    "norwegian": "Da jeg ringte, hadde hun allerede _____ (legge seg).",
+    "norwegian": "Da jeg ringte, hadde hun allerede ___ (legge seg).",
     "english": "When I called, she had already gone to bed.",
     "concept_ids": [
       "past-perfect"
@@ -217,7 +217,7 @@
   },
   {
     "id": "b1-pp-011",
-    "norwegian": "Filmen hadde allerede _____ (begynne) da vi kom inn.",
+    "norwegian": "Filmen hadde allerede ___ (begynne) da vi kom inn.",
     "english": "The film had already started when we came in.",
     "concept_ids": [
       "past-perfect"
@@ -259,7 +259,7 @@
   },
   {
     "id": "b1-pp-013",
-    "norwegian": "De hadde _____ (spise) middag da gjestene ankom.",
+    "norwegian": "De hadde ___ (spise) middag da gjestene ankom.",
     "english": "They had eaten dinner when the guests arrived.",
     "concept_ids": [
       "past-perfect"
@@ -302,7 +302,7 @@
   },
   {
     "id": "b1-pp-015",
-    "norwegian": "Jeg visste ikke at du hadde _____ (flytte) til Oslo.",
+    "norwegian": "Jeg visste ikke at du hadde ___ (flytte) til Oslo.",
     "english": "I didn't know you had moved to Oslo.",
     "concept_ids": [
       "past-perfect"
@@ -345,7 +345,7 @@
   },
   {
     "id": "b1-pp-017",
-    "norwegian": "Vi oppdaget at noen hadde _____ (ta) syklene våre.",
+    "norwegian": "Vi oppdaget at noen hadde ___ (ta) syklene våre.",
     "english": "We discovered that someone had taken our bikes.",
     "concept_ids": [
       "past-perfect"
@@ -388,7 +388,7 @@
   },
   {
     "id": "b1-pp-019",
-    "norwegian": "Han hadde _____ (skrive) tre rapporter den uken.",
+    "norwegian": "Han hadde ___ (skrive) tre rapporter den uken.",
     "english": "He had written three reports that week.",
     "concept_ids": [
       "past-perfect"
@@ -451,7 +451,7 @@
   },
   {
     "id": "b1-pp-022",
-    "norwegian": "Da møtet begynte, hadde halvparten av deltakerne _____ (gå) hjem.",
+    "norwegian": "Da møtet begynte, hadde halvparten av deltakerne ___ (gå) hjem.",
     "english": "When the meeting started, half the participants had gone home.",
     "concept_ids": [
       "past-perfect"
@@ -493,7 +493,7 @@
   },
   {
     "id": "b1-pp-024",
-    "norwegian": "Jeg hadde _____ (lese) halvparten av boken da strømmen gikk.",
+    "norwegian": "Jeg hadde ___ (lese) halvparten av boken da strømmen gikk.",
     "english": "I had read half the book when the power went out.",
     "concept_ids": [
       "past-perfect"
@@ -557,7 +557,7 @@
   },
   {
     "id": "b1-pp-027",
-    "norwegian": "De hadde _____ (kjøpe) huset for lenge siden.",
+    "norwegian": "De hadde ___ (kjøpe) huset for lenge siden.",
     "english": "They had bought the house a long time ago.",
     "concept_ids": [
       "past-perfect"
@@ -661,7 +661,7 @@
   },
   {
     "id": "b1-prp-002",
-    "norwegian": "Vi så en _____ (løpe) hund i parken.",
+    "norwegian": "Vi så en ___ (løpe) hund i parken.",
     "english": "We saw a running dog in the park.",
     "concept_ids": [
       "present-participle"
@@ -704,7 +704,7 @@
   },
   {
     "id": "b1-prp-004",
-    "norwegian": "Det er en _____ (stige) tendens til at folk jobber hjemmefra.",
+    "norwegian": "Det er en ___ (stige) tendens til at folk jobber hjemmefra.",
     "english": "There is a rising tendency for people to work from home.",
     "concept_ids": [
       "present-participle"
@@ -767,7 +767,7 @@
   },
   {
     "id": "b1-prp-007",
-    "norwegian": "Det er en _____ (bekymre) situasjon for mange familier.",
+    "norwegian": "Det er en ___ (bekymre) situasjon for mange familier.",
     "english": "It is a worrying situation for many families.",
     "concept_ids": [
       "present-participle"
@@ -830,7 +830,7 @@
   },
   {
     "id": "b1-prp-010",
-    "norwegian": "Det var en _____ (vokse) kø utenfor butikken.",
+    "norwegian": "Det var en ___ (vokse) kø utenfor butikken.",
     "english": "There was a growing queue outside the shop.",
     "concept_ids": [
       "present-participle"
@@ -872,7 +872,7 @@
   },
   {
     "id": "b1-prp-012",
-    "norwegian": "Det er et _____ (overraske) resultat fra valget.",
+    "norwegian": "Det er et ___ (overraske) resultat fra valget.",
     "english": "It is a surprising result from the election.",
     "concept_ids": [
       "present-participle"
@@ -913,7 +913,7 @@
   },
   {
     "id": "b1-prp-014",
-    "norwegian": "Det er et _____ (øke) problem med plastforurensning.",
+    "norwegian": "Det er et ___ (øke) problem med plastforurensning.",
     "english": "There is an increasing problem with plastic pollution.",
     "concept_ids": [
       "present-participle"
@@ -955,7 +955,7 @@
   },
   {
     "id": "b1-prp-016",
-    "norwegian": "Det kom en _____ (smile) dame mot oss.",
+    "norwegian": "Det kom en ___ (smile) dame mot oss.",
     "english": "A smiling lady came towards us.",
     "concept_ids": [
       "present-participle"
@@ -996,7 +996,7 @@
   },
   {
     "id": "b1-prp-018",
-    "norwegian": "Det var en _____ (forvirre) beskjed fra sjefen.",
+    "norwegian": "Det var en ___ (forvirre) beskjed fra sjefen.",
     "english": "It was a confusing message from the boss.",
     "concept_ids": [
       "present-participle"
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "b1-prp-020",
-    "norwegian": "Det er et _____ (love) tegn at han begynte å øve mer.",
+    "norwegian": "Det er et ___ (love) tegn at han begynte å øve mer.",
     "english": "It is a promising sign that he started practising more.",
     "concept_ids": [
       "present-participle"
@@ -1101,7 +1101,7 @@
   },
   {
     "id": "b1-prp-023",
-    "norwegian": "Det var en _____ (synke) følelse i magen.",
+    "norwegian": "Det var en ___ (synke) følelse i magen.",
     "english": "There was a sinking feeling in the stomach.",
     "concept_ids": [
       "present-participle"
@@ -1164,7 +1164,7 @@
   },
   {
     "id": "b1-prp-027",
-    "norwegian": "Det var et _____ (engasjere) foredrag om klimaet.",
+    "norwegian": "Det var et ___ (engasjere) foredrag om klimaet.",
     "english": "It was an engaging lecture about the climate.",
     "concept_ids": [
       "present-participle"
@@ -1206,7 +1206,7 @@
   },
   {
     "id": "b1-prp-029",
-    "norwegian": "Det var et _____ (utvikle) kurs som lærte meg mye.",
+    "norwegian": "Det var et ___ (utvikle) kurs som lærte meg mye.",
     "english": "It was an enriching course that taught me a lot.",
     "concept_ids": [
       "present-participle"
@@ -1267,7 +1267,7 @@
   },
   {
     "id": "b1-cs-002",
-    "norwegian": "Det er _____ (han/ham) som betaler regningen.",
+    "norwegian": "Det er ___ (han/ham) som betaler regningen.",
     "english": "It is he who pays the bill.",
     "concept_ids": [
       "cleft-sentences"
@@ -1308,7 +1308,7 @@
   },
   {
     "id": "b1-cs-004",
-    "norwegian": "Det er maten _____ gjør restauranten spesiell.",
+    "norwegian": "Det er maten ___ gjør restauranten spesiell.",
     "english": "It is the food that makes the restaurant special.",
     "concept_ids": [
       "cleft-sentences"
@@ -1348,7 +1348,7 @@
   },
   {
     "id": "b1-cs-006",
-    "norwegian": "Det er læreren _____ har ansvaret for klassen.",
+    "norwegian": "Det er læreren ___ har ansvaret for klassen.",
     "english": "It is the teacher who is responsible for the class.",
     "concept_ids": [
       "cleft-sentences"
@@ -1389,7 +1389,7 @@
   },
   {
     "id": "b1-cs-008",
-    "norwegian": "Det er om sommeren _____ vi pleier å dra til hytta.",
+    "norwegian": "Det er om sommeren ___ vi pleier å dra til hytta.",
     "english": "It is in summer that we usually go to the cabin.",
     "concept_ids": [
       "cleft-sentences"
@@ -1430,7 +1430,7 @@
   },
   {
     "id": "b1-cs-010",
-    "norwegian": "Det var ikke pengene _____ motiverte henne, men selve arbeidet.",
+    "norwegian": "Det var ikke pengene ___ motiverte henne, men selve arbeidet.",
     "english": "It was not the money that motivated her, but the work itself.",
     "concept_ids": [
       "cleft-sentences"
@@ -1471,7 +1471,7 @@
   },
   {
     "id": "b1-cs-012",
-    "norwegian": "Det er på fredag _____ møtet holdes.",
+    "norwegian": "Det er på fredag ___ møtet holdes.",
     "english": "It is on Friday that the meeting is held.",
     "concept_ids": [
       "cleft-sentences"
@@ -1511,7 +1511,7 @@
   },
   {
     "id": "b1-cs-014",
-    "norwegian": "Det er barna _____ lider mest av konflikten.",
+    "norwegian": "Det er barna ___ lider mest av konflikten.",
     "english": "It is the children who suffer most from the conflict.",
     "concept_ids": [
       "cleft-sentences"
@@ -1573,7 +1573,7 @@
   },
   {
     "id": "b1-cs-017",
-    "norwegian": "Det er naturen _____ tiltrekker flest turister til Norge.",
+    "norwegian": "Det er naturen ___ tiltrekker flest turister til Norge.",
     "english": "It is the nature that attracts most tourists to Norway.",
     "concept_ids": [
       "cleft-sentences"
@@ -1615,7 +1615,7 @@
   },
   {
     "id": "b1-cs-019",
-    "norwegian": "Det er tidspress _____ gjør prosjektet vanskelig.",
+    "norwegian": "Det er tidspress ___ gjør prosjektet vanskelig.",
     "english": "It is time pressure that makes the project difficult.",
     "concept_ids": [
       "cleft-sentences"
@@ -1676,7 +1676,7 @@
   },
   {
     "id": "b1-cs-022",
-    "norwegian": "Det er ikke lett _____ man forstår det uten hjelp.",
+    "norwegian": "Det er ikke lett ___ man forstår det uten hjelp.",
     "english": "It is not easy to understand it without help.",
     "concept_ids": [
       "cleft-sentences"
@@ -1716,7 +1716,7 @@
   },
   {
     "id": "b1-cs-024",
-    "norwegian": "Det var på jobben _____ han møtte kona si.",
+    "norwegian": "Det var på jobben ___ han møtte kona si.",
     "english": "It was at work that he met his wife.",
     "concept_ids": [
       "cleft-sentences"
@@ -1737,7 +1737,7 @@
   },
   {
     "id": "b1-cs-025",
-    "norwegian": "Det er sommeren _____ vi husker best fra barndommen.",
+    "norwegian": "Det er sommeren ___ vi husker best fra barndommen.",
     "english": "It is the summers that we remember most from childhood.",
     "concept_ids": [
       "cleft-sentences"
@@ -1799,7 +1799,7 @@
   },
   {
     "id": "b1-cs-028",
-    "norwegian": "Det var fisken _____ gjorde middagen så god.",
+    "norwegian": "Det var fisken ___ gjorde middagen så god.",
     "english": "It was the fish that made the dinner so good.",
     "concept_ids": [
       "cleft-sentences"
@@ -1880,7 +1880,7 @@
   },
   {
     "id": "b1-pas-002",
-    "norwegian": "Broen ble _____ (bygge) i 1970.",
+    "norwegian": "Broen ble ___ (bygge) i 1970.",
     "english": "The bridge was built in 1970.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -1923,7 +1923,7 @@
   },
   {
     "id": "b1-pas-004",
-    "norwegian": "Bilen ble _____ (stjele) natt til mandag.",
+    "norwegian": "Bilen ble ___ (stjele) natt til mandag.",
     "english": "The car was stolen on Sunday night.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -1966,7 +1966,7 @@
   },
   {
     "id": "b1-pas-006",
-    "norwegian": "Pengene ble _____ (finne) i en gammel koffert.",
+    "norwegian": "Pengene ble ___ (finne) i en gammel koffert.",
     "english": "The money was found in an old suitcase.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2008,7 +2008,7 @@
   },
   {
     "id": "b1-pas-008",
-    "norwegian": "Sykehuset ble _____ (åpne) av kongen i fjor.",
+    "norwegian": "Sykehuset ble ___ (åpne) av kongen i fjor.",
     "english": "The hospital was opened by the king last year.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2050,7 +2050,7 @@
   },
   {
     "id": "b1-pas-010",
-    "norwegian": "Rapporten ble _____ (skrive) av tre forskere.",
+    "norwegian": "Rapporten ble ___ (skrive) av tre forskere.",
     "english": "The report was written by three researchers.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2093,7 +2093,7 @@
   },
   {
     "id": "b1-pas-012",
-    "norwegian": "Mannen ble _____ (arrestere) av politiet.",
+    "norwegian": "Mannen ble ___ (arrestere) av politiet.",
     "english": "The man was arrested by the police.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2134,7 +2134,7 @@
   },
   {
     "id": "b1-pas-014",
-    "norwegian": "Huset ble _____ (male) i sommer.",
+    "norwegian": "Huset ble ___ (male) i sommer.",
     "english": "The house was painted this summer.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2176,7 +2176,7 @@
   },
   {
     "id": "b1-pas-016",
-    "norwegian": "Boken ble _____ (gi) ut av et lite forlag.",
+    "norwegian": "Boken ble ___ (gi) ut av et lite forlag.",
     "english": "The book was published by a small publisher.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2218,7 +2218,7 @@
   },
   {
     "id": "b1-pas-018",
-    "norwegian": "Møtet ble _____ (avlyse) på kort varsel.",
+    "norwegian": "Møtet ble ___ (avlyse) på kort varsel.",
     "english": "The meeting was cancelled at short notice.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2259,7 +2259,7 @@
   },
   {
     "id": "b1-pas-020",
-    "norwegian": "Premien ble _____ (dele) ut av ordføreren.",
+    "norwegian": "Premien ble ___ (dele) ut av ordføreren.",
     "english": "The prize was handed out by the mayor.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2344,7 +2344,7 @@
   },
   {
     "id": "b1-pas-024",
-    "norwegian": "Filmen ble _____ (lage) med et lite budsjett.",
+    "norwegian": "Filmen ble ___ (lage) med et lite budsjett.",
     "english": "The film was made with a small budget.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2428,7 +2428,7 @@
   },
   {
     "id": "b1-pas-028",
-    "norwegian": "Avtalen ble _____ (inngå) mellom de to landene.",
+    "norwegian": "Avtalen ble ___ (inngå) mellom de to landene.",
     "english": "The agreement was entered into between the two countries.",
     "concept_ids": [
       "s-passive-vs-bli-passive"
@@ -2535,7 +2535,7 @@
   },
   {
     "id": "b1-sub-003",
-    "norwegian": "Om jeg bare _____ (ha) mer penger, ville jeg reist til Japan.",
+    "norwegian": "Om jeg bare ___ (ha) mer penger, ville jeg reist til Japan.",
     "english": "If only I had more money, I would have travelled to Japan.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2600,7 +2600,7 @@
   },
   {
     "id": "b1-sub-006",
-    "norwegian": "Om jeg bare _____ (vite) svaret, ville jeg fortalt deg.",
+    "norwegian": "Om jeg bare ___ (vite) svaret, ville jeg fortalt deg.",
     "english": "If only I knew the answer, I would have told you.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2641,7 +2641,7 @@
   },
   {
     "id": "b1-sub-008",
-    "norwegian": "Det ville vært fint om vi hadde _____ (bo) nærmere hverandre.",
+    "norwegian": "Det ville vært fint om vi hadde ___ (bo) nærmere hverandre.",
     "english": "It would be nice if we lived closer to each other.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2706,7 +2706,7 @@
   },
   {
     "id": "b1-sub-011",
-    "norwegian": "Det ville vært _____ (godt) om vi fikk litt varmere vær.",
+    "norwegian": "Det ville vært ___ (godt) om vi fikk litt varmere vær.",
     "english": "It would be great if we got a bit warmer weather.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2749,7 +2749,7 @@
   },
   {
     "id": "b1-sub-013",
-    "norwegian": "Jeg skulle ønske vi _____ (ha) en større leilighet.",
+    "norwegian": "Jeg skulle ønske vi ___ (ha) en større leilighet.",
     "english": "I wish we had a bigger flat.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2792,7 +2792,7 @@
   },
   {
     "id": "b1-sub-015",
-    "norwegian": "Om jeg bare _____ (kunne) ta fri denne uken.",
+    "norwegian": "Om jeg bare ___ (kunne) ta fri denne uken.",
     "english": "If only I could take the week off.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2834,7 +2834,7 @@
   },
   {
     "id": "b1-sub-017",
-    "norwegian": "Det ville vært fint om du _____ (hjelpe) meg med dette.",
+    "norwegian": "Det ville vært fint om du ___ (hjelpe) meg med dette.",
     "english": "It would be nice if you could help me with this.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2898,7 +2898,7 @@
   },
   {
     "id": "b1-sub-020",
-    "norwegian": "Om vi bare hadde _____ (se) værmeldingen, hadde vi blitt hjemme.",
+    "norwegian": "Om vi bare hadde ___ (se) værmeldingen, hadde vi blitt hjemme.",
     "english": "If only we had seen the weather forecast, we would have stayed home.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -2942,7 +2942,7 @@
   },
   {
     "id": "b1-sub-022",
-    "norwegian": "Det ville vært bedre om _____ (ta) toget i stedet for bilen.",
+    "norwegian": "Det ville vært bedre om ___ (ta) toget i stedet for bilen.",
     "english": "It would have been better to take the train instead of the car.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -3027,7 +3027,7 @@
   },
   {
     "id": "b1-sub-026",
-    "norwegian": "Det ville vært fint om vi _____ (få) sol i helgen.",
+    "norwegian": "Det ville vært fint om vi ___ (få) sol i helgen.",
     "english": "It would be nice if we got sunshine over the weekend.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -3071,7 +3071,7 @@
   },
   {
     "id": "b1-sub-028",
-    "norwegian": "Om jeg bare hadde _____ (huske) å sende e-posten.",
+    "norwegian": "Om jeg bare hadde ___ (huske) å sende e-posten.",
     "english": "If only I had remembered to send the email.",
     "concept_ids": [
       "subjunctive-equivalents"
@@ -3156,7 +3156,7 @@
   },
   {
     "id": "b1-dm-002",
-    "norwegian": "Han er _____ (jo/nok) hjemme nå — lyset er på.",
+    "norwegian": "Han er ___ (jo/nok) hjemme nå — lyset er på.",
     "english": "He is probably home now — the light is on.",
     "concept_ids": [
       "discourse-markers"
@@ -3196,7 +3196,7 @@
   },
   {
     "id": "b1-dm-004",
-    "norwegian": "Du kjenner _____ (jo/vel) Oslo ganske godt fra før?",
+    "norwegian": "Du kjenner ___ (jo/vel) Oslo ganske godt fra før?",
     "english": "You know Oslo quite well already, don't you?",
     "concept_ids": [
       "discourse-markers"
@@ -3237,7 +3237,7 @@
   },
   {
     "id": "b1-dm-006",
-    "norwegian": "Det er _____ (da/jo) klart at du må si fra hvis noe er galt.",
+    "norwegian": "Det er ___ (da/jo) klart at du må si fra hvis noe er galt.",
     "english": "It's clear, of course, that you must speak up if something is wrong.",
     "concept_ids": [
       "discourse-markers"
@@ -3278,7 +3278,7 @@
   },
   {
     "id": "b1-dm-008",
-    "norwegian": "Hun snakker _____ (nok/vel) fem språk flytende.",
+    "norwegian": "Hun snakker ___ (nok/vel) fem språk flytende.",
     "english": "She probably speaks five languages fluently.",
     "concept_ids": [
       "discourse-markers"
@@ -3318,7 +3318,7 @@
   },
   {
     "id": "b1-dm-010",
-    "norwegian": "Det er _____ (vel/da) ikke verdt å stresse over det?",
+    "norwegian": "Det er ___ (vel/da) ikke verdt å stresse over det?",
     "english": "It's probably not worth stressing about that?",
     "concept_ids": [
       "discourse-markers"
@@ -3359,7 +3359,7 @@
   },
   {
     "id": "b1-dm-012",
-    "norwegian": "Vi tar _____ (da/nok) en pause etter dette møtet.",
+    "norwegian": "Vi tar ___ (da/nok) en pause etter dette møtet.",
     "english": "We'll take a break after this meeting, then.",
     "concept_ids": [
       "discourse-markers"
@@ -3400,7 +3400,7 @@
   },
   {
     "id": "b1-dm-014",
-    "norwegian": "Hun er _____ (vel/jo) omtrent tjue år gammel, tror jeg.",
+    "norwegian": "Hun er ___ (vel/jo) omtrent tjue år gammel, tror jeg.",
     "english": "She's probably about twenty years old, I think.",
     "concept_ids": [
       "discourse-markers"
@@ -3462,7 +3462,7 @@
   },
   {
     "id": "b1-dm-017",
-    "norwegian": "Vi må _____ (da/nok) finne en løsning på dette.",
+    "norwegian": "Vi må ___ (da/nok) finne en løsning på dette.",
     "english": "We'll have to find a solution to this, then.",
     "concept_ids": [
       "discourse-markers"
@@ -3503,7 +3503,7 @@
   },
   {
     "id": "b1-dm-019",
-    "norwegian": "Det er _____ (nok/jo) best å ringe dem før vi drar.",
+    "norwegian": "Det er ___ (nok/jo) best å ringe dem før vi drar.",
     "english": "It's probably best to call them before we leave.",
     "concept_ids": [
       "discourse-markers"
@@ -3563,7 +3563,7 @@
   },
   {
     "id": "b1-dm-022",
-    "norwegian": "Vi tar _____ (vel/nok) en kopp kaffe til?",
+    "norwegian": "Vi tar ___ (vel/nok) en kopp kaffe til?",
     "english": "We'll have one more cup of coffee, I suppose?",
     "concept_ids": [
       "discourse-markers"
@@ -3605,7 +3605,7 @@
   },
   {
     "id": "b1-dm-024",
-    "norwegian": "Altså, det her er _____ (da/jo) ikke normalt.",
+    "norwegian": "Altså, det her er ___ (da/jo) ikke normalt.",
     "english": "I mean, this is really not normal.",
     "concept_ids": [
       "discourse-markers"
@@ -3666,7 +3666,7 @@
   },
   {
     "id": "b1-dm-027",
-    "norwegian": "Det er _____ (vel/jo) normalt at man er nervøs før en presentasjon.",
+    "norwegian": "Det er ___ (vel/jo) normalt at man er nervøs før en presentasjon.",
     "english": "It's quite normal, you know, to be nervous before a presentation.",
     "concept_ids": [
       "discourse-markers"
@@ -3707,7 +3707,7 @@
   },
   {
     "id": "b1-dm-029",
-    "norwegian": "Han er liksom _____ (vel/nok) den flinkeste på laget.",
+    "norwegian": "Han er liksom ___ (vel/nok) den flinkeste på laget.",
     "english": "He's sort of probably the most skilled on the team.",
     "concept_ids": [
       "discourse-markers"
@@ -3769,7 +3769,7 @@
   },
   {
     "id": "b1-pv-002",
-    "norwegian": "Vi fant _____ (ut/opp) at toget var kansellert.",
+    "norwegian": "Vi fant ___ (ut/opp) at toget var kansellert.",
     "english": "We found out that the train was cancelled.",
     "concept_ids": [
       "phrasal-verbs"
@@ -3809,7 +3809,7 @@
   },
   {
     "id": "b1-pv-004",
-    "norwegian": "Kan du stå _____ (opp/på) litt tidligere i morgen?",
+    "norwegian": "Kan du stå ___ (opp/på) litt tidligere i morgen?",
     "english": "Can you get up a bit earlier tomorrow?",
     "concept_ids": [
       "phrasal-verbs"
@@ -3850,7 +3850,7 @@
   },
   {
     "id": "b1-pv-006",
-    "norwegian": "Hun kom _____ (tilbake/inn) fra ferie med mye energi.",
+    "norwegian": "Hun kom ___ (tilbake/inn) fra ferie med mye energi.",
     "english": "She came back from holiday with lots of energy.",
     "concept_ids": [
       "phrasal-verbs"
@@ -3892,7 +3892,7 @@
   },
   {
     "id": "b1-pv-008",
-    "norwegian": "Barna tok _____ (av/på) seg skoene ved døren.",
+    "norwegian": "Barna tok ___ (av/på) seg skoene ved døren.",
     "english": "The children took their shoes off at the door.",
     "concept_ids": [
       "phrasal-verbs"
@@ -3934,7 +3934,7 @@
   },
   {
     "id": "b1-pv-010",
-    "norwegian": "Vi kom _____ (tilbake/frem) til hotellet sent på kvelden.",
+    "norwegian": "Vi kom ___ (tilbake/frem) til hotellet sent på kvelden.",
     "english": "We came back to the hotel late in the evening.",
     "concept_ids": [
       "phrasal-verbs"
@@ -3975,7 +3975,7 @@
   },
   {
     "id": "b1-pv-012",
-    "norwegian": "Jeg fant _____ (ut/opp) at han hadde bodd i Tromsø.",
+    "norwegian": "Jeg fant ___ (ut/opp) at han hadde bodd i Tromsø.",
     "english": "I found out that he had lived in Tromsø.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4016,7 +4016,7 @@
   },
   {
     "id": "b1-pv-014",
-    "norwegian": "Han tok _____ (av seg/på seg) genseren fordi det ble for varmt.",
+    "norwegian": "Han tok ___ (av seg/på seg) genseren fordi det ble for varmt.",
     "english": "He took off his jumper because it got too warm.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4080,7 +4080,7 @@
   },
   {
     "id": "b1-pv-017",
-    "norwegian": "De bestemte seg for å slå seg _____ (ned/opp) på landet.",
+    "norwegian": "De bestemte seg for å slå seg ___ (ned/opp) på landet.",
     "english": "They decided to settle in the countryside.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4122,7 +4122,7 @@
   },
   {
     "id": "b1-pv-019",
-    "norwegian": "Vi fant til slutt _____ (ut/av) hvem som hadde sendt pakken.",
+    "norwegian": "Vi fant til slutt ___ (ut/av) hvem som hadde sendt pakken.",
     "english": "We finally found out who had sent the parcel.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4184,7 +4184,7 @@
   },
   {
     "id": "b1-pv-022",
-    "norwegian": "Kan du _____ (komme tilbake/gi opp) hit i morgen?",
+    "norwegian": "Kan du ___ (komme tilbake/gi opp) hit i morgen?",
     "english": "Can you come back here tomorrow?",
     "concept_ids": [
       "phrasal-verbs"
@@ -4226,7 +4226,7 @@
   },
   {
     "id": "b1-pv-024",
-    "norwegian": "Hun stod _____ (opp/av) tidlig for å rekke det første toget.",
+    "norwegian": "Hun stod ___ (opp/av) tidlig for å rekke det første toget.",
     "english": "She got up early to catch the first train.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4309,7 +4309,7 @@
   },
   {
     "id": "b1-pv-028",
-    "norwegian": "Flyvertinnen ba passasjerene om å _____ (sette seg ned/stå opp).",
+    "norwegian": "Flyvertinnen ba passasjerene om å ___ (sette seg ned/stå opp).",
     "english": "The flight attendant asked passengers to sit down.",
     "concept_ids": [
       "phrasal-verbs"
@@ -4393,7 +4393,7 @@
   },
   {
     "id": "b1-dd-002",
-    "norwegian": "Jeg vil gjerne ha _____ (gammel) brødet som er til overs.",
+    "norwegian": "Jeg vil gjerne ha ___ (gammel) brødet som er til overs.",
     "english": "I would like the old bread that is left over.",
     "concept_ids": [
       "double-definite"
@@ -4436,7 +4436,7 @@
   },
   {
     "id": "b1-dd-004",
-    "norwegian": "Kan du hente _____ (rød) jakken min fra gangen?",
+    "norwegian": "Kan du hente ___ (rød) jakken min fra gangen?",
     "english": "Can you fetch my red jacket from the hall?",
     "concept_ids": [
       "double-definite"
@@ -4478,7 +4478,7 @@
   },
   {
     "id": "b1-dd-006",
-    "norwegian": "Jeg liker _____ (grønn) salaten best.",
+    "norwegian": "Jeg liker ___ (grønn) salaten best.",
     "english": "I like the green salad best.",
     "concept_ids": [
       "double-definite"
@@ -4521,7 +4521,7 @@
   },
   {
     "id": "b1-dd-008",
-    "norwegian": "Har du sett _____ (blå) pennen min?",
+    "norwegian": "Har du sett ___ (blå) pennen min?",
     "english": "Have you seen my blue pen?",
     "concept_ids": [
       "double-definite"
@@ -4565,7 +4565,7 @@
   },
   {
     "id": "b1-dd-010",
-    "norwegian": "Vi overnatter på _____ (liten) hotellet ved sjøen.",
+    "norwegian": "Vi overnatter på ___ (liten) hotellet ved sjøen.",
     "english": "We are staying at the small hotel by the sea.",
     "concept_ids": [
       "double-definite"
@@ -4608,7 +4608,7 @@
   },
   {
     "id": "b1-dd-012",
-    "norwegian": "Jeg vil gjerne prøve _____ (norsk) osten dere anbefaler.",
+    "norwegian": "Jeg vil gjerne prøve ___ (norsk) osten dere anbefaler.",
     "english": "I would like to try the Norwegian cheese you recommend.",
     "concept_ids": [
       "double-definite"
@@ -4650,7 +4650,7 @@
   },
   {
     "id": "b1-dd-014",
-    "norwegian": "Barna liker best _____ (søt) desserten vi lager til jul.",
+    "norwegian": "Barna liker best ___ (søt) desserten vi lager til jul.",
     "english": "The children like the sweet dessert we make for Christmas best.",
     "concept_ids": [
       "double-definite"
@@ -4716,7 +4716,7 @@
   },
   {
     "id": "b1-dd-017",
-    "norwegian": "Jeg husker _____ (første) gangen jeg smakte brunost.",
+    "norwegian": "Jeg husker ___ (første) gangen jeg smakte brunost.",
     "english": "I remember the first time I tasted brown cheese.",
     "concept_ids": [
       "double-definite"
@@ -4759,7 +4759,7 @@
   },
   {
     "id": "b1-dd-019",
-    "norwegian": "Han likte ikke _____ (hard) madrassen på hotellet.",
+    "norwegian": "Han likte ikke ___ (hard) madrassen på hotellet.",
     "english": "He didn't like the hard mattress at the hotel.",
     "concept_ids": [
       "double-definite"
@@ -4824,7 +4824,7 @@
   },
   {
     "id": "b1-dd-022",
-    "norwegian": "Kan du sende meg _____ (fersk) rapporten?",
+    "norwegian": "Kan du sende meg ___ (fersk) rapporten?",
     "english": "Can you send me the fresh report?",
     "concept_ids": [
       "double-definite"
@@ -4866,7 +4866,7 @@
   },
   {
     "id": "b1-dd-024",
-    "norwegian": "Vi bestilte _____ (dyr) rommet fordi det hadde utsikt.",
+    "norwegian": "Vi bestilte ___ (dyr) rommet fordi det hadde utsikt.",
     "english": "We booked the expensive room because it had a view.",
     "concept_ids": [
       "double-definite"
@@ -4930,7 +4930,7 @@
   },
   {
     "id": "b1-dd-027",
-    "norwegian": "Jeg vil gjerne ha _____ (varm) sjokoladen med krem.",
+    "norwegian": "Jeg vil gjerne ha ___ (varm) sjokoladen med krem.",
     "english": "I would like the warm chocolate with cream.",
     "concept_ids": [
       "double-definite"
@@ -4973,7 +4973,7 @@
   },
   {
     "id": "b1-dd-029",
-    "norwegian": "Vi tok _____ (siste) plassene på toget.",
+    "norwegian": "Vi tok ___ (siste) plassene på toget.",
     "english": "We took the last seats on the train.",
     "concept_ids": [
       "double-definite"
@@ -5058,7 +5058,7 @@
   },
   {
     "id": "b1-cx-003",
-    "norwegian": "Han sa at han ikke visste _____ (når/om) bussen gikk.",
+    "norwegian": "Han sa at han ikke visste ___ (når/om) bussen gikk.",
     "english": "He said he didn't know when the bus left.",
     "concept_ids": [
       "complex-subordination"
@@ -5098,7 +5098,7 @@
   },
   {
     "id": "b1-cx-005",
-    "norwegian": "Selv om jeg er trøtt, _____ (klarer/vil) jeg å fullføre arbeidet.",
+    "norwegian": "Selv om jeg er trøtt, ___ (klarer/vil) jeg å fullføre arbeidet.",
     "english": "Even though I am tired, I will manage to finish the work.",
     "concept_ids": [
       "complex-subordination"
@@ -5139,7 +5139,7 @@
   },
   {
     "id": "b1-cx-007",
-    "norwegian": "Han ble overrasket da han hørte at kollegaen _____ (slutte) jobben.",
+    "norwegian": "Han ble overrasket da han hørte at kollegaen ___ (slutte) jobben.",
     "english": "He was surprised when he heard that his colleague had quit the job.",
     "concept_ids": [
       "complex-subordination"
@@ -5181,7 +5181,7 @@
   },
   {
     "id": "b1-cx-009",
-    "norwegian": "Læreren forklarte at det var viktig at alle _____ (møte) opp i tide.",
+    "norwegian": "Læreren forklarte at det var viktig at alle ___ (møte) opp i tide.",
     "english": "The teacher explained that it was important that everyone turned up on time.",
     "concept_ids": [
       "complex-subordination"
@@ -5244,7 +5244,7 @@
   },
   {
     "id": "b1-cx-012",
-    "norwegian": "Hun jobbet hardt slik at hun _____ (kunne) ta fri i jula.",
+    "norwegian": "Hun jobbet hardt slik at hun ___ (kunne) ta fri i jula.",
     "english": "She worked hard so that she could take time off at Christmas.",
     "concept_ids": [
       "complex-subordination"
@@ -5286,7 +5286,7 @@
   },
   {
     "id": "b1-cx-014",
-    "norwegian": "Vi ble enige om at vi skulle dra til hytta, _____ (men/selv om) ikke alle var med.",
+    "norwegian": "Vi ble enige om at vi skulle dra til hytta, ___ (men/selv om) ikke alle var med.",
     "english": "We agreed to go to the cabin, even though not everyone was coming.",
     "concept_ids": [
       "complex-subordination"
@@ -5351,7 +5351,7 @@
   },
   {
     "id": "b1-cx-017",
-    "norwegian": "Når jeg er ferdig med eksamen, _____ (planlegge) jeg en lang ferie.",
+    "norwegian": "Når jeg er ferdig med eksamen, ___ (planlegge) jeg en lang ferie.",
     "english": "When I am done with the exam, I am planning a long holiday.",
     "concept_ids": [
       "complex-subordination"
@@ -5393,7 +5393,7 @@
   },
   {
     "id": "b1-cx-019",
-    "norwegian": "Siden vi ikke hadde bil, _____ (måtte) vi ta bussen begge veier.",
+    "norwegian": "Siden vi ikke hadde bil, ___ (måtte) vi ta bussen begge veier.",
     "english": "Since we didn't have a car, we had to take the bus both ways.",
     "concept_ids": [
       "complex-subordination"
@@ -5456,7 +5456,7 @@
   },
   {
     "id": "b1-cx-022",
-    "norwegian": "Han trengte mer tid fordi oppgaven _____ (vise seg) å være vanskeligere enn han trodde.",
+    "norwegian": "Han trengte mer tid fordi oppgaven ___ (vise seg) å være vanskeligere enn han trodde.",
     "english": "He needed more time because the task turned out to be harder than he thought.",
     "concept_ids": [
       "complex-subordination"
@@ -5498,7 +5498,7 @@
   },
   {
     "id": "b1-cx-024",
-    "norwegian": "Vi skjønte ikke hva som hadde _____ (skje) før vi så nyhetene.",
+    "norwegian": "Vi skjønte ikke hva som hadde ___ (skje) før vi så nyhetene.",
     "english": "We didn't understand what had happened until we watched the news.",
     "concept_ids": [
       "complex-subordination"
@@ -5562,7 +5562,7 @@
   },
   {
     "id": "b1-cx-027",
-    "norwegian": "Hun bestemte seg for å ta eksamen selv om hun ikke _____ (føle) seg klar.",
+    "norwegian": "Hun bestemte seg for å ta eksamen selv om hun ikke ___ (føle) seg klar.",
     "english": "She decided to take the exam even though she didn't feel ready.",
     "concept_ids": [
       "complex-subordination"
@@ -5605,7 +5605,7 @@
   },
   {
     "id": "b1-cx-029",
-    "norwegian": "Vi spiste ute siden det var _____ (fint) vær og restauranten hadde uteservering.",
+    "norwegian": "Vi spiste ute siden det var ___ (fint) vær og restauranten hadde uteservering.",
     "english": "We ate out since the weather was nice and the restaurant had outdoor seating.",
     "concept_ids": [
       "complex-subordination"
@@ -5669,7 +5669,7 @@
   },
   {
     "id": "b1-fr-002",
-    "norwegian": "Kan _____ (De/du) vennligst fylle ut skjemaet?",
+    "norwegian": "Kan ___ (De/du) vennligst fylle ut skjemaet?",
     "english": "Could you kindly fill in the form? (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -5711,7 +5711,7 @@
   },
   {
     "id": "b1-fr-004",
-    "norwegian": "Vi ber _____ (Dem/deg) om å bekrefte avtalen skriftlig.",
+    "norwegian": "Vi ber ___ (Dem/deg) om å bekrefte avtalen skriftlig.",
     "english": "We ask you to confirm the agreement in writing. (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -5753,7 +5753,7 @@
   },
   {
     "id": "b1-fr-006",
-    "norwegian": "Vedrørende _____ (din/Deres) forespørsel av 3. mai:",
+    "norwegian": "Vedrørende ___ (din/Deres) forespørsel av 3. mai:",
     "english": "Regarding your enquiry of 3 May: (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -5795,7 +5795,7 @@
   },
   {
     "id": "b1-fr-008",
-    "norwegian": "Kunden bes om å _____ (oppgi/si) referansenummeret ved henvendelse.",
+    "norwegian": "Kunden bes om å ___ (oppgi/si) referansenummeret ved henvendelse.",
     "english": "Customers are requested to provide the reference number when enquiring.",
     "concept_ids": [
       "formal-informal-register"
@@ -5838,7 +5838,7 @@
   },
   {
     "id": "b1-fr-010",
-    "norwegian": "Søknadsfrist er _____ (den/sett) 15. juni.",
+    "norwegian": "Søknadsfrist er ___ (den/sett) 15. juni.",
     "english": "The application deadline is 15 June.",
     "concept_ids": [
       "formal-informal-register"
@@ -5880,7 +5880,7 @@
   },
   {
     "id": "b1-fr-012",
-    "norwegian": "Har _____ (De/du) anledning til å møte oss på mandag klokka ti?",
+    "norwegian": "Har ___ (De/du) anledning til å møte oss på mandag klokka ti?",
     "english": "Are you available to meet us on Monday at ten? (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -5922,7 +5922,7 @@
   },
   {
     "id": "b1-fr-014",
-    "norwegian": "Kjære _____ (Herr/Hei) Andersen, vi bekrefter mottak av Deres brev.",
+    "norwegian": "Kjære ___ (Herr/Hei) Andersen, vi bekrefter mottak av Deres brev.",
     "english": "Dear Mr Andersen, we confirm receipt of your letter.",
     "concept_ids": [
       "formal-informal-register"
@@ -5986,7 +5986,7 @@
   },
   {
     "id": "b1-fr-017",
-    "norwegian": "Vi ber _____ (Dem/dere) om å ta kontakt dersom noe er uklart.",
+    "norwegian": "Vi ber ___ (Dem/dere) om å ta kontakt dersom noe er uklart.",
     "english": "We ask you to get in touch if anything is unclear. (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -6028,7 +6028,7 @@
   },
   {
     "id": "b1-fr-019",
-    "norwegian": "Vi ser frem til _____ (å høre/høre) fra Dem.",
+    "norwegian": "Vi ser frem til ___ (å høre/høre) fra Dem.",
     "english": "We look forward to hearing from you. (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -6092,7 +6092,7 @@
   },
   {
     "id": "b1-fr-022",
-    "norwegian": "Tilbudet gjelder _____ (til/inntil) og med 31. desember.",
+    "norwegian": "Tilbudet gjelder ___ (til/inntil) og med 31. desember.",
     "english": "The offer is valid up to and including 31 December.",
     "concept_ids": [
       "formal-informal-register"
@@ -6134,7 +6134,7 @@
   },
   {
     "id": "b1-fr-024",
-    "norwegian": "Vær _____ (vennlig/hyggelig) å besvare innen fredag.",
+    "norwegian": "Vær ___ (vennlig/hyggelig) å besvare innen fredag.",
     "english": "Please reply by Friday. (formal written)",
     "concept_ids": [
       "formal-informal-register"
@@ -6197,7 +6197,7 @@
   },
   {
     "id": "b1-fr-027",
-    "norwegian": "Vi ønsker _____ (Dem/dere) velkommen til årskonferansen.",
+    "norwegian": "Vi ønsker ___ (Dem/dere) velkommen til årskonferansen.",
     "english": "We welcome you to the annual conference. (formal)",
     "concept_ids": [
       "formal-informal-register"
@@ -6240,7 +6240,7 @@
   },
   {
     "id": "b1-fr-029",
-    "norwegian": "Besøkende bes om å _____ (skrive/si) seg inn i gjestelisten ved inngangen.",
+    "norwegian": "Besøkende bes om å ___ (skrive/si) seg inn i gjestelisten ved inngangen.",
     "english": "Visitors are requested to sign themselves into the guest list at the entrance.",
     "concept_ids": [
       "formal-informal-register"
@@ -6305,7 +6305,7 @@
   },
   {
     "id": "b1-id-002",
-    "norwegian": "Ta det _____ (med ro/alvorlig) — det er ikke krise.",
+    "norwegian": "Ta det ___ (med ro/alvorlig) — det er ikke krise.",
     "english": "Take it easy — it's not a crisis.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6349,7 +6349,7 @@
   },
   {
     "id": "b1-id-004",
-    "norwegian": "Han stod _____ (på/opp) selv om alle andre ga opp.",
+    "norwegian": "Han stod ___ (på/opp) selv om alle andre ga opp.",
     "english": "He kept at it even though everyone else gave up.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6392,7 +6392,7 @@
   },
   {
     "id": "b1-id-006",
-    "norwegian": "Har du _____ (lyst til/tid til) å gå på kino i kveld?",
+    "norwegian": "Har du ___ (lyst til/tid til) å gå på kino i kveld?",
     "english": "Do you feel like going to the cinema tonight?",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6436,7 +6436,7 @@
   },
   {
     "id": "b1-id-008",
-    "norwegian": "Vi har det _____ (travelt/bra) for øyeblikket — det er mye å gjøre.",
+    "norwegian": "Vi har det ___ (travelt/bra) for øyeblikket — det er mye å gjøre.",
     "english": "We are very busy at the moment — there is a lot to do.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6479,7 +6479,7 @@
   },
   {
     "id": "b1-id-010",
-    "norwegian": "Jeg har ikke _____ (lyst til/lov til) å spise mer kake.",
+    "norwegian": "Jeg har ikke ___ (lyst til/lov til) å spise mer kake.",
     "english": "I don't feel like eating more cake.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6520,7 +6520,7 @@
   },
   {
     "id": "b1-id-012",
-    "norwegian": "Han _____ (stod på/ga opp) helt til han nådde toppen.",
+    "norwegian": "Han ___ (stod på/ga opp) helt til han nådde toppen.",
     "english": "He kept at it until he reached the summit.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6562,7 +6562,7 @@
   },
   {
     "id": "b1-id-014",
-    "norwegian": "Vi _____ (ha det bra/ha lyst) mens vi kan.",
+    "norwegian": "Vi ___ (ha det bra/ha lyst) mens vi kan.",
     "english": "We'll enjoy ourselves while we can.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6627,7 +6627,7 @@
   },
   {
     "id": "b1-id-017",
-    "norwegian": "Jeg har det _____ (bra/ille) takk — og du?",
+    "norwegian": "Jeg har det ___ (bra/ille) takk — og du?",
     "english": "I'm fine, thanks — and you?",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6669,7 +6669,7 @@
   },
   {
     "id": "b1-id-019",
-    "norwegian": "Har du _____ (lyst til/tenkt å) ta deg en ferie snart?",
+    "norwegian": "Har du ___ (lyst til/tenkt å) ta deg en ferie snart?",
     "english": "Do you feel like taking a holiday soon?",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6732,7 +6732,7 @@
   },
   {
     "id": "b1-id-022",
-    "norwegian": "Jeg _____ (har lyst til/er glad for) å danse, men er ikke så flink.",
+    "norwegian": "Jeg ___ (har lyst til/er glad for) å danse, men er ikke så flink.",
     "english": "I feel like dancing, but I'm not very good.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6774,7 +6774,7 @@
   },
   {
     "id": "b1-id-024",
-    "norwegian": "Det er ikke alltid lett å _____ (stå på/ta det med ro) når man er stresset.",
+    "norwegian": "Det er ikke alltid lett å ___ (stå på/ta det med ro) når man er stresset.",
     "english": "It's not always easy to keep going when you are stressed.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6837,7 +6837,7 @@
   },
   {
     "id": "b1-id-027",
-    "norwegian": "Har du lyst _____ (på/til) litt mer mat?",
+    "norwegian": "Har du lyst ___ (på/til) litt mer mat?",
     "english": "Do you feel like a bit more food?",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6879,7 +6879,7 @@
   },
   {
     "id": "b1-id-029",
-    "norwegian": "Barna _____ (hadde det bra/stod på) på skolen i dag.",
+    "norwegian": "Barna ___ (hadde det bra/stod på) på skolen i dag.",
     "english": "The children had a good time at school today.",
     "concept_ids": [
       "idiomatic-expressions"
@@ -6943,7 +6943,7 @@
   },
   {
     "id": "b1-iq-002",
-    "norwegian": "Jeg lurer på _____ (om/hva) toget er forsinket.",
+    "norwegian": "Jeg lurer på ___ (om/hva) toget er forsinket.",
     "english": "I wonder if the train is delayed.",
     "concept_ids": [
       "indirect-questions"
@@ -6983,7 +6983,7 @@
   },
   {
     "id": "b1-iq-004",
-    "norwegian": "Kan du si meg _____ (hva/om) bussen koster?",
+    "norwegian": "Kan du si meg ___ (hva/om) bussen koster?",
     "english": "Can you tell me how much the bus costs?",
     "concept_ids": [
       "indirect-questions"
@@ -7023,7 +7023,7 @@
   },
   {
     "id": "b1-iq-006",
-    "norwegian": "Jeg vet ikke _____ (hvem/hva) som skal lede møtet.",
+    "norwegian": "Jeg vet ikke ___ (hvem/hva) som skal lede møtet.",
     "english": "I don't know who is going to chair the meeting.",
     "concept_ids": [
       "indirect-questions"
@@ -7064,7 +7064,7 @@
   },
   {
     "id": "b1-iq-008",
-    "norwegian": "Kan du fortelle meg _____ (når/om) butikken stenger?",
+    "norwegian": "Kan du fortelle meg ___ (når/om) butikken stenger?",
     "english": "Can you tell me when the shop closes?",
     "concept_ids": [
       "indirect-questions"
@@ -7104,7 +7104,7 @@
   },
   {
     "id": "b1-iq-010",
-    "norwegian": "Hun spurte _____ (om/hvor) det var langt til sentrum.",
+    "norwegian": "Hun spurte ___ (om/hvor) det var langt til sentrum.",
     "english": "She asked if it was far to the city centre.",
     "concept_ids": [
       "indirect-questions"
@@ -7144,7 +7144,7 @@
   },
   {
     "id": "b1-iq-012",
-    "norwegian": "Jeg er ikke sikker på _____ (om/hva) han snakker sant.",
+    "norwegian": "Jeg er ikke sikker på ___ (om/hva) han snakker sant.",
     "english": "I'm not sure whether he is telling the truth.",
     "concept_ids": [
       "indirect-questions"
@@ -7184,7 +7184,7 @@
   },
   {
     "id": "b1-iq-014",
-    "norwegian": "Kan du forklare meg _____ (hvordan/om) man bruker dette apparatet?",
+    "norwegian": "Kan du forklare meg ___ (hvordan/om) man bruker dette apparatet?",
     "english": "Can you explain to me how to use this device?",
     "concept_ids": [
       "indirect-questions"
@@ -7245,7 +7245,7 @@
   },
   {
     "id": "b1-iq-017",
-    "norwegian": "Jeg spurte ham _____ (hva/om) han jobbet med.",
+    "norwegian": "Jeg spurte ham ___ (hva/om) han jobbet med.",
     "english": "I asked him what he worked with.",
     "concept_ids": [
       "indirect-questions"
@@ -7287,7 +7287,7 @@
   },
   {
     "id": "b1-iq-019",
-    "norwegian": "Han fortalte ikke _____ (hvem/om) han hadde snakket med.",
+    "norwegian": "Han fortalte ikke ___ (hvem/om) han hadde snakket med.",
     "english": "He didn't say who he had spoken to.",
     "concept_ids": [
       "indirect-questions"
@@ -7348,7 +7348,7 @@
   },
   {
     "id": "b1-iq-022",
-    "norwegian": "Læreren spurte _____ (om/hva) alle hadde forstått oppgaven.",
+    "norwegian": "Læreren spurte ___ (om/hva) alle hadde forstått oppgaven.",
     "english": "The teacher asked whether everyone had understood the task.",
     "concept_ids": [
       "indirect-questions"
@@ -7389,7 +7389,7 @@
   },
   {
     "id": "b1-iq-024",
-    "norwegian": "Hun lurte på _____ (hvorfor/hva) flyet var forsinket.",
+    "norwegian": "Hun lurte på ___ (hvorfor/hva) flyet var forsinket.",
     "english": "She wondered why the plane was delayed.",
     "concept_ids": [
       "indirect-questions"
@@ -7449,7 +7449,7 @@
   },
   {
     "id": "b1-iq-027",
-    "norwegian": "Jeg spurte _____ (om/når) hun kunne komme.",
+    "norwegian": "Jeg spurte ___ (om/når) hun kunne komme.",
     "english": "I asked when she could come.",
     "concept_ids": [
       "indirect-questions"
@@ -7490,7 +7490,7 @@
   },
   {
     "id": "b1-iq-029",
-    "norwegian": "Kan du si meg _____ (hvor/om) langt det er til grensen?",
+    "norwegian": "Kan du si meg ___ (hvor/om) langt det er til grensen?",
     "english": "Can you tell me how far it is to the border?",
     "concept_ids": [
       "indirect-questions"
