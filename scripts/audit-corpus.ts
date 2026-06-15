@@ -56,6 +56,15 @@ function wordCount(no: string): number {
   return no.trim().replace(/_+/g, 'BLANK').split(/\s+/).filter(Boolean).length
 }
 
+// Length-for-level is a per-SENTENCE readability measure, not per-entry: discourse
+// concepts (text-cohesion, academic-writing) legitimately pack several sentences into
+// one entry to teach connectors/anaphora ACROSS sentences. Counting the whole entry
+// flagged those as over-length even when every component sentence is within range.
+// Splitting on sentence-final punctuation still catches a genuine single run-on.
+function maxSentenceWordCount(no: string): number {
+  return Math.max(...no.split(/(?<=[.!?])\s+/).map(wordCount))
+}
+
 // Norwegian validity heuristic. NOTE: src/ai/validate.ts NORWEGIAN_CHARS is
 // STRICTER than this and wrongly rejects legit accented chars (é in "én",
 // "idé", "kafé") and the em-dash — that's a real production-gate bug, tracked
@@ -183,8 +192,8 @@ for (const lvl of LEVELS) {
 
     // 10. length vs level
     if (no && !ex.includes('speed-round')) {
-      const wc = wordCount(no)
-      if (wc > LEVEL_MAX_WORDS[lvl]) add('WARN', 'over-length-for-level', `${wc} words > ${LEVEL_MAX_WORDS[lvl]} max for ${lvl}`)
+      const wc = maxSentenceWordCount(no)
+      if (wc > LEVEL_MAX_WORDS[lvl]) add('WARN', 'over-length-for-level', `${wc} words (longest sentence) > ${LEVEL_MAX_WORDS[lvl]} max for ${lvl}`)
     }
 
     // 11. exact duplicate norwegian

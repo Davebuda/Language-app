@@ -632,8 +632,8 @@
   },
   {
     "id": "b7972650-fe8d-4fef-9527-07c7eb19e7ad",
-    "norwegian": "Han bor ___ en liten by nord i landet.",
-    "english": "He lives in a small town in the north of the country.",
+    "norwegian": "Han bor ___ en liten by.",
+    "english": "He lives in a small town.",
     "concept_ids": [
       "common-prepositions"
     ],
@@ -1952,8 +1952,8 @@
   },
   {
     "id": "81a5e098-e12d-4c90-8eef-8768434e62f8",
-    "norwegian": "De ___ tre barn da de bodde i Oslo.",
-    "english": "They had three children when they lived in Oslo.",
+    "norwegian": "De ___ tre barn i Oslo.",
+    "english": "They had three children in Oslo.",
     "concept_ids": [
       "to-have-verb"
     ],
@@ -1990,8 +1990,8 @@
   },
   {
     "id": "665cd963-7cc3-4a78-8af6-87367b2d236f",
-    "norwegian": "Vi ___ ikke nok penger til billetten i går.",
-    "english": "We did not have enough money for the ticket yesterday.",
+    "norwegian": "Vi ___ ikke nok penger til billetten.",
+    "english": "We did not have enough money for the ticket.",
     "concept_ids": [
       "to-have-verb"
     ],
@@ -2554,8 +2554,8 @@
   },
   {
     "id": "25a24f60-51bd-4326-bccb-b84aec215af6",
-    "norwegian": "Jeg vet at han ___ kommer hit i dag.",
-    "english": "I know that he is not coming here today.",
+    "norwegian": "Jeg vet at han ___ kommer i dag.",
+    "english": "I know that he is not coming today.",
     "concept_ids": [
       "negation"
     ],
@@ -3430,8 +3430,8 @@
   },
   {
     "id": "b9aebdc7-5ccc-4397-9e8f-5853fe86521b",
-    "norwegian": "De ___ til Oslo med tog i forrige uke.",
-    "english": "They travelled to Oslo by train last week.",
+    "norwegian": "De ___ til Oslo med tog.",
+    "english": "They travelled to Oslo by train.",
     "concept_ids": [
       "preterite-regular"
     ],
@@ -17228,8 +17228,8 @@
     "id": "67e03fba-c0d5-4d85-bd36-638bddb7e0c5"
   },
   {
-    "norwegian": "Jeg pakket sekken min før skolen i går morges.",
-    "english": "I packed my bag before school yesterday morning.",
+    "norwegian": "Jeg pakket sekken min før skolen.",
+    "english": "I packed my bag before school.",
     "concept_ids": [
       "preterite-regular"
     ],
