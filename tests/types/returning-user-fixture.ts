@@ -64,6 +64,7 @@ export function makeReturningUserFingerprint(): MistakeFingerprint {
   delete legacy.dailyProgress
   delete legacy.productionGap
   delete legacy.vocabularyMastery
+  delete legacy.vocabWordSrs
   delete legacy.speakingMinutesTotal
   delete legacy.passedSentenceIds
 

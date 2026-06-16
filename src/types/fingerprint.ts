@@ -67,6 +67,16 @@ export interface VocabularyClusterMastery {
   totalWordCount: number;
 }
 
+// Per-word spaced-repetition state for vocab drills (the bøyningsdrill). Keyed by
+// wordId. Lets the drill SPACE a word (don't re-show within the ladder interval)
+// and bring it back due-first — the conjugation drill previously selected by a
+// clock seed and never read the fingerprint, so words recurred within hours/days.
+export interface VocabWordSrs {
+  srsLevel: number;            // SRS ladder rung 0–4 (resets to 0 on a wrong answer)
+  nextReviewAt: string | null; // ISO — word is excluded from selection until on/after this
+  lastSeenAt: string | null;   // ISO — last time the word was drilled
+}
+
 export type InputProductionPreference = 'input_heavy' | 'balanced' | 'production_heavy'
 
 export interface DailyBlockProgress {
@@ -102,6 +112,7 @@ export interface MistakeFingerprint {
   recentErrors: ErrorLogEntry[]; // capped at 200, newest first
   errorPatterns: ErrorPattern[];
   vocabularyMastery: Record<string, VocabularyClusterMastery>; // keyed by cluster ID
+  vocabWordSrs: Record<string, VocabWordSrs>; // keyed by wordId — per-word SRS for vocab drills
   productionGap: Record<string, number>; // conceptId → gap between recognition and production (0–100)
   totalSessionsCompleted: number;
   calibrationSessionsRemaining: number;  // counts down 5→0 after diagnostic; 0 = standard behavior
@@ -134,6 +145,7 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     recentErrors: [],
     errorPatterns: [],
     vocabularyMastery: {},
+    vocabWordSrs: {},
     productionGap: {},
     totalSessionsCompleted: 0,
     calibrationSessionsRemaining: 5,

@@ -16,7 +16,7 @@ const DECAY_HALF_LIFE_DAYS = 25;  // ~3.5 weeks — steepest forgetting in first
 const DECAY_FLOOR = 35;           // cold-start midpoint: users don't forget everything
 
 // SRS review intervals in days, indexed by srsLevel (0–4)
-const SRS_LADDER_DAYS = [1, 3, 7, 14, 30] as const;
+export const SRS_LADDER_DAYS = [1, 3, 7, 14, 30] as const;
 
 function srsNextReviewAt(srsLevel: number): string {
   const days = SRS_LADDER_DAYS[Math.min(srsLevel, SRS_LADDER_DAYS.length - 1)] ?? 1;

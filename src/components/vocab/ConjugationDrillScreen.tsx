@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { useFingerprint } from '@/hooks/useFingerprint'
+import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { buildConjugationDrill, type DrillItem } from '@/lib/conjugation-drill'
 import { gradeConjugation, TENSE_LABELS } from '@/lib/grade-conjugation'
 import { clusterTotalWords, carrierFor } from '@/lib/vocab-loader'
@@ -19,7 +20,13 @@ export function ConjugationDrillScreen() {
 
   // Seed varies per visit AND advances on "Ny drill" so a replay isn't identical.
   const [seedOffset, setSeedOffset] = useState(() => new Date().getDate() + new Date().getHours())
-  const drill = useMemo<DrillItem[]>(() => buildConjugationDrill(DRILL_SIZE, seedOffset), [seedOffset])
+  // Snapshot the fingerprint at build time (seedOffset change = mount / "Ny drill").
+  // Reading getState() here — NOT the reactive hook — keeps intra-drill answer writes
+  // from rebuilding the drill mid-session; SRS-due filtering is applied per fresh build.
+  const drill = useMemo<DrillItem[]>(
+    () => buildConjugationDrill(DRILL_SIZE, seedOffset, useFingerprintStore.getState().fingerprint ?? undefined),
+    [seedOffset],
+  )
 
   const [phase, setPhase] = useState<Phase>('intro')
   const [index, setIndex] = useState(0)
@@ -133,7 +140,12 @@ export function ConjugationDrillScreen() {
                         {grade.correct ? 'Riktig.' : `Nesten — riktig form: ${grade.expected}`}
                       </div>
                       {carrier ? (
-                        <p className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-3 py-2 text-[0.82rem] leading-[1.5] text-[var(--nc-cream-text)]">{carrier.no}</p>
+                        <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-3 py-2">
+                          <p className="text-[0.82rem] leading-[1.5] text-[var(--nc-cream-text)]">{carrier.no}</p>
+                          {carrier.en ? (
+                            <p className="mt-1 text-[0.72rem] leading-[1.4] text-[rgba(17,21,24,0.5)]">{carrier.en}</p>
+                          ) : null}
+                        </div>
                       ) : null}
                     </motion.div>
                   ) : null}

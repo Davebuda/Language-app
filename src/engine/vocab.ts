@@ -8,14 +8,29 @@
 //    recognition — north-star) AFTER a prior miss. That's the literal meaning of
 //    "ord du ikke lenger bommer på" (words you no longer miss): there must be a
 //    "was". Words always answered correctly are not the story this meter tells.
-//  - Per-word SRS/decay is deliberately NOT modelled here — that is the Option-B
-//    upgrade, gated on a dedicated vocab review surface + real users.
+//  - Per-word SRS (Option B, shipped 2026-06-16): each answered word also gets a
+//    spaced-review schedule (`vocabWordSrs[wordId]`) so the bøyningsdrill can SPACE
+//    words instead of re-showing them by clock seed. Per-word DECAY is still not
+//    modelled (cluster EMA carries the warmth signal); only the review interval is.
 
-import type { MistakeFingerprint, VocabularyClusterMastery } from '@/types/fingerprint'
+import type { MistakeFingerprint, VocabularyClusterMastery, VocabWordSrs } from '@/types/fingerprint'
+import { SRS_LADDER_DAYS } from './fingerprint'
 
 const VOCAB_ALPHA = 0.3 // fixed EMA learning rate for the cluster score (v1)
 const START_SCORE = 50
 const COVERAGE_SCORE_FLOOR = 50 // a cluster must stay this warm for its activated words to count
+
+// A drilled word never returns within this many days (user requirement: "not in 2
+// days"). The SRS ladder's rung-0 is 1 day, so we floor the vocab interval at 2.
+const VOCAB_MIN_INTERVAL_DAYS = 2
+
+function vocabNextReviewAt(srsLevel: number): string {
+  const ladder = SRS_LADDER_DAYS[Math.min(srsLevel, SRS_LADDER_DAYS.length - 1)] ?? 1
+  const days = Math.max(VOCAB_MIN_INTERVAL_DAYS, ladder)
+  const d = new Date()
+  d.setDate(d.getDate() + days)
+  return d.toISOString()
+}
 
 function ema(prev: number, outcome: number, alpha = VOCAB_ALPHA): number {
   return Math.round(prev + alpha * (outcome - prev))
@@ -65,9 +80,20 @@ export function recordVocabResult(fp: MistakeFingerprint, input: VocabResultInpu
     activatedWordIds,
   }
 
+  // Per-word SRS: correct → climb the ladder; wrong → reset to rung 0. Either way the
+  // word is now scheduled ≥2 days out, so the drill won't re-show it within days.
+  const prevWordSrs = (fp.vocabWordSrs ?? {})[wordId]
+  const nextSrsLevel = correct ? Math.min((prevWordSrs?.srsLevel ?? 0) + 1, SRS_LADDER_DAYS.length - 1) : 0
+  const wordSrs: VocabWordSrs = {
+    srsLevel: nextSrsLevel,
+    nextReviewAt: vocabNextReviewAt(nextSrsLevel),
+    lastSeenAt: new Date().toISOString(),
+  }
+
   return {
     ...fp,
     vocabularyMastery: { ...fp.vocabularyMastery, [clusterId]: updated },
+    vocabWordSrs: { ...(fp.vocabWordSrs ?? {}), [wordId]: wordSrs },
     updatedAt: new Date().toISOString(),
   }
 }
