@@ -21,7 +21,12 @@
 import { resolveGender } from './gender-verifier'
 
 // Closed-class word lists. Concept ids match the live A1/A2 graphs exactly.
-const PERSONAL_PRONOUNS = new Set(['jeg', 'du', 'han', 'hun', 'det', 'den', 'vi', 'dere', 'de'])
+// `det`/`den` are deliberately EXCLUDED — at B1/B2 they read overwhelmingly as
+// the expletive/formal subject ("Det kan argumenteres…") or a determiner/
+// demonstrative ("det huset"), not a referential personal pronoun, so including
+// them over-fires personal-pronouns on formal prose. The remaining set is
+// unambiguously referential (precision over recall — the C3 gate decision).
+const PERSONAL_PRONOUNS = new Set(['jeg', 'du', 'han', 'hun', 'vi', 'dere', 'de'])
 const OBJECT_PRONOUNS = new Set(['meg', 'deg', 'ham', 'henne', 'oss', 'dem', 'seg'])
 const POSSESSIVES = new Set([
   'min', 'mi', 'mitt', 'mine', 'din', 'di', 'ditt', 'dine', 'hans', 'hennes',

@@ -38,4 +38,11 @@ describe('detectExercisedConcepts (Q-matrix, precision-first)', () => {
     expect(r).not.toContain('noun-gender')
     expect(r).not.toContain('personal-pronouns')
   })
+
+  it('does NOT fire personal-pronouns on the expletive/formal-subject "det"', () => {
+    // "It can be argued that…" — det is a formal subject, not a referential pronoun.
+    expect(detectExercisedConcepts('Det kan argumenteres for dette')).not.toContain('personal-pronouns')
+    // but a real referential pronoun still fires
+    expect(detectExercisedConcepts('Vi argumenterer for dette')).toContain('personal-pronouns')
+  })
 })
