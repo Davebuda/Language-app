@@ -1,6 +1,7 @@
 import type { GenerateParams } from './types';
 import type { ExerciseType } from '@/types/session';
 import type { CEFRLevel } from '@/types/fingerprint';
+import { validateAtLevel } from '@/lib/level-signals';
 
 const LEVEL_MAX_WORDS: Record<CEFRLevel, number> = { A1: 8, A2: 12, B1: 18, B2: 18 }
 
@@ -219,6 +220,16 @@ export function validateGenerated(
 
   const contentErr = checkContent(norwegian, params.exerciseType, params.level as CEFRLevel);
   if (contentErr) return { valid: false, error: contentErr };
+
+  // p6 Phase A — reject content clearly ABOVE the target level (deterministic
+  // LIX/length/clause signals calibrated on our own corpus). Makes generate-at-
+  // level trustworthy: the empty-pool policy can generate AT the learner's level
+  // rather than trusting the LLM not to overshoot. Gate only — never grades a
+  // learner. ≥2 of 3 signals must exceed the level ceiling, so single outliers pass.
+  const atLevel = validateAtLevel(norwegian, params.level as CEFRLevel);
+  if (!atLevel.atLevel) {
+    return { valid: false, error: `above target level ${params.level} (${atLevel.exceeded.join('+')} over ceiling)` };
+  }
 
   const content: ValidatedContent = {
     norwegian,
