@@ -13,6 +13,7 @@ import type { Sentence, ResolvedContent, ResolvedClozePassage } from '@/types/co
 import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool';
 import { getGraphForLevel } from '@/lib/concept-graph-loader';
 import { buildClozeFromSentence } from '@/lib/auto-cloze';
+import { withinLevelCeiling, preferAtLevel } from '@/lib/at-level-select';
 
 const SCENARIOS = [
   'daily-routine', 'food', 'transport', 'family',
@@ -167,7 +168,11 @@ export function useSession(
 
     // ── Seed path (synchronous) ──────────────────────────────────────────────
     const conceptId = item.conceptIds[0] ?? '';
-    const seeds = seedsByConceptId.current.get(conceptId) ?? [];
+    const currentLevel = useFingerprintStore.getState().fingerprint?.currentLevel ?? 'A1';
+    // CEFR ceiling (safety, load-bearing post p6 Q-matrix): a foundational concept
+    // is now tagged on higher-level sentences too, so this concept index can hold
+    // above-level content — a learner must never be served above their level.
+    const seeds = withinLevelCeiling(seedsByConceptId.current.get(conceptId) ?? [], currentLevel);
 
     const usedIds = useSessionStore.getState().usedSentenceIds;
 
@@ -203,7 +208,12 @@ export function useSession(
 
     // Prefer sentences not yet used in this session; fall back to full pool if exhausted
     const fresh = effectivePool.filter((s) => !usedIds.has(s.id));
-    const source = fresh.length > 0 ? fresh : effectivePool;
+    const freshOrAll = fresh.length > 0 ? fresh : effectivePool;
+    // Remediate-at-level: prefer current-level sentences (the Q-matrix put the
+    // foundational concept on B1/B2 sentences) over lower-level ones, so a B2
+    // learner weak on gender practises it inside B2 content, not an A1 drill.
+    // Falls back to the full pool when no at-level sentence exists.
+    const source = preferAtLevel(freshOrAll, currentLevel);
     const picked = source[Math.floor(Math.random() * source.length)];
     if (picked) {
       sessionStore.markSentenceUsed(picked.id);
