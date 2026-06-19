@@ -3,11 +3,11 @@ gsd_state_version: 1.0
 milestone: stabilization
 milestone_name: Stabilization — harden the shipped core loop; prove the moat
 status: in progress
-stopped_at: Baseline ultraaudit AUDIT-CLEAN (5/5 PASS) 2026-06-08; recourse four-lever program defined; lever 1 (hygiene + standing gate) in progress.
-last_updated: "2026-06-08"
-last_activity: 2026-06-08 — recourse re-anchor + baseline ultraaudit (AUDIT-CLEAN) + working-tree drift reconciled (benign; corpus already committed) + standing audit:gate codified.
-head: db88cf5
-test_count: 685 passing (tsc clean)
+stopped_at: 2026-06-19 /recourse re-anchor — p2 corpus integrity CLOSED (WARNs→0), p3 (diagnosis-moat visibility) REOPENED as active; user chose "moat-visibility rewire" as next bet; scoped proposal pending approval (no code yet).
+last_updated: "2026-06-19"
+last_activity: 2026-06-19 — /recourse: reconciled stale docs vs HEAD f3d9056; rail re-anchored (p2 done, p3 active, 61→52% honest); next = surface diagnosis/repair/SRS the engine already computes.
+head: f3d9056
+test_count: ~700 (698 at Lever 3 + drill SRS tests; confirm via `npm run audit:gate`)
 deployed: pandoai.no (Hetzner) — live matches HEAD
 ---
 
@@ -24,6 +24,22 @@ deployed: pandoai.no (Hetzner) — live matches HEAD
 > (Stream 5 era, last_updated 2026-05-22). That milestone and the 7-phase QA-walkthrough plan are
 > done. Authoritative current state is `CLAUDE.md` → "Current State" (2026-06-06 box). This file is
 > now the stabilization-phase tracker.
+
+## Update 2026-06-19 — /recourse re-anchor (this file was 2 HEADs stale)
+
+Since the 2026-06-08 snapshot below, the tree moved to HEAD `f3d9056` (~11 commits):
+- **p2 Corpus & content integrity → DONE.** The "non-blocking content debt" WARNs listed further down
+  (334 nonstandard blank markers, 39 over-length, 38 norwegian-invalid, 1 blank-without-fib) were burned
+  to 0 across `e4af006` (canonical `___`) · `dae02ee` (kill 38 false positives) · `b15b49e` + `ad3a058`
+  (→ 0 WARNs) · `6be3e5d` (robust splitter).
+- **Drill SRS fix shipped** (`f3d9056`) — Phase 0 of the 2026-06-16 expression-chunk scout: per-word
+  `vocabWordSrs`, ≥2-day spacing, reads the fingerprint (closed a Pipeline-Honesty gap) + reveals `carrier.en`.
+- **Landing "Logg inn" routing** (`1a85d2c`) + **shared gender gate refactor** (`9668088`).
+- **p3 REOPENED as active.** The phase was "gender corrector + coach visibility"; the gender corrector
+  shipped (Lever 3, done) but *coach visibility* was only minimally delivered (one dashboard line) while
+  the diagnosis engine computes far more. User chose **moat-visibility rewire** as the next bet:
+  surface the root-cause diagnosis + repair-loop coaching + per-word SRS the engine already produces,
+  inside existing surfaces (depth-not-breadth, no new surface). **Scoped proposal pending approval — no code yet.**
 
 ## Current Position
 
