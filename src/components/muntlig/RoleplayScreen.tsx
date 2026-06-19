@@ -9,7 +9,7 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
 import { normaliseWord, tokenise } from '@/lib/speechMatchUtils'
-import { getRoleplayScenarios } from '@/lib/roleplayContent'
+import { getRoleplayScenarios, getRoleplayContentLevel } from '@/lib/roleplayContent'
 import type { RoleplayScenario, RoleplayTurn } from '@/lib/roleplayContent'
 import { rankScenariosByFocusOverlap, scoreFocusOverlap } from '@/lib/roleplay-focus-scoring'
 import type { ExerciseResult } from '@/types/session'
@@ -509,6 +509,10 @@ export function RoleplayScreen() {
 
   const currentLevel = useFingerprintStore.getState().fingerprint?.currentLevel ?? 'A1'
   const levelScenarios = getRoleplayScenarios(currentLevel)
+  // Honest disclosure (Rule 6): A2 has no dedicated scenarios and reuses A1's —
+  // surface that instead of substituting silently.
+  const roleplayContentLevel = getRoleplayContentLevel(currentLevel)
+  const isBelowLevelRoleplay = roleplayContentLevel !== currentLevel
 
   const [screenPhase, setScreenPhase] = useState<ScreenPhase>('selection')
   const [activeScenario, setActiveScenario] = useState<RoleplayScenario | null>(null)
@@ -624,6 +628,13 @@ export function RoleplayScreen() {
                 <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Scenarier</span>
                 <span className="text-[0.82rem] font-bold tabular-nums text-[var(--nc-cream-text)]">{levelScenarios.length} tilgjengelig</span>
               </div>
+
+              {/* Honest below-level disclosure (Rule 6 — no silent substitution) */}
+              {isBelowLevelRoleplay ? (
+                <div className="rounded-[0.5rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2 text-[10px] leading-snug text-[var(--nc-text-dim)]">
+                  Scenarier på {roleplayContentLevel}-nivå — egne {currentLevel}-scenarier kommer.
+                </div>
+              ) : null}
 
               {/* Scenario list */}
               <div className="flex flex-col gap-2">

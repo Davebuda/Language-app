@@ -482,3 +482,15 @@ export function getRoleplayScenarios(level: string): RoleplayScenario[] {
   if (level === 'B1') return B1_SCENARIOS
   return A1_SCENARIOS
 }
+
+/**
+ * The CEFR level whose scenarios are ACTUALLY served for a learner level. A2
+ * (and unknown) reuse the A1 set — exposing this lets the UI honestly disclose
+ * below-level content instead of substituting silently (Operating Rule 6).
+ */
+export function getRoleplayContentLevel(level: string): string {
+  if (level === 'B2') return 'B2'
+  if (level === 'B1') return 'B1'
+  if (level === 'A1') return 'A1'
+  return 'A1' // A2 + unknown → A1 scenarios (no dedicated set yet)
+}
