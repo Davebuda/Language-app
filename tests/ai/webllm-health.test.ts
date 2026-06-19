@@ -75,17 +75,13 @@ describe('WebLLMService — generation health tracking', () => {
     const engine = mockEngine(null); // always returns null content
     const svc = makeReadyService(engine);
 
-    // explainMistake calls complete() and catches — the failure should accumulate
-    await svc.explainMistake({
-      wrong: 'Jeg går', correct: 'I dag går jeg', errorTag: 'word-order',
-      conceptId: 'v2-word-order', level: 'A1',
-    });
+    // detectErrors calls complete(), which records a failure on empty content and
+    // throws (caught). (explainMistake no longer calls the model — the 1B is gated
+    // off — so health tracking is exercised through a method that still calls it.)
+    await svc.detectErrors('Jeg går', 'A1');
     expect(svc.isReady()).toBe(true); // one failure — not yet at threshold
 
-    await svc.explainMistake({
-      wrong: 'Jeg går', correct: 'I dag går jeg', errorTag: 'word-order',
-      conceptId: 'v2-word-order', level: 'A1',
-    });
+    await svc.detectErrors('Jeg går', 'A1');
     expect(svc.isReady()).toBe(false); // second consecutive failure → unavailable
     expect((svc as unknown as Record<string, unknown>).state).toBe('unavailable');
   });
@@ -104,14 +100,21 @@ describe('WebLLMService — generation health tracking', () => {
     };
     const svc = makeReadyService(engine);
 
-    await svc.explainMistake({ wrong: 'x', correct: 'y', errorTag: 'word-order', conceptId: 'c', level: 'A1' });
-    // failure 1 → counter = 1
-    await svc.explainMistake({ wrong: 'x', correct: 'y', errorTag: 'word-order', conceptId: 'c', level: 'A1' });
-    // success → counter = 0; this call returns ai source
-    await svc.explainMistake({ wrong: 'x', correct: 'y', errorTag: 'word-order', conceptId: 'c', level: 'A1' });
-    // failure 1 again → counter = 1 (below threshold of 2)
+    await svc.detectErrors('x', 'A1'); // failure 1 → counter = 1
+    await svc.detectErrors('x', 'A1'); // success in complete() → counter = 0
+    await svc.detectErrors('x', 'A1'); // failure 1 again → counter = 1 (below threshold of 2)
 
     expect(svc.isReady()).toBe(true); // threshold not hit — counter was reset
+  });
+
+  it('explainMistake never returns AI source on the local 1B (gibberish gate-off)', async () => {
+    // Even when the model is "ready", the 1B explanation path is gated off — it
+    // produces fluent Norwegian gibberish no cheap validator catches (2026-06-19).
+    const svc = makeReadyService(mockEngine('en plausibel-men-kanskje-tøvete forklaring'));
+    const result = await svc.explainMistake({
+      wrong: 'x', correct: 'y', errorTag: 'word-order', conceptId: 'c', level: 'B1',
+    });
+    expect(result.source).toBe('template'); // 1B explanations are not shown
   });
 
   it('explainMistake returns template when service is unavailable', async () => {

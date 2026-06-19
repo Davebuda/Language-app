@@ -6,7 +6,7 @@ import type {
 import type { ResolvedContent } from '@/types/content'
 import type { CEFRLevel } from '@/types/fingerprint'
 import {
-  buildGenerationPrompt, buildExplanationPrompt,
+  buildGenerationPrompt,
   buildConversationPrompt, buildWritingFeedbackPrompt,
   buildErrorDetectionPrompt,
 } from './prompts'
@@ -244,23 +244,19 @@ export class WebLLMService implements AIService {
   }
 
   async explainMistake(params: ExplainParams): Promise<Explanation> {
-    if (!this.isReady()) return { text: templateExplanation(params), source: 'template' }
-    try {
-      const { system, user } = buildExplanationPrompt(params)
-      const text = await this.complete(system, user, false, 200)
-      const trimmed = text.trim()
-      // P0.5-06: validate Norwegian validity before shipping AI prose to the
-      // learner. Repair-card explanations are often partly English (rule
-      // description) and partly Norwegian (examples); skip Norwegian gate here
-      // but still drop fabricated compounds and very long words.
-      if (trimmed.split(/\s+/).some((w) => w.length > 22)) {
-        console.warn('[WebLLM.explainMistake] suspected fabricated word; falling back to template')
-        return { text: templateExplanation(params), source: 'template' }
-      }
-      return { text: trimmed, source: 'ai' }
-    } catch {
-      return { text: templateExplanation(params), source: 'template' }
-    }
+    // GATED OFF (2026-06-19): the local 1B model (Llama-3.2-1B) produces fluent
+    // Norwegian GIBBERISH in explanations that no cheap validator reliably catches
+    // — validateNorwegianOutput allows ö/ä and has no lexicon/OOV check, so
+    // hallucinated non-words ("spørrelyst", "påböydemibbonen") clear every
+    // heuristic. A 1B explanation is low-value anyway. Per the project stance (AI
+    // is never the headline; every path has a non-AI fallback; the 1B is an
+    // "adaptation probe"), we do NOT show 1B-generated explanations: the
+    // deterministic repair template + the Norwegian "Vis regelen" grammar card
+    // carry the explanation. The old gate (length-only) shipped gibberish live
+    // (seen 2026-06-19). Re-enable with a real coherence gate when a stronger
+    // Norwegian model (NB-Llama) replaces the 1B. (Mirrors the show-don't-grade
+    // suspension of unverified AI corrections.)
+    return { text: templateExplanation(params), source: 'template' }
   }
 
   async detectErrors(text: string, level: CEFRLevel): Promise<TaggedError[]> {

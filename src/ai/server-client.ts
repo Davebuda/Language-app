@@ -5,6 +5,7 @@ import type {
 } from './types'
 import type { ResolvedContent } from '@/types/content'
 import type { CEFRLevel } from '@/types/fingerprint'
+import { validateNorwegianOutput } from './validate'
 
 async function callServerAI<T>(action: string, params: Record<string, unknown>): Promise<T | null> {
   try {
@@ -44,8 +45,21 @@ export class ServerAIService implements AIService {
   isReady(): boolean { return this.available }
 
   async explainMistake(params: ExplainParams): Promise<Explanation> {
+    const fallback: Explanation = {
+      text: `You wrote "${params.wrong}". The correct answer is "${params.correct}".`,
+      source: 'template',
+    }
     const result = await callServerAI<Explanation>('explain', params as unknown as Record<string, unknown>)
-    return result ?? { text: `You wrote "${params.wrong}". The correct answer is "${params.correct}".`, source: 'template' }
+    if (!result) return fallback
+    // Gate AI prose: a B1/B2 explanation should be Norwegian, so incoherent server
+    // output (English drift, non-Norwegian chars, no markers) falls back to the
+    // deterministic template. The 8B server model is far more coherent than the
+    // local 1B (which is gated off entirely), so this is defence-in-depth.
+    if (result.source === 'ai' && (params.level === 'B1' || params.level === 'B2')
+        && !validateNorwegianOutput(result.text, { minWords: 3 }).valid) {
+      return fallback
+    }
+    return result
   }
 
   async generateContent(params: GenerateParams): Promise<ResolvedContent | null> {
