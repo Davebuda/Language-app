@@ -18,8 +18,58 @@ import type {
 import type { WeeklyProgressEntry } from '@/lib/weekly-progress'
 import { vocabCoverage } from '@/engine'
 import type { VocabCoverage } from '@/engine'
+import type { DiagnosisResult } from '@/engine/diagnosis'
 
 export type BrickCellWeight = BrickWeight | 'empty'
+
+// ── Diagnosis highlight ─────────────────────────────────────────────────────
+// The dashboard already computes runDiagnosis()[0] and surfaces only its
+// `reasoning` sentence as the coach whisper. The rest of the result — the focus
+// dimension, the affected concepts, and how sure the engine is — is computed
+// every session and discarded at the UI. This derives a compact, Norwegian,
+// presentation-ready highlight from it. Pure; reads no fingerprint field.
+
+export type ConfidenceTier = 'strong' | 'early'
+
+export interface DiagnosisHighlight {
+  /** Norwegian label for the recommended focus dimension. */
+  focusLabel: string
+  /** Up to 2 affected-concept labels (graph label, or humanized slug fallback). */
+  affectedLabels: string[]
+  /** Qualitative confidence — never a raw % to the learner. */
+  confidenceTier: ConfidenceTier
+}
+
+const FOCUS_LABELS: Record<DiagnosisResult['recommendedFocus'], string> = {
+  production: 'Produksjon',
+  recognition: 'Gjenkjenning',
+  mechanics: 'Form',
+  application: 'Bruk',
+}
+
+/** A slug like `indefinite-articles` → `indefinite articles` (last-resort label). */
+function humanizeSlug(conceptId: string): string {
+  return conceptId.replace(/-/g, ' ')
+}
+
+/**
+ * Pure: turn a DiagnosisResult into the dashboard highlight. `labelOf` resolves
+ * a conceptId to its human label; when it returns undefined (e.g. a cross-level
+ * concept absent from the active graph), the slug is humanized so a raw slug
+ * never reaches the screen (mirrors diagnosis.ts's fallback rule).
+ */
+export function deriveDiagnosisHighlight(
+  diagnosis: DiagnosisResult,
+  labelOf: (conceptId: string) => string | undefined,
+): DiagnosisHighlight {
+  return {
+    focusLabel: FOCUS_LABELS[diagnosis.recommendedFocus],
+    affectedLabels: diagnosis.affectedConceptIds
+      .slice(0, 2)
+      .map((id) => labelOf(id) ?? humanizeSlug(id)),
+    confidenceTier: diagnosis.confidence >= 0.7 ? 'strong' : 'early',
+  }
+}
 
 export interface BrickCell {
   weight: BrickCellWeight

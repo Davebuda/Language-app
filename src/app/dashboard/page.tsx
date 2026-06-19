@@ -16,13 +16,13 @@ import { getStreak } from '@/lib/streak'
 import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
 import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool'
 import { getConceptColor } from '@/lib/concept-colors'
-import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { getGraphForLevel, getCumulativeConcepts } from '@/lib/concept-graph-loader'
 import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
 import { getCoachRecommendation } from '@/lib/coach-recommendation'
 import { CORE_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 import { ProductionWall } from '@/components/dashboard/ProductionWall'
-import { deriveProductionWallView } from '@/lib/production-wall'
+import { deriveProductionWallView, deriveDiagnosisHighlight } from '@/lib/production-wall'
 
 const CONCEPT_TO_TOPIC: Record<string, string> = {
   'v2-word-order': 'daglig rutine',
@@ -282,6 +282,19 @@ export default function DashboardPage() {
     ?? recommendation?.reason
     ?? 'Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.'
 
+  // Structured diagnosis highlight (focus dimension + affected concepts +
+  // confidence) — the rest of runDiagnosis()[0], beside the reasoning whisper.
+  // Null until a rule fires, so a cold-start guest sees nothing fabricated.
+  // Cumulative lookup (A1…current) so a cross-level affected concept (e.g. the
+  // A1 'indefinite-articles' surfacing in a B1 gender diagnosis) resolves to its
+  // Norwegian label instead of a humanized English-ish slug. Mirrors diagnosis.ts.
+  const diagnosisHighlight = topDiagnosis
+    ? deriveDiagnosisHighlight(
+        topDiagnosis,
+        (id) => getCumulativeConcepts(levelLabel).find((concept) => concept.id === id)?.label,
+      )
+    : null
+
   return (
     <div className="nc-gradient-page flex min-h-dvh flex-col">
       <main className="nc-mobile-shell flex w-full flex-1 flex-col gap-[6px] px-1.5 pb-32 pt-3">
@@ -313,7 +326,7 @@ export default function DashboardPage() {
             (lead block; all-levels, level-aware lens). Replaces the standalone
             lime hero below. ── */}
         {wallView ? (
-          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} />
+          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} diagnosis={diagnosisHighlight} />
         ) : null}
 
         {/* B2 conjugation drill (/ord) is now a tracked daily lane in "Neste valg"

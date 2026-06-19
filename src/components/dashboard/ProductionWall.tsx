@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown, ArrowRight } from 'lucide-react'
 import type { CSSProperties } from 'react'
-import type { ProductionWallView, BrickCellWeight } from '@/lib/production-wall'
+import type { ProductionWallView, BrickCellWeight, DiagnosisHighlight } from '@/lib/production-wall'
 
 // Brick weight → visual. Distinguished by FILL + TEXTURE, never colour alone
 // (WCAG AA: legible in greyscale). production = solid; guided = solid + hatch;
@@ -42,6 +42,8 @@ export interface ProductionWallProps {
   sessionMeta: string
   /** Coach's one-line reason for today's focus (the "why"). */
   coachReason: string
+  /** Structured diagnosis highlight (focus + affected concepts + confidence). Null until the engine has a signal. */
+  diagnosis?: DiagnosisHighlight | null
   /** Where the start CTA navigates. */
   startHref?: string
 }
@@ -57,7 +59,7 @@ export interface ProductionWallProps {
  * Weight hierarchy (strategic, steep falloff): two anchors only — the production
  * number and "Start dagens økt" — everything else recedes.
  */
-export function ProductionWall({ view, sessionMeta, coachReason, startHref = '/session' }: ProductionWallProps) {
+export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, startHref = '/session' }: ProductionWallProps) {
   const reduce = useReducedMotion()
   const maxBar = Math.max(1, ...view.weekBars.map((b) => b.value))
   const sparkMax = maxBar
@@ -102,6 +104,28 @@ export function ProductionWall({ view, sessionMeta, coachReason, startHref = '/s
         <h2 className="mt-1.5 text-balance text-[1rem] font-extrabold leading-tight tracking-[-0.03em] text-[var(--nc-text)]">
           {view.objectiveTitle}
         </h2>
+
+        {/* Diagnosis highlight — the moat's structured signal (focus dimension +
+            affected concepts + how sure), beside the reasoning whisper below.
+            Hidden until the engine has a real signal (honest cold-start gate). */}
+        {diagnosis ? (
+          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+            <span className="rounded-[4px] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8.5px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">
+              Fokus · {diagnosis.focusLabel}
+            </span>
+            {diagnosis.affectedLabels.map((affected) => (
+              <span
+                key={affected}
+                className="rounded-[0.25rem] bg-[rgba(255,255,255,0.05)] px-1.5 py-px text-[8.5px] font-medium text-[var(--nc-text-dim)]"
+              >
+                {affected}
+              </span>
+            ))}
+            <span className="text-[8.5px] font-semibold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">
+              {diagnosis.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'}
+            </span>
+          </div>
+        ) : null}
 
         <div className="mt-3 flex items-end justify-between gap-3">
           {/* Anchor 1 — the production count */}
