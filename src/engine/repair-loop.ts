@@ -64,6 +64,8 @@ export interface RepairPlan {
   microDrillExerciseTypes: ExerciseType[];
   retryExerciseType: ExerciseType;
   reviewIntervalDays: number;
+  /** The error class that triggered this repair — surfaced as the "caught" chip. */
+  errorTag: ErrorTag;
 }
 
 export function buildRepairPlan(error: ErrorLogEntry): RepairPlan {
@@ -97,6 +99,7 @@ export function buildRepairPlan(error: ErrorLogEntry): RepairPlan {
     microDrillExerciseTypes: microDrillTypes.slice(0, 2),
     retryExerciseType: retryType,
     reviewIntervalDays,
+    errorTag: error.errorTag,
   };
 }
 

@@ -24,6 +24,7 @@ import {
 import type { Sentence } from '@/types/content'
 import type { ExerciseResult, SessionBlock, SessionBlockType } from '@/types/session'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { selectionJustification } from '@/lib/selection-justification'
 
 interface SessionScreenProps {
   sentences: Record<string, Sentence>
@@ -225,6 +226,16 @@ export function SessionScreen({
                           </span>
                         ) : null}
                       </div>
+                      {/* Why this exercise — the scheduling pillar made felt:
+                          ties the bare reason badge to the learner's own evidence. */}
+                      {currentItem ? (
+                        <div className="mt-1 text-[9px] font-medium leading-snug text-[rgba(10,18,6,0.55)]">
+                          {selectionJustification(
+                            currentItem.selectionReason,
+                            fingerprint?.conceptMastery[currentItem.conceptIds[0] ?? ''],
+                          )}
+                        </div>
+                      ) : null}
                       <div className="mt-0.5 text-[0.88rem] font-extrabold leading-tight text-[var(--nc-signal-fg)]">
                         Økt
                       </div>

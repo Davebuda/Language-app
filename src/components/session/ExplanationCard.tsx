@@ -5,6 +5,29 @@ import { AnimatePresence, motion } from 'framer-motion'
 import type { RepairPlan } from '@/engine/repair-loop'
 import { GRAMMAR_EXPLAINERS } from '@/lib/grammar-explainers'
 
+// Norwegian labels for the error classes — the "caught" chip names the mistake
+// type crisply (the explanation below describes it). Keeps the surface Norwegian.
+const ERROR_TAG_LABELS: Record<string, string> = {
+  'word-order': 'Ordstilling',
+  'verb-tense': 'Verbtid',
+  'verb-conjugation': 'Verbbøying',
+  'noun-gender': 'Substantivkjønn',
+  'article-use': 'Artikkelbruk',
+  'adjective-agreement': 'Adjektivsamsvar',
+  'pronoun-choice': 'Pronomenvalg',
+  preposition: 'Preposisjon',
+  'modal-verb': 'Modalverb',
+  'negation-placement': 'Nekting',
+  'compound-word': 'Sammensatt ord',
+  'wrong-word-same-category': 'Ordvalg',
+  'wrong-word-different-category': 'Ordvalg',
+  spelling: 'Staving',
+  'listening-recognition': 'Lytting',
+  'reading-parsing': 'Lesing',
+  'meaning-misunderstood': 'Forståelse',
+  unspecified: 'Generelt',
+}
+
 interface ExplanationCardProps {
   repairPlan: RepairPlan
   correctAnswer: string
@@ -23,6 +46,7 @@ export function ExplanationCard({
   const [showGrammar, setShowGrammar] = useState(false)
   const explainer = GRAMMAR_EXPLAINERS[conceptId]
   const label = conceptLabel ?? conceptId
+  const errorLabel = ERROR_TAG_LABELS[repairPlan.errorTag]
 
   return (
     <div className="overflow-hidden rounded-[0.75rem] border border-[var(--nc-repair-border)] bg-[var(--nc-repair-bg)] shadow-[0_18px_48px_rgba(0,0,0,0.22)]">
@@ -35,6 +59,13 @@ export function ExplanationCard({
             <h3 className="mt-1.5 text-balance font-display text-[1.55rem] font-extrabold leading-[0.96] tracking-[-0.03em] text-[var(--nc-text)]">
               Nesten.
             </h3>
+            {/* What the repair caught — names the mistake class, beside the
+                explanation prose below (the moat's remediation made visible). */}
+            {errorLabel ? (
+              <span className="mt-2 inline-flex items-center rounded-[0.3rem] border border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-text-muted)]">
+                Fanget · {errorLabel}
+              </span>
+            ) : null}
           </div>
           <span className="shrink-0 rounded-[0.35rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.06)] px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.10em] text-[var(--nc-text-muted)]">
             {label}
