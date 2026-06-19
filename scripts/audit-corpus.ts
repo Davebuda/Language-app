@@ -19,6 +19,9 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { ALL_ERROR_TAGS } from '../src/types/taxonomy'
+// LEVEL_CONTRACT's own imports are all `import type` (erased at runtime), so this
+// is safe to import into a tsx script without `@/` alias resolution.
+import { LEVEL_CONTRACT } from '../src/lib/level-contract'
 
 // Exercise types — source of truth: src/types/session.ts (ExerciseType union).
 const VALID_EXERCISE_TYPES = new Set<string>([
@@ -122,6 +125,9 @@ const findings: Finding[] = []
 const seenIds = new Map<string, string>()   // id -> level (dup detection)
 const seenNorwegian = new Map<string, string>() // normalized -> id (dup detection)
 const depth: Record<string, Record<string, number>> = { A1: {}, A2: {}, B1: {}, B2: {} }
+// Per-level coverage accumulators (for the Content-Contract completeness gate).
+const exTypeCount: Record<string, Record<string, number>> = { A1: {}, A2: {}, B1: {}, B2: {} }
+const errTagCount: Record<string, Record<string, number>> = { A1: {}, A2: {}, B1: {}, B2: {} }
 let total = 0
 const perLevelCount: Record<string, number> = { A1: 0, A2: 0, B1: 0, B2: 0 }
 
@@ -175,6 +181,9 @@ for (const lvl of LEVELS) {
     const ex = Array.isArray(s.exercise_types) ? (s.exercise_types as string[]) : []
     if (ex.length === 0) add('ERROR', 'no-exercise-types', 'exercise_types empty')
     for (const t of ex) if (!VALID_EXERCISE_TYPES.has(t)) add('ERROR', 'invalid-exercise-type', t)
+    // accumulate per-level coverage (Content-Contract completeness gate)
+    for (const t of ex) exTypeCount[lvl][t] = (exTypeCount[lvl][t] ?? 0) + 1
+    for (const t of errTags) errTagCount[lvl][t] = (errTagCount[lvl][t] ?? 0) + 1
 
     // 8. fill-in-blank coherence + blank-marker consistency
     const no = isStr(s.norwegian) ? s.norwegian : ''
@@ -211,6 +220,40 @@ for (const lvl of LEVELS) {
       else seenNorwegian.set(key, id)
     }
   }
+}
+
+// ── Level coverage vs the Content Contract (completeness gate) ─────────────
+// Surfaces curriculum gaps as tracked WARNs (never ERRORs → audit:gate stays
+// green on 0 ERRORS). Three checks per level: allowed exercise types with
+// thin/zero corpus coverage, expected diagnostic error-tags absent, and required
+// grammar gates missing from the level concept graph.
+const THIN_TYPE = 10
+const THIN_TAG = 10
+const coverageSummary: string[] = []
+for (const lvl of LEVELS) {
+  const c = LEVEL_CONTRACT[lvl]
+  const cov = (sev: Finding['sev'], check: string, detail: string) =>
+    findings.push({ sev, check, id: '(coverage)', level: lvl, detail })
+  const idsInLevel = new Set(
+    [...conceptById.values()].filter((x) => x.cefrLevel === lvl).map((x) => x.id),
+  )
+  let typeGaps = 0
+  let tagGaps = 0
+  let gateGaps = 0
+  for (const t of c.allowedExerciseTypes) {
+    const n = exTypeCount[lvl][t] ?? 0
+    if (n === 0) { cov('WARN', 'allowed-type-uncovered', `${t}: 0 sentences (level offers it, corpus has none)`); typeGaps++ }
+    else if (n < THIN_TYPE) { cov('WARN', 'allowed-type-thin', `${t}: only ${n} sentences (< ${THIN_TYPE})`); typeGaps++ }
+  }
+  for (const t of c.expectedErrorTags) {
+    const n = errTagCount[lvl][t] ?? 0
+    if (n === 0) { cov('WARN', 'expected-tag-uncovered', `${t}: not exercisable at ${lvl} (diagnostic-surface gap)`); tagGaps++ }
+    else if (n < THIN_TAG) cov('INFO', 'expected-tag-thin', `${t}: only ${n} sentences (< ${THIN_TAG})`)
+  }
+  for (const g of c.gateConcepts) {
+    if (!idsInLevel.has(g)) { cov('WARN', 'gate-concept-missing', `${g} not a concept in the ${lvl} graph`); gateGaps++ }
+  }
+  coverageSummary.push(`  ${lvl}: ${typeGaps} exercise-type gap(s) · ${tagGaps} diagnostic-tag gap(s) · ${gateGaps} missing gate(s)`)
 }
 
 // ── Report ───────────────────────────────────────────────────────────────
@@ -262,6 +305,13 @@ for (const lvl of LEVELS) {
     out.push(`        ${String(c.n).padStart(3)}  ${c.id}${c.n === 0 ? '  ← EMPTY' : c.n < DEPTH_TARGET ? '  ← thin' : ''}`)
 }
 out.push('')
+
+// Level-coverage summary (Content-Contract completeness gate)
+out.push('── LEVEL COVERAGE vs CONTENT CONTRACT (curriculum completeness) ──────')
+for (const line of coverageSummary) out.push(line)
+out.push('  (details above under WARN checks: allowed-type-*, expected-tag-*, gate-concept-missing)')
+out.push('')
+
 out.push('═'.repeat(72))
 out.push(errors.length === 0 ? '  ✓ No integrity ERRORS. Corpus tags are structurally sound.' : `  ✗ ${errors.length} integrity ERRORS — these can mis-route diagnosis.`)
 out.push('═'.repeat(72))
