@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: stabilization
 milestone_name: Stabilization — harden the shipped core loop; prove the moat
 status: in progress
-stopped_at: 2026-06-19 /recourse re-anchor — p2 corpus integrity CLOSED (WARNs→0), p3 (diagnosis-moat visibility) REOPENED as active; user chose "moat-visibility rewire" as next bet; scoped proposal pending approval (no code yet).
+stopped_at: 2026-06-19 — big /recourse→autopilot→council session: p3 (moat visibility) DONE, p6 gating half DONE, W1 listening parity DONE. 11 commits pushed to origin/main (HEAD 251de03). Remaining p6 = W2/W3/W5 completeness authoring (linguist-gated).
 last_updated: "2026-06-19"
-last_activity: 2026-06-19 — /recourse: reconciled stale docs vs HEAD f3d9056; rail re-anchored (p2 done, p3 active, 61→52% honest); next = surface diagnosis/repair/SRS the engine already computes.
-head: f3d9056
-test_count: ~700 (698 at Lever 3 + drill SRS tests; confirm via `npm run audit:gate`)
-deployed: pandoai.no (Hetzner) — live matches HEAD
+last_activity: 2026-06-19 — shipped p3 (3 pillars), p6 gating (contract/Q-matrix/remediate-at-level/ceilings/at-level validator), AI-gibberish gate-off, W1 listening parity. All audit:gate AUDIT-CLEAN; pushed to origin.
+head: 251de03
+test_count: ~720 (audit:gate green; new unit suites: contract, detectors, at-level-select, level-signals, selection-justification, +health repoint)
+deployed: pandoai.no (Hetzner) — origin/main is AHEAD of deployed; redeploy when ready (push main → ssh pull/build/pm2 reload + audio already present)
 ---
 
 # Project State
@@ -24,6 +24,17 @@ deployed: pandoai.no (Hetzner) — live matches HEAD
 > (Stream 5 era, last_updated 2026-05-22). That milestone and the 7-phase QA-walkthrough plan are
 > done. Authoritative current state is `CLAUDE.md` → "Current State" (2026-06-06 box). This file is
 > now the stabilization-phase tracker.
+
+## Update 2026-06-19 (late) — p3 + p6-gating + W1 shipped (11 commits, pushed)
+
+Single long session (/recourse → autopilot → council → align). All `audit:gate` AUDIT-CLEAN, pushed to `origin/main` (HEAD `251de03`).
+
+- **p3 Diagnosis-moat visibility — DONE (all 3 pillars, live-verified):** dashboard diagnosis depth (`47532fd`), repair "Fanget · «klasse»" chip + "why this" justification (`5b21fcf`).
+- **p6 gating half — DONE:** per-level Content Contract + coverage gate (`77a1636`); Q-matrix multi-skill tagging (`469b847`, `ad41c24`) so foundational concepts are tagged on B1/B2 sentences; **remediate-at-level** selection + CEFR ceilings on every pool path (`f1f0564`) — VERIFIED: a B2 gender-weak learner draws from 127 B2 gender sentences, not 40 A1 ("jeg vil ha kaffe"); at-level generation validator (`bcefc61`); coverage-gate honesty fix (`b033606`).
+- **AI gibberish fixed** (`3dd11ad`): local 1B repair explanations gated off (fluent Norwegian non-words slipped the validator); server 8B path gated; re-enable on NB-Llama.
+- **W1 B1/B2 listening parity — DONE** (`251de03`): enabled listening-comprehension on +96 B1 / +75 B2 vetted sentences with existing MP3s (no new content/audio/linguist). Coverage gate listening gap CLOSED.
+- **Decisions surfaced:** W4 re-scoped (B2 gender diagnosis already works via classify-error high-confidence + rule 1; residual is only medium-confidence tags); speed-round left as an honest B2 gap (rapid-recall ≠ B2 register).
+- **Remaining p6:** W2 module ladder (cloze/reading/skriv across levels), W3 grammar gates, W5 honesty fixes (roleplay A2 silent A1 fallback; /listen A2 thin) — mostly content-authoring/linguist-gated.
 
 ## Update 2026-06-19 — /recourse re-anchor (this file was 2 HEADs stale)
 
