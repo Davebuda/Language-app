@@ -13,7 +13,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -37,7 +38,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -87,7 +89,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -135,7 +138,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -183,7 +187,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -278,7 +283,8 @@
       "work"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -326,7 +332,8 @@
       "work"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -374,7 +381,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -714,7 +722,8 @@
       "hobbies"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -764,7 +773,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -812,7 +822,8 @@
       "weather"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -835,7 +846,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -883,7 +895,8 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -906,7 +919,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -954,7 +968,8 @@
       "family"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1047,7 +1062,8 @@
       "hobbies"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1393,7 +1409,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1439,7 +1456,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1481,7 +1499,8 @@
       "weather"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1524,7 +1543,8 @@
       "hobbies"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1569,7 +1589,8 @@
       "hobbies"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1614,7 +1635,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -1657,7 +1679,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -1703,7 +1726,8 @@
       "work"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2056,7 +2080,8 @@
     ],
     "error_tags_detectable": [
       "verb-conjugation",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2103,7 +2128,8 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2149,7 +2175,8 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -2197,7 +2224,8 @@
       "food"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2243,7 +2271,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2334,7 +2363,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2379,7 +2409,8 @@
       "news"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -2427,7 +2458,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -2748,7 +2780,8 @@
     ],
     "error_tags_detectable": [
       "modal-verb",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2774,7 +2807,8 @@
     ],
     "error_tags_detectable": [
       "modal-verb",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2824,7 +2858,8 @@
     ],
     "error_tags_detectable": [
       "verb-tense",
-      "modal-verb"
+      "modal-verb",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2850,7 +2885,8 @@
     ],
     "error_tags_detectable": [
       "modal-verb",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -2898,7 +2934,8 @@
       "education"
     ],
     "error_tags_detectable": [
-      "modal-verb"
+      "modal-verb",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2949,7 +2986,8 @@
     ],
     "error_tags_detectable": [
       "modal-verb",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -2974,7 +3012,8 @@
     ],
     "error_tags_detectable": [
       "modal-verb",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3023,7 +3062,8 @@
     ],
     "error_tags_detectable": [
       "modal-verb",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3483,7 +3523,8 @@
       "food"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3529,7 +3570,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3575,7 +3617,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3624,7 +3667,8 @@
       "weather"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -3669,7 +3713,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3716,7 +3761,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -3807,7 +3853,8 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -3877,7 +3924,8 @@
       "education"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4172,7 +4220,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4217,7 +4266,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4267,7 +4317,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4315,7 +4366,8 @@
       "work"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4363,7 +4415,8 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4411,7 +4464,8 @@
       "hobbies"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4506,7 +4560,8 @@
       "weather"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4579,7 +4634,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4886,7 +4942,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4934,7 +4991,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -4982,7 +5040,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5029,7 +5088,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5078,7 +5138,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5127,7 +5188,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5221,7 +5283,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -5291,7 +5354,8 @@
     ],
     "error_tags_detectable": [
       "adjective-agreement",
-      "article-use"
+      "article-use",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5597,7 +5661,8 @@
       "nature"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5668,7 +5733,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -5715,7 +5781,8 @@
       "hobbies"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5761,7 +5828,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation-placement"
+      "negation-placement",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -5809,7 +5877,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation-placement"
+      "negation-placement",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5878,7 +5947,8 @@
       "food"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -5930,7 +6000,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation-placement"
+      "negation-placement",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6053,7 +6124,8 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6317,7 +6389,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6363,7 +6436,8 @@
       "work"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6411,7 +6485,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -6459,7 +6534,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -6506,7 +6582,8 @@
       "family"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6602,7 +6679,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6651,7 +6729,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -6721,7 +6800,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -7024,7 +7104,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7073,7 +7154,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7121,7 +7203,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7170,7 +7253,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 2,
@@ -7217,7 +7301,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "meaning-misunderstood"
+      "meaning-misunderstood",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7263,7 +7348,8 @@
       "nature"
     ],
     "error_tags_detectable": [
-      "meaning-misunderstood"
+      "meaning-misunderstood",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7357,7 +7443,8 @@
     ],
     "error_tags_detectable": [
       "meaning-misunderstood",
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7426,7 +7513,8 @@
       "feelings"
     ],
     "error_tags_detectable": [
-      "meaning-misunderstood"
+      "meaning-misunderstood",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7732,7 +7820,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7776,7 +7865,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7825,7 +7915,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7873,7 +7964,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7921,7 +8013,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -7965,7 +8058,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -8058,7 +8152,8 @@
       "food"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -8128,7 +8223,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 1,
@@ -8624,7 +8720,8 @@
     "vocab_clusters": [],
     "error_tags_detectable": [
       "verb-conjugation",
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B1",
     "difficulty": 3,

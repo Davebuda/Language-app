@@ -107,7 +107,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -175,7 +176,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -271,7 +273,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -386,7 +389,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -528,7 +532,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -647,7 +652,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -837,7 +843,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1219,7 +1226,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1390,7 +1398,8 @@
       "informal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1438,7 +1447,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1573,7 +1583,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1661,7 +1672,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1732,7 +1744,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -1937,7 +1950,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -2053,7 +2067,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -2124,7 +2139,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -2740,7 +2756,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -2924,7 +2941,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3018,7 +3036,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3111,7 +3130,8 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3230,7 +3250,8 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3418,7 +3439,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3512,7 +3534,8 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3673,7 +3696,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -3889,7 +3913,8 @@
       "travel"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -4009,7 +4034,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -4081,7 +4107,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -4465,7 +4492,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -4678,7 +4706,8 @@
       "workplace"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -4932,7 +4961,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5055,7 +5085,8 @@
       "culture"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5151,7 +5182,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5275,7 +5307,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5300,7 +5333,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5395,7 +5429,8 @@
       "society"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5514,7 +5549,8 @@
       "environment"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5634,7 +5670,8 @@
       "education"
     ],
     "error_tags_detectable": [
-      "verb-tense"
+      "verb-tense",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -5680,7 +5717,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "meaning-misunderstood"
+      "meaning-misunderstood",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6188,7 +6226,8 @@
       "research"
     ],
     "error_tags_detectable": [
-      "reading-parsing"
+      "reading-parsing",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6350,7 +6389,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6467,7 +6507,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6565,7 +6606,8 @@
       "history"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6637,7 +6679,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6733,7 +6776,8 @@
       "environment"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6801,7 +6845,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6895,7 +6940,8 @@
       "society"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -6967,7 +7013,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "adjective-agreement"
+      "adjective-agreement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7176,7 +7223,8 @@
       "research"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7249,7 +7297,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7390,7 +7439,8 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7461,7 +7511,8 @@
       "daily-life"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7655,7 +7706,8 @@
       "society"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7774,7 +7826,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -7920,7 +7973,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8043,7 +8097,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8277,7 +8332,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8480,7 +8536,8 @@
       "formal"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8503,7 +8560,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8528,7 +8586,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation-placement"
+      "negation-placement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -8552,7 +8611,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -8961,7 +9021,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -9012,7 +9073,8 @@
       "social"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -9086,7 +9148,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -9113,7 +9176,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "negation-placement"
+      "negation-placement",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -9188,7 +9252,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -9461,7 +9526,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -9485,7 +9551,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "preposition"
+      "preposition",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -9510,7 +9577,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -11781,7 +11849,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -11831,7 +11900,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -12166,7 +12236,8 @@
       "academic"
     ],
     "error_tags_detectable": [
-      "wrong-word-same-category"
+      "wrong-word-same-category",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -12390,7 +12461,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -12465,7 +12537,8 @@
     ],
     "error_tags_detectable": [
       "word-order",
-      "verb-conjugation"
+      "verb-conjugation",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 3,
@@ -12981,7 +13054,8 @@
     ],
     "error_tags_detectable": [
       "verb-conjugation",
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,
@@ -13030,7 +13104,8 @@
     ],
     "error_tags_detectable": [
       "verb-conjugation",
-      "word-order"
+      "word-order",
+      "listening-recognition"
     ],
     "cefr_level": "B2",
     "difficulty": 2,

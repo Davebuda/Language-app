@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 
-interface Row { id?: string; norwegian?: string; concept_ids?: string[]; exercise_types?: string[] }
+interface Row { id?: string; norwegian?: string; concept_ids?: string[]; exercise_types?: string[]; error_tags_detectable?: string[] }
 
 const ROOT = process.cwd()
 const SENT_DIR = join(ROOT, 'content', 'sentences')
@@ -43,20 +43,41 @@ for (const lvl of ['b1', 'b2'] as const) {
   const cap = CONFIG[lvl].cap
 
   const perConcept: Record<string, number> = {}
+  // Idempotency: seed the per-concept counter with sentences ALREADY tagged
+  // listening-comprehension, so re-running respects the cap instead of adding
+  // another batch on top of the existing ones.
+  for (const r of rows) {
+    if ((r.exercise_types ?? []).includes('listening-comprehension')) {
+      const primary = r.concept_ids?.[0] ?? '(none)'
+      perConcept[primary] = (perConcept[primary] ?? 0) + 1
+    }
+  }
   let added = 0
+  let tagAdded = 0
   const samples: string[] = []
   for (const r of rows) {
-    if (!qualifies(r, cap)) continue
-    const primary = r.concept_ids?.[0] ?? '(none)' // original level concept (Q-matrix appended foundational ones after)
-    if ((perConcept[primary] ?? 0) >= PER_CONCEPT_CAP) continue
-    perConcept[primary] = (perConcept[primary] ?? 0) + 1
-    ;(r.exercise_types ??= []).push('listening-comprehension')
-    added++
-    if (samples.length < 4) samples.push(`  · ${r.norwegian}`)
+    let hasListening = (r.exercise_types ?? []).includes('listening-comprehension')
+    if (!hasListening && qualifies(r, cap)) {
+      const primary = r.concept_ids?.[0] ?? '(none)' // original level concept (Q-matrix appended foundational ones after)
+      if ((perConcept[primary] ?? 0) < PER_CONCEPT_CAP) {
+        perConcept[primary] = (perConcept[primary] ?? 0) + 1
+        ;(r.exercise_types ??= []).push('listening-comprehension')
+        hasListening = true
+        added++
+        if (samples.length < 4) samples.push(`  · ${r.norwegian}`)
+      }
+    }
+    // A listening item should DECLARE listening-recognition (matches A1/A2) — it's
+    // a genuinely detectable class on a listen-and-type exercise (classify-error's
+    // listening fallback), so authoring it closes the diagnostic gap honestly.
+    if (hasListening && !(r.error_tags_detectable ?? []).includes('listening-recognition')) {
+      ;(r.error_tags_detectable ??= []).push('listening-recognition')
+      tagAdded++
+    }
   }
 
   writeFileSync(file, JSON.stringify(rows, null, 2) + (raw.endsWith('\n') ? '\n' : ''))
-  console.log(`${lvl.toUpperCase()}: +${added} listening items across ${Object.keys(perConcept).length} concepts (cap ${cap}w, ≤${PER_CONCEPT_CAP}/concept)`)
+  console.log(`${lvl.toUpperCase()}: +${added} listening items across ${Object.keys(perConcept).length} concepts (cap ${cap}w, ≤${PER_CONCEPT_CAP}/concept); +${tagAdded} listening-recognition tags`)
   samples.forEach((s) => console.log(s))
 }
 console.log('\nEnriched. Run `npm run audit:gate` to confirm 0 ERRORS + the coverage gate.')
