@@ -23,7 +23,7 @@ const PRONOUNS = new Set([
 
 // Observations we trust even when they're not in the sentence's authored tag list —
 // the diff signal for these is unambiguous.
-const HIGH_CONFIDENCE = new Set<ErrorTag>(['word-order', 'article-use', 'spelling'])
+const HIGH_CONFIDENCE = new Set<ErrorTag>(['word-order', 'article-use', 'spelling', 'compound-word'])
 
 // Exercise types whose ANSWER is English, not Norwegian. The observed-diff path
 // reasons about Norwegian grammar (articles, V2 word order, adjective endings…),
@@ -115,6 +115,13 @@ function observe(userAnswer: string, correctAnswer: string): ErrorTag | undefine
   // One token inserted or dropped.
   if (Math.abs(u.length - c.length) === 1) {
     const [longer, shorter] = u.length > c.length ? [u, c] : [c, u]
+    // Compound split/join (særskrivning) — two adjacent tokens on the longer side
+    // concatenate to a single token on the shorter side ("kjøkken benk" ↔
+    // "kjøkkenbenk"). A flagship Norwegian L2 error; the concat match is
+    // unambiguous, so it's trusted as HIGH_CONFIDENCE regardless of authored tags.
+    for (let i = 0; i < longer.length - 1; i++) {
+      if (shorter.includes(longer[i] + longer[i + 1])) return 'compound-word'
+    }
     const extra = longer.filter((t) => !shorter.includes(t))
     if (extra.some((t) => NEGATIONS.has(t))) return 'negation-placement'
     if (extra.some((t) => ARTICLES.has(t))) return 'article-use'

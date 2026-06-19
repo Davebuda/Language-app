@@ -235,7 +235,7 @@ const THIN_TAG = 10
 // declaring them. Crediting them keeps the coverage gate honest (it should report
 // EFFECTIVE detectability, not just authored tags). Source of truth: HIGH_CONFIDENCE
 // in classify-error.ts. (Keep in sync if that set changes.)
-const CLASSIFIER_COVERED = new Set<string>(['word-order', 'article-use', 'spelling'])
+const CLASSIFIER_COVERED = new Set<string>(['word-order', 'article-use', 'spelling', 'compound-word'])
 const PRODUCTION_TYPES = new Set<string>(['translation-to-norwegian', 'fill-in-blank', 'word-order'])
 const coverageSummary: string[] = []
 for (const lvl of LEVELS) {

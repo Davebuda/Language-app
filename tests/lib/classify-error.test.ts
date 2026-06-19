@@ -32,6 +32,18 @@ describe('classifyError — observed-error tagging', () => {
     expect(classifyError('jeg snakekr norsk', 'jeg snakker norsk', 'translation-to-norwegian', ['word-order'])).toBe('spelling')
   })
 
+  it('detects compound split (særskrivning) high-confidence, regardless of authored tags', () => {
+    // learner split the compound: "kjøkken benk" → "kjøkkenbenk"
+    expect(classifyError('jeg vil ha en kjøkken benk', 'jeg vil ha en kjøkkenbenk', 'translation-to-norwegian', ['word-order'])).toBe('compound-word')
+    // reverse: learner joined what should be two words
+    expect(classifyError('en lastebil sjåfør', 'en lastebilsjåfør', 'translation-to-norwegian', [])).toBe('compound-word')
+  })
+
+  it('does not false-flag a genuine inserted word as a compound', () => {
+    // "går hjem" vs "går" — a real extra token, no concatenation match
+    expect(classifyError('jeg går hjem nå', 'jeg går nå', 'translation-to-norwegian', [])).not.toBe('compound-word')
+  })
+
   it('defers a murky single-word substitution to the authored candidate', () => {
     // på vs til: not article/pronoun/modal/negation/adj/verb/spelling → wrong-word (low confidence)
     expect(classifyError('jeg går på skolen', 'jeg går til skolen', 'translation-to-norwegian', ['preposition'])).toBe('preposition')
