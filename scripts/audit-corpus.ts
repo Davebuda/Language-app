@@ -229,6 +229,14 @@ for (const lvl of LEVELS) {
 // grammar gates missing from the level concept graph.
 const THIN_TYPE = 10
 const THIN_TAG = 10
+// Error classes the observed-error classifier (src/lib/classify-error.ts) logs
+// HIGH-CONFIDENCE regardless of a sentence's authored error_tags_detectable — so
+// any level with a Norwegian-PRODUCTION exercise can detect these even without
+// declaring them. Crediting them keeps the coverage gate honest (it should report
+// EFFECTIVE detectability, not just authored tags). Source of truth: HIGH_CONFIDENCE
+// in classify-error.ts. (Keep in sync if that set changes.)
+const CLASSIFIER_COVERED = new Set<string>(['word-order', 'article-use', 'spelling'])
+const PRODUCTION_TYPES = new Set<string>(['translation-to-norwegian', 'fill-in-blank', 'word-order'])
 const coverageSummary: string[] = []
 for (const lvl of LEVELS) {
   const c = LEVEL_CONTRACT[lvl]
@@ -245,10 +253,18 @@ for (const lvl of LEVELS) {
     if (n === 0) { cov('WARN', 'allowed-type-uncovered', `${t}: 0 sentences (level offers it, corpus has none)`); typeGaps++ }
     else if (n < THIN_TYPE) { cov('WARN', 'allowed-type-thin', `${t}: only ${n} sentences (< ${THIN_TYPE})`); typeGaps++ }
   }
+  const hasProductionExercise = [...PRODUCTION_TYPES].some((pt) => (exTypeCount[lvl][pt] ?? 0) > 0)
   for (const t of c.expectedErrorTags) {
     const n = errTagCount[lvl][t] ?? 0
-    if (n === 0) { cov('WARN', 'expected-tag-uncovered', `${t}: not exercisable at ${lvl} (diagnostic-surface gap)`); tagGaps++ }
-    else if (n < THIN_TAG) cov('INFO', 'expected-tag-thin', `${t}: only ${n} sentences (< ${THIN_TAG})`)
+    if (n === 0) {
+      // Honest credit: high-confidence classifier classes are detectable on any
+      // production exercise even when no sentence declares them — not a real gap.
+      if (CLASSIFIER_COVERED.has(t) && hasProductionExercise) {
+        cov('INFO', 'tag-classifier-covered', `${t}: not authored, but caught high-confidence by classify-error on production exercises`)
+      } else {
+        cov('WARN', 'expected-tag-uncovered', `${t}: not exercisable at ${lvl} (diagnostic-surface gap)`); tagGaps++
+      }
+    } else if (n < THIN_TAG) cov('INFO', 'expected-tag-thin', `${t}: only ${n} sentences (< ${THIN_TAG})`)
   }
   for (const g of c.gateConcepts) {
     if (!idsInLevel.has(g)) { cov('WARN', 'gate-concept-missing', `${g} not a concept in the ${lvl} graph`); gateGaps++ }
