@@ -7,7 +7,7 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { ListenRespondExercise } from '@/components/muntlig/ListenRespondExercise'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
-import { getListenQuestions } from '@/lib/listenRespondContent'
+import { getListenQuestions, getListenContentLevel } from '@/lib/listenRespondContent'
 import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
 import { markLaneDone } from '@/lib/lane-completion'
 import { saveFingerprint } from '@/storage/indexeddb'
@@ -74,7 +74,12 @@ export function ListenRespondScreen() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [scores, setScores] = useState<ScoreRecord[]>([])
 
-  const levelQuestions = getListenQuestions(fingerprint?.currentLevel ?? 'A1')
+  const currentLevel = fingerprint?.currentLevel ?? 'A1'
+  const levelQuestions = getListenQuestions(currentLevel)
+  // Honest disclosure (Rule 6): A2 has no dedicated questions and reuses A1's —
+  // surface that instead of substituting silently.
+  const listenContentLevel = getListenContentLevel(currentLevel)
+  const isBelowLevelListen = listenContentLevel !== currentLevel
   const focusSet = new Set(fingerprint?.weeklyFocus ?? [])
   const sortedQuestions = [...levelQuestions].sort((a, b) => {
     const aFocus = focusSet.has(a.conceptId) ? 0 : 1
@@ -190,6 +195,13 @@ export function ListenRespondScreen() {
                 <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Spørsmål</span>
                 <span className="text-[0.82rem] font-bold tabular-nums text-[var(--nc-cream-text)]">{sortedQuestions.length} tilgjengelig</span>
               </div>
+
+              {/* Honest below-level disclosure (Rule 6 — no silent substitution) */}
+              {isBelowLevelListen ? (
+                <div className="rounded-[0.5rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2 text-[10px] leading-snug text-[var(--nc-text-dim)]">
+                  Lytteøvelser på {listenContentLevel}-nivå — egne {currentLevel}-øvelser kommer.
+                </div>
+              ) : null}
 
               {/* Question list — dark/cream alternation */}
               <div className="flex flex-col gap-2">

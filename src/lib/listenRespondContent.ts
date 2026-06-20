@@ -274,3 +274,17 @@ export function getListenQuestions(level: string): ListenRespondQuestion[] {
   if (level === 'B1') return B1_QUESTIONS
   return A1_QUESTIONS
 }
+
+/**
+ * The CEFR level whose listen-respond questions are ACTUALLY served for a
+ * learner level. A2 (and unknown) reuse the A1 set — no dedicated A2 questions
+ * exist yet. Exposing this lets the UI honestly disclose below-level content
+ * instead of substituting silently (Operating Rule 6), mirroring
+ * getRoleplayContentLevel.
+ */
+export function getListenContentLevel(level: string): string {
+  if (level === 'B2') return 'B2'
+  if (level === 'B1') return 'B1'
+  if (level === 'A1') return 'A1'
+  return 'A1' // A2 + unknown → A1 questions (no dedicated set yet)
+}
