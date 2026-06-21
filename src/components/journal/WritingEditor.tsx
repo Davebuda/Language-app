@@ -12,7 +12,7 @@ import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { repairBatchFromSurface, recordProductionFromSurface } from '@/engine/repair-from-surface'
-import { confirmedGenderRepair } from '@/lib/gender-correction-gate'
+import { confirmedRepair } from '@/lib/gender-correction-gate'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
@@ -173,19 +173,21 @@ export function WritingEditor() {
     if (lastCommittedTextRef.current === text.trim()) return
     const activeGraph = getGraphForLevel(fingerprint.currentLevel)
 
-    // 1. Errors → repair (negative mastery). Only lexicon-CONFIRMED noun-gender errors pass
-    //    the deterministic verifier; every other AI-claimed error is dropped (show-don't-grade).
-    //    The verified concepts double as the production double-count guard below — it can only
-    //    ever BLOCK a brick, never write a phantom error, so it remains safe.
-    const verifiedGenderInputs = result.errors
-      .map((err) => confirmedGenderRepair({ original: err.wrong ?? '', corrected: err.correct ?? '' }, 'journal'))
+    // 1. Errors → repair (negative mastery). Only deterministically-CONFIRMED corrections
+    //    pass the shared verifier gate — noun-gender (Lever 3) and verb-conjugation (p4
+    //    Lever 2, tense-marker checked against the journal text); every other AI-claimed
+    //    error is dropped (show-don't-grade). The verified concepts double as the production
+    //    double-count guard below — it can only ever BLOCK a brick, never write a phantom
+    //    error, so it remains safe.
+    const verifiedInputs = result.errors
+      .map((err) => confirmedRepair({ original: err.wrong ?? '', corrected: err.correct ?? '', context: text }, 'journal'))
       .filter((input) => input !== null)
-    const errorConceptIds = new Set(verifiedGenderInputs.map((i) => i.conceptId))
+    const errorConceptIds = new Set(verifiedInputs.map((i) => i.conceptId))
 
     let updated = fingerprint
 
-    if (verifiedGenderInputs.length > 0) {
-      updated = repairBatchFromSurface(updated, verifiedGenderInputs, activeGraph)
+    if (verifiedInputs.length > 0) {
+      updated = repairBatchFromSurface(updated, verifiedInputs, activeGraph)
     }
 
     // 2. Correct FREE production → one full mastery brick on the prompt's focus

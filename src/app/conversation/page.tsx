@@ -11,7 +11,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { updateConceptMastery } from '@/engine'
-import { repairFromSurface } from '@/engine/repair-from-surface'
+import { repairFromSurface, type RepairInput } from '@/engine/repair-from-surface'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { emitEvent } from '@/lib/events'
@@ -19,8 +19,7 @@ import { selectConstraint, buildConstraintEvalPrompt } from '@/lib/constraints'
 import type { ResponseConstraint } from '@/lib/constraints'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
-import { verifyGenderCorrection } from '@/lib/gender-verifier'
-import { confirmedGenderRepair } from '@/lib/gender-correction-gate'
+import { confirmedRepair } from '@/lib/gender-correction-gate'
 import { logExerciseResult } from '@/lib/logEvents'
 import type { ExerciseResult } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
@@ -180,12 +179,12 @@ export default function ConversationPage() {
     }
   }
 
-  function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>): void {
+  function logConversationError(correction: NonNullable<ConversationTurnResult['correction']>, input: RepairInput): void {
     const fp = useFingerprintStore.getState().fingerprint
     if (!fp) return
-    // Same shared gate the journal uses — only a verifier-confirmed gender error writes.
-    const input = confirmedGenderRepair({ original: correction.original, corrected: correction.corrected }, 'conversation')
-    if (!input) return
+    // `input` is the verdict of the single shared gate (confirmedRepair) computed at the
+    // call site — a verifier-confirmed noun-gender or verb-conjugation correction. No
+    // second, divergent gate here.
     const activeGraph = getGraphForLevel(fp.currentLevel ?? 'A1')
     const repaired = repairFromSurface(fp, input, activeGraph)
     setFingerprint(repaired)
@@ -257,14 +256,20 @@ export default function ConversationPage() {
       const topicLabel = TOPICS.find((t) => t.id === selectedTopic)?.label ?? 'daglig rutine'
       const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix)
       setConvSource(result.source)
-      // Gate corrections through the deterministic verifier: only a lexicon-confirmed gender
-      // correction is shown / persisted / written; everything else is suppressed (we never
-      // assert an unverifiable correction as truth). Re-tag as noun-gender so the write is honest.
+      // Gate corrections through the deterministic verifiers: only a lexicon/paradigm-
+      // confirmed correction is shown / persisted / written; everything else is suppressed
+      // (we never assert an unverifiable correction as truth). Re-tag to the verified class
+      // so the write is honest. noun-gender (Lever 3) and verb-conjugation (p4 Lever 2) are
+      // armed; every other AI-claimed class stays show-don't-grade until it has its own check.
       const c = result.correction
-      const correction =
-        c && verifyGenderCorrection({ original: c.original, corrected: c.corrected }) === 'confirmed'
-          ? { ...c, errorTag: 'noun-gender' }
-          : undefined
+      const learnerUtterance = [...history].reverse().find((m) => m.role === 'user')?.content ?? ''
+      // ONE gate decides everything: the deterministic verifier confirms the class
+      // (noun-gender or verb-conjugation) or returns null. Its verdict drives both the
+      // displayed correction tag AND the mastery write below — no second, divergent gate.
+      const verifiedRepair = c
+        ? confirmedRepair({ original: c.original, corrected: c.corrected, context: learnerUtterance }, 'conversation')
+        : null
+      const correction = c && verifiedRepair ? { ...c, errorTag: verifiedRepair.errorTag } : undefined
       setMessages((prev) => [...prev, {
         role: 'tutor',
         content: result.tutorResponse,
@@ -272,7 +277,7 @@ export default function ConversationPage() {
       }])
       speakNorwegian(result.tutorResponse)
       void persistTurn('tutor', result.tutorResponse, correction)
-      if (correction) logConversationError(correction)
+      if (correction && verifiedRepair) logConversationError(correction, verifiedRepair)
 
       if (result.constraintMet !== undefined && activeConstraint && !constraintResult) {
         setConstraintResult({ met: result.constraintMet, feedback: result.constraintFeedback })
