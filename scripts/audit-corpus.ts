@@ -265,6 +265,16 @@ for (const lvl of LEVELS) {
     else if (n < THIN_TYPE) { cov('WARN', 'allowed-type-thin', `${t}: only ${n} sentences (< ${THIN_TYPE})`); typeGaps++ }
   }
   const hasProductionExercise = [...PRODUCTION_TYPES].some((pt) => (exTypeCount[lvl][pt] ?? 0) > 0)
+  // A tag is EFFECTIVELY detectable at this level if a sentence declares it OR the
+  // high-confidence classifier catches it on a production exercise.
+  const tagEffectivelyCovered = (tag: string) =>
+    (errTagCount[lvl][tag] ?? 0) > 0 || (CLASSIFIER_COVERED.has(tag) && hasProductionExercise)
+  // noun-gender is rarely authored as a standalone tag, but it is DERIVED as a root
+  // cause by diagnosis rule 1 (article-and-adjective-point-to-gender, src/engine/
+  // diagnosis.ts) from accumulated article-use + adjective-agreement errors. So it
+  // is effectively diagnosable wherever BOTH of those are covered — credit it there
+  // rather than reporting a false gap.
+  const genderDerivable = tagEffectivelyCovered('article-use') && tagEffectivelyCovered('adjective-agreement')
   for (const t of c.expectedErrorTags) {
     const n = errTagCount[lvl][t] ?? 0
     if (n === 0) {
@@ -272,6 +282,8 @@ for (const lvl of LEVELS) {
       // production exercise even when no sentence declares them — not a real gap.
       if (CLASSIFIER_COVERED.has(t) && hasProductionExercise) {
         cov('INFO', 'tag-classifier-covered', `${t}: not authored, but caught high-confidence by classify-error on production exercises`)
+      } else if (t === 'noun-gender' && genderDerivable) {
+        cov('INFO', 'tag-derived-covered', `noun-gender: not authored, but DERIVED by diagnosis rule 1 from article-use + adjective-agreement (both covered at ${lvl})`)
       } else {
         cov('WARN', 'expected-tag-uncovered', `${t}: not exercisable at ${lvl} (diagnostic-surface gap)`); tagGaps++
       }
