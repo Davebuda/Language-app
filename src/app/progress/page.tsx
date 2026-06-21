@@ -9,7 +9,9 @@ import { ConceptProgressRow } from '@/components/progress/ConceptProgressRow'
 import { formatNextReview } from '@/lib/srs-format'
 import { WeeklyTrajectory } from '@/components/progress/WeeklyTrajectory'
 import { getConceptColor } from '@/lib/concept-colors'
-import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { getGraphForLevel, getCumulativeConcepts } from '@/lib/concept-graph-loader'
+import { deriveBreakerStory } from '@/lib/breaker-story'
+import { BreakerStoryPanel } from '@/components/progress/BreakerStoryPanel'
 import type { ConceptNode } from '@/types/concepts'
 
 const PHASE_META: Record<ConceptPhase, { label: string; badgeTone: string; description: string }> = {
@@ -107,6 +109,13 @@ export default function ProgressPage() {
   const totalCount = conceptGraph.concepts.length
   const masteredCount = byPhase.maintenance.length + byPhase.consolidation.length
 
+  // The breaker story (T1.3): what's breaking the learner's sentences, shrinking,
+  // and what they've fixed — derived from the real error log + mastery, cross-level
+  // labelled (a breaker can be an A1 prereq surfacing at B1). Honest empty state.
+  const breakerStory = fingerprint
+    ? deriveBreakerStory(fingerprint, getCumulativeConcepts(levelLabel))
+    : { active: [], retired: [] }
+
   return (
     <div className="nc-gradient-page nc-secondary-flow flex min-h-dvh flex-col">
       <main className="nc-mobile-shell nc-flow-shell">
@@ -119,6 +128,10 @@ export default function ProgressPage() {
             {levelLabel} — {masteredCount} av {totalCount} konsepter ligger i befestning eller vedlikehold.
           </p>
         </div>
+
+        {/* ── Breaker story (T1.3) — what breaks the learner's sentences, it
+            shrinking, and what they've fixed. The core promise made visible. ── */}
+        <BreakerStoryPanel story={breakerStory} />
 
         {/* Phase distribution bar — cream panel for contrast after lime hero */}
         {totalCount > 0 && (
