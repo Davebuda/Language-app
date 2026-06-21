@@ -15,7 +15,7 @@ import { ADJ_PARADIGMS } from './adj-forms'
 
 export type AdjectiveVerdict = 'confirmed' | 'rejected' | 'not-applicable'
 
-const SLOTS = ['common', 'neuter', 'plurdef'] as const
+// Agreement slot index into a paradigm's [common, neuter, pluralDefinite].
 type AgrSlot = 0 | 1 | 2
 
 // form -> lemmas whose paradigm contains it (any slot).
