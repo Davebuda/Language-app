@@ -3,12 +3,13 @@ gsd_state_version: 1.0
 milestone: stabilization
 milestone_name: Stabilization — harden the shipped core loop; prove the moat
 status: in progress
-stopped_at: 2026-06-19 — big /recourse→autopilot→council session: p3 (moat visibility) DONE, p6 gating half DONE, W1 listening parity DONE. 11 commits pushed to origin/main (HEAD 251de03). Remaining p6 = W2/W3/W5 completeness authoring (linguist-gated).
-last_updated: "2026-06-19"
-last_activity: 2026-06-19 — shipped p3 (3 pillars), p6 gating (contract/Q-matrix/remediate-at-level/ceilings/at-level validator), AI-gibberish gate-off, W1 listening parity. All audit:gate AUDIT-CLEAN; pushed to origin.
-head: 251de03
-test_count: ~720 (audit:gate green; new unit suites: contract, detectors, at-level-select, level-signals, selection-justification, +health repoint)
-deployed: pandoai.no (Hetzner) — origin/main is AHEAD of deployed; redeploy when ready (push main → ssh pull/build/pm2 reload + audio already present)
+stopped_at: 2026-06-21 — deploy + reconcile + W2 cloze session. Shipped & DEPLOYED: p6 build (f372b2e), Operating Rule 9 reconcile-before-deploy (now also a GLOBAL non-negotiable), landing auth-label fix, /listen A2 honesty (W5), and B1+B2 cloze passages (W2 — closes the "B1/B2 cloze pending" gap). Repo↔live fully reconciled; 5 stale git stashes cleared. HEAD dd15640.
+last_updated: "2026-06-21"
+last_activity: 2026-06-21 — /listen A2 silent-A1-fallback made honest (W5, mirrors roleplay ff07943); B1 cloze (5 passages, content/passages/b1.json) + B2 cloze (5 passages, content/passages/b2.json) authored → norwegian-linguist gated (every gap's valid alternatives added to accepted_answers for the open-input grader) → merged → pool-wired → reachability-tested. All audit:gate AUDIT-CLEAN; pushed + deployed.
+head: dd15640
+test_count: ~730 (audit:gate green; +listen-content-level, +passage-pool-b1, +passage-pool-b2 suites)
+deployed: pandoai.no (Hetzner) — IN SYNC with origin/main as of 2026-06-21 deploy. Deploy discipline now codified (Operating Rule 9): reconcile 3 trees + gate ALONE before every deploy.
+remaining_p6: W2 reading/skriv multi-level (content, linguist-gated) + more B1/B2 cloze concepts if wanted; W3 grammar gates; W4 medium-confidence B2 error tags (pronoun/modal/negation — a Rule-8 diagnosis DECISION, needs sign-off). p3 moat-visibility + p6 gating half + W1 listening + W5 honesty all DONE.
 ---
 
 # Project State
