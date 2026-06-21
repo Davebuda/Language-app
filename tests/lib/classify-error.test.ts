@@ -90,4 +90,22 @@ describe('classifyError — observed-error tagging', () => {
     expect(classifyError('jeg sier ikke', 'jeg sier ja', 'translation-to-norwegian', [])).not.toBe('negation-placement')
     expect(classifyError('jeg sier ikke', 'jeg sier ja', 'translation-to-norwegian', [])).toBe('wrong-word-same-category')
   })
+
+  // p6 — wrong-word-different-category via the deterministic POS lexicon (pos-map.ts):
+  // a single-token swap between two KNOWN words with DISJOINT part-of-speech sets.
+  it('detects wrong-word-different-category from a disjoint-POS swap, trusted over authored', () => {
+    // raskt (adj) typed where sykkel (noun) belongs — disjoint POS, high-confidence
+    expect(classifyError('jeg kjøpte raskt', 'jeg kjøpte sykkel', 'translation-to-norwegian', ['word-order'])).toBe('wrong-word-different-category')
+    // preposition where a noun belongs
+    expect(classifyError('han leser på', 'han leser bok', 'translation-to-norwegian', [])).toBe('wrong-word-different-category')
+  })
+
+  it('does NOT claim different-category when POS sets overlap (same category)', () => {
+    // sykkel and bok are both nouns → overlap → same-category, not different
+    expect(classifyError('jeg fant en sykkel', 'jeg fant en bok', 'translation-to-norwegian', [])).toBe('wrong-word-same-category')
+  })
+
+  it('is OOV-safe: an unknown word never yields wrong-word-different-category', () => {
+    expect(classifyError('jeg fant en blarghx', 'jeg fant en bok', 'translation-to-norwegian', [])).not.toBe('wrong-word-different-category')
+  })
 })

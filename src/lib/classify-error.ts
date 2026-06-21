@@ -9,6 +9,7 @@
 // declared candidate tags but trusting high-confidence observations even when
 // they fall outside that list.
 import { normalizeAnswer } from './answer'
+import { POS_MAP } from './pos-map'
 import type { ErrorTag } from '@/types/taxonomy'
 import type { ExerciseType } from '@/types/session'
 
@@ -37,6 +38,9 @@ const HIGH_CONFIDENCE = new Set<ErrorTag>([
   'modal-verb',
   'pronoun-choice',
   'negation-placement',
+  // A disjoint-POS swap (two known words, no shared part of speech) is an
+  // unambiguous wrong-word-DIFFERENT-category error — see observe()/pos-map.ts.
+  'wrong-word-different-category',
 ])
 
 // Exercise types whose ANSWER is English, not Norwegian. The observed-diff path
@@ -127,6 +131,14 @@ function observe(userAnswer: string, correctAnswer: string): ErrorTag | undefine
       if (adjEndingVariant(uw, cw)) return 'adjective-agreement'
       if (verbFormVariant(uw, cw)) return 'verb-tense'
       if (levenshtein(uw, cw) <= 2) return 'spelling'
+      // Deterministic POS check (src/lib/pos-map.ts, Norsk-ordbank CC-BY): a swap
+      // between two KNOWN words with DISJOINT part-of-speech sets is a
+      // wrong-word-DIFFERENT-category error (e.g. a noun typed where a verb
+      // belongs). OOV-safe: if either word is absent from the lexicon, or their
+      // POS sets overlap at all, fall back to the low-confidence same-category.
+      const up = POS_MAP[uw]
+      const cp = POS_MAP[cw]
+      if (up && cp && (up & cp) === 0) return 'wrong-word-different-category'
       return 'wrong-word-same-category'
     }
     return undefined // multiple substitutions — too ambiguous to call

@@ -246,6 +246,9 @@ const CLASSIFIER_COVERED = new Set<string>([
   'modal-verb',
   'pronoun-choice',
   'negation-placement',
+  // Caught when a single-token swap has DISJOINT POS sets in the Norsk-ordbank POS
+  // lexicon (src/lib/pos-map.ts) — deterministic, OOV-safe. See classify-error.ts.
+  'wrong-word-different-category',
 ])
 const PRODUCTION_TYPES = new Set<string>(['translation-to-norwegian', 'fill-in-blank', 'word-order'])
 const coverageSummary: string[] = []
