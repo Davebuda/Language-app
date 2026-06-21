@@ -29,6 +29,19 @@ describe('confirmedRepair — shared verifier gate (gender + conjugation)', () =
     expect(r!.conceptId).toBeTruthy()
   })
 
+  it('admits a confirmed compound-word correction as a compound-word repair (no context needed)', () => {
+    const r = confirmedRepair({ original: 'fot ball', corrected: 'fotball' }, 'conversation')
+    expect(r).not.toBeNull()
+    expect(r!.errorTag).toBe('compound-word')
+    expect(r!.conceptId).toBeTruthy()
+    expect(r!.wrong).toBe('fot ball')
+    expect(r!.correct).toBe('fotball')
+  })
+
+  it('drops an over-join into a non-word (jeg ser → jegser cannot be verified)', () => {
+    expect(confirmedRepair({ original: 'jeg ser', corrected: 'jegser' }, 'journal')).toBeNull()
+  })
+
   it('drops a conjugation correction with no tense context (cannot verify → no write)', () => {
     expect(confirmedRepair({ original: 'spiser', corrected: 'spiste' }, 'conversation')).toBeNull()
   })

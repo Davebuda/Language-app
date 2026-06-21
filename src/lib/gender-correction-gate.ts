@@ -9,6 +9,7 @@
 import { verifyGenderCorrection } from './gender-verifier'
 import { verifyConjugationCorrection } from './conjugation-verifier'
 import { verifyAdjectiveCorrection } from './adjective-verifier'
+import { verifyCompoundCorrection } from './compound-verifier'
 import { errorTagToConceptId } from './error-tag-to-concept'
 import type { RepairInput, SurfaceKind } from '@/engine/repair-from-surface'
 
@@ -29,14 +30,17 @@ export function confirmedGenderRepair(
 // The single per-correction gate for ALL deterministically-verifiable classes.
 // An AI correction is admitted to the fingerprint ONLY when a deterministic verifier
 // confirms it; the verifier (not the AI) decides the class. noun-gender (Lever 3),
-// verb-conjugation and adjective-agreement (p4 Lever 2) are armed; every other class
-// returns null (show-don't-grade). `context` is the learner's full utterance/text —
-// required for the conjugation tense check and the adjective determiner check.
+// verb-conjugation, adjective-agreement and compound-word (p4 Lever 2) are armed;
+// every other class returns null (show-don't-grade). `context` is the learner's full
+// utterance/text — required for the conjugation tense check and the adjective
+// determiner check (gender + compound-word are self-contained and need no context).
 export function confirmedRepair(
   correction: { original: string; corrected: string; context?: string },
   surfaceKind: SurfaceKind,
 ): RepairInput | null {
-  const build = (errorTag: 'noun-gender' | 'verb-conjugation' | 'adjective-agreement'): RepairInput => ({
+  const build = (
+    errorTag: 'noun-gender' | 'verb-conjugation' | 'adjective-agreement' | 'compound-word',
+  ): RepairInput => ({
     surfaceKind,
     errorTag,
     conceptId: errorTagToConceptId(errorTag),
@@ -45,6 +49,7 @@ export function confirmedRepair(
   })
 
   if (verifyGenderCorrection(correction) === 'confirmed') return build('noun-gender')
+  if (verifyCompoundCorrection(correction) === 'confirmed') return build('compound-word')
 
   if (correction.context) {
     const ctx = correction.context
