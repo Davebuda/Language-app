@@ -114,6 +114,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "He works in the hospital every day"
     ]
   },
   {
@@ -159,6 +162,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "We are going on vacation to Sweden next week",
+      "We're going to Sweden on holiday next week"
     ]
   },
   {
@@ -180,6 +187,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "They have three kids and live in the countryside",
+      "They have three children and live in the country"
     ]
   },
   {
@@ -278,6 +289,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "A dog lies in front of the door",
+      "There is a dog lying in front of the door"
     ]
   },
   {
@@ -300,6 +315,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "An apple costs five crowns today",
+      "Today an apple costs five kroner"
     ]
   },
   {
@@ -322,6 +341,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "A girl and a boy play in the park"
     ]
   },
   {
@@ -344,6 +366,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "A teacher explains the rules to a new student",
+      "A teacher is explaining the rules to a new pupil"
     ]
   },
   {
@@ -442,6 +468,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "The store is open until eight o'clock",
+      "The shop is open until eight"
     ]
   },
   {
@@ -464,6 +494,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "He was sick all of last week",
+      "He was sick all last week"
     ]
   },
   {
@@ -486,6 +520,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "There are a lot of people at the market on Saturday morning",
+      "There are many people in the square on Saturday morning"
     ]
   },
   {
@@ -584,6 +622,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "I have two cats and a dog"
     ]
   },
   {
@@ -606,6 +647,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "A week has seven days",
+      "There are seven days in one week"
     ]
   },
   {
@@ -628,6 +673,11 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "Milk costs twenty-two kroner in this shop",
+      "The milk costs twenty-two crowns in this shop",
+      "The milk costs 22 kroner in this shop"
     ]
   },
   {
@@ -726,6 +776,10 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "The book is on the table in the living room",
+      "The book lies on the table in the living room"
     ]
   },
   {
