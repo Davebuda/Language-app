@@ -22,8 +22,22 @@ const PRONOUNS = new Set([
 ])
 
 // Observations we trust even when they're not in the sentence's authored tag list —
-// the diff signal for these is unambiguous.
-const HIGH_CONFIDENCE = new Set<ErrorTag>(['word-order', 'article-use', 'spelling', 'compound-word'])
+// the diff signal for these is unambiguous. modal-verb / pronoun-choice /
+// negation-placement use the IDENTICAL clean closed-class single-substitution
+// logic as the long-trusted article-use (both tokens in the same closed class),
+// so they carry the same precision and are trusted likewise (p6 W4). This closes
+// the B2 gap where a clean pronoun/modal swap was detected then discarded in
+// favour of the sentence's authored tag (B2 authors 0 pronoun/0 modal tags), so
+// such errors were mislabelled (usually word-order) and invisible to diagnosis.
+const HIGH_CONFIDENCE = new Set<ErrorTag>([
+  'word-order',
+  'article-use',
+  'spelling',
+  'compound-word',
+  'modal-verb',
+  'pronoun-choice',
+  'negation-placement',
+])
 
 // Exercise types whose ANSWER is English, not Norwegian. The observed-diff path
 // reasons about Norwegian grammar (articles, V2 word order, adjective endings…),
@@ -101,7 +115,13 @@ function observe(userAnswer: string, correctAnswer: string): ErrorTag | undefine
     if (diffs.length === 1) {
       const [uw, cw] = diffs[0]
       if (ARTICLES.has(uw) && ARTICLES.has(cw)) return 'article-use'
-      if (NEGATIONS.has(uw) || NEGATIONS.has(cw)) return 'negation-placement'
+      // AND (both negations) — a clean negation-for-negation swap (ikke↔aldri).
+      // A negation-for-non-negation swap is a lexical/meaning error, not placement,
+      // so it falls through to wrong-word-same-category. Symmetric with the
+      // article/modal/pronoun closed-class checks below, which lets it be trusted
+      // as HIGH_CONFIDENCE. (True ikke-misplacement is the word-order / extra-token
+      // branches, not a same-length single substitution.)
+      if (NEGATIONS.has(uw) && NEGATIONS.has(cw)) return 'negation-placement'
       if (MODALS.has(uw) && MODALS.has(cw)) return 'modal-verb'
       if (PRONOUNS.has(uw) && PRONOUNS.has(cw)) return 'pronoun-choice'
       if (adjEndingVariant(uw, cw)) return 'adjective-agreement'

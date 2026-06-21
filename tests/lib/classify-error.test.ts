@@ -68,4 +68,26 @@ describe('classifyError — observed-error tagging', () => {
   it('never crashes on empty user answer; defers to authored', () => {
     expect(classifyError('', 'jeg er glad', 'fill-in-blank', ['article-use'])).toBe('article-use')
   })
+
+  // p6 W4 — modal-verb / pronoun-choice / negation-placement promoted to
+  // HIGH_CONFIDENCE: a clean closed-class single swap is now trusted even when it
+  // contradicts the sentence's authored tag (B2 authors 0 pronoun/0 modal tags,
+  // so these were previously discarded and mislabelled as word-order).
+  it('trusts modal-verb over an authored tag (clean modal swap)', () => {
+    expect(classifyError('jeg kan gå', 'jeg må gå', 'translation-to-norwegian', ['word-order'])).toBe('modal-verb')
+  })
+
+  it('trusts pronoun-choice over an authored tag (clean pronoun swap)', () => {
+    expect(classifyError('han ser ham', 'han ser henne', 'translation-to-norwegian', ['word-order'])).toBe('pronoun-choice')
+  })
+
+  it('trusts negation-placement over an authored tag for a clean negation-for-negation swap', () => {
+    expect(classifyError('jeg går aldri', 'jeg går ikke', 'translation-to-norwegian', ['word-order'])).toBe('negation-placement')
+  })
+
+  it('tightened negation: a negation-for-non-negation swap is NOT negation-placement', () => {
+    // only one side is a negation → lexical/meaning error, falls through (no false placement flag)
+    expect(classifyError('jeg sier ikke', 'jeg sier ja', 'translation-to-norwegian', [])).not.toBe('negation-placement')
+    expect(classifyError('jeg sier ikke', 'jeg sier ja', 'translation-to-norwegian', [])).toBe('wrong-word-same-category')
+  })
 })
