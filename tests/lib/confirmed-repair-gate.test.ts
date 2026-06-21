@@ -19,6 +19,16 @@ describe('confirmedRepair — shared verifier gate (gender + conjugation)', () =
     expect(r!.correct).toBe('spiste')
   })
 
+  it('admits a confirmed adjective-agreement correction as an adjective-agreement repair', () => {
+    const r = confirmedRepair(
+      { original: 'stor', corrected: 'stort', context: 'jeg har et stor hus' },
+      'journal',
+    )
+    expect(r).not.toBeNull()
+    expect(r!.errorTag).toBe('adjective-agreement')
+    expect(r!.conceptId).toBeTruthy()
+  })
+
   it('drops a conjugation correction with no tense context (cannot verify → no write)', () => {
     expect(confirmedRepair({ original: 'spiser', corrected: 'spiste' }, 'conversation')).toBeNull()
   })
