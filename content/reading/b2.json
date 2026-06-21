@@ -1,0 +1,205 @@
+[
+  {
+    "id": "b2-rp-001",
+    "cefrLevel": "B2",
+    "title": "Hjemmekontor – frihet eller felle?",
+    "primaryConceptId": "complex-argumentation",
+    "conceptIds": [
+      "complex-argumentation",
+      "text-cohesion",
+      "advanced-word-order"
+    ],
+    "difficulty": 3,
+    "paragraphs": [
+      "Etter pandemien har stadig flere nordmenn fått mulighet til å jobbe hjemmefra. For mange har dette blitt en selvfølgelig del av arbeidshverdagen. Likevel er det ikke alle som mener at utviklingen utelukkende er positiv.",
+      "På den ene siden gir hjemmekontoret større frihet. Ansatte slipper lange reiser til og fra jobben, og de kan ofte planlegge dagen mer fleksibelt. Mange opplever at de får gjort mer når de unngår stadige avbrytelser i et åpent kontorlandskap.",
+      "På den andre siden advarer enkelte mot at grensene mellom arbeid og fritid viskes ut. Når stuen blir til et kontor, kan det bli vanskelig å koble av. Følgelig rapporterer noen at de jobber flere timer enn før, selv om de i utgangspunktet ønsket mer balanse.",
+      "Arbeidsgivere står dermed overfor et dilemma. De ønsker fornøyde ansatte, men de er samtidig avhengige av godt samarbeid. Et team som sjelden møtes fysisk, kan miste noe av den uformelle kontakten som ofte skaper gode ideer.",
+      "Etter min vurdering finnes det ingen enkel fasit. Den beste løsningen er trolig en kombinasjon, der ansatte møtes på kontoret noen dager i uken og jobber hjemme resten. Slik kan man beholde fleksibiliteten uten å miste fellesskapet."
+    ],
+    "englishGloss": "Remote work after the pandemic brings freedom but blurs the line between work and free time; the writer argues a hybrid solution keeps flexibility without losing the team.",
+    "sentences": [
+      "Etter pandemien har stadig flere nordmenn fått mulighet til å jobbe hjemmefra.",
+      "For mange har dette blitt en selvfølgelig del av arbeidshverdagen.",
+      "Likevel er det ikke alle som mener at utviklingen utelukkende er positiv.",
+      "På den ene siden gir hjemmekontoret større frihet.",
+      "Ansatte slipper lange reiser til og fra jobben, og de kan ofte planlegge dagen mer fleksibelt.",
+      "Mange opplever at de får gjort mer når de unngår stadige avbrytelser i et åpent kontorlandskap.",
+      "På den andre siden advarer enkelte mot at grensene mellom arbeid og fritid viskes ut.",
+      "Når stuen blir til et kontor, kan det bli vanskelig å koble av.",
+      "Følgelig rapporterer noen at de jobber flere timer enn før, selv om de i utgangspunktet ønsket mer balanse.",
+      "Arbeidsgivere står dermed overfor et dilemma.",
+      "De ønsker fornøyde ansatte, men de er samtidig avhengige av godt samarbeid.",
+      "Et team som sjelden møtes fysisk, kan miste noe av den uformelle kontakten som ofte skaper gode ideer.",
+      "Etter min vurdering finnes det ingen enkel fasit.",
+      "Den beste løsningen er trolig en kombinasjon, der ansatte møtes på kontoret noen dager i uken og jobber hjemme resten.",
+      "Slik kan man beholde fleksibiliteten uten å miste fellesskapet."
+    ],
+    "reciteTargetIndices": [
+      5,
+      6,
+      8
+    ],
+    "writePrompt": "Bør ansatte få bestemme selv om de vil jobbe hjemmefra? Skriv din mening, og bruk argumenter både for og imot.",
+    "targetConnectors": [
+      "på den ene siden",
+      "på den andre siden",
+      "følgelig",
+      "dermed"
+    ],
+    "targetStructureTag": "word-order",
+    "passageContentWords": [
+      "hjemmekontor",
+      "pandemien",
+      "arbeidshverdagen",
+      "frihet",
+      "ansatte",
+      "reiser",
+      "fleksibelt",
+      "kontorlandskap",
+      "fritid",
+      "balanse",
+      "arbeidsgivere",
+      "samarbeid",
+      "team",
+      "kombinasjon",
+      "fellesskapet"
+    ]
+  },
+  {
+    "id": "b2-rp-002",
+    "cefrLevel": "B2",
+    "title": "Sosiale medier – velsignelse og byrde",
+    "primaryConceptId": "text-cohesion",
+    "conceptIds": [
+      "text-cohesion",
+      "complex-argumentation",
+      "nuanced-register"
+    ],
+    "difficulty": 3,
+    "paragraphs": [
+      "Sosiale medier har på kort tid endret måten vi kommuniserer på. For bare tjue år siden var det utenkelig at man kunne følge livet til mennesker på den andre siden av kloden. I dag skjer dette helt automatisk, ofte uten at vi tenker over det.",
+      "Fordelene er åpenbare. Vi holder kontakten med venner og familie, uansett hvor de befinner seg. Dessuten har mindre bedrifter fått en helt ny mulighet til å nå kundene sine uten store kostnader.",
+      "Samtidig er det grunn til bekymring. Mange opplever et press til alltid å fremstå vellykket. Følgelig kan stadig sammenligning med andre svekke selvfølelsen, særlig hos unge. Forskere peker dessuten på at altfor mye skjermtid kan gå ut over søvnen.",
+      "Det er imidlertid for enkelt å gi teknologien all skyld. Verktøyene i seg selv er verken gode eller dårlige; det avgjørende er hvordan vi bruker dem. En bevisst bruker kan hente ut det beste og samtidig sette tydelige grenser.",
+      "For øvrig bør skolen ta et større ansvar. Hvis barn tidlig lærer å vurdere kritisk det de ser på nettet, vil de stå bedre rustet senere. På den måten kan vi dra nytte av teknologien uten å bli styrt av den."
+    ],
+    "englishGloss": "Social media connects us and helps small businesses, but fuels comparison and harms sleep; the writer argues the tools are neutral and that conscious use and schooling matter most.",
+    "sentences": [
+      "Sosiale medier har på kort tid endret måten vi kommuniserer på.",
+      "For bare tjue år siden var det utenkelig at man kunne følge livet til mennesker på den andre siden av kloden.",
+      "I dag skjer dette helt automatisk, ofte uten at vi tenker over det.",
+      "Fordelene er åpenbare.",
+      "Vi holder kontakten med venner og familie, uansett hvor de befinner seg.",
+      "Dessuten har mindre bedrifter fått en helt ny mulighet til å nå kundene sine uten store kostnader.",
+      "Samtidig er det grunn til bekymring.",
+      "Mange opplever et press til alltid å fremstå vellykket.",
+      "Følgelig kan stadig sammenligning med andre svekke selvfølelsen, særlig hos unge.",
+      "Forskere peker dessuten på at altfor mye skjermtid kan gå ut over søvnen.",
+      "Det er imidlertid for enkelt å gi teknologien all skyld.",
+      "Verktøyene i seg selv er verken gode eller dårlige; det avgjørende er hvordan vi bruker dem.",
+      "En bevisst bruker kan hente ut det beste og samtidig sette tydelige grenser.",
+      "For øvrig bør skolen ta et større ansvar.",
+      "Hvis barn tidlig lærer å vurdere kritisk det de ser på nettet, vil de stå bedre rustet senere.",
+      "På den måten kan vi dra nytte av teknologien uten å bli styrt av den."
+    ],
+    "reciteTargetIndices": [
+      5,
+      8,
+      10
+    ],
+    "writePrompt": "Hvilken rolle spiller sosiale medier i livet ditt? Skriv om både fordeler og ulemper, og bruk bindeord som knytter tankene sammen.",
+    "targetConnectors": [
+      "dessuten",
+      "følgelig",
+      "imidlertid",
+      "for øvrig"
+    ],
+    "targetStructureTag": "wrong-word-same-category",
+    "passageContentWords": [
+      "medier",
+      "kommuniserer",
+      "utenkelig",
+      "kloden",
+      "fordelene",
+      "kontakten",
+      "bedrifter",
+      "kundene",
+      "bekymring",
+      "vellykket",
+      "selvfølelsen",
+      "skjermtid",
+      "søvnen",
+      "teknologien",
+      "grenser",
+      "skolen"
+    ]
+  },
+  {
+    "id": "b2-rp-003",
+    "cefrLevel": "B2",
+    "title": "Mindre matsvinn, mer ansvar",
+    "primaryConceptId": "advanced-passive",
+    "conceptIds": [
+      "advanced-passive",
+      "complex-argumentation",
+      "text-cohesion"
+    ],
+    "difficulty": 3,
+    "paragraphs": [
+      "Hvert år kastes det store mengder mat i norske husholdninger. Mye av dette kunne vært unngått dersom varene ble oppbevart riktig. Derfor settes det nå i gang flere tiltak for å redusere matsvinnet.",
+      "I mange kommuner innføres det egne ordninger for sortering av avfall. Matrester samles inn separat og brukes til å produsere biogass. På den måten gjøres et problem om til en ressurs.",
+      "Det understrekes likevel at ansvaret ikke kan legges på myndighetene alene. Forbrukerne må selv ta gjennomtenkte valg når de handler. Ettersom holdninger endres langsomt, kreves det både informasjon og tålmodighet.",
+      "Enkelte hevder at det koster mer enn det smaker å gjennomføre slike tiltak. Det argumenteres med at sorteringen tar tid, og at gevinsten er usikker. Likevel viser erfaringer fra andre land at innsatsen lønner seg på sikt.",
+      "Etter hvert som flere blir bevisste, vil vanene trolig endres. Når barn lærer å sortere allerede i barnehagen, blir det en naturlig del av hverdagen. Slik kan et lite tiltak få stor betydning over tid."
+    ],
+    "englishGloss": "Norwegian households waste much food; municipalities sort waste into biogas, but the writer stresses consumers share responsibility and that small measures pay off over time.",
+    "sentences": [
+      "Hvert år kastes det store mengder mat i norske husholdninger.",
+      "Mye av dette kunne vært unngått dersom varene ble oppbevart riktig.",
+      "Derfor settes det nå i gang flere tiltak for å redusere matsvinnet.",
+      "I mange kommuner innføres det egne ordninger for sortering av avfall.",
+      "Matrester samles inn separat og brukes til å produsere biogass.",
+      "På den måten gjøres et problem om til en ressurs.",
+      "Det understrekes likevel at ansvaret ikke kan legges på myndighetene alene.",
+      "Forbrukerne må selv ta gjennomtenkte valg når de handler.",
+      "Ettersom holdninger endres langsomt, kreves det både informasjon og tålmodighet.",
+      "Enkelte hevder at det koster mer enn det smaker å gjennomføre slike tiltak.",
+      "Det argumenteres med at sorteringen tar tid, og at gevinsten er usikker.",
+      "Likevel viser erfaringer fra andre land at innsatsen lønner seg på sikt.",
+      "Etter hvert som flere blir bevisste, vil vanene trolig endres.",
+      "Når barn lærer å sortere allerede i barnehagen, blir det en naturlig del av hverdagen.",
+      "Slik kan et lite tiltak få stor betydning over tid."
+    ],
+    "reciteTargetIndices": [
+      0,
+      3,
+      8
+    ],
+    "writePrompt": "Hva kan gjøres for å redusere matsvinn? Skriv om hvilke tiltak du mener er viktigst, og begrunn synet ditt.",
+    "targetConnectors": [
+      "dersom",
+      "ettersom",
+      "derfor",
+      "likevel"
+    ],
+    "targetStructureTag": "verb-conjugation",
+    "passageContentWords": [
+      "matsvinn",
+      "husholdninger",
+      "oppbevart",
+      "tiltak",
+      "kommuner",
+      "sortering",
+      "avfall",
+      "matrester",
+      "biogass",
+      "ressurs",
+      "myndighetene",
+      "forbrukerne",
+      "holdninger",
+      "barnehagen",
+      "hverdagen"
+    ]
+  }
+]

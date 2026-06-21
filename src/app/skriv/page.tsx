@@ -4,7 +4,7 @@ import type { ReadingPassage } from '@/types/content'
 
 export const metadata = { title: 'Skriv — NorskCoach' }
 
-// Standalone read→recite→write lane. B1-only v1; the client screen applies the
+// Standalone read→recite→write lane. B1+B2 content; the client screen applies the
 // honest level gate (a learner below B1 sees a "kommer for ditt nivå" message).
 export default function SkrivPage() {
   const passages: ReadingPassage[] = Object.values(SEED_READING_PASSAGES)

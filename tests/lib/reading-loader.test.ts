@@ -2,12 +2,16 @@ import { describe, it, expect } from 'vitest'
 import { SEED_READING_PASSAGES, SEED_READING_PASSAGE_IDS } from '@/lib/reading-loader'
 import { ALL_ERROR_TAGS } from '@/types/taxonomy'
 
-describe('reading-loader (B1 seed content)', () => {
+describe('reading-loader (B1+B2 seed content)', () => {
   const passages = Object.values(SEED_READING_PASSAGES)
 
-  it('loads the 6 seeded B1 passages', () => {
-    expect(passages.length).toBe(6)
-    expect(passages.every((p) => p.cefrLevel === 'B1')).toBe(true)
+  it('loads the seeded B1 and B2 passages', () => {
+    const b1 = passages.filter((p) => p.cefrLevel === 'B1')
+    const b2 = passages.filter((p) => p.cefrLevel === 'B2')
+    expect(b1.length).toBe(6)
+    expect(b2.length).toBe(3)
+    // no below-B1 content yet (A1/A2 hit the honest gate, not silent substitution)
+    expect(passages.every((p) => p.cefrLevel === 'B1' || p.cefrLevel === 'B2')).toBe(true)
   })
 
   it('keys passages by primaryConceptId', () => {

@@ -7,7 +7,8 @@
 //   RECITE → speakingMinutesTotal + one self-reported recognition brick (no %)
 //   WRITE  → deterministic production brick (recordProductionFromSurface) +,
 //            when AI is up, per-error repair bricks; structure-miss → repair brick.
-// Standalone /skriv lane. B1-only v1 (honest level gate for A1/A2).
+// Standalone /skriv lane. B1+B2 content (honest level gate for A1/A2; a B2
+// learner draws B2 passages, a B1 learner B1, via the at-or-below level filter).
 
 import { useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
