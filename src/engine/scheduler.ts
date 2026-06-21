@@ -4,7 +4,7 @@ import type { Session, SessionItem, SessionBlock, SessionRecipe, ExerciseType, S
 import type { Sentence, ClozePassage } from '@/types/content';
 import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES, isNotYetAvailableType, sentenceSupportsType } from '@/types/session';
 import { isMastered } from './fingerprint';
-import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis } from './diagnosis';
+import { getPrimaryWeakConcepts, getDecayingConcepts, getReviewDueConcepts, runDiagnosis, type DiagnosisResult } from './diagnosis';
 import { getUnlockedConcepts } from '@/types/concepts';
 import { getCumulativeConcepts } from '@/lib/concept-graph-loader';
 import { buildClozeFromSentence } from '@/lib/auto-cloze';
@@ -66,14 +66,24 @@ function resolvePool(
   defaultPool: ExerciseType[],
   productionGap: number,
   preference: InputProductionPreference = 'balanced',
+  recommendedFocus?: DiagnosisResult['recommendedFocus'],
 ): ExerciseType[] {
-  // Hard production-gap signal overrides preference
+  // 1. Hard per-concept production-gap signal — direct evidence, wins outright.
   if (productionGap > 30) return PRODUCTION_EXERCISES;
   if (productionGap < -30) return RECOGNITION_EXERCISES;
 
-  // Soft preference bias: shift the pool without fully overriding it
+  // 2. Explicit user preference (a chosen setting outranks an inferred one).
   if (preference === 'production_heavy') return PRODUCTION_EXERCISES;
   if (preference === 'input_heavy') return RECOGNITION_EXERCISES;
+
+  // 3. Balanced/default: let a high-confidence diagnosis tilt the modality, so a
+  // 'production'/'mechanics'/'application' root cause draws production exercises
+  // and a 'recognition' one draws recognition. Only the remediation block passes
+  // recommendedFocus — review/new/interleaving keep their default pools.
+  if (recommendedFocus === 'production' || recommendedFocus === 'mechanics' || recommendedFocus === 'application') {
+    return PRODUCTION_EXERCISES;
+  }
+  if (recommendedFocus === 'recognition') return RECOGNITION_EXERCISES;
   return defaultPool;
 }
 
@@ -208,9 +218,10 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     purpose: SessionItem['purpose'],
     selectionReason: SelectionReason,
     excludePassed: boolean = true,
+    recommendedFocus?: DiagnosisResult['recommendedFocus'],
   ): boolean {
     const gap = fingerprint.productionGap[conceptId] ?? 0;
-    const adjusted = resolvePool(exercises, gap, preference);
+    const adjusted = resolvePool(exercises, gap, preference, recommendedFocus);
 
     // Anti-repetition: prefer types not used in the last two exercises, then
     // fall back to the full adjusted pool if nothing deduped is eligible.
@@ -245,6 +256,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     fallbackPool: string[],
     selectionReason: SelectionReason,
     excludePassed: boolean = true,
+    recommendedFocus?: DiagnosisResult['recommendedFocus'],
   ): boolean {
     const count = conceptRepeatCount.get(conceptId) ?? 0;
     const effectiveId =
@@ -252,18 +264,38 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
         ? conceptId
         : (fallbackPool.find((id) => (conceptRepeatCount.get(id) ?? 0) < MAX_CONCEPT_REPEATS) ?? conceptId);
     const effectiveReason = effectiveId !== conceptId ? 'weak_concept' : selectionReason;
-    const added = addItem(effectiveId, exercises, purpose, effectiveReason, excludePassed);
+    const added = addItem(effectiveId, exercises, purpose, effectiveReason, excludePassed, recommendedFocus);
     if (added) {
       conceptRepeatCount.set(effectiveId, (conceptRepeatCount.get(effectiveId) ?? 0) + 1);
     }
     return added;
   }
 
-  // Remediation — when a weekly sprint is active, prefer focus concepts;
-  // otherwise fall back to weak spots, then to unlocked concepts for cold-start.
-  // Bias preserves backwards compatibility: empty weeklyFocus → unchanged behaviour.
+  // Remediation — DIAGNOSIS-STEERED (the moat's "diagnosis → scheduling" edge).
+  // When a high-confidence diagnosis (a TARGETED rule, confidence >= 0.7) named a
+  // root cause the decayedScore sort misses — e.g. article+adjective errors point
+  // to `noun-gender`, a concept with few DIRECT attempts that never ranks in
+  // weakConcepts — drill that root cause + its affected concepts FIRST. Then the
+  // weekly-sprint focus, then weak spots, then unlocked concepts for cold-start.
+  // Empty / low-confidence (0.45 fallback) diagnosis → pool unchanged.
   const focusIds = new Set(fingerprint.weeklyFocus ?? []);
-  const remediationPool =
+
+  // Only a TARGETED rule steers scheduling: the 0.45 fallback just re-names
+  // weakConcepts[0], so steering on it would add nothing. The root cause must also
+  // have at-or-below-level content, else the slot is wasted — e.g. rule 3's
+  // 'listening-comprehension' pseudo-concept is dropped here (the Lytt block owns it).
+  const hasLevelContent = (id: string) =>
+    filterSentencesByLevel(availableSentenceIds[id] ?? [], fingerprint.currentLevel, sentences).length > 0;
+  const topDiagnosis: DiagnosisResult | undefined = diagnosisResults[0];
+  const diagnosisSteer = topDiagnosis && topDiagnosis.confidence >= 0.7 ? topDiagnosis : null;
+  const diagnosisTargets = diagnosisSteer
+    ? Array.from(new Set([diagnosisSteer.rootCauseConceptId, ...diagnosisSteer.affectedConceptIds])).filter(hasLevelContent)
+    : [];
+  // Diagnosis modality tilt for the remediation block only (review/new/interleaving
+  // keep their default pools). null when no high-confidence diagnosis fired.
+  const diagnosisFocus = diagnosisSteer?.recommendedFocus;
+
+  const basePool =
     focusIds.size > 0
       ? Array.from(
           new Set([
@@ -280,12 +312,14 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
       : weakConcepts.length > 0
         ? weakConcepts
         : unlockedConcepts.map((c) => c.id);
+  // Diagnosed root cause + affected concepts lead the pool, then the base pool.
+  const remediationPool = Array.from(new Set([...diagnosisTargets, ...basePool]));
 
   for (let i = 0; i < counts.remediation; i++) {
     const conceptId = remediationPool[i % Math.max(remediationPool.length, 1)];
     if (conceptId) {
       const reason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
-      addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool, reason);
+      addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool, reason, true, diagnosisFocus);
     }
   }
 
