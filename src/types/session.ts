@@ -137,4 +137,9 @@ export interface ExerciseResult {
   errorTag?: ErrorTag;          // set if wrong answer
   conceptId: string;
   sentenceId?: string;          // resolved sentence that was shown; used by retry step and fingerprint error log
+  // Learner self-attested a non-exact answer as correct on a translate-to-ENGLISH
+  // near-miss (the system can't judge English paraphrase, so it defers to the
+  // learner — VC §3.7 recourse). Recorded as correct but at REDUCED mastery weight
+  // with the SRS ladder frozen, since the system did not verify it. Implies correct=true.
+  selfVerified?: boolean;
 }

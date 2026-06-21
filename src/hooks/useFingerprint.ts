@@ -288,7 +288,16 @@ export function useFingerprint() {
       const minDays = node?.minDays ?? 3;
 
       const existing = fp.conceptMastery[result.conceptId];
-      const updatedMastery = updateConceptMastery(existing, result.correct, minAttempts, minDays);
+      // Self-verified near-miss (translate-to-English recourse, VC §3.7): the
+      // learner attested an unverified answer as correct. Honour it as a real but
+      // SMALLER mastery move (half the EMA step) and FREEZE the SRS ladder — the
+      // system never verified it, so it must not advance review spacing (VC §3.1).
+      const scale = result.selfVerified ? 0.5 : 1;
+      const rawMastery = updateConceptMastery(existing, result.correct, minAttempts, minDays, scale);
+      const updatedMastery =
+        result.selfVerified && existing
+          ? { ...rawMastery, srsLevel: existing.srsLevel ?? 0, nextReviewAt: existing.nextReviewAt ?? null }
+          : rawMastery;
 
       let updated: MistakeFingerprint = {
         ...fp,
