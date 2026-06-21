@@ -44,21 +44,27 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
     if (status !== 'loading') setLevelKnown(true)
   }, [status])
 
-  const sentences = useMemo<Sentence[]>(() => {
-    if (!levelKnown) return []
-    const level = fingerprint?.currentLevel ?? 'A1'
+  const currentLevel = fingerprint?.currentLevel ?? 'A1'
 
-    // Prefer sentences matching the learner's level; cascade to next-lower level if empty
-    const levelMatch = candidateSentences.filter((s) => s.cefrLevel === level)
-    const pool = levelMatch.length > 0 ? levelMatch : candidateSentences.filter(s => {
-      const fallbacks: Record<string, string[]> = { B2: ['B1','A2'], B1: ['A2'], A2: ['A1'], A1: [] }
-      return (fallbacks[level] || []).includes(s.cefrLevel)
-    })
-    const sessionPool = pool.length > 0 ? pool : candidateSentences
-
-    return shuffleCopy(sessionPool).slice(0, SESSION_SIZE)
+  // Pick 5 sentences AND track which level they actually came from, so the UI can
+  // honestly disclose below-level content instead of substituting silently
+  // (Operating Rule 6 — mirrors /listen + /roleplay). Cascade only to a concrete
+  // lower level that has shadowable content; never a silent any-level mix.
+  const { sentences, servedLevel } = useMemo<{ sentences: Sentence[]; servedLevel: string | null }>(() => {
+    if (!levelKnown) return { sentences: [], servedLevel: null }
+    const order = ['A1', 'A2', 'B1', 'B2']
+    const idx = order.indexOf(currentLevel)
+    for (let i = idx; i >= 0; i--) {
+      const pool = candidateSentences.filter((s) => s.cefrLevel === order[i])
+      if (pool.length > 0) {
+        return { sentences: shuffleCopy(pool).slice(0, SESSION_SIZE), servedLevel: order[i] }
+      }
+    }
+    return { sentences: [], servedLevel: null }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelKnown])
+
+  const isBelowLevel = servedLevel !== null && servedLevel !== currentLevel
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [scores, setScores] = useState<number[]>([])
@@ -185,6 +191,13 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
                   </span>
                 </div>
               </div>
+
+              {/* Honest below-level disclosure (Rule 6 — no silent substitution) */}
+              {isBelowLevel ? (
+                <div className="rounded-[0.5rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2 text-[10px] leading-snug text-[var(--nc-text-dim)]">
+                  Skyggeøvelser på {servedLevel}-nivå — egne {currentLevel}-øvelser kommer.
+                </div>
+              ) : null}
 
               <ShadowingExercise
                 sentence={sentences[currentIndex]}

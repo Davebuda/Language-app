@@ -15,10 +15,12 @@ function isShadowableSentence(s: Sentence): boolean {
 export default function ShadowPage() {
   const { sentences } = loadContentSentences()
 
-  // Pass A1 + A2 shadowable sentences to the client — client picks 5 based on fingerprint level
+  // Pass shadowable sentences from ALL levels — the client picks 5 at (or, when a
+  // level is empty, honestly below) the learner's level. B2 was previously omitted,
+  // so a B2 learner was silently served B1/A2/A1 (Rule 6 violation).
   const candidateSentences: Sentence[] = Object.values(sentences).filter(
     (s) =>
-      (s.cefrLevel === 'A1' || s.cefrLevel === 'A2' || s.cefrLevel === 'B1') &&
+      (s.cefrLevel === 'A1' || s.cefrLevel === 'A2' || s.cefrLevel === 'B1' || s.cefrLevel === 'B2') &&
       isShadowableSentence(s)
   )
 

@@ -21,11 +21,12 @@ import { useAuth } from '@/hooks/useAuth'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { markLaneDone } from '@/lib/lane-completion'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
-import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
+import { confirmedRepair } from '@/lib/gender-correction-gate'
 import {
   recordProductionFromSurface,
   repairFromSurface,
   repairBatchFromSurface,
+  type RepairInput,
 } from '@/engine/repair-from-surface'
 import { logExerciseResult } from '@/lib/logEvents'
 import { createClient } from '@/lib/supabase/client'
@@ -183,14 +184,15 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
     if (grade.outcome === 'pass') {
       updated = recordProductionFromSurface(updated, { conceptId: passage.primaryConceptId, guided: !!passage.writeFrame }, graph)
       if (feedback && feedback.errors.length > 0) {
-        const inputs = feedback.errors.map((err) => ({
-          surfaceKind: 'reading' as const,
-          errorTag: err.tag,
-          conceptId: errorTagToConceptId(err.tag),
-          wrong: err.wrong,
-          correct: err.correct,
-        }))
-        updated = repairBatchFromSurface(updated, inputs, graph)
+        // Hard rule: no unverified AI output moves mastery. Gate every AI-claimed
+        // error through the shared deterministic verifier (gender/conjugation/
+        // adjective/compound), exactly as journal + conversation do — the written
+        // text is the context the tense/determiner checks need. Errors the
+        // verifier can't confirm are SHOWN (WriteStep) but never written.
+        const inputs = feedback.errors
+          .map((err) => confirmedRepair({ original: err.wrong, corrected: err.correct, context: writtenText }, 'reading'))
+          .filter((r): r is RepairInput => r !== null)
+        if (inputs.length > 0) updated = repairBatchFromSurface(updated, inputs, graph)
       }
     } else if (grade.outcome === 'structure-missing' && grade.missingStructureTag) {
       // Only book the repair brick on the FIRST structure-missing; a revise loop
