@@ -1,4 +1,4 @@
-// Client-safe passage pool — A1+A2+B1 cloze passages statically imported
+// Client-safe passage pool — A1+A2+B1+B2 cloze passages statically imported
 // from JSON so client-side schedulers can access passage data without
 // server-only fs access.
 //
@@ -7,6 +7,7 @@
 import a1Raw from '@content/passages/a1.json';
 import a2Raw from '@content/passages/a2.json';
 import b1Raw from '@content/passages/b1.json';
+import b2Raw from '@content/passages/b2.json';
 import type { ClozePassage, ClozeSegment } from '@/types/content';
 import type { ErrorTag } from '@/types/taxonomy';
 
@@ -58,6 +59,7 @@ const RAW: RawPassage[] = [
   ...(a1Raw as RawPassage[]),
   ...(a2Raw as RawPassage[]),
   ...(b1Raw as RawPassage[]),
+  ...(b2Raw as RawPassage[]),
 ];
 
 export const SEED_PASSAGES: Record<string, ClozePassage> = {};

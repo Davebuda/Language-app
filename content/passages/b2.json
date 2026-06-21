@@ -1,0 +1,191 @@
+[
+  {
+    "id": "cz-b2-advanced-passive-report",
+    "cefr_level": "B2",
+    "primary_concept_id": "advanced-passive",
+    "english_gloss": "The report is being prepared by an external consultant, and the results will be presented to the board next week.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Rapporten "
+      },
+      {
+        "kind": "gap",
+        "answer": "utarbeides",
+        "accepted_answers": [
+          "blir utarbeidet"
+        ],
+        "concept_id": "advanced-passive",
+        "error_tag": "verb-conjugation"
+      },
+      {
+        "kind": "text",
+        "value": " av en ekstern konsulent, og resultatene "
+      },
+      {
+        "kind": "gap",
+        "answer": "presenteres",
+        "accepted_answers": [
+          "blir presentert"
+        ],
+        "concept_id": "advanced-passive",
+        "error_tag": "verb-conjugation"
+      },
+      {
+        "kind": "text",
+        "value": " for styret neste uke."
+      }
+    ]
+  },
+  {
+    "id": "cz-b2-reported-speech-director",
+    "cefr_level": "B2",
+    "primary_concept_id": "reported-speech-advanced",
+    "english_gloss": "The director said that the company had invested significantly in new technology, and that they would hire more engineers the following year.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Direktøren sa at selskapet "
+      },
+      {
+        "kind": "gap",
+        "answer": "hadde",
+        "concept_id": "reported-speech-advanced",
+        "error_tag": "verb-tense"
+      },
+      {
+        "kind": "text",
+        "value": " investert betydelig i ny teknologi, og at de "
+      },
+      {
+        "kind": "gap",
+        "answer": "ville",
+        "accepted_answers": [
+          "skulle"
+        ],
+        "concept_id": "reported-speech-advanced",
+        "error_tag": "verb-tense"
+      },
+      {
+        "kind": "text",
+        "value": " ansette flere ingeniører året etter."
+      }
+    ]
+  },
+  {
+    "id": "cz-b2-text-cohesion-project",
+    "cefr_level": "B2",
+    "primary_concept_id": "text-cohesion",
+    "english_gloss": "The project was delayed by several unforeseen problems. Consequently, the deadline had to be postponed. The budget was, however, not exceeded.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Prosjektet ble forsinket av flere uforutsette problemer. "
+      },
+      {
+        "kind": "gap",
+        "answer": "Følgelig",
+        "accepted_answers": [
+          "Derfor",
+          "Dermed",
+          "Således"
+        ],
+        "concept_id": "text-cohesion",
+        "error_tag": "wrong-word-same-category"
+      },
+      {
+        "kind": "text",
+        "value": " måtte fristen utsettes. Budsjettet ble "
+      },
+      {
+        "kind": "gap",
+        "answer": "imidlertid",
+        "accepted_answers": [
+          "likevel",
+          "allikevel"
+        ],
+        "concept_id": "text-cohesion",
+        "error_tag": "wrong-word-same-category"
+      },
+      {
+        "kind": "text",
+        "value": " ikke overskredet."
+      }
+    ]
+  },
+  {
+    "id": "cz-b2-professional-register-letter",
+    "cefr_level": "B2",
+    "primary_concept_id": "professional-norwegian",
+    "english_gloss": "We refer to your enquiry and hereby confirm that the application has been received.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Vi viser til "
+      },
+      {
+        "kind": "gap",
+        "answer": "deres",
+        "accepted_answers": [
+          "Deres"
+        ],
+        "concept_id": "professional-norwegian",
+        "error_tag": "pronoun-choice"
+      },
+      {
+        "kind": "text",
+        "value": " henvendelse og bekrefter "
+      },
+      {
+        "kind": "gap",
+        "answer": "herved",
+        "accepted_answers": [
+          "med dette"
+        ],
+        "concept_id": "professional-norwegian",
+        "error_tag": "wrong-word-same-category"
+      },
+      {
+        "kind": "text",
+        "value": " at søknaden er mottatt."
+      }
+    ]
+  },
+  {
+    "id": "cz-b2-conditional-counterfactual",
+    "cefr_level": "B2",
+    "primary_concept_id": "subjunctive-mood",
+    "english_gloss": "If I had known about the problem earlier, I would have acted differently.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Hvis jeg "
+      },
+      {
+        "kind": "gap",
+        "answer": "hadde",
+        "concept_id": "subjunctive-mood",
+        "error_tag": "verb-tense"
+      },
+      {
+        "kind": "text",
+        "value": " visst om problemet tidligere, "
+      },
+      {
+        "kind": "gap",
+        "answer": "ville",
+        "concept_id": "subjunctive-mood",
+        "error_tag": "verb-tense"
+      },
+      {
+        "kind": "text",
+        "value": " jeg ha handlet annerledes."
+      }
+    ]
+  }
+]
