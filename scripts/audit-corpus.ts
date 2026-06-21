@@ -235,7 +235,18 @@ const THIN_TAG = 10
 // declaring them. Crediting them keeps the coverage gate honest (it should report
 // EFFECTIVE detectability, not just authored tags). Source of truth: HIGH_CONFIDENCE
 // in classify-error.ts. (Keep in sync if that set changes.)
-const CLASSIFIER_COVERED = new Set<string>(['word-order', 'article-use', 'spelling', 'compound-word'])
+// p6 W4: modal-verb / pronoun-choice / negation-placement were promoted to
+// HIGH_CONFIDENCE (clean closed-class single swap, same precision as article-use),
+// so they are now effectively detectable on any production exercise too.
+const CLASSIFIER_COVERED = new Set<string>([
+  'word-order',
+  'article-use',
+  'spelling',
+  'compound-word',
+  'modal-verb',
+  'pronoun-choice',
+  'negation-placement',
+])
 const PRODUCTION_TYPES = new Set<string>(['translation-to-norwegian', 'fill-in-blank', 'word-order'])
 const coverageSummary: string[] = []
 for (const lvl of LEVELS) {
