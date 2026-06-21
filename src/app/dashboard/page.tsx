@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -56,6 +57,10 @@ export default function DashboardPage() {
   const { user } = useAuth()
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
   const [showLevelUp, setShowLevelUp] = useState(false)
+  // Option C (VC §3.6/§5): the first screen is identity + the single prescribed
+  // next action; the practice menu + status glance are opt-in behind one tap, so
+  // the dashboard stops being a menu of competing doors. Collapsed by default.
+  const [showMore, setShowMore] = useState(false)
   const [streak, setStreak] = useState(0)
   const [today, setToday] = useState('')
   const [completedLanes, setCompletedLanes] = useState<Set<LaneId>>(new Set())
@@ -333,32 +338,8 @@ export default function DashboardPage() {
             below (Slice 3.5) — the standalone entry card was removed to avoid a
             duplicate /ord link. Hero CTA + coach reason live in the "I dag" card above. */}
 
-        {/* ── Stat Strip (Cream) ── */}
-        <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
-          {statTiles.map((stat, i) => (
-            <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
-              <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[#1A8CB0]' : 'text-[#5A8A00]'}`}>
-                {stat.value}
-              </div>
-              <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Week Bar (Dark) ── */}
-        <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
-          <div className="flex items-center gap-2">
-            <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">I dag</span>
-            <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
-              <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_rgba(200,255,32,0.3)]" style={{ width: `${completionPct}%` }} />
-            </div>
-            <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_rgba(200,255,32,0.5),0_0_24px_rgba(200,255,32,0.25)]" />
-          </div>
-        </div>
-
+        {/* Contextual notices stay visible — a level-up celebration and the guest
+            nudge are not menu clutter. */}
         <AnimatePresence>
           {showLevelUp ? (
             <motion.div
@@ -383,83 +364,135 @@ export default function DashboardPage() {
           </div>
         ) : null}
 
-        {/* B2 interim note now lives inside <ProductionWall> (interim slot) — no duplicate banner. */}
+        {/* ── "Mer øving og status" — Option C (VC §3.6/§5). The practice menu +
+            status glance are opt-in behind one tap, so the first screen is identity
+            + the single prescribed next action (the "I dag" card above). Økt and
+            samtale stay one-tap via the BottomNav, so nothing is buried. ── */}
+        <button
+          onClick={() => setShowMore((v) => !v)}
+          aria-expanded={showMore}
+          className="mt-1 flex items-center justify-center gap-1.5 rounded-lg border border-[var(--nc-border)] bg-[var(--nc-card)] px-3 py-2.5 text-[0.78rem] font-bold text-[var(--nc-text-muted)]"
+        >
+          {showMore ? 'Mindre' : 'Mer øving og status'}
+          <motion.span animate={{ rotate: showMore ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex">
+            <ChevronDown size={15} aria-hidden="true" />
+          </motion.span>
+        </button>
 
-        {/* ── Lane Panel (Cream) ── */}
-        <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
-          <div className="flex items-center justify-between px-1 pb-1.5">
-            <span className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">Neste valg</span>
-            <span className="text-[0.68rem] tabular-nums text-[var(--nc-cream-dim)]">{completedCount}/{coreLanes.length}</span>
-          </div>
+        <AnimatePresence initial={false}>
+          {showMore ? (
+            <motion.div
+              key="dashboard-more"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.24 }}
+              className="flex flex-col gap-[6px] overflow-hidden"
+            >
+              {/* ── Stat Strip (Cream) ── */}
+              <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+                {statTiles.map((stat, i) => (
+                  <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
+                    <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[#1A8CB0]' : 'text-[#5A8A00]'}`}>
+                      {stat.value}
+                    </div>
+                    <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
 
-          <div className="flex flex-col">
-            {uncompletedLanes.map((laneId) => (
-              <LaneTrackRow
-                key={laneId}
-                laneId={laneId}
-                hint={laneHints[laneId]}
-                done={false}
-                focusBadge={laneFocusMap[laneId]}
-                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-              />
-            ))}
-            {doneLanes.map((laneId) => (
-              <LaneTrackRow
-                key={laneId}
-                laneId={laneId}
-                hint={laneHints[laneId]}
-                done={true}
-                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-              />
-            ))}
-          </div>
-
-          {completedCount > 0 ? (
-            <div className="mt-1.5 flex items-center gap-1.5 px-1 text-[0.68rem] text-[var(--nc-cream-dim)]">
-              <span className="flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[8px] text-[#3CB464]">✓</span>
-              {completedCount} fullført i dag
-            </div>
-          ) : null}
-        </div>
-
-        {/* ── Week Overview (Dark) ── */}
-        <div className="overflow-hidden rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)]">
-          <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-2 py-2">
-            <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Ukeoversikt</span>
-            <span className="rounded-full bg-[var(--nc-signal)] px-2 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">Denne uka</span>
-          </div>
-          <div className="grid grid-cols-2">
-            <div className="p-2">
-              <div className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Fokus</div>
-              {focusPreview.slice(0, 3).map((item) => (
-                <div key={item.id} className="flex items-center justify-between py-1">
-                  <span className="text-[0.76rem] font-medium text-[var(--nc-text)]">{item.label}</span>
-                  <span className={`text-[0.72rem] font-bold tabular-nums ${item.stat.startsWith('+') ? 'text-[var(--nc-signal)]' : item.stat.startsWith('-') ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text-muted)]'}`}>{item.stat}</span>
+              {/* ── Week Bar (Dark) ── */}
+              <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">I dag</span>
+                  <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
                 </div>
-              ))}
-              {focusPreview.length === 0 ? (
-                <div className="py-1 text-[0.72rem] text-[var(--nc-text-dim)]">Bygges fra øktene</div>
-              ) : null}
-            </div>
-            <div className="border-l border-[var(--nc-border)] p-2">
-              <div className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Sjekk</div>
-              <div className="flex items-center justify-between py-1">
-                <span className="text-[0.76rem] text-[var(--nc-text)]">Ukesjekk</span>
-                <span className="text-[0.68rem] text-[var(--nc-text-muted)]">{dayOfWeek === 6 || dayOfWeek === 0 ? 'Klar nå' : 'Lørdag'}</span>
+                <div className="flex items-center gap-2">
+                  <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
+                    <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_rgba(200,255,32,0.3)]" style={{ width: `${completionPct}%` }} />
+                  </div>
+                  <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_rgba(200,255,32,0.5),0_0_24px_rgba(200,255,32,0.25)]" />
+                </div>
               </div>
-              <div className="flex items-center justify-between py-1">
-                <span className="text-[0.76rem] text-[var(--nc-text)]">Tema</span>
-                <span className="text-[0.68rem] text-[var(--nc-text-muted)]">Konseptdrevet</span>
+
+              {/* ── Lane Panel (Cream) — the practice menu, now opt-in ── */}
+              <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
+                <div className="flex items-center justify-between px-1 pb-1.5">
+                  <span className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">Neste valg</span>
+                  <span className="text-[0.68rem] tabular-nums text-[var(--nc-cream-dim)]">{completedCount}/{coreLanes.length}</span>
+                </div>
+
+                <div className="flex flex-col">
+                  {uncompletedLanes.map((laneId) => (
+                    <LaneTrackRow
+                      key={laneId}
+                      laneId={laneId}
+                      hint={laneHints[laneId]}
+                      done={false}
+                      focusBadge={laneFocusMap[laneId]}
+                      href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                      label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
+                    />
+                  ))}
+                  {doneLanes.map((laneId) => (
+                    <LaneTrackRow
+                      key={laneId}
+                      laneId={laneId}
+                      hint={laneHints[laneId]}
+                      done={true}
+                      href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                      label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
+                    />
+                  ))}
+                </div>
+
+                {completedCount > 0 ? (
+                  <div className="mt-1.5 flex items-center gap-1.5 px-1 text-[0.68rem] text-[var(--nc-cream-dim)]">
+                    <span className="flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[8px] text-[#3CB464]">✓</span>
+                    {completedCount} fullført i dag
+                  </div>
+                ) : null}
               </div>
-              <Link href="/uke" className="mt-1.5 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-[var(--nc-text-muted)]">
-                Gå til sjekken
-                <span className="flex size-6 items-center justify-center rounded-full border border-[var(--nc-signal-border)] text-[11px] text-[var(--nc-signal)]">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
+
+              {/* ── Week Overview (Dark) ── */}
+              <div className="overflow-hidden rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)]">
+                <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-2 py-2">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Ukeoversikt</span>
+                  <span className="rounded-full bg-[var(--nc-signal)] px-2 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">Denne uka</span>
+                </div>
+                <div className="grid grid-cols-2">
+                  <div className="p-2">
+                    <div className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Fokus</div>
+                    {focusPreview.slice(0, 3).map((item) => (
+                      <div key={item.id} className="flex items-center justify-between py-1">
+                        <span className="text-[0.76rem] font-medium text-[var(--nc-text)]">{item.label}</span>
+                        <span className={`text-[0.72rem] font-bold tabular-nums ${item.stat.startsWith('+') ? 'text-[var(--nc-signal)]' : item.stat.startsWith('-') ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text-muted)]'}`}>{item.stat}</span>
+                      </div>
+                    ))}
+                    {focusPreview.length === 0 ? (
+                      <div className="py-1 text-[0.72rem] text-[var(--nc-text-dim)]">Bygges fra øktene</div>
+                    ) : null}
+                  </div>
+                  <div className="border-l border-[var(--nc-border)] p-2">
+                    <div className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Sjekk</div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="text-[0.76rem] text-[var(--nc-text)]">Ukesjekk</span>
+                      <span className="text-[0.68rem] text-[var(--nc-text-muted)]">{dayOfWeek === 6 || dayOfWeek === 0 ? 'Klar nå' : 'Lørdag'}</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="text-[0.76rem] text-[var(--nc-text)]">Tema</span>
+                      <span className="text-[0.68rem] text-[var(--nc-text-muted)]">Konseptdrevet</span>
+                    </div>
+                    <Link href="/uke" className="mt-1.5 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-[var(--nc-text-muted)]">
+                      Gå til sjekken
+                      <span className="flex size-6 items-center justify-center rounded-full border border-[var(--nc-signal-border)] text-[11px] text-[var(--nc-signal)]">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
 
       </main>
 
