@@ -9,7 +9,7 @@ last_activity: 2026-06-21 — /listen A2 silent-A1-fallback made honest (W5, mir
 head: dd15640
 test_count: ~730 (audit:gate green; +listen-content-level, +passage-pool-b1, +passage-pool-b2 suites)
 deployed: pandoai.no (Hetzner) — IN SYNC with origin/main as of 2026-06-21 deploy. Deploy discipline now codified (Operating Rule 9): reconcile 3 trees + gate ALONE before every deploy.
-remaining_p6: W2 reading/skriv multi-level (content, linguist-gated) + more B1/B2 cloze concepts if wanted; W3 grammar gates. DONE: p3 moat-visibility, p6 gating half, W1 listening, W5 honesty, W2 B1/B2 cloze, **W4 (2026-06-21, 13bb06c)** — promoted modal-verb/pronoun-choice/negation-placement to HIGH_CONFIDENCE in classify-error.ts (deterministic closed-class swap, same precision as article-use; negation OR→AND tightened first) so B2 pronoun/modal errors are diagnosed instead of mislabelled word-order. User-approved Rule-8 change.
+remaining_p6: more B1/B2 cloze + A2/more reading/skriv passages if wanted (content, linguist-gated); W3 grammar gates. DONE: p3 moat-visibility, p6 gating half, W1 listening, W5 honesty, W2 B1/B2 cloze, **W2 B2 read→recite→write** (2026-06-21, b40d6c8 — content/reading/b2.json 3 passages, /skriv was B1-only, now serves B2 via the at-or-below gate; linguist-gated), **W4** (13bb06c — promoted modal-verb/pronoun-choice/negation-placement to HIGH_CONFIDENCE in classify-error.ts; deterministic closed-class swap, same precision as article-use; negation OR→AND tightened first; user-approved Rule-8). Pattern for content slices: author→norwegian-linguist (returns inline)→apply fixes verbatim→merge→wire loader→reachability test→audit:gate→deploy.
 ---
 
 # Project State
