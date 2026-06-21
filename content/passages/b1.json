@@ -1,0 +1,180 @@
+[
+  {
+    "id": "cz-b1-past-perfect-job",
+    "cefr_level": "B1",
+    "primary_concept_id": "past-perfect",
+    "english_gloss": "When I came to work, the others had already started the meeting. I realized that I had completely forgotten the appointment.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Da jeg kom på jobb, "
+      },
+      {
+        "kind": "gap",
+        "answer": "hadde",
+        "concept_id": "past-perfect",
+        "error_tag": "verb-tense"
+      },
+      {
+        "kind": "text",
+        "value": " de andre allerede begynt møtet. Jeg innså at jeg "
+      },
+      {
+        "kind": "gap",
+        "answer": "hadde",
+        "concept_id": "past-perfect",
+        "error_tag": "verb-tense"
+      },
+      {
+        "kind": "text",
+        "value": " glemt avtalen helt."
+      }
+    ]
+  },
+  {
+    "id": "cz-b1-modal-verbs-tickets",
+    "cefr_level": "B1",
+    "primary_concept_id": "common-modal-verbs",
+    "english_gloss": "We have to book the tickets today, otherwise they'll sell out. If you want, I can do it online tonight.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Vi "
+      },
+      {
+        "kind": "gap",
+        "answer": "må",
+        "accepted_answers": [
+          "skal"
+        ],
+        "concept_id": "common-modal-verbs",
+        "error_tag": "modal-verb"
+      },
+      {
+        "kind": "text",
+        "value": " bestille billettene i dag, ellers blir de utsolgt. Hvis du vil, "
+      },
+      {
+        "kind": "gap",
+        "answer": "kan",
+        "concept_id": "common-modal-verbs",
+        "error_tag": "modal-verb"
+      },
+      {
+        "kind": "text",
+        "value": " jeg gjøre det på nettet i kveld."
+      }
+    ]
+  },
+  {
+    "id": "cz-b1-prepositions-cabin",
+    "cefr_level": "B1",
+    "primary_concept_id": "common-prepositions",
+    "english_gloss": "In summer many Norwegians go to the cabin. They like to be outside in nature all day.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Om sommeren drar mange nordmenn "
+      },
+      {
+        "kind": "gap",
+        "answer": "på",
+        "accepted_answers": [
+          "til"
+        ],
+        "concept_id": "common-prepositions",
+        "error_tag": "preposition"
+      },
+      {
+        "kind": "text",
+        "value": " hytta. De liker å være ute "
+      },
+      {
+        "kind": "gap",
+        "answer": "i",
+        "concept_id": "common-prepositions",
+        "error_tag": "preposition"
+      },
+      {
+        "kind": "text",
+        "value": " naturen hele dagen."
+      }
+    ]
+  },
+  {
+    "id": "cz-b1-possessive-reflexive-job",
+    "cefr_level": "B1",
+    "primary_concept_id": "possessive-pronouns",
+    "english_gloss": "Per likes his job very much. His colleagues are nice, and the office is near the centre.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Per liker jobben "
+      },
+      {
+        "kind": "gap",
+        "answer": "sin",
+        "concept_id": "possessive-pronouns",
+        "error_tag": "pronoun-choice"
+      },
+      {
+        "kind": "text",
+        "value": " veldig godt. Kollegene "
+      },
+      {
+        "kind": "gap",
+        "answer": "hans",
+        "concept_id": "possessive-pronouns",
+        "error_tag": "pronoun-choice"
+      },
+      {
+        "kind": "text",
+        "value": " er hyggelige, og kontoret ligger nær sentrum."
+      }
+    ]
+  },
+  {
+    "id": "cz-b1-discourse-derfor-rain",
+    "cefr_level": "B1",
+    "primary_concept_id": "discourse-markers",
+    "english_gloss": "It rained all day. Therefore we decided to stay home. We still had a nice day with films and good food.",
+    "difficulty": 3,
+    "segments": [
+      {
+        "kind": "text",
+        "value": "Det regnet hele dagen. "
+      },
+      {
+        "kind": "gap",
+        "answer": "Derfor",
+        "accepted_answers": [
+          "Så",
+          "Da"
+        ],
+        "concept_id": "discourse-markers",
+        "error_tag": "wrong-word-same-category"
+      },
+      {
+        "kind": "text",
+        "value": " bestemte vi oss for å bli hjemme. Vi hadde "
+      },
+      {
+        "kind": "gap",
+        "answer": "likevel",
+        "accepted_answers": [
+          "allikevel"
+        ],
+        "concept_id": "discourse-markers",
+        "error_tag": "wrong-word-same-category"
+      },
+      {
+        "kind": "text",
+        "value": " en fin dag med film og god mat."
+      }
+    ]
+  }
+]
