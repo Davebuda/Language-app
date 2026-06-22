@@ -98,7 +98,11 @@ export function ListeningExercise({ item, sentence, sessionId, onResult }: Liste
   async function submit() {
     if (submitted || !userInput.trim()) return
     setSubmitted(true)
-    const graded = await gradeAnswer(sentence.id, item.exerciseType, userInput)
+    // S-01: pass the resolved content for AI-generated items (id resolves nowhere).
+    const fallback = sentence.source === 'generated'
+      ? { norwegian: sentence.norwegian, english: sentence.english, notes: sentence.notes, errorTagsDetectable: sentence.errorTagsDetectable, acceptedAnswers: sentence.acceptedAnswers }
+      : undefined
+    const graded = await gradeAnswer(sentence.id, item.exerciseType, userInput, fallback)
     if (!graded) {
       console.warn(`[ListeningExercise] gradeAnswer returned null for sentence ${sentence.id}`)
       setSubmitted(false)

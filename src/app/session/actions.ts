@@ -19,10 +19,27 @@ interface GradeResult {
 // F011 corruption observed in the third walkthrough.
 export type GradeResponse = GradeResult | null
 
+// S-01 fix: AI-GENERATED content is built client-side (or server-side then
+// returned to the client) and exists in NEITHER the local corpus nor Supabase —
+// so resolving by id alone returns null and the exercise froze (silent
+// no-advance trap). The client always holds the resolved content it is
+// displaying, so it passes that here as a fallback. Resolution by id is still
+// tried first (authoritative corpus), so SEED grading is unchanged; this only
+// rescues ids that don't resolve. The answer key already ships to the client in
+// the session content map, so passing it back leaks nothing new.
+export interface GradeableContent {
+  norwegian: string
+  english: string
+  notes?: string
+  errorTagsDetectable?: ErrorTag[]
+  acceptedAnswers?: string[]
+}
+
 export async function gradeAnswer(
   sentenceId: string,
   exerciseType: ExerciseType,
   userAnswer: string,
+  fallbackContent?: GradeableContent,
 ): Promise<GradeResponse> {
   // 1. Try local JSON content first (fast, no network)
   const { sentences: localSentences } = loadContentSentences()
@@ -59,25 +76,30 @@ export async function gradeAnswer(
     } catch { /* fall through to mock fallback */ }
   }
 
-  if (!sentence) {
-    // Sentence not found in either local JSON or Supabase. Return null so
-    // callers can drop the result instead of persisting the literal
-    // "[unavailable]" placeholder string into recentErrors (F011).
-    console.warn(`[gradeAnswer] unknown sentence id: ${sentenceId}`)
+  // 3. Generated content rescue: the id resolved nowhere, but the client passed
+  // the resolved content it is displaying (S-01). Grade against that. Resolution
+  // by id was tried first, so seed/Supabase grading is unchanged.
+  const src: GradeableContent | undefined = sentence ?? fallbackContent
+
+  if (!src) {
+    // Not in local JSON, not in Supabase, and no fallback content supplied.
+    // Return null so callers can drop the result instead of persisting the
+    // literal "[unavailable]" placeholder string into recentErrors (F011).
+    console.warn(`[gradeAnswer] unknown sentence id and no fallback content: ${sentenceId}`)
     return null
   }
 
   const correctAnswer = deriveCorrectAnswer(
     exerciseType,
-    sentence.norwegian,
-    sentence.english,
-    sentence.notes,
+    src.norwegian,
+    src.english,
+    src.notes,
   )
 
   const correct = checkAnswerWithAlternatives(
     userAnswer,
     correctAnswer,
-    sentence.acceptedAnswers ?? [],
+    src.acceptedAnswers ?? [],
   )
   return {
     correct,
@@ -86,6 +108,6 @@ export async function gradeAnswer(
     // sentence's authored detectable tags), not just errorTagsDetectable[0].
     errorTag: correct
       ? undefined
-      : classifyError(userAnswer, correctAnswer, exerciseType, sentence.errorTagsDetectable),
+      : classifyError(userAnswer, correctAnswer, exerciseType, src.errorTagsDetectable ?? []),
   }
 }

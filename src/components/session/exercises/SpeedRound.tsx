@@ -47,7 +47,11 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   function submitAnswer(answer: string) {
     if (submitted) return;
     setSubmitted(true);
-    void gradeAnswer(sentence.id, item.exerciseType, answer).then((graded) => {
+    // S-01: pass the resolved content for AI-generated items (id resolves nowhere).
+    const fallback = sentence.source === 'generated'
+      ? { norwegian: sentence.norwegian, english: sentence.english, notes: sentence.notes, errorTagsDetectable: sentence.errorTagsDetectable, acceptedAnswers: sentence.acceptedAnswers }
+      : undefined;
+    void gradeAnswer(sentence.id, item.exerciseType, answer, fallback).then((graded) => {
       if (!graded) {
         console.warn(`[SpeedRound] gradeAnswer returned null for sentence ${sentence.id}`);
         setSubmitted(false);

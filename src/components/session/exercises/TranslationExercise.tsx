@@ -81,11 +81,17 @@ export function TranslationExercise({ item, sentence, sessionId, onResult }: Tra
     if (submitted || !userInput.trim()) return;
     setSubmitted(true);
 
-    // Grade server-side: correct answer is not exposed to the client before submission.
-    const graded = await gradeAnswer(sentence.id, item.exerciseType, userInput);
+    // Grade server-side. Seed content resolves by id; AI-GENERATED content
+    // exists in neither corpus nor Supabase, so we pass the resolved content the
+    // client already holds as a fallback (S-01 — otherwise the grader returned
+    // null and the exercise froze with no advance).
+    const fallback = sentence.source === 'generated'
+      ? { norwegian: sentence.norwegian, english: sentence.english, notes: sentence.notes, errorTagsDetectable: sentence.errorTagsDetectable, acceptedAnswers: sentence.acceptedAnswers }
+      : undefined;
+    const graded = await gradeAnswer(sentence.id, item.exerciseType, userInput, fallback);
 
     if (!graded) {
-      // Server grader could not resolve the sentence id (F011).
+      // Unresolvable AND no fallback — should not happen for in-session content.
       // Surface honestly rather than persist a "[unavailable]" placeholder.
       console.warn(`[TranslationExercise] gradeAnswer returned null for sentence ${sentence.id}`);
       setSubmitted(false);
