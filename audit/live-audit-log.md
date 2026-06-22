@@ -61,5 +61,10 @@
 - 5 atomic commits: T1.4 root_cause (4fc8e58), A-01 fill-in-blank (82fc798), S-01 grader fallback (f4b8521), R-01 muntlig panel (afe282b), audit docs (eb188cf). Pushed a72f7b7..eb188cf.
 - `deploy/deploy.sh` on VPS (fetch/reset/ci/build/pm2 reload). Server now eb188cf, pm2 online, live smoke /,/dashboard,/session = 200. The Critical (A-01) + both High (S-01, R-01) fixes are LIVE for learners.
 
-**2026-06-22T16:58 · Open for runtime confirmation (Phase 2 runtime not yet executed)**
+**2026-06-22T21:00 · G-02 + S-02 (High + Medium) FIXED — non-punitive speed-round**
+- Design fork (user chose "non-punitive"): a speed-round miss is unreliable (paraphrase/typo/empty timeout) → must not punish.
+- submitResult exempts speed-round misses from recordFingerprintResult + repair loop (no SRS reset, no error log), advances. SpeedRound reveals the canonical answer + "Neste" instead of routing to repair. One change closes both G-02 and S-02.
+- Visual-QA'd 4 widths (real SpeedRound driven to reveal via Playwright). tsc clean; audit:gate AUDIT-CLEAN. UNCOMMITTED.
+
+**2026-06-22T21:05 · Open for runtime confirmation (Phase 2 runtime not yet executed)**
 - A-01 live scheduling frequency of B2 fill-in-blank; S-01 generated-retry freeze in a real session; D-01 race under fast navigation; E-01 `/eval` reachability on the live prod build. These are marked `verified (static)` / `likely` — a runtime Playwright pass would upgrade to `verified (runtime)`. Listed in `regression-checklist.md` §H.

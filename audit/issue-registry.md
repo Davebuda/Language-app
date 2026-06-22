@@ -29,7 +29,9 @@
 - **Risks:** progression ⚠️⚠️ · learner trust ⚠️⚠️ · AI reliability ⚠️.
 - **Test:** integration — cache a generated id absent from corpus, drive wrong→repair→retry, assert grader null surfaces an honest fallback (currently none).
 
-### G-02 · SpeedRound is EN-graded with NO recourse and 0 accepted_answers — **verified**
+### G-02 · SpeedRound is EN-graded with NO recourse and 0 accepted_answers — **✅ RESOLVED 2026-06-22 (uncommitted, also closes S-02)**
+> **Fix (non-punitive speed-round):** a speed-round MISS no longer triggers the repair loop or resets SRS or logs a fingerprint error — speed-round is rapid recall graded by brittle exact-match English, so a "wrong" is unreliable (valid paraphrase / speed typo / empty timeout). `submitResult` exempts `exerciseType==='speed-round' && !correct` from `recordFingerprintResult` + repair, and advances. The component reveals the canonical answer ("Riktig svar: …") with a "Neste" button instead of relying on the repair loop; correct answers still brick + advance immediately. Closes **S-02** (empty-timeout punishment) by the same change. Visual-QA'd at 4 widths (real SpeedRound driven to the reveal state → `.claude/screenshots/qa-recourse/speedround-*.png`). tsc clean, `audit:gate` AUDIT-CLEAN. Recommended test (regression-checklist §C): hook-level — a speed-round miss does not enter repair / does not reset SRS.
+
 - **Route:** `/session` speed-round. **Layer:** component (recourse parity gap).
 - **Repro:** Valid English paraphrase under the timer → hard-wrong; no self-attest path (translation has one, SpeedRound.tsx:47-72 vs TranslationExercise.tsx:106-116).
 - **Expected:** paraphrase accepted or recourse offered. **Actual:** marked wrong + phantom error + SRS reset, worsened by time pressure. B1/B2 EN-graded sentences have 0 accepted_answers.
@@ -54,7 +56,7 @@
 - **Risks:** data integrity ⚠️⚠️ · progression ⚠️.
 - **Test:** integration — defer `saveFingerprint`, run seed then mount `useFingerprint`, assert level = diagnostic level not A1. Fix: await seed before push, or skip bootstrap reload when store already holds this user's fp.
 
-### S-02 · SpeedRound timeout submits empty answer → full repair loop + SRS reset — **verified**
+### S-02 · SpeedRound timeout submits empty answer → full repair loop + SRS reset — **✅ RESOLVED 2026-06-22 (closed with G-02)**
 - **Route:** `/session` speed-round. **Layer:** UI/engine (classify-error on empty).
 - **Repro:** Let timer hit 0 → `submitAnswer('')` (SpeedRound.tsx:37) → graded wrong → repair loop + error logged with `userAnswer:''` + SRS reset.
 - **Expected:** a timeout is not the same evidence as a wrong attempt. **Actual:** phantom-quality error feeds diagnosis, resets SRS.

@@ -285,7 +285,18 @@ export function useSession(
       const enrichedResult = { ...result, sentenceId: resolvedContent?.id ?? result.sentenceId };
 
       sessionStore.recordResult(enrichedResult);
-      recordFingerprintResult(enrichedResult);
+
+      // G-02 + S-02: a speed-round MISS is unreliable evidence — speed-round is
+      // rapid recall graded by exact-match English under a timer, so a "wrong"
+      // is most often a valid paraphrase, a speed typo, or an empty timeout
+      // submission, NOT a real error. Per Pipeline Honesty (Rule 8) it must not
+      // punish: no fingerprint error, no SRS reset, no repair loop. The learner
+      // still sees the canonical answer in the component before advancing. A
+      // CORRECT speed-round still bricks + advances normally.
+      const isSpeedRoundMiss = item?.exerciseType === 'speed-round' && !result.correct;
+      if (!isSpeedRoundMiss) {
+        recordFingerprintResult(enrichedResult);
+      }
 
       const sessionId = useSessionStore.getState().session?.id;
       emitEvent({
@@ -297,7 +308,7 @@ export function useSession(
         payload: { correct: result.correct, exerciseType: item?.exerciseType },
       });
 
-      if (result.correct) {
+      if (result.correct || isSpeedRoundMiss) {
         sessionStore.advanceItem();
         return;
       }

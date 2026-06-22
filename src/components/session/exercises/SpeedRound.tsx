@@ -20,6 +20,11 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
   const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
   const [submitted, setSubmitted] = useState(false);
   const [resultAnnouncement, setResultAnnouncement] = useState('');
+  // G-02/S-02: on a miss (paraphrase / typo / empty timeout) speed-round does NOT
+  // punish — instead of routing to the repair loop, it reveals the canonical
+  // answer and lets the learner advance with "Neste". Correct answers advance
+  // immediately (keeps the rapid rhythm).
+  const [revealed, setRevealed] = useState<{ result: ExerciseResult; correctAnswer: string } | null>(null);
   const startRef = useRef(Date.now());
   const inputRef = useRef<HTMLInputElement>(null);
   const userInputRef = useRef('');
@@ -59,7 +64,7 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
         return;
       }
       const { correct, correctAnswer } = graded;
-      onResult({
+      const result: ExerciseResult = {
         sessionId,
         itemId: item.id,
         correct,
@@ -70,8 +75,15 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
           ? undefined
           : (classifyError(answer, correctAnswer, item.exerciseType, sentence.errorTagsDetectable) ?? 'unspecified'),
         conceptId: item.conceptIds[0] ?? '',
-      });
-      setResultAnnouncement(correct ? 'Riktig svar.' : 'Feil svar.');
+      };
+      if (correct) {
+        setResultAnnouncement('Riktig svar.');
+        onResult(result);
+      } else {
+        // Non-punitive: reveal the answer; the learner advances via "Neste".
+        setResultAnnouncement(`Riktig svar: ${correctAnswer}`);
+        setRevealed({ result, correctAnswer });
+      }
     });
   }
 
@@ -109,23 +121,40 @@ export function SpeedRound({ item, sentence, sessionId, onResult, initialSeconds
       </motion.p>
       <p className="text-[0.82rem] text-[var(--nc-cream-muted)]">Oversett til engelsk så raskt du kan</p>
 
-      <input
-        ref={inputRef}
-        type="text"
-        value={userInput}
-        onChange={(e) => { setUserInput(e.target.value); userInputRef.current = e.target.value; }}
-        onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(userInput); }}
-        disabled={submitted}
-        placeholder="Skriv svaret ditt her..."
-        className="nc-input-cream"
-      />
-      <button
-        onClick={() => submitAnswer(userInput)}
-        disabled={submitted || !userInput.trim()}
-        className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
-      >
-        Sjekk svar
-      </button>
+      {revealed ? (
+        <div className="space-y-3">
+          <div className="rounded-[0.5rem] border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.04)] px-3 py-2.5">
+            <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Riktig svar</p>
+            <p className="mt-0.5 text-[1.05rem] font-bold text-[var(--nc-cream-text)]">{revealed.correctAnswer}</p>
+          </div>
+          <button
+            onClick={() => onResult(revealed.result)}
+            className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold"
+          >
+            Neste
+          </button>
+        </div>
+      ) : (
+        <>
+          <input
+            ref={inputRef}
+            type="text"
+            value={userInput}
+            onChange={(e) => { setUserInput(e.target.value); userInputRef.current = e.target.value; }}
+            onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(userInput); }}
+            disabled={submitted}
+            placeholder="Skriv svaret ditt her..."
+            className="nc-input-cream"
+          />
+          <button
+            onClick={() => submitAnswer(userInput)}
+            disabled={submitted || !userInput.trim()}
+            className="nc-button-primary flex min-h-[52px] w-full items-center justify-center gap-2 py-3.5 text-[0.9375rem] font-bold disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            Sjekk svar
+          </button>
+        </>
+      )}
       <div aria-live="polite" className="sr-only">{resultAnnouncement}</div>
     </div>
   );
