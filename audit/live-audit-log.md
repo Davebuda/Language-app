@@ -56,5 +56,10 @@
 - Added "Muntlig" sub-panel rendering real LaneTrackRow ×3 (Lytt/Uttale/Skygging) with hints + done-state; supplementary (not in the daily denominator). CLAUDE.md doc claim now true.
 - Visual-QA'd 4 widths (throwaway qa-muntlig route, real LaneTrackRow on real surfaces) → screenshots saved → route deleted + .next cleared. tsc clean; `audit:gate` AUDIT-CLEAN.
 
-**2026-06-22T16:45 · Open for runtime confirmation (Phase 2 runtime not yet executed)**
+**2026-06-22T16:55 · DEPLOYED — 5 commits live on pandoai.no (Rule 9)**
+- Reconcile: git-reality-check clean (only own uncommitted work), HEAD=origin 0/0, server ff3a70c verified ANCESTOR of new HEAD (clean fast-forward, nothing lost). `audit:gate` AUDIT-CLEAN.
+- 5 atomic commits: T1.4 root_cause (4fc8e58), A-01 fill-in-blank (82fc798), S-01 grader fallback (f4b8521), R-01 muntlig panel (afe282b), audit docs (eb188cf). Pushed a72f7b7..eb188cf.
+- `deploy/deploy.sh` on VPS (fetch/reset/ci/build/pm2 reload). Server now eb188cf, pm2 online, live smoke /,/dashboard,/session = 200. The Critical (A-01) + both High (S-01, R-01) fixes are LIVE for learners.
+
+**2026-06-22T16:58 · Open for runtime confirmation (Phase 2 runtime not yet executed)**
 - A-01 live scheduling frequency of B2 fill-in-blank; S-01 generated-retry freeze in a real session; D-01 race under fast navigation; E-01 `/eval` reachability on the live prod build. These are marked `verified (static)` / `likely` — a runtime Playwright pass would upgrade to `verified (runtime)`. Listed in `regression-checklist.md` §H.
