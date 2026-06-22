@@ -64,7 +64,12 @@
 **2026-06-22T21:00 · G-02 + S-02 (High + Medium) FIXED — non-punitive speed-round**
 - Design fork (user chose "non-punitive"): a speed-round miss is unreliable (paraphrase/typo/empty timeout) → must not punish.
 - submitResult exempts speed-round misses from recordFingerprintResult + repair loop (no SRS reset, no error log), advances. SpeedRound reveals the canonical answer + "Neste" instead of routing to repair. One change closes both G-02 and S-02.
-- Visual-QA'd 4 widths (real SpeedRound driven to reveal via Playwright). tsc clean; audit:gate AUDIT-CLEAN. UNCOMMITTED.
+- Visual-QA'd 4 widths (real SpeedRound driven to reveal via Playwright). tsc clean; audit:gate AUDIT-CLEAN.
+- COMMITTED + DEPLOYED (0d598c3, live pandoai.no, Rule-9 reconciled, server=origin, smoke 200).
 
-**2026-06-22T21:05 · Open for runtime confirmation (Phase 2 runtime not yet executed)**
+**2026-06-22T21:10 · Audit-fix progress summary**
+- RESOLVED + DEPLOYED: A-01 (Critical), S-01 (High), R-01 (High), G-02+S-02 (High+Medium), plus T1.4.
+- Remaining backlog (all Medium/Low): S-03 (repair-cap silent swallow), S-04 (skip=correct), S-05 (infinite-skeleton stall), AI-01 (journal corrected-text shows unverified corrections), E-01 (/eval unguarded — quick win), D-01 (onboarding level race), R-02 (/reading silent below-level), + Low tier. See issue-registry.md.
+
+**2026-06-22T21:12 · Open for runtime confirmation (Phase 2 runtime not yet executed)**
 - A-01 live scheduling frequency of B2 fill-in-blank; S-01 generated-retry freeze in a real session; D-01 race under fast navigation; E-01 `/eval` reachability on the live prod build. These are marked `verified (static)` / `likely` — a runtime Playwright pass would upgrade to `verified (runtime)`. Listed in `regression-checklist.md` §H.
