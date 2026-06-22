@@ -102,4 +102,28 @@ describe('generateSession — diagnosis steers scheduling (Option B)', () => {
     expect(diagnosisResults[0]?.confidence ?? 0).toBeLessThan(0.7)
     expect(larRemediationConcepts(blocks).has('noun-gender')).toBe(false)
   })
+
+  // T1.4 — the diagnosed root cause is LABELLED `root_cause` so the in-session "why this"
+  // can name it. Proves the label actually lands (Pipeline Honesty, Rule 8): the UI claim
+  // "this is the root cause" must trace to a real scheduler tag, not a cosmetic string.
+  it('labels the diagnosed root-cause item `root_cause` (and only that concept)', () => {
+    const recentErrors = [
+      err('article-use', 1), err('article-use', 2), err('article-use', 3),
+      err('adjective-agreement', 4), err('adjective-agreement', 5),
+    ]
+    const { blocks } = generateSession(makeInput(recentErrors))
+    const lar = blocks.find((b) => b.type === 'lær')
+    const items = lar?.items ?? []
+    const rootCauseItems = items.filter((i) => i.selectionReason === 'root_cause')
+    // At least one item is tagged root_cause, and every such item IS the diagnosed
+    // noun-gender concept (affected/symptom concepts keep weak_concept/weekly_focus).
+    expect(rootCauseItems.length).toBeGreaterThan(0)
+    expect(rootCauseItems.every((i) => i.conceptIds.includes('noun-gender'))).toBe(true)
+  })
+
+  it('uses NO `root_cause` label when no high-confidence diagnosis fires', () => {
+    const { blocks } = generateSession(makeInput([]))
+    const labelled = blocks.flatMap((b) => b.items).some((i) => i.selectionReason === 'root_cause')
+    expect(labelled).toBe(false)
+  })
 })

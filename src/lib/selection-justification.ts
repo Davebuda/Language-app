@@ -32,6 +32,8 @@ export function selectionJustification(
       return 'Retting akkurat nå'
     case 'cold_start':
       return 'Vi kartlegger nivået ditt'
+    case 'root_cause':
+      return 'Dette ligger bak flere av feilene dine'
     default:
       return 'Tilpasset deg'
   }

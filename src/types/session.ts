@@ -63,7 +63,8 @@ export type SelectionReason =
   | 'interleaving'
   | 'weekly_focus'
   | 'repair_target'
-  | 'cold_start';
+  | 'cold_start'
+  | 'root_cause';      // the diagnosed root cause behind surface mistakes (diagnosis-steered remediation)
 
 export interface SessionItem {
   id: string;

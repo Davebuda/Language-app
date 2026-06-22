@@ -58,6 +58,7 @@ const WHY_LABELS: Record<string, string> = {
   weekly_focus: 'Ukens fokus',
   repair_target: 'Reparasjon',
   cold_start: 'Kartlegging',
+  root_cause: 'Grunnårsak',
 }
 
 export function SessionScreen({

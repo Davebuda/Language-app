@@ -315,10 +315,26 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   // Diagnosed root cause + affected concepts lead the pool, then the base pool.
   const remediationPool = Array.from(new Set([...diagnosisTargets, ...basePool]));
 
+  // T1.4 — name the root cause in-session. When the diagnosed root cause survived the
+  // level-content filter into diagnosisTargets, label ITS remediation item `root_cause`
+  // (precedence over weekly_focus/weak_concept) so the in-session "why this" tells the
+  // learner this exercise targets the underlying cause of several surface mistakes — the
+  // visible half of edcd54d's diagnosis→scheduling steer, the felt coherence the Vision
+  // Contract asks for. Only the rootCauseConceptId is labeled; affected concepts keep
+  // their existing reason (they're symptoms, not the cause — honest labeling).
+  const rootCauseId = diagnosisSteer && diagnosisTargets.includes(diagnosisSteer.rootCauseConceptId)
+    ? diagnosisSteer.rootCauseConceptId
+    : null;
+
   for (let i = 0; i < counts.remediation; i++) {
     const conceptId = remediationPool[i % Math.max(remediationPool.length, 1)];
     if (conceptId) {
-      const reason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
+      const reason: SelectionReason =
+        conceptId === rootCauseId
+          ? 'root_cause'
+          : focusIds.has(conceptId)
+            ? 'weekly_focus'
+            : 'weak_concept';
       addItemCapped(conceptId, REMEDIATION_EXERCISES, 'remediation', remediationPool, reason, true, diagnosisFocus);
     }
   }
