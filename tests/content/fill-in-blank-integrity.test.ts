@@ -43,4 +43,22 @@ describe('fill-in-blank content integrity', () => {
       `fill-in-blank sentences with no blank marker: ${offenders.join(', ')}`,
     ).toEqual([])
   })
+
+  // A-01 (audit 2026-06-22): `notes` is graded VERBATIM as the answer
+  // (grade-utils.ts deriveCorrectAnswer → notes). B2 had authored it as
+  // "answer — explanation", making 182 items unwinnable + poisoning diagnosis.
+  // An answer key must never carry the explanation separator (—/–), a quote,
+  // a semicolon, or an embedded "/" alternative (exact-match can't accept a
+  // slash — alternatives belong in accepted_answers). This gate makes an
+  // annotation-shaped notes a CI failure at authoring time, not a silent
+  // in-session dead end.
+  it('no fill-in-blank notes is annotation-shaped (answer key only, not prose)', () => {
+    const offenders = fillInBlank
+      .filter((s) => /[—–";/]/.test(s.notes ?? ''))
+      .map((s) => `${s.id}: "${s.notes}"`)
+    expect(
+      offenders,
+      `fill-in-blank notes that carry explanation/alternatives instead of a clean answer:\n${offenders.join('\n')}`,
+    ).toEqual([])
+  })
 })

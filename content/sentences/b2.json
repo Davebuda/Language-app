@@ -65,7 +65,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "forbedrer — V2 rule after fronted adverbial 'ifølge flere studier'"
+    "notes": "forbedrer"
   },
   {
     "id": "b2-aw-004",
@@ -138,7 +138,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "støtter — academic verb for supporting prior research"
+    "notes": "støtter"
   },
   {
     "id": "b2-aw-007",
@@ -231,7 +231,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "aksepteres — passive present tense in academic context"
+    "notes": "aksepteres"
   },
   {
     "id": "b2-aw-011",
@@ -304,7 +304,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "synes — V2 after fronted 'i lys av disse funnene'"
+    "notes": "synes"
   },
   {
     "id": "b2-aw-014",
@@ -420,7 +420,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "beskrives — passive present tense in academic writing"
+    "notes": "beskrives"
   },
   {
     "id": "b2-aw-019",
@@ -467,7 +467,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "er — V2 inversion; 'basert på' fronted prepositional phrase triggers inversion"
+    "notes": "er"
   },
   {
     "id": "b2-aw-021",
@@ -564,7 +564,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "indikerer — formal reporting verb"
+    "notes": "indikerer"
   },
   {
     "id": "b2-aw-025",
@@ -635,7 +635,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "undersøker — V2 inversion after fronted 'i motsetning til'"
+    "notes": "undersøker"
   },
   {
     "id": "b2-aw-028",
@@ -802,7 +802,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ble — passive past tense; formal workplace register"
+    "notes": "ble"
   },
   {
     "id": "b2-nr-005",
@@ -876,7 +876,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "måtte/ville — 'måtte jeg få lov til' is the highly formal request form"
+    "notes": "måtte",
+    "accepted_answers": [
+      "ville"
+    ]
   },
   {
     "id": "b2-nr-008",
@@ -1013,7 +1016,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "har — present perfect; formal board/corporate register"
+    "notes": "har"
   },
   {
     "id": "b2-nr-014",
@@ -1083,7 +1086,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "er — V2 inversion after fronted participial phrase 'gitt selskapets finansielle situasjon'"
+    "notes": "er"
   },
   {
     "id": "b2-nr-017",
@@ -1183,7 +1186,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "opplyser — formal verb for 'informs/states'; bureaucratic register"
+    "notes": "opplyser"
   },
   {
     "id": "b2-nr-021",
@@ -1259,7 +1262,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vurdering — formal noun for assessment/evaluation"
+    "notes": "vurdering"
   },
   {
     "id": "b2-nr-024",
@@ -1333,7 +1336,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "tålmodighet — 'sette stor pris på' is formal appreciation; 'Deres/Dem' formal address"
+    "notes": "tålmodighet"
   },
   {
     "id": "b2-nr-027",
@@ -1430,7 +1433,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vil bli — future passive; 'samtlige' = all/every (formal); 'avholdt' — formal passive past participle"
+    "notes": "vil bli"
   },
   {
     "id": "b2-ap-001",
@@ -1501,7 +1504,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "låst — stative passive (er + past participle = resulting state)"
+    "notes": "låst"
   },
   {
     "id": "b2-ap-004",
@@ -1567,7 +1570,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vil bli — future passive construction (vil bli + past participle)"
+    "notes": "vil bli"
   },
   {
     "id": "b2-ap-007",
@@ -1613,7 +1616,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ha blitt — modal + perfect passive: 'burde ha blitt mottatt'"
+    "notes": "ha blitt"
   },
   {
     "id": "b2-ap-009",
@@ -1728,7 +1731,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ble — impersonal passive: 'det ble ikke funnet'"
+    "notes": "ble"
   },
   {
     "id": "b2-ap-014",
@@ -1797,7 +1800,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "lest — pluperfect active after passive in coordinated clause"
+    "notes": "lest"
   },
   {
     "id": "b2-ap-017",
@@ -1819,7 +1822,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "registrerer seg — impersonal passive 'det forventes at' + active clause"
+    "notes": "registrerer seg"
   },
   {
     "id": "b2-ap-018",
@@ -1889,7 +1892,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ble — coordinated passive: 'ble oppdaget ... og ble straks videreformidlet'"
+    "notes": "ble"
   },
   {
     "id": "b2-ap-021",
@@ -1933,7 +1936,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "oppdages — s-passive in coordinated clause: 'oppdages og loggføres'"
+    "notes": "oppdages"
   },
   {
     "id": "b2-ap-023",
@@ -2003,7 +2006,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vil bli — future passive: 'vil bli gjennomført'"
+    "notes": "vil bli"
   },
   {
     "id": "b2-ap-026",
@@ -2190,7 +2193,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "imidlertid — formal contrastive connector; note inversion when fronted"
+    "notes": "imidlertid"
   },
   {
     "id": "b2-ca-004",
@@ -2237,7 +2240,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — concessive adverb; note V2: 'likevel mangler han'"
+    "notes": "likevel"
   },
   {
     "id": "b2-ca-006",
@@ -2285,7 +2288,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "imidlertid — parenthetical placement mid-clause; note comma usage"
+    "notes": "imidlertid"
   },
   {
     "id": "b2-ca-008",
@@ -2307,7 +2310,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — adverb after finite verb when not fronted: 'peker likevel på'"
+    "notes": "likevel"
   },
   {
     "id": "b2-ca-009",
@@ -2375,7 +2378,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — concessive adverb mid-clause: 'er kvaliteten likevel god nok'"
+    "notes": "likevel"
   },
   {
     "id": "b2-ca-012",
@@ -2399,7 +2402,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "imidlertid — parenthetical between subject and negation: 'kan imidlertid ikke'"
+    "notes": "imidlertid"
   },
   {
     "id": "b2-ca-013",
@@ -2426,7 +2429,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — 'må vi likevel gjøre'; inversion in main clause after 'selv om'"
+    "notes": "likevel"
   },
   {
     "id": "b2-ca-014",
@@ -2515,7 +2518,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "derimot — contrastive marker; V2: 'derimot er andre bekymret'"
+    "notes": "derimot"
   },
   {
     "id": "b2-ca-018",
@@ -2560,7 +2563,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — 'likevel har hun ikke fått' — V2 inversion after fronted 'likevel'"
+    "notes": "likevel"
   },
   {
     "id": "b2-ca-020",
@@ -2629,7 +2632,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "imidlertid — 'imidlertid er det store ulikheter' — formal contrastive, V2"
+    "notes": "imidlertid"
   },
   {
     "id": "b2-ca-023",
@@ -2673,7 +2676,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "derimot — 'derimot har det også ført til' — contrastive V2"
+    "notes": "derimot"
   },
   {
     "id": "b2-ca-025",
@@ -2719,7 +2722,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — 'er det likevel grunn til' — adverb position after finite verb"
+    "notes": "likevel"
   },
   {
     "id": "b2-ca-027",
@@ -2741,7 +2744,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "imidlertid — fronted: 'imidlertid er det knyttet' — formal V2 inversion"
+    "notes": "imidlertid"
   },
   {
     "id": "b2-ca-028",
@@ -2809,7 +2812,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "likevel — 'bidro dialogen likevel til' — adverb between verb and complement"
+    "notes": "likevel"
   },
   {
     "id": "b2-ni-001",
@@ -2904,7 +2907,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ta bladet — complete idiom: 'ta bladet fra munnen'"
+    "notes": "ta bladet"
   },
   {
     "id": "b2-ni-005",
@@ -2925,7 +2928,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hundene — 'gikk det fullstendig i hundene'"
+    "notes": "hundene"
   },
   {
     "id": "b2-ni-006",
@@ -2995,7 +2998,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "kjøtt og blod — 'flesh and blood' idiom for being an ordinary person"
+    "notes": "kjøtt og blod"
   },
   {
     "id": "b2-ni-009",
@@ -3069,7 +3072,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "bare bare — 'ikke bare bare' idiom; position at sentence end"
+    "notes": "bare bare"
   },
   {
     "id": "b2-ni-012",
@@ -3115,7 +3118,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "bare bare — 'det er bare bare å leve med' — something one simply must accept"
+    "notes": "bare bare"
   },
   {
     "id": "b2-ni-014",
@@ -3188,7 +3191,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "bare bare — idiom at sentence end after infinitive subject"
+    "notes": "bare bare"
   },
   {
     "id": "b2-ni-017",
@@ -3282,7 +3285,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "holdt — 'holdt kortene tett til brystet'; past tense of 'holde'"
+    "notes": "holdt"
   },
   {
     "id": "b2-ni-021",
@@ -3355,7 +3358,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "selg — imperative of 'selge'; 'ikke selg skinnet/bjørnens skinn ...'"
+    "notes": "selg"
   },
   {
     "id": "b2-ni-024",
@@ -3422,7 +3425,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "i hundene — complete idiom: 'går i hundene'; informal prediction of failure"
+    "notes": "i hundene"
   },
   {
     "id": "b2-ni-027",
@@ -3474,7 +3477,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "håndvending — 'ikke gjort i en håndvending'"
+    "notes": "håndvending"
   },
   {
     "id": "b2-ni-029",
@@ -3589,7 +3592,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "han — cleft: 'det var nettopp denne muligheten han hadde ventet på'"
+    "notes": "han"
   },
   {
     "id": "b2-awo-004",
@@ -3635,7 +3638,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "som — cleft relative pronoun: 'det er ... som gjør'"
+    "notes": "som"
   },
   {
     "id": "b2-awo-006",
@@ -3731,7 +3734,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "som — negated cleft: 'det var ikke penger som motiverte ham'"
+    "notes": "som"
   },
   {
     "id": "b2-awo-010",
@@ -3779,7 +3782,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "at — cleft with time expression: 'det var etter denne hendelsen at'"
+    "notes": "at"
   },
   {
     "id": "b2-awo-012",
@@ -3826,7 +3829,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "som — cleft relative pronoun"
+    "notes": "som"
   },
   {
     "id": "b2-awo-014",
@@ -3896,7 +3899,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "manglet — 'verken ... eller' fronted subject triggers normal V2"
+    "notes": "manglet"
   },
   {
     "id": "b2-awo-017",
@@ -3942,7 +3945,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "som — cleft: 'det er akkurat dette poenget som gjør'"
+    "notes": "som"
   },
   {
     "id": "b2-awo-019",
@@ -3994,7 +3997,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "som — cleft relative pronoun after compound subject"
+    "notes": "som"
   },
   {
     "id": "b2-awo-021",
@@ -4091,7 +4094,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "at — cleft with time/place: 'det var under denne konferansen at'"
+    "notes": "at"
   },
   {
     "id": "b2-awo-025",
@@ -4139,7 +4142,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "at — cleft construction: 'det er nettopp i ... at'"
+    "notes": "at"
   },
   {
     "id": "b2-awo-027",
@@ -4235,7 +4238,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "som — cleft with coordinated subject: 'det er ikke bare X men også Y som'"
+    "notes": "som"
   },
   {
     "id": "b2-rs-001",
@@ -4307,7 +4310,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville være — backshift of future: 'er klare' → 'ville være klare'"
+    "notes": "ville være"
   },
   {
     "id": "b2-rs-004",
@@ -4352,7 +4355,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde beveget seg — backshift of past perfect in reported speech"
+    "notes": "hadde beveget seg"
   },
   {
     "id": "b2-rs-006",
@@ -4400,7 +4403,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "sjekke — modal backshift: 'må sjekke' → 'måtte sjekke'"
+    "notes": "sjekke"
   },
   {
     "id": "b2-rs-008",
@@ -4452,7 +4455,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde falt — past perfect backshift; coordinated reported clauses"
+    "notes": "hadde falt"
   },
   {
     "id": "b2-rs-010",
@@ -4475,7 +4478,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ble spilt — backshift of passive present: 'spilles' → 'ble spilt'"
+    "notes": "ble spilt"
   },
   {
     "id": "b2-rs-011",
@@ -4525,7 +4528,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "var — stative passive in backshifted clause: 'er løst' → 'var løst'"
+    "notes": "var"
   },
   {
     "id": "b2-rs-013",
@@ -4570,7 +4573,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville komme — future backshift: 'kommer' → 'ville komme'"
+    "notes": "ville komme"
   },
   {
     "id": "b2-rs-015",
@@ -4594,7 +4597,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville — backshift of future modal: 'skal' → 'ville'"
+    "notes": "ville"
   },
   {
     "id": "b2-rs-016",
@@ -4643,7 +4646,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde — past perfect in negated backshifted clause"
+    "notes": "hadde"
   },
   {
     "id": "b2-rs-018",
@@ -4691,7 +4694,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "burde — double backshift: 'bør' → 'burde'; embedded reported speech within reported speech"
+    "notes": "burde"
   },
   {
     "id": "b2-rs-020",
@@ -4737,7 +4740,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "måtte — modal backshift: 'må' → 'måtte'; triple embedding (showed > felt > needed)"
+    "notes": "måtte"
   },
   {
     "id": "b2-rs-022",
@@ -4784,7 +4787,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde — past perfect backshift; coordinated past perfect clauses"
+    "notes": "hadde"
   },
   {
     "id": "b2-rs-024",
@@ -4829,7 +4832,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "skulle — backshift of obligation modal: 'skal' → 'skulle'"
+    "notes": "skulle"
   },
   {
     "id": "b2-rs-026",
@@ -4873,7 +4876,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "var blitt — past perfect passive backshift: 'er bekreftet' → 'var blitt bekreftet'"
+    "notes": "var blitt"
   },
   {
     "id": "b2-rs-028",
@@ -4921,7 +4924,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville — future backshift: 'vil stige' → 'ville stige'"
+    "notes": "ville"
   },
   {
     "id": "b2-rs-030",
@@ -5017,7 +5020,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde — 'om bare hun hadde søkt' — past perfect in counterfactual"
+    "notes": "hadde"
   },
   {
     "id": "b2-sm-004",
@@ -5067,7 +5070,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "kunne — 'jeg skulle ønske at jeg kunne' — wish + modal subjunctive equivalent"
+    "notes": "kunne"
   },
   {
     "id": "b2-sm-006",
@@ -5117,7 +5120,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vært — inverted counterfactual without 'hvis/om': 'hadde de vært'"
+    "notes": "vært"
   },
   {
     "id": "b2-sm-008",
@@ -5163,7 +5166,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville — 'ville jeg ikke havnet' — result clause in counterfactual"
+    "notes": "ville"
   },
   {
     "id": "b2-sm-010",
@@ -5216,7 +5219,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vært — past perfect in wish construction: 'hadde vært ærligere'"
+    "notes": "vært"
   },
   {
     "id": "b2-sm-012",
@@ -5263,7 +5266,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hadde — present counterfactual using past tense: 'om bare jeg hadde'"
+    "notes": "hadde"
   },
   {
     "id": "b2-sm-014",
@@ -5412,7 +5415,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vært — inverted counterfactual with passive: 'hadde prosjektet vært fullfinansiert'"
+    "notes": "vært"
   },
   {
     "id": "b2-sm-020",
@@ -5462,7 +5465,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "hatt — past perfect of 'ha': 'hadde hatt litt mer tålmodighet'"
+    "notes": "hatt"
   },
   {
     "id": "b2-sm-022",
@@ -5533,7 +5536,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville — 'ville de nå spart' — mixed counterfactual with present adverb 'nå'"
+    "notes": "ville"
   },
   {
     "id": "b2-sm-025",
@@ -5584,7 +5587,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "fortalt — inverted counterfactual: 'hadde du fortalt meg'"
+    "notes": "fortalt"
   },
   {
     "id": "b2-sm-027",
@@ -5630,7 +5633,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ville — result clause: 'ville helsevesenet spart' — inversion in conditional result"
+    "notes": "ville"
   },
   {
     "id": "b2-sm-029",
@@ -5749,7 +5752,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Av denne grunn — causal connector; V2 inversion: 'av denne grunn er det'"
+    "notes": "Av denne grunn"
   },
   {
     "id": "b2-tc-004",
@@ -5797,7 +5800,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Ikke desto mindre/Likevel — concessive connector; V2: 'likevel bør man'"
+    "notes": "Ikke desto mindre",
+    "accepted_answers": [
+      "Likevel"
+    ]
   },
   {
     "id": "b2-tc-006",
@@ -5841,7 +5847,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Siden da — temporal cohesive connector; V2 inversion: 'siden da er den blitt'"
+    "notes": "Siden da"
   },
   {
     "id": "b2-tc-008",
@@ -5888,7 +5894,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Ikke desto mindre — formal concessive connector; V2 inversion"
+    "notes": "Ikke desto mindre"
   },
   {
     "id": "b2-tc-010",
@@ -5932,7 +5938,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Likevel — concessive inter-sentence connector; V2: 'likevel er det'"
+    "notes": "Likevel"
   },
   {
     "id": "b2-tc-012",
@@ -6003,7 +6009,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Siden da — temporal cohesive connector; V2: 'siden da har det vært'"
+    "notes": "Siden da"
   },
   {
     "id": "b2-tc-015",
@@ -6049,7 +6055,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Imidlertid — formal contrastive connector; V2: 'imidlertid slet det'"
+    "notes": "Imidlertid"
   },
   {
     "id": "b2-tc-017",
@@ -6072,7 +6078,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Til tross for dette — concessive anaphoric connector; V2 inversion"
+    "notes": "Til tross for dette"
   },
   {
     "id": "b2-tc-018",
@@ -6119,7 +6125,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Nå — temporal cohesive adverb; V2: 'nå ser markedet ut til'"
+    "notes": "Nå"
   },
   {
     "id": "b2-tc-020",
@@ -6166,7 +6172,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Som følge av dette — causal cohesive connector; V2: 'som følge av dette har antallet'"
+    "notes": "Som følge av dette"
   },
   {
     "id": "b2-tc-022",
@@ -6210,7 +6216,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Ikke desto mindre — formal concessive connector; V2 inversion"
+    "notes": "Ikke desto mindre"
   },
   {
     "id": "b2-tc-024",
@@ -6260,7 +6266,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "imidlertid — parenthetical mid-clause: 'viste seg imidlertid å være'"
+    "notes": "imidlertid"
   },
   {
     "id": "b2-tc-026",
@@ -6304,7 +6310,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Derimot — contrastive connector; V2: 'derimot er den andre løsningen'"
+    "notes": "Derimot"
   },
   {
     "id": "b2-tc-028",
@@ -6327,7 +6333,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Til slutt — temporal-sequential connector; V2: 'til slutt ble den'"
+    "notes": "Til slutt"
   },
   {
     "id": "b2-tc-029",
@@ -6445,7 +6451,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "sørgende — present participle as adjective: from 'å sørge' (to grieve)"
+    "notes": "sørgende"
   },
   {
     "id": "b2-avf-004",
@@ -6490,7 +6496,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "savnede — past participle as adjective (definite form): from 'å savne'"
+    "notes": "savnede"
   },
   {
     "id": "b2-avf-006",
@@ -6540,7 +6546,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "fortapte/bortkomne — past participle as adjective (plural definite)"
+    "notes": "fortapte",
+    "accepted_answers": [
+      "bortkomne"
+    ]
   },
   {
     "id": "b2-avf-008",
@@ -6589,7 +6598,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "innsamlede — past participle as adjective (plural/definite); 'nylig innsamlede' = recently collected"
+    "notes": "innsamlede"
   },
   {
     "id": "b2-avf-010",
@@ -6640,7 +6649,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "motivert — past participle as adjective (indefinite singular common gender)"
+    "notes": "motivert"
   },
   {
     "id": "b2-avf-012",
@@ -6711,7 +6720,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "pågående — present participle as attributive adjective: ongoing"
+    "notes": "pågående"
   },
   {
     "id": "b2-avf-015",
@@ -6761,7 +6770,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "avtalte — past participle as definite attributive adjective: agreed/stipulated"
+    "notes": "avtalte"
   },
   {
     "id": "b2-avf-017",
@@ -6808,7 +6817,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "begrunnet — past participle as attributive adjective: reasoned/substantiated"
+    "notes": "begrunnet"
   },
   {
     "id": "b2-avf-019",
@@ -6925,7 +6934,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vedvarende — present participle as attributive adjective: sustained/ongoing"
+    "notes": "vedvarende"
   },
   {
     "id": "b2-avf-024",
@@ -6973,7 +6982,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "mislykket — past participle as indefinite attributive adjective"
+    "notes": "mislykket"
   },
   {
     "id": "b2-avf-026",
@@ -7043,7 +7052,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "uventede — past participle/adjective as definite attributive: unexpected"
+    "notes": "uventede"
   },
   {
     "id": "b2-avf-029",
@@ -7091,7 +7100,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "begrensede — past participle as plural definite attributive adjective"
+    "notes": "begrensede"
   },
   {
     "id": "b2-sv-001",
@@ -7883,7 +7892,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ansvarlig/kompetent — 'ansvarlig avdeling' = responsible/relevant department"
+    "notes": "ansvarlig",
+    "accepted_answers": [
+      "kompetent"
+    ]
   },
   {
     "id": "b2-pn-004",
@@ -7934,7 +7946,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "velfortjent — 'velfortjent ferie' = well-deserved holiday; 'på vegne av' = on behalf of"
+    "notes": "velfortjent"
   },
   {
     "id": "b2-pn-006",
@@ -8007,7 +8019,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "gjennomgang/vurdering — 'oversendt til ... for vurdering' = referred for review"
+    "notes": "gjennomgang",
+    "accepted_answers": [
+      "vurdering"
+    ]
   },
   {
     "id": "b2-pn-009",
@@ -8081,7 +8096,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "oppfølgingspunktene/tiltakspunktene — action points; 'her følger' = V2 after fronted adverb"
+    "notes": "oppfølgingspunktene",
+    "accepted_answers": [
+      "tiltakspunktene"
+    ]
   },
   {
     "id": "b2-pn-012",
@@ -8151,7 +8169,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Prosjektbeskrivelse — formal email attachment listing; 'vedlegg' = attachments/enclosures"
+    "notes": "Prosjektbeskrivelse"
   },
   {
     "id": "b2-pn-015",
@@ -8218,7 +8236,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "prosjekt — meeting agenda format; 'eventuelt' = AOB (any other business)"
+    "notes": "prosjekt"
   },
   {
     "id": "b2-pn-018",
@@ -8266,7 +8284,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "styremedlemmene — formal compound: 'styremedlem' = board member"
+    "notes": "styremedlemmene"
   },
   {
     "id": "b2-pn-020",
@@ -8314,7 +8332,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "lanseres/igangsettes — future passive; 'med forbehold om' = subject to/conditional on"
+    "notes": "lanseres",
+    "accepted_answers": [
+      "igangsettes"
+    ]
   },
   {
     "id": "b2-pn-022",
@@ -8367,7 +8388,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "innen dagen er omme/innen arbeidstidens slutt — formal time expression for end of business day"
+    "notes": "innen dagen er omme",
+    "accepted_answers": [
+      "innen arbeidstidens slutt"
+    ]
   },
   {
     "id": "b2-pn-024",
@@ -8415,7 +8439,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "tidligere/raskere — formal email apology for delayed response"
+    "notes": "tidligere",
+    "accepted_answers": [
+      "raskere"
+    ]
   },
   {
     "id": "b2-pn-026",
@@ -8468,7 +8495,10 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "avtale/arrangere — formal meeting request; 'setter stor pris på' = appreciate greatly"
+    "notes": "avtale",
+    "accepted_answers": [
+      "arrangere"
+    ]
   },
   {
     "id": "b2-pn-028",
@@ -8813,7 +8843,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "er — V2 after fronted topic phrase 'hva angår budsjettet'; 'hva angår' is a formal topic-fronting device"
+    "notes": "er"
   },
   {
     "id": "b2-sv-113",
@@ -9106,7 +9136,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "viser — 'departementet viser til at' is a fixed formal bureaucratic phrase meaning the ministry refers/points to; not interchangeable with casual 'sier'"
+    "notes": "viser"
   },
   {
     "id": "b2-nr-105",
@@ -9288,7 +9318,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "komplisere — komplisere ting unødvendig = overcomplicate; overkomplisere is not a real Norwegian word"
+    "notes": "komplisere"
   },
   {
     "id": "b2-nr-112",
@@ -9458,7 +9488,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "skal — deontic 'skal' in official/legal language; 'saksbehandlingstid' and 'søknadsdato' are bureaucratic compound nouns"
+    "notes": "skal"
   },
   {
     "id": "b2-nr-119",
@@ -9638,7 +9668,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "beklager — beklage takes a direct object, no for (unlike English apologise for); answer: beklager"
+    "notes": "beklager"
   },
   {
     "id": "b2-pn-106",
@@ -9714,7 +9744,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "anmodes — anmodes om å (never til); answer: anmodes"
+    "notes": "anmodes"
   },
   {
     "id": "b2-pn-109",
@@ -10131,7 +10161,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "var — stative passive. The pluperfect framing ('da vi kom hjem') and 'allerede' require a resultant-state reading, blocking 'ble brukt' (which describes the action/event, not the resulting state). Expected answer: var"
+    "notes": "var"
   },
   {
     "id": "b2-sv2-208",
@@ -10224,7 +10254,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "henvender — formal customer-service register. 'Be om at' + present tense in subordinate clause is a formal instruction pattern."
+    "notes": "henvender"
   },
   {
     "id": "b2-sv2-212",
@@ -10292,7 +10322,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "spredte — literary/narrative register. Coordinated past tense verbs; the simile 'som et vilt flagg' signals literary style. Expected answer: spredte"
+    "notes": "spredte"
   },
   {
     "id": "b2-sv2-215",
@@ -10383,7 +10413,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "vil bli — future passive in formal customer-service/legal register. 'Reklamasjonsprosedyrer' is a compound noun typical of administrative Bokmål."
+    "notes": "vil bli"
   },
   {
     "id": "b2-sv2-219",
@@ -10481,7 +10511,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "etterspurte — bureaucratic register. 'Avslått under henvisning til' is a standard administrative rejection formula. Expected answer: etterspurte (required/requested)"
+    "notes": "etterspurte"
   },
   {
     "id": "b2-sv2-223",
@@ -10526,7 +10556,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "benytter — formal institutional register. 'Benytte anledningen til å' is a set bureaucratic formula. Expected answer: benytter"
+    "notes": "benytter"
   },
   {
     "id": "b2-sv2-225",
@@ -10666,7 +10696,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "skal — legal/contractual register. 'Tvist' (dispute), 'mekling' (mediation), 'søksmål reises' (lawsuit is filed) — all legal Bokmål. Note: 'iverksette' is not used with lawsuits; correct verbs are 'reises' or 'anlegges'. Expected answer: skal"
+    "notes": "skal"
   },
   {
     "id": "b2-nr2-205",
@@ -10712,7 +10742,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "er — legal-contractual register. 'I samsvar med', 'forpliktet til å utbedre', 'virkedager' — high-register legal markers. Expected answer: er"
+    "notes": "er"
   },
   {
     "id": "b2-nr2-207",
@@ -10757,7 +10787,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "informeres — standard s-passive in formal notification register. 'Herved', 'det aktuelle produktet', 'utløpt' are formal register markers. 'Kunden informeres herved om at' is the canonical Norwegian formal notification formula. 'Gjøres informert' is a non-native calque and should not be used. Expected answer: informeres"
+    "notes": "informeres"
   },
   {
     "id": "b2-nr2-209",
@@ -10876,7 +10906,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "kan — informal spoken register with 'bare' as softener. Expected answer: kan. Note informal 'legge oss på sofaen og gjøre absolutt ingenting' — hyperbolic informality."
+    "notes": "kan"
   },
   {
     "id": "b2-nr2-214",
@@ -10949,7 +10979,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "derfor — formal connector in a second main clause with V2 inversion ('og derfor bør selskapet...'). 'Medføre' (entail), 'sette av midler' (set aside funds) — financial-formal register. Note: 'hvorfor' as a relative connector meaning 'for which reason' is archaic in modern Bokmål and should not be taught as a current form. Expected answer: derfor"
+    "notes": "derfor"
   },
   {
     "id": "b2-nr2-217",
@@ -11039,7 +11069,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "er blitt — or simply 'er' — formal bureaucratic passive. 'Kompetent myndighet', 'videre behandling', 'endelig avgjørelse' — administrative register markers. Expected answer: er"
+    "notes": "er blitt"
   },
   {
     "id": "b2-nr2-221",
@@ -11133,7 +11163,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "må — formal administrative instruction. 'Tas under behandling' — formal passive for 'be processed/considered'. Expected answer: må"
+    "notes": "må"
   },
   {
     "id": "b2-nr2-225",
@@ -11254,7 +11284,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "legges — 'anmode om at' takes present tense in subordinate clause; correct preposition: 'anmode om' (NOT 'anmode for'). Expected answer: legges"
+    "notes": "legges"
   },
   {
     "id": "b2-pn2-204",
@@ -11322,7 +11352,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "følger — fronted 'vedlagt' triggers V2 inversion: 'vedlagt følger årsrapport'. This is a standard Norwegian formal letter enclosure formula. Expected answer: følger"
+    "notes": "følger"
   },
   {
     "id": "b2-pn2-207",
@@ -11366,7 +11396,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "holdt seg — 'holde seg stabilt' is the standard HR/management register phrase for 'remained stable'. Expected answer: holdt seg"
+    "notes": "holdt seg"
   },
   {
     "id": "b2-pn2-209",
@@ -11440,7 +11470,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "skal signeres — modal passive in legal-employment register. 'Plikter' (obligations), 'regulerer' — formal legal language. Expected answer: skal signeres"
+    "notes": "skal signeres"
   },
   {
     "id": "b2-pn2-212",
@@ -11509,7 +11539,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "skal leveres — modal passive; 'den administrative ledelsen' (the administrative management) is standard workplace Norwegian. Expected answer: skal leveres"
+    "notes": "skal leveres"
   },
   {
     "id": "b2-pn2-215",
@@ -11576,7 +11606,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "påminnes — s-passive of 'påminne om' (to remind of/about). 'Som ledd i' (as part of) is a standard workplace framing phrase; 'HMS' (helse, miljø og sikkerhet — health, safety and environment) is ubiquitous in Norwegian workplace communication. IMPORTANT: 'minnes' means 'to be commemorated / to remember the dead' and is completely wrong here. Expected answer: påminnes"
+    "notes": "påminnes"
   },
   {
     "id": "b2-pn2-218",
@@ -11646,7 +11676,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "sendes — s-passive in professional instruction; 'eventuelle merknader' (any comments — with 'eventuelle' as formal hedging adjective), 'vedlagte utkastet' — professional document language. Expected answer: sendes"
+    "notes": "sendes"
   },
   {
     "id": "b2-pn2-221",
@@ -11715,7 +11745,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "skal — modal that takes the s-passive infinitive 'anonymiseres' (already present in the sentence). 'Iht.' (abbreviation of 'i henhold til' — in accordance with) is standard in Norwegian professional documents and appropriate at B2; 'personopplysningslov' refers to the Norwegian law implementing GDPR. Expected answer: skal"
+    "notes": "skal"
   },
   {
     "id": "b2-pn2-224",
@@ -11761,7 +11791,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "påløper — or 'vil bli beregnet' — standard invoice/payment-reminder register. 'Forsinkelsesrenter' (late payment interest), 'forsinkelsesrenteloven' — Norwegian law reference. Expected answer: påløper"
+    "notes": "påløper"
   },
   {
     "id": "b2-pn2-226",
@@ -11885,7 +11915,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Følgelig — consecutive connector; fronted position triggers V2 inversion. Cannot be replaced by 'imidlertid' or 'likevel' because the clause expresses a consequence, not a concession."
+    "notes": "Følgelig"
   },
   {
     "id": "b2-tc-306",
@@ -11957,7 +11987,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "for det tredje — completes the enumeration series 'for det første … for det andre … for det tredje'."
+    "notes": "for det tredje"
   },
   {
     "id": "b2-tc-310",
@@ -12054,7 +12084,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Likevel — concessive connector; fronted position triggers V2 inversion. 'Ikke desto mindre' is C1-register and three tokens; at B2 'Likevel' is the expected single-word target."
+    "notes": "Likevel"
   },
   {
     "id": "b2-tc-315",
@@ -12128,7 +12158,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Deretter — sequential connector; 'de' is anaphoric pronoun referring back to 'dataene'; V2 inversion after fronted connector."
+    "notes": "Deretter"
   },
   {
     "id": "b2-tc-319",
@@ -12195,7 +12225,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "Likevel — concessive connector; fronted position triggers V2 with expletive subject 'det': 'likevel mangler det'."
+    "notes": "Likevel"
   },
   {
     "id": "b2-tc-323",
@@ -12321,7 +12351,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "mens — contrastive connector linking two partitive clauses that account for all five chapters; 'disse' is anaphoric to 'fem kapitler'."
+    "notes": "mens"
   },
   {
     "id": "b2-tc-331",
@@ -12369,7 +12399,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "det tredje — final term in a parallel tripartite anaphoric series; ellipsis of the verb recovers from prior parallel structure."
+    "notes": "det tredje"
   },
   {
     "id": "b2-aw3-301",
@@ -12419,7 +12449,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "analyse — nominalisation of 'å analysere'; the pattern verb → noun is core to the formal density of academic prose."
+    "notes": "analyse"
   },
   {
     "id": "b2-aw3-303",
@@ -12496,7 +12526,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "utfyller — 'utfylle hverandre' (to complement each other); cannot be 'supplerer' in this reciprocal structure without changing meaning."
+    "notes": "utfyller"
   },
   {
     "id": "b2-aw3-307",
@@ -12572,7 +12602,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "foreliggende — 'den foreliggende studien' is the standard academic phrase for 'the present study'; marks the author's own work."
+    "notes": "foreliggende"
   },
   {
     "id": "b2-aw3-311",
@@ -12646,7 +12676,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "tilslutning — 'vinne bred tilslutning' is the idiomatic collocation; 'støtte' takes 'få'/'ha' not 'vinne', so 'vunnet' forecloses it."
+    "notes": "tilslutning"
   },
   {
     "id": "b2-aw3-315",
@@ -12743,7 +12773,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "øker — subject-verb agreement in embedded 'hvorvidt'-clause; 'hvorvidt' is the formal academic equivalent of 'om' in indirect questions."
+    "notes": "øker"
   },
   {
     "id": "b2-aw3-321",
@@ -12791,7 +12821,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "generaliseres — modal s-passive in embedded 'at'-clause; 'generalisere til' is the standard academic verb for extending findings."
+    "notes": "generaliseres"
   },
   {
     "id": "b2-aw3-323",
@@ -12841,7 +12871,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "understreke — infinitive after 'å'; the frame 'det er viktig å understreke at' is a standard academic caveat. 'Presisere'/'påpeke' are not accepted (different meaning)."
+    "notes": "understreke"
   },
   {
     "id": "b2-aw3-325",
@@ -12890,7 +12920,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "prediksjonene — 'teoretiske prediksjoner' (theoretical predictions); 'forenlig med' is the formal equivalent of 'i samsvar med'."
+    "notes": "prediksjonene"
   },
   {
     "id": "b2-aw3-327",
@@ -12938,7 +12968,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "fordel — 'til fordel for' (in favour of); 'det vil si at' is a formal clarification connector used to explicate a prior statement."
+    "notes": "fordel"
   },
   {
     "id": "b2-aw3-329",
@@ -12987,7 +13017,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "føre — 'kan føre til' (can lead to); 'det er påvist at' is a formal evidential frame signalling empirically established fact."
+    "notes": "føre"
   },
   {
     "id": "b2-aw3-331",
@@ -13036,7 +13066,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "stor — 'i stor grad' (largely); standard B2 academic hedging. 'Liten' contradicts the conclusion and is not accepted."
+    "notes": "stor"
   },
   {
     "id": "b2-ap-301",
@@ -13086,7 +13116,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "revideres — future s-passive (bare infinitive form used as present/future); contrast with prior 'ble vedtatt' (bli-passive past)."
+    "notes": "revideres"
   },
   {
     "id": "b2-ap-303",
@@ -13186,7 +13216,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "signert — stative passive 'er ikke signert' (resulting state not yet achieved); contrast with dynamic bli-passive 'ble avsluttet'."
+    "notes": "signert"
   },
   {
     "id": "b2-ap-308",
@@ -13234,7 +13264,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "bli distribuert — future passive coordinated with stative perfect passive 'er utarbeidet av'; 'av komiteen' is explicit agent."
+    "notes": "bli distribuert"
   },
   {
     "id": "b2-ap-310",
@@ -13282,7 +13312,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ble utbedret — coordinated bli-passives; 'av det ansvarlige vedlikeholdsselskapet' is an agentive phrase identifying the actor."
+    "notes": "ble utbedret"
   },
   {
     "id": "b2-ap-312",
@@ -13333,7 +13363,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "ble — coordinated bli-passives with negation in the second clause; 'av banken' identifies the confirming agent."
+    "notes": "ble"
   },
   {
     "id": "b2-ap-314",
@@ -13434,7 +13464,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "selges — s-passive present coordinated with stative passive 'er oversatt'; both agentless, together describing the book's global reach."
+    "notes": "selges"
   },
   {
     "id": "b2-ap-319",
@@ -13482,7 +13512,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "behandles — s-passive in embedded 'at'-clause; agentless because the focus is on the patient experience, not the treating actor."
+    "notes": "behandles"
   },
   {
     "id": "b2-ap-321",
@@ -13531,7 +13561,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "fremgår — 'det fremgår av' takes 'av + source' and signals information read off a document; cannot be 'hevdes'/'rapporteres' (which take 'i + source')."
+    "notes": "fremgår"
   },
   {
     "id": "b2-ap-323",
@@ -13581,7 +13611,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "brukes — s-passive present coordinated with stative perfect passive 'er utviklet'; 'av over en million brukere' is a quantified agent phrase."
+    "notes": "brukes"
   },
   {
     "id": "b2-ap-325",
@@ -13630,7 +13660,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "nedfelt — 'er nedfelt i' is the fixed legal/contractual stative passive for requirements enshrined in a document; cannot be 'fremgår' (takes 'av') or 'fastsatt' (act, not state)."
+    "notes": "nedfelt"
   },
   {
     "id": "b2-ap-327",
@@ -13681,7 +13711,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "tildeles — s-passive in embedded 'at'-clause after expletive 'det er sjelden at'; indirect object 'til en forsker' preserved."
+    "notes": "tildeles"
   },
   {
     "id": "b2-ap-329",
@@ -13730,7 +13760,7 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "er blitt — present perfect bli-passive in embedded 'at'-clause; matrix s-passive 'bekreftes' frames the announcement."
+    "notes": "er blitt"
   },
   {
     "id": "b2-ap-331",
@@ -13781,6 +13811,6 @@
     "exercise_types": [
       "fill-in-blank"
     ],
-    "notes": "holder — 'holder seg til' (adheres to); matrix s-passive 'forutsettes'; relative clause with passive 'som er fastsatt av' — passive in subordinate clause target."
+    "notes": "holder"
   }
 ]
