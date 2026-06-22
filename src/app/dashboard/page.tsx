@@ -20,7 +20,7 @@ import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel, getCumulativeConcepts } from '@/lib/concept-graph-loader'
 import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
 import { getCoachRecommendation } from '@/lib/coach-recommendation'
-import { CORE_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
+import { CORE_LANES, MUNTLIG_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 import { ProductionWall } from '@/components/dashboard/ProductionWall'
 import { deriveProductionWallView, deriveDiagnosisHighlight } from '@/lib/production-wall'
@@ -452,6 +452,30 @@ export default function DashboardPage() {
                     {completedCount} fullført i dag
                   </div>
                 ) : null}
+              </div>
+
+              {/* ── Muntlig Panel (Cream) — speaking practice. These three lanes
+                  (Lytt / Uttale / Skygging) were built + fingerprint-wired but had
+                  no in-app entry point (audit R-01); the North Star is "speak more
+                  Norwegian". Kept behind "Mer" so the conductor hero stays one
+                  prescribed action (T1.1 IA); supplementary, so NOT folded into the
+                  daily denominator. ── */}
+              <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
+                <div className="flex items-center justify-between px-1 pb-1.5">
+                  <span className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">Muntlig</span>
+                  <span className="text-[0.68rem] text-[var(--nc-cream-dim)]">Snakk mer norsk</span>
+                </div>
+                <div className="flex flex-col">
+                  {MUNTLIG_LANES.map((laneId, i) => (
+                    <LaneTrackRow
+                      key={laneId}
+                      laneId={laneId}
+                      hint={laneHints[laneId]}
+                      done={completedLanes.has(laneId)}
+                      isLast={i === MUNTLIG_LANES.length - 1}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* ── Week Overview (Dark) ── */}
