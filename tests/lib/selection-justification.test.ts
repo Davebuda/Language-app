@@ -28,4 +28,8 @@ describe('selectionJustification', () => {
       expect(s.length).toBeGreaterThan(0)
     }
   })
+
+  it('notebook_practice returns the learner-facing notebook string', () => {
+    expect(selectionJustification('notebook_practice')).toBe('Fra notatboka di')
+  })
 })

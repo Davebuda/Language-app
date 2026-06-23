@@ -9,21 +9,17 @@ import type {
 import type { ErrorTag } from '@/types/taxonomy';
 import type { ExerciseType } from '@/types/session';
 import type { ConceptGraph } from '@/types/concepts';
+import { SRS_LADDER_DAYS, srsNextReviewAt } from '@/lib/srs';
+
+// SRS_LADDER_DAYS is re-exported here so existing importers (e.g. src/engine/vocab.ts)
+// keep resolving it from '@/engine/fingerprint' after the extraction to '@/lib/srs'.
+export { SRS_LADDER_DAYS };
 
 // ── Mastery Scoring ────────────────────────────────────────────────────
 
 const DECAY_HALF_LIFE_DAYS = 25;  // ~3.5 weeks — steepest forgetting in first month; floor prevents total loss
 const DECAY_FLOOR = 35;           // cold-start midpoint: users don't forget everything
 
-// SRS review intervals in days, indexed by srsLevel (0–4)
-export const SRS_LADDER_DAYS = [1, 3, 7, 14, 30] as const;
-
-function srsNextReviewAt(srsLevel: number): string {
-  const days = SRS_LADDER_DAYS[Math.min(srsLevel, SRS_LADDER_DAYS.length - 1)] ?? 1;
-  const d = new Date();
-  d.setDate(d.getDate() + days);
-  return d.toISOString();
-}
 const MAX_RECENT_ERRORS = 200;
 const ERROR_PATTERN_WINDOW_DAYS = 30;
 const MAX_RECENT_OUTCOMES = 5;

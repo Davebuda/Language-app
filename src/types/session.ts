@@ -64,7 +64,8 @@ export type SelectionReason =
   | 'weekly_focus'
   | 'repair_target'
   | 'cold_start'
-  | 'root_cause';      // the diagnosed root cause behind surface mistakes (diagnosis-steered remediation)
+  | 'root_cause'       // the diagnosed root cause behind surface mistakes (diagnosis-steered remediation)
+  | 'notebook_practice'; // an item the learner saved + promoted from their notebook
 
 export interface SessionItem {
   id: string;

@@ -34,6 +34,8 @@ export function selectionJustification(
       return 'Vi kartlegger nivået ditt'
     case 'root_cause':
       return 'Dette ligger bak flere av feilene dine'
+    case 'notebook_practice':
+      return 'Fra notatboka di'
     default:
       return 'Tilpasset deg'
   }
