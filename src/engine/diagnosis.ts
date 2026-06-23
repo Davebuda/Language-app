@@ -26,7 +26,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'noun-gender',
           confidence: 0.85,
           reasoning:
-            'Artikkel- og adjektivfeilene peker på samme rot: substantivets kjønn sitter ikke ennå.',
+            'Artikkel- og adjektivfeilene dine peker på samme rot: du har ikke fått kjønnet på substantivet til å sitte ennå.',
           affectedConceptIds: [
             'indefinite-articles',
             'definite-articles-singular',
@@ -87,7 +87,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'listening-comprehension',
           confidence: 0.8,
           reasoning:
-            'Mange av feilene kommer i lytting: du kan ordene, men ikke taletempoet ennå.',
+            'Mange av feilene dine kommer i lytting: du kan ordene, men ikke taletempoet ennå.',
           affectedConceptIds: [],
           recommendedFocus: 'recognition',
         };
@@ -115,7 +115,7 @@ const DIAGNOSIS_RULES: Array<{
           rootCauseConceptId: 'v2-word-order',
           confidence: 0.7,
           reasoning:
-            'Ordstillingen glipper i frie setninger, ikke i øvelser — V2 sitter ikke automatisk ennå.',
+            'Ordstillingen glipper for deg i frie setninger, ikke i øvelser — du har ikke fått V2 til å sitte automatisk ennå.',
           affectedConceptIds: ['v2-word-order', 'svo-word-order'],
           recommendedFocus: 'application',
         };

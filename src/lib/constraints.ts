@@ -113,5 +113,5 @@ export function buildConstraintEvalPrompt(constraint: ResponseConstraint): strin
 CONSTRAINT CHECK: The learner was asked to: "${constraint.instruction}"
 After your response, on a new line output exactly one of:
 CONSTRAINT_MET
-CONSTRAINT_MISSED: <one sentence explaining what was missing>`
+CONSTRAINT_MISSED: <one sentence addressed to the learner as "you" (e.g. "You forgot to use the past tense here"), naming what they missed>`
 }

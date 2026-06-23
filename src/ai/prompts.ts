@@ -254,7 +254,7 @@ STRICT RULES:
 8. Use only real, everyday Norwegian words. Do not invent compound words.
 
 After your Norwegian response, if there was a grammar error, output this on a new line:
-CORRECTION:{"original":"exact words they used wrong","correct":"the right form","tag":"error category","why":"one sentence English explanation"}
+CORRECTION:{"original":"exact words you used wrong","correct":"the right form","tag":"error category","why":"one sentence English explanation that speaks to the learner directly as \"you\" — e.g. \"You used the wrong gender here…\", never \"The learner used…\""}
 
 If no error, output nothing extra.${constraintEvalSuffix ?? ''}`;
 
@@ -294,7 +294,8 @@ export function buildWritingFeedbackPrompt(
     system: `You are a Norwegian Bokmål grammar teacher giving constructive feedback.
 Analyze the text and return ONLY valid JSON — no markdown, no prose outside the JSON.
 Focus on the 1–3 most important errors only. Be encouraging.
-IMPORTANT: Any corrected forms you suggest must be valid Norwegian Bokmål. Apply V2 word order rules strictly. Never suggest English words as corrections. Write the "praise" and "suggestion" fields in Norwegian Bokmål. Do NOT write them in English. The "why" field for each error may be in English — the learner needs to understand the rule clearly.`,
+Speak DIRECTLY to the learner in the second person: address them as "du/deg/din" in Norwegian and "you" in English. Say "Du brukte…" / "You used…", never "The learner used…" or "they".
+IMPORTANT: Any corrected forms you suggest must be valid Norwegian Bokmål. Apply V2 word order rules strictly. Never suggest English words as corrections. Write the "praise" and "suggestion" fields in Norwegian Bokmål, addressed to the learner as "du". Do NOT write them in English. The "why" field for each error may be in English — address the learner as "you" so they understand the rule clearly.`,
     user: `Norwegian text from a ${level} learner:
 """
 ${text}
@@ -323,7 +324,7 @@ export function buildExplanationPrompt(
 ): { system: string; user: string } {
   const repeatNote =
     params.errorCount && params.errorCount > 2
-      ? `The learner has hit this error ${params.errorCount} times.`
+      ? `You have hit this error ${params.errorCount} times.`
       : '';
 
   const explanationLang = (params.level === 'B1' || params.level === 'B2')
@@ -332,16 +333,17 @@ export function buildExplanationPrompt(
 
   return {
     system: `You are a Norwegian language tutor giving precise, encouraging feedback.
-Be specific about the rule violated, reference the learner's exact answer, and keep it under 4 sentences.
+Speak DIRECTLY to the learner in the second person — say "You wrote…" / "Du skrev…", never "The learner wrote…" or "they". Address them as "you" (English explanations) or "du/deg/din" (Norwegian explanations).
+Be specific about the rule violated, quote the learner's exact answer back to them, and keep it under 4 sentences.
 Plain text only — no markdown, no headers.
 Explanation language: ${explanationLang}. Any Norwegian examples must be grammatically correct Bokmål with proper V2 word order.`,
-    user: `Learner wrote: "${params.wrong}"
+    user: `You wrote: "${params.wrong}"
 Correct answer: "${params.correct}"
 Error type: ${params.errorTag}
 Level: ${params.level}
 ${repeatNote}
 
-Explain what went wrong and state the rule clearly. Reference their specific mistake by quoting it.`,
+Explain what you got wrong and state the rule clearly. Reference your specific mistake by quoting it back to the learner.`,
   };
 }
 
@@ -357,6 +359,7 @@ Analyze the given Norwegian text and identify grammar errors.
 Return ONLY valid JSON — no markdown, no explanation outside the JSON.
 Focus on: word-order, verb-conjugation, noun-gender, article-use, negation-placement, adjective-agreement, modal-verb, preposition, spelling.
 Report the 1-3 most significant errors only.
+In each "why" field, speak DIRECTLY to the learner as "you" (e.g. "You used the wrong gender here…"), never "The learner…" or "they".
 IMPORTANT: All corrected forms must be valid Norwegian Bokmål. Apply V2 word order rules strictly — if the sentence starts with an adverb or fronted element, the verb must be in position 2. Never suggest English words as corrections.`,
     user: `Norwegian text from a ${level} learner:
 "${text}"
