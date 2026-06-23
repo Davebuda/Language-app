@@ -11,6 +11,7 @@ import { useFingerprint } from '@/hooks/useFingerprint'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
+import { SavableWord } from '@/components/shared/SavableWord'
 import { repairBatchFromSurface, recordProductionFromSurface } from '@/engine/repair-from-surface'
 import { confirmedRepair } from '@/lib/gender-correction-gate'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
@@ -404,7 +405,15 @@ export function WritingEditor() {
                     <p className="text-[0.82rem] text-[var(--nc-text)]">
                       <span className="line-through text-[var(--nc-text-dim)]">{err.wrong}</span>
                       {' → '}
-                      <span className="font-semibold text-[var(--nc-signal)]">{err.correct}</span>
+                      <SavableWord
+                        text={err.correct}
+                        source="journal"
+                        type="word"
+                        errorTag={err.tag}
+                        aiExplanation={err.briefWhy}
+                      >
+                        <span className="font-semibold text-[var(--nc-signal)]">{err.correct}</span>
+                      </SavableWord>
                     </p>
                     <p className="mt-0.5 text-[11px] text-[var(--nc-text-muted)]">{err.briefWhy}</p>
                   </div>

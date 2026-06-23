@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, BookOpen, Clock } from 'lucide-react'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { useFingerprint } from '@/hooks/useFingerprint'
+import { useNotebook } from '@/hooks/useNotebook'
+import { resolveWordExplanation } from '@/lib/word-explanation'
 import { markLaneDone } from '@/lib/lane-completion'
 
 type Genre = 'story' | 'dialogue' | 'recipe' | 'news'
@@ -92,7 +94,18 @@ export default function ReadingPage() {
   const [filterLevel, setFilterLevel] = useState<CEFRLevel | 'all'>('all')
   const [showParallel, setShowParallel] = useState(false)
   const [tappedWord, setTappedWord] = useState<string | null>(null)
+  const [savedWord, setSavedWord] = useState<string | null>(null)
   const { recordExposure } = useFingerprint()
+  const { saveItem } = useNotebook()
+
+  // Verified-first, honest-empty resolution for the tapped word. A free reading
+  // word has no errorTag/conceptId, so this resolves to a corpus gloss/rule when
+  // the word is in the vocab corpus, else the honest 'none' source (AI-01: never
+  // fabricate a translation).
+  const explanation = useMemo(
+    () => (tappedWord ? resolveWordExplanation({ text: tappedWord }) : null),
+    [tappedWord],
+  )
 
   function closeText() {
     if (selectedText) {
@@ -106,7 +119,22 @@ export default function ReadingPage() {
 
   function handleWordTap(word: string) {
     const clean = word.replace(/[^\wÀ-ſ]/g, '')
+    setSavedWord(null)
     setTappedWord(clean || null)
+  }
+
+  function handleSaveWord() {
+    if (!tappedWord || !explanation) return
+    if (savedWord === tappedWord) return // guard against double-save
+    saveItem({
+      type: 'word',
+      norwegian: tappedWord,
+      ...(explanation.verified?.english ? { english: explanation.verified.english } : {}),
+      ...(explanation.verified?.rule ? { explanation: explanation.verified.rule } : {}),
+      source: 'reading',
+      verified: explanation.source === 'corpus',
+    })
+    setSavedWord(tappedWord)
   }
 
   return (
@@ -291,16 +319,36 @@ export default function ReadingPage() {
                     className="nc-glass rounded-lg p-2.5"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[0.9rem] font-bold text-[var(--nc-text)]">{tappedWord}</span>
+                      <span className="text-[1.05rem] font-extrabold leading-tight text-[var(--nc-text)]">{tappedWord}</span>
                       <button
-                        onClick={() => setTappedWord(null)}
-                        className="flex size-6 items-center justify-center rounded-full border border-[var(--nc-border)] text-[var(--nc-text-dim)] hover:text-[var(--nc-text)] transition-colors"
+                        onClick={() => { setTappedWord(null); setSavedWord(null) }}
+                        className="flex size-6 shrink-0 items-center justify-center rounded-full border border-[var(--nc-border)] text-[var(--nc-text-dim)] hover:text-[var(--nc-text)] transition-colors"
                         aria-label="Lukk ordoppslag"
                       >
                         <span aria-hidden="true" className="text-[11px] leading-none">✕</span>
                       </button>
                     </div>
-                    <p className="mt-1 text-[0.75rem] text-[var(--nc-text-muted)]">Ordoppslag kommer snart</p>
+
+                    {explanation && (explanation.verified?.english || explanation.verified?.rule) ? (
+                      <div className="mt-1.5 flex flex-col gap-1">
+                        {explanation.verified?.english && (
+                          <p className="text-[0.82rem] font-semibold text-[var(--nc-text)]">{explanation.verified.english}</p>
+                        )}
+                        {explanation.verified?.rule && (
+                          <p className="text-[0.72rem] leading-snug text-[var(--nc-text-muted)]">{explanation.verified.rule}</p>
+                        )}
+                      </div>
+                    ) : (
+                      <p className="mt-1.5 text-[0.75rem] text-[var(--nc-text-dim)]">Ingen oppslag ennå</p>
+                    )}
+
+                    <button
+                      onClick={handleSaveWord}
+                      disabled={savedWord === tappedWord}
+                      className="mt-2.5 w-full rounded-lg border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-3 py-2 text-[0.72rem] font-bold text-[var(--nc-signal)] transition-colors hover:bg-[color-mix(in_srgb,var(--nc-signal)_22%,transparent)] disabled:opacity-70"
+                    >
+                      {savedWord === tappedWord ? 'Lagret ✓' : 'Lagre i notatboka'}
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>

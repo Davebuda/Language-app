@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { RepairPlan } from '@/engine/repair-loop'
 import { GRAMMAR_EXPLAINERS } from '@/lib/grammar-explainers'
+import { SavableWord } from '@/components/shared/SavableWord'
 
 // Norwegian labels for the error classes — the "caught" chip names the mistake
 // type crisply (the explanation below describes it). Keeps the surface Norwegian.
@@ -79,9 +80,18 @@ export function ExplanationCard({
         {/* Correct answer — dark panel on dark card for contrast */}
         <div className="rounded-[0.55rem] border border-[var(--nc-border-strong)] bg-[var(--nc-card)] px-3 py-2.5">
           <div className="nc-label">Riktig svar</div>
-          <div className="mt-1.5 font-display text-[1.15rem] font-bold tracking-tight text-[var(--nc-signal)]">
-            {correctAnswer}
-          </div>
+          <SavableWord
+            text={correctAnswer}
+            source="okt"
+            type="word"
+            conceptId={conceptId}
+            errorTag={repairPlan.errorTag}
+            aiExplanation={repairPlan.explanation}
+          >
+            <span className="mt-1.5 font-display text-[1.15rem] font-bold tracking-tight text-[var(--nc-signal)]">
+              {correctAnswer}
+            </span>
+          </SavableWord>
         </div>
 
         {explainer ? (

@@ -23,6 +23,7 @@ import { confirmedRepair } from '@/lib/gender-correction-gate'
 import { logExerciseResult } from '@/lib/logEvents'
 import type { ExerciseResult } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
+import { SavableWord } from '@/components/shared/SavableWord'
 
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
@@ -587,7 +588,15 @@ export default function ConversationPage() {
                           <p className="text-[11px] text-[var(--nc-text-muted)]">
                             <span className="line-through text-[var(--nc-text-dim)]">{msg.correction.original}</span>
                             {' → '}
-                            <span className="font-semibold text-[var(--nc-red)]">{msg.correction.corrected}</span>
+                            <SavableWord
+                              text={msg.correction.corrected}
+                              source="conversation"
+                              type="phrase"
+                              errorTag={msg.correction.errorTag}
+                              aiExplanation={msg.correction.explanation}
+                            >
+                              <span className="font-semibold text-[var(--nc-red)]">{msg.correction.corrected}</span>
+                            </SavableWord>
                           </p>
                           <p className="mt-0.5 text-[10px] text-[var(--nc-text-dim)]">{msg.correction.explanation}</p>
                         </motion.div>
