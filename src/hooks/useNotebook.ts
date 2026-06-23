@@ -8,8 +8,9 @@ import {
   loadNotebookItems,
   deleteNotebookItem,
 } from '@/storage/indexeddb';
-import { createNotebookItem, type NotebookItem } from '@/types/notebook';
+import { createNotebookItem, normalizeNotebookItem, type NotebookItem } from '@/types/notebook';
 import { useAuth } from '@/hooks/useAuth';
+import { createClient } from '@/lib/supabase/client';
 
 // Reuse the SAME anon-id key + mechanism as useFingerprint so notebook items
 // key to the identical userId as the fingerprint (auth user id when logged in,
@@ -22,6 +23,78 @@ function getOrCreateAnonId(): string {
   const id = crypto.randomUUID();
   localStorage.setItem(ANON_ID_KEY, id);
   return id;
+}
+
+// ── Supabase sync (Phase 3F) ────────────────────────────────────────────────
+// Cross-device mirror of the notebook, mirroring useFingerprint's pattern. The
+// `learner_notebook` table is ROW-PER-ITEM (one row per NotebookItem) with RLS
+// "auth.uid() = user_id". Every call site is GUEST-SAFE — gated by `if (user)`
+// — so guests never touch Supabase. IndexedDB stays the offline-first source of
+// truth; these are fire-and-forget mirrors at the call sites.
+
+async function saveNotebookItemToSupabase(item: NotebookItem): Promise<void> {
+  const supabase = createClient();
+  await supabase.from('learner_notebook').upsert(
+    { id: item.id, user_id: item.userId, data: item, updated_at: new Date().toISOString() },
+    { onConflict: 'id' },
+  );
+}
+
+async function deleteNotebookItemFromSupabase(id: string): Promise<void> {
+  const supabase = createClient();
+  await supabase.from('learner_notebook').delete().eq('id', id);
+}
+
+async function loadNotebookFromSupabase(userId: string): Promise<NotebookItem[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('learner_notebook')
+    .select('data')
+    .eq('user_id', userId);
+  if (error || !data) return [];
+  // Each row's `data` is the jsonb blob (the full NotebookItem). Normalize it the
+  // same way the IndexedDB load path does so a legacy remote item missing a field
+  // added since it was synced can't reach render unbackfilled.
+  return data.map((row: { data: NotebookItem }) => normalizeNotebookItem(row.data));
+}
+
+/**
+ * Merge local + remote notebook items by id, "newer updatedAt wins". Used during
+ * the auth bootstrap reconcile so an item edited on another device converges.
+ * Returns the merged set plus the ids that are local-only or locally-newer (the
+ * ones to push back up to Supabase so remote catches up).
+ */
+function mergeNotebooks(
+  local: NotebookItem[],
+  remote: NotebookItem[],
+): { merged: NotebookItem[]; toPush: NotebookItem[] } {
+  const remoteById = new Map<string, NotebookItem>();
+  for (const item of remote) remoteById.set(item.id, item);
+
+  const merged = new Map<string, NotebookItem>();
+  const toPush: NotebookItem[] = [];
+
+  for (const item of local) {
+    const r = remoteById.get(item.id);
+    if (!r) {
+      // Local-only — keep it and push it up.
+      merged.set(item.id, item);
+      toPush.push(item);
+    } else if (item.updatedAt >= r.updatedAt) {
+      // Local is newer-or-equal — local wins; push it up so remote converges.
+      merged.set(item.id, item);
+      if (item.updatedAt > r.updatedAt) toPush.push(item);
+    } else {
+      // Remote is newer — remote wins; no push needed.
+      merged.set(item.id, r);
+    }
+  }
+  // Remote-only items: remote wins, nothing to push.
+  for (const r of remote) {
+    if (!merged.has(r.id)) merged.set(r.id, r);
+  }
+
+  return { merged: [...merged.values()], toPush };
 }
 
 /**
@@ -108,13 +181,44 @@ export function useNotebook() {
           const byId = new Map<string, NotebookItem>();
           for (const item of existing) byId.set(item.id, item);
           for (const item of migrated) byId.set(item.id, item);
-          setItems([...byId.values()]);
+          const unioned = [...byId.values()];
+          setItems(unioned);
           setStatus('ready');
+          // The migrated items are now the user's — push them up to Supabase so
+          // remote owns them too (fire-and-forget; guest path never reaches here).
+          for (const item of unioned) {
+            saveNotebookItemToSupabase(item).catch(console.warn);
+          }
           return;
         }
       }
 
       const loaded = await loadNotebookItems(userId).catch(() => [] as NotebookItem[]);
+
+      // Auth users: reconcile the local set against Supabase so edits on another
+      // device converge. Guests stay local-only (no Supabase call). Merge by id,
+      // newer updatedAt wins, persist the merged set back to IndexedDB (local
+      // catches up), and push local-only / locally-newer items up (remote catches
+      // up). All Supabase work is fire-and-forget so a network blip can't block
+      // the offline-first IndexedDB read.
+      if (user) {
+        const remote = await loadNotebookFromSupabase(userId).catch(
+          () => [] as NotebookItem[],
+        );
+        const { merged, toPush } = mergeNotebooks(loaded, remote);
+        setItems(merged);
+        setStatus('ready');
+        // Persist the merged set back to IndexedDB so local catches up to remote.
+        for (const item of merged) {
+          saveNotebookItem(item).catch(console.warn);
+        }
+        // Push the items remote is missing or has an older copy of.
+        for (const item of toPush) {
+          saveNotebookItemToSupabase(item).catch(console.warn);
+        }
+        return;
+      }
+
       setItems(loaded);
       setStatus('ready');
     }
@@ -140,10 +244,13 @@ export function useNotebook() {
         userId: resolveUserId(),
       });
       upsertItem(item);
+      // IndexedDB write is the offline-first source of truth and always runs.
       saveNotebookItem(item).catch(console.warn);
+      // Auth users also mirror to Supabase (fire-and-forget); guests stay local.
+      if (user) saveNotebookItemToSupabase(item).catch(console.warn);
       return item;
     },
-    [resolveUserId, upsertItem],
+    [resolveUserId, upsertItem, user],
   );
 
   const updateItem = useCallback(
@@ -157,17 +264,19 @@ export function useNotebook() {
       };
       upsertItem(updated);
       saveNotebookItem(updated).catch(console.warn);
+      if (user) saveNotebookItemToSupabase(updated).catch(console.warn);
       return updated;
     },
-    [upsertItem],
+    [upsertItem, user],
   );
 
   const removeItem = useCallback(
     (id: string): void => {
       removeFromStore(id);
       deleteNotebookItem(id).catch(console.warn);
+      if (user) deleteNotebookItemFromSupabase(id).catch(console.warn);
     },
-    [removeFromStore],
+    [removeFromStore, user],
   );
 
   return { items, status, saveItem, updateItem, removeItem };
