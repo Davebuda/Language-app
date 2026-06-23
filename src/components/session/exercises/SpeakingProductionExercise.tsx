@@ -90,7 +90,7 @@ export function SpeakingProductionExercise({ sentence, onComplete }: SpeakingPro
             <div className="grid grid-cols-3 gap-2">
               {[
                 { label: 'Flytende', produced: true, dot: 'var(--nc-signal)' },
-                { label: 'Nølende', produced: true, dot: '#E0A800' },
+                { label: 'Nølende', produced: true, dot: 'var(--nc-amber)' },
                 { label: 'Bommet', produced: false, dot: 'var(--nc-cream-dim)' },
               ].map((opt) => (
                 <button

@@ -68,10 +68,10 @@ export function ClozePassageExercise({ passage, sessionId, itemId, onClozeResult
               className={[
                 'mx-1 inline-flex min-h-[44px] min-w-[96px] rounded-[0.45rem] border-[1.5px] px-2 py-1 align-middle text-[1rem] font-bold',
                 state === 'correct'
-                  ? 'border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] text-[#4A6A00]'
+                  ? 'border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] text-[var(--nc-signal-ink-soft)]'
                   : state === 'wrong'
                     ? 'border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] text-[var(--nc-red)]'
-                    : 'border-[rgba(120,150,20,0.7)] bg-[rgba(200,255,32,0.10)] text-[var(--nc-cream-text)]',
+                    : 'border-[rgba(120,150,20,0.7)] bg-[color-mix(in_srgb,var(--nc-signal)_10%,transparent)] text-[var(--nc-cream-text)]',
               ].join(' ')}
             />
           );

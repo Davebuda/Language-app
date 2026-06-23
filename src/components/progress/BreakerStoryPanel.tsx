@@ -38,7 +38,7 @@ export function BreakerStoryPanel({ story }: { story: BreakerStory }) {
       {story.retired.length > 0 ? (
         <div className="nc-glass-cream p-3">
           <div className="flex items-center gap-1.5">
-            <Check size={13} className="text-[#3CB464]" aria-hidden="true" />
+            <Check size={13} className="text-[var(--nc-green-solid)]" aria-hidden="true" />
             <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-cream-dim)]">Fikset</span>
           </div>
           <p className="text-pretty mt-1.5 text-[0.82rem] leading-5 text-[var(--nc-cream-text)]">

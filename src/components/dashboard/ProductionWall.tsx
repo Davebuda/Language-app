@@ -14,8 +14,8 @@ const BRICK_STYLE: Record<BrickCellWeight, CSSProperties> = {
   production: { background: 'var(--nc-signal)' },
   guided: { background: 'repeating-linear-gradient(135deg, var(--nc-signal) 0 6px, rgba(13,13,19,0.34) 6px 8px)' },
   recognition: {
-    background: 'repeating-linear-gradient(135deg, rgba(200,255,32,0.16) 0 3px, transparent 3px 6px)',
-    border: '1px solid rgba(200,255,32,0.20)',
+    background: 'repeating-linear-gradient(135deg, color-mix(in srgb, var(--nc-signal) 16%, transparent) 0 3px, transparent 3px 6px)',
+    border: '1px solid color-mix(in srgb, var(--nc-signal) 20%, transparent)',
   },
   exposure: { background: 'transparent', border: '1px dashed rgba(237,238,233,0.22)' },
   empty: { background: 'rgba(255,255,255,0.04)' },
@@ -93,7 +93,7 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, star
       {/* ── DARK half · STATUS ── */}
       <div className="px-3.5 pb-3.5 pt-3.5">
         <div className="flex items-center justify-between">
-          <span className="text-[9px] font-extrabold uppercase tracking-[0.15em] text-[var(--nc-signal-dim,#9ec01a)]">
+          <span className="text-[9px] font-extrabold uppercase tracking-[0.15em] text-[var(--nc-signal-dim,var(--nc-signal-bright))]">
             Dagens mål
           </span>
           <span className="rounded-[4px] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">
@@ -147,7 +147,7 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, star
                   className="block w-[6px] rounded-[2px]"
                   style={{
                     height: `${Math.max(3, Math.round((bar.value / sparkMax) * 22))}px`,
-                    background: bar.live ? 'var(--nc-signal)' : 'rgba(200,255,32,0.20)',
+                    background: bar.live ? 'var(--nc-signal)' : 'color-mix(in srgb, var(--nc-signal) 20%, transparent)',
                   }}
                 />
               ))}
@@ -283,7 +283,7 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, star
                     className="w-full rounded-[3px]"
                     style={{
                       height: `${Math.max(6, Math.round((bar.value / maxBar) * 34))}px`,
-                      background: bar.live ? 'var(--nc-signal)' : 'rgba(200,255,32,0.20)',
+                      background: bar.live ? 'var(--nc-signal)' : 'color-mix(in srgb, var(--nc-signal) 20%, transparent)',
                     }}
                   />
                   <span

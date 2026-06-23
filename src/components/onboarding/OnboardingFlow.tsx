@@ -9,11 +9,14 @@ import { createEmptyFingerprint } from '@/types/fingerprint'
 import type { MistakeFingerprint } from '@/types/fingerprint'
 import { saveFingerprint, loadFingerprint } from '@/storage/indexeddb'
 import { DiagnosticQuiz } from './DiagnosticQuiz'
+import { ThemePicker } from '@/components/theme/ThemePicker'
+import { applyTheme, getStoredTheme, type ThemeName } from '@/lib/theme'
 import type { DiagnosticResult } from '@/lib/diagnostic/engine'
 import type { CEFRLevel } from '@/types/fingerprint'
 
 type Step =
   | { kind: 'intro'; id: string }
+  | { kind: 'theme' }
   | { kind: 'diagnostic' }
   | { kind: 'ready' }
 
@@ -156,6 +159,11 @@ async function seedFingerprintFromDiagnostic(
   ])
   fp.askedDiagnosticQuestionIds = [...askedIdSet]
 
+  // Bake the onboarding theme choice into the fingerprint so it syncs cross-device.
+  // localStorage already holds it (set by applyTheme in the theme step); fall back
+  // to the existing value or the default for a fingerprint that predates theming.
+  fp.theme = getStoredTheme() ?? fp.theme ?? 'honning'
+
   fp.updatedAt = now
   setFingerprint(fp)
   await saveFingerprint(fp).catch(console.warn)
@@ -176,6 +184,7 @@ export function OnboardingFlow() {
 
   const steps: Step[] = [
     ...INTRO_SLIDES.map((slide) => ({ kind: 'intro' as const, id: slide.id })),
+    { kind: 'theme' },
     { kind: 'diagnostic' },
     { kind: 'ready' },
   ]
@@ -208,7 +217,9 @@ export function OnboardingFlow() {
     }
     setDirection(-1)
     if (currentStep.kind === 'ready') {
-      setStepIndex(INTRO_SLIDES.length - 1)
+      // Skip back over the completed diagnostic to the theme step (re-running the
+      // diagnostic on a back-press would be jarring); theme is a safe re-entry.
+      setStepIndex(steps.findIndex((s) => s.kind === 'theme'))
       return
     }
     setStepIndex((i) => i - 1)
@@ -239,6 +250,10 @@ export function OnboardingFlow() {
       return <IntroSlide slide={slide} onNext={() => advanceTo(stepIndex + 1)} />
     }
 
+    if (step.kind === 'theme') {
+      return <ThemeStep onNext={() => advanceTo(stepIndex + 1)} />
+    }
+
     if (step.kind === 'diagnostic') {
       return <DiagnosticQuiz onComplete={handleDiagnosticComplete} />
     }
@@ -265,7 +280,10 @@ export function OnboardingFlow() {
         </button>
 
         <div className="nc-glass flex flex-1 items-center gap-3 px-3 py-2.5">
-          <div className="grid flex-1 grid-cols-5 gap-1.5">
+          <div
+            className="grid flex-1 gap-1.5"
+            style={{ gridTemplateColumns: `repeat(${steps.length}, 1fr)` }}
+          >
             {steps.map((_, index) => (
               <div
                 key={index}
@@ -305,6 +323,47 @@ export function OnboardingFlow() {
   )
 }
 
+function ThemeStep({ onNext }: { onNext: () => void }) {
+  const [selected, setSelected] = useState<ThemeName>(() => getStoredTheme() ?? 'honning')
+
+  function pick(theme: ThemeName) {
+    setSelected(theme)
+    // Apply immediately so the onboarding screen itself recolors — a live preview
+    // of what the learner is choosing. localStorage is written here too, so the
+    // choice is baked into the fingerprint at diagnostic-seed time.
+    applyTheme(theme)
+  }
+
+  return (
+    <div className="flex flex-1 flex-col gap-[6px]">
+      <div className="nc-signal-panel p-2.5">
+        <div className="nc-label">Tema</div>
+        <h1 className="mt-3 text-balance text-[1.8rem] leading-[0.94] text-[var(--nc-signal-fg)]">
+          Velg ditt uttrykk.
+        </h1>
+        <p className="mt-3 text-pretty text-[0.95rem] leading-7 text-[rgba(8,17,13,0.72)]">
+          Velg fargene appen skal ha. Du kan bytte når som helst i profilen.
+        </p>
+
+        <div className="mt-5 rounded-lg bg-[rgba(6,16,23,0.92)] p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+          <ThemePicker value={selected} onSelect={pick} />
+        </div>
+      </div>
+
+      <div className="flex-1" />
+
+      <button
+        onClick={onNext}
+        className="nc-button-primary inline-flex min-h-[52px] w-full items-center justify-center gap-2 px-6 text-sm font-bold whitespace-nowrap"
+        aria-label="Fortsett"
+      >
+        <span>Fortsett</span>
+        <ArrowRight size={16} aria-hidden="true" />
+      </button>
+    </div>
+  )
+}
+
 function IntroSlide({
   slide,
   onNext,
@@ -328,7 +387,7 @@ function IntroSlide({
             </p>
           </div>
 
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.8rem] bg-[var(--nc-signal)] text-sm font-bold text-[var(--nc-signal-fg)] shadow-[0_16px_32px_rgba(183,243,0,0.20)]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.8rem] bg-[var(--nc-signal)] text-sm font-bold text-[var(--nc-signal-fg)] shadow-[0_16px_32px_var(--nc-glow-strong)]">
             {slide.label.slice(0, 2)}
           </div>
         </div>
@@ -373,7 +432,7 @@ function IntroSlide({
                     className="flex items-center justify-between rounded-lg border border-white/8 bg-white/5 px-3 py-3"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(215,255,92,0.24)] text-[11px] font-bold text-[var(--nc-signal-fg)]">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--nc-signal-glow)_24%,transparent)] text-[11px] font-bold text-[var(--nc-signal-fg)]">
                         {item.icon}
                       </span>
                       <span className="text-sm font-medium text-white">{item.label}</span>
@@ -444,7 +503,7 @@ function ReadyStep({
       className="flex flex-1 flex-col gap-[6px]"
     >
       <div className="nc-signal-panel p-2.5">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[0.8rem] bg-[var(--nc-signal)] text-base font-semibold text-[var(--nc-signal-fg)] shadow-[0_18px_40px_rgba(183,243,0,0.20)]">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[0.8rem] bg-[var(--nc-signal)] text-base font-semibold text-[var(--nc-signal-fg)] shadow-[0_18px_40px_var(--nc-glow-strong)]">
           {level}
         </div>
         <h2 className="mt-4 text-center text-[1.7rem] leading-[0.96] text-[var(--nc-signal-fg)]">

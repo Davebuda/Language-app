@@ -67,6 +67,7 @@ export function makeReturningUserFingerprint(): MistakeFingerprint {
   delete legacy.vocabWordSrs
   delete legacy.speakingMinutesTotal
   delete legacy.passedSentenceIds
+  delete legacy.theme // pre-theming fingerprint: normalizeFingerprint must backfill the default
 
   return legacy as unknown as MistakeFingerprint
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, LogOut } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
@@ -16,6 +17,8 @@ import { formatNextReview } from '@/lib/srs-format'
 import { ERROR_TAG_LABELS } from '@/lib/error-tag-labels'
 import { GRAMMAR_EXPLAINERS } from '@/lib/grammar-explainers'
 import { errorTagToGrammarConceptId } from '@/lib/error-tag-to-concept'
+import { ThemePicker } from '@/components/theme/ThemePicker'
+import { getStoredTheme, type ThemeName } from '@/lib/theme'
 
 const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
   { value: 'input_heavy', label: 'Lytting og lesing', desc: 'Mer input og forståelse' },
@@ -33,8 +36,17 @@ const LEVEL_LABELS: Record<string, string> = {
 export default function ProfilePage() {
   const router = useRouter()
   const { user, signOut, loading: authLoading } = useAuth()
-  useFingerprint()
+  const { setTheme } = useFingerprint()
   const { fingerprint, setFingerprint, status } = useFingerprintStore()
+
+  // The picker reflects the APPLIED theme (device-local choice wins), not just the
+  // synced fingerprint value — they only diverge in the abandoned-onboarding edge.
+  // SSR-safe: start from a stable default, reconcile to the real applied theme on
+  // mount and whenever the synced fingerprint theme changes.
+  const [themeChoice, setThemeChoice] = useState<ThemeName>('honning')
+  useEffect(() => {
+    setThemeChoice(getStoredTheme() ?? fingerprint?.theme ?? 'honning')
+  }, [fingerprint?.theme])
   const conceptGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
   const streak = getStreak()
 
@@ -77,7 +89,7 @@ export default function ProfilePage() {
         {/* ── Identity header (Dark) ── */}
         <div className="flex items-stretch gap-[6px]">
           <div className="flex flex-1 items-center gap-2.5 rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2.5 py-2">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-[0.7rem] bg-[linear-gradient(135deg,var(--nc-signal)_0%,#A8E010_100%)] text-[1rem] font-display font-extrabold text-[var(--nc-signal-fg)]">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-[0.7rem] bg-[linear-gradient(135deg,var(--nc-signal)_0%,var(--nc-signal-deep)_100%)] text-[1rem] font-display font-extrabold text-[var(--nc-signal-fg)]">
               {initials}
             </div>
             <div className="min-w-0 flex-1">
@@ -91,7 +103,7 @@ export default function ProfilePage() {
             </div>
           </div>
           <div className="flex flex-col items-center justify-center rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-2 min-w-[52px]">
-            <span className="rounded-[0.25rem] border border-[rgba(200,255,32,0.18)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelLabel}</span>
+            <span className="rounded-[0.25rem] border border-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelLabel}</span>
             <div className="mt-1.5 text-[7px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Nivå</div>
           </div>
         </div>
@@ -100,7 +112,7 @@ export default function ProfilePage() {
         <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
           {([
             { label: 'Rekke', value: String(streak), numTone: 'text-[var(--nc-cream-text)]' },
-            { label: 'Mestret', value: String(masteredCount), numTone: 'text-[#5A8A00]' },
+            { label: 'Mestret', value: String(masteredCount), numTone: 'text-[var(--nc-signal-ink)]' },
             { label: 'Økter', value: String(fingerprint?.totalSessionsCompleted ?? 0), numTone: 'text-[var(--nc-cream-text)]' },
           ] as const).map((stat, i) => (
             <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
@@ -241,11 +253,11 @@ export default function ProfilePage() {
                   className="rounded-lg border px-3 py-2 text-left transition-colors"
                   style={{
                     background: isActive
-                      ? 'linear-gradient(135deg, rgba(215,255,92,0.92) 0%, rgba(199,244,93,0.88) 100%)'
+                      ? 'linear-gradient(135deg, var(--nc-signal-glow) 0%, var(--nc-signal-soft) 100%)'
                       : 'linear-gradient(180deg, rgba(248,250,246,0.08) 0%, rgba(248,250,246,0.04) 100%)',
-                    borderColor: isActive ? 'rgba(215,255,92,0.42)' : 'rgba(255,255,255,0.10)',
+                    borderColor: isActive ? 'color-mix(in srgb, var(--nc-signal-glow) 42%, transparent)' : 'rgba(255,255,255,0.10)',
                     color: isActive ? 'var(--nc-signal-fg)' : 'var(--nc-text)',
-                    boxShadow: isActive ? '0 18px 36px rgba(183,243,0,0.16)' : '0 18px 34px rgba(0,0,0,0.18)',
+                    boxShadow: isActive ? '0 18px 36px var(--nc-glow)' : '0 18px 34px rgba(0,0,0,0.18)',
                   }}
                 >
                   <div className="text-[0.82rem] font-bold">{opt.label}</div>
@@ -258,6 +270,23 @@ export default function ProfilePage() {
                 </button>
               )
             })}
+          </div>
+        </section>
+
+        {/* ── Theme (Dark) ── */}
+        <section className="nc-glass p-2.5">
+          <div className="nc-label">Tema</div>
+          <p className="mt-1 text-[0.72rem] text-[var(--nc-text-muted)]">
+            Fargene appen bruker. Lagres på enheten og synkroniseres når du er logget inn.
+          </p>
+          <div className="mt-2">
+            <ThemePicker
+              value={themeChoice}
+              onSelect={(theme) => {
+                setThemeChoice(theme)
+                setTheme(theme)
+              }}
+            />
           </div>
         </section>
 

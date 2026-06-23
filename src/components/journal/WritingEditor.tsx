@@ -245,7 +245,7 @@ export function WritingEditor() {
           </span>
           {focusLabel ? (
             <span
-              className="rounded-full border border-[rgba(200,255,32,0.28)] bg-[rgba(200,255,32,0.12)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#5A8A00]"
+              className="rounded-full border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-ink)]"
               aria-label={`Ukens fokus: ${focusLabel}`}
             >
               {focusLabel}
@@ -268,7 +268,7 @@ export function WritingEditor() {
                 className={`relative py-2.5 text-[10px] font-bold uppercase tracking-[0.10em] transition-colors${i === 0 ? '' : ' border-l border-[var(--nc-border)]'}`}
                 style={{
                   color: isActive ? 'var(--nc-signal)' : 'var(--nc-text-dim)',
-                  background: isActive ? 'rgba(200,255,32,0.06)' : 'transparent',
+                  background: isActive ? 'color-mix(in srgb, var(--nc-signal) 6%, transparent)' : 'transparent',
                 }}
               >
                 {mode === 'voice' ? 'Snakk' : 'Skriv'}
@@ -439,8 +439,8 @@ export function WritingEditor() {
                   exit={{ opacity: 0, height: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(200,255,32,0.22)] px-3 py-2.5">
-                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#5A8A00]">Rettet versjon</div>
+                  <div className="rounded-lg bg-[var(--nc-cream)] border border-[color-mix(in_srgb,var(--nc-signal)_22%,transparent)] px-3 py-2.5">
+                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-signal-ink)]">Rettet versjon</div>
                     <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--nc-cream-text)]">{correctedText}</p>
                     {unappliedCount > 0 ? (
                       <p className="mt-2 text-[10px] text-[var(--nc-cream-dim)]">

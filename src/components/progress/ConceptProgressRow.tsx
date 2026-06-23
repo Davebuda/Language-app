@@ -39,7 +39,7 @@ export function ConceptProgressRow({
 
   const scoreColor = variant === 'dark'
     ? 'text-[var(--nc-signal)]'
-    : 'text-[#5A8A00]'
+    : 'text-[var(--nc-signal-ink)]'
 
   const trackColor = variant === 'dark'
     ? 'bg-[rgba(255,255,255,0.08)]'

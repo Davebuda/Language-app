@@ -182,7 +182,7 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
                 <div className="flex items-center gap-2">
                   <div className="h-1 w-16 overflow-hidden rounded-full bg-[rgba(17,21,24,0.10)]">
                     <div
-                      className="h-full rounded-full bg-[#5A8A00] shadow-[0_0_6px_rgba(90,138,0,0.3)]"
+                      className="h-full rounded-full bg-[var(--nc-signal-ink)] shadow-[0_0_6px_rgba(90,138,0,0.3)]"
                       style={{ width: `${(currentIndex / sentences.length) * 100}%`, transition: 'width 0.4s ease' }}
                     />
                   </div>

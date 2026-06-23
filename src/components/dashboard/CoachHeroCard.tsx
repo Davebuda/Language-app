@@ -128,8 +128,8 @@ export function CoachHeroCard({ recommendation }: CoachHeroCardProps) {
           </div>
 
           <div
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.1rem] text-[var(--nc-signal-fg)] shadow-[0_18px_40px_rgba(183,243,0,0.18)]"
-            style={{ background: 'linear-gradient(135deg, var(--nc-signal) 0%, #c7f45d 100%)' }}
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.1rem] text-[var(--nc-signal-fg)] shadow-[0_18px_40px_var(--nc-glow)]"
+            style={{ background: 'linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-soft) 100%)' }}
           >
             <AccentIcon size={20} />
           </div>
@@ -148,7 +148,7 @@ export function CoachHeroCard({ recommendation }: CoachHeroCardProps) {
             </p>
           </div>
 
-          <div className="rounded-[1.25rem] bg-[linear-gradient(135deg,var(--nc-signal)_0%,#c7f45d_100%)] p-4 text-[var(--nc-signal-fg)] shadow-[0_18px_40px_rgba(183,243,0,0.18)]">
+          <div className="rounded-[1.25rem] bg-[linear-gradient(135deg,var(--nc-signal)_0%,var(--nc-signal-soft)_100%)] p-4 text-[var(--nc-signal-fg)] shadow-[0_18px_40px_var(--nc-glow)]">
             <div className="text-[10px] font-semibold uppercase tracking-[0.12em] opacity-60">
               {meta.statLabel}
             </div>

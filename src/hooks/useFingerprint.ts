@@ -30,6 +30,7 @@ import type { ExerciseResult } from '@/types/session';
 import { getGraphForLevel, a1Graph, a2Graph, b1Graph } from '@/lib/concept-graph-loader';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
+import { applyTheme, type ThemeName } from '@/lib/theme';
 
 const A1_CONCEPTS = a1Graph.concepts;
 const A2_CONCEPTS = a2Graph.concepts;
@@ -394,6 +395,20 @@ export function useFingerprint() {
     [setFingerprint, user]
   );
 
+  // Theme is a UI preference that rides on the fingerprint blob for cross-device
+  // sync. applyTheme handles the instant device-local apply (localStorage +
+  // <html data-theme>); here we also persist it into the blob so it follows the
+  // user to other devices. A guest (no fingerprint yet) still themes locally.
+  const setTheme = useCallback((theme: ThemeName) => {
+    applyTheme(theme);
+    const fp = useFingerprintStore.getState().fingerprint;
+    if (!fp) return;
+    const updated = { ...fp, theme, updatedAt: new Date().toISOString() };
+    setFingerprint(updated);
+    saveFingerprint(updated).catch(console.warn);
+    if (user) { saveFingerprintToSupabase(updated).catch(console.warn); }
+  }, [setFingerprint, user]);
+
   const refreshFingerprint = useCallback(() => {
     const fp = useFingerprintStore.getState().fingerprint;
     if (!fp) return;
@@ -539,5 +554,5 @@ export function useFingerprint() {
     [setFingerprint, user]
   );
 
-  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress, recordVocabAnswer, recordSpeakingProduction };
+  return { fingerprint, status, recordResult, refreshFingerprint, ensureWeekOpenAndPersist, recordWeeklyCheckResult, recordExposure, recordBlockProgress, recordVocabAnswer, recordSpeakingProduction, setTheme };
 }

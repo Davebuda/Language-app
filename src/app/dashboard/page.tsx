@@ -314,7 +314,7 @@ export default function DashboardPage() {
               <div className="text-[0.82rem] font-bold leading-tight text-[var(--nc-text)]">{displayName}</div>
               <div className="mt-px flex items-center gap-1.5">
                 <span className="text-[9px] font-medium uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">{today || 'I dag'}</span>
-                <span className="rounded-[0.2rem] border border-[rgba(200,255,32,0.18)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelDisplay}</span>
+                <span className="rounded-[0.2rem] border border-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">{levelDisplay}</span>
               </div>
             </div>
           </div>
@@ -393,7 +393,7 @@ export default function DashboardPage() {
               <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
                 {statTiles.map((stat, i) => (
                   <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
-                    <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[#1A8CB0]' : 'text-[#5A8A00]'}`}>
+                    <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[var(--nc-teal-deep)]' : 'text-[var(--nc-signal-ink)]'}`}>
                       {stat.value}
                     </div>
                     <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
@@ -409,9 +409,9 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
-                    <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_rgba(200,255,32,0.3)]" style={{ width: `${completionPct}%` }} />
+                    <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_var(--nc-glow-strong)]" style={{ width: `${completionPct}%` }} />
                   </div>
-                  <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_rgba(200,255,32,0.5),0_0_24px_rgba(200,255,32,0.25)]" />
+                  <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_var(--nc-glow-strong),0_0_24px_var(--nc-glow-strong)]" />
                 </div>
               </div>
 
@@ -448,7 +448,7 @@ export default function DashboardPage() {
 
                 {completedCount > 0 ? (
                   <div className="mt-1.5 flex items-center gap-1.5 px-1 text-[0.68rem] text-[var(--nc-cream-dim)]">
-                    <span className="flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[8px] text-[#3CB464]">✓</span>
+                    <span className="flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[8px] text-[var(--nc-green-solid)]">✓</span>
                     {completedCount} fullført i dag
                   </div>
                 ) : null}

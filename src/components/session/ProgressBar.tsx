@@ -12,7 +12,7 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
   return (
     <div className="h-1.5 w-full overflow-hidden rounded-full bg-[rgba(6,16,23,0.14)]">
       <motion.div
-        className="h-full w-full origin-left rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_rgba(200,255,32,0.4)]"
+        className="h-full w-full origin-left rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_var(--nc-glow-strong)]"
         animate={{ scaleX: pct / 100 }}
         transition={{ duration: 0.3 }}
       />

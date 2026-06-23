@@ -49,7 +49,7 @@ export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href, lab
   if (done) {
     return (
       <div className={`flex items-center gap-2 px-1 py-[7px]${isLast ? '' : ' border-b border-[rgba(17,21,24,0.06)]'}`}>
-        <div className="flex size-[30px] shrink-0 items-center justify-center rounded-[0.35rem] bg-[rgba(60,180,100,0.12)] text-[#3CB464]">
+        <div className="flex size-[30px] shrink-0 items-center justify-center rounded-[0.35rem] bg-[rgba(60,180,100,0.12)] text-[var(--nc-green-solid)]">
           <Check size={12} />
         </div>
         <div className="min-w-0 flex-1">
@@ -75,7 +75,7 @@ export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href, lab
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1">
           <span className="text-[0.82rem] font-semibold text-[var(--nc-cream-text)]">{name}</span>
-          {focusBadge ? <span className="size-1 rounded-full bg-[#7ABF00]" /> : null}
+          {focusBadge ? <span className="size-1 rounded-full bg-[var(--nc-signal-deep)]" /> : null}
         </div>
         <div className="mt-px text-[0.68rem] text-[var(--nc-cream-muted)] truncate">{hint}</div>
       </div>

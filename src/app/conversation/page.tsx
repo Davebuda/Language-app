@@ -436,12 +436,12 @@ export default function ConversationPage() {
                       className="rounded-lg border p-2.5 text-left transition-all active:scale-[0.98]"
                       style={{
                         background: isSelected
-                          ? 'linear-gradient(135deg, rgba(200,255,32,0.92) 0%, rgba(184,239,16,0.88) 100%)'
+                          ? 'linear-gradient(135deg, var(--nc-signal) 0%, color-mix(in srgb, var(--nc-signal-bright) 88%, transparent) 100%)'
                           : 'var(--nc-card)',
-                        borderColor: isSelected ? 'rgba(200,255,32,0.44)' : 'var(--nc-border)',
+                        borderColor: isSelected ? 'color-mix(in srgb, var(--nc-signal) 44%, transparent)' : 'var(--nc-border)',
                         color: isSelected ? 'var(--nc-signal-fg)' : 'var(--nc-text)',
                         boxShadow: isSelected
-                          ? '0 12px 28px rgba(183,243,0,0.18)'
+                          ? '0 12px 28px var(--nc-glow)'
                           : '0 2px 8px rgba(0,0,0,0.18)',
                       }}
                     >
@@ -625,12 +625,12 @@ export default function ConversationPage() {
                     style={{
                       background: constraintResult
                         ? constraintResult.met
-                          ? 'rgba(200,255,32,0.14)'
+                          ? 'color-mix(in srgb, var(--nc-signal) 14%, transparent)'
                           : 'rgba(255,106,85,0.10)'
                         : 'rgba(255,255,255,0.05)',
                       border: constraintResult
                         ? constraintResult.met
-                          ? '1px solid rgba(200,255,32,0.28)'
+                          ? '1px solid var(--nc-signal-border)'
                           : '1px solid rgba(255,106,85,0.22)'
                         : '1px solid var(--nc-border)',
                       color: constraintResult

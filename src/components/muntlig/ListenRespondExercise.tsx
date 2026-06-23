@@ -233,8 +233,8 @@ export function ListenRespondExercise({
                     aria-label="Start lytting og svar på spørsmålet"
                     className="relative flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-[var(--radius)] py-2.5 text-[0.8125rem] font-bold text-[var(--nc-signal-fg)]"
                     style={{
-                      background: 'linear-gradient(135deg, #C8FF20 0%, #b7f300 100%)',
-                      boxShadow: '0 0 16px rgba(200,255,32,0.25), 0 12px 32px rgba(183,243,0,0.18)',
+                      background: 'linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%)',
+                      boxShadow: '0 0 16px var(--nc-glow-strong), 0 12px 32px var(--nc-glow)',
                     }}
                   >
                     <Mic size={14} aria-hidden="true" />
@@ -262,7 +262,7 @@ export function ListenRespondExercise({
                   <motion.span
                     aria-hidden="true"
                     className="pointer-events-none absolute rounded-full"
-                    style={{ inset: 0, border: '1.5px solid rgba(200,255,32,0.40)' }}
+                    style={{ inset: 0, border: '1.5px solid color-mix(in srgb, var(--nc-signal) 40%, transparent)' }}
                     animate={{ scale: [1, 1.14, 1], opacity: [1, 0.5, 1] }}
                     transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity }}
                   />
@@ -270,19 +270,19 @@ export function ListenRespondExercise({
                     className="absolute flex items-center justify-center rounded-full"
                     style={{
                       inset: 6,
-                      background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
-                      boxShadow: '0 0 28px rgba(200,255,32,0.45), 0 0 60px rgba(200,255,32,0.18)',
+                      background: 'radial-gradient(circle at 38% 32%, var(--nc-signal-glow) 0%, var(--nc-signal) 48%, var(--nc-signal-bright) 100%)',
+                      boxShadow: '0 0 28px var(--nc-glow-strong), 0 0 60px var(--nc-glow)',
                     }}
                   >
                     <motion.span
-                      className="inline-block size-2.5 rounded-full bg-[#0A1206]"
+                      className="inline-block size-2.5 rounded-full bg-[var(--nc-bg)]"
                       animate={{ scale: [1, 1.15, 1] }}
                       transition={{ repeat: Infinity, duration: 1, ease: 'easeInOut' }}
                       aria-hidden="true"
                     />
                   </div>
                 </div>
-                <span className="text-[0.72rem] font-bold text-[#5A8A00]">Lytter…</span>
+                <span className="text-[0.72rem] font-bold text-[var(--nc-signal-ink)]">Lytter…</span>
               </div>
 
               {/* Countdown bar */}
@@ -297,7 +297,7 @@ export function ListenRespondExercise({
                 <div
                   className="h-full w-full origin-left rounded-full"
                   style={{
-                    background: 'linear-gradient(90deg, #C8FF20 0%, #b7f300 100%)',
+                    background: 'linear-gradient(90deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%)',
                     transform: `scaleX(${1 - progress})`,
                     transformOrigin: 'left center',
                     transition: 'none',
@@ -365,7 +365,7 @@ export function ListenRespondExercise({
                             ? {
                                 background: 'rgba(90,138,0,0.12)',
                                 border: '1px solid rgba(90,138,0,0.28)',
-                                color: '#5A8A00',
+                                color: 'var(--nc-signal-ink)',
                               }
                             : {
                                 background: 'rgba(17,21,24,0.06)',
@@ -390,7 +390,7 @@ export function ListenRespondExercise({
                       ? {
                           background: 'rgba(90,138,0,0.12)',
                           border: '1px solid rgba(90,138,0,0.28)',
-                          color: '#5A8A00',
+                          color: 'var(--nc-signal-ink)',
                         }
                       : {
                           background: 'rgba(255,106,85,0.10)',

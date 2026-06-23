@@ -1,5 +1,6 @@
 import type { ErrorTag } from './taxonomy';
 import type { ExerciseType } from './session';
+import { DEFAULT_THEME, type ThemeName } from '@/lib/theme';
 
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2';
 
@@ -131,6 +132,7 @@ export interface MistakeFingerprint {
   }>;
   passedSentenceIds: Record<string, string>;   // sentenceId → ISO timestamp when passed; excluded from normal selection
   dailyProgress: DailyProgress[];              // rolling 7-day window, newest first
+  theme: ThemeName;                            // chosen UI theme; synced cross-device via this blob (localStorage is the instant local source)
 }
 
 // Factory: create a new empty fingerprint
@@ -160,6 +162,7 @@ export function createEmptyFingerprint(userId: string): MistakeFingerprint {
     weekStartSnapshots: {},
     passedSentenceIds: {},
     dailyProgress: [],
+    theme: DEFAULT_THEME,
   };
 }
 

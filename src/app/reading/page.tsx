@@ -73,7 +73,7 @@ const GENRE_LABELS: Record<Genre, string> = {
 
 // Green-led coherent CEFR badge set: signal green leads, neutral tints for others
 const CEFR_COLORS: Record<CEFRLevel, string> = {
-  A1: 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal)] border border-[rgba(200,255,32,0.18)]',
+  A1: 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal)] border border-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)]',
   A2: 'bg-[rgba(255,255,255,0.08)] text-[var(--nc-text-muted)] border border-[var(--nc-border)]',
   B1: 'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-dim)] border border-[var(--nc-border)]',
   B2: 'bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-dim)] border border-[var(--nc-border)]',
@@ -81,7 +81,7 @@ const CEFR_COLORS: Record<CEFRLevel, string> = {
 
 // Cream-context CEFR colors (used inside the reader panel)
 const CEFR_COLORS_CREAM: Record<CEFRLevel, string> = {
-  A1: 'bg-[var(--nc-signal-tint)] text-[#3A6600] border border-[rgba(200,255,32,0.28)]',
+  A1: 'bg-[var(--nc-signal-tint)] text-[var(--nc-signal-ink-deep)] border border-[var(--nc-signal-border)]',
   A2: 'bg-[rgba(17,21,24,0.07)] text-[var(--nc-cream-muted)] border border-[rgba(17,21,24,0.10)]',
   B1: 'bg-[rgba(17,21,24,0.05)] text-[var(--nc-cream-dim)] border border-[rgba(17,21,24,0.08)]',
   B2: 'bg-[rgba(17,21,24,0.05)] text-[var(--nc-cream-dim)] border border-[rgba(17,21,24,0.08)]',
@@ -234,7 +234,7 @@ export default function ReadingPage() {
                 {selectedText.conceptIds.slice(0, 3).map((cid) => (
                   <span
                     key={cid}
-                    className="shrink-0 rounded-[0.2rem] bg-[var(--nc-signal-tint)] border border-[rgba(200,255,32,0.14)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.06em] text-[var(--nc-signal)]"
+                    className="shrink-0 rounded-[0.2rem] bg-[var(--nc-signal-tint)] border border-[color-mix(in_srgb,var(--nc-signal)_14%,transparent)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.06em] text-[var(--nc-signal)]"
                   >
                     {cid.replace(/-/g, ' ')}
                   </span>
@@ -258,7 +258,7 @@ export default function ReadingPage() {
                           <span
                             key={j}
                             onClick={() => handleWordTap(word)}
-                            className="cursor-pointer rounded px-px hover:bg-[rgba(200,255,32,0.18)] hover:text-[#1A4800] transition-colors"
+                            className="cursor-pointer rounded px-px hover:bg-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)] hover:text-[var(--nc-signal-ink-deep)] transition-colors"
                           >
                             {word}{' '}
                           </span>

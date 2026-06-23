@@ -21,7 +21,7 @@ import type { WritingFeedback } from '@/ai/types'
 import { gradeReadRespond, type ReadRespondGrade } from '@/lib/grade-read-respond'
 import { aiService } from '@/ai'
 
-const AMBER = '#f5b942'
+const AMBER = 'var(--nc-honey)'
 const AMBER_TINT = 'rgba(245,185,66,0.12)'
 const AMBER_BORDER = 'rgba(245,185,66,0.34)'
 
@@ -132,7 +132,7 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
                 Med støtte
               </span>
             ) : (
-              <span className="rounded-full bg-[var(--nc-signal-tint)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[#5A8A00]">
+              <span className="rounded-full bg-[var(--nc-signal-tint)] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-ink)]">
                 Fritt
               </span>
             )}
@@ -239,12 +239,12 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
         <div className="flex items-center gap-2.5">
           <span
             className="flex size-7 shrink-0 items-center justify-center rounded-[0.5rem]"
-            style={isPass ? { background: 'var(--nc-green, #7bd88f)', color: '#06210f' } : { background: AMBER, color: '#2a1c00' }}
+            style={isPass ? { background: 'var(--nc-green, var(--nc-green-soft))', color: '#06210f' } : { background: AMBER, color: '#2a1c00' }}
           >
             {isPass ? <Check size={16} strokeWidth={2.6} aria-hidden="true" /> : <ArrowRight size={15} strokeWidth={2.6} aria-hidden="true" />}
           </span>
           <div>
-            <div className="text-[0.95rem] font-extrabold" style={{ color: isPass ? 'var(--nc-green, #7bd88f)' : AMBER }}>
+            <div className="text-[0.95rem] font-extrabold" style={{ color: isPass ? 'var(--nc-green, var(--nc-green-soft))' : AMBER }}>
               {isPass ? 'Godkjent — dette teller' : 'Nesten der'}
             </div>
             <div className="text-[0.78rem] text-[var(--nc-text-muted)]">
@@ -292,7 +292,7 @@ export function WriteStep({ passage, level, onResolved, onFinish }: WriteStepPro
           <div className="mt-3.5 border-t border-[var(--nc-border)] pt-3">
             {aiUp ? (
               <>
-                <span className="inline-flex items-center gap-1.5 rounded-[0.4rem] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.06em] text-[#5A8A00]">
+                <span className="inline-flex items-center gap-1.5 rounded-[0.4rem] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.06em] text-[var(--nc-signal-ink)]">
                   <Sparkles size={11} aria-hidden="true" />
                   AI-tilbakemelding
                 </span>

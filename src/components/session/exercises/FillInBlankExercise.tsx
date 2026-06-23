@@ -62,7 +62,7 @@ function MultipleChoice({
         transition={{ duration: 0.2 }}
       >
         {before && <span>{before}</span>}
-        <span className="inline-flex min-w-[88px] items-center justify-center rounded-[0.55rem] border border-dashed border-[rgba(200,255,32,0.45)] bg-[rgba(200,255,32,0.08)] px-3 py-1 text-[var(--nc-cream-dim)]">
+        <span className="inline-flex min-w-[88px] items-center justify-center rounded-[0.55rem] border border-dashed border-[color-mix(in_srgb,var(--nc-signal)_45%,transparent)] bg-[color-mix(in_srgb,var(--nc-signal)_8%,transparent)] px-3 py-1 text-[var(--nc-cream-dim)]">
           {selected ?? '___'}
         </span>
         {after && <span>{after}</span>}
@@ -85,10 +85,10 @@ function MultipleChoice({
               className={[
                 'min-h-[48px] rounded-[0.65rem] border px-4 py-3 text-[0.88rem] font-semibold transition-colors',
                 showCorrect
-                  ? 'border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] text-[#4A6A00]'
+                  ? 'border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] text-[var(--nc-signal-ink-soft)]'
                   : showWrong
                     ? 'border-[var(--nc-red-border)] bg-[var(--nc-red-tint)] text-[var(--nc-red)]'
-                    : 'border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.04)] text-[var(--nc-cream-muted)] hover:border-[rgba(200,255,32,0.40)] hover:bg-[rgba(200,255,32,0.06)] hover:text-[var(--nc-cream-text)]',
+                    : 'border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.04)] text-[var(--nc-cream-muted)] hover:border-[color-mix(in_srgb,var(--nc-signal)_40%,transparent)] hover:bg-[color-mix(in_srgb,var(--nc-signal)_6%,transparent)] hover:text-[var(--nc-cream-text)]',
                 selected ? 'cursor-default' : 'cursor-pointer',
               ].join(' ')}
             >

@@ -79,6 +79,124 @@
 
     --nc-repair-bg:     rgba(255, 106, 85, 0.10);
     --nc-repair-border: rgba(255, 106, 85, 0.24);
+
+    /* lime ramp (signal family) — currently hand-tuned per component */
+    --nc-signal-bright:   #B8EF10;  /* gradient bright end + bright solid */
+    --nc-signal-deep:     #A8E010;  /* darker solid lime: chips, icon fills */
+    --nc-signal-dim:      #9EC01A;  /* muted lime: small labels on dark (ProductionWall) */
+    --nc-signal-soft:     #C7F45D;  /* soft lime gradient stop (hero) */
+    --nc-signal-glow:     #D8FF58;  /* light lime hover/glow + selection */
+    --nc-signal-ink:      #5A8A00;  /* DARK lime, used as TEXT on cream/light surfaces */
+    --nc-signal-ink-deep: #3A6600;  /* deeper lime text/border on light */
+    --nc-signal-ink-mid:  #3A5800;  /* word-order tile lime text on cream */
+    --nc-signal-ink-soft: #4A6A00;  /* cloze/fill-in-blank lime text on cream */
+    /* red ramp */
+    --nc-red-bright:    #FF8F62;  /* red gradient start */
+    --nc-red-deep:      #FF5F49;  /* red gradient end */
+    /* misc accents that appear in-app and should theme */
+    --nc-green-solid:   #3CB464;  /* solid success green (distinct from --nc-green glow) */
+    --nc-green-soft:    #7bd88f;  /* success-gradient soft green (skriv WriteStep) */
+    --nc-warn:          #F97316;  /* progress/attention orange */
+    --nc-teal-deep:     #1A8CB0;  /* deep teal text on light */
+    --nc-honey:         #E8B04B;  /* mastery / achievement / "Fikset" — the one warm accent */
+    --nc-amber:         #E0A800;  /* hesitant-status dot */
+    --nc-card-2:        #2C2E30;  /* landing-style dark surface */
+    --nc-card-3:        #343638;  /* landing-style dark surface (lighter) */
+
+    /* mid-light surface tier — sits between dark card and cream focus surface
+       so the app is a balanced dark↔light system, not a hard binary */
+    --nc-graphite:      #262A24;
+    --nc-graphite-text: #EDEEE9;
+
+    /* themed glow for primary panels/buttons (lime halo in honning) */
+    --nc-glow:        rgba(183, 243, 0, 0.18);
+    --nc-glow-strong: rgba(183, 243, 0, 0.22);
+
+    /* active theme name (default = honning). The theme switcher sets
+       data-theme on <html>; honning falls through to these :root defaults. */
+    --nc-theme: 'honning';
+  }
+
+  /* ============================================================
+     THEME: Leirskole — warm earthy "clay academy" (dark substrate)
+     Terracotta replaces lime as the primary/loud action color;
+     oat replaces cream as the focus surface; espresso base.
+     Schibsted-only (no serif) — identity is carried by palette.
+     ============================================================ */
+  :root[data-theme='leirskole'] {
+    --nc-theme: 'leirskole';
+
+    --nc-bg:        #1A140F;
+    --nc-paper:     #211913;
+    --nc-card:      #231A13;
+    --nc-card-soft: #2A2018;
+    --nc-dark:      #211913;
+    --nc-dark-2:    #2A2018;
+
+    /* repair / error — warm clay, distinct from the terracotta primary */
+    --nc-red:        #C25535;
+    --nc-red-tint:   rgba(194, 85, 53, 0.16);
+    --nc-red-border: rgba(194, 85, 53, 0.34);
+    --nc-red-fg:     #FBF3EC;
+    --nc-red-bright: #D06A44;
+    --nc-red-deep:   #A8412B;
+    --nc-repair-bg:     rgba(194, 85, 53, 0.12);
+    --nc-repair-border: rgba(194, 85, 53, 0.26);
+
+    /* secondary accent — olive (was teal) */
+    --nc-teal:        #8A9A5B;
+    --nc-teal-tint:   rgba(138, 154, 91, 0.16);
+    --nc-teal-border: rgba(138, 154, 91, 0.30);
+    --nc-teal-fg:     #14180C;
+    --nc-teal-deep:   #5E6B38;
+
+    /* PRIMARY — terracotta (replaces lime). Note: terracotta is mid-dark, so
+       --nc-signal-fg flips to LIGHT (lime used dark text). */
+    --nc-signal:        #C8632F;
+    --nc-signal-tint:   rgba(200, 99, 47, 0.14);
+    --nc-signal-border: rgba(200, 99, 47, 0.30);
+    --nc-signal-fg:     #FBF3EC;
+    --nc-signal-bright: #DA7A42;
+    --nc-signal-deep:   #A84E22;
+    --nc-signal-dim:    #B5683A;
+    --nc-signal-soft:   #E0986A;
+    --nc-signal-glow:   #EAB48E;
+    --nc-signal-ink:      #9E4A1F;
+    --nc-signal-ink-deep: #7E3A16;
+    --nc-signal-ink-mid:  #8A4019;
+    --nc-signal-ink-soft: #94491F;
+
+    /* focus surface — oat (replaces cream) */
+    --nc-cream:       #EFE7D7;
+    --nc-cream-text:  #2A2018;
+    --nc-cream-muted: rgba(42, 32, 24, 0.58);
+    --nc-cream-dim:   rgba(42, 32, 24, 0.40);
+
+    /* success — moss */
+    --nc-green:        #8FBF6B;
+    --nc-green-tint:   rgba(143, 191, 107, 0.16);
+    --nc-green-border: rgba(143, 191, 107, 0.30);
+    --nc-green-fg:     #142208;
+    --nc-green-solid:  #5E8B57;
+    --nc-green-soft:   #8FBF6B;
+
+    /* text + borders — warm off-white on espresso */
+    --nc-border:        rgba(242, 234, 221, 0.10);
+    --nc-border-subtle: rgba(242, 234, 221, 0.06);
+    --nc-border-strong: rgba(242, 234, 221, 0.18);
+    --nc-text:          #F2EADD;
+    --nc-text-muted:    rgba(242, 234, 221, 0.60);
+    --nc-text-dim:      rgba(242, 234, 221, 0.38);
+
+    /* warm accents */
+    --nc-honey:    #E8B04B;
+    --nc-amber:    #E0A800;
+    --nc-warn:     #D2691E;
+    --nc-graphite: #2E241B;
+    --nc-card-2:   #2A2018;
+    --nc-card-3:   #342820;
+    --nc-glow:        rgba(200, 99, 47, 0.22);
+    --nc-glow-strong: rgba(200, 99, 47, 0.28);
   }
 
   .dark {
@@ -185,7 +303,7 @@
     background:
       radial-gradient(circle at 12% 0%, rgba(200, 255, 32, 0.10) 0%, transparent 24%),
       radial-gradient(circle at 86% 10%, rgba(109, 229, 255, 0.07) 0%, transparent 18%),
-      linear-gradient(180deg, #0A1206 0%, #151718 56%, #1C1E1F 100%);
+      linear-gradient(180deg, var(--nc-bg) 0%, var(--nc-paper) 56%, var(--nc-card-soft) 100%);
   }
 
   .nc-glass {
@@ -267,9 +385,9 @@
     z-index: 0;
     overflow: hidden;
     border-radius: calc(var(--radius) + 0.2rem);
-    background: linear-gradient(135deg, var(--nc-signal) 0%, #b8ef10 100%);
+    background: linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%);
     color: var(--nc-signal-fg);
-    box-shadow: 0 22px 48px rgba(183, 243, 0, 0.16);
+    box-shadow: 0 22px 48px var(--nc-glow);
   }
 
   .nc-signal-panel::before {
@@ -306,7 +424,7 @@
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
-    background: linear-gradient(135deg, #ff8f62 0%, #ff5f49 100%);
+    background: linear-gradient(135deg, var(--nc-red-bright) 0%, var(--nc-red-deep) 100%);
     color: #ffffff;
   }
 
@@ -384,24 +502,24 @@
 
   .nc-button-primary {
     border-radius: var(--radius);
-    background: linear-gradient(135deg, var(--nc-signal) 0%, #b7f300 100%);
+    background: linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%);
     color: var(--nc-signal-fg);
     font-weight: 700;
     transition: opacity 150ms ease, transform 150ms ease, box-shadow 150ms ease;
-    box-shadow: 0 12px 32px rgba(183, 243, 0, 0.18);
+    box-shadow: 0 12px 32px var(--nc-glow);
   }
 
   .nc-button-primary:hover {
     opacity: 0.96;
     transform: translateY(-1px);
-    box-shadow: 0 18px 40px rgba(183, 243, 0, 0.22);
+    box-shadow: 0 18px 40px var(--nc-glow-strong);
   }
 
   .nc-button-primary:active { transform: scale(0.97); }
 
   .nc-button-primary:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(215, 255, 92, 0.42), 0 18px 40px rgba(183, 243, 0, 0.18);
+    box-shadow: 0 0 0 3px rgba(215, 255, 92, 0.42), 0 18px 40px var(--nc-glow);
   }
 
   .nc-button-dark {

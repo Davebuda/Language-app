@@ -141,7 +141,7 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
               {answered === 0 ? 'Svar naturlig — vi justerer fortløpende.' : `Ser ut til ${estimatedLevel}-nivå.`}
             </div>
           </div>
-          <div className="rounded-[0.6rem] bg-[rgba(215,255,92,0.22)] px-3 py-1.5 text-[0.88rem] font-extrabold tabular-nums text-[var(--nc-signal-fg)]">
+          <div className="rounded-[0.6rem] bg-[color-mix(in_srgb,var(--nc-signal-glow)_22%,transparent)] px-3 py-1.5 text-[0.88rem] font-extrabold tabular-nums text-[var(--nc-signal-fg)]">
             {CEFR_LABELS[estimatedLevel]}
           </div>
         </div>
@@ -197,8 +197,8 @@ export function DiagnosticQuiz({ onComplete }: DiagnosticQuizProps) {
           if (revealed) {
             if (isCorrect) {
               style = {
-                borderColor: 'rgba(200,255,32,0.42)',
-                background: 'linear-gradient(135deg, rgba(200,255,32,0.92) 0%, rgba(184,239,16,0.88) 100%)',
+                borderColor: 'color-mix(in srgb, var(--nc-signal) 42%, transparent)',
+                background: 'linear-gradient(135deg, var(--nc-signal) 0%, color-mix(in srgb, var(--nc-signal-bright) 88%, transparent) 100%)',
                 color: 'var(--nc-signal-fg)',
               }
             } else if (isSelected && !isCorrect) {

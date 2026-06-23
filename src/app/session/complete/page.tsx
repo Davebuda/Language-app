@@ -335,7 +335,7 @@ export default function SessionCompletePage() {
                 {reflectionPrompt}
               </p>
               <textarea
-                className="mt-3 w-full resize-none rounded-[0.65rem] border border-[rgba(17,21,24,0.12)] bg-[rgba(255,255,255,0.55)] px-3.5 py-3 text-[0.88rem] text-[var(--nc-cream-text)] placeholder:text-[var(--nc-cream-dim)] focus:border-[rgba(200,255,32,0.55)] focus:outline-none transition-colors"
+                className="mt-3 w-full resize-none rounded-[0.65rem] border border-[rgba(17,21,24,0.12)] bg-[rgba(255,255,255,0.55)] px-3.5 py-3 text-[0.88rem] text-[var(--nc-cream-text)] placeholder:text-[var(--nc-cream-dim)] focus:border-[color-mix(in_srgb,var(--nc-signal)_55%,transparent)] focus:outline-none transition-colors"
                 rows={2}
                 placeholder="Skriv kort her..."
                 value={reflectionText}

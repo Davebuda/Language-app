@@ -70,7 +70,7 @@ function ScenarioCard({ scenario, onSelect, isRecommended, index }: ScenarioCard
                 Anbefalt
               </span>
             ) : null}
-            <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-bold uppercase tracking-[0.1em] ${isEven ? 'border border-[rgba(200,255,32,0.18)] bg-[var(--nc-signal-tint)] text-[var(--nc-signal)]' : 'border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.07)] text-[var(--nc-cream-muted)]'}`}>
+            <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-bold uppercase tracking-[0.1em] ${isEven ? 'border border-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)] bg-[var(--nc-signal-tint)] text-[var(--nc-signal)]' : 'border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.07)] text-[var(--nc-cream-muted)]'}`}>
               Stemme
             </span>
           </div>
@@ -295,14 +295,14 @@ function RoleplayTurnExercise({
                     <motion.span
                       aria-hidden="true"
                       className="pointer-events-none absolute rounded-full"
-                      style={{ inset: 0, border: '1px solid rgba(200,255,32,0.14)' }}
+                      style={{ inset: 0, border: '1px solid color-mix(in srgb, var(--nc-signal) 14%, transparent)' }}
                       animate={{ scale: [1, 1.07, 1], opacity: [1, 0.5, 1] }}
                       transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
                     />
                     <motion.span
                       aria-hidden="true"
                       className="pointer-events-none absolute rounded-full"
-                      style={{ inset: 8, border: '1px solid rgba(200,255,32,0.10)' }}
+                      style={{ inset: 8, border: '1px solid color-mix(in srgb, var(--nc-signal) 10%, transparent)' }}
                       animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
                       transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity, delay: 0.6 }}
                     />
@@ -312,11 +312,11 @@ function RoleplayTurnExercise({
                       className="absolute flex items-center justify-center rounded-full"
                       style={{
                         inset: 10,
-                        background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
-                        boxShadow: '0 0 16px rgba(200,255,32,0.25), 0 0 40px rgba(200,255,32,0.08), inset 0 2px 3px rgba(255,255,255,0.26)',
+                        background: 'radial-gradient(circle at 38% 32%, var(--nc-signal-glow) 0%, var(--nc-signal) 48%, var(--nc-signal-bright) 100%)',
+                        boxShadow: '0 0 16px var(--nc-glow-strong), 0 0 40px var(--nc-glow), inset 0 2px 3px rgba(255,255,255,0.26)',
                       }}
                     >
-                      <Mic size={18} style={{ color: '#0A1206' }} aria-hidden="true" />
+                      <Mic size={18} style={{ color: 'var(--nc-bg)' }} aria-hidden="true" />
                     </button>
                   </div>
                   <span className="text-[0.72rem] font-semibold text-[var(--nc-text-dim)]">Trykk for å svare</span>
@@ -339,7 +339,7 @@ function RoleplayTurnExercise({
                   <motion.span
                     aria-hidden="true"
                     className="pointer-events-none absolute rounded-full"
-                    style={{ inset: 0, border: '1.5px solid rgba(200,255,32,0.35)' }}
+                    style={{ inset: 0, border: '1.5px solid color-mix(in srgb, var(--nc-signal) 35%, transparent)' }}
                     animate={{ scale: [1, 1.14, 1], opacity: [1, 0.55, 1] }}
                     transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity }}
                   />
@@ -347,8 +347,8 @@ function RoleplayTurnExercise({
                     className="absolute flex items-center justify-center rounded-full"
                     style={{
                       inset: 8,
-                      background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
-                      boxShadow: '0 0 28px rgba(200,255,32,0.45), 0 0 60px rgba(200,255,32,0.18)',
+                      background: 'radial-gradient(circle at 38% 32%, var(--nc-signal-glow) 0%, var(--nc-signal) 48%, var(--nc-signal-bright) 100%)',
+                      boxShadow: '0 0 28px var(--nc-glow-strong), 0 0 60px var(--nc-glow)',
                     }}
                   >
                     <PulsingDot />

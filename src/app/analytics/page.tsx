@@ -138,7 +138,7 @@ export default function AnalyticsPage() {
             {/* Cream stat strip — retention */}
             <div className="grid grid-cols-2 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
               <div className="px-3 py-3 text-center">
-                <div className="font-display text-[1.6rem] font-extrabold tabular-nums text-[#5A8A00]">
+                <div className="font-display text-[1.6rem] font-extrabold tabular-nums text-[var(--nc-signal-ink)]">
                   {data.avgRetention !== null ? `${data.avgRetention}%` : '—'}
                 </div>
                 <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">Ferskhet</div>

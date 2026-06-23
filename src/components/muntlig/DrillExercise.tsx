@@ -193,8 +193,8 @@ export function DrillExercise({
                     aria-label="Start opptak av din uttale"
                     className="relative flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-[var(--radius)] py-2.5 text-[0.8125rem] font-bold text-[var(--nc-signal-fg)]"
                     style={{
-                      background: 'linear-gradient(135deg, #C8FF20 0%, #b7f300 100%)',
-                      boxShadow: '0 0 16px rgba(200,255,32,0.25), 0 12px 32px rgba(183,243,0,0.18)',
+                      background: 'linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%)',
+                      boxShadow: '0 0 16px var(--nc-glow-strong), 0 12px 32px var(--nc-glow)',
                     }}
                   >
                     <Mic size={14} aria-hidden="true" />
@@ -220,7 +220,7 @@ export function DrillExercise({
                   <motion.span
                     aria-hidden="true"
                     className="pointer-events-none absolute rounded-full"
-                    style={{ inset: 0, border: '1.5px solid rgba(200,255,32,0.35)' }}
+                    style={{ inset: 0, border: '1.5px solid color-mix(in srgb, var(--nc-signal) 35%, transparent)' }}
                     animate={{ scale: [1, 1.14, 1], opacity: [1, 0.5, 1] }}
                     transition={{ duration: 1.1, ease: 'easeInOut', repeat: Infinity }}
                   />
@@ -230,13 +230,13 @@ export function DrillExercise({
                     className="absolute flex items-center justify-center rounded-full"
                     style={{
                       inset: 6,
-                      background: 'radial-gradient(circle at 38% 32%, #d8ff58 0%, #C8FF20 48%, #aadc16 100%)',
-                      boxShadow: '0 0 28px rgba(200,255,32,0.45), 0 0 60px rgba(200,255,32,0.18)',
+                      background: 'radial-gradient(circle at 38% 32%, var(--nc-signal-glow) 0%, var(--nc-signal) 48%, var(--nc-signal-bright) 100%)',
+                      boxShadow: '0 0 28px var(--nc-glow-strong), 0 0 60px var(--nc-glow)',
                     }}
                     animate={{ scale: [1, 1.04, 1] }}
                     transition={{ duration: 0.8, repeat: Infinity }}
                   >
-                    <Mic size={16} style={{ color: '#0A1206' }} aria-hidden="true" />
+                    <Mic size={16} style={{ color: 'var(--nc-bg)' }} aria-hidden="true" />
                   </motion.button>
                 </div>
                 <span className="text-[0.72rem] font-bold text-[var(--nc-signal)]">Innspilling… trykk for å stoppe</span>

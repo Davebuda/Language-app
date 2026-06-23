@@ -187,8 +187,8 @@ export function PlacementQuiz() {
                 style={
                   selected === opt.value
                     ? {
-                        borderColor: 'rgba(200,255,32,0.42)',
-                        background: 'linear-gradient(135deg, rgba(200,255,32,0.92) 0%, rgba(184,239,16,0.88) 100%)',
+                        borderColor: 'color-mix(in srgb, var(--nc-signal) 42%, transparent)',
+                        background: 'linear-gradient(135deg, var(--nc-signal) 0%, color-mix(in srgb, var(--nc-signal-bright) 88%, transparent) 100%)',
                         color: 'var(--nc-signal-fg)',
                       }
                     : {

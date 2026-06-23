@@ -27,7 +27,7 @@ const PHASE_META: Record<ConceptPhase, { label: string; badgeTone: string; descr
   },
   practice: {
     label: 'Øving',
-    badgeTone: 'bg-[rgba(249,115,22,0.08)] border-[rgba(249,115,22,0.22)] text-[#F97316]',
+    badgeTone: 'bg-[rgba(249,115,22,0.08)] border-[rgba(249,115,22,0.22)] text-[var(--nc-warn)]',
     description: 'Aktiv trening pågår',
   },
   intro: {
@@ -47,7 +47,7 @@ const PHASE_ORDER: ConceptPhase[] = ['maintenance', 'consolidation', 'practice',
 const PHASE_BAR_COLORS: Record<ConceptPhase, string> = {
   maintenance: 'var(--nc-green)',
   consolidation: 'var(--nc-red)',
-  practice: '#F97316',
+  practice: 'var(--nc-warn)',
   intro: 'var(--nc-text-muted)',
   locked: 'var(--nc-border)',
 }

@@ -83,7 +83,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
         className={[
           'min-h-[64px] flex flex-wrap items-center gap-2 rounded-[0.65rem] border p-3 transition-colors',
           answerTiles.length > 0
-            ? 'border-[rgba(200,255,32,0.30)] bg-[rgba(200,255,32,0.06)]'
+            ? 'border-[color-mix(in_srgb,var(--nc-signal)_30%,transparent)] bg-[color-mix(in_srgb,var(--nc-signal)_6%,transparent)]'
             : 'border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.03)]',
         ].join(' ')}
       >
@@ -104,7 +104,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ duration: 0.12 }}
-                className="rounded-[0.55rem] border border-[rgba(200,255,32,0.45)] bg-[rgba(200,255,32,0.12)] px-4 py-2 font-display text-[1.35rem] font-extrabold text-[#3A5800] transition-colors hover:border-[rgba(200,255,32,0.70)] hover:bg-[rgba(200,255,32,0.20)] disabled:cursor-default"
+                className="rounded-[0.55rem] border border-[color-mix(in_srgb,var(--nc-signal)_45%,transparent)] bg-[var(--nc-signal-tint)] px-4 py-2 font-display text-[1.35rem] font-extrabold text-[var(--nc-signal-ink-mid)] transition-colors hover:border-[color-mix(in_srgb,var(--nc-signal)_70%,transparent)] hover:bg-[color-mix(in_srgb,var(--nc-signal)_20%,transparent)] disabled:cursor-default"
               >
                 {tile.word}
               </motion.button>
@@ -130,7 +130,7 @@ export function WordOrderExercise({ item, sentence, sessionId, onResult }: WordO
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.12 }}
-              className="rounded-[0.55rem] border border-[rgba(17,21,24,0.14)] bg-[rgba(17,21,24,0.06)] px-4 py-2.5 font-display text-[1.35rem] font-extrabold text-[var(--nc-cream-text)] transition-colors hover:border-[rgba(200,255,32,0.40)] hover:bg-[rgba(200,255,32,0.08)] hover:text-[#3A5800] disabled:cursor-default"
+              className="rounded-[0.55rem] border border-[rgba(17,21,24,0.14)] bg-[rgba(17,21,24,0.06)] px-4 py-2.5 font-display text-[1.35rem] font-extrabold text-[var(--nc-cream-text)] transition-colors hover:border-[color-mix(in_srgb,var(--nc-signal)_40%,transparent)] hover:bg-[color-mix(in_srgb,var(--nc-signal)_8%,transparent)] hover:text-[var(--nc-signal-ink-mid)] disabled:cursor-default"
             >
               {tile.word}
             </motion.button>
