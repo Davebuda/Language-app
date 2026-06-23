@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, ArrowRight, BookMarked } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -24,6 +24,7 @@ import { CORE_LANES, MUNTLIG_LANES, getCompletedLanes, type LaneId } from '@/lib
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 import { ProductionWall } from '@/components/dashboard/ProductionWall'
 import { deriveProductionWallView, deriveDiagnosisHighlight } from '@/lib/production-wall'
+import { NotebookDrawer } from '@/components/notebook/NotebookDrawer'
 
 const CONCEPT_TO_TOPIC: Record<string, string> = {
   'v2-word-order': 'daglig rutine',
@@ -61,6 +62,8 @@ export default function DashboardPage() {
   // next action; the practice menu + status glance are opt-in behind one tap, so
   // the dashboard stops being a menu of competing doors. Collapsed by default.
   const [showMore, setShowMore] = useState(false)
+  // Quick-access notebook drawer (recent saves), opened from the "Mer øving" disclosure.
+  const [notebookOpen, setNotebookOpen] = useState(false)
   const [streak, setStreak] = useState(0)
   const [today, setToday] = useState('')
   const [completedLanes, setCompletedLanes] = useState<Set<LaneId>>(new Set())
@@ -478,6 +481,32 @@ export default function DashboardPage() {
                 </div>
               </div>
 
+              {/* ── Notatboka (Cream) — quick-access entry to the saved-words
+                  notebook. Opens a drawer of the most recent saves; the full
+                  notebook lives at /vocab. Kept here in "Mer" (no 6th BottomNav
+                  tab — Rule 1, depth not breadth). Mirrors the LaneTrackRow row
+                  styling but is a button (drawer), not a navigation link. ── */}
+              <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
+                <button
+                  type="button"
+                  onClick={() => setNotebookOpen(true)}
+                  aria-haspopup="dialog"
+                  aria-expanded={notebookOpen}
+                  className="flex w-full items-center gap-2 rounded-[0.25rem] px-1 py-[7px] text-left transition-colors hover:bg-[rgba(17,21,24,0.03)]"
+                >
+                  <div className="flex size-[30px] shrink-0 items-center justify-center rounded-[0.35rem] bg-[var(--nc-cream-text)] text-white">
+                    <BookMarked size={12} aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[0.82rem] font-semibold text-[var(--nc-cream-text)]">Notatboka</span>
+                    <div className="mt-px text-[0.68rem] text-[var(--nc-cream-muted)] truncate">Det du har lagret underveis</div>
+                  </div>
+                  <div className="shrink-0 text-[12px] text-[var(--nc-cream-dim)]">
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </div>
+                </button>
+              </div>
+
               {/* ── Week Overview (Dark) ── */}
               <div className="overflow-hidden rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)]">
                 <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-2 py-2">
@@ -519,6 +548,8 @@ export default function DashboardPage() {
         </AnimatePresence>
 
       </main>
+
+      <NotebookDrawer open={notebookOpen} onClose={() => setNotebookOpen(false)} />
 
       <BottomNav active="home" />
     </div>

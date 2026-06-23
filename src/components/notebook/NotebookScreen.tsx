@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Search, Star, Archive, Trash2, Plus } from 'lucide-react'
+import { Search, Star, Archive, Trash2, Plus, Check, Languages } from 'lucide-react'
 import { useNotebook } from '@/hooks/useNotebook'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
 import { BottomNav } from '@/components/layout/BottomNav'
@@ -211,6 +211,14 @@ export function NotebookScreen() {
                           reviewStatus: item.reviewStatus === 'archived' ? 'new' : 'archived',
                         })
                       }
+                      onTogglePractice={() =>
+                        updateItem(item.id, { promoted: !item.promoted })
+                      }
+                      onAddTranslation={(english) =>
+                        // Learner's own translation (AI-01: a learner value, NOT verified).
+                        // Adding it makes the item practiceable, so promote it in one step.
+                        updateItem(item.id, { english, promoted: true })
+                      }
                       onDelete={() => removeItem(item.id)}
                     />
                   </motion.li>
@@ -254,15 +262,33 @@ function NotebookCard({
   item,
   onToggleStar,
   onArchive,
+  onTogglePractice,
+  onAddTranslation,
   onDelete,
 }: {
   item: NotebookItem
   onToggleStar: () => void
   onArchive: () => void
+  onTogglePractice: () => void
+  onAddTranslation: (english: string) => void
   onDelete: () => void
 }) {
   const starred = item.reviewStatus === 'starred'
   const archived = item.reviewStatus === 'archived'
+  const canPractice = Boolean(item.english?.trim())
+
+  // Inline "add translation" affordance, shown only when the item lacks an
+  // english value (and so cannot be served as a translation exercise yet).
+  const [addingTranslation, setAddingTranslation] = useState(false)
+  const [draftEnglish, setDraftEnglish] = useState('')
+
+  const submitTranslation = () => {
+    const value = draftEnglish.trim()
+    if (!value) return
+    onAddTranslation(value)
+    setDraftEnglish('')
+    setAddingTranslation(false)
+  }
 
   return (
     <div className={`nc-glass px-3.5 py-3 ${archived ? 'opacity-60' : ''}`}>
@@ -364,6 +390,95 @@ function NotebookCard({
             #{tag}
           </span>
         ))}
+      </div>
+
+      {/* Practice intent control — full-width below the card so it never crowds
+          the top action row. Two paths: (1) item HAS english → an "Øv på dette"
+          toggle that promotes it for the økt; (2) item LACKS english → an inline
+          "Legg til oversettelse" affordance, because a promoted item comes back
+          as an English-prompt translation exercise and needs an english value to
+          be practiceable at all. */}
+      <div className="mt-2.5 border-t border-[var(--nc-border)] pt-2.5">
+        {canPractice ? (
+          <button
+            type="button"
+            onClick={onTogglePractice}
+            aria-pressed={item.promoted}
+            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-[var(--radius)] border px-3.5 text-[0.78rem] font-bold transition-colors ${
+              item.promoted
+                ? 'border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] text-[var(--nc-signal)]'
+                : 'border-[var(--nc-border)] text-[var(--nc-text-muted)] hover:text-[var(--nc-text)]'
+            }`}
+          >
+            {item.promoted ? (
+              <>
+                <Check size={15} aria-hidden="true" />
+                Øver ✓
+              </>
+            ) : (
+              'Øv på dette'
+            )}
+          </button>
+        ) : (
+          <div>
+            <AnimatePresence initial={false} mode="wait">
+              {addingTranslation ? (
+                <motion.div
+                  key="input"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.18 }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <input
+                      type="text"
+                      value={draftEnglish}
+                      onChange={(e) => setDraftEnglish(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') submitTranslation()
+                        if (e.key === 'Escape') {
+                          setDraftEnglish('')
+                          setAddingTranslation(false)
+                        }
+                      }}
+                      placeholder="Engelsk oversettelse"
+                      aria-label={`Engelsk oversettelse for «${item.norwegian}»`}
+                      autoFocus
+                      className="nc-input min-w-0 flex-1 basis-40"
+                    />
+                    <button
+                      type="button"
+                      onClick={submitTranslation}
+                      disabled={!draftEnglish.trim()}
+                      className="inline-flex min-h-[44px] items-center rounded-[var(--radius)] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-3.5 text-[0.78rem] font-bold text-[var(--nc-signal)] transition-colors hover:bg-[var(--nc-signal-tint)] disabled:opacity-40"
+                    >
+                      Lagre og øv
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.button
+                  key="trigger"
+                  type="button"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.18 }}
+                  onClick={() => setAddingTranslation(true)}
+                  className="inline-flex min-h-[44px] items-center gap-1.5 rounded-[var(--radius)] border border-[var(--nc-border)] px-3.5 text-[0.78rem] font-bold text-[var(--nc-text-muted)] transition-colors hover:text-[var(--nc-text)]"
+                >
+                  <Languages size={15} aria-hidden="true" />
+                  Legg til oversettelse
+                </motion.button>
+              )}
+            </AnimatePresence>
+            <p className="mt-1.5 text-[0.7rem] leading-[1.4] text-[var(--nc-text-dim)]">
+              Trenger en engelsk oversettelse for å kunne øves.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   )

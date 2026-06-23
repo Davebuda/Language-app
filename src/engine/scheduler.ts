@@ -1,5 +1,6 @@
 import type { MistakeFingerprint, InputProductionPreference } from '@/types/fingerprint';
 import type { ConceptGraph } from '@/types/concepts';
+import type { NotebookItem } from '@/types/notebook';
 import type { Session, SessionItem, SessionBlock, SessionRecipe, ExerciseType, SelectionReason } from '@/types/session';
 import type { Sentence, ClozePassage } from '@/types/content';
 import { DEFAULT_SESSION_RECIPE, LEVEL_BLOCK_SIZES, isNotYetAvailableType, sentenceSupportsType } from '@/types/session';
@@ -115,6 +116,11 @@ export interface SchedulerInput {
   recipe?: Partial<SessionRecipe>;
   availablePassageIds?: Record<string, string[]>; // primaryConceptId → cloze passage ids
   passages?: Record<string, ClozePassage>;        // passageId → passage (for level filtering)
+  // T3.12 — promoted notebook items the learner saved + flagged for practice. The
+  // caller pre-filters to eligible (promoted) items; the scheduler defensively
+  // re-filters (english required, capped) and injects them into the NEW-MATERIAL
+  // lane ONLY — never the review/SRS-due pool (CLAUDE.md T1.6).
+  notebookItems?: NotebookItem[];
 }
 
 export interface SchedulerOutput {
@@ -369,6 +375,41 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
         conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
       }
     }
+  }
+
+  // Notebook practice — promoted notebook items enter the NEW-MATERIAL / lær lane
+  // as deterministic translation-recall exercises (T3.12). NOT review, NOT
+  // interleaving (CLAUDE.md T1.6 — notebook items feed remediation/new-material
+  // only, never the review/SRS-due pool). The caller pre-filters to eligible
+  // (promoted) items; we defensively re-filter here:
+  //   - english required: translation-to-norwegian shows English as the prompt and
+  //     grades the Norwegian answer — without english there is no prompt, so skip.
+  //   - cap at NOTEBOOK_PRACTICE_CAP so notebook practice supplements, never
+  //     dominates the prescribed session; pick the most-due first (nextReviewAt
+  //     asc, nulls first) when more than the cap are eligible.
+  // No CEFR-level filtering — these are the learner's own saves.
+  const NOTEBOOK_PRACTICE_CAP = 2;
+  const eligibleNotebookItems = (input.notebookItems ?? [])
+    .filter((nb) => nb.norwegian.trim().length > 0 && (nb.english ?? '').trim().length > 0)
+    .sort((a, b) => {
+      // most-due first: nulls (no nextReviewAt) sort before dated, then by date asc
+      if (a.nextReviewAt === b.nextReviewAt) return 0;
+      if (a.nextReviewAt === null) return -1;
+      if (b.nextReviewAt === null) return 1;
+      return a.nextReviewAt < b.nextReviewAt ? -1 : 1;
+    })
+    .slice(0, NOTEBOOK_PRACTICE_CAP);
+  for (const nb of eligibleNotebookItems) {
+    items.push({
+      id: `item-${itemIndex++}`,
+      exerciseType: 'translation-to-norwegian',
+      contentId: `notebook:${nb.id}`,
+      conceptIds: nb.conceptId ? [nb.conceptId] : [],
+      estimatedSeconds: AVG_EXERCISE_SECONDS,
+      isRepairItem: false,
+      purpose: 'new-material',
+      selectionReason: 'notebook_practice',
+    });
   }
 
   // Interleaving — mix from in-progress concepts; fall back to unlocked concepts

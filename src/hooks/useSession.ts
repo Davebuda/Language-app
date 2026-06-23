@@ -4,6 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSessionStore } from '@/stores/session-store';
 import { useFingerprintStore } from '@/stores/fingerprint-store';
 import { useFingerprint } from '@/hooks/useFingerprint';
+import { useNotebook } from '@/hooks/useNotebook';
+import { useNotebookStore } from '@/stores/notebook-store';
+import { getEligibleNotebookItems } from '@/lib/notebook-promotion';
+import { advanceNotebookSrs } from '@/lib/srs';
 import { generateSession, buildRepairPlan, makeRepairItems } from '@/engine';
 import { aiService } from '@/ai';
 import { emitEvent } from '@/lib/events';
@@ -70,6 +74,9 @@ export function useSession(
 ) {
   const sessionStore = useSessionStore();
   const { recordResult: recordFingerprintResult, ensureWeekOpenAndPersist, recordSpeakingProduction } = useFingerprint();
+  // Notebook practice (T3.13/T3.14): feeds eligible saved items into the session
+  // and advances ONLY their own SRS on grade — never conceptMastery (Rule 8 / T1.6).
+  const { items: notebookItems, updateItem: updateNotebookItem } = useNotebook();
 
   // itemId → resolved content (AI-generated or seed fallback)
   const contentCache = useRef<Map<string, ResolvedContent>>(new Map());
@@ -130,6 +137,37 @@ export function useSession(
   // and upgrades the content if it completes before the learner submits the item.
   const resolveItem = useCallback(async (item: SessionItem): Promise<void> => {
     if (contentCache.current.has(item.id)) return;
+
+    // ── Notebook-practice path ───────────────────────────────────────────────
+    // A notebook_practice item carries contentId `notebook:<id>`. Resolve its
+    // ResolvedContent directly from the notebook store (the item is the prompt
+    // source, not the corpus). source:'generated' routes grading through the
+    // fallbackContent path the components already handle.
+    if (item.contentId.startsWith('notebook:')) {
+      const nbId = item.contentId.slice('notebook:'.length);
+      const nb = useNotebookStore.getState().items.find((i) => i.id === nbId);
+      if (nb) {
+        const currentLevel = useFingerprintStore.getState().fingerprint?.currentLevel ?? 'A1';
+        const resolved: ResolvedContent = {
+          id: nb.id,
+          norwegian: nb.norwegian,
+          english: nb.english ?? '',
+          conceptIds: nb.conceptId ? [nb.conceptId] : [],
+          vocabularyClusters: [],
+          errorTagsDetectable: [],
+          cefrLevel: currentLevel,
+          difficulty: 2,
+          exerciseTypes: ['translation-to-norwegian'],
+          notes: nb.grammarNote,
+          acceptedAnswers: [],
+          source: 'generated',
+          isReviewFallback: false,
+        };
+        contentCache.current.set(item.id, resolved);
+        forceUpdate((n) => n + 1);
+      }
+      return;
+    }
 
     // ── Cloze-passage path ───────────────────────────────────────────────────
     if (item.exerciseType === 'cloze-passage') {
@@ -250,7 +288,15 @@ export function useSession(
         }
       : {};
 
-    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences, recipe: calibrationRecipe, availablePassageIds: SEED_PASSAGE_IDS, passages: SEED_PASSAGES });
+    // Notebook practice (T3.14): pass the learner's eligible saved items to the
+    // scheduler. translation-to-norwegian shows English as the prompt and grades
+    // the Norwegian answer, so items lacking either side are unusable — filter
+    // them out here. Empty list is safe: the scheduler treats it as no injection.
+    const eligibleNotebookItems = getEligibleNotebookItems(notebookItems, fingerprint).filter(
+      (i) => i.norwegian && i.english,
+    );
+
+    const output = generateSession({ fingerprint, graph: activeGraph, availableSentenceIds: availableSentenceIdsProp, sentences, recipe: calibrationRecipe, availablePassageIds: SEED_PASSAGE_IDS, passages: SEED_PASSAGES, notebookItems: eligibleNotebookItems });
     contentCache.current.clear();
     passageCache.current.clear();
     sessionStore.startSession(output.session);
@@ -266,7 +312,7 @@ export function useSession(
     });
 
     prefetch(output.session.items, 0);
-  }, [sessionStore, prefetch, availableSentenceIdsProp, ensureWeekOpenAndPersist]);
+  }, [sessionStore, prefetch, availableSentenceIdsProp, ensureWeekOpenAndPersist, notebookItems]);
 
   // Keep the prefetch window moving as the learner progresses
   useEffect(() => {
@@ -295,7 +341,22 @@ export function useSession(
       // CORRECT speed-round still bricks + advances normally.
       const isSpeedRoundMiss = item?.exerciseType === 'speed-round' && !result.correct;
       if (!isSpeedRoundMiss) {
-        recordFingerprintResult(enrichedResult);
+        if (item?.selectionReason === 'notebook_practice') {
+          // Rule 8 / T1.6: a notebook-practice result advances ONLY the notebook
+          // item's own SRS. It must NEVER reach recordFingerprintResult /
+          // updateConceptMastery — an unverified saved item cannot move the
+          // diagnosis fingerprint or mastery.
+          const nbId = item.contentId.slice('notebook:'.length);
+          const nb = useNotebookStore.getState().items.find((i) => i.id === nbId);
+          if (nb) {
+            updateNotebookItem(
+              nbId,
+              advanceNotebookSrs({ srsLevel: nb.srsLevel, nextReviewAt: nb.nextReviewAt }, result.correct),
+            );
+          }
+        } else {
+          recordFingerprintResult(enrichedResult);
+        }
       }
 
       const sessionId = useSessionStore.getState().session?.id;
@@ -364,7 +425,7 @@ export function useSession(
         })
         .catch(() => { /* template already shown — no action needed */ });
     },
-    [sessionStore, recordFingerprintResult],
+    [sessionStore, recordFingerprintResult, updateNotebookItem],
   );
 
   const continueAfterRepair = useCallback(async () => {
