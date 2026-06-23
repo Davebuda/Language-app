@@ -41,7 +41,7 @@ function getOrCreateAnonId(): string {
  * Returns the re-keyed items so the caller can seed the store directly without
  * a second IndexedDB read.
  */
-async function migrateAnonNotebookToUser(
+export async function migrateAnonNotebookToUser(
   priorAnonId: string | null,
   userId: string,
 ): Promise<NotebookItem[] | null> {
