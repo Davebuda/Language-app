@@ -4,15 +4,19 @@ milestone: stabilization
 milestone_name: Stabilization — harden the shipped core loop; prove the moat
 status: in progress
 stopped_at: 2026-06-22 (later) — DEEP PRINCIPAL-QA AUDIT + T1.4 + 5 audit fixes SHIPPED + DEPLOYED (runtime HEAD 0d598c3; docs HEAD 9a4de92). 7-phase read-only audit → audit/ dir (system-map, live-audit-log, issue-registry, root-cause-map [10 clusters], diagnostic-plan, fix-plan, regression-checklist). KEY META-FINDING: most of the 13 reported issues were ALREADY FIXED (diagnostic off-by-one, mic auto-start, WebLLM gibberish, SSR/CSR mismatch, journal mastery-poison, seed-path retry all refuted) — re-verify, don't re-report. FIXED+DEPLOYED (all audit:gate AUDIT-CLEAN, Rule-9 reconciled, visual-QA'd where UI changed): T1.4 root_cause in-session label (4fc8e58); A-01 CRITICAL B2 fill-in-blank unwinnable — notes was "answer — explanation", 182/184 rows migrated + CI gate (82fc798); S-01 generated-content grader freeze — optional fallbackContent (f4b8521); R-01 orphaned muntlig lanes → dashboard "Muntlig" sub-panel (afe282b); G-02+S-02 non-punitive speed-round (0d598c3, docs/decisions/2026-06-22-non-punitive-speed-round.md). Remaining backlog all Medium/Low (audit/issue-registry.md). Dashboard-expression layout exploration done (scout + 5 directions), awaiting a pick.
-last_updated: "2026-06-22"
+last_updated: "2026-06-24"
 last_activity: 2026-06-22 (later) — G-02+S-02 non-punitive speed-round deployed (0d598c3). Audit method: 5 parallel read-only cluster agents (graders, diagnostic/persistence, session/repair, AI safety, routes/stubs/a11y) + own corpus/grader verification; A-01 (Critical) confirmed by direct corpus scan. LOCKED PROCESS LESSON still holds: visual QA via throwaway qa-* route → Playwright 4-width screenshots → delete route + rm -rf .next before final gate (applied to T1.4, R-01, G-02).
-head: 0d598c3 (runtime/deployed; 9a4de92 = docs-only commit atop it)
+head: b35cca2 (runtime/deployed — interactive corrections + universal notebook feature, 2026-06-24)
 test_count: ~816 (audit:gate green; + fill-in-blank-integrity A-01 gate, grade-fallback S-01 suite, scheduler-diagnosis-steer root_cause cases)
 deployed: pandoai.no (Hetzner) — runtime at 0d598c3, IN SYNC with origin except a trailing docs-only commit (9a4de92, audit log). Each fix deployed individually under Operating Rule 9 (reconcile 3 trees + gate ALONE before every deploy).
 remaining_tier1: T1.4 DONE (root_cause in-session label, 4fc8e58). T1.6 REDEFINED by architect to a moat-safe 2-pool scope — steer new-material modality + snakk concepts ONLY; review/SRS-due stay diagnosis-AGNOSTIC (tilting spaced-repetition by today's diagnosis breaks the 1→3→7→14→30 ladder); acceptance test = an unrelated SRS-due concept still schedules. Remaining: T1.6 (build), T1.5 ladder production/muntlig cluster, T1.7 journey copy. Then Tier-2 (AI-forward tutor-feel). Standing content lane: Option B (83 A1 translate-EN sentences remain).
 ---
 
 # Project State
+
+## Update 2026-06-24 — interactive corrections + universal learner notebook SHIPPED + DEPLOYED (9 commits, head b35cca2)
+
+A new product layer beside the stabilization work (direction/plan in `docs/`; full decision in `docs/decisions/2026-06-24-notebook-deterministic-recall.md`; authoritative detail in CLAUDE.md "Current State" 2026-06-24 box). All 9 commits `audit:gate` AUDIT-CLEAN, Rule-9 reconciled, deployed to pandoai.no via `bash deploy/deploy.sh` (CI build-checks but does NOT deploy — VPS secrets unset). Shipped: 2nd-person feedback rewrite; clickable word-selection popup (verified-corpus vs AI-"Forslag" vs honest-empty, AI-01); `/vocab` is now the universal notebook (IndexedDB v1→v2 + `learner_notebook` Supabase table w/ RLS, guest-capable + auth sync); promoted items return as deterministic `translation-to-norwegian` on their OWN SRS (`src/lib/srs.ts`), `submitResult` branches so notebook practice NEVER touches `conceptMastery` (Rule 8 + T1.6). Verified: fresh-context code review (5 fixes incl. guest→login data-loss), Playwright visual QA, real-IndexedDB integration tests (`fake-indexeddb`), live prod smoke. Test count ~894 (audit:gate green).
 
 ## Project Reference
 

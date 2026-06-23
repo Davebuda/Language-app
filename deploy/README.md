@@ -44,9 +44,20 @@ rsync -avz --ignore-existing public/audio/sentences/ \
 
 ## Routine deploys
 
-- **Manual:** `ssh root@<vps-ip> 'cd /var/www/norskcoach && ./deploy/deploy.sh'`
-- **CI/CD:** push to `main` → `.github/workflows/deploy.yml` runs build-check then SSH-deploys,
-  **once** the `VPS_HOST` / `VPS_USER` / `VPS_SSH_KEY` repo secrets are set (it self-skips until then).
+VPS IP: **204.168.245.72** (box also hosts dj-kiki via PM2). App dir `/var/www/norskcoach`, PM2 process `norskcoach`.
+
+- **Manual (the actual method):** `ssh root@204.168.245.72 'cd /var/www/norskcoach && bash deploy/deploy.sh'`
+  → git fetch + `reset --hard origin/main` → `npm ci` → `npm run build` → `pm2 reload norskcoach` (zero-downtime) → `pm2 save`.
+- **CI/CD:** push to `main` → `.github/workflows/deploy.yml` build-checks (tsc + build). Its SSH-deploy step
+  **is currently SKIPPED** — the `VPS_HOST`/`VPS_USER`/`VPS_SSH_KEY` repo secrets are NOT set, so **CI does NOT
+  deploy** — deploys are manual SSH (verified 2026-06-24). Set those secrets to enable auto-deploy on push.
+
+> **GOTCHA (verified 2026-06-24):** the server's checkout of `deploy/deploy.sh` has **lost its execute bit**, so
+> `./deploy/deploy.sh` fails with `Permission denied` (exit 126). Run it as **`bash deploy/deploy.sh`**.
+> Reconcile per Operating Rule 9 BEFORE deploying: push to origin/main, confirm the server HEAD is a clean
+> ancestor (`git merge-base --is-ancestor <server-HEAD> HEAD`), run `npm run audit:gate` alone, and apply any
+> new Supabase migration (MCP `apply_migration`) BEFORE the code deploy. After: verify server HEAD, `pm2` online
+> + empty error.log, `curl https://pandoai.no` 200, browser smoke; write evidence to `.omc/logs/deploy-*.md`.
 
 ## Pre-deploy checklist (every release)
 
