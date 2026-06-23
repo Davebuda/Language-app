@@ -11,8 +11,8 @@
 //
 // "Weak/decaying" reuses the two helpers already consumed by the scheduler:
 //   - getPrimaryWeakConcepts(fingerprint, limit) — bottom-N by decayedScore
-//     (no hardcoded score threshold; limit capped at all concepts by passing
-//      Infinity-safe large number so every weak concept qualifies, not just top-5)
+//     (no hardcoded score threshold; bounded to WEAK_CONCEPT_LIMIT so "weak"
+//      means the scheduler's focus budget, not every concept ever attempted)
 //   - getDecayingConcepts(fingerprint)           — rawScore≥70, decayedScore<70
 //
 // Rationale: the scheduler uses both; reusing them keeps the notebook gate
@@ -21,6 +21,12 @@
 import type { NotebookItem } from '@/types/notebook'
 import type { MistakeFingerprint } from '@/types/fingerprint'
 import { getPrimaryWeakConcepts, getDecayingConcepts } from '@/engine/diagnosis'
+
+// Bound on "weak" concepts considered for diagnostic promotion. Mirrors the
+// scheduler's focus budget (~3 weakest by decayedScore + up to 2 SRS-due) so
+// "weak" means the same thing in the notebook gate and the session engine —
+// rather than "every concept ever attempted".
+const WEAK_CONCEPT_LIMIT = 5
 
 // We only need the conceptMastery slice of the fingerprint here, but the
 // Pick type is expressed on the public MistakeFingerprint to stay consistent
@@ -54,11 +60,10 @@ export function getEligibleNotebookItems(
   // signature without pulling in unrelated fields. The helpers only read
   // .conceptMastery internally, so the cast is safe.
   const fingerprintStub = fingerprint as MistakeFingerprint
-  // No limit cap: surface every concept with attemptCount>0, not just top-5.
-  // We pass a large number so every weak concept is captured, mirroring the
-  // scheduler's intent: "pull up to 5 focus concepts" is a UX budget, not the
-  // definition of weak. The eligibility gate has no session-slot budget.
-  const weakConceptIds = new Set<string>(getPrimaryWeakConcepts(fingerprintStub, Number.MAX_SAFE_INTEGER))
+  // Bound to WEAK_CONCEPT_LIMIT so "weak" mirrors the scheduler's focus budget
+  // (~3 weakest + 2 SRS-due). Unbounded (MAX_SAFE_INTEGER) made every attempted
+  // concept "weak", collapsing the HYBRID gate's diagnostic-relevance path.
+  const weakConceptIds = new Set<string>(getPrimaryWeakConcepts(fingerprintStub, WEAK_CONCEPT_LIMIT))
   const decayingConceptIds = new Set<string>(getDecayingConcepts(fingerprintStub))
 
   return items.filter((item) => {

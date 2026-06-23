@@ -86,7 +86,6 @@ export function ExplanationCard({
             type="word"
             conceptId={conceptId}
             errorTag={repairPlan.errorTag}
-            aiExplanation={repairPlan.explanation}
           >
             <span className="mt-1.5 font-display text-[1.15rem] font-bold tracking-tight text-[var(--nc-signal)]">
               {correctAnswer}

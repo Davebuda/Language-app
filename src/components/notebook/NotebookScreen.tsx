@@ -339,14 +339,21 @@ function NotebookCard({
         <span className="inline-flex items-center rounded-full border border-[var(--nc-border)] px-2 py-0.5 text-[0.64rem] font-bold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">
           {TYPE_LABEL[item.type]}
         </span>
-        {/* AI-01: AI-suggested items are visibly marked, never shown as truth */}
+        {/* Trust badge: "Bekreftet" for corpus-verified items; "Forslag" ONLY
+            when the item carries unverified AI-derived content (an explanation).
+            A plain save (no explanation) is neither verified nor a suggestion —
+            it shows a neutral "Lagret" so it's not mislabelled as AI (AI-01). */}
         {item.verified ? (
           <span className="inline-flex items-center rounded-full border border-[var(--nc-green-border)] bg-[var(--nc-green-tint)] px-2 py-0.5 text-[0.64rem] font-bold uppercase tracking-[0.06em] text-[var(--nc-green)]">
             Bekreftet
           </span>
-        ) : (
+        ) : item.explanation ? (
           <span className="inline-flex items-center rounded-full border border-[rgba(249,115,22,0.22)] bg-[rgba(249,115,22,0.08)] px-2 py-0.5 text-[0.64rem] font-bold uppercase tracking-[0.06em] text-[var(--nc-warn)]">
             Forslag
+          </span>
+        ) : (
+          <span className="inline-flex items-center rounded-full border border-[var(--nc-border)] px-2 py-0.5 text-[0.64rem] font-bold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">
+            Lagret
           </span>
         )}
         {item.tags.map((tag) => (

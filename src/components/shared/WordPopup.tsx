@@ -174,7 +174,9 @@ function WordPopupContent({
 
 /**
  * Mobile bottom-sheet: framer-motion slide-up + a fading backdrop. Dismissable via
- * backdrop click and Esc; focus is moved into the sheet on open.
+ * backdrop click and Esc; focus is moved into the sheet on open, TRAPPED within it
+ * while open (Tab/Shift+Tab cycle inside), and RESTORED to the trigger on close —
+ * the desktop Radix path already handles this natively.
  */
 function MobileSheet({
   open,
@@ -188,17 +190,66 @@ function MobileSheet({
   children: React.ReactNode
 }) {
   const sheetRef = React.useRef<HTMLDivElement>(null)
+  // The element focused before the sheet opened (the trigger button) — restored
+  // on close so keyboard focus never lands on the page behind the closed sheet.
+  const triggerRef = React.useRef<HTMLElement | null>(null)
+  // Keep onClose in a ref so its (inline, unstable) identity doesn't re-run the
+  // effect — which would restore focus mid-open. The effect depends only on `open`.
+  const onCloseRef = React.useRef(onClose)
+  onCloseRef.current = onClose
 
   React.useEffect(() => {
     if (!open) return
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+
+    // Capture the trigger so we can restore focus to it on close.
+    triggerRef.current = document.activeElement as HTMLElement | null
+
+    const getFocusable = (): HTMLElement[] => {
+      const root = sheetRef.current
+      if (!root) return []
+      return Array.from(
+        root.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null || el === root)
     }
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onCloseRef.current()
+        return
+      }
+      if (e.key !== 'Tab') return
+      // Trap Tab within the sheet so focus can't escape to the page behind it.
+      const focusable = getFocusable()
+      const root = sheetRef.current
+      if (!root) return
+      const first = focusable[0] ?? root
+      const last = focusable[focusable.length - 1] ?? root
+      const active = document.activeElement
+      if (e.shiftKey) {
+        if (active === first || active === root) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else if (active === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+
     document.addEventListener('keydown', onKeyDown)
     // Move focus into the sheet for keyboard users.
     sheetRef.current?.focus()
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [open, onClose])
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      // Restore focus to the trigger that opened the sheet.
+      triggerRef.current?.focus()
+    }
+    // Depends only on `open`: onClose is read via onCloseRef to avoid re-running
+    // (and prematurely restoring focus) when its inline identity changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open])
 
   return (
     <AnimatePresence>
