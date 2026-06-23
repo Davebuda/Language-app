@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { resolveWordExplanation } from './word-explanation'
+import { resolveWordExplanation } from '@/lib/word-explanation'
 import type { ConceptNode } from '@/types/concepts'
 import type { VocabWord } from '@/types/vocab'
 

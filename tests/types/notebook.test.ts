@@ -3,7 +3,7 @@ import {
   createNotebookItem,
   normalizeNotebookItem,
   type NotebookItem,
-} from './notebook'
+} from '@/types/notebook'
 
 // ---------------------------------------------------------------------------
 // normalizeNotebookItem
