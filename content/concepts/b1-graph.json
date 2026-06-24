@@ -4,7 +4,7 @@
   "concepts": [
     {
       "id": "past-perfect",
-      "label": "Past perfect (hadde + past participle)",
+      "label": "Preteritum perfektum (hadde + partisipp)",
       "description": "The past perfect is formed with 'hadde' + past participle: 'Jeg hadde spist.' It expresses actions completed before another past action: 'Da jeg kom hjem, hadde hun allerede gått.' Essential for narrative sequencing.",
       "cefrLevel": "B1",
       "prerequisites": ["perfect-tense", "preterite-regular"],
@@ -15,7 +15,7 @@
     },
     {
       "id": "present-participle",
-      "label": "Present participle (-ende) and progressive aspect",
+      "label": "Presens partisipp (-ende) og pågående handling",
       "description": "The present participle is formed by adding -ende to the verb stem: løpende, syngende, kommende. Used as adjective (en løpende mann), adverb (hun kom løpende), or in progressive constructions with 'sitte/stå/ligge og': 'Han sitter og leser.'",
       "cefrLevel": "B1",
       "prerequisites": ["perfect-tense", "basic-adjectives"],
@@ -26,7 +26,7 @@
     },
     {
       "id": "cleft-sentences",
-      "label": "Cleft sentences (det er ... som/at)",
+      "label": "Utbrytingssetninger (det er ... som/at)",
       "description": "Cleft constructions split a sentence to emphasize one element: 'Det er Kari som har gjort det' (It's Kari who did it). Subject clefts use 'som', object clefts use 'som' or zero. Very common in spoken Norwegian for focus and contrast.",
       "cefrLevel": "B1",
       "prerequisites": ["relative-clauses", "subordinate-clauses"],
@@ -37,7 +37,7 @@
     },
     {
       "id": "s-passive-vs-bli-passive",
-      "label": "S-passive vs bli-passive (choosing the right form)",
+      "label": "S-passiv vs. bli-passiv (velge riktig form)",
       "description": "The -s passive expresses habitual or generic actions (Butikken åpnes klokken ni), while the bli passive describes specific events or processes (Boken ble skrevet i 2020). Register matters: -s is more formal/written, bli is more spoken. Choosing correctly signals B1 fluency.",
       "cefrLevel": "B1",
       "prerequisites": ["passive-voice"],
@@ -48,7 +48,7 @@
     },
     {
       "id": "subjunctive-equivalents",
-      "label": "Subjunctive equivalents (skulle, om, bare)",
+      "label": "Konjunktiv-tilsvar (skulle, om, bare)",
       "description": "Norwegian lacks a true subjunctive but expresses wishes, hypotheticals, and unreal conditions using modal preterite: 'Jeg skulle ønske jeg kunne fly', 'Om jeg bare hadde visst', 'Det ville vært fint om du kom.' The preterite form signals unreality.",
       "cefrLevel": "B1",
       "prerequisites": ["conditional-clauses", "modal-verbs-advanced", "past-perfect"],
@@ -59,7 +59,7 @@
     },
     {
       "id": "discourse-markers",
-      "label": "Discourse markers (jo, nok, vel, da, altså, liksom)",
+      "label": "Småord i samtale (jo, nok, vel, da, altså, liksom)",
       "description": "Norwegian discourse particles modify the speaker's stance: jo (shared knowledge), nok (probability), vel (uncertainty/hedging), da (emphasis/insistence), altså (so/in other words), liksom (sort of). Mastery of these makes speech sound natural rather than textbook.",
       "cefrLevel": "B1",
       "prerequisites": ["sentence-adverbials", "subordinate-clauses"],
@@ -70,7 +70,7 @@
     },
     {
       "id": "phrasal-verbs",
-      "label": "Phrasal verbs (partikelverb)",
+      "label": "Partikkelverb",
       "description": "Verb + particle combinations where the particle changes the meaning: gi opp (give up), finne ut (find out), ta på seg (put on), sette seg (sit down), stå opp (get up), komme tilbake (come back). The particle often moves to the end of the clause.",
       "cefrLevel": "B1",
       "prerequisites": ["common-prepositions", "v2-word-order", "reflexive-verbs"],
@@ -81,7 +81,7 @@
     },
     {
       "id": "double-definite",
-      "label": "Double definiteness (den store bilen)",
+      "label": "Dobbel bestemthet (den store bilen)",
       "description": "When an adjective modifies a definite noun, Norwegian requires both a free-standing article (den/det/de) AND the definite suffix on the noun: 'den store bilen' (the big car). This double marking is unique to Scandinavian languages and a persistent error source for learners.",
       "cefrLevel": "B1",
       "prerequisites": ["adjective-agreement", "definite-articles-singular", "comparative-adjectives"],
@@ -92,7 +92,7 @@
     },
     {
       "id": "complex-subordination",
-      "label": "Complex subordination (nested clauses, multiple conjunctions)",
+      "label": "Kompleks underordning (nøstede setninger, flere subjunksjoner)",
       "description": "Building multi-clause sentences with nested subordination: 'Jeg tror at han sa at de ville komme hvis det ikke regnet.' Word order in each clause follows its own rule (main = V2, subordinate = straight). Adverbial placement shifts with each nesting level.",
       "cefrLevel": "B1",
       "prerequisites": ["subordinate-clauses", "relative-clauses", "conditional-clauses"],
@@ -103,7 +103,7 @@
     },
     {
       "id": "formal-informal-register",
-      "label": "Formal vs informal register",
+      "label": "Formelt vs. uformelt språk",
       "description": "Choosing appropriate formality: De/Dem (formal you) vs du, passive -s forms vs active voice, compound verbs vs phrasal verbs, written Bokmål conventions vs spoken shortcuts (ikke→'kke, jeg→eg). Understanding when to use 'hei' vs 'kjære' in written communication.",
       "cefrLevel": "B1",
       "prerequisites": ["s-passive-vs-bli-passive", "discourse-markers"],
@@ -114,7 +114,7 @@
     },
     {
       "id": "idiomatic-expressions",
-      "label": "Common idiomatic expressions",
+      "label": "Vanlige faste uttrykk",
       "description": "Frequently used Norwegian idioms and fixed expressions: å ha det bra (be well), å ta det med ro (take it easy), det går bra (it's fine), å slå seg ned (settle down), i det hele tatt (at all), for så vidt (in a way), å stå på (to keep going), å ha lyst til (to feel like).",
       "cefrLevel": "B1",
       "prerequisites": ["phrasal-verbs", "infinitive-clauses"],
@@ -125,7 +125,7 @@
     },
     {
       "id": "indirect-questions",
-      "label": "Indirect questions (om/hv- in reported speech)",
+      "label": "Indirekte spørsmål (om/hv- i indirekte tale)",
       "description": "Embedding questions as subordinate clauses: yes/no questions use 'om' (Jeg lurer på om du kommer), wh-questions use the question word (Jeg vet ikke hvor hun bor). Word order is straight (SVO) in the embedded clause, not inverted as in direct questions.",
       "cefrLevel": "B1",
       "prerequisites": ["question-formation", "indirect-speech", "subordinate-clauses"],

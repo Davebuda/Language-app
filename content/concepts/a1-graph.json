@@ -4,7 +4,7 @@
   "concepts": [
     {
       "id": "personal-pronouns",
-      "label": "Personal pronouns",
+      "label": "Personlige pronomen",
       "description": "The Norwegian personal pronouns in subject position: jeg, du, han, hun, det/den, vi, dere, de. Object forms differ for several pronouns (meg, deg, ham, henne, dem).",
       "cefrLevel": "A1",
       "prerequisites": [],
@@ -16,7 +16,7 @@
     },
     {
       "id": "noun-gender",
-      "label": "Noun gender",
+      "label": "Substantivkjønn",
       "description": "Norwegian nouns belong to one of three grammatical genders — en (common/masculine), ei (feminine), or et (neuter) — which governs article forms, definite suffixes, and adjective agreement.",
       "cefrLevel": "A1",
       "prerequisites": [],
@@ -28,7 +28,7 @@
     },
     {
       "id": "to-be-verb",
-      "label": "The verb 'å være' (to be)",
+      "label": "Verbet «å være»",
       "description": "The most important irregular verb in Norwegian: infinitive 'være', present 'er', preterite 'var', past participle 'vært'. Used for identification, description, and location.",
       "cefrLevel": "A1",
       "prerequisites": [],
@@ -40,7 +40,7 @@
     },
     {
       "id": "numbers-basic",
-      "label": "Basic numbers (0–100)",
+      "label": "Tall (0–100)",
       "description": "Cardinal numbers from 0 to 100, including the teens (elleve–nitten), the tens (tjue–hundre), and compound numbers (tjueen, tjueto…). Used in prices, ages, quantities, and addresses.",
       "cefrLevel": "A1",
       "prerequisites": [],
@@ -52,7 +52,7 @@
     },
     {
       "id": "common-prepositions",
-      "label": "Common prepositions (i, på, til, fra, med, av, for, om)",
+      "label": "Vanlige preposisjoner (i, på, til, fra, med, av, for, om)",
       "description": "The eight most frequent Norwegian prepositions and their core uses: i (location inside/time), på (surface/institution/weekday), til (direction/purpose), fra (origin), med (accompaniment/means), av (material/part of), for (benefit/reason), om (topic/time).",
       "cefrLevel": "A1",
       "prerequisites": [],
@@ -64,7 +64,7 @@
     },
     {
       "id": "indefinite-articles",
-      "label": "Indefinite articles (en / ei / et)",
+      "label": "Ubestemt artikkel (en / ei / et)",
       "description": "The indefinite articles en, ei, and et correspond to the three noun genders and are placed before the noun in indefinite reference.",
       "cefrLevel": "A1",
       "prerequisites": ["noun-gender"],
@@ -76,7 +76,7 @@
     },
     {
       "id": "plural-formation",
-      "label": "Plural formation",
+      "label": "Flertallsbøying",
       "description": "Norwegian nouns form the plural with endings that depend on gender and syllable count: -er is the most common, but en-nouns and et-nouns can vary.",
       "cefrLevel": "A1",
       "prerequisites": ["noun-gender"],
@@ -88,7 +88,7 @@
     },
     {
       "id": "definite-articles-singular",
-      "label": "Definite articles — singular (-en / -a / -et)",
+      "label": "Bestemt artikkel — entall (-en / -a / -et)",
       "description": "In Norwegian, the definite article is a suffix attached to the noun: -en for en-nouns, -a or -en for ei-nouns, and -et for et-nouns.",
       "cefrLevel": "A1",
       "prerequisites": ["noun-gender", "indefinite-articles"],
@@ -100,7 +100,7 @@
     },
     {
       "id": "definite-articles-plural",
-      "label": "Definite articles — plural (-ene / -a)",
+      "label": "Bestemt artikkel — flertall (-ene / -a)",
       "description": "The definite plural suffix is -ene for most nouns. Et-nouns whose plural is formed without -er take -a in definite plural in informal usage.",
       "cefrLevel": "A1",
       "prerequisites": ["definite-articles-singular", "plural-formation"],
@@ -112,7 +112,7 @@
     },
     {
       "id": "present-tense-regular",
-      "label": "Present tense — regular verbs",
+      "label": "Presens — regelrette verb",
       "description": "Regular Norwegian verbs form the present tense by adding -er to the stem. Unlike English, the form is the same for all persons: jeg spiser, du spiser, han spiser.",
       "cefrLevel": "A1",
       "prerequisites": ["personal-pronouns", "to-be-verb"],
@@ -124,7 +124,7 @@
     },
     {
       "id": "infinitive-form",
-      "label": "Infinitive form and 'å'",
+      "label": "Infinitiv og «å»",
       "description": "The infinitive is the base form of the verb, marked by 'å' in most contexts (å spise, å gå). Used after modal verbs, adjectives expressing ability/desire, and as a noun.",
       "cefrLevel": "A1",
       "prerequisites": ["present-tense-regular"],
@@ -136,7 +136,7 @@
     },
     {
       "id": "to-have-verb",
-      "label": "The verb 'å ha' (to have)",
+      "label": "Verbet «å ha»",
       "description": "The auxiliary verb 'å ha': infinitive 'ha', present 'har', preterite 'hadde', past participle 'hatt'. Used both as a main verb and as a perfect auxiliary.",
       "cefrLevel": "A1",
       "prerequisites": ["personal-pronouns", "to-be-verb"],
@@ -148,7 +148,7 @@
     },
     {
       "id": "svo-word-order",
-      "label": "Basic SVO word order",
+      "label": "Ordstilling (SVO)",
       "description": "Norwegian main clauses follow Subject-Verb-Object order when no element is fronted: 'Jeg spiser et eple.' This is the baseline from which all other word-order rules derive.",
       "cefrLevel": "A1",
       "prerequisites": ["personal-pronouns", "present-tense-regular"],
@@ -160,7 +160,7 @@
     },
     {
       "id": "v2-word-order",
-      "label": "V2 word order (verb-second rule)",
+      "label": "V2-ordstilling — verbet på plass 2",
       "description": "When any element other than the subject begins the sentence, the finite verb moves to the second position and the subject follows: 'I dag spiser jeg frokost.' This is the defining feature of Norwegian sentence structure.",
       "cefrLevel": "A1",
       "prerequisites": ["svo-word-order"],
@@ -172,7 +172,7 @@
     },
     {
       "id": "negation",
-      "label": "Negation with 'ikke'",
+      "label": "Nekting med «ikke»",
       "description": "Norwegian negation uses 'ikke', which follows the finite verb in main clauses ('Jeg liker ikke kaffe') but precedes the verb in subordinate clauses ('at jeg ikke liker kaffe').",
       "cefrLevel": "A1",
       "prerequisites": ["v2-word-order"],
@@ -184,7 +184,7 @@
     },
     {
       "id": "question-formation",
-      "label": "Question formation",
+      "label": "Spørsmålsdanning",
       "description": "Yes/no questions invert subject and verb: 'Liker du kaffe?' Wh-questions place the question word first, then verb, then subject: 'Hva spiser du?'",
       "cefrLevel": "A1",
       "prerequisites": ["negation"],
@@ -196,7 +196,7 @@
     },
     {
       "id": "basic-adjectives",
-      "label": "Basic adjectives (uninflected forms)",
+      "label": "Adjektiv (ubøyde former)",
       "description": "Common descriptive adjectives in their base (en-noun indefinite) form: stor, liten, god, dårlig, ny, gammel, lang, kort. Foundational before agreement rules are added.",
       "cefrLevel": "A1",
       "prerequisites": ["indefinite-articles", "noun-gender"],
@@ -208,7 +208,7 @@
     },
     {
       "id": "adjective-agreement",
-      "label": "Adjective agreement (gender and definiteness)",
+      "label": "Adjektivsamsvar (kjønn og bestemthet)",
       "description": "Adjectives must agree with the noun they modify: no ending for en/ei-nouns in indefinite singular, -t for et-nouns in indefinite singular, and -e in all definite and plural forms.",
       "cefrLevel": "A1",
       "prerequisites": ["basic-adjectives", "definite-articles-singular"],
@@ -220,7 +220,7 @@
     },
     {
       "id": "common-modal-verbs",
-      "label": "Common modal verbs (kan, vil, skal, må)",
+      "label": "Modalverb (kan, vil, skal, må)",
       "description": "The four core modal verbs: kan (can/be able to), vil (want to/will), skal (shall/going to), må (must/have to). All are followed directly by the bare infinitive without 'å'.",
       "cefrLevel": "A1",
       "prerequisites": ["infinitive-form"],
@@ -232,7 +232,7 @@
     },
     {
       "id": "preterite-regular",
-      "label": "Preterite — regular verbs",
+      "label": "Preteritum — regelrette verb",
       "description": "Regular verbs form the past tense with one of three endings depending on verb class: -et (snakket), -te (kjørte), or -de (bodde). Group 1 (-et) is the default for new verbs.",
       "cefrLevel": "A1",
       "prerequisites": ["present-tense-regular"],
@@ -244,7 +244,7 @@
     },
     {
       "id": "preterite-irregular-core",
-      "label": "Preterite — core irregular verbs",
+      "label": "Preteritum — vanlige uregelrette verb",
       "description": "The most frequent strong (vowel-changing) verbs that learners encounter immediately: gå→gikk, si→sa, se→så, bli→ble, komme→kom, ta→tok, gi→ga, vite→visste.",
       "cefrLevel": "A1",
       "prerequisites": ["preterite-regular"],
@@ -256,7 +256,7 @@
     },
     {
       "id": "possessive-pronouns",
-      "label": "Possessive pronouns",
+      "label": "Eiendomspronomen",
       "description": "Norwegian possessives typically follow the noun in informal speech: boken min, huset ditt, bilen hans. They can precede the noun in formal or emphatic contexts. Forms vary by noun gender.",
       "cefrLevel": "A1",
       "prerequisites": ["personal-pronouns"],
