@@ -2,16 +2,16 @@
 
 import Link from 'next/link'
 import type { ElementType } from 'react'
-import { BookOpen, BarChart2, Home, MessageCircle, User } from 'lucide-react'
+import { BookOpen, BookMarked, Home, Mic, User } from 'lucide-react'
 
-export type NavTab = 'home' | 'session' | 'conversation' | 'progress' | 'profile'
+export type NavTab = 'home' | 'session' | 'snakk' | 'notatboka' | 'deg'
 
 const TABS: { id: NavTab; label: string; href: string; Icon: ElementType }[] = [
-  { id: 'home',         label: 'Hjem',      href: '/dashboard',    Icon: Home },
-  { id: 'session',      label: 'Lær',       href: '/session',      Icon: BookOpen },
-  { id: 'conversation', label: 'Øv',        href: '/conversation', Icon: MessageCircle },
-  { id: 'progress',     label: 'Fremgang',  href: '/progress',     Icon: BarChart2 },
-  { id: 'profile',      label: 'Profil',    href: '/profile',      Icon: User },
+  { id: 'home',      label: 'Hjem',      href: '/dashboard', Icon: Home },
+  { id: 'session',   label: 'Lær',       href: '/session',   Icon: BookOpen },
+  { id: 'snakk',     label: 'Snakk',     href: '/snakk',     Icon: Mic },
+  { id: 'notatboka', label: 'Notatboka', href: '/vocab',     Icon: BookMarked },
+  { id: 'deg',       label: 'Deg',       href: '/profile',   Icon: User },
 ]
 
 export function BottomNav({ active }: { active: NavTab }) {

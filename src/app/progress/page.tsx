@@ -72,7 +72,7 @@ export default function ProgressPage() {
           <div className="h-8 w-48 animate-pulse rounded-lg bg-white/5" />
           <div className="h-4 w-64 animate-pulse rounded bg-white/5" />
         </main>
-        <BottomNav active="progress" />
+        <BottomNav active="deg" />
       </div>
     )
   }
@@ -216,7 +216,7 @@ export default function ProgressPage() {
         })}
       </main>
 
-      <BottomNav active="progress" />
+      <BottomNav active="deg" />
     </div>
   )
 }

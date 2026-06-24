@@ -758,7 +758,7 @@ export function RoleplayScreen() {
         </AnimatePresence>
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

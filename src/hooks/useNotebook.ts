@@ -11,6 +11,7 @@ import {
 import { createNotebookItem, normalizeNotebookItem, type NotebookItem } from '@/types/notebook';
 import { useAuth } from '@/hooks/useAuth';
 import { createClient } from '@/lib/supabase/client';
+import { useToastStore } from '@/stores/toast-store';
 
 // Reuse the SAME anon-id key + mechanism as useFingerprint so notebook items
 // key to the identical userId as the fingerprint (auth user id when logged in,
@@ -248,6 +249,15 @@ export function useNotebook() {
       saveNotebookItem(item).catch(console.warn);
       // Auth users also mirror to Supabase (fire-and-forget); guests stay local.
       if (user) saveNotebookItemToSupabase(item).catch(console.warn);
+      // Make the otherwise-silent save VISIBLE (the engine made felt). Copy is
+      // HONEST (Rule 8): only an item that is ACTUALLY promoted may claim it
+      // "kommer tilbake i økta"; a plain save is just "lagret i notatboka". A
+      // save promoted at create-time can come back; otherwise default honest.
+      useToastStore.getState().showToast(
+        item.promoted
+          ? `«${item.norwegian}» kommer tilbake i økta`
+          : `«${item.norwegian}» lagret i notatboka`,
+      );
       return item;
     },
     [resolveUserId, upsertItem, user],

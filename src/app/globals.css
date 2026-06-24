@@ -52,6 +52,13 @@
     --nc-teal-border: rgba(109, 229, 255, 0.28);
     --nc-teal-fg:     #061017;
 
+    /* cyan — secondary energy/trend signal for the breaker verdict (M1, additive).
+       cyan-on-dark = cyan as text/icon on the dark frame; cyan-ink = cyan as text
+       on the cream focal surface (#006B7D clears WCAG AA 4.5:1 body on cream). */
+    --nc-cyan:         #00C2E0;
+    --nc-cyan-on-dark: #27D6F0;
+    --nc-cyan-ink:     #006B7D;
+
     --nc-signal:        #C8FF20;
     --nc-signal-tint:   rgba(200, 255, 32, 0.12);
     --nc-signal-border: rgba(200, 255, 32, 0.28);
@@ -149,6 +156,12 @@
     --nc-teal-border: rgba(138, 154, 91, 0.30);
     --nc-teal-fg:     #14180C;
     --nc-teal-deep:   #5E6B38;
+
+    /* cyan — themed to leirskole's olive secondary so the verdict's trend signal
+       stays palette-coherent (reuses the olive --nc-teal family values). */
+    --nc-cyan:         #8A9A5B;
+    --nc-cyan-on-dark: #A7B87A;
+    --nc-cyan-ink:     #4A5530;
 
     /* PRIMARY — terracotta (replaces lime). Note: terracotta is mid-dark, so
        --nc-signal-fg flips to LIGHT (lime used dark text). */
@@ -607,6 +620,70 @@
     background: rgba(255, 255, 255, 0.74);
     box-shadow: 0 0 0 3px rgba(215, 255, 92, 0.14);
   }
+
+}
+
+/* ── LingQ-style word-state tinting (M3) ────────────────────────────────────
+   One colour system shared by the reader, the SavableWord trigger, and the
+   notebook state-dots. Defaults are tuned for the CREAM reading surface; the
+   `.nc-word--on-dark` modifier re-points the same states to the on-dark palette
+   so corrected words stay legible on dark surfaces (WCAG AA on both). Colours
+   come from the LOCKED --nc-* tokens only — no new hues.
+
+   NOT inside @layer components on purpose: these classes are built via template
+   literals (`nc-word--${state}`), so the literal class names never appear in
+   the Tailwind content scan and an @layer rule would be purged. Plain top-level
+   CSS is always preserved. */
+
+/* saved → lime ink + faint lime underline (the learner has it in the notebook) */
+.nc-word--saved {
+  color: var(--nc-signal-ink-deep);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--nc-signal) 42%, transparent);
+}
+
+/* unknown → cyan + dotted underline ("tap me") */
+.nc-word--unknown {
+  color: var(--nc-cyan-ink);
+  font-weight: 600;
+  border-bottom: 1.5px dotted var(--nc-cyan);
+}
+
+/* known → muted/grey, no emphasis (mastered, recedes). Opaque mix of the cream
+   body text toward the cream surface so it reads as de-emphasised but still
+   clears WCAG AA (≈5:1) — a transparent dim token would drop below 4.5:1. */
+.nc-word--known {
+  color: color-mix(in srgb, var(--nc-cream-text) 66%, #f4f6ee);
+  font-weight: 400;
+}
+
+/* On-dark correction surfaces (conversation / repair / journal). */
+.nc-word--on-dark.nc-word--saved {
+  color: var(--nc-signal);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--nc-signal) 50%, transparent);
+}
+.nc-word--on-dark.nc-word--unknown {
+  color: var(--nc-cyan-on-dark);
+  border-bottom-color: var(--nc-cyan-on-dark);
+}
+.nc-word--on-dark.nc-word--known {
+  color: var(--nc-text-dim);
+}
+
+/* Shared state-dot used by the notebook card (matches the three word states). */
+.nc-state-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+.nc-state-dot--unknown { background: var(--nc-cyan); }
+.nc-state-dot--saved { background: var(--nc-signal); }
+.nc-state-dot--known {
+  background: transparent;
+  /* known recedes — a hollow ring; muted on the dark notebook surface. */
+  box-shadow: inset 0 0 0 1.5px var(--nc-text-dim);
 }
 
 @keyframes nc-block-fade {

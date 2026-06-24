@@ -22,6 +22,25 @@ import type { DiagnosisResult } from '@/engine/diagnosis'
 
 export type BrickCellWeight = BrickWeight | 'empty'
 
+// ── Breaker verdict ─────────────────────────────────────────────────────────
+// The moat made the home's lead: the single most-active sentence-breaker, with an
+// HONEST week-over-week trend. Derived (read-only) from the error log via
+// deriveBreakerStory; the dashboard maps active[0] → this and passes it to
+// <ProductionWall>. Trend semantics mirror breaker-story.ts BreakerTrend:
+//   down → fewer errors than the prior week (only when priorWeek > 0)
+//   new  → first week the breaker appears (no prior data → no % claim)
+//   up   → more than the prior week (never claimed as improvement)
+//   flat → same level as the prior week
+export interface BreakerVerdict {
+  /** Norwegian concept label from the graph (the named breaker). */
+  label: string
+  /** Errors logged for this concept in the current week. */
+  thisWeek: number
+  /** Errors logged for this concept in the prior week. */
+  priorWeek: number
+  trend: 'down' | 'up' | 'flat' | 'new'
+}
+
 // ── Diagnosis highlight ─────────────────────────────────────────────────────
 // The dashboard already computes runDiagnosis()[0] and surfaces only its
 // `reasoning` sentence as the coach whisper. The rest of the result — the focus

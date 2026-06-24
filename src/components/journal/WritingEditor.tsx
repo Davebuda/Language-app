@@ -411,6 +411,7 @@ export function WritingEditor() {
                         type="word"
                         errorTag={err.tag}
                         aiExplanation={err.briefWhy}
+                        onDark
                       >
                         <span className="font-semibold text-[var(--nc-signal)]">{err.correct}</span>
                       </SavableWord>

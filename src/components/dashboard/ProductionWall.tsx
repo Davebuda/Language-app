@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ChevronDown, ArrowRight } from 'lucide-react'
+import { ChevronDown, ArrowRight, TrendingDown } from 'lucide-react'
 import type { CSSProperties } from 'react'
-import type { ProductionWallView, BrickCellWeight, DiagnosisHighlight } from '@/lib/production-wall'
+import type { ProductionWallView, BrickCellWeight, DiagnosisHighlight, BreakerVerdict } from '@/lib/production-wall'
+
+export type { BreakerVerdict } from '@/lib/production-wall'
 
 // Brick weight → visual. Distinguished by FILL + TEXTURE, never colour alone
 // (WCAG AA: legible in greyscale). production = solid; guided = solid + hatch;
@@ -36,6 +38,40 @@ function Brick({ weight }: { weight: BrickCellWeight }) {
   return <div className="h-5 rounded-[4px]" style={BRICK_STYLE[weight]} />
 }
 
+// Honest verdict trend copy + gauge geometry, derived from the BreakerVerdict
+// numbers. The gauge reads as SHRINKING: the lime fill (this week) sits over a
+// dimmer ghost segment (prior week); a smaller fill than the ghost = the breaker
+// is shrinking. Percentages are only ever stated for a real prior-week decline
+// (Operating Rule 6/8 — never fabricate improvement).
+function deriveVerdictDisplay(breaker: BreakerVerdict): {
+  label: string
+  fillPct: number
+  ghostPct: number
+  trendText: string
+  improving: boolean
+} {
+  const { label, thisWeek, priorWeek, trend } = breaker
+  // Scale both bars against the larger of the two weeks so the relationship
+  // (shrinking / growing) is legible; clamp to a visible floor and to 100%.
+  const peak = Math.max(thisWeek, priorWeek, 1)
+  const ghostPct = Math.min(100, Math.max(6, Math.round((priorWeek / peak) * 100)))
+  const fillPct = Math.min(100, Math.max(6, Math.round((thisWeek / peak) * 100)))
+
+  let trendText: string
+  if (trend === 'down' && priorWeek > 0) {
+    const pct = Math.round(((priorWeek - thisWeek) / priorWeek) * 100)
+    trendText = `Den krymper — ${pct} % færre feil enn forrige uke`
+  } else if (trend === 'new') {
+    trendText = 'Ny denne uka — vi følger den fremover'
+  } else if (trend === 'up') {
+    trendText = 'Litt mer enn forrige uke'
+  } else {
+    trendText = 'På samme nivå som forrige uke'
+  }
+
+  return { label, fillPct, ghostPct, trendText, improving: trend === 'down' && priorWeek > 0 }
+}
+
 export interface ProductionWallProps {
   view: ProductionWallView
   /** Session call-to-action meta, e.g. "25 oppgaver · ca. 19 min". */
@@ -44,6 +80,8 @@ export interface ProductionWallProps {
   coachReason: string
   /** Structured diagnosis highlight (focus + affected concepts + confidence). Null until the engine has a signal. */
   diagnosis?: DiagnosisHighlight | null
+  /** The lead breaker-verdict (named breaker + shrinking gauge + honest trend). Null on cold start → no verdict block. */
+  breaker?: BreakerVerdict | null
   /** Where the start CTA navigates. */
   startHref?: string
 }
@@ -59,8 +97,9 @@ export interface ProductionWallProps {
  * Weight hierarchy (strategic, steep falloff): two anchors only — the production
  * number and "Start dagens økt" — everything else recedes.
  */
-export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, startHref = '/session' }: ProductionWallProps) {
+export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, breaker, startHref = '/session' }: ProductionWallProps) {
   const reduce = useReducedMotion()
+  const verdict = breaker ? deriveVerdictDisplay(breaker) : null
   const maxBar = Math.max(1, ...view.weekBars.map((b) => b.value))
   const sparkMax = maxBar
 
@@ -92,6 +131,56 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, star
     >
       {/* ── DARK half · STATUS ── */}
       <div className="px-3.5 pb-3.5 pt-3.5">
+        {/* ── Breaker verdict — the moat leads the home. The named breaker +
+            shrinking gauge + honest trend, above the production count. Rendered
+            only when the engine has a real active breaker (honest cold-start
+            gate); null → nothing. ── */}
+        {verdict ? (
+          <div className="mb-3.5 border-b border-[var(--nc-border)] pb-3.5">
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">
+                Det som brekker setningene dine
+              </span>
+              <Link
+                href="/progress"
+                className="shrink-0 text-[9.5px] font-semibold text-[var(--nc-cyan-on-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--nc-cyan-on-dark)]"
+              >
+                Se hele bildet ›
+              </Link>
+            </div>
+
+            <h3 className="mt-1.5 text-[1.4rem] font-extrabold leading-[0.95] tracking-[-0.03em] text-[var(--nc-text)]">
+              {verdict.label}
+            </h3>
+
+            {/* Shrinking gauge: lime fill (this week) over a dimmer ghost (prior
+                week). A shorter lime fill than the ghost reads as shrinking. */}
+            <div
+              aria-hidden="true"
+              className="relative mt-2.5 h-[7px] overflow-hidden rounded-full bg-[rgba(255,255,255,0.07)]"
+            >
+              <div
+                className="absolute left-0 top-0 h-full rounded-full bg-[color-mix(in_srgb,var(--nc-signal)_22%,transparent)]"
+                style={{ width: `${verdict.ghostPct}%` }}
+              />
+              <div
+                className="absolute left-0 top-0 h-full rounded-full bg-[linear-gradient(90deg,var(--nc-signal-deep),var(--nc-signal))]"
+                style={{ width: `${verdict.fillPct}%` }}
+              />
+            </div>
+
+            <p
+              className="mt-2 flex items-center gap-1.5 text-[10.5px] font-bold leading-[1.35] tracking-[-0.005em]"
+              style={{ color: verdict.improving ? 'var(--nc-green)' : 'var(--nc-text-muted)' }}
+            >
+              {verdict.improving ? (
+                <TrendingDown size={13} aria-hidden="true" className="shrink-0" />
+              ) : null}
+              {verdict.trendText}
+            </p>
+          </div>
+        ) : null}
+
         <div className="flex items-center justify-between">
           <span className="text-[9px] font-extrabold uppercase tracking-[0.15em] text-[var(--nc-signal-dim,var(--nc-signal-bright))]">
             Dagens mål

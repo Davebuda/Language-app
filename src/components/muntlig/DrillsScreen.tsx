@@ -337,7 +337,7 @@ export function DrillsScreen() {
         </AnimatePresence>
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

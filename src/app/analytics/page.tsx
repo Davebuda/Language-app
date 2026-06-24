@@ -187,7 +187,7 @@ export default function AnalyticsPage() {
         )}
       </main>
 
-      <BottomNav active="profile" />
+      <BottomNav active="deg" />
     </div>
   )
 }

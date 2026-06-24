@@ -46,7 +46,7 @@ export default function JournalPage() {
 
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

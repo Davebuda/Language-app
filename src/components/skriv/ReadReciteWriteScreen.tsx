@@ -256,7 +256,7 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
             </button>
           </div>
         </main>
-        <BottomNav active="home" />
+        <BottomNav active="snakk" />
       </div>
     )
   }
@@ -408,7 +408,7 @@ export function ReadReciteWriteScreen({ passages }: ReadReciteWriteScreenProps) 
 
         </AnimatePresence>
       </main>
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

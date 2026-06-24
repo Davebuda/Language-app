@@ -34,7 +34,10 @@ interface ExplanationCardProps {
   correctAnswer: string
   conceptId: string
   conceptLabel?: string
+  /** Retry the failed item — re-presents the original sentence ("Prøv igjen"). */
   onContinue: () => void
+  /** Honest skip — declines the drill and moves on ("Hopp over"). */
+  onSkip: () => void
 }
 
 export function ExplanationCard({
@@ -43,6 +46,7 @@ export function ExplanationCard({
   conceptId,
   conceptLabel,
   onContinue,
+  onSkip,
 }: ExplanationCardProps) {
   const [showGrammar, setShowGrammar] = useState(false)
   const explainer = GRAMMAR_EXPLAINERS[conceptId]
@@ -86,6 +90,7 @@ export function ExplanationCard({
             type="word"
             conceptId={conceptId}
             errorTag={repairPlan.errorTag}
+            onDark
           >
             <span className="mt-1.5 font-display text-[1.15rem] font-bold tracking-tight text-[var(--nc-signal)]">
               {correctAnswer}
@@ -93,18 +98,31 @@ export function ExplanationCard({
           </SavableWord>
         </div>
 
-        {explainer ? (
-          <>
+        {/* Honest action row (mockup frame 03): rule toggle (when a rule exists)
+            + an honest "Hopp over" skip. Replaces the old dead "kommer snart"
+            micro-drill stub — the learner either retries or skips for real. */}
+        <div className="flex gap-2">
+          {explainer ? (
             <button
               type="button"
               onClick={() => setShowGrammar((current) => !current)}
-              className="w-full rounded-[0.55rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-4 py-2.5 text-left text-[0.82rem] font-semibold text-[var(--nc-text-muted)] transition-colors hover:bg-[rgba(255,255,255,0.08)]"
+              aria-expanded={showGrammar}
+              className="min-h-[44px] flex-1 rounded-[0.55rem] border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-4 py-2.5 text-[0.82rem] font-semibold text-[var(--nc-text-muted)] transition-colors hover:bg-[rgba(255,255,255,0.08)]"
             >
-              {showGrammar
-                ? 'Skjul grammatikk'
-                : `Vis regelen for ${explainer.title}`}
+              {showGrammar ? 'Skjul regelen' : 'Vis regelen'}
             </button>
+          ) : null}
+          <button
+            type="button"
+            onClick={onSkip}
+            className="min-h-[44px] flex-1 rounded-[0.55rem] border border-[var(--nc-border)] bg-transparent px-4 py-2.5 text-[0.82rem] font-semibold text-[var(--nc-text-muted)] transition-colors hover:bg-[rgba(255,255,255,0.04)]"
+          >
+            Hopp over
+          </button>
+        </div>
 
+        {explainer ? (
+          <>
             <AnimatePresence>
               {showGrammar ? (
                 <motion.div

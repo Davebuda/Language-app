@@ -23,7 +23,8 @@ import { getCoachRecommendation } from '@/lib/coach-recommendation'
 import { CORE_LANES, MUNTLIG_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 import { ProductionWall } from '@/components/dashboard/ProductionWall'
-import { deriveProductionWallView, deriveDiagnosisHighlight } from '@/lib/production-wall'
+import { deriveProductionWallView, deriveDiagnosisHighlight, type BreakerVerdict } from '@/lib/production-wall'
+import { deriveBreakerStory } from '@/lib/breaker-story'
 import { NotebookDrawer } from '@/components/notebook/NotebookDrawer'
 
 const CONCEPT_TO_TOPIC: Record<string, string> = {
@@ -303,6 +304,24 @@ export default function DashboardPage() {
       )
     : null
 
+  // Lead breaker-verdict — the moat at the top of the home. READ-ONLY derived
+  // from the error log (mirrors how /progress calls deriveBreakerStory: cumulative
+  // concepts so a cross-level breaker resolves to its Norwegian label). active[0]
+  // is the most-active current sentence-breaker; null when there is none (honest
+  // cold-start — the verdict block then renders nothing). No mastery writes here.
+  const breakerVerdict = useMemo<BreakerVerdict | null>(() => {
+    if (!fingerprint) return null
+    const { active } = deriveBreakerStory(fingerprint, getCumulativeConcepts(levelLabel))
+    const top = active[0]
+    if (!top) return null
+    return {
+      label: top.label,
+      thisWeek: top.thisWeek,
+      priorWeek: top.priorWeek,
+      trend: top.trend,
+    }
+  }, [fingerprint, levelLabel])
+
   return (
     <div className="nc-gradient-page flex min-h-dvh flex-col">
       <main className="nc-mobile-shell flex w-full flex-1 flex-col gap-[6px] px-1.5 pb-32 pt-3">
@@ -334,7 +353,7 @@ export default function DashboardPage() {
             (lead block; all-levels, level-aware lens). Replaces the standalone
             lime hero below. ── */}
         {wallView ? (
-          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} diagnosis={diagnosisHighlight} />
+          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} diagnosis={diagnosisHighlight} breaker={breakerVerdict} />
         ) : null}
 
         {/* B2 conjugation drill (/ord) is now a tracked daily lane in "Neste valg"
@@ -392,30 +411,10 @@ export default function DashboardPage() {
               transition={{ duration: 0.24 }}
               className="flex flex-col gap-[6px] overflow-hidden"
             >
-              {/* ── Stat Strip (Cream) ── */}
-              <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
-                {statTiles.map((stat, i) => (
-                  <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
-                    <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[var(--nc-teal-deep)]' : 'text-[var(--nc-signal-ink)]'}`}>
-                      {stat.value}
-                    </div>
-                    <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* ── Week Bar (Dark) ── */}
-              <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">I dag</span>
-                  <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
-                    <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_var(--nc-glow-strong)]" style={{ width: `${completionPct}%` }} />
-                  </div>
-                  <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_var(--nc-glow-strong),0_0_24px_var(--nc-glow-strong)]" />
-                </div>
+              {/* ── Cluster: Øving — the practice group (Neste valg + Muntlig +
+                  Notatboka), regrouped under one labelled header (Dirigenten IA). ── */}
+              <div className="mt-1 px-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">
+                Øving
               </div>
 
               {/* ── Lane Panel (Cream) — the practice menu, now opt-in ── */}
@@ -505,6 +504,38 @@ export default function DashboardPage() {
                     <ArrowRight size={14} aria-hidden="true" />
                   </div>
                 </button>
+              </div>
+
+              {/* ── Cluster: Status — the status group (stat strip + week bar +
+                  ukeoversikt), regrouped under one labelled header (Dirigenten IA). ── */}
+              <div className="mt-1 px-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">
+                Status
+              </div>
+
+              {/* ── Stat Strip (Cream) ── */}
+              <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+                {statTiles.map((stat, i) => (
+                  <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
+                    <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[var(--nc-teal-deep)]' : 'text-[var(--nc-signal-ink)]'}`}>
+                      {stat.value}
+                    </div>
+                    <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* ── Week Bar (Dark) ── */}
+              <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">I dag</span>
+                  <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
+                    <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_var(--nc-glow-strong)]" style={{ width: `${completionPct}%` }} />
+                  </div>
+                  <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_var(--nc-glow-strong),0_0_24px_var(--nc-glow-strong)]" />
+                </div>
               </div>
 
               {/* ── Week Overview (Dark) ── */}

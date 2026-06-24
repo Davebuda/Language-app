@@ -79,6 +79,7 @@ export function SessionScreen({
     submitClozeResults,
     submitSpeakingResult,
     continueAfterRepair,
+    skipRepair,
   } = useSession(sentences, availableSentenceIds)
 
   const lastResultRef = useRef<ExerciseResult | null>(null)
@@ -344,6 +345,7 @@ export function SessionScreen({
                           )?.label
                         }
                         onContinue={continueAfterRepair}
+                        onSkip={skipRepair}
                       />
                     </motion.div>
                   ) : null}

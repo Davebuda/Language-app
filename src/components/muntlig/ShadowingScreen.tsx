@@ -134,7 +134,7 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
             <p className="text-[0.8125rem] text-[var(--nc-text-muted)]">Laster setninger…</p>
           </div>
         </main>
-        <BottomNav active="home" />
+        <BottomNav active="snakk" />
       </div>
     )
   }
@@ -271,7 +271,7 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
         </AnimatePresence>
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

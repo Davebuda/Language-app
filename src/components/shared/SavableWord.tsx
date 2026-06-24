@@ -7,6 +7,7 @@ import {
   resolveWordExplanation,
   type WordExplanation,
 } from '@/lib/word-explanation'
+import { wordState } from '@/lib/word-state'
 import type { NotebookItemType, NotebookSource } from '@/types/notebook'
 
 /**
@@ -40,6 +41,11 @@ export interface SavableWordProps {
   aiExplanation?: string
   /** The sentence this word/phrase was seen in, for later context. */
   sourceSentence?: string
+  /**
+   * Render the word-state tint with the on-dark palette (for correction
+   * surfaces like conversation/repair). Defaults to the cream/paper palette.
+   */
+  onDark?: boolean
   /** The clickable trigger — the word as it appears in the surface. */
   children: React.ReactNode
 }
@@ -52,10 +58,19 @@ export function SavableWord({
   conceptId,
   aiExplanation,
   sourceSentence,
+  onDark = false,
   children,
 }: SavableWordProps) {
-  const { saveItem } = useNotebook()
+  const { items, saveItem } = useNotebook()
   const [saved, setSaved] = React.useState(false)
+
+  // LingQ-style word-state tint, derived purely from the learner's notebook.
+  // A just-saved word flips to 'saved' immediately via the local `saved` flag,
+  // before the store round-trip lands the item in `items` (keeps the saved-✓
+  // and the tint coherent in the same render).
+  const state = wordState(text, items)
+  const effectiveState = saved && state === 'unknown' ? 'saved' : state
+  const stateClass = `nc-word--${effectiveState}${onDark ? ' nc-word--on-dark' : ''}`
 
   // Verified-first / AI-marked / honest-empty content for the popup.
   const explanation: WordExplanation = React.useMemo(
@@ -103,13 +118,13 @@ export function SavableWord({
   // so saved-state lives here: once saved we reflect it inside the trigger
   // children, which WordPopup renders inside its clickable button.
   const trigger = saved ? (
-    <span className="nc-word-saved inline-flex items-center gap-1">
+    <span className={`nc-word-saved ${stateClass} inline-flex items-center gap-1`}>
       {children}
       <span aria-hidden="true">✓</span>
       <span className="sr-only">Lagret i notatboka</span>
     </span>
   ) : (
-    children
+    <span className={stateClass}>{children}</span>
   )
 
   return (

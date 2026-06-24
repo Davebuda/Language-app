@@ -7,7 +7,9 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useNotebook } from '@/hooks/useNotebook'
 import { resolveWordExplanation } from '@/lib/word-explanation'
+import { wordState } from '@/lib/word-state'
 import { markLaneDone } from '@/lib/lane-completion'
+import { useToastStore } from '@/stores/toast-store'
 
 type Genre = 'story' | 'dialogue' | 'recipe' | 'news'
 type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2'
@@ -96,7 +98,8 @@ export default function ReadingPage() {
   const [tappedWord, setTappedWord] = useState<string | null>(null)
   const [savedWord, setSavedWord] = useState<string | null>(null)
   const { recordExposure } = useFingerprint()
-  const { saveItem } = useNotebook()
+  const { items, saveItem, updateItem } = useNotebook()
+  const showToast = useToastStore((s) => s.showToast)
 
   // Verified-first, honest-empty resolution for the tapped word. A free reading
   // word has no errorTag/conceptId, so this resolves to a corpus gloss/rule when
@@ -124,7 +127,7 @@ export default function ReadingPage() {
   }
 
   function handleSaveWord() {
-    if (!tappedWord || !explanation) return
+    if (!tappedWord || !explanation || !selectedText) return
     if (savedWord === tappedWord) return // guard against double-save
     saveItem({
       type: 'word',
@@ -132,9 +135,51 @@ export default function ReadingPage() {
       ...(explanation.verified?.english ? { english: explanation.verified.english } : {}),
       ...(explanation.verified?.rule ? { explanation: explanation.verified.rule } : {}),
       source: 'reading',
+      // Tag the originating passage so the contextual-practice CTA can scope
+      // "words from THIS text" precisely (Task 2).
+      sourceSentence: selectedText.title,
       verified: explanation.source === 'corpus',
     })
     setSavedWord(tappedWord)
+  }
+
+  // The notebook items the learner saved from THE CURRENT passage that can ACTUALLY
+  // be promoted into the økt. The scheduler injects a promoted notebook item as a
+  // translation-to-norwegian exercise ONLY when it has BOTH norwegian AND english
+  // (english is the prompt) — so an item without english would be silently dropped.
+  // We therefore scope the CTA to items that will genuinely come back: saved from
+  // reading, belonging to this passage, with an english gloss. This keeps the CTA
+  // HONEST (Rule 8) — it never promises practice that the engine would drop.
+  const practiceableFromText = useMemo(() => {
+    if (!selectedText) return []
+    return items.filter(
+      (it) =>
+        it.source === 'reading' &&
+        it.sourceSentence === selectedText.title &&
+        it.reviewStatus !== 'archived' &&
+        (it.english ?? '').trim().length > 0,
+    )
+  }, [items, selectedText])
+
+  const alreadyPromotedCount = practiceableFromText.filter((it) => it.promoted).length
+
+  function handlePracticeFromText() {
+    if (practiceableFromText.length === 0) return
+    // Reuse the EXISTING promotion path (updateItem → promoted:true), the same
+    // mechanism NotebookScreen's "Øv på dette" uses. getEligibleNotebookItems
+    // then admits these into the daily økt's new-material lane (T1.6-safe).
+    let promotedNow = 0
+    for (const it of practiceableFromText) {
+      if (it.promoted) continue
+      updateItem(it.id, { promoted: true })
+      promotedNow += 1
+    }
+    const total = practiceableFromText.length
+    showToast(
+      promotedNow > 0
+        ? `${total} ${total === 1 ? 'ord' : 'ord'} fra teksten kommer tilbake i økta`
+        : 'Ordene fra teksten er allerede i økta',
+    )
   }
 
   return (
@@ -282,15 +327,26 @@ export default function ReadingPage() {
                   <p className="text-[0.9rem] leading-[1.85] text-[var(--nc-cream-text)]">
                     {selectedText.content.split('\n').map((line, i) => (
                       <span key={i}>
-                        {line.split(' ').map((word, j) => (
-                          <span
-                            key={j}
-                            onClick={() => handleWordTap(word)}
-                            className="cursor-pointer rounded px-px hover:bg-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)] hover:text-[var(--nc-signal-ink-deep)] transition-colors"
-                          >
-                            {word}{' '}
-                          </span>
-                        ))}
+                        {line.split(' ').map((word, j) => {
+                          const clean = word.replace(/[^\wÀ-ſ]/g, '')
+                          // LingQ-style state tint from the learner's notebook
+                          // (cream-context palette; the reader is a cream surface).
+                          const stateClass = clean
+                            ? `nc-word--${wordState(clean, items)}`
+                            : ''
+                          const isTapped = clean !== '' && tappedWord === clean
+                          return (
+                            <span
+                              key={j}
+                              onClick={() => handleWordTap(word)}
+                              className={`${stateClass} cursor-pointer rounded px-px transition-colors hover:bg-[color-mix(in_srgb,var(--nc-signal)_18%,transparent)] ${
+                                isTapped ? 'bg-[color-mix(in_srgb,var(--nc-cyan)_14%,transparent)]' : ''
+                              }`}
+                            >
+                              {word}{' '}
+                            </span>
+                          )
+                        })}
                         {i < selectedText.content.split('\n').length - 1 && <br />}
                       </span>
                     ))}
@@ -353,9 +409,35 @@ export default function ReadingPage() {
                 )}
               </AnimatePresence>
 
+              {/* ── Contextual practice CTA (Task 2) ──
+                  Promotes the words saved from THIS text into the økt via the
+                  existing promotion path. Honest disabled state when nothing
+                  promotable yet — never a dead button (Rule 8). */}
+              {practiceableFromText.length > 0 ? (
+                <button
+                  onClick={handlePracticeFromText}
+                  disabled={alreadyPromotedCount === practiceableFromText.length}
+                  className="nc-button-primary w-full rounded-xl py-3 text-[0.82rem] font-extrabold disabled:opacity-70"
+                >
+                  {alreadyPromotedCount === practiceableFromText.length
+                    ? `Ordene fra teksten øves (${practiceableFromText.length}) ✓`
+                    : `Øv ordene fra teksten (${practiceableFromText.length})`}
+                </button>
+              ) : (
+                <div className="nc-glass rounded-xl px-3.5 py-3 text-center">
+                  <p className="text-[0.78rem] font-bold text-[var(--nc-text-muted)]">
+                    Lagre ord fra teksten først
+                  </p>
+                  <p className="mt-0.5 text-[0.7rem] leading-[1.4] text-[var(--nc-text-dim)]">
+                    Trykk på et ord, lagre det med en oversettelse — så kan du øve
+                    på det i økta.
+                  </p>
+                </div>
+              )}
+
               <button
                 onClick={closeText}
-                className="nc-button-primary w-full rounded-xl py-3 text-[0.82rem] font-extrabold"
+                className="nc-button-dark w-full rounded-xl py-3 text-[0.82rem] font-extrabold"
               >
                 Ferdig lesing
               </button>
@@ -364,7 +446,7 @@ export default function ReadingPage() {
         </AnimatePresence>
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

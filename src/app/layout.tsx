@@ -6,6 +6,7 @@ import { TopographicGrid } from '@/components/ui/TopographicGrid'
 import { MotionProvider } from '@/components/ui/MotionProvider'
 import { DeployReloadGuard } from '@/components/ui/DeployReloadGuard'
 import { ThemeSync } from '@/components/ui/ThemeSync'
+import { ToastViewport } from '@/components/ui/ToastViewport'
 import './globals.css'
 
 // Pre-paint theme application: runs synchronously before the body renders so the
@@ -60,6 +61,7 @@ export default function RootLayout({
         <MotionProvider>
           <TopographicGrid />
           {children}
+          <ToastViewport />
           <DeployReloadGuard />
           <ThemeSync />
           <ClientAILoader />

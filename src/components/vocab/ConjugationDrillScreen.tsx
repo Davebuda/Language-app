@@ -189,7 +189,7 @@ export function ConjugationDrillScreen() {
           ) : null}
         </AnimatePresence>
       </main>
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

@@ -342,7 +342,7 @@ export function ListenRespondScreen() {
         </AnimatePresence>
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

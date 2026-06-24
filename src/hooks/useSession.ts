@@ -470,6 +470,17 @@ export function useSession(
     lastErrorRef.current = null;
   }, [sessionStore, resolveItem]);
 
+  // Honest skip: the learner declines the repair drill. We do NOT inject the
+  // retry or micro-drills — we just leave repair and move to the next item. The
+  // error was already logged + mastery updated at submitResult; skipping only
+  // forgoes the optional remediation practice, it does not undo the diagnosis.
+  // (Replaces the old dead "kommer snart" micro-drill stub — Operating Rule 6.)
+  const skipRepair = useCallback(() => {
+    sessionStore.exitRepair();
+    sessionStore.advanceItem();
+    lastErrorRef.current = null;
+  }, [sessionStore]);
+
   const submitClozeResults = useCallback((results: ExerciseResult[]) => {
     const sessionId = useSessionStore.getState().session?.id;
     const currentIndex = useSessionStore.getState().currentItemIndex;
@@ -569,6 +580,7 @@ export function useSession(
     submitClozeResults,
     submitSpeakingResult,
     continueAfterRepair,
+    skipRepair,
     exitRepair: sessionStore.exitRepair,
   };
 }

@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Search, Star, Archive, Trash2, Plus, Check, Languages } from 'lucide-react'
 import { useNotebook } from '@/hooks/useNotebook'
+import { wordState } from '@/lib/word-state'
+import { useToastStore } from '@/stores/toast-store'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
 import { BottomNav } from '@/components/layout/BottomNav'
 import {
@@ -68,6 +70,7 @@ function matchesSearch(item: NotebookItem, query: string): boolean {
  */
 export function NotebookScreen() {
   const { items, status, updateItem, removeItem } = useNotebook()
+  const showToast = useToastStore((s) => s.showToast)
 
   const [query, setQuery] = useState('')
   const [typeFilters, setTypeFilters] = useState<Set<NotebookItemType>>(new Set())
@@ -211,14 +214,21 @@ export function NotebookScreen() {
                           reviewStatus: item.reviewStatus === 'archived' ? 'new' : 'archived',
                         })
                       }
-                      onTogglePractice={() =>
-                        updateItem(item.id, { promoted: !item.promoted })
-                      }
-                      onAddTranslation={(english) =>
+                      onTogglePractice={() => {
+                        const nextPromoted = !item.promoted
+                        updateItem(item.id, { promoted: nextPromoted })
+                        // Honest copy (Rule 8): only when the item is actually
+                        // promoted INTO the økt may we claim it comes back.
+                        if (nextPromoted) {
+                          showToast(`«${item.norwegian}» kommer tilbake i økta`)
+                        }
+                      }}
+                      onAddTranslation={(english) => {
                         // Learner's own translation (AI-01: a learner value, NOT verified).
                         // Adding it makes the item practiceable, so promote it in one step.
                         updateItem(item.id, { english, promoted: true })
-                      }
+                        showToast(`«${item.norwegian}» kommer tilbake i økta`)
+                      }}
                       onDelete={() => removeItem(item.id)}
                     />
                   </motion.li>
@@ -251,7 +261,7 @@ export function NotebookScreen() {
         )}
       </main>
 
-      <BottomNav active="home" />
+      <BottomNav active="notatboka" />
     </div>
   )
 }
@@ -294,8 +304,14 @@ function NotebookCard({
     <div className={`nc-glass px-3.5 py-3 ${archived ? 'opacity-60' : ''}`}>
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
-          {/* Norwegian is the prominent, dominant element */}
-          <p className="font-display text-[1.05rem] font-bold leading-tight text-[var(--nc-text)]">
+          {/* Norwegian is the prominent, dominant element, prefixed by a
+              state-dot that uses the SAME three colours as the reader's
+              word-state tint (one system across reader ↔ notebook). */}
+          <p className="flex items-center gap-2 font-display text-[1.05rem] font-bold leading-tight text-[var(--nc-text)]">
+            <span
+              className={`nc-state-dot nc-state-dot--${wordState(item.norwegian, [item])}`}
+              aria-hidden="true"
+            />
             {item.norwegian}
           </p>
           {item.english && (

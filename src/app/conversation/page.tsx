@@ -594,6 +594,7 @@ export default function ConversationPage() {
                               type="phrase"
                               errorTag={msg.correction.errorTag}
                               aiExplanation={msg.correction.explanation}
+                              onDark
                             >
                               <span className="font-semibold text-[var(--nc-red)]">{msg.correction.corrected}</span>
                             </SavableWord>
@@ -770,7 +771,7 @@ export default function ConversationPage() {
         </AnimatePresence>
       </main>
 
-      <BottomNav active="conversation" />
+      <BottomNav active="snakk" />
     </div>
   )
 }

@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, LogOut } from 'lucide-react'
+import { ArrowRight, ChevronRight, LogOut, TrendingUp, BarChart3, CalendarCheck } from 'lucide-react'
+import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -93,7 +94,7 @@ export default function ProfilePage() {
               {initials}
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Profil</div>
+              <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Deg · konto</div>
               <div className="mt-1 text-[1.1rem] font-display font-extrabold leading-tight tracking-[-0.03em] text-[var(--nc-text)]">
                 {displayName}
               </div>
@@ -160,6 +161,35 @@ export default function ProfilePage() {
               <ArrowRight size={14} aria-hidden="true" />
             </button>
           ) : null}
+        </section>
+
+        {/* ── Fremgang / Statistikk / Ukesjekk links (Dark) — so the
+            progress, analytics and weekly-check routes are reached FROM Deg
+            and nothing is orphaned under the re-pointed IA (Dirigenten M2.1). ── */}
+        <section className="nc-glass p-2.5">
+          <div className="nc-label">Fremgang og status</div>
+          <nav aria-label="Fremgang og status" className="mt-2 flex flex-col gap-1.5">
+            {([
+              { href: '/progress', Icon: TrendingUp, label: 'Fremgang', desc: 'Det som brekker setningene dine' },
+              { href: '/analytics', Icon: BarChart3, label: 'Statistikk', desc: 'Tall og trender over tid' },
+              { href: '/uke', Icon: CalendarCheck, label: 'Ukesjekk', desc: 'Ukas retrieval-sjekk' },
+            ] as const).map(({ href, Icon, label, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                className="flex items-center gap-2.5 rounded-lg border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2 transition-colors hover:bg-[rgba(255,255,255,0.07)]"
+              >
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-[0.45rem] bg-[rgba(255,255,255,0.06)] text-[var(--nc-text-muted)]">
+                  <Icon size={15} aria-hidden="true" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[0.82rem] font-semibold text-[var(--nc-text)]">{label}</span>
+                  <span className="mt-px block truncate text-[0.68rem] text-[var(--nc-text-muted)]">{desc}</span>
+                </span>
+                <ChevronRight size={15} aria-hidden="true" className="shrink-0 text-[var(--nc-text-dim)]" />
+              </Link>
+            ))}
+          </nav>
         </section>
 
         {/* ── Weak concepts (Cream) ── */}
@@ -301,7 +331,7 @@ export default function ProfilePage() {
         ) : null}
       </main>
 
-      <BottomNav active="profile" />
+      <BottomNav active="deg" />
     </div>
   )
 }
