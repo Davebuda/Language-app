@@ -2,7 +2,7 @@ import { ConjugationDrillScreen } from '@/components/vocab/ConjugationDrillScree
 
 export const metadata = {
   title: 'Bøyningsdrill — NorskCoach',
-  description: 'B2 ordforråd: skriv riktige verbformer.',
+  description: 'Skriv riktige verbformer — presens, preteritum og perfektum.',
 }
 
 export default function OrdPage() {

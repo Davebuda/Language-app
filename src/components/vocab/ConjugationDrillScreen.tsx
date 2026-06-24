@@ -74,7 +74,7 @@ export function ConjugationDrillScreen() {
           {phase === 'intro' ? (
             <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col gap-3">
               <div className="nc-signal-panel p-3">
-                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">B2 · ordforråd</div>
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Ordforråd · verbformer</div>
                 <h1 className="mt-1 text-balance text-[1.35rem] font-extrabold leading-none text-[var(--nc-signal-fg)]">Bøyningsdrill</h1>
                 <p className="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(10,18,6,0.62)]">
                   Skriv riktig verbform — presens, preteritum eller presens perfektum. Hverdagsverb du har savnet, med vekt på de uregelrette.

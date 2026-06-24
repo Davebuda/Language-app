@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronDown, ArrowRight, BookMarked } from 'lucide-react'
+import { ArrowRight, BookMarked, Ear, AudioLines, Music, Check } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -53,17 +53,22 @@ const JOURNAL_PROMPTS = [
 
 const READING_TEXT_COUNTS: Record<string, number> = { A1: 2, A2: 2, B1: 0, B2: 0 }
 
+// Muntlig tiles (the 3-tile grid): icon + display name + route per speaking lane.
+// Lucide icons only — Ear (listen), AudioLines (pronunciation drills), Music (shadowing).
+type MuntligLaneId = 'listen' | 'drills' | 'shadow'
+const MUNTLIG_TILE_CONFIG: Record<MuntligLaneId, { Icon: typeof Ear; name: string; href: string }> = {
+  listen: { Icon: Ear, name: 'Lytt og svar', href: '/listen' },
+  drills: { Icon: AudioLines, name: 'Uttale', href: '/drills' },
+  shadow: { Icon: Music, name: 'Skygging', href: '/shadow' },
+}
+
 export default function DashboardPage() {
   useFingerprint()
   const { fingerprint, status } = useFingerprintStore()
   const { user } = useAuth()
   const [plan, setPlan] = useState<SchedulerOutput | null>(null)
   const [showLevelUp, setShowLevelUp] = useState(false)
-  // Option C (VC §3.6/§5): the first screen is identity + the single prescribed
-  // next action; the practice menu + status glance are opt-in behind one tap, so
-  // the dashboard stops being a menu of competing doors. Collapsed by default.
-  const [showMore, setShowMore] = useState(false)
-  // Quick-access notebook drawer (recent saves), opened from the "Mer øving" disclosure.
+  // Quick-access notebook drawer (recent saves), opened from the Notatboka row.
   const [notebookOpen, setNotebookOpen] = useState(false)
   const [streak, setStreak] = useState(0)
   const [today, setToday] = useState('')
@@ -219,15 +224,22 @@ export default function DashboardPage() {
     ord: false,
   }), [fingerprint?.weeklyFocus, focusSet.size])
 
-  // B2 elevates the conjugation drill (/ord) into the daily lane set so it counts
-  // toward daily completion. Other levels don't have it, so their denominator is
-  // unchanged (no phantom lane for A1/A2/B1).
-  const coreLanes: LaneId[] = levelLabel === 'B2' ? [...CORE_LANES, 'ord'] : CORE_LANES
+  // The conjugation drill (/ord) is a tracked daily lane at ALL levels: it draws
+  // from a fixed everyday-verb pool (irregular-first) — foundational, not B2-only —
+  // so every learner sees it in "Øving · dagens plan" and it counts toward daily
+  // completion. (The intro framing was de-B2'd to match.)
+  const coreLanes: LaneId[] = [...CORE_LANES, 'ord']
+  // The coach-recommended lane leads the list with the lime "Anbefalt" treatment —
+  // but only when it's a real practice lane (not 'session', which is the hero CTA)
+  // and not already done. Null otherwise → the list is just uncompleted → done.
+  const recommendedLaneId: LaneId | null =
+    recommendation && recommendation.laneId !== 'session'
+      ? coreLanes.find((laneId) => laneId === recommendation.laneId && !completedLanes.has(laneId)) ?? null
+      : null
   const uncompletedLanes = coreLanes
-    .filter((laneId) => !completedLanes.has(laneId) && recommendation?.laneId !== laneId)
+    .filter((laneId) => !completedLanes.has(laneId) && laneId !== recommendedLaneId)
   const doneLanes = coreLanes.filter((laneId) => completedLanes.has(laneId))
   const completedCount = doneLanes.length
-  const completionPct = Math.round((completedCount / coreLanes.length) * 100)
   const progressEntries = useMemo(() => {
     if (!fingerprint) return []
     return summarizeWeeklyProgress(fingerprint, activeGraph)
@@ -309,16 +321,17 @@ export default function DashboardPage() {
   // concepts so a cross-level breaker resolves to its Norwegian label). active[0]
   // is the most-active current sentence-breaker; null when there is none (honest
   // cold-start — the verdict block then renders nothing). No mastery writes here.
-  const breakerVerdict = useMemo<BreakerVerdict | null>(() => {
-    if (!fingerprint) return null
-    const { active } = deriveBreakerStory(fingerprint, getCumulativeConcepts(levelLabel))
+  const { breakerVerdict, fixedLabels } = useMemo<{ breakerVerdict: BreakerVerdict | null; fixedLabels: string[] }>(() => {
+    if (!fingerprint) return { breakerVerdict: null, fixedLabels: [] }
+    const { active, retired } = deriveBreakerStory(fingerprint, getCumulativeConcepts(levelLabel))
     const top = active[0]
-    if (!top) return null
     return {
-      label: top.label,
-      thisWeek: top.thisWeek,
-      priorWeek: top.priorWeek,
-      trend: top.trend,
+      breakerVerdict: top
+        ? { label: top.label, thisWeek: top.thisWeek, priorWeek: top.priorWeek, trend: top.trend }
+        : null,
+      // Retired ("Fikset") breakers → the cream proof chip in the command card
+      // (real past struggle, now mastered). Up to 2 so the chip stays one line.
+      fixedLabels: retired.slice(0, 2).map((row) => row.label),
     }
   }, [fingerprint, levelLabel])
 
@@ -353,7 +366,7 @@ export default function DashboardPage() {
             (lead block; all-levels, level-aware lens). Replaces the standalone
             lime hero below. ── */}
         {wallView ? (
-          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} diagnosis={diagnosisHighlight} breaker={breakerVerdict} />
+          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} diagnosis={diagnosisHighlight} breaker={breakerVerdict} fixedLabels={fixedLabels} />
         ) : null}
 
         {/* B2 conjugation drill (/ord) is now a tracked daily lane in "Neste valg"
@@ -386,197 +399,159 @@ export default function DashboardPage() {
           </div>
         ) : null}
 
-        {/* ── "Mer øving og status" — Option C (VC §3.6/§5). The practice menu +
-            status glance are opt-in behind one tap, so the first screen is identity
-            + the single prescribed next action (the "I dag" card above). Økt and
-            samtale stay one-tap via the BottomNav, so nothing is buried. ── */}
+        {/* ── Everything below the command card is now always visible (no collapse).
+            The dashboard hero stays the single prescribed action; the rest is laid
+            out with varied surfaces (cream lanes → cream muntlig tiles → dark
+            Notatboka → cream stat strip + dark week overview) so it reads as a map,
+            not a menu of competing doors. Økt + samtale stay one-tap via BottomNav. ── */}
+
+        {/* ── Øving · dagens plan (Cream lane list) ── */}
+        <div className="mt-2 flex items-baseline justify-between px-1">
+          <h2 className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">Øving · dagens plan</h2>
+          <span className="text-[9.5px] font-bold tabular-nums text-[var(--nc-text-dim)]">{completedCount} / {coreLanes.length} i dag</span>
+        </div>
+        <div className="rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)] p-[5px_6px]">
+          <div className="flex flex-col">
+            {recommendedLaneId ? (
+              <LaneTrackRow
+                key={recommendedLaneId}
+                laneId={recommendedLaneId}
+                hint={laneHints[recommendedLaneId]}
+                done={false}
+                recommended
+                href={recommendedLaneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                label={recommendedLaneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
+              />
+            ) : null}
+            {uncompletedLanes.map((laneId) => (
+              <LaneTrackRow
+                key={laneId}
+                laneId={laneId}
+                hint={laneHints[laneId]}
+                done={false}
+                focusBadge={laneFocusMap[laneId]}
+                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
+              />
+            ))}
+            {doneLanes.map((laneId) => (
+              <LaneTrackRow
+                key={laneId}
+                laneId={laneId}
+                hint={laneHints[laneId]}
+                done={true}
+                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
+                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Muntlig · snakk mer norsk (3 cream tiles) — Lytt / Uttale / Skygging.
+            Built + fingerprint-wired lanes (audit R-01); the North Star is "speak
+            more Norwegian". Supplementary, so NOT folded into the daily denominator. ── */}
+        <div className="mt-2 flex items-baseline justify-between px-1">
+          <h2 className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">Muntlig · snakk mer norsk</h2>
+        </div>
+        <div className="grid grid-cols-3 gap-1.5">
+          {MUNTLIG_LANES.map((laneId) => {
+            const tile = MUNTLIG_TILE_CONFIG[laneId as MuntligLaneId]
+            const TileIcon = tile.Icon
+            const muntligDone = completedLanes.has(laneId)
+            return (
+              <Link
+                key={laneId}
+                href={tile.href}
+                aria-label={`Åpne ${tile.name}`}
+                className="relative flex flex-col items-center gap-[7px] rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)] px-2 py-[11px] text-center transition-colors hover:bg-[rgba(240,241,236,0.8)]"
+              >
+                {muntligDone ? (
+                  <span className="absolute right-1.5 top-1.5 flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[var(--nc-green-solid)]">
+                    <Check size={9} aria-hidden="true" />
+                  </span>
+                ) : null}
+                <span className="flex size-8 items-center justify-center rounded-[0.5rem] bg-[rgba(17,21,24,0.06)] text-[var(--nc-cream-text)]">
+                  <TileIcon size={15} aria-hidden="true" />
+                </span>
+                <span className="text-[0.74rem] font-bold text-[var(--nc-cream-text)]">{tile.name}</span>
+                <span className="text-[0.62rem] leading-tight text-[var(--nc-cream-muted)]">{laneHints[laneId]}</span>
+              </Link>
+            )
+          })}
+        </div>
+
+        {/* ── Notatboka (Dark row, breaks the cream run) — opens the saved-words
+            drawer. The full notebook lives at /vocab; this is quick-access. ── */}
         <button
-          onClick={() => setShowMore((v) => !v)}
-          aria-expanded={showMore}
-          className="mt-1 flex items-center justify-center gap-1.5 rounded-lg border border-[var(--nc-border)] bg-[var(--nc-card)] px-3 py-2.5 text-[0.78rem] font-bold text-[var(--nc-text-muted)]"
+          type="button"
+          onClick={() => setNotebookOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={notebookOpen}
+          className="mt-2 flex w-full items-center gap-2.5 rounded-[0.625rem] bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-[11px] text-left transition-colors hover:border-[var(--nc-border-strong)]"
         >
-          {showMore ? 'Mindre' : 'Mer øving og status'}
-          <motion.span animate={{ rotate: showMore ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex">
-            <ChevronDown size={15} aria-hidden="true" />
-          </motion.span>
+          <span className="flex size-[30px] shrink-0 items-center justify-center rounded-[0.5rem] bg-[var(--nc-cream)] text-[var(--nc-cream-text)]">
+            <BookMarked size={14} aria-hidden="true" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[0.84rem] font-bold text-[var(--nc-text)]">Notatboka</span>
+            <span className="mt-px block truncate text-[0.68rem] text-[var(--nc-text-muted)]">Det du har lagret underveis</span>
+          </span>
+          <ArrowRight size={14} aria-hidden="true" className="shrink-0 text-[var(--nc-text-dim)]" />
         </button>
 
-        <AnimatePresence initial={false}>
-          {showMore ? (
-            <motion.div
-              key="dashboard-more"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.24 }}
-              className="flex flex-col gap-[6px] overflow-hidden"
-            >
-              {/* ── Cluster: Øving — the practice group (Neste valg + Muntlig +
-                  Notatboka), regrouped under one labelled header (Dirigenten IA). ── */}
-              <div className="mt-1 px-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">
-                Øving
+        {/* ── Status (Cream stat strip + Dark week overview) ── */}
+        <div className="mt-2 flex items-baseline justify-between px-1">
+          <h2 className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">Status</h2>
+        </div>
+
+        {/* Stat Strip (Cream) */}
+        <div className="grid grid-cols-3 overflow-hidden rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)]">
+          {statTiles.map((stat, i) => (
+            <div key={stat.label} className={`relative px-2 py-[11px] text-center${i > 0 ? ' before:absolute before:left-0 before:top-[22%] before:h-[56%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
+              <div className={`text-[1.2rem] font-extrabold tabular-nums leading-none ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[var(--nc-teal-deep)]' : 'text-[var(--nc-signal-ink)]'}`}>
+                {stat.value}
               </div>
+              <div className="mt-1 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
+            </div>
+          ))}
+        </div>
 
-              {/* ── Lane Panel (Cream) — the practice menu, now opt-in ── */}
-              <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
-                <div className="flex items-center justify-between px-1 pb-1.5">
-                  <span className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">Neste valg</span>
-                  <span className="text-[0.68rem] tabular-nums text-[var(--nc-cream-dim)]">{completedCount}/{coreLanes.length}</span>
+        {/* Week Overview (Dark) */}
+        <div className="overflow-hidden rounded-[0.625rem] bg-[var(--nc-card)] border border-[var(--nc-border)]">
+          <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-3 py-[9px]">
+            <span className="text-[9px] font-extrabold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Ukeoversikt</span>
+            <span className="rounded-full bg-[var(--nc-signal)] px-2 py-px text-[8px] font-extrabold uppercase tracking-[0.06em] text-[var(--nc-signal-fg)]">Denne uka</span>
+          </div>
+          <div className="grid grid-cols-2">
+            <div className="p-[10px_11px]">
+              <div className="mb-1.5 text-[9px] font-extrabold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Fokus</div>
+              {focusPreview.slice(0, 3).map((item) => (
+                <div key={item.id} className="flex items-center justify-between py-[3px]">
+                  <span className="text-[0.76rem] text-[var(--nc-text)]">{item.label}</span>
+                  <span className={`text-[0.72rem] font-extrabold tabular-nums ${item.stat.startsWith('+') ? 'text-[var(--nc-signal)]' : item.stat.startsWith('-') ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text-muted)]'}`}>{item.stat}</span>
                 </div>
-
-                <div className="flex flex-col">
-                  {uncompletedLanes.map((laneId) => (
-                    <LaneTrackRow
-                      key={laneId}
-                      laneId={laneId}
-                      hint={laneHints[laneId]}
-                      done={false}
-                      focusBadge={laneFocusMap[laneId]}
-                      href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                      label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-                    />
-                  ))}
-                  {doneLanes.map((laneId) => (
-                    <LaneTrackRow
-                      key={laneId}
-                      laneId={laneId}
-                      hint={laneHints[laneId]}
-                      done={true}
-                      href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                      label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-                    />
-                  ))}
-                </div>
-
-                {completedCount > 0 ? (
-                  <div className="mt-1.5 flex items-center gap-1.5 px-1 text-[0.68rem] text-[var(--nc-cream-dim)]">
-                    <span className="flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[8px] text-[var(--nc-green-solid)]">✓</span>
-                    {completedCount} fullført i dag
-                  </div>
-                ) : null}
+              ))}
+              {focusPreview.length === 0 ? (
+                <div className="py-[3px] text-[0.72rem] text-[var(--nc-text-dim)]">Bygges fra øktene</div>
+              ) : null}
+            </div>
+            <div className="border-l border-[var(--nc-border)] p-[10px_11px]">
+              <div className="mb-1.5 text-[9px] font-extrabold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Sjekk</div>
+              <div className="flex items-center justify-between py-[3px]">
+                <span className="text-[0.76rem] text-[var(--nc-text)]">Ukesjekk</span>
+                <span className="text-[0.72rem] font-semibold text-[var(--nc-text-muted)]">{dayOfWeek === 6 || dayOfWeek === 0 ? 'Klar nå' : 'Lørdag'}</span>
               </div>
-
-              {/* ── Muntlig Panel (Cream) — speaking practice. These three lanes
-                  (Lytt / Uttale / Skygging) were built + fingerprint-wired but had
-                  no in-app entry point (audit R-01); the North Star is "speak more
-                  Norwegian". Kept behind "Mer" so the conductor hero stays one
-                  prescribed action (T1.1 IA); supplementary, so NOT folded into the
-                  daily denominator. ── */}
-              <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
-                <div className="flex items-center justify-between px-1 pb-1.5">
-                  <span className="text-[0.82rem] font-bold text-[var(--nc-cream-text)]">Muntlig</span>
-                  <span className="text-[0.68rem] text-[var(--nc-cream-dim)]">Snakk mer norsk</span>
-                </div>
-                <div className="flex flex-col">
-                  {MUNTLIG_LANES.map((laneId, i) => (
-                    <LaneTrackRow
-                      key={laneId}
-                      laneId={laneId}
-                      hint={laneHints[laneId]}
-                      done={completedLanes.has(laneId)}
-                      isLast={i === MUNTLIG_LANES.length - 1}
-                    />
-                  ))}
-                </div>
+              <div className="flex items-center justify-between py-[3px]">
+                <span className="text-[0.76rem] text-[var(--nc-text)]">Tema</span>
+                <span className="text-[0.72rem] font-semibold text-[var(--nc-text-muted)]">Konseptdrevet</span>
               </div>
-
-              {/* ── Notatboka (Cream) — quick-access entry to the saved-words
-                  notebook. Opens a drawer of the most recent saves; the full
-                  notebook lives at /vocab. Kept here in "Mer" (no 6th BottomNav
-                  tab — Rule 1, depth not breadth). Mirrors the LaneTrackRow row
-                  styling but is a button (drawer), not a navigation link. ── */}
-              <div className="rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)] px-2 py-2.5">
-                <button
-                  type="button"
-                  onClick={() => setNotebookOpen(true)}
-                  aria-haspopup="dialog"
-                  aria-expanded={notebookOpen}
-                  className="flex w-full items-center gap-2 rounded-[0.25rem] px-1 py-[7px] text-left transition-colors hover:bg-[rgba(17,21,24,0.03)]"
-                >
-                  <div className="flex size-[30px] shrink-0 items-center justify-center rounded-[0.35rem] bg-[var(--nc-cream-text)] text-white">
-                    <BookMarked size={12} aria-hidden="true" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-[0.82rem] font-semibold text-[var(--nc-cream-text)]">Notatboka</span>
-                    <div className="mt-px text-[0.68rem] text-[var(--nc-cream-muted)] truncate">Det du har lagret underveis</div>
-                  </div>
-                  <div className="shrink-0 text-[12px] text-[var(--nc-cream-dim)]">
-                    <ArrowRight size={14} aria-hidden="true" />
-                  </div>
-                </button>
-              </div>
-
-              {/* ── Cluster: Status — the status group (stat strip + week bar +
-                  ukeoversikt), regrouped under one labelled header (Dirigenten IA). ── */}
-              <div className="mt-1 px-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">
-                Status
-              </div>
-
-              {/* ── Stat Strip (Cream) ── */}
-              <div className="grid grid-cols-3 overflow-hidden rounded-lg bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
-                {statTiles.map((stat, i) => (
-                  <div key={stat.label} className={`relative px-2 py-2.5 text-center${i > 0 ? ' before:absolute before:left-0 before:top-[20%] before:h-[60%] before:w-px before:bg-[rgba(17,21,24,0.08)]' : ''}`}>
-                    <div className={`text-[1.15rem] font-extrabold tabular-nums ${stat.label === 'Rekke' ? 'text-[var(--nc-cream-text)]' : stat.label === 'Min talt' ? 'text-[var(--nc-teal-deep)]' : 'text-[var(--nc-signal-ink)]'}`}>
-                      {stat.value}
-                    </div>
-                    <div className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* ── Week Bar (Dark) ── */}
-              <div className="flex items-center justify-between rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">I dag</span>
-                  <span className="text-[0.82rem] font-bold text-[var(--nc-text)]">{completedCount} av {coreLanes.length}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="relative h-1 w-20 overflow-visible rounded-full bg-[rgba(255,255,255,0.08)]">
-                    <div className="h-full rounded-full bg-[var(--nc-signal)] shadow-[0_0_8px_var(--nc-glow-strong)]" style={{ width: `${completionPct}%` }} />
-                  </div>
-                  <div className="size-3 rounded-full bg-[var(--nc-signal)] shadow-[0_0_10px_var(--nc-glow-strong),0_0_24px_var(--nc-glow-strong)]" />
-                </div>
-              </div>
-
-              {/* ── Week Overview (Dark) ── */}
-              <div className="overflow-hidden rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)]">
-                <div className="flex items-center justify-between border-b border-[var(--nc-border)] px-2 py-2">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Ukeoversikt</span>
-                  <span className="rounded-full bg-[var(--nc-signal)] px-2 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal-fg)]">Denne uka</span>
-                </div>
-                <div className="grid grid-cols-2">
-                  <div className="p-2">
-                    <div className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Fokus</div>
-                    {focusPreview.slice(0, 3).map((item) => (
-                      <div key={item.id} className="flex items-center justify-between py-1">
-                        <span className="text-[0.76rem] font-medium text-[var(--nc-text)]">{item.label}</span>
-                        <span className={`text-[0.72rem] font-bold tabular-nums ${item.stat.startsWith('+') ? 'text-[var(--nc-signal)]' : item.stat.startsWith('-') ? 'text-[var(--nc-red)]' : 'text-[var(--nc-text-muted)]'}`}>{item.stat}</span>
-                      </div>
-                    ))}
-                    {focusPreview.length === 0 ? (
-                      <div className="py-1 text-[0.72rem] text-[var(--nc-text-dim)]">Bygges fra øktene</div>
-                    ) : null}
-                  </div>
-                  <div className="border-l border-[var(--nc-border)] p-2">
-                    <div className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Sjekk</div>
-                    <div className="flex items-center justify-between py-1">
-                      <span className="text-[0.76rem] text-[var(--nc-text)]">Ukesjekk</span>
-                      <span className="text-[0.68rem] text-[var(--nc-text-muted)]">{dayOfWeek === 6 || dayOfWeek === 0 ? 'Klar nå' : 'Lørdag'}</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1">
-                      <span className="text-[0.76rem] text-[var(--nc-text)]">Tema</span>
-                      <span className="text-[0.68rem] text-[var(--nc-text-muted)]">Konseptdrevet</span>
-                    </div>
-                    <Link href="/uke" className="mt-1.5 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-[var(--nc-text-muted)]">
-                      Gå til sjekken
-                      <span className="flex size-6 items-center justify-center rounded-full border border-[var(--nc-signal-border)] text-[11px] text-[var(--nc-signal)]">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+              <Link href="/uke" className="mt-1.5 inline-flex items-center gap-1 text-[0.72rem] font-semibold text-[var(--nc-text-muted)]">
+                Gå til sjekken
+                <span className="flex size-6 items-center justify-center rounded-full border border-[var(--nc-signal-border)] text-[11px] text-[var(--nc-signal)]">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
 
       </main>
 

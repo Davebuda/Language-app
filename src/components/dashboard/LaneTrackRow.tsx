@@ -38,9 +38,11 @@ interface LaneTrackRowProps {
   href?: string
   /** Overrides the lane's default display name (e.g. reading → "Les og skriv" at B1+). */
   label?: string
+  /** Lime-accent treatment for the coach-recommended lane (ignored when done). */
+  recommended?: boolean
 }
 
-export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href, label }: LaneTrackRowProps) {
+export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href, label, recommended }: LaneTrackRowProps) {
   const config = LANE_CONFIG[laneId]
   const Icon = config.Icon
   const destination = href ?? config.href
@@ -66,10 +68,18 @@ export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href, lab
   return (
     <Link
       href={destination}
-      className={`flex items-center gap-2 rounded-[0.25rem] px-1 py-[7px] transition-colors hover:bg-[rgba(17,21,24,0.03)]${isLast ? '' : ' border-b border-[rgba(17,21,24,0.06)]'}`}
+      className={`flex items-center gap-2.5 px-1.5 py-[9px] transition-colors${
+        recommended
+          ? ' rounded-[0.35rem] bg-[linear-gradient(90deg,rgba(200,255,32,0.16),transparent_70%)] shadow-[inset_2px_0_0_var(--nc-signal-deep)]'
+          : ` rounded-[0.25rem] hover:bg-[rgba(17,21,24,0.03)]${isLast ? '' : ' border-b border-[rgba(17,21,24,0.06)]'}`
+      }`}
       aria-label={`Åpne ${name}`}
     >
-      <div className="flex size-[30px] shrink-0 items-center justify-center rounded-[0.35rem] bg-[var(--nc-cream-text)] text-white">
+      <div
+        className={`flex size-[30px] shrink-0 items-center justify-center rounded-[0.35rem] ${
+          recommended ? 'bg-[var(--nc-signal)] text-[var(--nc-signal-fg)]' : 'bg-[var(--nc-cream-text)] text-white'
+        }`}
+      >
         <Icon size={12} />
       </div>
       <div className="min-w-0 flex-1">
@@ -79,9 +89,15 @@ export function LaneTrackRow({ laneId, hint, done, focusBadge, isLast, href, lab
         </div>
         <div className="mt-px text-[0.68rem] text-[var(--nc-cream-muted)] truncate">{hint}</div>
       </div>
-      <div className="shrink-0 text-[12px] text-[var(--nc-cream-dim)]">
-        <ArrowRight size={14} />
-      </div>
+      {recommended ? (
+        <span className="shrink-0 rounded-[0.25rem] bg-[rgba(200,255,32,0.22)] px-1.5 py-0.5 text-[8px] font-extrabold uppercase tracking-[0.06em] text-[var(--nc-signal-ink)]">
+          Anbefalt
+        </span>
+      ) : (
+        <div className="shrink-0 text-[12px] text-[var(--nc-cream-dim)]">
+          <ArrowRight size={14} />
+        </div>
+      )}
     </Link>
   )
 }

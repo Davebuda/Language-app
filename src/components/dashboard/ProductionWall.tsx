@@ -38,38 +38,12 @@ function Brick({ weight }: { weight: BrickCellWeight }) {
   return <div className="h-5 rounded-[4px]" style={BRICK_STYLE[weight]} />
 }
 
-// Honest verdict trend copy + gauge geometry, derived from the BreakerVerdict
-// numbers. The gauge reads as SHRINKING: the lime fill (this week) sits over a
-// dimmer ghost segment (prior week); a smaller fill than the ghost = the breaker
-// is shrinking. Percentages are only ever stated for a real prior-week decline
-// (Operating Rule 6/8 — never fabricate improvement).
-function deriveVerdictDisplay(breaker: BreakerVerdict): {
-  label: string
-  fillPct: number
-  ghostPct: number
-  trendText: string
-  improving: boolean
-} {
-  const { label, thisWeek, priorWeek, trend } = breaker
-  // Scale both bars against the larger of the two weeks so the relationship
-  // (shrinking / growing) is legible; clamp to a visible floor and to 100%.
-  const peak = Math.max(thisWeek, priorWeek, 1)
-  const ghostPct = Math.min(100, Math.max(6, Math.round((priorWeek / peak) * 100)))
-  const fillPct = Math.min(100, Math.max(6, Math.round((thisWeek / peak) * 100)))
-
-  let trendText: string
-  if (trend === 'down' && priorWeek > 0) {
-    const pct = Math.round(((priorWeek - thisWeek) / priorWeek) * 100)
-    trendText = `Den krymper — ${pct} % færre feil enn forrige uke`
-  } else if (trend === 'new') {
-    trendText = 'Ny denne uka — vi følger den fremover'
-  } else if (trend === 'up') {
-    trendText = 'Litt mer enn forrige uke'
-  } else {
-    trendText = 'På samme nivå som forrige uke'
-  }
-
-  return { label, fillPct, ghostPct, trendText, improving: trend === 'down' && priorWeek > 0 }
+// The breaker reads as a tight chip in the count-leads card: "Fanget · {label}"
+// plus an honest "prior → this" decline shown ONLY when it genuinely improved
+// (Operating Rule 6/8 — never fabricate improvement). improving === a real
+// week-over-week drop with prior-week data to compare against.
+function verdictImproving(breaker: BreakerVerdict): boolean {
+  return breaker.trend === 'down' && breaker.priorWeek > 0
 }
 
 export interface ProductionWallProps {
@@ -80,8 +54,10 @@ export interface ProductionWallProps {
   coachReason: string
   /** Structured diagnosis highlight (focus + affected concepts + confidence). Null until the engine has a signal. */
   diagnosis?: DiagnosisHighlight | null
-  /** The lead breaker-verdict (named breaker + shrinking gauge + honest trend). Null on cold start → no verdict block. */
+  /** The lead breaker (named breaker + honest decline) shown as a tight chip. Null on cold start → no chip. */
   breaker?: BreakerVerdict | null
+  /** Retired ("Fikset") breakers — were a real breaker, now mastered. Drives the cream proof chip; empty → no chip. */
+  fixedLabels?: string[]
   /** Where the start CTA navigates. */
   startHref?: string
 }
@@ -97,9 +73,9 @@ export interface ProductionWallProps {
  * Weight hierarchy (strategic, steep falloff): two anchors only — the production
  * number and "Start dagens økt" — everything else recedes.
  */
-export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, breaker, startHref = '/session' }: ProductionWallProps) {
+export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, breaker, fixedLabels, startHref = '/session' }: ProductionWallProps) {
   const reduce = useReducedMotion()
-  const verdict = breaker ? deriveVerdictDisplay(breaker) : null
+  const improving = breaker ? verdictImproving(breaker) : false
   const maxBar = Math.max(1, ...view.weekBars.map((b) => b.value))
   const sparkMax = maxBar
 
@@ -129,97 +105,54 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, brea
       aria-label={`Dagens mål — ${view.heroCount} ${view.heroUnit}. Start dagens økt.`}
       className="overflow-hidden rounded-[0.65rem] bg-[var(--nc-card)] border border-[var(--nc-border)]"
     >
-      {/* ── DARK half · STATUS ── */}
+      {/* ── DARK half · STATUS (count-leads, decluttered) ── */}
       <div className="px-3.5 pb-3.5 pt-3.5">
-        {/* ── Breaker verdict — the moat leads the home. The named breaker +
-            shrinking gauge + honest trend, above the production count. Rendered
-            only when the engine has a real active breaker (honest cold-start
-            gate); null → nothing. ── */}
-        {verdict ? (
-          <div className="mb-3.5 border-b border-[var(--nc-border)] pb-3.5">
-            <div className="flex items-baseline justify-between gap-2">
-              <span className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">
-                Det som brekker setningene dine
-              </span>
-              <Link
-                href="/progress"
-                className="shrink-0 text-[9.5px] font-semibold text-[var(--nc-cyan-on-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--nc-cyan-on-dark)]"
-              >
-                Se hele bildet ›
-              </Link>
-            </div>
-
-            <h3 className="mt-1.5 text-[1.4rem] font-extrabold leading-[0.95] tracking-[-0.03em] text-[var(--nc-text)]">
-              {verdict.label}
-            </h3>
-
-            {/* Shrinking gauge: lime fill (this week) over a dimmer ghost (prior
-                week). A shorter lime fill than the ghost reads as shrinking. */}
-            <div
-              aria-hidden="true"
-              className="relative mt-2.5 h-[7px] overflow-hidden rounded-full bg-[rgba(255,255,255,0.07)]"
-            >
-              <div
-                className="absolute left-0 top-0 h-full rounded-full bg-[color-mix(in_srgb,var(--nc-signal)_22%,transparent)]"
-                style={{ width: `${verdict.ghostPct}%` }}
-              />
-              <div
-                className="absolute left-0 top-0 h-full rounded-full bg-[linear-gradient(90deg,var(--nc-signal-deep),var(--nc-signal))]"
-                style={{ width: `${verdict.fillPct}%` }}
-              />
-            </div>
-
-            <p
-              className="mt-2 flex items-center gap-1.5 text-[10.5px] font-bold leading-[1.35] tracking-[-0.005em]"
-              style={{ color: verdict.improving ? 'var(--nc-green)' : 'var(--nc-text-muted)' }}
-            >
-              {verdict.improving ? (
-                <TrendingDown size={13} aria-hidden="true" className="shrink-0" />
-              ) : null}
-              {verdict.trendText}
-            </p>
-          </div>
-        ) : null}
-
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <span className="text-[9px] font-extrabold uppercase tracking-[0.15em] text-[var(--nc-signal-dim,var(--nc-signal-bright))]">
-            Dagens mål
+            {view.objectiveKicker}
           </span>
           <span className="rounded-[4px] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">
             {view.level}
           </span>
         </div>
 
-        <h2 className="mt-1.5 text-balance text-[1rem] font-extrabold leading-tight tracking-[-0.03em] text-[var(--nc-text)]">
-          {view.objectiveTitle}
-        </h2>
-
-        {/* Diagnosis highlight — the moat's structured signal (focus dimension +
-            affected concepts + how sure), beside the reasoning whisper below.
-            Hidden until the engine has a real signal (honest cold-start gate). */}
-        {diagnosis ? (
-          <div className="mt-2 flex flex-wrap items-center gap-1.5">
-            <span className="rounded-[4px] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-1.5 py-px text-[8.5px] font-bold uppercase tracking-[0.08em] text-[var(--nc-signal)]">
-              Fokus · {diagnosis.focusLabel}
+        {/* Breaker — the moat as a tight chip + honest decline. The named
+            sentence-breaker with a "prior → this" drop shown ONLY when it really
+            improved (Rule 6/8). Rendered only when the engine has a real active
+            breaker (honest cold-start gate). */}
+        {breaker ? (
+          <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="inline-flex items-center gap-1.5 rounded-[5px] border border-[var(--nc-signal-border)] bg-[var(--nc-signal-tint)] px-2 py-[3px] text-[10px] font-extrabold text-[var(--nc-signal)]">
+              Fanget · {breaker.label}
+              {improving ? (
+                <span className="inline-flex items-center gap-0.5 font-bold text-[var(--nc-green)]">
+                  <TrendingDown size={11} aria-hidden="true" className="shrink-0" />
+                  {breaker.priorWeek} → {breaker.thisWeek}
+                </span>
+              ) : null}
             </span>
-            {diagnosis.affectedLabels.map((affected) => (
-              <span
-                key={affected}
-                className="rounded-[0.25rem] bg-[rgba(255,255,255,0.05)] px-1.5 py-px text-[8.5px] font-medium text-[var(--nc-text-dim)]"
-              >
-                {affected}
-              </span>
-            ))}
-            <span className="text-[8.5px] font-semibold uppercase tracking-[0.06em] text-[var(--nc-text-dim)]">
-              {diagnosis.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'}
-            </span>
+            <Link
+              href="/progress"
+              className="text-[9.5px] font-semibold text-[var(--nc-cyan-on-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--nc-cyan-on-dark)]"
+            >
+              Se hele bildet ›
+            </Link>
           </div>
         ) : null}
 
+        {/* Diagnosis depth, folded to one quiet line (confidence + focus
+            dimension) — keeps the moat's structured signal without the old chip
+            row. Hidden until the engine has a real signal (honest cold-start gate). */}
+        {diagnosis ? (
+          <p className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.07em] text-[var(--nc-text-dim)]">
+            {diagnosis.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'} · Fokus: {diagnosis.focusLabel}
+          </p>
+        ) : null}
+
+        {/* Anchor — the production count + ambient week glance (today lit) */}
         <div className="mt-3 flex items-end justify-between gap-3">
-          {/* Anchor 1 — the production count */}
           <div className="flex items-baseline gap-1.5">
-            <span className="text-[2.6rem] font-extrabold leading-[0.78] tracking-[-0.04em] tabular-nums text-[var(--nc-signal)]">
+            <span className="text-[2.7rem] font-extrabold leading-[0.78] tracking-[-0.04em] tabular-nums text-[var(--nc-signal)]">
               {view.heroCount}
             </span>
             <span className="text-[10px] font-bold leading-[1.15] text-[var(--nc-text-muted)]">
@@ -227,7 +160,6 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, brea
             </span>
           </div>
 
-          {/* Week-drill glance — ambient proof, today lit */}
           <div className="flex items-center gap-1.5 pb-0.5" aria-hidden="true">
             <div className="flex h-[26px] items-end gap-[3px]">
               {view.weekBars.map((bar, i) => (
@@ -244,6 +176,16 @@ export function ProductionWall({ view, sessionMeta, coachReason, diagnosis, brea
             <span className="text-[8.5px] font-bold uppercase tracking-[0.08em] text-[var(--nc-text-dim)]">uka</span>
           </div>
         </div>
+
+        {/* Cream proof chip — a deliberate cream block in the lead (dark/lime/cream
+            blocking). The "Fikset" breakers: real past struggle, now mastered +
+            quiet. Empty → no chip (honest gate). */}
+        {fixedLabels && fixedLabels.length > 0 ? (
+          <div className="mt-3 inline-flex max-w-full items-center gap-2 rounded-[6px] bg-[var(--nc-cream)] px-2.5 py-1.5">
+            <span className="shrink-0 text-[8px] font-extrabold uppercase tracking-[0.1em] text-[var(--nc-cream-dim)]">Fikset</span>
+            <span className="truncate text-[10.5px] font-bold leading-tight text-[var(--nc-cream-text)]">{fixedLabels.join(' · ')}</span>
+          </div>
+        ) : null}
       </div>
 
       {/* ── LIME half · ACT (the whole zone is the start CTA) ── */}
