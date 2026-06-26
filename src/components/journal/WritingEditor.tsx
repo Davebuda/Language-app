@@ -14,31 +14,10 @@ import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
 import { SavableWord } from '@/components/shared/SavableWord'
 import { repairBatchFromSurface, recordProductionFromSurface } from '@/engine/repair-from-surface'
 import { confirmedRepair } from '@/lib/gender-correction-gate'
+import { buildCorrectedText } from '@/lib/journal-corrected-text'
 import { getJournalPrompt, getDailyPrompt, sortErrorsByFocus } from '@/lib/journal-prompts'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
-
-function buildCorrectedText(
-  original: string,
-  errors: WritingFeedback['errors'],
-): { text: string; unapplied: number } {
-  let result = original
-  let unapplied = 0
-  for (const err of errors) {
-    if (!err.wrong || !err.correct) continue
-    // Case-insensitive: the AI often lowercases excerpts (e.g. "jeg" when the
-    // original has "Jeg"). String.replace is case-sensitive and would silently miss.
-    const escaped = err.wrong.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const regex = new RegExp(escaped, 'i')
-    const next = result.replace(regex, err.correct)
-    if (next === result) {
-      unapplied++
-      console.warn('[journal] correction could not be applied:', err.wrong, '→', err.correct)
-    }
-    result = next
-  }
-  return { text: result, unapplied }
-}
 
 // ── Speech recognition helpers ────────────────────────────────────────
 interface SpeechRecA { onresult: ((e: { results: { length: number; [i: number]: { [i: number]: { transcript: string }; isFinal: boolean } } }) => void) | null; onend: (() => void) | null; onerror: (() => void) | null; lang: string; continuous: boolean; interimResults: boolean; start(): void; stop(): void }
@@ -231,9 +210,21 @@ export function WritingEditor() {
     }
   }
 
-  const correctionResult = feedback ? buildCorrectedText(text, feedback.errors) : null
+  // AI-01: weave ONLY gate-confirmed corrections into the authoritative "Rettet
+  // versjon" — the same confirmedRepair check that governs mastery. An unconfirmed
+  // AI correction (e.g. a wrong-but-valid "et jobb") is withheld, not asserted as
+  // truth; it still appears in the per-error list above as a savable suggestion.
+  const correctionResult = feedback
+    ? buildCorrectedText(text, feedback.errors, (err) =>
+        confirmedRepair(
+          { original: err.wrong ?? '', corrected: err.correct ?? '', context: text },
+          'journal',
+        ) !== null,
+      )
+    : null
   const correctedText = correctionResult?.text ?? ''
   const unappliedCount = correctionResult?.unapplied ?? 0
+  const withheldCount = correctionResult?.withheld ?? 0
 
   return (
     <div className="flex flex-col gap-[6px]">
@@ -452,6 +443,11 @@ export function WritingEditor() {
                   <div className="rounded-lg bg-[var(--nc-cream)] border border-[color-mix(in_srgb,var(--nc-signal)_22%,transparent)] px-3 py-2.5">
                     <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-signal-ink)]">Rettet versjon</div>
                     <p className="mt-1.5 text-[14px] leading-relaxed text-[var(--nc-cream-text)]">{correctedText}</p>
+                    {withheldCount > 0 ? (
+                      <p className="mt-2 text-[10px] text-[var(--nc-cream-dim)]">
+                        {withheldCount} {withheldCount === 1 ? 'forslag er' : 'forslag er'} ikke verifisert og er ikke tatt med her — se forslagene over.
+                      </p>
+                    ) : null}
                     {unappliedCount > 0 ? (
                       <p className="mt-2 text-[10px] text-[var(--nc-cream-dim)]">
                         Noen rettelser kunne ikke brukes automatisk — se tilbakemeldingen over.
