@@ -10,7 +10,6 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
-import { updateConceptMastery } from '@/engine'
 import { repairFromSurface, type RepairInput } from '@/engine/repair-from-surface'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
@@ -206,33 +205,15 @@ export default function ConversationPage() {
     }
   }
 
-  function recordConstraintResult(constraintConceptId: string, met: boolean): void {
-    const fp = useFingerprintStore.getState().fingerprint
-    if (!fp) return
-    const activeGraph = getGraphForLevel(fp.currentLevel ?? 'A1')
-    const node = activeGraph.concepts.find((c) => c.id === constraintConceptId)
-    const existing = fp.conceptMastery[constraintConceptId]
-    const updated = updateConceptMastery(existing, met, node?.minAttempts ?? 15, node?.minDays ?? 3)
-    const newFp = {
-      ...fp,
-      conceptMastery: { ...fp.conceptMastery, [constraintConceptId]: { ...updated, conceptId: constraintConceptId } },
-      updatedAt: new Date().toISOString(),
-    }
-    setFingerprint(newFp)
-    saveFingerprint(newFp).catch(console.warn)
-    if (user?.id) {
-      const constraintExResult: ExerciseResult = {
-        sessionId: dbSessionIdRef.current ?? 'conversation',
-        itemId: `conversation-constraint-${constraintConceptId}-${Date.now()}`,
-        correct: met,
-        userAnswer: '',
-        correctAnswer: '',
-        timeTakenSeconds: 0,
-        conceptId: constraintConceptId,
-      }
-      logExerciseResult(user.id, constraintExResult)
-    }
-  }
+  // P0 (vision audit 2026-06-26): the conversation "constraint" challenge verdict is the
+  // LLM's UNVERIFIED self-report (CONSTRAINT_MET/MISSED, parsed from raw model text). It used
+  // to be written straight to conceptMastery here — bypassing the confirmedRepair gate, on
+  // exactly the classes (v2-word-order, adjective-agreement, negation, modal, preterite) the
+  // correction path deliberately keeps show-don't-grade. That violated the load-bearing rule
+  // "no unverified AI output moves mastery", silently injecting phantom weaknesses into the
+  // diagnosis moat. The constraint is now SHOW-DON'T-GRADE: its feedback is displayed in the
+  // banner (setConstraintResult below) but it never touches the fingerprint. Re-arm a mastery
+  // write only behind a deterministic verifier (like confirmedRepair), never the raw verdict.
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -281,8 +262,9 @@ export default function ConversationPage() {
       if (correction && verifiedRepair) logConversationError(correction, verifiedRepair)
 
       if (result.constraintMet !== undefined && activeConstraint && !constraintResult) {
+        // Show-don't-grade: display the challenge feedback, but never move mastery from the
+        // LLM's unverified verdict (see the note on recordConstraintResult's removal above).
         setConstraintResult({ met: result.constraintMet, feedback: result.constraintFeedback })
-        recordConstraintResult(activeConstraint.conceptId, result.constraintMet)
       }
     } finally {
       setIsThinking(false)
