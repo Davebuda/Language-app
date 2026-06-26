@@ -7,6 +7,7 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useNotebook } from '@/hooks/useNotebook'
 import { resolveWordExplanation } from '@/lib/word-explanation'
+import { getReadingContentLevel, isBelowReadingLevel } from '@/lib/reading-content'
 import { wordState } from '@/lib/word-state'
 import { markLaneDone } from '@/lib/lane-completion'
 import { useToastStore } from '@/stores/toast-store'
@@ -97,9 +98,16 @@ export default function ReadingPage() {
   const [showParallel, setShowParallel] = useState(false)
   const [tappedWord, setTappedWord] = useState<string | null>(null)
   const [savedWord, setSavedWord] = useState<string | null>(null)
-  const { recordExposure } = useFingerprint()
+  const { fingerprint, recordExposure } = useFingerprint()
   const { items, saveItem, updateItem } = useNotebook()
   const showToast = useToastStore((s) => s.showToast)
+
+  // Honest disclosure (Rule 6 — R-02): the seed library is A1–A2 only, so a
+  // B1/B2 learner reads below their level. Surface that instead of silently
+  // substituting, mirroring roleplay/listen.
+  const currentLevel = fingerprint?.currentLevel ?? 'A1'
+  const readingContentLevel = getReadingContentLevel(currentLevel)
+  const isBelowLevel = isBelowReadingLevel(currentLevel)
 
   // Verified-first, honest-empty resolution for the tapped word. A free reading
   // word has no errorTag/conceptId, so this resolves to a corpus gloss/rule when
@@ -204,6 +212,13 @@ export default function ReadingPage() {
                   Norsk tekst på ditt nivå.
                 </p>
               </div>
+
+              {/* ── Honest below-level disclosure (Rule 6 — R-02; no silent substitution) ── */}
+              {isBelowLevel ? (
+                <div className="rounded-lg border border-[var(--nc-border)] bg-[rgba(255,255,255,0.04)] px-3 py-2 text-[10px] leading-snug text-[var(--nc-text-dim)]">
+                  Tekstene er på {readingContentLevel}-nivå — egne {currentLevel}-tekster kommer.
+                </div>
+              ) : null}
 
               {/* ── Filter pills (Dark strip) ── */}
               <div className="flex items-center gap-[6px] rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
