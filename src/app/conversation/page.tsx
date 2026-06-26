@@ -374,7 +374,7 @@ export default function ConversationPage() {
               <div className="nc-signal-panel p-2.5">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Samtale</div>
+                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">AI-tutor</div>
                     <h1 className="mt-1 text-balance text-[1.25rem] font-extrabold leading-none tracking-[-0.03em] text-[var(--nc-signal-fg)]">
                       Snakk med Kari
                     </h1>
@@ -489,7 +489,7 @@ export default function ConversationPage() {
                 onClick={() => void startConversation()}
                 className="nc-button-primary mt-auto w-full rounded-lg py-3.5 text-[0.82rem] font-extrabold disabled:opacity-40"
               >
-                Start samtale
+                Snakk med Kari
               </button>
             </motion.div>
           ) : null}
@@ -511,7 +511,7 @@ export default function ConversationPage() {
                       <MessageSquare size={14} aria-hidden="true" color="var(--nc-signal-fg)" />
                     </div>
                     <div>
-                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Samtale med Kari</div>
+                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--nc-text-dim)]">Snakk med Kari</div>
                       <div className="mt-0.5 text-[0.78rem] font-semibold text-[var(--nc-text)]">
                         {selectedTopicMeta?.label ?? 'Tema'}
                       </div>
@@ -709,7 +709,7 @@ export default function ConversationPage() {
             >
               {/* Lime summary panel */}
               <div className="nc-signal-panel p-3">
-                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Samtale fullført</div>
+                <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-[rgba(10,18,6,0.48)]">Snakk fullført</div>
                 <p className="mt-1.5 text-balance text-[1.35rem] font-extrabold leading-none tracking-[-0.03em] text-[var(--nc-signal-fg)]">
                   {summaryTopicMeta?.label ?? 'Samtale'}
                 </p>

@@ -566,7 +566,7 @@ function VoiceOrbCard() {
           }}
           animate={{ scale: orbState === 'listening' ? [1, 1.04, 1] : 1 }}
           transition={orbState === 'listening' ? { duration: 0.8, repeat: Infinity } : {}}
-          aria-label="Start samtale med Kari"
+          aria-label="Snakk med Kari"
         >
           <Mic
             size={20}

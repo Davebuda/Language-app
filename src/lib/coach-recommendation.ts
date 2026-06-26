@@ -19,7 +19,7 @@ export interface CoachRecommendation {
 
 const LANE_META: Record<LaneId, { label: string; href: string; ctaLabel: string }> = {
   session:      { label: 'ØKT',          href: '/session',      ctaLabel: 'Start økt' },
-  conversation: { label: 'SAMTALE',      href: '/conversation', ctaLabel: 'Start samtale' },
+  conversation: { label: 'SAMTALE',      href: '/conversation', ctaLabel: 'Snakk med Kari' },
   journal:      { label: 'SKRIVEJOURNAL', href: '/journal',      ctaLabel: 'Skriv i dag' },
   roleplay:     { label: 'ROLLESPILL',   href: '/roleplay',     ctaLabel: 'Start rollespill' },
   reading:      { label: 'LESESTUDIO',   href: '/reading',      ctaLabel: 'Les nå' },
@@ -180,86 +180,78 @@ function maybeWordOfDay(): CoachRecommendation['wordOfDay'] | undefined {
   return DAILY_WORDS[idx]
 }
 
-export function getCoachRecommendation(
+function weeklyCheckRecommendation(fp: MistakeFingerprint): CoachRecommendation {
+  return {
+    laneId: 'weekly-check',
+    label: 'UKENS SJEKK',
+    title: 'Ta ukens repetisjon',
+    subtitle: `${fp.weeklyFocus.length} fokuskonsepter testes`,
+    reason: 'Ukentlig sjekk — vis hva du har lært denne uken.',
+    href: '/uke',
+    ctaLabel: 'Start sjekk',
+  }
+}
+
+function celebrationRecommendation(): CoachRecommendation {
+  return {
+    laneId: 'celebration',
+    label: 'FERDIG',
+    title: 'Bra jobba!',
+    subtitle: 'Alle baner fullført i dag',
+    reason: null,
+    href: '/progress',
+    ctaLabel: 'Se fremgang',
+  }
+}
+
+// Rank the candidate lanes by today's coach score (diagnosis-steered when a
+// trusted >=0.7 production diagnosis fires). Highest-scoring first. Completed
+// lanes are dropped. The single source of ordering for BOTH getCoachRecommendation
+// (the top pick) and getCoachPlan (the prescribed short list).
+function rankLanes(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+  plan: SchedulerOutput | null,
+): LaneId[] {
+  const completed = getCompletedLanes()
+  const candidates = (['session', 'conversation', 'journal', 'roleplay', 'reading'] as LaneId[])
+    .filter((l) => !completed.has(l))
+  const topDiagnosis = plan?.diagnosisResults?.[0]
+  const prodFocus = (topDiagnosis?.confidence ?? 0) >= 0.7 ? topDiagnosis?.recommendedFocus : undefined
+  return candidates
+    .map((l) => ({ laneId: l, score: scoreLane(l, fp, graph, prodFocus) }))
+    .sort((a, b) => b.score - a.score)
+    .map((s) => s.laneId)
+}
+
+function buildLaneRecommendation(
+  laneId: LaneId,
   fp: MistakeFingerprint,
   graph: ConceptGraph,
   plan: SchedulerOutput | null,
 ): CoachRecommendation {
-  if (isSaturday() && !allLanesDone()) {
-    return {
-      laneId: 'weekly-check',
-      label: 'UKENS SJEKK',
-      title: 'Ta ukens repetisjon',
-      subtitle: `${fp.weeklyFocus.length} fokuskonsepter testes`,
-      reason: 'Ukentlig sjekk — vis hva du har lært denne uken.',
-      href: '/uke',
-      ctaLabel: 'Start sjekk',
-    }
-  }
-
-  if (allLanesDone()) {
-    return {
-      laneId: 'celebration',
-      label: 'FERDIG',
-      title: 'Bra jobba!',
-      subtitle: 'Alle baner fullført i dag',
-      reason: null,
-      href: '/progress',
-      ctaLabel: 'Se fremgang',
-    }
-  }
-
-  const completed = getCompletedLanes()
-  const candidates = (['session', 'conversation', 'journal', 'roleplay', 'reading'] as LaneId[])
-    .filter((l) => !completed.has(l))
-
-  if (candidates.length === 0) {
-    return {
-      laneId: 'celebration',
-      label: 'FERDIG',
-      title: 'Bra jobba!',
-      subtitle: 'Alle baner fullført i dag',
-      reason: null,
-      href: '/progress',
-      ctaLabel: 'Se fremgang',
-    }
-  }
-
-  // Only a trusted (>=0.7) diagnosis steers the lane choice toward production.
-  const topDiagnosis = plan?.diagnosisResults?.[0]
-  const prodFocus = (topDiagnosis?.confidence ?? 0) >= 0.7 ? topDiagnosis?.recommendedFocus : undefined
-
-  const scored = candidates
-    .map((l) => ({ laneId: l, score: scoreLane(l, fp, graph, prodFocus) }))
-    .sort((a, b) => b.score - a.score)
-
-  const best = scored[0].laneId
-
-  if (best === 'session') {
+  if (laneId === 'session') {
     return buildSessionRecommendation(fp, graph, plan)
   }
 
-  const meta = LANE_META[best]
+  const meta = LANE_META[laneId]
   const focusConcept = fp.weeklyFocus[0]
   const focusLabel = graph.concepts.find((c) => c.id === focusConcept)?.label
 
-  const extras: Partial<CoachRecommendation> = {}
-
-  switch (best) {
+  switch (laneId) {
     case 'conversation': {
       const topic = focusConcept ? (CONCEPT_TO_TOPIC[focusConcept] ?? 'daglig rutine') : 'daglig rutine'
       return {
-        ...meta, laneId: best,
+        ...meta, laneId,
         title: 'Snakk med Kari',
         subtitle: `Foreslått tema: ${topic}`,
-        reason: focusLabel ? `Øv på ${focusLabel} gjennom samtale.` : null,
-        ...extras,
+        reason: focusLabel ? `Øv på ${focusLabel} ved å snakke med Kari.` : null,
       }
     }
     case 'journal': {
       const prompt = JOURNAL_PROMPTS[new Date().getDay() % JOURNAL_PROMPTS.length]
       return {
-        ...meta, laneId: best,
+        ...meta, laneId,
         title: prompt.length > 40 ? prompt.slice(0, 40) + '…' : prompt,
         subtitle: focusLabel ? `Ukens fokus: ${focusLabel}` : 'Skriv fritt på norsk',
         reason: 'Skriving styrker produksjonsferdigheter.',
@@ -268,14 +260,14 @@ export function getCoachRecommendation(
     }
     case 'roleplay':
       return {
-        ...meta, laneId: best,
+        ...meta, laneId,
         title: 'Øv med rollespill',
         subtitle: focusLabel ? `Anbefalt scenario for ${focusLabel}` : '3 scenarier tilgjengelig',
         reason: focusLabel ? `Scenariet matcher ukens fokus: ${focusLabel}.` : null,
       }
     case 'reading':
       return {
-        ...meta, laneId: best,
+        ...meta, laneId,
         title: 'Les på norsk',
         subtitle: `Tekster på ditt ${fp.currentLevel}-nivå`,
         reason: 'Lesing gir eksponering mot ukens konsepter.',
@@ -283,10 +275,44 @@ export function getCoachRecommendation(
       }
     default:
       return {
-        ...meta, laneId: best,
+        ...meta, laneId,
         title: meta.ctaLabel,
         subtitle: '',
         reason: null,
       }
   }
+}
+
+export function getCoachRecommendation(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+  plan: SchedulerOutput | null,
+): CoachRecommendation {
+  if (isSaturday() && !allLanesDone()) return weeklyCheckRecommendation(fp)
+  if (allLanesDone()) return celebrationRecommendation()
+
+  const ranked = rankLanes(fp, graph, plan)
+  if (ranked.length === 0) return celebrationRecommendation()
+
+  return buildLaneRecommendation(ranked[0], fp, graph, plan)
+}
+
+// The dashboard's prescribed SHORT plan: the top-n coach lanes, each carrying its
+// own "why this" reason. Same ranking and special-case behaviour as
+// getCoachRecommendation, but returns the ranked list (capped at n) instead of
+// only the leader — so the home can show 2–3 prescribed actions instead of a full
+// menu. Special days (Saturday check, all-done celebration) collapse to one card.
+export function getCoachPlan(
+  fp: MistakeFingerprint,
+  graph: ConceptGraph,
+  plan: SchedulerOutput | null,
+  n = 3,
+): CoachRecommendation[] {
+  if (isSaturday() && !allLanesDone()) return [weeklyCheckRecommendation(fp)]
+  if (allLanesDone()) return [celebrationRecommendation()]
+
+  const ranked = rankLanes(fp, graph, plan)
+  if (ranked.length === 0) return [celebrationRecommendation()]
+
+  return ranked.slice(0, Math.max(1, n)).map((l) => buildLaneRecommendation(l, fp, graph, plan))
 }

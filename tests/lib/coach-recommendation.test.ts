@@ -1,7 +1,8 @@
-import { describe, it, expect } from 'vitest'
-import { scoreLane } from '@/lib/coach-recommendation'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { scoreLane, getCoachPlan, getCoachRecommendation } from '@/lib/coach-recommendation'
 import type { MistakeFingerprint } from '@/types/fingerprint'
 import type { ConceptGraph } from '@/types/concepts'
+import type { SchedulerOutput } from '@/engine/scheduler'
 
 // P1 (vision audit 2026-06-26): a high-confidence PRODUCTION-focus diagnosis should let the
 // coach surface a speaking lane (conversation/roleplay) as the prescribed action on
@@ -65,5 +66,54 @@ describe('scoreLane — production-focus coach steer (P1)', () => {
     const speakBoost = scoreLane('conversation', f, GRAPH, 'production') - scoreLane('conversation', f, GRAPH, undefined)
     const journalBoost = boosted - base
     expect(speakBoost).toBeGreaterThan(journalBoost)
+  })
+})
+
+// Direction B (vision audit 2026-06-26, Lane 4): the dashboard's prescribed SHORT
+// plan. getCoachPlan returns the top-n ranked lanes (each with its own reason)
+// instead of only the leader — so the home can show 2–3 prescribed actions rather
+// than a full menu. It must share ranking with getCoachRecommendation (same leader)
+// and respect the same special-case days. Clock pinned to a Monday so the Saturday
+// weekly-check branch never fires; getCompletedLanes reads no localStorage in node
+// (→ all 5 candidates available).
+describe('getCoachPlan — the prescribed short plan (Direction B)', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-06-22T10:00:00')) // Monday, not Saturday
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('returns the top-n ranked recommendations, capped at n, each a valid card', () => {
+    const f = fp(50)
+    const plan = getCoachPlan(f, GRAPH, null, 3)
+    expect(plan).toHaveLength(3)
+    plan.forEach((r) => {
+      expect(r.href).toBeTruthy()
+      expect(r.laneId).toBeTruthy()
+    })
+  })
+
+  it('leads with the same lane as getCoachRecommendation', () => {
+    const f = fp(40) // big gap → session leads
+    const top = getCoachRecommendation(f, GRAPH, null)
+    expect(getCoachPlan(f, GRAPH, null, 3)[0].laneId).toBe(top.laneId)
+  })
+
+  it('caps to n and never exceeds the 5 candidate lanes', () => {
+    const f = fp(50)
+    expect(getCoachPlan(f, GRAPH, null, 1)).toHaveLength(1)
+    expect(getCoachPlan(f, GRAPH, null, 10)).toHaveLength(5)
+  })
+
+  it('ranks speaking ahead of the økt under a trusted production diagnosis', () => {
+    const f = fp(78) // modest backlog → production boost can overtake the økt
+    const plan = {
+      session: { items: [] },
+      diagnosisResults: [{ confidence: 0.8, recommendedFocus: 'production' }],
+    } as unknown as SchedulerOutput
+    const ids = getCoachPlan(f, GRAPH, plan, 5).map((r) => r.laneId)
+    expect(ids.indexOf('conversation')).toBeLessThan(ids.indexOf('session'))
   })
 })

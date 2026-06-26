@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type ElementType } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, BookMarked, Ear, AudioLines, Music, Check } from 'lucide-react'
+import { ArrowRight, BookMarked, MessageSquareText, NotebookPen, Theater, BookOpenText, Sparkles } from 'lucide-react'
 import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAuth } from '@/hooks/useAuth'
@@ -11,7 +11,6 @@ import { generateSession, type SchedulerOutput } from '@/engine/scheduler'
 import { getConceptPhase, isMastered, runDiagnosis } from '@/engine'
 import type { ConceptPhase } from '@/engine'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { LaneTrackRow } from '@/components/dashboard/LaneTrackRow'
 import { AIStatusBadge } from '@/components/ai/AIStatusBadge'
 import { getStreak } from '@/lib/streak'
 import { SEED_SENTENCES, SEED_SENTENCE_IDS } from '@/lib/seed-pool'
@@ -19,47 +18,21 @@ import { SEED_PASSAGES, SEED_PASSAGE_IDS } from '@/lib/passage-pool'
 import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel, getCumulativeConcepts } from '@/lib/concept-graph-loader'
 import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
-import { getCoachRecommendation } from '@/lib/coach-recommendation'
-import { CORE_LANES, MUNTLIG_LANES, getCompletedLanes, type LaneId } from '@/lib/lane-completion'
+import { getCoachRecommendation, getCoachPlan, type CoachRecommendation } from '@/lib/coach-recommendation'
+import { getCompletedLanes, ALL_LANES, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 import { ProductionWall } from '@/components/dashboard/ProductionWall'
 import { deriveProductionWallView, deriveDiagnosisHighlight, type BreakerVerdict } from '@/lib/production-wall'
 import { deriveBreakerStory } from '@/lib/breaker-story'
 import { NotebookDrawer } from '@/components/notebook/NotebookDrawer'
 
-const CONCEPT_TO_TOPIC: Record<string, string> = {
-  'v2-word-order': 'daglig rutine',
-  'present-tense-regular': 'daglig rutine',
-  negation: 'daglig rutine',
-  'days-of-week': 'daglig rutine',
-  'common-questions': 'daglig rutine',
-  'noun-gender': 'mat og drikke',
-  'indefinite-articles': 'mat og drikke',
-  'basic-numbers': 'mat og drikke',
-  'personal-pronouns': 'familie',
-  'adjective-agreement': 'Norge',
-  'common-prepositions': 'Norge',
-  'preterite-regular': 'Norge',
-  'common-modal-verbs': 'jobb',
-}
-
-const JOURNAL_PROMPTS = [
-  'Beskriv din ideelle norske helg',
-  'Hva liker du best med vinteren?',
-  'Skriv om et sted du vil besøke i Norge',
-  'Beskriv deg selv på norsk',
-  'Hva er din favorittmat, og hvorfor?',
-]
-
-const READING_TEXT_COUNTS: Record<string, number> = { A1: 2, A2: 2, B1: 0, B2: 0 }
-
-// Muntlig tiles (the 3-tile grid): icon + display name + route per speaking lane.
-// Lucide icons only — Ear (listen), AudioLines (pronunciation drills), Music (shadowing).
-type MuntligLaneId = 'listen' | 'drills' | 'shadow'
-const MUNTLIG_TILE_CONFIG: Record<MuntligLaneId, { Icon: typeof Ear; name: string; href: string }> = {
-  listen: { Icon: Ear, name: 'Lytt og svar', href: '/listen' },
-  drills: { Icon: AudioLines, name: 'Uttale', href: '/drills' },
-  shadow: { Icon: Music, name: 'Skygging', href: '/shadow' },
+// Icon per prescribed-plan lane (the "Dagens plan" cards). Lucide only.
+const PLAN_ICON: Record<string, ElementType> = {
+  conversation: MessageSquareText,
+  journal: NotebookPen,
+  roleplay: Theater,
+  reading: BookOpenText,
+  'weekly-check': Sparkles,
 }
 
 export default function DashboardPage() {
@@ -176,70 +149,31 @@ export default function DashboardPage() {
       .slice(0, 5)
   }, [fingerprint, activeGraph])
 
-  const laneHints = useMemo(() => {
-    const focusConcept = fingerprint?.weeklyFocus[0]
-    const focusLabel = activeGraph.concepts.find((concept) => concept.id === focusConcept)?.label
-    const topic = focusConcept ? (CONCEPT_TO_TOPIC[focusConcept] ?? 'daglig rutine') : 'daglig rutine'
-    const textsAtLevel = READING_TEXT_COUNTS[levelLabel] ?? 0
-
-    return {
-      session: plan
-        ? `${plan.session.items.length} oppgaver · ca. ${Math.max(1, Math.ceil((plan.session.items.length * 45) / 60))} min`
-        : 'Anbefalt økt',
-      conversation: `Samtale med Kari · ${topic}`,
-      journal: dayOfWeek >= 0
-        ? (JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length].length > 36
-          ? `${JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length].slice(0, 36)}…`
-          : JOURNAL_PROMPTS[dayOfWeek % JOURNAL_PROMPTS.length])
-        : 'Skriv i journalen',
-      roleplay: focusLabel ? `Anbefalt for ${focusLabel}` : '3 scenarier tilgjengelig',
-      reading: (levelLabel === 'B1' || levelLabel === 'B2')
-        ? 'Les → si → skriv · én passasje'
-        : (textsAtLevel > 0 ? `${textsAtLevel} tekster på ${levelLabel}-nivå` : 'Tekster tilgjengelig'),
-      listen: 'Lytt og svar',
-      drills: 'Uttaleøvelser',
-      shadow: 'Skyggelesing',
-      uke: 'Ukens repetisjon',
-      ord: 'Skriv riktige verbformer',
-    } satisfies Record<LaneId, string>
-  }, [plan, fingerprint, activeGraph, levelLabel, dayOfWeek])
-
-  // At B1/B2 the read→recite→write module (/skriv) replaces the reading lane:
-  // the "Les" lane becomes "Les og skriv" → /skriv. A1/A2 keep plain reading
-  // (/reading), where their reading texts live. Distinct from the journal lane,
-  // which keeps its own "Skriv" label.
+  // At B1/B2 the read→recite→write module (/skriv) replaces plain reading, so a
+  // prescribed "reading" card routes there instead of /reading (which only holds
+  // A1/A2 texts).
   const skrivReplacesReading = levelLabel === 'B1' || levelLabel === 'B2'
 
-  const focusSet = new Set(fingerprint?.weeklyFocus ?? [])
-  const laneFocusMap: Record<LaneId, boolean> = useMemo(() => ({
-    session: true,
-    conversation: (fingerprint?.weeklyFocus ?? []).some((conceptId) => CONCEPT_TO_TOPIC[conceptId]),
-    journal: focusSet.size > 0,
-    roleplay: focusSet.size > 0,
-    reading: focusSet.size > 0,
-    listen: false,
-    drills: false,
-    shadow: false,
-    uke: true,
-    ord: false,
-  }), [fingerprint?.weeklyFocus, focusSet.size])
+  // Direction B (vision audit 2026-06-26): the home shows the coach's PRESCRIBED
+  // SHORT plan — the top non-session lanes with their "why this" reason — not a
+  // full menu. The session is already the hero (command card above), so it is
+  // dropped here; the full speaking/writing catalogue lives one tap away on the
+  // Snakk hub. getCoachPlan shares its ranking with the command card's
+  // recommendation, so the two never disagree.
+  const planCards = useMemo(() => {
+    if (!fingerprint) return [] as CoachRecommendation[]
+    return getCoachPlan(fingerprint, activeGraph, plan, 3)
+      .filter((card) => card.laneId !== 'session' && card.laneId !== 'celebration')
+      .slice(0, 2)
+      .map((card) =>
+        card.laneId === 'reading' && skrivReplacesReading
+          ? { ...card, href: '/skriv', title: 'Les og skriv' }
+          : card,
+      )
+  }, [fingerprint, activeGraph, plan, skrivReplacesReading])
 
-  // The conjugation drill (/ord) is a tracked daily lane at ALL levels: it draws
-  // from a fixed everyday-verb pool (irregular-first) — foundational, not B2-only —
-  // so every learner sees it in "Øving · dagens plan" and it counts toward daily
-  // completion. (The intro framing was de-B2'd to match.)
-  const coreLanes: LaneId[] = [...CORE_LANES, 'ord']
-  // The coach-recommended lane leads the list with the lime "Anbefalt" treatment —
-  // but only when it's a real practice lane (not 'session', which is the hero CTA)
-  // and not already done. Null otherwise → the list is just uncompleted → done.
-  const recommendedLaneId: LaneId | null =
-    recommendation && recommendation.laneId !== 'session'
-      ? coreLanes.find((laneId) => laneId === recommendation.laneId && !completedLanes.has(laneId)) ?? null
-      : null
-  const uncompletedLanes = coreLanes
-    .filter((laneId) => !completedLanes.has(laneId) && laneId !== recommendedLaneId)
-  const doneLanes = coreLanes.filter((laneId) => completedLanes.has(laneId))
-  const completedCount = doneLanes.length
+  // Honest "done today" count across every tracked practice lane (core + muntlig).
+  const doneToday = ALL_LANES.filter((laneId) => completedLanes.has(laneId)).length
   const progressEntries = useMemo(() => {
     if (!fingerprint) return []
     return summarizeWeeklyProgress(fingerprint, activeGraph)
@@ -399,86 +333,59 @@ export default function DashboardPage() {
           </div>
         ) : null}
 
-        {/* ── Everything below the command card is now always visible (no collapse).
-            The dashboard hero stays the single prescribed action; the rest is laid
-            out with varied surfaces (cream lanes → cream muntlig tiles → dark
-            Notatboka → cream stat strip + dark week overview) so it reads as a map,
-            not a menu of competing doors. Økt + samtale stay one-tap via BottomNav. ── */}
-
-        {/* ── Øving · dagens plan (Cream lane list) ── */}
+        {/* ── Dagens plan (Direction B): the coach's PRESCRIBED short list — the
+            top non-session lanes with their "why this" reason — not a full menu.
+            The session is the hero (command card above); the complete
+            speaking/writing catalogue lives one tap away on the Snakk hub, linked
+            below. This stops the home from being a second copy of that menu. ── */}
         <div className="mt-2 flex items-baseline justify-between px-1">
-          <h2 className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">Øving · dagens plan</h2>
-          <span className="text-[9.5px] font-bold tabular-nums text-[var(--nc-text-dim)]">{completedCount} / {coreLanes.length} i dag</span>
+          <h2 className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">Dagens plan</h2>
+          <span className="text-[9.5px] font-bold tabular-nums text-[var(--nc-text-dim)]">{doneToday} gjort i dag</span>
         </div>
-        <div className="rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)] p-[5px_6px]">
-          <div className="flex flex-col">
-            {recommendedLaneId ? (
-              <LaneTrackRow
-                key={recommendedLaneId}
-                laneId={recommendedLaneId}
-                hint={laneHints[recommendedLaneId]}
-                done={false}
-                recommended
-                href={recommendedLaneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                label={recommendedLaneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-              />
-            ) : null}
-            {uncompletedLanes.map((laneId) => (
-              <LaneTrackRow
-                key={laneId}
-                laneId={laneId}
-                hint={laneHints[laneId]}
-                done={false}
-                focusBadge={laneFocusMap[laneId]}
-                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-              />
-            ))}
-            {doneLanes.map((laneId) => (
-              <LaneTrackRow
-                key={laneId}
-                laneId={laneId}
-                hint={laneHints[laneId]}
-                done={true}
-                href={laneId === 'reading' && skrivReplacesReading ? '/skriv' : undefined}
-                label={laneId === 'reading' && skrivReplacesReading ? 'Les og skriv' : undefined}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* ── Muntlig · snakk mer norsk (3 cream tiles) — Lytt / Uttale / Skygging.
-            Built + fingerprint-wired lanes (audit R-01); the North Star is "speak
-            more Norwegian". Supplementary, so NOT folded into the daily denominator. ── */}
-        <div className="mt-2 flex items-baseline justify-between px-1">
-          <h2 className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[var(--nc-text-dim)]">Muntlig · snakk mer norsk</h2>
-        </div>
-        <div className="grid grid-cols-3 gap-1.5">
-          {MUNTLIG_LANES.map((laneId) => {
-            const tile = MUNTLIG_TILE_CONFIG[laneId as MuntligLaneId]
-            const TileIcon = tile.Icon
-            const muntligDone = completedLanes.has(laneId)
-            return (
-              <Link
-                key={laneId}
-                href={tile.href}
-                aria-label={`Åpne ${tile.name}`}
-                className="relative flex flex-col items-center gap-[7px] rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)] px-2 py-[11px] text-center transition-colors hover:bg-[rgba(240,241,236,0.8)]"
-              >
-                {muntligDone ? (
-                  <span className="absolute right-1.5 top-1.5 flex size-3.5 items-center justify-center rounded-full bg-[rgba(60,180,100,0.12)] text-[var(--nc-green-solid)]">
-                    <Check size={9} aria-hidden="true" />
+        {planCards.length > 0 ? (
+          <div className="flex flex-col gap-1.5">
+            {planCards.map((card) => {
+              const Icon = PLAN_ICON[card.laneId] ?? Sparkles
+              return (
+                <Link
+                  key={card.laneId}
+                  href={card.href}
+                  aria-label={`Åpne ${card.title}`}
+                  className="flex items-center gap-3 rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)] px-3 py-[11px] transition-colors hover:bg-[rgba(240,241,236,0.85)]"
+                >
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-[0.5rem] bg-[var(--nc-cream-text)] text-white">
+                    <Icon size={15} aria-hidden="true" />
                   </span>
-                ) : null}
-                <span className="flex size-8 items-center justify-center rounded-[0.5rem] bg-[rgba(17,21,24,0.06)] text-[var(--nc-cream-text)]">
-                  <TileIcon size={15} aria-hidden="true" />
-                </span>
-                <span className="text-[0.74rem] font-bold text-[var(--nc-cream-text)]">{tile.name}</span>
-                <span className="text-[0.62rem] leading-tight text-[var(--nc-cream-muted)]">{laneHints[laneId]}</span>
-              </Link>
-            )
-          })}
-        </div>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[0.86rem] font-bold leading-tight text-[var(--nc-cream-text)]">{card.title}</span>
+                    <span className="mt-0.5 block text-[0.7rem] leading-snug text-[var(--nc-cream-muted)]">
+                      {card.reason ?? card.subtitle}
+                    </span>
+                  </span>
+                  <ArrowRight size={15} aria-hidden="true" className="shrink-0 text-[var(--nc-cream-dim)]" />
+                </Link>
+              )
+            })}
+          </div>
+        ) : (
+          <div className="rounded-[0.625rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.08)] px-3 py-3 text-center">
+            <p className="text-[0.82rem] font-semibold text-[var(--nc-cream-text)]">Du er ajour for i dag.</p>
+            <p className="mt-0.5 text-[0.7rem] text-[var(--nc-cream-muted)]">Vil du øve mer? Alt ligger i Snakk.</p>
+          </div>
+        )}
+
+        {/* All practice surfaces (speaking, writing, listening) live on the Snakk
+            hub — one nav tap away. The home links there instead of re-listing them. */}
+        <Link
+          href="/snakk"
+          className="flex items-center justify-between gap-2 rounded-[0.625rem] bg-[var(--nc-card)] border border-[var(--nc-border)] px-3 py-[11px] transition-colors hover:border-[var(--nc-border-strong)]"
+        >
+          <span className="min-w-0">
+            <span className="block text-[0.84rem] font-bold text-[var(--nc-text)]">Alle øvelser</span>
+            <span className="mt-px block text-[0.68rem] text-[var(--nc-text-muted)]">Snakk, lytt, skygg, rollespill og skriv</span>
+          </span>
+          <ArrowRight size={14} aria-hidden="true" className="shrink-0 text-[var(--nc-text-dim)]" />
+        </Link>
 
         {/* ── Notatboka (Dark row, breaks the cream run) — opens the saved-words
             drawer. The full notebook lives at /vocab; this is quick-access. ── */}
