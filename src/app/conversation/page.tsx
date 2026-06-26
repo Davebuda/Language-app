@@ -116,6 +116,17 @@ export default function ConversationPage() {
   // so the end-summary confirmation is gated on the real fingerprint write (Rule 8).
   const speakingMinutesRef = useRef(0)
   const summarySpeakingMinutesRef = useRef(0)
+  // Mobile Web Speech (Android Chrome) fires the FINAL onresult more than once per
+  // utterance (continuous=false is unreliable) and onend can auto-restart. Without a
+  // guard, each extra final re-ran handleSend → a 2nd API turn → a duplicate tutor
+  // message + a speechSynthesis.cancel()+speak() that aborted the first reply. These
+  // refs make submission idempotent: finalSentRef = once per recognition session;
+  // sendingRef = one turn in flight at a time (also covers double-tap send / Enter).
+  const finalSentRef = useRef(false)
+  const sendingRef = useRef(false)
+  // Latest messages snapshot — the mic onresult closure is bound once at
+  // toggleListening, so reading state directly would send a stale history.
+  const messagesRef = useRef<DisplayMessage[]>([])
   const [activeConstraint, setActiveConstraint] = useState<ResponseConstraint | null>(null)
   const [constraintResult, setConstraintResult] = useState<{ met: boolean; feedback?: string } | null>(null)
 
@@ -222,6 +233,10 @@ export default function ConversationPage() {
     }
   }, [messages, isThinking])
 
+  // Keep the latest-messages snapshot in sync so handleSend (incl. the once-bound mic
+  // onresult closure) always appends to the current history, never a stale one.
+  useEffect(() => { messagesRef.current = messages }, [messages])
+
   // Conversation grammar corrections are gated through the deterministic gender verifier
   // (Lever 3, 2026-06-08). The Groq 8B produced wrong-but-VALID corrections (live: "en jobb"
   // → "et jobb"; jobb is masculine) that `validateNorwegianOutput` cannot catch; only a
@@ -305,17 +320,27 @@ export default function ConversationPage() {
   async function handleSend(text: string, fromMic = false) {
     const trimmed = text.trim()
     if (!trimmed) return
-    setInputText('')
-    const nextMessages = [...messages, { role: 'user' as const, content: trimmed }]
-    setMessages(nextMessages)
-    void persistTurn('user', trimmed)
-    // P1 (vision audit 2026-06-26): a completed Kari turn IS production — lay a guided
-    // brick so the wall rewards it, and credit minutes. The mic path already credited
-    // real elapsed minutes + a brick (creditSpeakingProduction below), so only TYPED
-    // turns get the estimate-minutes brick here (no double-count). Completion-gated
-    // self-report — never moves mastery or logs an error (Rule 8).
-    if (!fromMic) creditSpeakingProduction(TYPED_MINUTES_PER_TURN)
-    await addTutorMessage(nextMessages.map((m) => ({ role: m.role, content: m.content })))
+    // In-flight guard: one turn at a time. Stops a duplicate mic final, a double-tap
+    // send, or Enter-while-thinking from starting a second overlapping turn.
+    if (sendingRef.current) return
+    sendingRef.current = true
+    try {
+      setInputText('')
+      // Append to the freshest history (the mic closure can be stale — see messagesRef).
+      const nextMessages = [...messagesRef.current, { role: 'user' as const, content: trimmed }]
+      messagesRef.current = nextMessages
+      setMessages(nextMessages)
+      void persistTurn('user', trimmed)
+      // P1 (vision audit 2026-06-26): a completed Kari turn IS production — lay a guided
+      // brick so the wall rewards it, and credit minutes. The mic path already credited
+      // real elapsed minutes + a brick (creditSpeakingProduction below), so only TYPED
+      // turns get the estimate-minutes brick here (no double-count). Completion-gated
+      // self-report — never moves mastery or logs an error (Rule 8).
+      if (!fromMic) creditSpeakingProduction(TYPED_MINUTES_PER_TURN)
+      await addTutorMessage(nextMessages.map((m) => ({ role: m.role, content: m.content })))
+    } finally {
+      sendingRef.current = false
+    }
   }
 
   // Credit spoken/typed production: speaking-minutes + a guided production brick.
@@ -337,6 +362,7 @@ export default function ConversationPage() {
       return
     }
     micStartRef.current = Date.now()
+    finalSentRef.current = false
     const rec = new Ctor()
     recognitionRef.current = rec
     rec.lang = 'no-NO'
@@ -348,6 +374,12 @@ export default function ConversationPage() {
       const transcript = parts.join('')
       setInputText(transcript)
       if (e.results[e.results.length - 1].isFinal) {
+        // Idempotency: submit the final transcript exactly once. Android Chrome can
+        // fire this branch again (duplicate/trailing final), which previously sent a
+        // second turn. Guard + stop() the recognizer to kill any trailing events.
+        if (finalSentRef.current) return
+        finalSentRef.current = true
+        recognitionRef.current?.stop()
         const micMinutes = (Date.now() - micStartRef.current) / 60_000
         if (micMinutes >= 0.05) creditSpeakingProduction(micMinutes)
         setIsListening(false)
