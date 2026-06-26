@@ -19,7 +19,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Academic hedging: 'tyder på at' (suggests that)"
+    "notes": "Academic hedging: 'tyder på at' (suggests that)",
+    "accepted_answers": [
+      "The research findings suggest that the connection between sleep and memory is stronger than previously assumed"
+    ]
   },
   {
     "id": "b2-aw-002",
@@ -43,7 +46,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Impersonal argumentative construction: 'det kan argumenteres for at'"
+    "notes": "Impersonal argumentative construction: 'det kan argumenteres for at'",
+    "accepted_answers": [
+      "It can be argued that climate policy has not had a sufficient impact on emission levels",
+      "It can be argued that climate policy has not had an adequate effect on emission levels"
+    ]
   },
   {
     "id": "b2-aw-003",
@@ -90,7 +97,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Hedging phrase: 'ikke uten videre' (not straightforwardly/automatically)"
+    "notes": "Hedging phrase: 'ikke uten videre' (not straightforwardly/automatically)",
+    "accepted_answers": [
+      "It is worth noting that the results of this survey cannot straightforwardly be generalized"
+    ]
   },
   {
     "id": "b2-aw-005",
@@ -160,7 +170,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'det foreligger' is a formal existential construction meaning 'there exists/there is available'"
+    "notes": "'det foreligger' is a formal existential construction meaning 'there exists/there is available'",
+    "accepted_answers": [
+      "There is limited research on how social media affects political participation among young adults"
+    ]
   },
   {
     "id": "b2-aw-008",
@@ -327,7 +340,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'har vist seg å være' — reflexive evidential construction for proven results"
+    "notes": "'har vist seg å være' — reflexive evidential construction for proven results",
+    "accepted_answers": [
+      "This approach has been shown to be more effective than traditional methods in several controlled trials"
+    ]
   },
   {
     "id": "b2-aw-015",
@@ -350,7 +366,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'det gjenstår å se om' — formal expression of uncertainty about future outcomes"
+    "notes": "'det gjenstår å se om' — formal expression of uncertainty about future outcomes",
+    "accepted_answers": [
+      "It remains to be seen whether these measures will have the desired effect in the long run",
+      "It remains to be seen if these measures will have the desired effect in the long term"
+    ]
   },
   {
     "id": "b2-aw-016",
@@ -515,7 +535,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'det er all grunn til å tro at' — strong academic hedging phrase"
+    "notes": "'det er all grunn til å tro at' — strong academic hedging phrase",
+    "accepted_answers": [
+      "There is every reason to believe that further research will reveal new aspects of this question"
+    ]
   },
   {
     "id": "b2-aw-023",
@@ -587,7 +610,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'hvorvidt' (whether) — formal conjunction used in academic writing"
+    "notes": "'hvorvidt' (whether) — formal conjunction used in academic writing",
+    "accepted_answers": [
+      "The question of whether technology can replace human contact remains debated",
+      "The question of whether technology can replace human contact is still contested"
+    ]
   },
   {
     "id": "b2-aw-026",
@@ -706,7 +733,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'er påkrevd' — formal passive expressing necessity; 'iverksettes' (implemented) — formal passive infinitive"
+    "notes": "'er påkrevd' — formal passive expressing necessity; 'iverksettes' (implemented) — formal passive infinitive",
+    "accepted_answers": [
+      "The conclusion is that further empirical research is needed before policy measures can be implemented"
+    ]
   },
   {
     "id": "b2-nr-001",
@@ -756,7 +786,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Informal register: 'Hei', 'bare', 'prate litt', 'lenge siden sist' — all informal markers"
+    "notes": "Informal register: 'Hei', 'bare', 'prate litt', 'lenge siden sist' — all informal markers",
+    "accepted_answers": [
+      "Hey! Shall we not just have a coffee and chat a bit? It's been a long time"
+    ]
   },
   {
     "id": "b2-nr-003",
@@ -780,7 +813,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'tillater meg å henvende meg' — very formal self-deprecating introductory phrase; 'Dem' formal address"
+    "notes": "'tillater meg å henvende meg' — very formal self-deprecating introductory phrase; 'Dem' formal address",
+    "accepted_answers": [
+      "I take the liberty of reaching out to you regarding the upcoming contract negotiation"
+    ]
   },
   {
     "id": "b2-nr-004",
@@ -826,7 +862,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Informal: 'vet du hva', 'egentlig', 'lot som om' — conversational filler and expression"
+    "notes": "Informal: 'vet du hva', 'egentlig', 'lot som om' — conversational filler and expression",
+    "accepted_answers": [
+      "You know what, I didn't really understand what he meant, but I pretended to"
+    ]
   },
   {
     "id": "b2-nr-006",
@@ -901,7 +940,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Informal: 'utrolig kult' — would be completely inappropriate in formal context"
+    "notes": "Informal: 'utrolig kult' — would be completely inappropriate in formal context",
+    "accepted_answers": [
+      "That's incredibly cool that you got that job! When do you start"
+    ]
   },
   {
     "id": "b2-nr-009",
@@ -946,7 +988,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'Æsj' — informal exclamation; 'jo' — informal confirmation particle; 'håpløs' colloquially meaning terrible"
+    "notes": "'Æsj' — informal exclamation; 'jo' — informal confirmation particle; 'håpløs' colloquially meaning terrible",
+    "accepted_answers": [
+      "Ugh, that movie was absolutely hopeless. We should have chosen something else",
+      "Ugh, that film was absolutely hopeless. We should have picked something else"
+    ]
   },
   {
     "id": "b2-nr-011",
@@ -994,7 +1040,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'rå' (raw/brutal) — informal slang for impressive; 'altså' — informal emphasis particle"
+    "notes": "'rå' (raw/brutal) — informal slang for impressive; 'altså' — informal emphasis particle",
+    "accepted_answers": [
+      "Did you see that match yesterday? It was absolutely brilliant",
+      "Did you watch that match yesterday? It was absolutely brilliant"
+    ]
   },
   {
     "id": "b2-nr-013",
@@ -1041,7 +1091,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ikke peiling' — informal idiom for having no idea; 'bare' and 'ordentlig' are informal intensifiers"
+    "notes": "'ikke peiling' — informal idiom for having no idea; 'bare' and 'ordentlig' are informal intensifiers",
+    "accepted_answers": [
+      "I have no idea what's going on. Can't you just explain it properly"
+    ]
   },
   {
     "id": "b2-nr-015",
@@ -1065,7 +1118,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'Undertegnede' — formal self-reference (the undersigned); 'herved' — formal adverb (hereby)"
+    "notes": "'Undertegnede' — formal self-reference (the undersigned); 'herved' — formal adverb (hereby)",
+    "accepted_answers": [
+      "The undersigned hereby wishes to apply for leave from their position during the period 1–30 June"
+    ]
   },
   {
     "id": "b2-nr-016",
@@ -1162,7 +1218,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Conversational 'du' as attention-getter; 'bare' as informal softener; 'flink til' — informal praise"
+    "notes": "Conversational 'du' as attention-getter; 'bare' as informal softener; 'flink til' — informal praise",
+    "accepted_answers": [
+      "Hi, I just had to say that you are really good at handling those kinds of situations",
+      "Hey, I just had to say that you are really good at handling that kind of situation"
+    ]
   },
   {
     "id": "b2-nr-020",
@@ -1287,7 +1347,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Informal reassurance: 'kom igjen', 'ta det med ro', 'ordner seg' — all informal expressions"
+    "notes": "Informal reassurance: 'kom igjen', 'ta det med ro', 'ordner seg' — all informal expressions",
+    "accepted_answers": [
+      "Come on, relax. It'll probably work out, you'll see"
+    ]
   },
   {
     "id": "b2-nr-025",
@@ -1361,7 +1424,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'orker ikke gidde' — double low-energy informal verbs; 'ugreit' — informal for not OK/awkward"
+    "notes": "'orker ikke gidde' — double low-energy informal verbs; 'ugreit' — informal for not OK/awkward",
+    "accepted_answers": [
+      "Can't you be bothered to respond to my messages? That's a bit off"
+    ]
   },
   {
     "id": "b2-nr-028",
@@ -1385,7 +1451,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'vedtaket ble fattet' — formal passive; 'tre i kraft' (come into force) — formal legal phrase"
+    "notes": "'vedtaket ble fattet' — formal passive; 'tre i kraft' (come into force) — formal legal phrase",
+    "accepted_answers": [
+      "The decision was made by six votes to two, and will come into effect from the next financial year",
+      "The decision was passed with six votes to two, and will come into effect from the next financial year"
+    ]
   },
   {
     "id": "b2-nr-029",
@@ -1481,7 +1551,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Stative passive: 'er levert' / 'er mottatt' — state resulting from action, not the action itself"
+    "notes": "Stative passive: 'er levert' / 'er mottatt' — state resulting from action, not the action itself",
+    "accepted_answers": [
+      "The report has already been delivered, but the feedback has not been received yet",
+      "The report has already been submitted, but the feedback has not yet been received"
+    ]
   },
   {
     "id": "b2-ap-003",
@@ -1526,7 +1600,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Impersonal s-passive: 'det bygges' — agentless, describes ongoing process"
+    "notes": "Impersonal s-passive: 'det bygges' — agentless, describes ongoing process",
+    "accepted_answers": [
+      "Several new apartments are being built in the center to meet growing demand"
+    ]
   },
   {
     "id": "b2-ap-005",
@@ -1636,7 +1713,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Three stative passives in sequence; all describe a resulting state"
+    "notes": "Three stative passives in sequence; all describe a resulting state",
+    "accepted_answers": [
+      "The windows have been fitted, the floor has been laid, and the house is almost finished"
+    ]
   },
   {
     "id": "b2-ap-010",
@@ -1659,7 +1739,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Impersonal passive: 'det ble tatt'; s-passive: 'utsettes' — both agentless"
+    "notes": "Impersonal passive: 'det ble tatt'; s-passive: 'utsettes' — both agentless",
+    "accepted_answers": [
+      "No final decision was made in the meeting, and the matter is being postponed until next week"
+    ]
   },
   {
     "id": "b2-ap-011",
@@ -1777,7 +1860,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Dynamic passive 'ble avsluttet' vs. stative passive 'er overlevert' — contrast"
+    "notes": "Dynamic passive 'ble avsluttet' vs. stative passive 'er overlevert' — contrast",
+    "accepted_answers": [
+      "The project was finished on time and has now been handed over to the client",
+      "The project was completed on time and has now been delivered to the client"
+    ]
   },
   {
     "id": "b2-ap-016",
@@ -1845,7 +1932,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'i ferd med å renoveres' — progressive passive construction"
+    "notes": "'i ferd med å renoveres' — progressive passive construction",
+    "accepted_answers": [
+      "The houses built in the 1970s are now in the process of being renovated"
+    ]
   },
   {
     "id": "b2-ap-019",
@@ -1916,7 +2006,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Impersonal passive 'det antas at'; stative passive 'er berørt'"
+    "notes": "Impersonal passive 'det antas at'; stative passive 'er berørt'",
+    "accepted_answers": [
+      "It is assumed that around two million Norwegians are directly affected by the new tax rules",
+      "It is estimated that approximately two million Norwegians are directly affected by the new tax rules"
+    ]
   },
   {
     "id": "b2-ap-022",
@@ -1984,7 +2078,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "S-passive 'det sies' — impersonal passive for common knowledge/hearsay"
+    "notes": "S-passive 'det sies' — impersonal passive for common knowledge/hearsay",
+    "accepted_answers": [
+      "It is said that Norwegians are the happiest people in the world, but it is not easy to measure happiness"
+    ]
   },
   {
     "id": "b2-ap-025",
@@ -2053,7 +2150,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ble vedtatt av' — agentive passive; 'trådte i kraft' — active idiom for coming into force"
+    "notes": "'ble vedtatt av' — agentive passive; 'trådte i kraft' — active idiom for coming into force",
+    "accepted_answers": [
+      "The law was passed by the Storting in 2019 and came into effect from 1 January 2020",
+      "The law was enacted by the Storting in 2019 and came into force from 1 January 2020"
+    ]
   },
   {
     "id": "b2-ap-028",
@@ -2172,7 +2273,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'til tross for at' — concessive; 'likevel' (nevertheless) — concessive adverb in main clause"
+    "notes": "'til tross for at' — concessive; 'likevel' (nevertheless) — concessive adverb in main clause",
+    "accepted_answers": [
+      "Despite the budget cuts, the team still managed to deliver the project on time"
+    ]
   },
   {
     "id": "b2-ca-003",
@@ -2217,7 +2321,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ikke gitt at' — Norwegian idiom: not a given that; V2 after 'selv om'-clause"
+    "notes": "'ikke gitt at' — Norwegian idiom: not a given that; V2 after 'selv om'-clause",
+    "accepted_answers": [
+      "Even though the technology exists, it is not certain that it will be adopted on a large scale"
+    ]
   },
   {
     "id": "b2-ca-005",
@@ -2452,7 +2559,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'derimot' — contrastive marker meaning 'on the contrary'; V2 inversion"
+    "notes": "'derimot' — contrastive marker meaning 'on the contrary'; V2 inversion",
+    "accepted_answers": [
+      "On the contrary, the statistics show that crime has actually fallen over the last ten years",
+      "On the contrary, statistics show that crime has actually decreased over the last ten years"
+    ]
   },
   {
     "id": "b2-ca-015",
@@ -2540,7 +2651,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'til tross for' + noun phrase; passive 'ble gjennomført' in main clause"
+    "notes": "'til tross for' + noun phrase; passive 'ble gjennomført' in main clause",
+    "accepted_answers": [
+      "Despite opposition from sections of the population, the decision was implemented as planned"
+    ]
   },
   {
     "id": "b2-ca-019",
@@ -2654,7 +2768,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Passive 'ble kritisert for å' in main clause after 'selv om'"
+    "notes": "Passive 'ble kritisert for å' in main clause after 'selv om'",
+    "accepted_answers": [
+      "Even though the report contained many good points, it was criticized for lacking concrete measures",
+      "Although the report contained many good points, it was criticised for lacking concrete measures"
+    ]
   },
   {
     "id": "b2-ca-024",
@@ -2790,7 +2908,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'verdt det å' — cleft-like worth construction; V2 in main clause"
+    "notes": "'verdt det å' — cleft-like worth construction; V2 in main clause",
+    "accepted_answers": [
+      "Although the journey was long and demanding, it was worth it to see the beautiful landscape",
+      "Even though the trip was long and demanding, it was worth it to see the beautiful landscape"
+    ]
   },
   {
     "id": "b2-ca-030",
@@ -2836,7 +2958,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'gå i hundene' — to go to the dogs / fall apart completely"
+    "notes": "'gå i hundene' — to go to the dogs / fall apart completely",
+    "accepted_answers": [
+      "After the bad investment, the whole company went to the dogs within a year"
+    ]
   },
   {
     "id": "b2-ni-002",
@@ -2861,7 +2986,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ikke bare bare' — not just easy / no small thing (idiom of understatement)"
+    "notes": "'ikke bare bare' — not just easy / no small thing (idiom of understatement)",
+    "accepted_answers": [
+      "It is no easy task to learn a new language as an adult"
+    ]
   },
   {
     "id": "b2-ni-003",
@@ -2884,7 +3012,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ta bladet fra munnen' — to speak frankly / take the leaf from one's mouth"
+    "notes": "'ta bladet fra munnen' — to speak frankly / take the leaf from one's mouth",
+    "accepted_answers": [
+      "At last, she spoke her mind and said what she really thought about the situation",
+      "Finally, she spoke her mind and said what she really thought of the situation"
+    ]
   },
   {
     "id": "b2-ni-004",
@@ -3023,7 +3155,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ikke gjort i en håndvending' — not done in the blink of an eye / not overnight"
+    "notes": "'ikke gjort i en håndvending' — not done in the blink of an eye / not overnight",
+    "accepted_answers": [
+      "It is not easy to turn a large organization around — it cannot be done overnight"
+    ]
   },
   {
     "id": "b2-ni-010",
@@ -3095,7 +3230,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'gå rett på sak' — get straight to the point; two idioms in one sentence"
+    "notes": "'gå rett på sak' — get straight to the point; two idioms in one sentence",
+    "accepted_answers": [
+      "He went straight to the point and spoke his mind without hesitating",
+      "He got straight to the point and spoke his mind without hesitation"
+    ]
   },
   {
     "id": "b2-ni-013",
@@ -3213,7 +3352,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'holde på å gå i hundene' — progressive construction with idiom"
+    "notes": "'holde på å gå i hundene' — progressive construction with idiom",
+    "accepted_answers": [
+      "After many years of bad management, it was clear that the company was on the verge of going under"
+    ]
   },
   {
     "id": "b2-ni-018",
@@ -3235,7 +3377,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'holde kortene tett til brystet' — to keep one's cards close to one's chest"
+    "notes": "'holde kortene tett til brystet' — to keep one's cards close to one's chest",
+    "accepted_answers": [
+      "The boss is known for always keeping his cards close to his chest in negotiations"
+    ]
   },
   {
     "id": "b2-ni-019",
@@ -3334,7 +3479,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'kaste seg ut i det' — to throw oneself into something; 'gå som det pleier' — go the usual way"
+    "notes": "'kaste seg ut i det' — to throw oneself into something; 'gå som det pleier' — go the usual way",
+    "accepted_answers": [
+      "She threw herself into it without thinking — and it went the way it normally does"
+    ]
   },
   {
     "id": "b2-ni-023",
@@ -3500,7 +3648,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'nekte å innse' — refuse to acknowledge; idiom with progressive 'holdt på å'"
+    "notes": "'nekte å innse' — refuse to acknowledge; idiom with progressive 'holdt på å'",
+    "accepted_answers": [
+      "Although business was going badly, he refused to accept that the company was going under",
+      "Even though business was going badly, he refused to acknowledge that the company was going under"
+    ]
   },
   {
     "id": "b2-ni-030",
@@ -3571,7 +3723,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Negative adverb fronting: 'sjelden' triggers subject-verb inversion"
+    "notes": "Negative adverb fronting: 'sjelden' triggers subject-verb inversion",
+    "accepted_answers": [
+      "Rarely have I experienced such a warm welcome as the one we received in Bergen"
+    ]
   },
   {
     "id": "b2-awo-003",
@@ -3617,7 +3772,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'aldri tidligere' fronted — triggers inversion: 'har norsk økonomi vokst'"
+    "notes": "'aldri tidligere' fronted — triggers inversion: 'har norsk økonomi vokst'",
+    "accepted_answers": [
+      "Never before has Norway's economy grown so rapidly over such a short period"
+    ]
   },
   {
     "id": "b2-awo-005",
@@ -3662,7 +3820,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'heller ikke' fronted — inversion: 'heller ikke hun visste'"
+    "notes": "'heller ikke' fronted — inversion: 'heller ikke hun visste'",
+    "accepted_answers": [
+      "She also did not know what had happened to the missing man"
+    ]
   },
   {
     "id": "b2-awo-007",
@@ -3759,7 +3920,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'neppe' fronted — inversion: 'neppe ville noen ha trodd'"
+    "notes": "'neppe' fronted — inversion: 'neppe ville noen ha trodd'",
+    "accepted_answers": [
+      "Hardly anyone would have believed that such a situation was possible just ten years ago"
+    ]
   },
   {
     "id": "b2-awo-011",
@@ -3855,7 +4019,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'først når' fronted temporal clause — inversion in main clause: 'kan vi begynne'"
+    "notes": "'først når' fronted temporal clause — inversion in main clause: 'kan vi begynne'",
+    "accepted_answers": [
+      "Only when we understand the scope of the problem can we start to work towards a solution",
+      "Only when we understand the extent of the problem can we begin to work towards a solution"
+    ]
   },
   {
     "id": "b2-awo-015",
@@ -3971,7 +4139,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ikke minst' fronted — inversion: 'ikke minst er det viktig'"
+    "notes": "'ikke minst' fronted — inversion: 'ikke minst er det viktig'",
+    "accepted_answers": [
+      "Not least, it is important to protect employee well-being during a restructuring process"
+    ]
   },
   {
     "id": "b2-awo-020",
@@ -4070,7 +4241,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ikke én gang' fronted — inversion: 'ikke én gang hadde hun vurdert'"
+    "notes": "'ikke én gang' fronted — inversion: 'ikke én gang hadde hun vurdert'",
+    "accepted_answers": [
+      "Never once had she considered giving up her dream of becoming a doctor"
+    ]
   },
   {
     "id": "b2-awo-024",
@@ -4166,7 +4340,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'sjelden' fronted — inversion: 'sjelden ser man'"
+    "notes": "'sjelden' fronted — inversion: 'sjelden ser man'",
+    "accepted_answers": [
+      "Seldom does one see such a combination of technical skill and creativity in a young researcher",
+      "Rarely does one see such a combination of technical ability and creativity in a young researcher"
+    ]
   },
   {
     "id": "b2-awo-028",
@@ -4215,7 +4393,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ingenlunde' (by no means) fronted — formal inversion"
+    "notes": "'ingenlunde' (by no means) fronted — formal inversion",
+    "accepted_answers": [
+      "By no means is it certain that the new strategy will produce the desired results",
+      "By no means is it certain that the new strategy will achieve the desired results"
+    ]
   },
   {
     "id": "b2-awo-030",
@@ -4287,7 +4469,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Backshift: 'vil reise' → 'ville reise'; conditional in embedded clause"
+    "notes": "Backshift: 'vil reise' → 'ville reise'; conditional in embedded clause",
+    "accepted_answers": [
+      "They said that they would go to Japan the following summer if they could afford it",
+      "They said they would travel to Japan the following summer if they could afford it"
+    ]
   },
   {
     "id": "b2-rs-003",
@@ -4333,7 +4519,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'hevdet at' — speech act verb 'claim'; double backshift in coordinated clauses"
+    "notes": "'hevdet at' — speech act verb 'claim'; double backshift in coordinated clauses",
+    "accepted_answers": [
+      "He claimed he had not seen the document and did not know who had written it"
+    ]
   },
   {
     "id": "b2-rs-005",
@@ -4430,7 +4619,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'innrømte at' + 'forsikret om at' — two speech act verbs; backshift in both clauses"
+    "notes": "'innrømte at' + 'forsikret om at' — two speech act verbs; backshift in both clauses",
+    "accepted_answers": [
+      "She admitted she had made a mistake, but assured that it would not happen again"
+    ]
   },
   {
     "id": "b2-rs-009",
@@ -4550,7 +4742,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Reported question with 'om' (whether); backshift in both embedded questions"
+    "notes": "Reported question with 'om' (whether); backshift in both embedded questions",
+    "accepted_answers": [
+      "The teacher asked the students if they had understood the task and if they needed more time"
+    ]
   },
   {
     "id": "b2-rs-014",
@@ -4621,7 +4816,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Past perfect backshift: 'følte seg' → 'hadde følt seg'"
+    "notes": "Past perfect backshift: 'følte seg' → 'hadde følt seg'",
+    "accepted_answers": [
+      "The participants reported that they had felt more relaxed after the meditation sessions"
+    ]
   },
   {
     "id": "b2-rs-017",
@@ -4763,7 +4961,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'uttalte at' — formal speech act verb; 'alt som sto i dens makt' — idiomatic"
+    "notes": "'uttalte at' — formal speech act verb; 'alt som sto i dens makt' — idiomatic",
+    "accepted_answers": [
+      "The Prime Minister said that the government had done everything in its power to handle the crisis"
+    ]
   },
   {
     "id": "b2-rs-023",
@@ -4809,7 +5010,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Reported question with 'om'; past perfect passive in embedded clause"
+    "notes": "Reported question with 'om'; past perfect passive in embedded clause",
+    "accepted_answers": [
+      "The journalist asked if the minister knew that the report had been withheld for several months"
+    ]
   },
   {
     "id": "b2-rs-025",
@@ -4948,7 +5152,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'erkjente at' — acknowledge; 'burde ha lyttet' — modal perfect in backshifted clause"
+    "notes": "'erkjente at' — acknowledge; 'burde ha lyttet' — modal perfect in backshifted clause",
+    "accepted_answers": [
+      "He admitted that he had been wrong and that he should have listened to the advice he was given",
+      "He acknowledged he had been wrong and that he should have listened to the advice he was given"
+    ]
   },
   {
     "id": "b2-sm-001",
@@ -4998,7 +5206,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Counterfactual: 'hvis jeg var deg' (Norwegian uses past tense, not a distinct subjunctive)"
+    "notes": "Counterfactual: 'hvis jeg var deg' (Norwegian uses past tense, not a distinct subjunctive)",
+    "accepted_answers": [
+      "If I were you, I would speak to the doctor as soon as possible"
+    ]
   },
   {
     "id": "b2-sm-003",
@@ -5044,7 +5255,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Mixed counterfactual: past perfect condition → present result with 'nå'"
+    "notes": "Mixed counterfactual: past perfect condition → present result with 'nå'",
+    "accepted_answers": [
+      "If he had pursued a degree in technology, he would now have many more job opportunities"
+    ]
   },
   {
     "id": "b2-sm-005",
@@ -5142,7 +5356,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Counterfactual with passive result clause: 'kunne vært unngått'"
+    "notes": "Counterfactual with passive result clause: 'kunne vært unngått'",
+    "accepted_answers": [
+      "If the world had responded faster, the climate crisis could have been avoided",
+      "If the world had acted faster, the climate crisis could have been avoided"
+    ]
   },
   {
     "id": "b2-sm-009",
@@ -5242,7 +5460,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ville sett ut' — result clause with directional particle; past perfect condition"
+    "notes": "'ville sett ut' — result clause with directional particle; past perfect condition",
+    "accepted_answers": [
+      "If the technology had existed at that time, life would have been very different"
+    ]
   },
   {
     "id": "b2-sm-013",
@@ -5392,7 +5613,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'slippe' in result clause — avoid/escape; past perfect condition"
+    "notes": "'slippe' in result clause — avoid/escape; past perfect condition",
+    "accepted_answers": [
+      "If she had followed her parents' advice, she would have avoided many unnecessary problems"
+    ]
   },
   {
     "id": "b2-sm-019",
@@ -5513,7 +5737,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'jeg skulle ønske det fantes' — wish construction with past tense 'fantes'"
+    "notes": "'jeg skulle ønske det fantes' — wish construction with past tense 'fantes'",
+    "accepted_answers": [
+      "I wish there was a simpler solution, but unfortunately reality is more complex"
+    ]
   },
   {
     "id": "b2-sm-024",
@@ -5611,7 +5838,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Wish construction; 'ville ha sagt' — modal perfect expressing unfulfilled desire"
+    "notes": "Wish construction; 'ville ha sagt' — modal perfect expressing unfulfilled desire",
+    "accepted_answers": [
+      "I wish she was still here — there is so much I would have liked to say to her",
+      "I wish she were still here — there is so much I would have liked to tell her"
+    ]
   },
   {
     "id": "b2-sm-028",
@@ -5705,7 +5936,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Anaphoric: 'til tross for dette' refers back to the reported deficiencies"
+    "notes": "Anaphoric: 'til tross for dette' refers back to the reported deficiencies",
+    "accepted_answers": [
+      "The report highlighted several serious deficiencies. Despite this, management chose not to implement measures",
+      "The report pointed out several serious shortcomings. Despite this, management chose not to implement measures"
+    ]
   },
   {
     "id": "b2-tc-002",
@@ -5777,7 +6012,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'i tillegg' — additive cohesive connector; V2 inversion"
+    "notes": "'i tillegg' — additive cohesive connector; V2 inversion",
+    "accepted_answers": [
+      "The problem is complex and requires a comprehensive approach. In addition, one must take local conditions into account"
+    ]
   },
   {
     "id": "b2-tc-005",
@@ -5824,7 +6062,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'sistnevnte' — anaphoric reference (the latter); 'å foretrekke' — infinitive as predicate"
+    "notes": "'sistnevnte' — anaphoric reference (the latter); 'å foretrekke' — infinitive as predicate",
+    "accepted_answers": [
+      "The first option is cheaper, but the second is more sustainable. The latter is therefore preferable"
+    ]
   },
   {
     "id": "b2-tc-007",
@@ -5916,7 +6157,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'førstnevnte/sistnevnte' — the former/latter; anaphoric pair reference"
+    "notes": "'førstnevnte/sistnevnte' — the former/latter; anaphoric pair reference",
+    "accepted_answers": [
+      "There are two possible solutions. The first requires more resources, but the second takes longer to implement"
+    ]
   },
   {
     "id": "b2-tc-011",
@@ -5985,7 +6229,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'dessuten' — additive connector (moreover); V2 inversion"
+    "notes": "'dessuten' — additive connector (moreover); V2 inversion",
+    "accepted_answers": [
+      "The project was finished on time and within budget. Moreover, it exceeded the expectations of all involved parties",
+      "The project was completed on time and within budget. Furthermore, it exceeded the expectations of all involved parties"
+    ]
   },
   {
     "id": "b2-tc-014",
@@ -6032,7 +6280,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'den ene ... den andre' — cohesive pair reference; 'mens' = contrastive subordinator"
+    "notes": "'den ene ... den andre' — cohesive pair reference; 'mens' = contrastive subordinator",
+    "accepted_answers": [
+      "The participants were split into two groups. One group received treatment, while the other served as a control group"
+    ]
   },
   {
     "id": "b2-tc-016",
@@ -6149,7 +6400,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Anaphoric ordinals 'det første/andre/tredje'; ellipsis in coordinated clauses"
+    "notes": "Anaphoric ordinals 'det første/andre/tredje'; ellipsis in coordinated clauses",
+    "accepted_answers": [
+      "The project had three main objectives. The first was achieved, the second partially, and the third not at all",
+      "The project had three main aims. The first was achieved, the second partially, and the third not at all"
+    ]
   },
   {
     "id": "b2-tc-021",
@@ -6194,7 +6449,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'disse' — anaphoric plural pronoun; 'henholdsvis' — respectively (formal cohesive)"
+    "notes": "'disse' — anaphoric plural pronoun; 'henholdsvis' — respectively (formal cohesive)",
+    "accepted_answers": [
+      "The article describes two theories. These are known respectively as evolution theory and creation theory"
+    ]
   },
   {
     "id": "b2-tc-023",
@@ -6289,7 +6547,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'av disse' — partitive anaphoric reference; V2 after fronted 'av disse'"
+    "notes": "'av disse' — partitive anaphoric reference; V2 after fronted 'av disse'",
+    "accepted_answers": [
+      "Three candidates were invited for interview. Of these, ultimately only one was offered the position",
+      "Three candidates were called for interview. Of these, in the end only one was offered the position"
+    ]
   },
   {
     "id": "b2-tc-027",
@@ -6379,7 +6641,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'det siste av disse' — anaphoric ordinal partitive reference; 'imidlertid' parenthetical"
+    "notes": "'det siste av disse' — anaphoric ordinal partitive reference; 'imidlertid' parenthetical",
+    "accepted_answers": [
+      "The council recommended three measures. The last of these will, however, require considerable investments",
+      "The board recommended three measures. The last of these will, however, require significant investments"
+    ]
   },
   {
     "id": "b2-avf-001",
@@ -6429,7 +6695,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Past participle as attributive adjective: 'velskrevet' modifies 'brev'"
+    "notes": "Past participle as attributive adjective: 'velskrevet' modifies 'brev'",
+    "accepted_answers": [
+      "A well-written letter can open many doors in working life",
+      "A well-written letter can open many doors in one's professional life"
+    ]
   },
   {
     "id": "b2-avf-003",
@@ -6472,7 +6742,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'overraskende' — present participle as adjective; 'gjeldende' — present participle meaning current/applicable"
+    "notes": "'overraskende' — present participle as adjective; 'gjeldende' — present participle meaning current/applicable",
+    "accepted_answers": [
+      "The report contains many surprising results that challenge existing theories"
+    ]
   },
   {
     "id": "b2-avf-005",
@@ -6573,7 +6846,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'beroligende' — present participle as attributive adjective modifying 'stemme'"
+    "notes": "'beroligende' — present participle as attributive adjective modifying 'stemme'",
+    "accepted_answers": [
+      "She is known for her soothing voice and the ability to make people relax"
+    ]
   },
   {
     "id": "b2-avf-009",
@@ -6672,7 +6948,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'overlevende' — present participle used as both adjective and noun; here as adjective"
+    "notes": "'overlevende' — present participle used as both adjective and noun; here as adjective",
+    "accepted_answers": [
+      "The surviving passengers were taken to hospital for treatment",
+      "The surviving passengers were transported to the hospital for treatment"
+    ]
   },
   {
     "id": "b2-avf-013",
@@ -6745,7 +7025,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'utslitte' — past participle as plural attributive adjective"
+    "notes": "'utslitte' — past participle as plural attributive adjective",
+    "accepted_answers": [
+      "The tired runners crossed the finish line after a long and demanding race",
+      "The exhausted runners crossed the finishing line after a long and demanding race"
+    ]
   },
   {
     "id": "b2-avf-016",
@@ -6839,7 +7123,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'engasjerte' — past participle as plural definite attributive adjective"
+    "notes": "'engasjerte' — past participle as plural definite attributive adjective",
+    "accepted_answers": [
+      "The enthusiastic students asked many questions after the lecture"
+    ]
   },
   {
     "id": "b2-avf-020",
@@ -6910,7 +7197,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'klarsynt' — compound adjective used attributively; note V2 in relative clause"
+    "notes": "'klarsynt' — compound adjective used attributively; note V2 in relative clause",
+    "accepted_answers": [
+      "A clear-sighted leader sees problems before they occur and acts proactively"
+    ]
   },
   {
     "id": "b2-avf-023",
@@ -7004,7 +7294,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'raskt skiftende' — adverb + present participle as compound attributive"
+    "notes": "'raskt skiftende' — adverb + present participle as compound attributive",
+    "accepted_answers": [
+      "The rapidly changing market conditions make long-term planning difficult"
+    ]
   },
   {
     "id": "b2-avf-027",
@@ -7076,7 +7369,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'stadig voksende' — adverb + present participle as compound attributive"
+    "notes": "'stadig voksende' — adverb + present participle as compound attributive",
+    "accepted_answers": [
+      "An ever-increasing proportion of the population works from home at least one day a week"
+    ]
   },
   {
     "id": "b2-avf-030",
@@ -7125,7 +7421,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Rhetorical question: 'hvem ville vel trodd at'; 'vel' adds rhetorical softening"
+    "notes": "Rhetorical question: 'hvem ville vel trodd at'; 'vel' adds rhetorical softening",
+    "accepted_answers": [
+      "Who would have thought that a small startup from Bergen would become a global company"
+    ]
   },
   {
     "id": "b2-sv-002",
@@ -7146,7 +7445,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Parenthetical insertion with dashes: 'som mange hadde fryktet' interrupts main clause"
+    "notes": "Parenthetical insertion with dashes: 'som mange hadde fryktet' interrupts main clause",
+    "accepted_answers": [
+      "The outcome — which many had feared — turned out to be far worse than anyone had expected",
+      "The result — which many had feared — proved to be far worse than anyone had expected"
+    ]
   },
   {
     "id": "b2-sv-003",
@@ -7191,7 +7494,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Long parenthetical with dashes between subject and predicate"
+    "notes": "Long parenthetical with dashes between subject and predicate",
+    "accepted_answers": [
+      "The project — after months of delays and budget overruns — was finally finished"
+    ]
   },
   {
     "id": "b2-sv-005",
@@ -7265,7 +7571,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Rhetorical question; indirect question 'hva fremtiden vil bringe' as object"
+    "notes": "Rhetorical question; indirect question 'hva fremtiden vil bringe' as object",
+    "accepted_answers": [
+      "Who can say with certainty what the future has in store for the next generation"
+    ]
   },
   {
     "id": "b2-sv-008",
@@ -7288,7 +7597,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Double parenthetical with dashes; 'og det har alltid vært' = emphatic additive"
+    "notes": "Double parenthetical with dashes; 'og det har alltid vært' = emphatic additive",
+    "accepted_answers": [
+      "It is — and has always been — a fundamental human need to belong to a community"
+    ]
   },
   {
     "id": "b2-sv-009",
@@ -7337,7 +7649,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Parenthetical as appositive contrast: 'enkel i teorien, men kompleks i praksis'"
+    "notes": "Parenthetical as appositive contrast: 'enkel i teorien, men kompleks i praksis'",
+    "accepted_answers": [
+      "The solution — simple in theory, but complex in practice — requires close collaboration between all parties"
+    ]
   },
   {
     "id": "b2-sv-011",
@@ -7408,7 +7723,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Rhetorical why-question implying an obvious/unfortunate answer"
+    "notes": "Rhetorical why-question implying an obvious/unfortunate answer",
+    "accepted_answers": [
+      "Why do so many young people choose to leave rural areas when opportunities are far greater in the cities"
+    ]
   },
   {
     "id": "b2-sv-014",
@@ -7432,7 +7750,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Rhetorical question with parenthetical exception; 'egentlig' as challenge adverb"
+    "notes": "Rhetorical question with parenthetical exception; 'egentlig' as challenge adverb",
+    "accepted_answers": [
+      "Who — other than those who benefit from the system — would actually defend the status quo"
+    ]
   },
   {
     "id": "b2-sv-015",
@@ -7503,7 +7824,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Participial phrase as parenthetical: 'engang ansett som' — once regarded as"
+    "notes": "Participial phrase as parenthetical: 'engang ansett som' — once regarded as",
+    "accepted_answers": [
+      "The Norwegian welfare state — once regarded as a model for the world — now faces major challenges"
+    ]
   },
   {
     "id": "b2-sv-018",
@@ -7555,7 +7879,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Emphatic parenthetical that repeats and intensifies the subject"
+    "notes": "Emphatic parenthetical that repeats and intensifies the subject",
+    "accepted_answers": [
+      "The challenge — and it is a genuinely great challenge — is to find solutions that everyone can get behind"
+    ]
   },
   {
     "id": "b2-sv-020",
@@ -7577,7 +7904,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Rhetorical modal question; 'virkelig' — challenge adverb"
+    "notes": "Rhetorical modal question; 'virkelig' — challenge adverb",
+    "accepted_answers": [
+      "Can anyone really argue that the current policy is sufficient to meet the climate crisis"
+    ]
   },
   {
     "id": "b2-sv-021",
@@ -7676,7 +8006,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Self-critical rhetorical question; present perfect in embedded clause"
+    "notes": "Self-critical rhetorical question; present perfect in embedded clause",
+    "accepted_answers": [
+      "Is it possible that we have underestimated the extent of the problem from the very beginning",
+      "Could it be that we have underestimated the scale of the problem from the very beginning"
+    ]
   },
   {
     "id": "b2-sv-025",
@@ -7698,7 +8032,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Appositive concessive parenthetical: 'usikker og uforutsigbar som den er'"
+    "notes": "Appositive concessive parenthetical: 'usikker og uforutsigbar som den er'",
+    "accepted_answers": [
+      "The future — uncertain and unpredictable as it is — requires that we think long-term"
+    ]
   },
   {
     "id": "b2-sv-026",
@@ -7747,7 +8084,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Passive participial phrase as dash-parenthetical; 'samle inn' — raise (funds)"
+    "notes": "Passive participial phrase as dash-parenthetical; 'samle inn' — raise (funds)",
+    "accepted_answers": [
+      "The initiative — supported by over a hundred organizations — has already raised millions for the cause"
+    ]
   },
   {
     "id": "b2-sv-028",
@@ -7818,7 +8158,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Rhetorical cleft question: 'er det ikke nettopp i ... at'; 'egentlig' as deepening adverb"
+    "notes": "Rhetorical cleft question: 'er det ikke nettopp i ... at'; 'egentlig' as deepening adverb",
+    "accepted_answers": [
+      "Is it not exactly in the most difficult times that we show who we really are"
+    ]
   },
   {
     "id": "b2-pn-001",
@@ -7868,7 +8211,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'vedlagt finner De' — V2 inversion after fronted participle; 'gjeldende' = applicable/current"
+    "notes": "'vedlagt finner De' — V2 inversion after fronted participle; 'gjeldende' = applicable/current",
+    "accepted_answers": [
+      "Enclosed please find our official order confirmation with the applicable terms",
+      "Enclosed you will find our official offer confirmation with the applicable terms"
+    ]
   },
   {
     "id": "b2-pn-003",
@@ -7921,7 +8268,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'bekrefter herved mottak av' — formal acknowledgement phrase; 'Deres' formal address"
+    "notes": "'bekrefter herved mottak av' — formal acknowledgement phrase; 'Deres' formal address",
+    "accepted_answers": [
+      "We hereby confirm receipt of your application and will respond within five working days",
+      "We hereby confirm receipt of your application and will get back to you within five working days"
+    ]
   },
   {
     "id": "b2-pn-005",
@@ -7969,7 +8320,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'i henhold til' — in accordance with (formal); 'forpliktet til å' = obliged to"
+    "notes": "'i henhold til' — in accordance with (formal); 'forpliktet til å' = obliged to",
+    "accepted_answers": [
+      "In accordance with clause 4.2 of the contract, the supplier is obligated to notify of delays within 48 hours"
+    ]
   },
   {
     "id": "b2-pn-007",
@@ -8046,7 +8400,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'det vises til' — impersonal passive reference opener; 'presisere' = clarify/specify"
+    "notes": "'det vises til' — impersonal passive reference opener; 'presisere' = clarify/specify",
+    "accepted_answers": [
+      "We refer to earlier correspondence in the matter, and we wish to clarify our position"
+    ]
   },
   {
     "id": "b2-pn-010",
@@ -8071,7 +8428,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'henstille til' — formally request/urge; 'videreformidle' = pass on/convey"
+    "notes": "'henstille til' — formally request/urge; 'videreformidle' = pass on/convey",
+    "accepted_answers": [
+      "I take the liberty of asking the department heads to pass this information on to their colleagues"
+    ]
   },
   {
     "id": "b2-pn-011",
@@ -8147,7 +8507,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'eventuelle ulemper dette måtte ha medført' — formal hedged apology; 'Deres forståelse' = formal address"
+    "notes": "'eventuelle ulemper dette måtte ha medført' — formal hedged apology; 'Deres forståelse' = formal address",
+    "accepted_answers": [
+      "The company apologizes for any inconvenience this may have caused and thanks you for your understanding"
+    ]
   },
   {
     "id": "b2-pn-014",
@@ -8214,7 +8577,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'det fremgår av' — it is evident/clear from (formal evidential); 'vedlagte' = attached"
+    "notes": "'det fremgår av' — it is evident/clear from (formal evidential); 'vedlagte' = attached",
+    "accepted_answers": [
+      "It is clear from the attached documentation that the submission deadline was met"
+    ]
   },
   {
     "id": "b2-pn-017",
@@ -8260,7 +8626,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'dersom De har' — formal conditional; 'hjertelig velkommen' = most welcome (formal)"
+    "notes": "'dersom De har' — formal conditional; 'hjertelig velkommen' = most welcome (formal)",
+    "accepted_answers": [
+      "Should you have any additional questions, you are most welcome to contact us",
+      "If you have any further questions, please do not hesitate to contact us"
+    ]
   },
   {
     "id": "b2-pn-019",
@@ -8309,7 +8679,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'tillater oss å minne om' — formal reminder phrasing; 'snarlig oppgjør' = prompt settlement"
+    "notes": "'tillater oss å minne om' — formal reminder phrasing; 'snarlig oppgjør' = prompt settlement",
+    "accepted_answers": [
+      "We take the liberty of reminding you that the payment deadline expires on 30 June and request prompt settlement"
+    ]
   },
   {
     "id": "b2-pn-021",
@@ -8414,7 +8787,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ovennevnte' — above-mentioned (formal bureaucratic); 'fra og med' = as of/from"
+    "notes": "'ovennevnte' — above-mentioned (formal bureaucratic); 'fra og med' = as of/from",
+    "accepted_answers": [
+      "It is hereby confirmed that the above-mentioned person has been permanently employed by the company from 1 March this year"
+    ]
   },
   {
     "id": "b2-pn-025",
@@ -8468,7 +8844,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'dessverre kommet til at' — formal regret phrase; 'stillingen er besatt' = position is filled"
+    "notes": "'dessverre kommet til at' — formal regret phrase; 'stillingen er besatt' = position is filled",
+    "accepted_answers": [
+      "After a careful review of your application, we regret to inform you that the position has been filled"
+    ]
   },
   {
     "id": "b2-pn-027",
@@ -8548,7 +8927,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ønsker å informere Dem om at' — formal notification opening; 'Dem' formal address"
+    "notes": "'ønsker å informere Dem om at' — formal notification opening; 'Dem' formal address",
+    "accepted_answers": [
+      "We would like to inform you that the planned shutdown will take place on 15 August from 22:00"
+    ]
   },
   {
     "id": "b2-pn-030",
@@ -8699,7 +9081,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'noe som' as a non-restrictive relative pronoun referring to the whole preceding clause — a stylistic device absent in everyday speech"
+    "notes": "'noe som' as a non-restrictive relative pronoun referring to the whole preceding clause — a stylistic device absent in everyday speech",
+    "accepted_answers": [
+      "The report is written in a clear and concise manner, which makes it easily accessible"
+    ]
   },
   {
     "id": "b2-sv-107",
@@ -8747,7 +9132,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Parenthetical concession 'om enn' (albeit) inserted mid-sentence — a formal stylistic hedge; contrast with a separate concessive clause"
+    "notes": "Parenthetical concession 'om enn' (albeit) inserted mid-sentence — a formal stylistic hedge; contrast with a separate concessive clause",
+    "accepted_answers": [
+      "The measure has had a positive impact — albeit limited — on unemployment in the region"
+    ]
   },
   {
     "id": "b2-sv-109",
@@ -8936,7 +9324,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'uavhengig av' (regardless of) — formal fronted preposition phrase; embedded relative clause 'vi har gjort' with zero relative pronoun"
+    "notes": "'uavhengig av' (regardless of) — formal fronted preposition phrase; embedded relative clause 'vi har gjort' with zero relative pronoun",
+    "accepted_answers": [
+      "Regardless of the outcome, the experience we have acquired will be valuable for future projects"
+    ]
   },
   {
     "id": "b2-sv-117",
@@ -9010,7 +9401,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Full cleft 'det er ... at' with a prepositional phrase as the focus; literary/formal register"
+    "notes": "Full cleft 'det er ... at' with a prepositional phrase as the focus; literary/formal register",
+    "accepted_answers": [
+      "It is exactly in the meeting of different perspectives that the best ideas arise"
+    ]
   },
   {
     "id": "b2-sv-120",
@@ -9085,7 +9479,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'tillater oss å bemerke' — highly formal, almost legalistic register for raising a complaint; contrast with informal 'vi synes dere ikke har holdt fristene'"
+    "notes": "'tillater oss å bemerke' — highly formal, almost legalistic register for raising a complaint; contrast with informal 'vi synes dere ikke har holdt fristene'",
+    "accepted_answers": [
+      "We take the liberty of noting that the agreed deadlines have not been met",
+      "We wish to note that the agreed deadlines have not been met"
+    ]
   },
   {
     "id": "b2-nr-103",
@@ -9161,7 +9559,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Understated informal criticism; utvikle seg (develop) is the natural verb; contrast with formal samarbeidet har ikke innfridd forventningene"
+    "notes": "Understated informal criticism; utvikle seg (develop) is the natural verb; contrast with formal samarbeidet har ikke innfridd forventningene",
+    "accepted_answers": [
+      "This is not exactly how we had envisioned the collaboration would develop",
+      "This is not quite how we had imagined the collaboration would develop"
+    ]
   },
   {
     "id": "b2-nr-106",
@@ -9240,7 +9642,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'ber om at' + subjunctive-like construction; 'i henhold til vedtektene' — formal legal register; note the tonal distance from everyday speech"
+    "notes": "'ber om at' + subjunctive-like construction; 'i henhold til vedtektene' — formal legal register; note the tonal distance from everyday speech",
+    "accepted_answers": [
+      "This is a matter for the board to decide, and we ask that it be handled in accordance with the statutes",
+      "This is a matter for the board to decide, and we request that it be handled in accordance with the bylaws"
+    ]
   },
   {
     "id": "b2-nr-109",
@@ -9343,7 +9749,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'herved bekreftes det at' — archaic/official formula used in formal correspondence and receipts; entirely absent from informal register"
+    "notes": "'herved bekreftes det at' — archaic/official formula used in formal correspondence and receipts; entirely absent from informal register",
+    "accepted_answers": [
+      "We hereby confirm that the application has been received and will be processed within three working days"
+    ]
   },
   {
     "id": "b2-nr-113",
@@ -9368,7 +9777,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'snakke i vei' (talk on and on) — informal idiomatic phrase; 'alt mulig' and 'noe som helst' reinforce informal register"
+    "notes": "'snakke i vei' (talk on and on) — informal idiomatic phrase; 'alt mulig' and 'noe som helst' reinforce informal register",
+    "accepted_answers": [
+      "He went on and on about everything, without actually saying anything of substance"
+    ]
   },
   {
     "id": "b2-nr-114",
@@ -9463,7 +9875,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "Spoken informal: trailing så particle; neuter møte needs article et"
+    "notes": "Spoken informal: trailing så particle; neuter møte needs article et",
+    "accepted_answers": [
+      "It was actually quite a dull meeting, but the boss seemed satisfied, so",
+      "It was actually rather a boring meeting, but the boss seemed satisfied, so"
+    ]
   },
   {
     "id": "b2-nr-118",
@@ -9539,7 +9955,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'fremsatt' (lodged/submitted) and 'undergitt en grundig saksbehandling' — formal administrative language found in official responses to complaints"
+    "notes": "'fremsatt' (lodged/submitted) and 'undergitt en grundig saksbehandling' — formal administrative language found in official responses to complaints",
+    "accepted_answers": [
+      "The complaint has been filed within the deadline and will be subjected to a thorough case review",
+      "The complaint has been submitted within the deadline and will be subjected to a thorough case review"
+    ]
   },
   {
     "id": "b2-pn-101",
@@ -9642,7 +10062,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'vedtatt å iverksette' (resolved to initiate) — boardroom register; 'ekstern gjennomgang' (external review) is standard corporate governance vocabulary"
+    "notes": "'vedtatt å iverksette' (resolved to initiate) — boardroom register; 'ekstern gjennomgang' (external review) is standard corporate governance vocabulary",
+    "accepted_answers": [
+      "The board has decided to initiate an external review of the company's finances"
+    ]
   },
   {
     "id": "b2-pn-105",
@@ -9691,7 +10114,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'vedkommende' — formal gender-neutral third person pronoun used in official documents; 'beherske' (to command/master) is a professional register verb"
+    "notes": "'vedkommende' — formal gender-neutral third person pronoun used in official documents; 'beherske' (to command/master) is a professional register verb",
+    "accepted_answers": [
+      "The applicant must demonstrate that they command Norwegian at a minimum B2 level"
+    ]
   },
   {
     "id": "b2-pn-107",
@@ -9791,7 +10217,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'tilbydere' (tenderers) and 'anbud' (tender/bid) are procurement vocabulary; 'det er et krav at' — formal obligation construction"
+    "notes": "'tilbydere' (tenderers) and 'anbud' (tender/bid) are procurement vocabulary; 'det er et krav at' — formal obligation construction",
+    "accepted_answers": [
+      "It is a requirement that all bidders submit a complete bid with relevant references"
+    ]
   },
   {
     "id": "b2-pn-111",
@@ -9891,7 +10320,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'eventuelle innsigelser' (any objections) — formal legal/administrative vocabulary; 'klagefrist' (appeal deadline) is a key legal term; 'fremsettes skriftlig' — formal passive imperative"
+    "notes": "'eventuelle innsigelser' (any objections) — formal legal/administrative vocabulary; 'klagefrist' (appeal deadline) is a key legal term; 'fremsettes skriftlig' — formal passive imperative",
+    "accepted_answers": [
+      "Any objections to the decision must be filed in writing within the three-week appeal period"
+    ]
   },
   {
     "id": "b2-pn-115",
@@ -9937,7 +10369,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'i tilknytning til' (in connection with) — formal legal prepositional phrase; 'etter norsk rett' (under Norwegian law) is standard contract language"
+    "notes": "'i tilknytning til' (in connection with) — formal legal prepositional phrase; 'etter norsk rett' (under Norwegian law) is standard contract language",
+    "accepted_answers": [
+      "The parties agree that disputes arising under this agreement shall be governed by Norwegian law"
+    ]
   },
   {
     "id": "b2-pn-118",
@@ -10006,7 +10441,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": "'forbeholder seg retten til å' (reserves the right to) — standard employment contract formula; 'innenfor rammen av' (within the scope/framework of) is formal register"
+    "notes": "'forbeholder seg retten til å' (reserves the right to) — standard employment contract formula; 'innenfor rammen av' (within the scope/framework of) is formal register",
+    "accepted_answers": [
+      "The employer reserves the right to modify work tasks within the scope of the job description",
+      "The employer reserves the right to change duties within the scope of the job description"
+    ]
   },
   {
     "id": "b2-sv2-201",

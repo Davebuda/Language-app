@@ -244,7 +244,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "He said he had lived in Bergen for five years"
+    ]
   },
   {
     "id": "b1-pp-011",
@@ -483,7 +486,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "The teacher had already graded the tests when we returned from break",
+      "The teacher had already corrected the tests when we returned from break"
+    ]
   },
   {
     "id": "b1-pp-021",
@@ -685,7 +692,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "We had spoken about it many times, but never done anything about it"
+    ]
   },
   {
     "id": "b1-pp-030",
@@ -1023,7 +1033,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "She stood staring out the window"
+    ]
   },
   {
     "id": "b1-prp-014",
@@ -1801,7 +1814,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "It was yesterday that she received the news"
+    ]
   },
   {
     "id": "b1-cs-019",
@@ -2043,7 +2059,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "It is exactly this that I was trying to explain to you"
+    ]
   },
   {
     "id": "b1-cs-030",
@@ -2327,7 +2346,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "Norwegian is spoken by about five million people",
+      "Norwegian is spoken by around five million people"
+    ]
   },
   {
     "id": "b1-pas-012",
@@ -2738,7 +2761,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "Books are loaned out for free at the library"
+    ]
   },
   {
     "id": "b1-pas-030",
@@ -3219,7 +3245,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "I wish children had more time to play",
+      "I wish that children had more time for play"
+    ]
   },
   {
     "id": "b1-sub-019",
@@ -3362,7 +3392,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "I wish the food here weren't so expensive"
+    ]
   },
   {
     "id": "b1-sub-025",
@@ -3507,7 +3540,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "I wish I had chosen a different course"
+    ]
   },
   {
     "id": "b1-dm-001",
@@ -3816,7 +3852,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "That's just how it works in this country, you know"
+    ]
   },
   {
     "id": "b1-dm-014",
@@ -3977,7 +4016,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "He's kind of always late to meetings",
+      "He's sort of always late for meetings"
+    ]
   },
   {
     "id": "b1-dm-021",
@@ -4519,7 +4562,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "They settled down in Oslo after having lived abroad"
+    ]
   },
   {
     "id": "b1-pv-014",
@@ -4688,7 +4734,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "He removed his hat and greeted politely"
+    ]
   },
   {
     "id": "b1-pv-021",
@@ -4901,7 +4950,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "We returned to the cabin tired but happy",
+      "We came back to the cottage tired but happy"
+    ]
   },
   {
     "id": "b1-pv-030",
@@ -5243,7 +5296,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "The hectic day at work drained him of energy"
+    ]
   },
   {
     "id": "b1-dd-014",
@@ -5481,7 +5537,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "The young men on the squad trained hard",
+      "The young men in the team trained hard"
+    ]
   },
   {
     "id": "b1-dd-024",
@@ -5644,7 +5704,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "The cold climate in the north attracts many tourists in the winter"
+    ]
   },
   {
     "id": "b1-cx-001",
@@ -6082,7 +6145,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "He asked whether we knew that the ferry didn't run on Mondays"
+    ]
   },
   {
     "id": "b1-cx-019",
@@ -6374,7 +6440,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "He explained that he couldn't come because he was sick, but that he would attend"
+    ]
   },
   {
     "id": "b1-fr-001",
@@ -6638,7 +6707,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "We take the liberty of reminding you that the invoice is due on 30 May"
+    ]
   },
   {
     "id": "b1-fr-012",
@@ -6856,7 +6928,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "Aid is provided in accordance with current regulations"
+    ]
   },
   {
     "id": "b1-fr-021",
@@ -7088,7 +7163,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "We hope to hear from you and look forward to further collaboration"
+    ]
   },
   {
     "id": "b1-id-001",
@@ -7402,7 +7480,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "Sit down and tell me what happened"
+    ]
   },
   {
     "id": "b1-id-014",
@@ -7571,7 +7652,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "We are very busy this week with all of the meetings"
+    ]
   },
   {
     "id": "b1-id-021",
@@ -7804,7 +7888,11 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "Have a good trip — send us pictures",
+      "Have a wonderful trip — send us pictures"
+    ]
   },
   {
     "id": "b1-iq-001",
@@ -8112,7 +8200,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "He didn't know how long he had slept"
+    ]
   },
   {
     "id": "b1-iq-014",
@@ -8463,7 +8554,10 @@
     "exercise_types": [
       "translation-to-english"
     ],
-    "notes": ""
+    "notes": "",
+    "accepted_answers": [
+      "We don't know who paid for dinner"
+    ]
   },
   {
     "id": "b1-iq-029",
@@ -8731,6 +8825,9 @@
       "word-order",
       "speed-round",
       "listening-comprehension"
+    ],
+    "accepted_answers": [
+      "I have been in Norway for three years but I am still not fluent"
     ]
   },
   {
