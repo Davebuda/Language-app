@@ -92,9 +92,10 @@ export class ServerAIService implements AIService {
     level: CEFRLevel,
     topic: string,
     constraintEvalSuffix?: string,
+    focusConceptId?: string,
   ): Promise<ConversationTurnResult> {
     const result = await callServerAI<ConversationTurnResult>('conversation', {
-      messages, level, topic, constraintEvalSuffix,
+      messages, level, topic, constraintEvalSuffix, focusConceptId,
     })
     return result ?? {
       tutorResponse: messages.length === 0

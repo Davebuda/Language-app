@@ -19,6 +19,7 @@ import type { ResponseConstraint } from '@/lib/constraints'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { markLaneDone } from '@/lib/lane-completion'
 import { confirmedRepair } from '@/lib/gender-correction-gate'
+import { buildConversationFocus } from '@/lib/conversation-focus'
 import { logExerciseResult } from '@/lib/logEvents'
 import type { ExerciseResult } from '@/types/session'
 import type { ErrorTag } from '@/types/taxonomy'
@@ -236,7 +237,13 @@ export default function ConversationPage() {
         : undefined
 
       const topicLabel = TOPICS.find((t) => t.id === selectedTopic)?.label ?? 'daglig rutine'
-      const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix)
+      // Tier-2 Slice A — diagnosis-aware Kari. Read the moat's current weak-spot
+      // diagnosis (gated >=0.7 inside the helper) and let Kari gently steer the chat
+      // toward it. Read-only + display-only: it shapes the conversation, it never
+      // moves mastery — the correction path below still goes through confirmedRepair.
+      // null (cold start / low confidence) → Kari stays in her general, level-only mode.
+      const focusConceptId = buildConversationFocus(useFingerprintStore.getState().fingerprint) ?? undefined
+      const result = await aiService.conversationTurn(history, level, topicLabel, constraintSuffix, focusConceptId)
       setConvSource(result.source)
       // Gate corrections through the deterministic verifiers: only a lexicon/paradigm-
       // confirmed correction is shown / persisted / written; everything else is suppressed

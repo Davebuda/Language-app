@@ -231,6 +231,7 @@ export function buildConversationPrompt(
   level: string,
   topic: string,
   constraintEvalSuffix?: string,
+  focusConceptId?: string,
 ): { system: string; messages: Array<{ role: string; content: string }> } {
   const topicLabel = TOPIC_DESCRIPTIONS[topic] ?? topic;
   const levelNote: Record<string, string> = {
@@ -239,9 +240,20 @@ export function buildConversationPrompt(
     B1: 'natural sentences, varied grammar, can handle some complexity',
     B2: 'fluent natural Norwegian, complex grammar is fine',
   };
+  // Tier-2 Slice A — diagnosis-aware Kari. When the moat has a confident (>=0.7)
+  // diagnosis of the learner's weak spot, weave a gentle steer toward practising it.
+  // This shapes the chat ONLY — it never moves mastery (corrections stay gated by
+  // confirmedRepair). Caller passes null below 0.7 so Kari never invents a weakness.
+  const focusLabel = focusConceptId ? (CONCEPT_LABELS[focusConceptId] ?? focusConceptId) : undefined;
+  const focusNote = focusLabel
+    ? `
+
+WHAT THIS LEARNER IS WORKING ON:
+This learner tends to slip on ${focusLabel}. When it fits naturally, gently steer the chat so they get to produce sentences that use it — pick follow-up questions that invite it — and if they slip, quietly model the correct form in your own reply (rule 5). NEVER name the grammar point, announce that you are targeting anything, lecture, or break the relaxed-chat feel. It should feel like a friend who happens to nudge you in a helpful direction.`
+    : '';
   const system = `You are Kari — a warm, natural Norwegian friend helping someone practise spoken Bokmål about: ${topicLabel}. Talk like a real person in a relaxed chat, never like a textbook.
 
-The learner is at level ${level}: ${levelNote[level] ?? 'adjust to their level'}
+The learner is at level ${level}: ${levelNote[level] ?? 'adjust to their level'}${focusNote}
 
 HOW TO REPLY:
 1. Norwegian Bokmål only — never put English words inside your reply, never use Nynorsk.

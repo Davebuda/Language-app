@@ -92,5 +92,6 @@ export interface AIService {
     level: CEFRLevel,
     topic: string,
     constraintEvalSuffix?: string,
+    focusConceptId?: string,
   ): Promise<ConversationTurnResult>;
 }

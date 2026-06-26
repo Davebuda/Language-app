@@ -52,8 +52,8 @@ class HybridAIService implements AIService {
   // through). The 1B model is too weak for free-form conversation. Route to the server:
   // it returns Groq-8B output when reachable, else a deterministic Norwegian template —
   // both safe, never the 1B. See docs/decisions/2026-06-03-conversation-no-local-1b.md.
-  conversationTurn: AIService['conversationTurn'] = (messages, level, topic, suffix) =>
-    this.server.conversationTurn(messages, level, topic, suffix)
+  conversationTurn: AIService['conversationTurn'] = (messages, level, topic, suffix, focusConceptId) =>
+    this.server.conversationTurn(messages, level, topic, suffix, focusConceptId)
 }
 
 export const aiService = new HybridAIService()

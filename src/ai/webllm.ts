@@ -329,6 +329,7 @@ export class WebLLMService implements AIService {
     level: CEFRLevel,
     topic: string,
     constraintEvalSuffix?: string,
+    focusConceptId?: string,
   ): Promise<ConversationTurnResult> {
     const fallbackResponse = (msgs: ConversationMessage[]): string =>
       msgs.length === 0
@@ -344,6 +345,7 @@ export class WebLLMService implements AIService {
         level,
         topic,
         constraintEvalSuffix,
+        focusConceptId,
       )
       const raw = await this.completeChat(system, chatMessages)
 

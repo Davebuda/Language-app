@@ -101,6 +101,7 @@ async function handleConversation(params: {
   level: CEFRLevel
   topic: string
   constraintEvalSuffix?: string
+  focusConceptId?: string
 }) {
   const fallback = (msgs: ConversationMessage[]) =>
     msgs.length === 0
@@ -112,7 +113,7 @@ async function handleConversation(params: {
     content: m.content,
   }))
   const { system, messages } = buildConversationPrompt(
-    chatMessages, params.level, params.topic, params.constraintEvalSuffix,
+    chatMessages, params.level, params.topic, params.constraintEvalSuffix, params.focusConceptId,
   )
   // Temp 0.6 (was 0.85): the bake-off showed lower temperature gives markedly
   // more reliable grammar on this model while keeping conversational warmth.
