@@ -88,6 +88,22 @@ function resolvePool(
   return defaultPool;
 }
 
+// ② New-material modality steer (Plan C / T1.6) with a cold-start guard.
+// A high-confidence diagnosis tilts the MODALITY of new material — EXCEPT it must
+// never force production OUTPUT on a brand-new (cold-start, zero-attempt) concept:
+// you can't produce what you've never seen (i+1 scaffolding). A 'recognition' tilt is
+// always safe; production-family tilts pass through only once the concept has at least
+// one attempt. Returns the focus to hand to resolvePool (undefined = no tilt).
+export function resolveNewMaterialFocus(
+  diagnosisFocus: DiagnosisResult['recommendedFocus'] | undefined,
+  isColdStart: boolean,
+): DiagnosisResult['recommendedFocus'] | undefined {
+  const forcesProduction =
+    diagnosisFocus === 'production' || diagnosisFocus === 'mechanics' || diagnosisFocus === 'application';
+  if (isColdStart && forcesProduction) return undefined;
+  return diagnosisFocus;
+}
+
 function makeItem(
   id: string,
   conceptId: string,
@@ -370,7 +386,12 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     const concept = newMaterialConcepts[i % Math.max(newMaterialConcepts.length, 1)];
     if (concept) {
       const reason: SelectionReason = (fingerprint.conceptMastery[concept.id]?.attemptCount ?? 0) === 0 ? 'cold_start' : 'new_material';
-      const added = addItem(concept.id, NEW_MATERIAL_EXERCISES, 'new-material', reason);
+      // ② Plan C: tilt the new-material modality toward the diagnosis-recommended
+      // focus, guarded so a cold-start concept is never forced into production.
+      const added = addItem(
+        concept.id, NEW_MATERIAL_EXERCISES, 'new-material', reason, true,
+        resolveNewMaterialFocus(diagnosisFocus, reason === 'cold_start'),
+      );
       if (added) {
         conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
       }
@@ -536,7 +557,12 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
 
   // --- Snakk block: production exercises drawn from focus concepts ---
   // Excludes passed sentences — fresh production practice only.
+  // ① Plan C: the diagnosed root cause + affected concepts LEAD the speaking block,
+  // so the learner speaks the very construction that breaks their sentences (the
+  // moat's diagnosis→production edge). Then weekly focus, weak spots, unlocked.
+  // Safe by construction: this block is purpose:'remediation', never review/SRS-due.
   const snakkConceptPool = [
+    ...diagnosisTargets,
     ...Array.from(focusIds),
     ...weakConcepts,
     ...unlockedConcepts.map((c) => c.id),
@@ -549,7 +575,12 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     if (!conceptId || snakkUsed.has(conceptId)) continue;
     const exerciseType = firstEligibleType(conceptId, SNAKK_EXERCISES_BLOCK, true);
     if (exerciseType === null) continue;
-    const snakkReason: SelectionReason = focusIds.has(conceptId) ? 'weekly_focus' : 'weak_concept';
+    const snakkReason: SelectionReason =
+      conceptId === rootCauseId
+        ? 'root_cause'
+        : focusIds.has(conceptId)
+          ? 'weekly_focus'
+          : 'weak_concept';
     snakkItems.push(
       makeItem(`item-snakk-${snakkIndex++}`, conceptId, `pending:${conceptId}`, exerciseType, 'remediation', snakkReason),
     );
