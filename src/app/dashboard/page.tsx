@@ -39,10 +39,11 @@ const PLAN_ICON: Record<string, ElementType> = {
   'weekly-check': Sparkles,
 }
 
-// Flag-gated dashboard variant. The V3 flag is false on the server AND on the
-// first client render (hydration-safe), so SSR + first paint always match the
-// current dashboard; it swaps to DashboardV3 only after mount when the
-// `norskcoach-dash-v3` localStorage flag is on. Off by default → live unchanged.
+// Flag-gated dashboard variant. V3 is the DEFAULT (2026-06-26): the flag is
+// true on the server AND first client render (hydration-safe), so SSR + first
+// paint render DashboardV3 with no flash. A device can opt back to the legacy
+// dashboard by storing `norskcoach-dash-v3` = 'off' (setDashV3(false)) — kept
+// as a quick rollback path without a redeploy.
 export default function DashboardPage() {
   const v3 = useDashboardV3()
   return v3 ? <DashboardV3 /> : <DashboardLegacy />
