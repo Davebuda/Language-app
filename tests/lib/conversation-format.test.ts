@@ -29,4 +29,27 @@ describe('stripTutorScaffolding', () => {
       'Hva liker du å gjøre på fritiden?',
     );
   });
+
+  // 2026-06-26 conversation calibration: the model sometimes improvises a trailing
+  // tutor note in brackets even when told not to (seen in the bake-off:
+  // "[merk: ingen feil]", "[merk: \"feil\" → \"rett\"]"). These must not leak into
+  // Kari's chat bubble.
+  it('strips an improvised [merk: …] bracket note', () => {
+    expect(
+      stripTutorScaffolding('Det er godt for deg. Drikker du kaffe hjemme?\n[merk: "et kaffe" → "en kaffe"]'),
+    ).toBe('Det er godt for deg. Drikker du kaffe hjemme?');
+  });
+
+  it('strips a "[merk: ingen feil]" no-error aside', () => {
+    expect(stripTutorScaffolding('Jeg drikker kaffe om morgenen. [merk: ingen feil]')).toBe(
+      'Jeg drikker kaffe om morgenen.',
+    );
+  });
+
+  it('does not strip ordinary parentheses or non-tutor brackets', () => {
+    // Only the known tutor-note keywords are stripped; real content survives.
+    expect(stripTutorScaffolding('Jeg liker te (og kaffe). Hva med deg?')).toBe(
+      'Jeg liker te (og kaffe). Hva med deg?',
+    );
+  });
 });

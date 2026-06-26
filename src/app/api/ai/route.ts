@@ -17,6 +17,14 @@ import type { ResolvedContent } from '@/types/content'
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY
 const GROQ_MODEL = process.env.GROQ_MODEL ?? 'llama-3.1-8b-instant'
+// Free-form conversation (Kari) is the most quality-sensitive Norwegian-prose
+// path: an empirical bake-off (2026-06-26) showed llama-3.1-8b-instant produces
+// non-native, error-prone Bokmål (wrong gender/pronoun, anglicisms, its own
+// grammar slips), while llama-3.3-70b-versatile is near-native AND reliably
+// flags real learner errors. Both are free-tier-eligible on Groq; 70B is only
+// used here (low-volume conversation), not for the high-volume JSON generation
+// path, to respect the free-tier budget. Override with CONVERSATION_MODEL.
+const CONVERSATION_MODEL = process.env.CONVERSATION_MODEL ?? 'llama-3.3-70b-versatile'
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
 const rateLimitMap = new Map<string, number[]>()
@@ -47,6 +55,7 @@ async function groqComplete(
   maxTokens = 400,
   temperature = 0.7,
   jsonMode = false,
+  model: string = GROQ_MODEL,
 ): Promise<string | null> {
   const res = await fetch(GROQ_URL, {
     method: 'POST',
@@ -55,7 +64,7 @@ async function groqComplete(
       Authorization: `Bearer ${GROQ_API_KEY}`,
     },
     body: JSON.stringify({
-      model: GROQ_MODEL,
+      model,
       messages: [{ role: 'system', content: system }, ...messages],
       max_tokens: maxTokens,
       temperature,
@@ -105,7 +114,9 @@ async function handleConversation(params: {
   const { system, messages } = buildConversationPrompt(
     chatMessages, params.level, params.topic, params.constraintEvalSuffix,
   )
-  const raw = await groqComplete(system, messages, 300, 0.85)
+  // Temp 0.6 (was 0.85): the bake-off showed lower temperature gives markedly
+  // more reliable grammar on this model while keeping conversational warmth.
+  const raw = await groqComplete(system, messages, 300, 0.6, false, CONVERSATION_MODEL)
   if (!raw) return { tutorResponse: fallback(params.messages), source: 'template' as const }
 
   const correctionMatch = raw.match(/CORRECTION:(\{.*?\})/s)

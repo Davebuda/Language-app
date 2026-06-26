@@ -14,5 +14,10 @@ export function stripTutorScaffolding(raw: string): string {
     .split(/\s*\n?\s*CORRECTION:/i)[0]
     .split(/\s*\n?\s*CONSTRAINT_MET/i)[0]
     .split(/\s*\n?\s*CONSTRAINT_MISSED/i)[0]
+    // Defensive: models sometimes improvise a trailing tutor note in brackets
+    // (e.g. `[merk: "feil" → "rett"]`, `[note: …]`, `[ingen feil]`) even when told
+    // not to. These are scaffolding, not speech — strip any such bracketed aside
+    // so it never leaks into Kari's chat bubble (2026-06-26 conversation calibration).
+    .replace(/\s*\[\s*(merk|note|rettelse|korreksjon|ingen feil)\b[^\]]*\]\s*/gi, ' ')
     .trim();
 }
