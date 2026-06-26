@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
-import { createEmptyFingerprint } from '@/types/fingerprint'
 import type { MistakeFingerprint } from '@/types/fingerprint'
 import { saveFingerprint, loadFingerprint } from '@/storage/indexeddb'
+import { buildSeededFingerprint } from '@/lib/seed-fingerprint'
 import { DiagnosticQuiz } from './DiagnosticQuiz'
 import { ThemePicker } from '@/components/theme/ThemePicker'
 import { applyTheme, getStoredTheme, type ThemeName } from '@/lib/theme'
@@ -107,64 +107,14 @@ async function seedFingerprintFromDiagnostic(
   setFingerprint: (fp: MistakeFingerprint) => void,
 ) {
   const userId = getOrCreateUserId()
-  const now = new Date().toISOString()
-
   const existing = await loadFingerprint(userId).catch(() => null)
-  const fp: MistakeFingerprint = existing ?? createEmptyFingerprint(userId)
-
-  fp.currentLevel = result.cefrLevel
-  fp.levelSetByUser = true
-
-  for (const [conceptId, seed] of Object.entries(result.conceptSeeds)) {
-    const existingMastery = fp.conceptMastery[conceptId]
-    if (existingMastery) {
-      const totalAttempts = existingMastery.attemptCount + seed.attemptCount
-      const totalCorrect = existingMastery.correctCount + seed.correctCount
-      const blendedRawScore = Math.round((totalCorrect / totalAttempts) * 100)
-      fp.conceptMastery[conceptId] = {
-        ...existingMastery,
-        conceptId,
-        attemptCount: totalAttempts,
-        correctCount: totalCorrect,
-        rawScore: blendedRawScore,
-        decayedScore: blendedRawScore,
-        confidenceScore: Math.min(1, existingMastery.confidenceScore + 0.1),
-        lastAttemptAt: seed.lastAttemptAt ?? now,
-        lastCorrectAt: seed.lastCorrectAt ?? existingMastery.lastCorrectAt,
-        streak: seed.streak > 0 ? existingMastery.streak + seed.streak : 0,
-        recentOutcomes: [...existingMastery.recentOutcomes, ...seed.recentOutcomes].slice(-10),
-      }
-    } else {
-      fp.conceptMastery[conceptId] = {
-        conceptId,
-        rawScore: seed.rawScore,
-        confidenceScore: seed.confidenceScore,
-        decayedScore: seed.decayedScore,
-        attemptCount: seed.attemptCount,
-        correctCount: seed.correctCount,
-        uniqueDaysActive: seed.uniqueDaysActive,
-        lastAttemptAt: seed.lastAttemptAt ?? now,
-        lastCorrectAt: seed.lastCorrectAt,
-        streak: seed.streak,
-        recentOutcomes: seed.recentOutcomes,
-        srsLevel: 0,
-        nextReviewAt: new Date(Date.now() + 86400000).toISOString(),
-      }
-    }
-  }
-
-  const askedIdSet = new Set([
-    ...(fp.askedDiagnosticQuestionIds ?? []),
-    ...(result.askedQuestionIds ?? []),
-  ])
-  fp.askedDiagnosticQuestionIds = [...askedIdSet]
-
-  // Bake the onboarding theme choice into the fingerprint so it syncs cross-device.
-  // localStorage already holds it (set by applyTheme in the theme step); fall back
-  // to the existing value or the default for a fingerprint that predates theming.
-  fp.theme = getStoredTheme() ?? fp.theme ?? 'honning'
-
-  fp.updatedAt = now
+  // Theme already lives in localStorage (set by applyTheme in the theme step);
+  // the builder falls back to the existing value or the default.
+  const fp = buildSeededFingerprint(existing, result, {
+    userId,
+    now: new Date().toISOString(),
+    theme: getStoredTheme() ?? undefined,
+  })
   setFingerprint(fp)
   await saveFingerprint(fp).catch(console.warn)
   localStorage.setItem('norskcoach_onboarded', '1')
@@ -225,18 +175,24 @@ export function OnboardingFlow() {
     setStepIndex((i) => i - 1)
   }
 
+  // D-01: hold the in-flight seed write so commit() can await it before navigating.
+  // The destination re-bootstraps useFingerprint from IndexedDB and would clobber
+  // the seeded level back to A1 on a fast click if saveFingerprint hadn't flushed.
+  const seedPromiseRef = useRef<Promise<void> | null>(null)
+
   function handleDiagnosticComplete(result: DiagnosticResult) {
     setDiagnosticResult(result)
+    // Kick the seed off the moment the diagnostic finishes (not in an effect) so
+    // the promise exists before ReadyStep can be clicked — and exactly once, so the
+    // mastery blend never double-counts.
+    seedPromiseRef.current = seedFingerprintFromDiagnostic(result, setFingerprint).catch(console.warn)
     advanceTo(steps.findIndex((s) => s.kind === 'ready'))
   }
 
-  useEffect(() => {
+  async function commit(destination: '/session' | '/dashboard') {
     if (!diagnosticResult) return
-    seedFingerprintFromDiagnostic(diagnosticResult, setFingerprint).catch(console.warn)
-  }, [diagnosticResult, setFingerprint])
-
-  function commit(destination: '/session' | '/dashboard') {
-    if (!diagnosticResult) return
+    // Wait for the seed (level + mastery) to land in IndexedDB before navigating.
+    await seedPromiseRef.current
     if (typeof window !== 'undefined') {
       window.sessionStorage.removeItem('onboarding-step-index')
     }
