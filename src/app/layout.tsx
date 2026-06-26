@@ -1,4 +1,4 @@
-import { Schibsted_Grotesk } from 'next/font/google'
+import { Schibsted_Grotesk, IBM_Plex_Mono } from 'next/font/google'
 import Script from 'next/script'
 import type { Metadata } from 'next'
 import { ClientAILoader } from '@/components/ai/ClientAILoader'
@@ -28,6 +28,13 @@ const schibstedBody = Schibsted_Grotesk({
   display: 'swap',
 })
 
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: 'NorskCoach',
   description:
@@ -50,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="nb" className={`${schibstedDisplay.variable} ${schibstedBody.variable} dark`}>
+    <html lang="nb" className={`${schibstedDisplay.variable} ${schibstedBody.variable} ${ibmPlexMono.variable} dark`}>
       <body className="font-sans antialiased bg-[var(--nc-card-2)]">
         {/* Pre-hydration theme apply (no FOUC). beforeInteractive makes Next inject
             this as a real executing <script> in the streamed HTML — a plain

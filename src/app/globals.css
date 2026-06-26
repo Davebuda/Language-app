@@ -703,3 +703,154 @@
   .nc-button-primary:active { transform: none; }
   .nc-input { transition: none; }
 }
+
+/* ============================================================
+   V3 LIQUID GLASS — Design Tokens
+   Scoped to .dash-v3 so this block only activates inside the
+   V3 dashboard subtree. It is PURELY ADDITIVE — no existing
+   :root, :root[data-theme='leirskole'], or --nc-* token is
+   touched.
+   Source values extracted verbatim from:
+     .omc/redesign/holistic-v2/mockups/dashboard-final.html
+     .omc/redesign/holistic-v2/tile-variants/variant-3.html
+   ============================================================ */
+
+.dash-v3 {
+
+  /* ── Dark-ledger frame surfaces ─────────────────────────────
+     Page void → device chrome → raised tiers → separator lines.
+     All near-black, biased cold-green to stay on-palette with
+     the lime accent. */
+  --v3-bg:       #07090A;  /* page void (deepest layer)         */
+  --v3-frame:    #0E120E;  /* device chrome / near-black frame  */
+  --v3-raised:   #101415;  /* raised surface tier 1             */
+  --v3-raised-2: #161B1C;  /* raised surface tier 2             */
+  --v3-line:     #1D2325;  /* subtle separator                  */
+  --v3-line-2:   #2A3236;  /* medium separator / card border    */
+
+  /* ── On-dark text ramp ──────────────────────────────────────
+     Three-step hierarchy for type on the dark ledger. */
+  --v3-on-dark:   #E8ECE6;  /* primary body text on dark        */
+  --v3-on-dark-2: #9BA39C;  /* secondary / label text           */
+  --v3-on-dark-3: #5C6660;  /* tertiary / muted label           */
+
+  /* ── Paper / cream focal surfaces ──────────────────────────
+     Used for the diagnostic card and command card (SOLID —
+     dense data, legibility first). */
+  --v3-paper:   #FFFFFF;
+  --v3-cream:   #F1F0E8;
+  --v3-cream-2: #E7E6DC;
+  --v3-ink:     #0E1207;
+  --v3-ink-2:   #474C3F;
+  --v3-ink-3:   #7C8275;
+
+  /* ── Liquid-glass tile recipe ───────────────────────────────
+     These vars encode every reusable layer of the V3 tile
+     effect. Individual components compose them with local
+     --c / --cg accent overrides (set per-tile inline).       */
+
+  /* Base fill — dark gradient background baked into the tile.
+     Components use all three stops in a 160deg gradient.     */
+  --glass-fill:       rgba(28,  36, 29, 0.92); /* #1c241d — top stop  */
+  --glass-fill-mid:   rgba(17,  22, 15, 1);    /* #11160f — mid stop  */
+  --glass-fill-end:   rgba(12,  15, 11, 1);    /* #0c0f0b — end stop  */
+
+  /* Backdrop-filter blur for overlay contexts (nav, badges).
+     The tiles themselves use a layered pseudo-element
+     approach rather than backdrop-filter.                    */
+  --glass-blur: 22px;
+
+  /* Gloss — thick refractive top-sheen layer (52% height div,
+     masked with a radial gradient so it pools at the top).  */
+  --glass-gloss-bright: rgba(255, 255, 255, 0.227); /* #ffffff3a */
+  --glass-gloss-mid:    rgba(255, 255, 255, 0.063); /* #ffffff10 */
+
+  /* Specular glint — rolling hard highlight bead, blurred 2px,
+     rotated -7deg, 60% wide across the top of the tile.    */
+  --glass-specular-mid:    rgba(255, 255, 255, 0.800); /* #ffffffcc */
+  --glass-specular-bright: rgba(255, 255, 255, 0.933); /* #ffffffee */
+
+  /* Bevel box-shadow components — assemble into the tile's
+     full box-shadow declaration:
+       0 1px 1px var(--glass-bevel-top) inset,
+       0 -14px 24px -16px var(--glass-bevel-inner) inset,
+       14px 16px 22px -18px var(--glass-rim-base) inset,
+       var(--glass-shadow),
+       0 2px 0 rgba(0,0,0,0.376);                        */
+  --glass-bevel-top:   rgba(255, 255, 255, 0.133); /* #ffffff22 top sheen  */
+  --glass-bevel-inner: rgba(  0,   0,   0, 0.565); /* #00000090 bottom shade */
+  --glass-border:      rgba(255, 255, 255, 0.078); /* #ffffff14 outer border */
+
+  /* Rim ring — inset ring that catches the accent hue.
+     box-shadow: 0 0 0 1px var(--glass-rim-base) inset,
+                 0 1px 10px var(--cg) inset;               */
+  --glass-rim-base: rgba(255, 255, 255, 0.063); /* #ffffff10 */
+
+  /* Text shadow — legibility on glass for tile titles.     */
+  --glass-text-shadow: 0 1px 8px rgba(0, 0, 0, 0.502), 0 0 1px rgba(0, 0, 0, 0.376);
+
+  /* Outer drop shadow cast beneath each tile.             */
+  --glass-shadow: 0 18px 34px -18px rgba(0, 0, 0, 0.816);
+
+  /* ── Accent family: Lime — #C8FF20 ─────────────────────────
+     Default accent; also used as --c/#C8FF20 on the Lær tile. */
+  --v3-lime:      #C8FF20;
+  --v3-lime-glow: rgba(200, 255,  32, 0.314); /* #c8ff2050 bloom / rim */
+  --v3-lime-lit:  #eaffb3;                    /* on-glass title tint   */
+
+  /* ── Accent family: Cyan — #00C2E0 ──────────────────────────
+     Snakk hero tile; also the AI badge pulse dot color.      */
+  --v3-cyan:      #00C2E0;
+  --v3-cyan-glow: rgba(  0, 194, 224, 0.333); /* #00c2e055 bloom / rim */
+  --v3-cyan-lit:  #d6fbff;                    /* on-glass title tint   */
+
+  /* ── Accent family: Teal — #2BC9A0 ──────────────────────────
+     Les (reading) tile.                                      */
+  --v3-teal:      #2BC9A0;
+  --v3-teal-glow: rgba( 43, 201, 160, 0.314); /* #2bc9a050 bloom / rim */
+  --v3-teal-lit:  #bdf6e4;                    /* on-glass title tint   */
+
+  /* ── Accent family: Amber — #F2952E ─────────────────────────
+     Lytt (listening) tile.                                   */
+  --v3-amber:      #F2952E;
+  --v3-amber-glow: rgba(242, 149,  46, 0.314); /* #f2952e50 bloom / rim */
+  --v3-amber-lit:  #ffd8a6;                    /* on-glass title tint   */
+
+  /* ── Accent family: Coral — #FF6A55 ─────────────────────────
+     Skriv (writing) tile; also repair-loop glass rail accent. */
+  --v3-coral:      #FF6A55;
+  --v3-coral-glow: rgba(255, 106,  85, 0.314); /* #ff6a5550 bloom / rim */
+  --v3-coral-lit:  #ffc4ba;                    /* on-glass title tint   */
+
+  /* ── Accent family: Violet — #8B7CF0 ────────────────────────
+     Notatboka (notebook) full-width tile.                    */
+  --v3-violet:      #8B7CF0;
+  --v3-violet-glow: rgba(139, 124, 240, 0.314); /* #8b7cf050 bloom / rim */
+  --v3-violet-lit:  #d6cffd;                    /* on-glass title tint   */
+
+  /* ── Accent family: Slate — neutral graphite glass ──────────
+     R1: Notatboka is a calm NEUTRAL glass tile — desaturated, NOT
+     an accent. Bright lime is reserved exclusively for the command
+     card. The glyph is a soft grey light, no bright glow.        */
+  --v3-slate:      #aab2ab;                      /* neutral glyph stroke  */
+  --v3-slate-glow: rgba(176, 186, 180, 0.22);   /* soft grey bloom / rim */
+  --v3-slate-lit:  #dfe4de;                      /* on-glass title tint   */
+
+  /* ── Compact-tile (size="rail") body tints ──────────────────
+     R1 tints the whole card body toward its accent (army-green /
+     teal / bronze / brick / indigo / graphite). 155deg, 3 stops.
+     Source values extracted verbatim from dashboard-R1.html.    */
+  --v3-tint-lime:   linear-gradient(155deg, #26330f 0%, #19240a 58%, #111806 100%);
+  --v3-tint-cyan:   linear-gradient(155deg, #143138 0%, #0e2329 58%, #0a181d 100%);
+  --v3-tint-teal:   linear-gradient(155deg, #16332b 0%, #0f241e 58%, #0b1814 100%);
+  --v3-tint-amber:  linear-gradient(155deg, #3a2b15 0%, #291e0e 58%, #1c1409 100%);
+  --v3-tint-coral:  linear-gradient(155deg, #3a201b 0%, #2a1612 58%, #1d0f0c 100%);
+  --v3-tint-violet: linear-gradient(155deg, #262039 0%, #19142a 58%, #11101d 100%);
+  --v3-tint-slate:  linear-gradient(155deg, #2b3134 0%, #1d2326 58%, #14181b 100%);
+
+  /* ── Mono font reference ─────────────────────────────────────
+     --font-mono is injected globally by layout.tsx (IBM Plex Mono).
+     Reference it here as --v3-mono so V3 components use the
+     canonical project mono stack without a hardcoded string.  */
+  --v3-mono: var(--font-mono, 'IBM Plex Mono', ui-monospace, monospace);
+}

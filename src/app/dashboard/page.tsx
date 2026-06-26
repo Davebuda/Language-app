@@ -27,6 +27,8 @@ import { ProductionWall } from '@/components/dashboard/ProductionWall'
 import { deriveProductionWallView, deriveDiagnosisHighlight, type BreakerVerdict } from '@/lib/production-wall'
 import { deriveBreakerStory } from '@/lib/breaker-story'
 import { NotebookDrawer } from '@/components/notebook/NotebookDrawer'
+import { useDashboardV3 } from '@/lib/dashboard-flag'
+import { DashboardV3 } from '@/components/dashboard/v3/DashboardV3'
 
 // Icon per prescribed-plan lane (the "Dagens plan" cards). Lucide only.
 const PLAN_ICON: Record<string, ElementType> = {
@@ -37,7 +39,16 @@ const PLAN_ICON: Record<string, ElementType> = {
   'weekly-check': Sparkles,
 }
 
+// Flag-gated dashboard variant. The V3 flag is false on the server AND on the
+// first client render (hydration-safe), so SSR + first paint always match the
+// current dashboard; it swaps to DashboardV3 only after mount when the
+// `norskcoach-dash-v3` localStorage flag is on. Off by default → live unchanged.
 export default function DashboardPage() {
+  const v3 = useDashboardV3()
+  return v3 ? <DashboardV3 /> : <DashboardLegacy />
+}
+
+function DashboardLegacy() {
   useFingerprint()
   const { fingerprint, status } = useFingerprintStore()
   const { user } = useAuth()
