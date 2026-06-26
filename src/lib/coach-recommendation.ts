@@ -68,38 +68,55 @@ function isSaturday(): boolean {
   return new Date().getDay() === 6
 }
 
-function scoreLane(
+// Diagnosis foci that mean "the learner's gap is in PRODUCING", not recognising —
+// mirrors resolvePool / resolveNewMaterialFocus in the scheduler.
+const PRODUCTION_FOCUS = new Set(['production', 'mechanics', 'application'])
+
+export function scoreLane(
   laneId: LaneId,
   fp: MistakeFingerprint,
   graph: ConceptGraph,
+  recommendedFocus?: string,
 ): number {
   const focusSet = new Set(fp.weeklyFocus)
-  if (focusSet.size === 0) return laneId === 'session' ? 100 : 50
+  const base = ((): number => {
+    if (focusSet.size === 0) return laneId === 'session' ? 100 : 50
+    switch (laneId) {
+      case 'session': {
+        const gaps = fp.weeklyFocus.reduce((sum, cid) => {
+          const m = fp.conceptMastery[cid]
+          return sum + (m ? Math.max(0, 80 - (m.decayedScore ?? 0)) : 40)
+        }, 0)
+        return 100 + gaps
+      }
+      case 'conversation': {
+        const topicMatch = fp.weeklyFocus.some((cid) => CONCEPT_TO_TOPIC[cid])
+        return topicMatch ? 80 : 60
+      }
+      case 'journal':
+        return 70
+      case 'roleplay':
+        return 65
+      case 'reading': {
+        const tagged = graph.concepts.filter((c) => focusSet.has(c.id)).length
+        return 40 + tagged * 5
+      }
+      default:
+        return 50
+    }
+  })()
 
-  switch (laneId) {
-    case 'session': {
-      const gaps = fp.weeklyFocus.reduce((sum, cid) => {
-        const m = fp.conceptMastery[cid]
-        return sum + (m ? Math.max(0, 80 - (m.decayedScore ?? 0)) : 40)
-      }, 0)
-      return 100 + gaps
-    }
-    case 'conversation': {
-      const topicMatch = fp.weeklyFocus.some((cid) => CONCEPT_TO_TOPIC[cid])
-      return topicMatch ? 80 : 60
-    }
-    case 'journal':
-      return 70
-    case 'roleplay': {
-      return 65
-    }
-    case 'reading': {
-      const tagged = graph.concepts.filter((c) => focusSet.has(c.id)).length
-      return 40 + tagged * 5
-    }
-    default:
-      return 50
+  // P1 (vision audit 2026-06-26): when a high-confidence diagnosis says the gap is in
+  // PRODUCTION, surface the speaking lanes (conversation/roleplay) — and, less, written
+  // production (journal) — so the coach drives speaking on production-gap days. The
+  // signal already existed but never steered the lane choice. The boost is moderate:
+  // speaking leads only when the remediation backlog (session gaps) is modest, so a big
+  // backlog still wins the core økt.
+  if (recommendedFocus && PRODUCTION_FOCUS.has(recommendedFocus)) {
+    if (laneId === 'conversation' || laneId === 'roleplay') return base + 40
+    if (laneId === 'journal') return base + 25
   }
+  return base
 }
 
 function buildSessionRecommendation(
@@ -208,8 +225,12 @@ export function getCoachRecommendation(
     }
   }
 
+  // Only a trusted (>=0.7) diagnosis steers the lane choice toward production.
+  const topDiagnosis = plan?.diagnosisResults?.[0]
+  const prodFocus = (topDiagnosis?.confidence ?? 0) >= 0.7 ? topDiagnosis?.recommendedFocus : undefined
+
   const scored = candidates
-    .map((l) => ({ laneId: l, score: scoreLane(l, fp, graph) }))
+    .map((l) => ({ laneId: l, score: scoreLane(l, fp, graph, prodFocus) }))
     .sort((a, b) => b.score - a.score)
 
   const best = scored[0].laneId

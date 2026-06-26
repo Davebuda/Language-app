@@ -10,7 +10,6 @@ import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { getListenQuestions, getListenContentLevel } from '@/lib/listenRespondContent'
 import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
 import { markLaneDone } from '@/lib/lane-completion'
-import { saveFingerprint } from '@/storage/indexeddb'
 import type { ExerciseResult } from '@/types/session'
 import { useAuth } from '@/hooks/useAuth'
 import { logExerciseResult } from '@/lib/logEvents'
@@ -65,8 +64,8 @@ type ScreenPhase = 'selection' | 'exercising' | 'complete'
 
 export function ListenRespondScreen() {
   const router = useRouter()
-  const { recordResult } = useFingerprint()
-  const { fingerprint, setFingerprint } = useFingerprintStore()
+  const { recordResult, recordSpeakingProduction } = useFingerprint()
+  const { fingerprint } = useFingerprintStore()
   const { user } = useAuth()
 
   const [screenPhase, setScreenPhase] = useState<ScreenPhase>('selection')
@@ -124,16 +123,14 @@ export function ListenRespondScreen() {
 
     const nextIndex = currentIndex + 1
     if (nextIndex >= sortedQuestions.length) {
-      if (fingerprint) {
-        const answeredCount = newScores.filter((s) => !s.skipped).length
+      const answeredCount = newScores.filter((s) => !s.skipped).length
+      if (answeredCount > 0) {
+        // P1 (vision audit 2026-06-26): listening-and-responding IS spoken production —
+        // credit speaking-minutes AND a guided production brick so the wall rewards it.
+        // Completion-gated self-report (one brick per session, produced spoken responses);
+        // never moves mastery or logs an error (Rule 8).
         const minutesSpoken = answeredCount * (5 / 60)
-        const updated = {
-          ...fingerprint,
-          speakingMinutesTotal: (fingerprint.speakingMinutesTotal ?? 0) + minutesSpoken,
-          updatedAt: new Date().toISOString(),
-        }
-        setFingerprint(updated)
-        saveFingerprint(updated).catch(console.warn)
+        recordSpeakingProduction({ minutes: minutesSpoken, produced: true })
       }
       markLaneDone('listen')
       setScreenPhase('complete')

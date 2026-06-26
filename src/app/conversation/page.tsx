@@ -10,7 +10,7 @@ import { BottomNav } from '@/components/layout/BottomNav'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/useAuth'
 import { errorTagToConceptId } from '@/lib/error-tag-to-concept'
-import { repairFromSurface, type RepairInput } from '@/engine/repair-from-surface'
+import { repairFromSurface, recordSpeakingProductionToFingerprint, type RepairInput } from '@/engine/repair-from-surface'
 import { saveFingerprint } from '@/storage/indexeddb'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { emitEvent } from '@/lib/events'
@@ -291,22 +291,31 @@ export default function ConversationPage() {
     await addTutorMessage([], false)
   }
 
-  async function handleSend(text: string) {
+  // Typed-turn production estimate (mirrors the in-økt Snakk 0.1 min/utterance convention)
+  // when there's no mic-elapsed time to measure.
+  const TYPED_MINUTES_PER_TURN = 0.1
+
+  async function handleSend(text: string, fromMic = false) {
     const trimmed = text.trim()
     if (!trimmed) return
     setInputText('')
     const nextMessages = [...messages, { role: 'user' as const, content: trimmed }]
     setMessages(nextMessages)
     void persistTurn('user', trimmed)
+    // P1 (vision audit 2026-06-26): a completed Kari turn IS production — lay a guided
+    // brick so the wall rewards it, and credit minutes. The mic path already credited
+    // real elapsed minutes + a brick (creditSpeakingProduction below), so only TYPED
+    // turns get the estimate-minutes brick here (no double-count). Completion-gated
+    // self-report — never moves mastery or logs an error (Rule 8).
+    if (!fromMic) creditSpeakingProduction(TYPED_MINUTES_PER_TURN)
     await addTutorMessage(nextMessages.map((m) => ({ role: m.role, content: m.content })))
   }
 
-  function addSpeakingMinutes(elapsedMs: number): void {
+  // Credit spoken/typed production: speaking-minutes + a guided production brick.
+  function creditSpeakingProduction(minutes: number): void {
     const fp = useFingerprintStore.getState().fingerprint
     if (!fp) return
-    const minutes = elapsedMs / 60_000
-    if (minutes < 0.05) return
-    const updated = { ...fp, speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + minutes, updatedAt: new Date().toISOString() }
+    const updated = recordSpeakingProductionToFingerprint(fp, { minutes, produced: true })
     setFingerprint(updated)
     saveFingerprint(updated).catch(console.warn)
     speakingMinutesRef.current += minutes
@@ -332,9 +341,10 @@ export default function ConversationPage() {
       const transcript = parts.join('')
       setInputText(transcript)
       if (e.results[e.results.length - 1].isFinal) {
-        addSpeakingMinutes(Date.now() - micStartRef.current)
+        const micMinutes = (Date.now() - micStartRef.current) / 60_000
+        if (micMinutes >= 0.05) creditSpeakingProduction(micMinutes)
         setIsListening(false)
-        void handleSend(transcript)
+        void handleSend(transcript, true)
       }
     }
     rec.onend = () => setIsListening(false)

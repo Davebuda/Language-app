@@ -503,8 +503,7 @@ function RoleplayTurnExercise({
 
 export function RoleplayScreen() {
   const router = useRouter()
-  const { recordResult } = useFingerprint()
-  const { setFingerprint } = useFingerprintStore()
+  const { recordResult, recordSpeakingProduction } = useFingerprint()
   const { user } = useAuth()
 
   const currentLevel = useFingerprintStore.getState().fingerprint?.currentLevel ?? 'A1'
@@ -560,15 +559,12 @@ export function RoleplayScreen() {
 
     const nextIndex = turnIndex + 1
     if (nextIndex >= activeScenario.turns.length) {
-      const fp = useFingerprintStore.getState().fingerprint
-      if (fp) {
-        const minutesSpoken = activeScenario.turns.length * (LISTEN_SECONDS / 60)
-        setFingerprint({
-          ...fp,
-          speakingMinutesTotal: (fp.speakingMinutesTotal ?? 0) + minutesSpoken,
-          updatedAt: new Date().toISOString(),
-        })
-      }
+      // P1 (vision audit 2026-06-26): roleplay turns ARE spoken production — credit
+      // speaking-minutes AND a guided production brick so the wall rewards it.
+      // Completion-gated self-report (one brick per completed scenario); never moves
+      // mastery or logs an error (Rule 8).
+      const minutesSpoken = activeScenario.turns.length * (LISTEN_SECONDS / 60)
+      recordSpeakingProduction({ minutes: minutesSpoken, produced: true })
       markLaneDone('roleplay')
       setScreenPhase('complete')
     } else {

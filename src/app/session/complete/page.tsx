@@ -379,7 +379,7 @@ export default function SessionCompletePage() {
 
       </main>
 
-      <BottomNav active="deg" />
+      <BottomNav active="session" />
     </div>
   )
 }

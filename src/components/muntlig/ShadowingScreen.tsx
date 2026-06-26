@@ -96,10 +96,12 @@ export function ShadowingScreen({ candidateSentences }: ShadowingScreenProps) {
     }
 
     recordResult(result)
-    // Shadowing IS spoken Norwegian — credit the speaking-minutes metric (this
-    // was previously missing). Recitation, not free production: minutes only,
-    // no production brick (produced:false), no mastery beyond recordResult above.
-    recordSpeakingProduction({ minutes: 0.1, produced: false })
+    // Shadowing IS spoken Norwegian — credit speaking-minutes AND a guided
+    // production brick (P1, vision audit 2026-06-26: the production wall must
+    // reward speaking). Completion-gated self-report only — produced:true lays a
+    // reduced-weight guided brick, never moves mastery or logs an error (Rule 8),
+    // identical to how the in-økt Snakk block credits a spoken utterance.
+    recordSpeakingProduction({ minutes: 0.1, produced: true })
     if (user?.id) {
       logExerciseResult(user.id, result)
     }
