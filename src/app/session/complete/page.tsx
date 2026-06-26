@@ -16,6 +16,8 @@ import { incrementStreak } from '@/lib/streak'
 import { createClient } from '@/lib/supabase/client'
 import { getConceptPhase, isMastered } from '@/engine'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
+import { useKariLine } from '@/hooks/useKariLine'
+import type { CoachContext } from '@/ai/types'
 import { formatNextReview } from '@/lib/srs-format'
 import { ERROR_TAG_LABELS } from '@/lib/error-tag-labels'
 
@@ -167,6 +169,20 @@ export default function SessionCompletePage() {
     (session?.id ?? '').charCodeAt(0) % REFLECTION_PROMPTS.length
   ] ?? REFLECTION_PROMPTS[0]
 
+  // Tier-2 Slice D — Kari reflects on the økt. Renders the honest count line
+  // instantly, then (if AI is up) swaps in a warm one-line reflection grounded ONLY
+  // in this session's real outcome (accuracy / repairs / items / focus). Display-only.
+  const completeTemplate = productionCount > 0 ? `${productionCount} produksjonsøvelser.` : `${totalAnswered} oppgaver.`
+  const completeCoachCtx: CoachContext = {
+    kind: 'session-complete',
+    level: fingerprint?.currentLevel ?? 'A1',
+    focusLabel: primaryConceptNode?.label,
+    accuracyPct: accuracy,
+    repairCount: wrongResults.length,
+    itemCount: totalAnswered,
+  }
+  const kariReflection = useKariLine(session ? completeCoachCtx : null, completeTemplate)
+
   const [reflectionText, setReflectionText] = useState('')
   const [reflectionSubmitted, setReflectionSubmitted] = useState(false)
 
@@ -221,7 +237,7 @@ export default function SessionCompletePage() {
             Ferdig.
           </h1>
           <p className="mt-2 text-[0.82rem] text-[rgba(10,18,6,0.60)]">
-            {productionCount > 0 ? `${productionCount} produksjonsøvelser.` : `${totalAnswered} oppgaver.`}
+            {kariReflection}
           </p>
 
           <div className="mt-4 flex justify-center">

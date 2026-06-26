@@ -19,6 +19,8 @@ import { getConceptColor } from '@/lib/concept-colors'
 import { getGraphForLevel, getCumulativeConcepts } from '@/lib/concept-graph-loader'
 import { deriveAccuracyDisplay } from '@/lib/dashboard-stats'
 import { getCoachRecommendation, getCoachPlan, type CoachRecommendation } from '@/lib/coach-recommendation'
+import { useKariLine } from '@/hooks/useKariLine'
+import type { CoachContext } from '@/ai/types'
 import { getCompletedLanes, ALL_LANES, type LaneId } from '@/lib/lane-completion'
 import { summarizeWeeklyProgress } from '@/lib/weekly-progress'
 import { ProductionWall } from '@/components/dashboard/ProductionWall'
@@ -237,6 +239,18 @@ export default function DashboardPage() {
     ?? recommendation?.reason
     ?? 'Systemet prioriterer dette nå fordi det gir mest læring med minst friksjon.'
 
+  // Tier-2 Slice B — one Kari voice. The coach whisper renders the deterministic
+  // focusDescription INSTANTLY (no AI call blocks the home), then, if AI is up, swaps
+  // in a warm Kari-voiced rephrasing of the SAME honest focus + reason. Cached per
+  // focus-concept-per-day, so repeat home loads are instant with no flash and the home
+  // calls the AI at most once per focus change. Display-only — never moves mastery.
+  const focusConceptId = topDiagnosis?.rootCauseConceptId ?? fingerprint?.weeklyFocus[0]
+  const focusConceptLabel = activeGraph.concepts.find((c) => c.id === focusConceptId)?.label
+  const dashboardCoachCtx: CoachContext | null = fingerprint
+    ? { kind: 'dashboard-focus', level: levelLabel, focusLabel: focusConceptLabel, reasoning: focusDescription }
+    : null
+  const coachLine = useKariLine(dashboardCoachCtx, focusDescription, `dashboard_${focusConceptId ?? 'none'}`)
+
   // Structured diagnosis highlight (focus dimension + affected concepts +
   // confidence) — the rest of runDiagnosis()[0], beside the reasoning whisper.
   // Null until a rule fires, so a cold-start guest sees nothing fabricated.
@@ -300,7 +314,7 @@ export default function DashboardPage() {
             (lead block; all-levels, level-aware lens). Replaces the standalone
             lime hero below. ── */}
         {wallView ? (
-          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={focusDescription} diagnosis={diagnosisHighlight} breaker={breakerVerdict} fixedLabels={fixedLabels} />
+          <ProductionWall view={wallView} sessionMeta={heroSubtitle} coachReason={coachLine} diagnosis={diagnosisHighlight} breaker={breakerVerdict} fixedLabels={fixedLabels} />
         ) : null}
 
         {/* B2 conjugation drill (/ord) is now a tracked daily lane in "Neste valg"

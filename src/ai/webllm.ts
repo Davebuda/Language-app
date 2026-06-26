@@ -2,6 +2,7 @@ import type {
   AIService, ExplainParams, Explanation, GenerateParams,
   TaggedError, ReviewParams, WritingFeedback,
   ConversationMessage, ConversationTurnResult,
+  CoachResult,
 } from './types'
 import type { ResolvedContent } from '@/types/content'
 import type { CEFRLevel } from '@/types/fingerprint'
@@ -388,5 +389,11 @@ export class WebLLMService implements AIService {
     } catch {
       return { tutorResponse: fallbackResponse(messages), source: 'template' }
     }
+  }
+
+  // Coaching lines are server-only (free-form Norwegian prose, 70B). The local 1B
+  // never produces them — the caller keeps its template fallback.
+  async coachLine(): Promise<CoachResult> {
+    return { line: '', source: 'template' }
   }
 }

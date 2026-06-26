@@ -2,6 +2,7 @@ import type {
   AIService, ExplainParams, Explanation, GenerateParams,
   TaggedError, ReviewParams, WritingFeedback,
   ConversationMessage, ConversationTurnResult,
+  CoachContext, CoachResult,
 } from './types'
 import type { ResolvedContent } from '@/types/content'
 import type { CEFRLevel } from '@/types/fingerprint'
@@ -103,5 +104,11 @@ export class ServerAIService implements AIService {
         : 'Bra! Kan du fortelle mer?',
       source: 'template',
     }
+  }
+
+  async coachLine(ctx: CoachContext): Promise<CoachResult> {
+    const result = await callServerAI<CoachResult>('coach', ctx as unknown as Record<string, unknown>)
+    // Null (server/AI down) → the caller keeps its own template line.
+    return result ?? { line: '', source: 'template' }
   }
 }

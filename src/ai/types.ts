@@ -2,6 +2,13 @@ import type { CEFRLevel } from '@/types/fingerprint';
 import type { ErrorTag } from '@/types/taxonomy';
 import type { ExerciseType, SessionItem } from '@/types/session';
 import type { ResolvedContent } from '@/types/content';
+import type { CoachContext } from './prompts';
+
+export type { CoachContext };
+export interface CoachResult {
+  line: string;
+  source: 'ai' | 'template';
+}
 
 // All AI tasks implement these interfaces.
 // Phase 1A: StubAIService with template explanations and null generation.
@@ -94,4 +101,5 @@ export interface AIService {
     constraintEvalSuffix?: string,
     focusConceptId?: string,
   ): Promise<ConversationTurnResult>;
+  coachLine(ctx: CoachContext): Promise<CoachResult>;
 }

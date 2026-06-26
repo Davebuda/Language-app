@@ -25,6 +25,8 @@ import type { Sentence } from '@/types/content'
 import type { ExerciseResult, SessionBlock, SessionBlockType } from '@/types/session'
 import { getGraphForLevel } from '@/lib/concept-graph-loader'
 import { selectionJustification } from '@/lib/selection-justification'
+import { useKariLine } from '@/hooks/useKariLine'
+import type { CoachContext } from '@/ai/types'
 
 interface SessionScreenProps {
   sentences: Record<string, Sentence>
@@ -103,6 +105,18 @@ export function SessionScreen({
   const isComplete = !!session && totalItems > 0 && currentItemIndex >= totalItems
   const progressValue = totalItems > 0 ? Math.min(currentItemIndex + 1, totalItems) : 0
   const progressPct = totalItems > 0 ? (progressValue / totalItems) * 100 : 0
+
+  // Tier-2 Slice D — Kari frames the økt at the start (shown only on the first item,
+  // so it greets and then fades). Template-first; AI swaps in a warm Kari line naming
+  // today's focus. Display-only.
+  const sessionFocusLabel = session?.primaryFocus
+    ? getGraphForLevel(fingerprint?.currentLevel ?? 'A1').concepts.find((c) => c.id === session.primaryFocus)?.label
+    : undefined
+  const introCtx: CoachContext | null = session
+    ? { kind: 'session-intro', level: fingerprint?.currentLevel ?? 'A1', focusLabel: sessionFocusLabel }
+    : null
+  const introTemplate = sessionFocusLabel ? `I dag tar vi tak i ${sessionFocusLabel}.` : 'La oss komme i gang med dagens økt.'
+  const kariIntro = useKariLine(introCtx, introTemplate)
 
   const isMasteryComplete = !!session && totalItems === 0
 
@@ -243,6 +257,11 @@ export function SessionScreen({
                       <div className="mt-0.5 text-[0.88rem] font-extrabold leading-tight text-[var(--nc-signal-fg)]">
                         Økt
                       </div>
+                      {currentItemIndex === 0 && kariIntro ? (
+                        <div className="mt-1 max-w-[22rem] text-[10px] font-medium leading-snug text-[rgba(10,18,6,0.62)]">
+                          {kariIntro}
+                        </div>
+                      ) : null}
                       {currentContent?.isReviewFallback ? (
                         <div className="mt-1 max-w-[22rem] text-[10px] font-medium leading-snug text-[rgba(10,18,6,0.6)]">
                           Repetisjonsmodus — nytt innhold er øvd opp. Vi repeterer til mer er klart.

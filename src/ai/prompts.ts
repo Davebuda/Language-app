@@ -358,6 +358,46 @@ Explain what you got wrong and state the rule clearly. Reference your specific m
   };
 }
 
+// ── Coach voice (Tier-2 Slices D + B) ───────────────────────────────────────
+// Kari's coaching voice across the app — the SAME warm Kari the learner chats with,
+// now framing the økt and the dashboard focus. DISPLAY-ONLY: this narrates, it never
+// moves mastery. The model only RESTATES facts it is given (the real focus, the real
+// counts) — it must never invent progress or mastery claims. Every caller keeps its
+// existing template as the instant + offline fallback.
+
+export type CoachContext =
+  | { kind: 'session-intro'; level: string; focusLabel?: string }
+  | { kind: 'session-complete'; level: string; focusLabel?: string; accuracyPct?: number; repairCount?: number; itemCount?: number }
+  | { kind: 'dashboard-focus'; level: string; focusLabel?: string; reasoning?: string }
+
+export function buildCoachPrompt(ctx: CoachContext): { system: string; user: string } {
+  const system = `You are Kari — the learner's warm, encouraging Norwegian coach (the same Kari they chat with). Write exactly ONE short line in Norwegian Bokmål, addressed to the learner as "du", at most 18 words.
+
+STRICT RULES:
+1. Norwegian Bokmål only — no English, no Nynorsk, correct V2 word order.
+2. Ground the line ONLY in the facts you are given. NEVER claim the learner has mastered something, improved, or reached a number you were not told.
+3. Warm and human, never a textbook. No grammar lecture, no grammar-term names, no emoji, no quotation marks, no meta.
+4. Output ONLY the line itself — no label, no prefix, nothing else.`
+
+  let user: string
+  switch (ctx.kind) {
+    case 'session-intro':
+      user = `The learner is about to start today's practice session.${ctx.focusLabel ? ` Today's focus is: ${ctx.focusLabel}.` : ''}
+Write one warm line that${ctx.focusLabel ? ' names that focus and' : ''} invites them to begin.`
+      break
+    case 'session-complete':
+      user = `The learner just finished a practice session.${ctx.itemCount != null ? ` Exercises: ${ctx.itemCount}.` : ''}${ctx.accuracyPct != null ? ` Accuracy: ${ctx.accuracyPct}%.` : ''}${ctx.repairCount != null ? ` Patterns they repaired: ${ctx.repairCount}.` : ''}${ctx.focusLabel ? ` Focus was: ${ctx.focusLabel}.` : ''}
+Write one warm line acknowledging the effort they just put in. Do not overclaim — reflect only what the facts say.`
+      break
+    case 'dashboard-focus':
+      user = `Today the learner's focus is${ctx.focusLabel ? `: ${ctx.focusLabel}` : ' their weakest area'}.${ctx.reasoning ? ` The reason: ${ctx.reasoning}` : ''}
+Rephrase this warmly as one inviting line that tells them what you'll work on together today.`
+      break
+  }
+
+  return { system, user }
+}
+
 // ── Error detection (semantic scoring for translation exercises) ────────────
 
 export function buildErrorDetectionPrompt(

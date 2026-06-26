@@ -12,6 +12,7 @@ import type {
   WritingFeedback,
   ConversationMessage,
   ConversationTurnResult,
+  CoachResult,
 } from './types';
 import type { ResolvedContent } from '@/types/content';
 import type { CEFRLevel } from '@/types/fingerprint';
@@ -131,5 +132,9 @@ export class StubAIService implements AIService {
       : `Hei! La oss snakke om ${topic}. Hva tenker du på når du hører det ordet?`;
 
     return { tutorResponse: response, source: 'template' };
+  }
+
+  async coachLine(): Promise<CoachResult> {
+    return { line: '', source: 'template' };
   }
 }

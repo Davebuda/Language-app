@@ -54,6 +54,9 @@ class HybridAIService implements AIService {
   // both safe, never the 1B. See docs/decisions/2026-06-03-conversation-no-local-1b.md.
   conversationTurn: AIService['conversationTurn'] = (messages, level, topic, suffix, focusConceptId) =>
     this.server.conversationTurn(messages, level, topic, suffix, focusConceptId)
+  // Coaching voice is free-form Norwegian prose — same reasoning as conversation,
+  // never the local 1B. Server returns a 70B line or null (→ caller keeps its template).
+  coachLine: AIService['coachLine'] = (ctx) => this.server.coachLine(ctx)
 }
 
 export const aiService = new HybridAIService()

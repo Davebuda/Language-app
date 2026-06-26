@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import {
   buildExplanationPrompt, buildConversationPrompt,
   buildWritingFeedbackPrompt, buildErrorDetectionPrompt,
-  buildGenerationPrompt,
+  buildGenerationPrompt, buildCoachPrompt, type CoachContext,
 } from '@/ai/prompts'
 import {
   validateNorwegianOutput, validateGenerated,
@@ -94,6 +94,21 @@ async function handleExplain(params: ExplainParams) {
   const text = await groqComplete(system, [{ role: 'user', content: user }], 200)
   if (!text) return { text: templateExplanation(params), source: 'template' as const }
   return { text: text.trim(), source: 'ai' as const }
+}
+
+// Tier-2 Slices D + B — Kari's coaching voice. One short Norwegian line, DISPLAY-ONLY
+// (it narrates, never moves mastery). Uses the 70B model (low-volume, one call per
+// session/day) for native-quality prose, validated like every AI output. Returns
+// source:'template' with an empty line on ANY failure — the CLIENT keeps its existing
+// template as the instant + offline fallback, so this is purely additive enhancement.
+async function handleCoach(params: CoachContext): Promise<{ line: string; source: 'ai' | 'template' }> {
+  const { system, user } = buildCoachPrompt(params)
+  const raw = await groqComplete(system, [{ role: 'user', content: user }], 60, 0.7, false, CONVERSATION_MODEL)
+  if (!raw) return { line: '', source: 'template' as const }
+  const line = raw.trim().split('\n')[0].replace(/^["'«»\s]+|["'«»\s]+$/g, '').trim()
+  const validity = validateNorwegianOutput(line, { minWords: 3 })
+  if (!validity.valid || line.length === 0) return { line: '', source: 'template' as const }
+  return { line, source: 'ai' as const }
 }
 
 async function handleConversation(params: {
@@ -270,6 +285,8 @@ export async function POST(request: Request) {
         return NextResponse.json(await handleExplain(params as unknown as ExplainParams))
       case 'conversation':
         return NextResponse.json(await handleConversation(params as unknown as Parameters<typeof handleConversation>[0]))
+      case 'coach':
+        return NextResponse.json(await handleCoach(params as unknown as CoachContext))
       case 'review':
         return NextResponse.json(await handleReview(params as unknown as { userText: string; level: CEFRLevel }))
       case 'detect':
