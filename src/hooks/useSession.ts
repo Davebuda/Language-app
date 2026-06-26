@@ -84,6 +84,11 @@ export function useSession(
   const passageCache = useRef<Map<string, ResolvedClozePassage>>(new Map());
   // conceptId → sentences that support various exercise types
   const seedsByConceptId = useRef<Map<string, Sentence[]>>(new Map());
+  // S-05: itemIds that resolved to NO content (empty seed pool, no AI, no passage).
+  // The current item's resolution is final when resolveItem returns — topUpConcept
+  // only feeds the pool for FUTURE items — so this drives an honest per-item skip
+  // instead of an indefinite LoadingSkeleton.
+  const unresolvedRef = useRef<Set<string>>(new Set());
   const lastErrorRef = useRef<Parameters<typeof buildRepairPlan>[0] | null>(null);
 
   // Toggle flips to force re-renders when new content resolves
@@ -93,6 +98,11 @@ export function useSession(
   const currentItem = session?.items[currentItemIndex] ?? null;
   const currentContent = currentItem ? contentCache.current.get(currentItem.id) : undefined;
   const currentCloze = currentItem ? passageCache.current.get(currentItem.id) : undefined;
+  // S-05: true once resolveItem has run for the current item and produced nothing.
+  const currentItemUnresolved = !!currentItem
+    && !currentContent
+    && !currentCloze
+    && unresolvedRef.current.has(currentItem.id);
 
   // Compute which block the current item belongs to and its 0-based position within
   // that block. Returns null when the session has no blocks (backward compatibility).
@@ -135,7 +145,7 @@ export function useSession(
   // Resolve content for one item.
   // Seeds are used immediately (never blocks) — AI generation runs in the background
   // and upgrades the content if it completes before the learner submits the item.
-  const resolveItem = useCallback(async (item: SessionItem): Promise<void> => {
+  const resolveItemInner = useCallback(async (item: SessionItem): Promise<void> => {
     if (contentCache.current.has(item.id)) return;
 
     // ── Notebook-practice path ───────────────────────────────────────────────
@@ -260,6 +270,22 @@ export function useSession(
     }
 
   }, []);
+
+  // S-05: resolve, then record whether the item produced content. The current
+  // item's resolution is final once resolveItemInner returns (no async path feeds
+  // THIS item — topUpConcept only grows the pool for later items), so a still-empty
+  // item is genuinely unresolvable now: mark it so the UI offers an honest skip
+  // instead of an infinite skeleton. Never fabricates content.
+  const resolveItem = useCallback(async (item: SessionItem): Promise<void> => {
+    await resolveItemInner(item);
+    const hasContent = contentCache.current.has(item.id) || passageCache.current.has(item.id);
+    if (hasContent) {
+      if (unresolvedRef.current.delete(item.id)) forceUpdate((n) => n + 1);
+    } else if (!unresolvedRef.current.has(item.id)) {
+      unresolvedRef.current.add(item.id);
+      forceUpdate((n) => n + 1);
+    }
+  }, [resolveItemInner]);
 
   // Pre-fetch: resolve current item + the next 2 ahead
   const prefetch = useCallback(
@@ -481,6 +507,13 @@ export function useSession(
     lastErrorRef.current = null;
   }, [sessionStore]);
 
+  // S-05: the learner skips an item we couldn't serve content for. Advance ONLY —
+  // no recordResult, no fingerprint write, no SRS change (Rule 8: a skip we caused
+  // must never move mastery). Skipping the last item completes the session normally.
+  const skipUnresolvedItem = useCallback(() => {
+    sessionStore.advanceItem();
+  }, [sessionStore]);
+
   const submitClozeResults = useCallback((results: ExerciseResult[]) => {
     const sessionId = useSessionStore.getState().session?.id;
     const currentIndex = useSessionStore.getState().currentItemIndex;
@@ -571,6 +604,7 @@ export function useSession(
     currentItem,
     currentContent,
     currentCloze,
+    currentItemUnresolved,
     currentItemIndex,
     currentBlock,
     isInRepair,
@@ -581,6 +615,7 @@ export function useSession(
     submitSpeakingResult,
     continueAfterRepair,
     skipRepair,
+    skipUnresolvedItem,
     exitRepair: sessionStore.exitRepair,
   };
 }

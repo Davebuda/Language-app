@@ -70,6 +70,7 @@ export function SessionScreen({
     currentItem,
     currentContent,
     currentCloze,
+    currentItemUnresolved,
     currentItemIndex,
     currentBlock,
     isInRepair,
@@ -80,6 +81,7 @@ export function SessionScreen({
     submitSpeakingResult,
     continueAfterRepair,
     skipRepair,
+    skipUnresolvedItem,
   } = useSession(sentences, availableSentenceIds)
 
   const lastResultRef = useRef<ExerciseResult | null>(null)
@@ -351,6 +353,8 @@ export function SessionScreen({
                   ) : null}
                 </AnimatePresence>
               </>
+            ) : currentItemUnresolved ? (
+              <UnresolvedItemCard onSkip={skipUnresolvedItem} />
             ) : (
               <LoadingSkeleton />
             )}
@@ -378,6 +382,31 @@ function EmptyState() {
       <p className="max-w-xs text-[0.82rem] leading-6 text-[var(--nc-text-muted)]">
         Ingen øvelser tilgjengelig ennå. Innholdet blir seedet snart.
       </p>
+    </div>
+  )
+}
+
+// S-05: shown when an item resolved to no content (empty seed pool, no AI, no
+// passage) instead of an indefinite skeleton. Honest disclosure + a manual skip
+// (no auto-advance, no fingerprint write).
+function UnresolvedItemCard({ onSkip }: { onSkip: () => void }) {
+  return (
+    <div className="overflow-hidden rounded-[0.75rem] bg-[var(--nc-cream)] border border-[rgba(17,21,24,0.06)]">
+      <div className="h-[3px] w-full bg-[linear-gradient(90deg,var(--nc-signal)_0%,#B8EF10_100%)]" />
+      <div className="flex flex-col items-center gap-3 p-5 text-center">
+        <p className="text-[0.9rem] font-bold leading-snug text-[var(--nc-cream-text)]">
+          Vi fant ikke innhold for denne øvelsen.
+        </p>
+        <p className="text-[0.78rem] leading-6 text-[var(--nc-cream-muted)]">
+          Det er ikke noe nytt å øve på her akkurat nå. Hopp over og fortsett økta.
+        </p>
+        <button
+          onClick={onSkip}
+          className="nc-button-dark w-full rounded-xl py-3 text-[0.82rem] font-extrabold"
+        >
+          Hopp over
+        </button>
+      </div>
     </div>
   )
 }
