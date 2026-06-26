@@ -9,6 +9,33 @@ export interface DiagnosisResult {
   recommendedFocus: 'production' | 'recognition' | 'mechanics' | 'application';
 }
 
+// Single-class root-cause rule (vision audit 2026-06-26, Lane 1). The classifier
+// promotes 8 classes to HIGH_CONFIDENCE, but the dense multi-signal rules below only
+// consumed 3 of them — so a clean, repeated single-class pattern (e.g. modal-verb) never
+// became a root cause and only ever surfaced via the 0.45 weakest-concept fallback. A
+// clean single-class signature is the most trustworthy rule type. Two-tier confidence by
+// volume: >=3 occurrences → 0.7 (drives ALL moat pools, like rule 4); >=2 → 0.6 (the
+// mid-confidence band — steers ONLY the moat-safe pools, snakk + new-material, never
+// remediation/review/SRS; see the scheduler's STEER_MIN_SAFE band).
+function singleClassRootCause(
+  fp: MistakeFingerprint,
+  tag: string,
+  conceptId: string,
+  focus: DiagnosisResult['recommendedFocus'],
+  reasoning: string,
+): DiagnosisResult | null {
+  const count = fp.recentErrors.slice(0, 50).filter((e) => e.errorTag === tag).length;
+  const confidence = count >= 3 ? 0.7 : count >= 2 ? 0.6 : 0;
+  if (confidence === 0) return null;
+  return {
+    rootCauseConceptId: conceptId,
+    confidence,
+    reasoning,
+    affectedConceptIds: [conceptId],
+    recommendedFocus: focus,
+  };
+}
+
 // Root cause rules — codified versions of what a human tutor would see
 const DIAGNOSIS_RULES: Array<{
   name: string;
@@ -122,6 +149,34 @@ const DIAGNOSIS_RULES: Array<{
       }
       return null;
     },
+  },
+  // ── Single-class root-cause rules (the 4 cleanly-mapped orphaned HIGH_CONFIDENCE
+  // classes). wrong-word-different-category is intentionally excluded: it maps to the
+  // fallback concept (noun-gender), so root-causing it would be a fabricated cause
+  // (Operating Rule 6). It stays detectable; it just never becomes a vague root cause.
+  {
+    name: 'pronoun-choice-pattern',
+    detect: (fp) =>
+      singleClassRootCause(fp, 'pronoun-choice', 'personal-pronouns', 'mechanics',
+        'Du bommer på pronomen — å velge riktig form (jeg/meg, han/ham) sitter ikke helt ennå.'),
+  },
+  {
+    name: 'modal-verb-pattern',
+    detect: (fp) =>
+      singleClassRootCause(fp, 'modal-verb', 'common-modal-verbs', 'mechanics',
+        'Modalverbene (kan, vil, skal, må) glipper for deg ennå — både form og bruk.'),
+  },
+  {
+    name: 'negation-placement-pattern',
+    detect: (fp) =>
+      singleClassRootCause(fp, 'negation-placement', 'negation', 'application',
+        'Plasseringen av «ikke» glipper — den følger faste regler du ikke har automatisert ennå.'),
+  },
+  {
+    name: 'compound-word-pattern',
+    detect: (fp) =>
+      singleClassRootCause(fp, 'compound-word', 'word-formation', 'mechanics',
+        'Du særskriver — sammensatte ord skal skrives i ett, og det sitter ikke ennå.'),
   },
   {
     // LOWEST-priority fallback. Targeted rules (1–4) reason about specific

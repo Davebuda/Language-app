@@ -38,6 +38,14 @@ const HIGH_CONFIDENCE = new Set<ErrorTag>([
   'modal-verb',
   'pronoun-choice',
   'negation-placement',
+  // adjEndingVariant / verbFormVariant in observe() detect a clean adjective-ending
+  // or verb-form swap as deterministically as the closed-class swaps above. Without
+  // these, classifyError discarded the observed tag for the sentence's authored tag
+  // (relabel leak, vision audit 2026-06-26 Lane 1): a real adjective error logged as
+  // something else, starving diagnosis rule 1 (the flagship gender rule counts
+  // adjective-agreement). Promoted so the observed tag is trusted (p7).
+  'adjective-agreement',
+  'verb-tense',
   // A disjoint-POS swap (two known words, no shared part of speech) is an
   // unambiguous wrong-word-DIFFERENT-category error — see observe()/pos-map.ts.
   'wrong-word-different-category',

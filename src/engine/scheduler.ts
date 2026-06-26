@@ -308,14 +308,26 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   // 'listening-comprehension' pseudo-concept is dropped here (the Lytt block owns it).
   const hasLevelContent = (id: string) =>
     filterSentencesByLevel(availableSentenceIds[id] ?? [], fingerprint.currentLevel, sentences).length > 0;
+  // Two steer bands (vision audit 2026-06-26, P2). A HIGH-confidence diagnosis (>=0.7)
+  // drives ALL moat pools incl. the heavy remediation block (unchanged). A MID-confidence
+  // diagnosis (>=0.55, e.g. a single-class pattern at 2 occurrences) is real but less
+  // certain, so it steers ONLY the moat-safe pools — snakk + new-material modality — and
+  // NEVER remediation, review, or SRS-due (tilting spaced repetition by a moderate signal
+  // would erode the 1→3→7→14→30 ladder). SAFE is a superset of FULL.
+  const STEER_MIN_FULL = 0.7;
+  const STEER_MIN_SAFE = 0.55;
   const topDiagnosis: DiagnosisResult | undefined = diagnosisResults[0];
-  const diagnosisSteer = topDiagnosis && topDiagnosis.confidence >= 0.7 ? topDiagnosis : null;
-  const diagnosisTargets = diagnosisSteer
-    ? Array.from(new Set([diagnosisSteer.rootCauseConceptId, ...diagnosisSteer.affectedConceptIds])).filter(hasLevelContent)
-    : [];
-  // Diagnosis modality tilt for the remediation block only (review/new/interleaving
-  // keep their default pools). null when no high-confidence diagnosis fired.
+  const topConfidence = topDiagnosis?.confidence ?? 0;
+  const diagnosisSteer = topConfidence >= STEER_MIN_FULL ? topDiagnosis : null;       // remediation (full)
+  const diagnosisSteerSafe = topConfidence >= STEER_MIN_SAFE ? topDiagnosis : null;   // snakk + new-material (safe)
+  const targetsOf = (d: DiagnosisResult | null | undefined) =>
+    d ? Array.from(new Set([d.rootCauseConceptId, ...d.affectedConceptIds])).filter(hasLevelContent) : [];
+  const diagnosisTargets = targetsOf(diagnosisSteer);          // remediation lead (>=0.7)
+  const diagnosisTargetsSafe = targetsOf(diagnosisSteerSafe);  // snakk lead (>=0.55)
+  // Diagnosis modality tilt. FULL → remediation block; SAFE → new-material modality.
+  // Review/interleaving keep their default pools regardless of band.
   const diagnosisFocus = diagnosisSteer?.recommendedFocus;
+  const diagnosisFocusSafe = diagnosisSteerSafe?.recommendedFocus;
 
   const basePool =
     focusIds.size > 0
@@ -346,6 +358,10 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   // their existing reason (they're symptoms, not the cause — honest labeling).
   const rootCauseId = diagnosisSteer && diagnosisTargets.includes(diagnosisSteer.rootCauseConceptId)
     ? diagnosisSteer.rootCauseConceptId
+    : null;
+  // Snakk uses the SAFE band (>=0.55), so its root-cause label tracks the safe diagnosis.
+  const rootCauseIdSafe = diagnosisSteerSafe && diagnosisTargetsSafe.includes(diagnosisSteerSafe.rootCauseConceptId)
+    ? diagnosisSteerSafe.rootCauseConceptId
     : null;
 
   for (let i = 0; i < counts.remediation; i++) {
@@ -390,7 +406,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
       // focus, guarded so a cold-start concept is never forced into production.
       const added = addItem(
         concept.id, NEW_MATERIAL_EXERCISES, 'new-material', reason, true,
-        resolveNewMaterialFocus(diagnosisFocus, reason === 'cold_start'),
+        resolveNewMaterialFocus(diagnosisFocusSafe, reason === 'cold_start'),
       );
       if (added) {
         conceptRepeatCount.set(concept.id, (conceptRepeatCount.get(concept.id) ?? 0) + 1);
@@ -562,7 +578,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
   // moat's diagnosis→production edge). Then weekly focus, weak spots, unlocked.
   // Safe by construction: this block is purpose:'remediation', never review/SRS-due.
   const snakkConceptPool = [
-    ...diagnosisTargets,
+    ...diagnosisTargetsSafe,
     ...Array.from(focusIds),
     ...weakConcepts,
     ...unlockedConcepts.map((c) => c.id),
@@ -576,7 +592,7 @@ export function generateSession(input: SchedulerInput): SchedulerOutput {
     const exerciseType = firstEligibleType(conceptId, SNAKK_EXERCISES_BLOCK, true);
     if (exerciseType === null) continue;
     const snakkReason: SelectionReason =
-      conceptId === rootCauseId
+      conceptId === rootCauseIdSafe
         ? 'root_cause'
         : focusIds.has(conceptId)
           ? 'weekly_focus'
