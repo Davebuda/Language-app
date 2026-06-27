@@ -9,14 +9,12 @@ import type { MistakeFingerprint } from '@/types/fingerprint'
 import { saveFingerprint, loadFingerprint } from '@/storage/indexeddb'
 import { buildSeededFingerprint } from '@/lib/seed-fingerprint'
 import { DiagnosticQuiz } from './DiagnosticQuiz'
-import { ThemePicker } from '@/components/theme/ThemePicker'
-import { applyTheme, getStoredTheme, type ThemeName } from '@/lib/theme'
+import { getStoredTheme } from '@/lib/theme'
 import type { DiagnosticResult } from '@/lib/diagnostic/engine'
 import type { CEFRLevel } from '@/types/fingerprint'
 
 type Step =
   | { kind: 'intro'; id: string }
-  | { kind: 'theme' }
   | { kind: 'diagnostic' }
   | { kind: 'ready' }
 
@@ -134,7 +132,6 @@ export function OnboardingFlow() {
 
   const steps: Step[] = [
     ...INTRO_SLIDES.map((slide) => ({ kind: 'intro' as const, id: slide.id })),
-    { kind: 'theme' },
     { kind: 'diagnostic' },
     { kind: 'ready' },
   ]
@@ -167,9 +164,10 @@ export function OnboardingFlow() {
     }
     setDirection(-1)
     if (currentStep.kind === 'ready') {
-      // Skip back over the completed diagnostic to the theme step (re-running the
-      // diagnostic on a back-press would be jarring); theme is a safe re-entry.
-      setStepIndex(steps.findIndex((s) => s.kind === 'theme'))
+      // Skip back over the completed diagnostic to the last intro slide (re-running
+      // the diagnostic on a back-press would be jarring); intro is a safe re-entry.
+      const diagnosticIndex = steps.findIndex((s) => s.kind === 'diagnostic')
+      setStepIndex(Math.max(0, diagnosticIndex - 1))
       return
     }
     setStepIndex((i) => i - 1)
@@ -204,10 +202,6 @@ export function OnboardingFlow() {
       const slide = INTRO_SLIDES.find((item) => item.id === step.id)
       if (!slide) return null
       return <IntroSlide slide={slide} onNext={() => advanceTo(stepIndex + 1)} />
-    }
-
-    if (step.kind === 'theme') {
-      return <ThemeStep onNext={() => advanceTo(stepIndex + 1)} />
     }
 
     if (step.kind === 'diagnostic') {
@@ -275,47 +269,6 @@ export function OnboardingFlow() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
-  )
-}
-
-function ThemeStep({ onNext }: { onNext: () => void }) {
-  const [selected, setSelected] = useState<ThemeName>(() => getStoredTheme() ?? 'honning')
-
-  function pick(theme: ThemeName) {
-    setSelected(theme)
-    // Apply immediately so the onboarding screen itself recolors — a live preview
-    // of what the learner is choosing. localStorage is written here too, so the
-    // choice is baked into the fingerprint at diagnostic-seed time.
-    applyTheme(theme)
-  }
-
-  return (
-    <div className="flex flex-1 flex-col gap-[6px]">
-      <div className="nc-signal-panel p-2.5">
-        <div className="nc-label">Tema</div>
-        <h1 className="mt-3 text-balance text-[1.8rem] leading-[0.94] text-[var(--nc-signal-fg)]">
-          Velg ditt uttrykk.
-        </h1>
-        <p className="mt-3 text-pretty text-[0.95rem] leading-7 text-[rgba(8,17,13,0.72)]">
-          Velg fargene appen skal ha. Du kan bytte når som helst i profilen.
-        </p>
-
-        <div className="mt-5 rounded-lg bg-[rgba(6,16,23,0.92)] p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-          <ThemePicker value={selected} onSelect={pick} />
-        </div>
-      </div>
-
-      <div className="flex-1" />
-
-      <button
-        onClick={onNext}
-        className="nc-button-primary inline-flex min-h-[52px] w-full items-center justify-center gap-2 px-6 text-sm font-bold whitespace-nowrap"
-        aria-label="Fortsett"
-      >
-        <span>Fortsett</span>
-        <ArrowRight size={16} aria-hidden="true" />
-      </button>
     </div>
   )
 }

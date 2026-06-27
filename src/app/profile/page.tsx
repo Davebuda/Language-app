@@ -1,11 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, ChevronRight, LogOut, TrendingUp, BarChart3, CalendarCheck } from 'lucide-react'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
-import { useFingerprint } from '@/hooks/useFingerprint'
 import { useFingerprintStore } from '@/stores/fingerprint-store'
 import { useAIStatusStore } from '@/stores/ai-status-store'
 import { saveFingerprint } from '@/storage/indexeddb'
@@ -18,8 +16,6 @@ import { formatNextReview } from '@/lib/srs-format'
 import { ERROR_TAG_LABELS } from '@/lib/error-tag-labels'
 import { GRAMMAR_EXPLAINERS } from '@/lib/grammar-explainers'
 import { errorTagToGrammarConceptId } from '@/lib/error-tag-to-concept'
-import { ThemePicker } from '@/components/theme/ThemePicker'
-import { getStoredTheme, type ThemeName } from '@/lib/theme'
 
 const PREFERENCE_OPTIONS: { value: InputProductionPreference; label: string; desc: string }[] = [
   { value: 'input_heavy', label: 'Lytting og lesing', desc: 'Mer input og forståelse' },
@@ -37,17 +33,7 @@ const LEVEL_LABELS: Record<string, string> = {
 export default function ProfilePage() {
   const router = useRouter()
   const { user, signOut, loading: authLoading } = useAuth()
-  const { setTheme } = useFingerprint()
   const { fingerprint, setFingerprint, status } = useFingerprintStore()
-
-  // The picker reflects the APPLIED theme (device-local choice wins), not just the
-  // synced fingerprint value — they only diverge in the abandoned-onboarding edge.
-  // SSR-safe: start from a stable default, reconcile to the real applied theme on
-  // mount and whenever the synced fingerprint theme changes.
-  const [themeChoice, setThemeChoice] = useState<ThemeName>('honning')
-  useEffect(() => {
-    setThemeChoice(getStoredTheme() ?? fingerprint?.theme ?? 'honning')
-  }, [fingerprint?.theme])
   const conceptGraph = getGraphForLevel(fingerprint?.currentLevel ?? 'A1')
   const streak = getStreak()
 
@@ -300,23 +286,6 @@ export default function ProfilePage() {
                 </button>
               )
             })}
-          </div>
-        </section>
-
-        {/* ── Theme (Dark) ── */}
-        <section className="nc-glass p-2.5">
-          <div className="nc-label">Tema</div>
-          <p className="mt-1 text-[0.72rem] text-[var(--nc-text-muted)]">
-            Fargene appen bruker. Lagres på enheten og synkroniseres når du er logget inn.
-          </p>
-          <div className="mt-2">
-            <ThemePicker
-              value={themeChoice}
-              onSelect={(theme) => {
-                setThemeChoice(theme)
-                setTheme(theme)
-              }}
-            />
           </div>
         </section>
 
