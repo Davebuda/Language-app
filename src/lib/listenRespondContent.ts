@@ -262,6 +262,86 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
   },
 ]
 
+// A2 = combination level: perfect tense, modals, comparatives, conditionals,
+// subordinate clauses, time expressions, reflexives, object pronouns. Each prompt
+// elicits production of one A2 structure. Linguist-reviewed 2026-06-27 (18 PASS;
+// a2-if-dayoff + a2-relax hint corrected). audioUrl omitted — text-first; audio is
+// a follow-up batch.
+const A2_QUESTIONS: ListenRespondQuestion[] = [
+  {
+    id: 'a2-perfect-week',
+    question: 'Hva har du gjort denne uka?',
+    questionEnglish: 'What have you done this week?',
+    expectedKeywords: ['har', 'jobbet', 'vært', 'spist', 'møtt', 'gjort', 'trent'],
+    hint: 'Bruk perfektum: har + partisipp (har jobbet, har vært).',
+    conceptId: 'perfect-tense',
+    errorTag: 'verb-tense',
+  },
+  {
+    id: 'a2-compare-cities',
+    question: 'Er det dyrere å bo i Oslo enn i Bergen?',
+    questionEnglish: 'Is it more expensive to live in Oslo than in Bergen?',
+    expectedKeywords: ['dyrere', 'billigere', 'enn', 'mer', 'mindre', 'tror'],
+    hint: 'Sammenlign med adjektiv + -ere … enn (dyrere enn).',
+    conceptId: 'comparative-adjectives',
+    errorTag: 'adjective-agreement',
+  },
+  {
+    id: 'a2-must-before-weekend',
+    question: 'Hva må du gjøre før helga?',
+    questionEnglish: 'What do you have to do before the weekend?',
+    expectedKeywords: ['må', 'skal', 'bør', 'kan', 'jobbe', 'handle', 'gjøre'],
+    hint: 'Bruk modalverb (må, skal, bør) + infinitiv.',
+    conceptId: 'modal-verbs-advanced',
+    errorTag: 'modal-verb',
+  },
+  {
+    id: 'a2-when-home',
+    question: 'Hva gjør du når du kommer hjem fra jobb?',
+    questionEnglish: 'What do you do when you come home from work?',
+    expectedKeywords: ['når', 'kommer', 'hjem', 'lager', 'slapper', 'hviler'],
+    hint: "Bruk en leddsetning med 'når' (… når jeg kommer hjem).",
+    conceptId: 'subordinate-clauses',
+    errorTag: 'word-order',
+  },
+  {
+    id: 'a2-if-dayoff',
+    question: 'Hva ville du gjøre hvis du hadde fri i morgen?',
+    questionEnglish: 'What would you do if you had a day off tomorrow?',
+    expectedKeywords: ['hvis', 'ville', 'hadde', 'sove', 'reise', 'slappe'],
+    hint: "Bruk 'hvis' + ville (Hvis jeg hadde fri, ville jeg …).",
+    conceptId: 'conditional-clauses',
+    errorTag: 'word-order',
+  },
+  {
+    id: 'a2-dinner-time',
+    question: 'Når pleier du å spise middag?',
+    questionEnglish: 'When do you usually eat dinner?',
+    expectedKeywords: ['klokka', 'fem', 'seks', 'sju', 'om', 'kvelden', 'pleier'],
+    hint: 'Bruk tidsuttrykk (klokka seks, om kvelden).',
+    conceptId: 'time-expressions',
+    errorTag: 'preposition',
+  },
+  {
+    id: 'a2-relax',
+    question: 'Hva gjør du for å slappe av etter en lang dag?',
+    questionEnglish: 'What do you do to relax after a long day?',
+    expectedKeywords: ['slapper', 'av', 'koser', 'meg', 'hviler', 'ser'],
+    hint: 'Bruk refleksivt verb eller partikkelverb (kose seg, slappe av).',
+    conceptId: 'reflexive-verbs',
+    errorTag: 'pronoun-choice',
+  },
+  {
+    id: 'a2-who-help',
+    question: 'Hvem hjelper du ofte, og hvordan?',
+    questionEnglish: 'Who do you often help, and how?',
+    expectedKeywords: ['hjelper', 'henne', 'ham', 'dem', 'familien', 'med'],
+    hint: 'Bruk objektspronomen (ham, henne, dem).',
+    conceptId: 'object-pronouns',
+    errorTag: 'pronoun-choice',
+  },
+]
+
 /** @deprecated use getListenQuestions(level) instead */
 export const LISTEN_RESPOND_QUESTIONS: ListenRespondQuestion[] = A1_QUESTIONS
 
@@ -272,19 +352,21 @@ export const LISTEN_RESPOND_QUESTIONS: ListenRespondQuestion[] = A1_QUESTIONS
 export function getListenQuestions(level: string): ListenRespondQuestion[] {
   if (level === 'B2') return B2_QUESTIONS
   if (level === 'B1') return B1_QUESTIONS
+  if (level === 'A2') return A2_QUESTIONS
   return A1_QUESTIONS
 }
 
 /**
  * The CEFR level whose listen-respond questions are ACTUALLY served for a
- * learner level. A2 (and unknown) reuse the A1 set — no dedicated A2 questions
- * exist yet. Exposing this lets the UI honestly disclose below-level content
- * instead of substituting silently (Operating Rule 6), mirroring
+ * learner level. A1/A2/B1/B2 all have dedicated sets now; only unknown levels
+ * fall back to A1. Exposing this lets the UI honestly disclose below-level
+ * content instead of substituting silently (Operating Rule 6), mirroring
  * getRoleplayContentLevel.
  */
 export function getListenContentLevel(level: string): string {
   if (level === 'B2') return 'B2'
   if (level === 'B1') return 'B1'
+  if (level === 'A2') return 'A2'
   if (level === 'A1') return 'A1'
-  return 'A1' // A2 + unknown → A1 questions (no dedicated set yet)
+  return 'A1' // unknown → A1 questions
 }

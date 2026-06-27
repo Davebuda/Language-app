@@ -470,6 +470,160 @@ const B2_SCENARIOS: RoleplayScenario[] = [
   },
 ]
 
+// A2 = combination level: each scenario chains 4 turns eliciting perfect tense,
+// modals, comparatives, prepositions, reflexives, negation, future, and subordinate
+// clauses in a realistic everyday exchange. Linguist-reviewed 2026-06-27 (all 12
+// turns PASS; "Jo" negative-question response confirmed correct).
+const A2_SCENARIOS: RoleplayScenario[] = [
+  {
+    id: 'a2-butikk',
+    title: 'På butikken',
+    titleEnglish: 'At the grocery shop',
+    setting: "You're shopping for groceries. The shop assistant offers to help.",
+    characterName: 'Butikkmedarbeider',
+    turns: [
+      {
+        id: 'find',
+        character: 'Hei! Trenger du hjelp til å finne noe?',
+        characterEnglish: 'Hi! Do you need help finding anything?',
+        expectedKeywords: ['leter', 'etter', 'trenger', 'hvor', 'har', 'dere'],
+        hint: 'Si hva du leter etter (leter etter …).',
+        modelAnswer: 'Ja, jeg leter etter brød og melk.',
+        targetConceptId: 'advanced-prepositions',
+        errorTag: 'preposition',
+      },
+      {
+        id: 'choose',
+        character: 'Vi har to typer brød — grovt og fint. Hva foretrekker du?',
+        characterEnglish: 'We have two kinds of bread — wholegrain and white. Which do you prefer?',
+        expectedKeywords: ['grovt', 'fint', 'foretrekker', 'heller', 'sunnere', 'enn'],
+        hint: 'Sammenlign og velg (… er sunnere enn …).',
+        modelAnswer: 'Jeg foretrekker grovt brød, det er sunnere.',
+        targetConceptId: 'comparative-adjectives',
+        errorTag: 'adjective-agreement',
+      },
+      {
+        id: 'amount',
+        character: 'Hvor mye vil du ha?',
+        characterEnglish: 'How much would you like?',
+        expectedKeywords: ['vil', 'ha', 'to', 'liter', 'kilo', 'noen'],
+        hint: 'Bruk modalverb + mengde (Jeg vil ha to liter …).',
+        modelAnswer: 'Jeg vil ha to liter melk, takk.',
+        targetConceptId: 'modal-verbs-advanced',
+        errorTag: 'modal-verb',
+      },
+      {
+        id: 'pay',
+        character: 'Det blir 95 kroner. Vil du betale med kort?',
+        characterEnglish: "That'll be 95 kroner. Would you like to pay by card?",
+        expectedKeywords: ['kort', 'kontant', 'betaler', 'med', 'ja'],
+        hint: 'Bruk preposisjon (betale med kort).',
+        modelAnswer: 'Ja, jeg betaler med kort.',
+        targetConceptId: 'advanced-prepositions',
+        errorTag: 'preposition',
+      },
+    ],
+  },
+  {
+    id: 'a2-legen',
+    title: 'Hos legen',
+    titleEnglish: 'At the doctor',
+    setting: "You're at the doctor's office. The doctor asks about your symptoms.",
+    characterName: 'Lege',
+    turns: [
+      {
+        id: 'symptom',
+        character: 'Hei. Hva kan jeg hjelpe deg med i dag?',
+        characterEnglish: 'Hi. What can I help you with today?',
+        expectedKeywords: ['føler', 'meg', 'syk', 'vondt', 'har', 'i'],
+        hint: 'Bruk refleksivt verb (føler meg …).',
+        modelAnswer: 'Jeg føler meg syk og har vondt i hodet.',
+        targetConceptId: 'reflexive-verbs',
+        errorTag: 'pronoun-choice',
+      },
+      {
+        id: 'duration',
+        character: 'Hvor lenge har du følt deg sånn?',
+        characterEnglish: 'How long have you felt like this?',
+        expectedKeywords: ['har', 'følt', 'i', 'dager', 'siden', 'uke'],
+        hint: 'Bruk perfektum (Jeg har følt meg … i tre dager).',
+        modelAnswer: 'Jeg har følt meg dårlig i tre dager.',
+        targetConceptId: 'perfect-tense',
+        errorTag: 'verb-tense',
+      },
+      {
+        id: 'medicine',
+        character: 'Tar du noen medisiner nå?',
+        characterEnglish: 'Are you taking any medication now?',
+        expectedKeywords: ['tar', 'ikke', 'noen', 'bruker', 'nei'],
+        hint: "Plasser 'ikke' riktig (Jeg tar ikke noen medisiner).",
+        modelAnswer: 'Nei, jeg tar ikke noen medisiner nå.',
+        targetConceptId: 'sentence-adverbials',
+        errorTag: 'negation-placement',
+      },
+      {
+        id: 'advice',
+        character: 'Du bør hvile. Skal jeg skrive ut en resept?',
+        characterEnglish: 'You should rest. Shall I write you a prescription?',
+        expectedKeywords: ['ja', 'takk', 'gjerne', 'bør', 'trenger'],
+        hint: 'Svar med modalverb (Ja takk, det hadde vært fint).',
+        modelAnswer: 'Ja takk, det hadde vært fint.',
+        targetConceptId: 'modal-verbs-advanced',
+        errorTag: 'modal-verb',
+      },
+    ],
+  },
+  {
+    id: 'a2-nabo',
+    title: 'Småprat med en nabo',
+    titleEnglish: 'Small talk with a neighbour',
+    setting: 'You meet your neighbour in the hallway. They start a conversation.',
+    characterName: 'Nabo',
+    turns: [
+      {
+        id: 'weekend',
+        character: 'Hei! Hadde du en fin helg?',
+        characterEnglish: 'Hi! Did you have a nice weekend?',
+        expectedKeywords: ['ja', 'hadde', 'var', 'fin', 'koselig', 'tur'],
+        hint: 'Fortell om helga i fortid (Jeg hadde …, jeg var …).',
+        modelAnswer: 'Ja, jeg hadde en fin helg. Jeg var på tur.',
+        targetConceptId: 'preterite-irregular-advanced',
+        errorTag: 'verb-tense',
+      },
+      {
+        id: 'weather',
+        character: 'Været er bedre i dag enn i går, synes du ikke?',
+        characterEnglish: "The weather is better today than yesterday, don't you think?",
+        expectedKeywords: ['jo', 'enig', 'varmere', 'finere', 'enn', 'bedre'],
+        hint: "Svar 'Jo' på et negativt spørsmål, og sammenlign (varmere enn).",
+        modelAnswer: 'Jo, det er mye varmere i dag.',
+        targetConceptId: 'comparative-adjectives',
+        errorTag: 'adjective-agreement',
+      },
+      {
+        id: 'summer',
+        character: 'Har du noen planer til sommeren?',
+        characterEnglish: 'Do you have any plans for the summer?',
+        expectedKeywords: ['skal', 'reise', 'til', 'planlegger', 'ferie', 'kommer'],
+        hint: 'Snakk om framtid (Jeg skal reise til …).',
+        modelAnswer: 'Ja, jeg skal reise til Spania i sommer.',
+        targetConceptId: 'future-constructions',
+        errorTag: 'verb-tense',
+      },
+      {
+        id: 'offer',
+        character: 'Så hyggelig! Si fra hvis du trenger noe.',
+        characterEnglish: 'How nice! Let me know if you need anything.',
+        expectedKeywords: ['takk', 'det', 'skal', 'jeg', 'gjøre', 'hvis'],
+        hint: 'Takk og svar med en leddsetning (… det skal jeg gjøre).',
+        modelAnswer: 'Tusen takk, det skal jeg gjøre.',
+        targetConceptId: 'subordinate-clauses',
+        errorTag: 'word-order',
+      },
+    ],
+  },
+]
+
 /** @deprecated use getRoleplayScenarios(level) instead */
 export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = A1_SCENARIOS
 
@@ -480,17 +634,20 @@ export const ROLEPLAY_SCENARIOS: RoleplayScenario[] = A1_SCENARIOS
 export function getRoleplayScenarios(level: string): RoleplayScenario[] {
   if (level === 'B2') return B2_SCENARIOS
   if (level === 'B1') return B1_SCENARIOS
+  if (level === 'A2') return A2_SCENARIOS
   return A1_SCENARIOS
 }
 
 /**
- * The CEFR level whose scenarios are ACTUALLY served for a learner level. A2
- * (and unknown) reuse the A1 set — exposing this lets the UI honestly disclose
- * below-level content instead of substituting silently (Operating Rule 6).
+ * The CEFR level whose scenarios are ACTUALLY served for a learner level. A1/A2/
+ * B1/B2 all have dedicated sets now; only unknown levels fall back to A1. Exposing
+ * this lets the UI honestly disclose below-level content instead of substituting
+ * silently (Operating Rule 6).
  */
 export function getRoleplayContentLevel(level: string): string {
   if (level === 'B2') return 'B2'
   if (level === 'B1') return 'B1'
+  if (level === 'A2') return 'A2'
   if (level === 'A1') return 'A1'
-  return 'A1' // A2 + unknown → A1 scenarios (no dedicated set yet)
+  return 'A1' // unknown → A1 scenarios
 }
