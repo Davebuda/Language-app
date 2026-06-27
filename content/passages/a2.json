@@ -28,5 +28,33 @@
       { "kind": "gap", "answer": "gamle", "concept_id": "adjective-agreement", "error_tag": "adjective-agreement" },
       { "kind": "text", "value": " trærne gir god skygge." }
     ]
+  },
+  {
+    "id": "cz-a2-perfect-weekend",
+    "cefr_level": "A2",
+    "primary_concept_id": "perfect-tense",
+    "english_gloss": "This weekend I have cleaned the house and bought food. Now everything is ready.",
+    "difficulty": 2,
+    "segments": [
+      { "kind": "text", "value": "I helga har jeg " },
+      { "kind": "gap", "answer": "vasket", "concept_id": "perfect-tense", "error_tag": "verb-tense" },
+      { "kind": "text", "value": " huset og " },
+      { "kind": "gap", "answer": "handlet", "accepted_answers": ["kjøpt"], "concept_id": "perfect-tense", "error_tag": "verb-tense" },
+      { "kind": "text", "value": " mat. Nå er alt ferdig." }
+    ]
+  },
+  {
+    "id": "cz-a2-comparative-cities",
+    "cefr_level": "A2",
+    "primary_concept_id": "comparative-adjectives",
+    "english_gloss": "Oslo is bigger than Bergen, but Bergen is wetter. Both cities are nice.",
+    "difficulty": 2,
+    "segments": [
+      { "kind": "text", "value": "Oslo er " },
+      { "kind": "gap", "answer": "større", "concept_id": "comparative-adjectives", "error_tag": "adjective-agreement" },
+      { "kind": "text", "value": " enn Bergen, men Bergen er " },
+      { "kind": "gap", "answer": "våtere", "accepted_answers": ["regnfullere"], "concept_id": "comparative-adjectives", "error_tag": "adjective-agreement" },
+      { "kind": "text", "value": ". Begge byene er fine." }
+    ]
   }
 ]
