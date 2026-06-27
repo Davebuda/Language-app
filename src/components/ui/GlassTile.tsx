@@ -225,7 +225,7 @@ export function GlassTile({
           {subtitle != null && (
             <span
               style={{
-                fontFamily: 'var(--v3-mono)',
+                fontFamily: 'var(--v3-sans)',
                 fontSize: 8,
                 letterSpacing: '0.02em',
                 color: '#e3e7df',
@@ -280,9 +280,9 @@ export function GlassTile({
       position: 'relative',
       overflow: 'hidden',
       isolation: 'isolate',
-      minHeight: 96,
-      borderRadius: 14,
-      padding: '11px 11px 11px',
+      minHeight: 80,
+      borderRadius: 13,
+      padding: '9px 10px',
       border: '1px solid rgba(255,255,255,0.12)',
       background:
         'linear-gradient(168deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.05) 52%, rgba(255,255,255,0.025) 100%)',
@@ -340,8 +340,8 @@ export function GlassTile({
           }}
         >
           <Icon
-            width={54}
-            height={54}
+            width={46}
+            height={46}
             color="var(--c)"
             strokeWidth={0.6}
             aria-hidden="true"
@@ -379,7 +379,7 @@ export function GlassTile({
           {subtitle != null && (
             <span
               style={{
-                fontFamily: 'var(--v3-mono)',
+                fontFamily: 'var(--v3-sans)',
                 fontSize: 8,
                 marginTop: 3,
                 letterSpacing: '0.02em',
@@ -565,7 +565,7 @@ export function GlassTile({
   }
 
   const subtitleStyle: React.CSSProperties = {
-    fontFamily: 'var(--v3-mono)',
+    fontFamily: 'var(--v3-sans)',
     fontSize: isHero ? 11 : 10,
     letterSpacing: '0.2px',
     color: '#cfd6cd',

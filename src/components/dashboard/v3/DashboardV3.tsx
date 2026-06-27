@@ -225,7 +225,7 @@ export function DashboardV3() {
             </div>
             <div
               style={{
-                fontFamily: 'var(--v3-mono)',
+                fontFamily: 'var(--v3-sans)',
                 fontSize: 9,
                 letterSpacing: '.07em',
                 color: 'var(--v3-on-dark-3)',
@@ -241,37 +241,10 @@ export function DashboardV3() {
             </div>
           </div>
 
-          {/* AI status — real AIStatusBadge inside R1's lime pill */}
-          <div
-            className="shrink-0"
-            style={{
-              marginLeft: 'auto',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              fontFamily: 'var(--v3-mono)',
-              fontSize: 9.5,
-              fontWeight: 600,
-              letterSpacing: '.12em',
-              color: 'var(--v3-cyan)',
-              padding: '5px 11px',
-              border: '1px solid rgba(0,194,224,.42)',
-              borderRadius: 999,
-              background: 'rgba(0,194,224,.09)',
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: 'var(--v3-cyan)',
-                boxShadow: '0 0 7px var(--v3-cyan)',
-                display: 'inline-block',
-                flexShrink: 0,
-              }}
-            />
+          {/* AI status — the real AIStatusBadge alone. It is already a complete,
+              self-styled signal chip (lime "Lokal AI"/"Sky-AI", red "Maler"); the
+              old cyan wrapper pill + cyan dot doubled the colour around it. */}
+          <div className="shrink-0" style={{ marginLeft: 'auto' }}>
             <AIStatusBadge />
           </div>
         </div>
@@ -295,7 +268,7 @@ export function DashboardV3() {
             <div className="flex items-center justify-between" style={{ gap: 8, marginBottom: 8 }}>
               <span
                 style={{
-                  fontFamily: 'var(--v3-mono)',
+                  fontFamily: 'var(--v3-sans)',
                   fontSize: 9,
                   letterSpacing: '.13em',
                   textTransform: 'uppercase',
@@ -307,7 +280,7 @@ export function DashboardV3() {
               </span>
               <span
                 style={{
-                  fontFamily: 'var(--v3-mono)',
+                  fontFamily: 'var(--v3-sans)',
                   fontSize: 9,
                   fontWeight: 600,
                   color: 'var(--v3-ink)',
@@ -334,7 +307,7 @@ export function DashboardV3() {
                   <span
                     className="inline-flex items-center"
                     style={{
-                      fontFamily: 'var(--v3-mono)',
+                      fontFamily: 'var(--v3-sans)',
                       fontSize: 9,
                       fontWeight: 600,
                       letterSpacing: '.06em',
@@ -353,7 +326,7 @@ export function DashboardV3() {
                     className="inline-flex items-center"
                     style={{
                       gap: 5,
-                      fontFamily: 'var(--v3-mono)',
+                      fontFamily: 'var(--v3-sans)',
                       fontSize: 9,
                       fontWeight: 500,
                       letterSpacing: '.04em',
@@ -422,10 +395,10 @@ export function DashboardV3() {
                     </defs>
                   </svg>
                   <div className="flex flex-col items-center justify-center" style={{ position: 'absolute', inset: 0 }}>
-                    <b className="tabular-nums" style={{ fontFamily: 'var(--v3-mono)', fontSize: 19, fontWeight: 600, color: '#fff', lineHeight: 1 }}>
+                    <b className="tabular-nums" style={{ fontFamily: 'var(--v3-sans)', fontSize: 19, fontWeight: 600, color: '#fff', lineHeight: 1 }}>
                       {wallView?.heroCount ?? '—'}
                     </b>
-                    <small style={{ fontFamily: 'var(--v3-mono)', fontSize: 7, color: 'var(--v3-on-dark-3)', marginTop: 2 }}>
+                    <small style={{ fontFamily: 'var(--v3-sans)', fontSize: 7, color: 'var(--v3-on-dark-3)', marginTop: 2 }}>
                       {ringIsLexical ? 'totalt' : 'i dag'}
                     </small>
                   </div>
@@ -466,7 +439,7 @@ export function DashboardV3() {
             <span className="flex flex-col text-left" style={{ minWidth: 0 }}>
               <span
                 style={{
-                  fontFamily: 'var(--v3-mono)',
+                  fontFamily: 'var(--v3-sans)',
                   fontSize: 9,
                   letterSpacing: '.01em',
                   color: 'rgba(10,18,6,.62)',
@@ -497,14 +470,27 @@ export function DashboardV3() {
           </Link>
         </div>
 
-        {/* ══ §VERKTØY — 3-col grid of clean glowing glass tiles ════════════ */}
-        {/* Approved direction (clean-tiles iteration): one nice box per tile — a
-            big backlit glyph sunk into the back glass, white label on top, a
-            single accent bloom + top hairline. E-density 3-col so all 6 fit in
-            two rows within the one-viewport frame. Each its own accent
-            (Lær=lime … Notatboka=violet). */}
-        <Led title="Verktøy" meta="6 øvelser" />
-        <div className="grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
+        {/* ══ §VERKTØY — boxed well: heading + 3-col grid of glass tiles ══════
+            Wrapped in a subtle dark well with a proper heading (was a bare §
+            divider line); tiles shrunk (GlassTile grid 96→80) to fit inside. */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.025)',
+            border: '1px solid rgba(255,255,255,0.07)',
+            borderRadius: 16,
+            padding: '11px 11px 12px',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+            flexShrink: 0,
+          }}
+        >
+          <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
+            <span className="inline-flex items-center" style={{ gap: 7 }}>
+              <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 2, background: 'var(--v3-lime)' }} />
+              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--v3-on-dark)', letterSpacing: '-.01em' }}>Verktøy</span>
+            </span>
+            <span style={{ fontSize: 10, fontWeight: 500, color: 'var(--v3-on-dark-3)' }}>6 øvelser</span>
+          </div>
+          <div className="grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: 7 }}>
           <GlassTile accent="lime" icon={GraduationCap} title="Lær" subtitle={lerSubtitle} href="/session" size="grid" />
           <GlassTile accent="cyan" icon={Mic} title="Snakk" subtitle="Kari · øv høyt" href="/snakk" size="grid" />
           <GlassTile
@@ -518,6 +504,7 @@ export function DashboardV3() {
           <GlassTile accent="amber" icon={Headphones} title="Lytt" subtitle="Hør og svar" href="/listen" size="grid" />
           <GlassTile accent="coral" icon={PenLine} title="Skriv" subtitle="Journal · rettet" href="/journal" size="grid" />
           <GlassTile accent="violet" icon={Notebook} title="Notatboka" subtitle="Ord du har lagret" href="/vocab" size="grid" />
+          </div>
         </div>
 
         {/* ══ Snakk med Kari — system-glass rail (V1) → /conversation ══════════
@@ -588,7 +575,7 @@ export function DashboardV3() {
               <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--v3-cyan-lit)' }}>Snakk med Kari</span>
               <span
                 style={{
-                  fontFamily: 'var(--v3-mono)',
+                  fontFamily: 'var(--v3-sans)',
                   fontSize: 7,
                   letterSpacing: '.1em',
                   color: '#001316',
@@ -604,7 +591,7 @@ export function DashboardV3() {
             <span
               style={{
                 display: 'block',
-                fontFamily: 'var(--v3-mono)',
+                fontFamily: 'var(--v3-sans)',
                 fontSize: 8,
                 color: '#cfd6cd',
                 opacity: 0.78,
@@ -638,7 +625,7 @@ export function DashboardV3() {
               ))}
             </span>
             {speakingMins > 0 ? (
-              <span style={{ fontFamily: 'var(--v3-mono)', fontSize: 9, fontWeight: 500, color: 'var(--v3-on-dark-3)', whiteSpace: 'nowrap' }}>
+              <span style={{ fontFamily: 'var(--v3-sans)', fontSize: 9, fontWeight: 500, color: 'var(--v3-on-dark-3)', whiteSpace: 'nowrap' }}>
                 {speakingMins} min
               </span>
             ) : null}
@@ -688,7 +675,7 @@ export function DashboardV3() {
                       <div style={{ minWidth: 0 }}>
                         <div
                           style={{
-                            fontFamily: 'var(--v3-mono)',
+                            fontFamily: 'var(--v3-sans)',
                             fontSize: 8,
                             fontWeight: 700,
                             letterSpacing: '.03em',
@@ -705,7 +692,7 @@ export function DashboardV3() {
                         {lane.cause ? (
                           <div
                             style={{
-                              fontFamily: 'var(--v3-mono)',
+                              fontFamily: 'var(--v3-sans)',
                               fontSize: 7,
                               fontWeight: 600,
                               letterSpacing: '.04em',
@@ -721,7 +708,7 @@ export function DashboardV3() {
                           </div>
                         ) : null}
                       </div>
-                      <div style={{ fontFamily: 'var(--v3-mono)', fontSize: 17, fontWeight: 600, lineHeight: 1, color: tone.count }}>
+                      <div style={{ fontFamily: 'var(--v3-sans)', fontSize: 17, fontWeight: 600, lineHeight: 1, color: tone.count }}>
                         {lane.count}
                       </div>
                     </div>
@@ -734,7 +721,7 @@ export function DashboardV3() {
               aria-hidden="true"
             />
           )}
-          <div style={{ fontFamily: 'var(--v3-mono)', fontSize: 8, color: 'var(--v3-on-dark-3)', marginTop: 8, letterSpacing: '.04em' }}>
+          <div style={{ fontFamily: 'var(--v3-sans)', fontSize: 8, color: 'var(--v3-on-dark-3)', marginTop: 8, letterSpacing: '.04em' }}>
             Resept{' '}
             <b style={{ color: 'var(--v3-on-dark-2)', fontWeight: 600 }}>
               {remPct} / {revPct} / {newPct} / {intPct}
@@ -757,10 +744,10 @@ export function DashboardV3() {
 function Led({ title, meta }: { title: string; meta?: string }) {
   return (
     <div className="flex items-center" style={{ gap: 7, height: 12, flexShrink: 0 }}>
-      <span style={{ color: 'var(--v3-lime)', fontFamily: 'var(--v3-mono)', fontSize: 10, lineHeight: 1 }}>§</span>
+      <span style={{ color: 'var(--v3-lime)', fontFamily: 'var(--v3-sans)', fontSize: 10, lineHeight: 1 }}>§</span>
       <span
         style={{
-          fontFamily: 'var(--v3-mono)',
+          fontFamily: 'var(--v3-sans)',
           fontSize: 9.5,
           letterSpacing: '.1em',
           textTransform: 'uppercase',
@@ -774,7 +761,7 @@ function Led({ title, meta }: { title: string; meta?: string }) {
       {meta ? (
         <span
           style={{
-            fontFamily: 'var(--v3-mono)',
+            fontFamily: 'var(--v3-sans)',
             fontSize: 9,
             letterSpacing: '.06em',
             textTransform: 'uppercase',
@@ -816,13 +803,13 @@ function StatCell({ label, value, accent = false }: StatCellProps) {
     <div style={{ flex: 1, textAlign: 'center' }}>
       <div
         className="tabular-nums"
-        style={{ fontFamily: 'var(--v3-mono)', fontSize: 15, fontWeight: 600, color: accent ? 'var(--v3-cyan)' : '#fff', lineHeight: 1 }}
+        style={{ fontFamily: 'var(--v3-sans)', fontSize: 15, fontWeight: 600, color: accent ? 'var(--v3-cyan)' : '#fff', lineHeight: 1 }}
       >
         {value}
       </div>
       <div
         style={{
-          fontFamily: 'var(--v3-mono)',
+          fontFamily: 'var(--v3-sans)',
           fontSize: 7.5,
           color: 'var(--v3-on-dark-3)',
           textTransform: 'uppercase',

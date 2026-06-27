@@ -765,10 +765,13 @@
   --v3-tint-violet: linear-gradient(155deg, #262039 0%, #19142a 58%, #11101d 100%);
   --v3-tint-slate:  linear-gradient(155deg, #2b3134 0%, #1d2326 58%, #14181b 100%);
 
-  /* ── Mono font reference ─────────────────────────────────────
-     --font-mono is injected globally by layout.tsx (IBM Plex Mono).
-     Reference it here as --v3-mono so V3 components use the
-     canonical project mono stack without a hardcoded string.  */
+  /* ── Font references ─────────────────────────────────────────
+     The app is single-family Schibsted Grotesk (--font-body, injected by
+     layout.tsx). V3 labels/§-headers/stats use --v3-sans so the dashboard
+     matches every other surface (the .nc-label convention) instead of the
+     IBM Plex Mono that made it read as a different typeface. --v3-mono is
+     kept only for genuine tabular/monospace needs (currently none).  */
+  --v3-sans: var(--font-body, var(--font-sans, 'Schibsted Grotesk', sans-serif));
   --v3-mono: var(--font-mono, 'IBM Plex Mono', ui-monospace, monospace);
 }
 
