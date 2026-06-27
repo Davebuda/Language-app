@@ -56,6 +56,9 @@ export function ShadowingExercise({
   const [finalTranscript, setFinalTranscript] = useState('')
   const [matchScore, setMatchScore] = useState(0)
 
+  // continuous: the learner taps the orb to stop (UI already says "trykk for å
+  // stoppe"), so don't let a pause between words while sounding out the sentence
+  // auto-finalize and cut them off mid-utterance.
   const {
     transcript,
     interimTranscript,
@@ -64,7 +67,7 @@ export function ShadowingExercise({
     start,
     stop,
     reset,
-  } = useSpeechRecognition()
+  } = useSpeechRecognition({ continuous: true })
 
   // When transcript lands after recording ends, compute score and show result
   const handleStartRecording = useCallback(() => {

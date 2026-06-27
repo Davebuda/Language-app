@@ -17,7 +17,13 @@ import { markLaneDone } from '@/lib/lane-completion'
 import { useAuth } from '@/hooks/useAuth'
 import { logExerciseResult } from '@/lib/logEvents'
 
-const LISTEN_SECONDS = 5
+// Max listening window per turn. Generous so a learner has time to think before
+// speaking and isn't cut off mid-answer; they finish early with "Ferdig".
+const LISTEN_SECONDS = 20
+// Rough per-turn estimate used ONLY for the speaking-minutes / time metric — kept
+// small and separate from the window so the larger cap doesn't over-credit minutes
+// the learner didn't actually speak (Rule 8 honesty).
+const ESTIMATED_TURN_SECONDS = 5
 
 function PulsingDot() {
   return (
@@ -122,6 +128,8 @@ function RoleplayTurnExercise({
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const transcriptRef = useRef('')
 
+  // continuous: stay open through pauses so a learner thinking mid-answer isn't cut
+  // off. They finish with "Ferdig"; the LISTEN_SECONDS countdown is the upper bound.
   const {
     transcript,
     interimTranscript,
@@ -130,10 +138,12 @@ function RoleplayTurnExercise({
     start,
     stop,
     reset,
-  } = useSpeechRecognition()
+  } = useSpeechRecognition({ continuous: true })
 
+  // Fold trailing not-yet-finalized words into the capture so a learner's last words
+  // still count when the timer fires or they tap Ferdig.
   useEffect(() => {
-    transcriptRef.current = transcript || interimTranscript
+    transcriptRef.current = [transcript, interimTranscript].filter(Boolean).join(' ').trim()
   }, [transcript, interimTranscript])
 
   useEffect(() => {
@@ -172,6 +182,7 @@ function RoleplayTurnExercise({
         if (timerRef.current) clearInterval(timerRef.current)
         if (!hasResolved.current) {
           hasResolved.current = true
+          stop()
           resolveResult(transcriptRef.current)
         }
       }
@@ -182,6 +193,10 @@ function RoleplayTurnExercise({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [turnPhase, resolveResult])
 
+  // Safety fallback: if the recognizer ends on its own (browser-side error/timeout)
+  // while we still have captured speech, resolve with it rather than leaving a dead
+  // "Lytter…" state. In continuous mode the learner normally ends via Ferdig/timer,
+  // so this only fires on an unexpected end. hasResolved guards double-resolve.
   useEffect(() => {
     if (turnPhase !== 'listening') return
     if (isListening) return
@@ -199,6 +214,16 @@ function RoleplayTurnExercise({
     hasResolved.current = false
     setTurnPhase('listening')
     start()
+  }
+
+  // Learner taps "Ferdig" once they've answered — resolve immediately with what
+  // they've said instead of waiting out the countdown.
+  function handleDone() {
+    if (hasResolved.current) return
+    hasResolved.current = true
+    if (timerRef.current) clearInterval(timerRef.current)
+    stop()
+    resolveResult(transcriptRef.current)
   }
 
   function handleSkip() {
@@ -381,13 +406,23 @@ function RoleplayTurnExercise({
                 </p>
               ) : null}
 
-              <button
-                onClick={handleSkip}
-                aria-label="Hopp over denne replikken"
-                className="nc-button-dark w-full py-2.5 text-[0.8125rem] font-semibold"
-              >
-                Hopp over
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleDone}
+                  aria-label="Jeg er ferdig med å svare"
+                  className="flex-1 rounded-[var(--radius)] py-2.5 text-[0.8125rem] font-bold text-[var(--nc-signal-fg)]"
+                  style={{ background: 'linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%)' }}
+                >
+                  Ferdig
+                </button>
+                <button
+                  onClick={handleSkip}
+                  aria-label="Hopp over denne replikken"
+                  className="nc-button-dark px-4 py-2.5 text-[0.8125rem] font-semibold"
+                >
+                  Hopp over
+                </button>
+              </div>
             </motion.div>
           ) : null}
 
@@ -543,7 +578,7 @@ export function RoleplayScreen() {
         correct: passed,
         userAnswer: transcript,
         correctAnswer: turn.modelAnswer,
-        timeTakenSeconds: LISTEN_SECONDS,
+        timeTakenSeconds: ESTIMATED_TURN_SECONDS,
         conceptId: turn.targetConceptId,
         sentenceId: undefined,
         errorTag: passed ? undefined : turn.errorTag,
@@ -563,7 +598,7 @@ export function RoleplayScreen() {
       // speaking-minutes AND a guided production brick so the wall rewards it.
       // Completion-gated self-report (one brick per completed scenario); never moves
       // mastery or logs an error (Rule 8).
-      const minutesSpoken = activeScenario.turns.length * (LISTEN_SECONDS / 60)
+      const minutesSpoken = activeScenario.turns.length * (ESTIMATED_TURN_SECONDS / 60)
       recordSpeakingProduction({ minutes: minutesSpoken, produced: true })
       markLaneDone('roleplay')
       setScreenPhase('complete')

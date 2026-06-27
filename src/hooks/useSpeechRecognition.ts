@@ -50,7 +50,20 @@ export interface UseSpeechRecognitionReturn {
   reset: () => void
 }
 
-export function useSpeechRecognition(): UseSpeechRecognitionReturn {
+export interface UseSpeechRecognitionOptions {
+  /**
+   * When true, recognition keeps listening through natural pauses instead of
+   * ending on the first finalized utterance — the caller decides when to stop()
+   * (e.g. a "done" button or a countdown). Gives learners time to think mid-answer.
+   * Default false preserves the one-shot behaviour every other consumer relies on.
+   */
+  continuous?: boolean
+}
+
+export function useSpeechRecognition(
+  options: UseSpeechRecognitionOptions = {},
+): UseSpeechRecognitionReturn {
+  const { continuous = false } = options
   const [transcript, setTranscript] = useState('')
   const [interimTranscript, setInterimTranscript] = useState('')
   const [isListening, setIsListening] = useState(false)
@@ -74,13 +87,15 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
     const rec = new Ctor()
     recognitionRef.current = rec
     rec.lang = 'nb-NO'
-    rec.continuous = false
+    rec.continuous = continuous
     rec.interimResults = true
 
     rec.onresult = (e: SpeechRecognitionEvent) => {
       let finalText = ''
       let interimText = ''
 
+      // In continuous mode e.results is cumulative, so this rebuilds the full
+      // finalized transcript across every pause — not just the latest utterance.
       for (let i = 0; i < e.results.length; i++) {
         const result = e.results[i]
         const text = result[0].transcript
@@ -94,7 +109,9 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
       if (finalText) {
         setTranscript(finalText)
         setInterimTranscript('')
-        setIsListening(false)
+        // One-shot: a finalized utterance ends the turn. Continuous: keep listening
+        // through the pause so the learner isn't cut off — the caller stops it.
+        if (!continuous) setIsListening(false)
       } else {
         setInterimTranscript(interimText)
       }
@@ -114,7 +131,7 @@ export function useSpeechRecognition(): UseSpeechRecognitionReturn {
     setIsListening(true)
     setTranscript('')
     setInterimTranscript('')
-  }, [])
+  }, [continuous])
 
   const stop = useCallback(() => {
     recognitionRef.current?.stop()

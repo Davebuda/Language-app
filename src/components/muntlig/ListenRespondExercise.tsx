@@ -11,7 +11,10 @@ import type { ListenRespondQuestion } from '@/lib/listenRespondContent'
 
 type Phase = 'idle' | 'listening' | 'result'
 
-const LISTEN_SECONDS = 5
+// Max listening window. Generous on purpose: learners need time to think before
+// they even start speaking, and a struggling learner shouldn't be cut off. They
+// can finish early with the "Ferdig" button; this is only the upper bound.
+const LISTEN_SECONDS = 20
 
 interface ListenRespondExerciseProps {
   question: ListenRespondQuestion
@@ -56,11 +59,13 @@ export function ListenRespondExercise({
     start,
     stop,
     reset,
-  } = useSpeechRecognition()
+  } = useSpeechRecognition({ continuous: true })
 
-  // Keep transcriptRef in sync with latest speech state
+  // Keep transcriptRef in sync with latest speech state. Combine finalized text with
+  // the trailing interim words so a learner's last (not-yet-finalized) words still
+  // count when the timer fires or they tap Ferdig.
   useEffect(() => {
-    transcriptRef.current = transcript || interimTranscript
+    transcriptRef.current = [transcript, interimTranscript].filter(Boolean).join(' ').trim()
   }, [transcript, interimTranscript])
 
   // Reset local state when question changes
@@ -95,6 +100,7 @@ export function ListenRespondExercise({
         if (timerRef.current) clearInterval(timerRef.current)
         if (!hasResolved.current) {
           hasResolved.current = true
+          stop()
           resolveResult(transcriptRef.current)
         }
       }
@@ -106,7 +112,10 @@ export function ListenRespondExercise({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, resolveResult])
 
-  // Auto-advance when speech API fires a final result before the timer
+  // Safety fallback: if the recognizer ends on its own (browser-side error/timeout)
+  // while we still have captured speech, resolve with it rather than leaving a dead
+  // "Lytter…" state. In continuous mode the learner normally ends via Ferdig/timer,
+  // so this only fires on an unexpected end. hasResolved guards against double-resolve.
   useEffect(() => {
     if (phase !== 'listening') return
     if (isListening) return
@@ -125,6 +134,16 @@ export function ListenRespondExercise({
     hasResolved.current = false
     setPhase('listening')
     start()
+  }
+
+  // Learner taps "Ferdig" when they've finished answering — resolves immediately
+  // with whatever they've said so far instead of waiting out the countdown.
+  function handleDone() {
+    if (hasResolved.current) return
+    hasResolved.current = true
+    if (timerRef.current) clearInterval(timerRef.current)
+    stop()
+    resolveResult(transcriptRef.current)
   }
 
   function handleSkip() {
@@ -311,13 +330,23 @@ export function ListenRespondExercise({
                 </p>
               )}
 
-              <button
-                onClick={handleSkip}
-                aria-label="Hopp over dette spørsmålet"
-                className="w-full rounded-[var(--radius)] border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.05)] py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(17,21,24,0.09)]"
-              >
-                Hopp over
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleDone}
+                  aria-label="Jeg er ferdig med å svare"
+                  className="flex-1 rounded-[var(--radius)] py-2.5 text-[0.8125rem] font-bold text-[var(--nc-signal-fg)]"
+                  style={{ background: 'linear-gradient(135deg, var(--nc-signal) 0%, var(--nc-signal-bright) 100%)' }}
+                >
+                  Ferdig
+                </button>
+                <button
+                  onClick={handleSkip}
+                  aria-label="Hopp over dette spørsmålet"
+                  className="rounded-[var(--radius)] border border-[rgba(17,21,24,0.12)] bg-[rgba(17,21,24,0.05)] px-4 py-2.5 text-[0.8125rem] font-semibold text-[var(--nc-cream-muted)] hover:bg-[rgba(17,21,24,0.09)]"
+                >
+                  Hopp over
+                </button>
+              </div>
             </motion.div>
           ) : null}
 
