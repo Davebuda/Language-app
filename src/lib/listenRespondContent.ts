@@ -94,7 +94,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     errorTag: 'verb-tense',
     audioUrl: '',
   },
-  // Batch 2 deepening (2026-06-28, linguist-reviewed). audioUrl omitted — text-first.
+  // Batch 2 deepening (2026-06-28, linguist-reviewed; audio generated via edge-tts nb-NO-PernilleNeural).
   {
     id: 'a1-family',
     question: 'Hva heter foreldrene dine?',
@@ -103,6 +103,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk eiendomsord (faren min, moren min).',
     conceptId: 'possessive-pronouns',
     errorTag: 'pronoun-choice',
+    audioUrl: `${AUDIO_BASE}/a1-family.mp3`,
   },
   {
     id: 'a1-age',
@@ -112,6 +113,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: "Svar med 'Jeg er … år'.",
     conceptId: 'to-be-verb',
     errorTag: 'verb-conjugation',
+    audioUrl: `${AUDIO_BASE}/a1-age.mp3`,
   },
   {
     id: 'a1-fruit',
@@ -121,6 +123,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Velg riktig artikkel (et eple, en banan).',
     conceptId: 'noun-gender',
     errorTag: 'noun-gender',
+    audioUrl: `${AUDIO_BASE}/a1-fruit.mp3`,
   },
   {
     id: 'a1-pet',
@@ -130,6 +133,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk en/et (en hund, en katt).',
     conceptId: 'indefinite-articles',
     errorTag: 'article-use',
+    audioUrl: `${AUDIO_BASE}/a1-pet.mp3`,
   },
   {
     id: 'a1-good-friends',
@@ -139,6 +143,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk adjektiv i flertall (gode venner).',
     conceptId: 'adjective-agreement',
     errorTag: 'adjective-agreement',
+    audioUrl: `${AUDIO_BASE}/a1-good-friends.mp3`,
   },
   {
     id: 'a1-dislike-food',
@@ -148,6 +153,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: "Plasser 'ikke' riktig (Jeg liker ikke …).",
     conceptId: 'negation',
     errorTag: 'negation-placement',
+    audioUrl: `${AUDIO_BASE}/a1-dislike-food.mp3`,
   },
   {
     id: 'a1-yesterday',
@@ -157,6 +163,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk fortid (jobbet, spiste, var).',
     conceptId: 'preterite-regular',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/a1-yesterday.mp3`,
   },
   {
     id: 'a1-can-english',
@@ -166,6 +173,7 @@ const A1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk modalverb (kan) + infinitiv.',
     conceptId: 'common-modal-verbs',
     errorTag: 'modal-verb',
+    audioUrl: `${AUDIO_BASE}/a1-can-english.mp3`,
   },
 ]
 
@@ -250,7 +258,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     errorTag: 'meaning-misunderstood',
     audioUrl: '',
   },
-  // Batch 2 deepening (2026-06-28, linguist-reviewed). audioUrl omitted — text-first.
+  // Batch 2 deepening (2026-06-28, linguist-reviewed; audio generated via edge-tts nb-NO-PernilleNeural).
   {
     id: 'b1-cleft-motivation',
     question: 'Hva er det som motiverer deg til å lære norsk?',
@@ -259,6 +267,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk kløyvd setning (Det er … som …).',
     conceptId: 'cleft-sentences',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b1-cleft-motivation.mp3`,
   },
   {
     id: 'b1-passive-17mai',
@@ -268,6 +277,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk passiv (feires / blir feiret).',
     conceptId: 's-passive-vs-bli-passive',
     errorTag: 'verb-conjugation',
+    audioUrl: `${AUDIO_BASE}/b1-passive-17mai.mp3`,
   },
   {
     id: 'b1-hard-decision',
@@ -277,6 +287,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk leddsetninger (da …, fordi …, selv om …).',
     conceptId: 'complex-subordination',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b1-hard-decision.mp3`,
   },
   {
     id: 'b1-figure-out-words',
@@ -286,6 +297,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk partikkelverb (finne ut av, slå opp).',
     conceptId: 'phrasal-verbs',
     errorTag: 'preposition',
+    audioUrl: `${AUDIO_BASE}/b1-figure-out-words.mp3`,
   },
   {
     id: 'b1-city-pros-cons',
@@ -295,6 +307,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk bindeord (På den ene siden …, derimot …).',
     conceptId: 'discourse-markers',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b1-city-pros-cons.mp3`,
   },
   {
     id: 'b1-ask-boss',
@@ -304,6 +317,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk høflig form (Jeg lurte på om …, Kunne jeg …).',
     conceptId: 'formal-informal-register',
     errorTag: 'modal-verb',
+    audioUrl: `${AUDIO_BASE}/b1-ask-boss.mp3`,
   },
   {
     id: 'b1-restart-course',
@@ -313,6 +327,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: "Bruk 'hvis' + ville (Hvis jeg kunne …, ville jeg …).",
     conceptId: 'complex-subordination',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b1-restart-course.mp3`,
   },
   {
     id: 'b1-before-norway',
@@ -322,6 +337,7 @@ const B1_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk preteritum perfektum (hadde lært, hadde gjort).',
     conceptId: 'past-perfect',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/b1-before-norway.mp3`,
   },
 ]
 
@@ -406,7 +422,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     errorTag: 'meaning-misunderstood',
     audioUrl: '',
   },
-  // Batch 2 deepening (2026-06-28, linguist-reviewed). audioUrl omitted — text-first.
+  // Batch 2 deepening (2026-06-28, linguist-reviewed; audio generated via edge-tts nb-NO-PernilleNeural).
   {
     id: 'b2-polite-disagree',
     question: 'Hvordan ville du uttrykke uenighet på en høflig måte i et møte?',
@@ -415,6 +431,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk dempet, høflig register (Jeg ser poenget, men …).',
     conceptId: 'nuanced-register',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-polite-disagree.mp3`,
   },
   {
     id: 'b2-job-process',
@@ -424,6 +441,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bind sammen med tekstmarkører (først, deretter, til slutt).',
     conceptId: 'text-cohesion',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-job-process.mp3`,
   },
   {
     id: 'b2-counterfactual-offer',
@@ -433,6 +451,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk sammensatt kondisjonalis (ville ha gjort).',
     conceptId: 'advanced-verb-forms',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/b2-counterfactual-offer.mp3`,
   },
   {
     id: 'b2-explain-simply',
@@ -442,6 +461,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Tilpass stilen til mottakeren (med andre ord, altså …).',
     conceptId: 'stylistic-variation',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-explain-simply.mp3`,
   },
   {
     id: 'b2-regulate-privacy',
@@ -451,6 +471,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Argumenter balansert (På den ene siden …, på den andre siden …).',
     conceptId: 'complex-argumentation',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-regulate-privacy.mp3`,
   },
   {
     id: 'b2-summarize-study',
@@ -460,6 +481,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk akademiske formler (Undersøkelsen viser at …).',
     conceptId: 'academic-writing',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-summarize-study.mp3`,
   },
   {
     id: 'b2-fronting-surprise',
@@ -469,6 +491,7 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk inversjon ved fronting (Mest overrasket grammatikken meg …).',
     conceptId: 'advanced-word-order',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-fronting-surprise.mp3`,
   },
   {
     id: 'b2-present-proposal',
@@ -478,14 +501,15 @@ const B2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk profesjonelt språk (Jeg vil foreslå at …).',
     conceptId: 'professional-norwegian',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/b2-present-proposal.mp3`,
   },
 ]
 
 // A2 = combination level: perfect tense, modals, comparatives, conditionals,
 // subordinate clauses, time expressions, reflexives, object pronouns. Each prompt
 // elicits production of one A2 structure. Linguist-reviewed 2026-06-27 (18 PASS;
-// a2-if-dayoff + a2-relax hint corrected). audioUrl omitted — text-first; audio is
-// a follow-up batch.
+// a2-if-dayoff + a2-relax hint corrected; audio generated via edge-tts
+// nb-NO-PernilleNeural).
 const A2_QUESTIONS: ListenRespondQuestion[] = [
   {
     id: 'a2-perfect-week',
@@ -495,6 +519,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk perfektum: har + partisipp (har jobbet, har vært).',
     conceptId: 'perfect-tense',
     errorTag: 'verb-tense',
+    audioUrl: `${AUDIO_BASE}/a2-perfect-week.mp3`,
   },
   {
     id: 'a2-compare-cities',
@@ -504,6 +529,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Sammenlign med adjektiv + -ere … enn (dyrere enn).',
     conceptId: 'comparative-adjectives',
     errorTag: 'adjective-agreement',
+    audioUrl: `${AUDIO_BASE}/a2-compare-cities.mp3`,
   },
   {
     id: 'a2-must-before-weekend',
@@ -513,6 +539,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk modalverb (må, skal, bør) + infinitiv.',
     conceptId: 'modal-verbs-advanced',
     errorTag: 'modal-verb',
+    audioUrl: `${AUDIO_BASE}/a2-must-before-weekend.mp3`,
   },
   {
     id: 'a2-when-home',
@@ -522,6 +549,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: "Bruk en leddsetning med 'når' (… når jeg kommer hjem).",
     conceptId: 'subordinate-clauses',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/a2-when-home.mp3`,
   },
   {
     id: 'a2-if-dayoff',
@@ -531,6 +559,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: "Bruk 'hvis' + ville (Hvis jeg hadde fri, ville jeg …).",
     conceptId: 'conditional-clauses',
     errorTag: 'word-order',
+    audioUrl: `${AUDIO_BASE}/a2-if-dayoff.mp3`,
   },
   {
     id: 'a2-dinner-time',
@@ -540,6 +569,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk tidsuttrykk (klokka seks, om kvelden).',
     conceptId: 'time-expressions',
     errorTag: 'preposition',
+    audioUrl: `${AUDIO_BASE}/a2-dinner-time.mp3`,
   },
   {
     id: 'a2-relax',
@@ -549,6 +579,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk refleksivt verb eller partikkelverb (kose seg, slappe av).',
     conceptId: 'reflexive-verbs',
     errorTag: 'pronoun-choice',
+    audioUrl: `${AUDIO_BASE}/a2-relax.mp3`,
   },
   {
     id: 'a2-who-help',
@@ -558,6 +589,7 @@ const A2_QUESTIONS: ListenRespondQuestion[] = [
     hint: 'Bruk objektspronomen (ham, henne, dem).',
     conceptId: 'object-pronouns',
     errorTag: 'pronoun-choice',
+    audioUrl: `${AUDIO_BASE}/a2-who-help.mp3`,
   },
 ]
 

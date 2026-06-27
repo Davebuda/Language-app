@@ -27,6 +27,9 @@ export const DRILL_SETS: DrillSet[] = [
       { norwegian: 'kjøtt', english: 'meat', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjott.mp3` },
       { norwegian: 'kjøre', english: 'to drive', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjore.mp3` },
       { norwegian: 'kjærlig', english: 'loving', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjaerlig.mp3` },
+      { norwegian: 'kjeller', english: 'basement', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjeller.mp3` },
+      { norwegian: 'kjøkken', english: 'kitchen', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjokken.mp3` },
+      { norwegian: 'kjole', english: 'dress', targetPhoneme: 'kj', audioUrl: `${A}/drill-kjole.mp3` },
     ],
   },
   {
@@ -40,6 +43,9 @@ export const DRILL_SETS: DrillSet[] = [
       { norwegian: 'skjorte', english: 'shirt', targetPhoneme: 'sk', audioUrl: `${A}/drill-skjorte.mp3` },
       { norwegian: 'skje', english: 'to happen / spoon', targetPhoneme: 'sk', audioUrl: `${A}/drill-skje.mp3` },
       { norwegian: 'sjelden', english: 'rarely', targetPhoneme: 'sj', audioUrl: `${A}/drill-sjelden.mp3` },
+      { norwegian: 'sjokolade', english: 'chocolate', targetPhoneme: 'sj', audioUrl: `${A}/drill-sjokolade.mp3` },
+      { norwegian: 'stasjon', english: 'station', targetPhoneme: 'sj', audioUrl: `${A}/drill-stasjon.mp3` },
+      { norwegian: 'sju', english: 'seven', targetPhoneme: 'sj', audioUrl: `${A}/drill-sju.mp3` },
     ],
   },
   {
@@ -53,6 +59,9 @@ export const DRILL_SETS: DrillSet[] = [
       { norwegian: 'grønn', english: 'green', targetPhoneme: 'ø', audioUrl: `${A}/drill-gronn.mp3` },
       { norwegian: 'søster', english: 'sister', targetPhoneme: 'ø', audioUrl: `${A}/drill-soster.mp3` },
       { norwegian: 'nøkkel', english: 'key', targetPhoneme: 'ø', audioUrl: `${A}/drill-nokkel.mp3` },
+      { norwegian: 'smør', english: 'butter', targetPhoneme: 'ø', audioUrl: `${A}/drill-smor.mp3` },
+      { norwegian: 'brød', english: 'bread', targetPhoneme: 'ø', audioUrl: `${A}/drill-brod.mp3` },
+      { norwegian: 'møte', english: 'to meet / meeting', targetPhoneme: 'ø', audioUrl: `${A}/drill-mote.mp3` },
     ],
   },
   {
@@ -66,6 +75,9 @@ export const DRILL_SETS: DrillSet[] = [
       { norwegian: 'barn', english: 'child', targetPhoneme: 'rn', audioUrl: `${A}/drill-barn.mp3` },
       { norwegian: 'verden', english: 'world', targetPhoneme: 'rd', audioUrl: `${A}/drill-verden.mp3` },
       { norwegian: 'svart', english: 'black', targetPhoneme: 'rt', audioUrl: `${A}/drill-svart.mp3` },
+      { norwegian: 'jord', english: 'earth / soil', targetPhoneme: 'rd', audioUrl: `${A}/drill-jord.mp3` },
+      { norwegian: 'kart', english: 'map', targetPhoneme: 'rt', audioUrl: `${A}/drill-kart.mp3` },
+      { norwegian: 'perle', english: 'pearl', targetPhoneme: 'rl', audioUrl: `${A}/drill-perle.mp3` },
     ],
   },
 ]
