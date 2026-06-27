@@ -67,6 +67,88 @@ const SEED_TEXTS: SeedText[] = [
     content: 'Norsk mat er enkel og god. Til frokost spiser mange brød med smør og pålegg. Populære pålegg er ost, skinke og makrell i tomat. Noen spiser havregrøt med bær og honning. Til lunsj er det vanlig med matpakke — brødskiver som man tar med på jobb eller skole. Til middag er det gjerne kjøtt eller fisk med poteter og grønnsaker. Laks er veldig populær i Norge. En klassisk norsk rett er fårikål — lam og kål kokt sammen.',
     contentEn: 'Norwegian food is simple and good. For breakfast, many eat bread with butter and toppings. Popular toppings are cheese, ham and mackerel in tomato. Some eat oatmeal with berries and honey. For lunch, it is common to have a packed lunch — bread slices brought to work or school. For dinner, it is usually meat or fish with potatoes and vegetables. Salmon is very popular in Norway. A classic Norwegian dish is fårikål — lamb and cabbage cooked together.',
   },
+  // Tier 2 B1/B2 library (2026-06-28, linguist-reviewed; b1-dugnad proverb + b2-ki
+  // English translation corrected before wiring). conceptIds verified vs b1/b2-graph.
+  {
+    id: 'b1-flytte',
+    title: 'Da jeg kom til Norge',
+    genre: 'story',
+    cefrLevel: 'B1',
+    estimatedMinutes: 4,
+    conceptIds: ['past-perfect', 'complex-subordination', 'discourse-markers'],
+    content: 'Da jeg kom til Norge for tre år siden, kunne jeg ikke et ord norsk. Jeg hadde lært litt engelsk på skolen, men norsk var helt nytt for meg. De første månedene var vanskelige. Jeg forsto nesten ingenting når folk snakket, og jeg turte nesten ikke å si noe. Men jeg bestemte meg for ikke å gi opp. Hver dag leste jeg en kort tekst, og hver kveld så jeg på norsk TV med teksting. Etter hvert begynte jeg å forstå mer. Det som hjalp meg mest, var å snakke med naboene mine. Selv om jeg gjorde mange feil, ble de aldri irriterte. I dag kan jeg føre en hel samtale på norsk, og jeg er stolt av det jeg har lært.',
+    contentEn: "When I came to Norway three years ago, I didn't know a word of Norwegian. I had learned a little English at school, but Norwegian was completely new to me. The first months were difficult. I understood almost nothing when people spoke, and I hardly dared to say anything. But I decided not to give up. Every day I read a short text, and every evening I watched Norwegian TV with subtitles. Gradually I began to understand more. What helped me most was talking with my neighbours. Even though I made many mistakes, they never got annoyed. Today I can hold a whole conversation in Norwegian, and I'm proud of what I've learned.",
+  },
+  {
+    id: 'b1-jobb',
+    title: 'Å søke jobb i Norge',
+    genre: 'news',
+    cefrLevel: 'B1',
+    estimatedMinutes: 4,
+    conceptIds: ['s-passive-vs-bli-passive', 'phrasal-verbs', 'formal-informal-register'],
+    content: 'Å finne en jobb i Norge kan ta tid, men det finnes mange muligheter. De fleste stillinger lyses ut på nettet, for eksempel på finn.no eller nav.no. Når du har funnet en interessant stilling, må du skrive en søknad og en CV. I søknaden bør du fortelle hvorfor du passer til jobben. Det er vanlig at arbeidsgiveren kaller inn de beste kandidatene til et intervju. På intervjuet blir du gjerne spurt om erfaringen din og hvorfor du vil jobbe der. Det lønner seg å forberede seg godt. Husk også at mange jobber blir besatt gjennom nettverk, så det kan være lurt å bli kjent med folk i bransjen.',
+    contentEn: 'Finding a job in Norway can take time, but there are many opportunities. Most positions are advertised online, for example on finn.no or nav.no. Once you have found an interesting position, you have to write an application and a CV. In the application you should explain why you are a good fit for the job. It is common for the employer to call in the best candidates for an interview. At the interview you are usually asked about your experience and why you want to work there. It pays to prepare well. Also remember that many jobs are filled through networks, so it can be wise to get to know people in the industry.',
+  },
+  {
+    id: 'b1-dugnad',
+    title: 'Dugnad',
+    genre: 'story',
+    cefrLevel: 'B1',
+    estimatedMinutes: 4,
+    conceptIds: ['cleft-sentences', 'complex-subordination', 'idiomatic-expressions'],
+    content: 'Et typisk norsk ord er «dugnad». En dugnad er når en gruppe mennesker jobber sammen frivillig for å få gjort noe, uten å få betalt. Det kan være å male et hus, rydde i nabolaget eller arrangere et loppemarked. Det som gjør dugnaden spesiell, er fellesskapet. Folk møtes, jobber sammen og spiser gjerne vafler etterpå. Mange borettslag har dugnad om våren, der alle hjelper til med å rydde uteområdene. Selv om ikke alle synes det er like gøy, forstår de fleste at det er viktig å stille opp. Som man sier på norsk: mange hender gjør arbeidet lett.',
+    contentEn: 'A typical Norwegian word is "dugnad". A dugnad is when a group of people work together voluntarily to get something done, without being paid. It can be painting a house, tidying up the neighbourhood or organising a flea market. What makes the dugnad special is the sense of community. People meet, work together and often eat waffles afterwards. Many housing cooperatives have a dugnad in spring, where everyone helps tidy the outdoor areas. Even though not everyone finds it equally fun, most understand that it\'s important to pitch in. As the Norwegian saying goes: many hands make light work.',
+  },
+  {
+    id: 'b1-misforstaelse',
+    title: 'En misforståelse',
+    genre: 'dialogue',
+    cefrLevel: 'B1',
+    estimatedMinutes: 3,
+    conceptIds: ['indirect-questions', 'phrasal-verbs', 'discourse-markers'],
+    content: '— Hei, jeg lurer på om du kan hjelpe meg med noe.\n— Ja, så klart. Hva gjelder det?\n— Jeg fikk en regning i posten, men jeg skjønner ikke hva den er for.\n— La meg se på den. Å, dette er fakturaen for treningssenteret.\n— Men jeg meldte meg jo ut for to måneder siden!\n— Det stemmer ikke helt med det jeg ser her. Vet du om du fikk en bekreftelse?\n— Nei, jeg er ikke sikker på om jeg fikk noe svar.\n— Da bør du ta kontakt med dem og finne ut hva som har skjedd.\n— Du har rett. Jeg ringer dem med en gang. Tusen takk for hjelpen!',
+    contentEn: "— Hi, I wonder if you can help me with something.\n— Yes, of course. What's it about?\n— I got a bill in the mail, but I don't understand what it's for.\n— Let me look at it. Oh, this is the invoice for the gym.\n— But I cancelled my membership two months ago!\n— That doesn't quite match what I see here. Do you know if you got a confirmation?\n— No, I'm not sure if I got any reply.\n— Then you should get in touch with them and find out what happened.\n— You're right. I'll call them right away. Thank you so much for the help!",
+  },
+  {
+    id: 'b2-janteloven',
+    title: 'Janteloven',
+    genre: 'news',
+    cefrLevel: 'B2',
+    estimatedMinutes: 5,
+    conceptIds: ['nuanced-register', 'complex-argumentation', 'text-cohesion'],
+    content: 'Janteloven er et begrep som mange forbinder med skandinavisk kultur. Den stammer fra en roman av Aksel Sandemose og beskriver en uskreven regel om at man ikke skal tro at man er noe bedre enn andre. På den ene siden kan denne tankegangen fremme likhet og beskjedenhet, verdier som står sterkt i Norge. På den andre siden hevder kritikere at den kan hindre folk i å skille seg ut og være stolte av det de får til. I dag er det imidlertid mange som mener at Janteloven er på vei ut. Yngre generasjoner er mer opptatt av individuell suksess enn før. Likevel lever idealet om likhet videre, om enn i en mer moderne form.',
+    contentEn: 'The Law of Jante is a concept that many associate with Scandinavian culture. It originates from a novel by Aksel Sandemose and describes an unwritten rule that you should not think you are any better than others. On the one hand, this mindset can promote equality and modesty, values that are strong in Norway. On the other hand, critics argue that it can prevent people from standing out and being proud of what they achieve. Today, however, many believe that the Law of Jante is on its way out. Younger generations are more concerned with individual success than before. Still, the ideal of equality lives on, albeit in a more modern form.',
+  },
+  {
+    id: 'b2-klima',
+    title: 'Klima og hverdagen',
+    genre: 'news',
+    cefrLevel: 'B2',
+    estimatedMinutes: 5,
+    conceptIds: ['advanced-passive', 'complex-argumentation', 'advanced-verb-forms'],
+    content: 'Klimaendringene er en av vår tids største utfordringer, og spørsmålet om hva den enkelte kan gjøre, blir stadig oftere diskutert. Noen mener at ansvaret først og fremst ligger hos politikerne og de store selskapene. Andre argumenterer for at også vanlige folk må endre vanene sine. Hadde alle kuttet ned på kjøttforbruket og kjørt mindre bil, ville utslippene blitt betydelig lavere. Samtidig er det viktig å huske at de fattigste landene rammes hardest, selv om de har bidratt minst til problemet. Mange eksperter understreker derfor at løsningen må være rettferdig. Det nytter lite å innføre tiltak som bare de rikeste har råd til.',
+    contentEn: 'Climate change is one of the greatest challenges of our time, and the question of what the individual can do is discussed more and more often. Some believe that the responsibility lies first and foremost with the politicians and the big companies. Others argue that ordinary people must change their habits too. If everyone had cut down on meat consumption and driven less, emissions would have been considerably lower. At the same time, it is important to remember that the poorest countries are hit hardest, even though they have contributed the least to the problem. Many experts therefore stress that the solution must be fair. There is little point in introducing measures that only the richest can afford.',
+  },
+  {
+    id: 'b2-ki',
+    title: 'Kunstig intelligens på jobben',
+    genre: 'news',
+    cefrLevel: 'B2',
+    estimatedMinutes: 5,
+    conceptIds: ['academic-writing', 'advanced-word-order', 'professional-norwegian'],
+    content: 'Kunstig intelligens er i ferd med å forandre arbeidslivet. Stadig flere oppgaver som tidligere ble utført av mennesker, kan nå automatiseres. Ifølge flere undersøkelser vil dette skape nye yrker, samtidig som enkelte gamle forsvinner. Særlig interessant er det at teknologien ikke bare erstatter rutinearbeid, men også begynner å utføre mer kompliserte oppgaver. Mange arbeidstakere er bekymret for framtiden sin. Eksperter understreker likevel at de som er villige til å lære nye ferdigheter, vil stå sterkest. Derfor blir livslang læring stadig viktigere. Spørsmålet er ikke om vi kommer til å bruke kunstig intelligens, men hvordan vi kan bruke den på en ansvarlig måte.',
+    contentEn: 'Artificial intelligence is in the process of transforming working life. More and more tasks that were previously carried out by humans can now be automated. According to several studies, this will create new professions, while some old ones disappear. It is particularly interesting that the technology does not only replace routine work, but is also beginning to perform more complicated tasks. Many workers are worried about their future. Experts nevertheless stress that those who are willing to learn new skills will be best positioned. That is why lifelong learning is becoming ever more important. The question is not whether we are going to use artificial intelligence, but how we can use it in a responsible way.',
+  },
+  {
+    id: 'b2-dialekter',
+    title: 'Dialekter i Norge',
+    genre: 'news',
+    cefrLevel: 'B2',
+    estimatedMinutes: 5,
+    conceptIds: ['stylistic-variation', 'text-cohesion', 'nuanced-register'],
+    content: 'Norge er kjent for sitt store mangfold av dialekter. I motsetning til mange andre land bruker nordmenn dialekten sin nesten overalt — også på TV, på jobb og i det offentlige rom. Det finnes ingen offisiell «standard» talemåte som alle forventes å bruke. For en som lærer norsk, kan dette virke forvirrende i begynnelsen. Et ord kan uttales på mange ulike måter, avhengig av hvor i landet man befinner seg. Likevel ser de fleste på dette mangfoldet som noe positivt. Dialekten forteller noe om hvor en person kommer fra, og mange er stolte av sin egen måte å snakke på. Med litt tålmodighet venner man seg fort til variasjonen.',
+    contentEn: 'Norway is known for its great diversity of dialects. Unlike many other countries, Norwegians use their dialect almost everywhere — including on TV, at work and in public spaces. There is no official "standard" way of speaking that everyone is expected to use. For someone learning Norwegian, this can seem confusing at first. A word can be pronounced in many different ways, depending on where in the country you are. Still, most people see this diversity as something positive. The dialect says something about where a person comes from, and many are proud of their own way of speaking. With a little patience, you quickly get used to the variation.',
+  },
 ]
 
 const GENRE_LABELS: Record<Genre, string> = {
@@ -224,7 +306,7 @@ export default function ReadingPage() {
               <div className="flex items-center gap-[6px] rounded-lg bg-[var(--nc-card)] border border-[var(--nc-border)] px-2 py-2">
                 <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[var(--nc-text-dim)]">Nivå</span>
                 <div className="flex gap-1.5 flex-wrap">
-                  {(['all', 'A1', 'A2'] as const).map((lvl) => (
+                  {(['all', 'A1', 'A2', 'B1', 'B2'] as const).map((lvl) => (
                     <button
                       key={lvl}
                       onClick={() => setFilterLevel(lvl)}

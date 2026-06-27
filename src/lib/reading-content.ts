@@ -1,18 +1,18 @@
 /**
  * The /reading seed library (`SEED_TEXTS` in src/app/reading/page.tsx) holds
- * A1–A2 texts only. A B1/B2 learner who opens /reading directly therefore reads
- * below-level content. Exposing the ACTUALLY-served level lets the UI honestly
- * disclose that instead of substituting silently (Operating Rule 6), mirroring
+ * dedicated A1/A2/B1/B2 texts (B1/B2 added 2026-06-28). Every standard level now
+ * reads at its own level; only an unknown level falls back (to the B2 ceiling).
+ * Exposing the ACTUALLY-served level lets the UI honestly disclose any fallback
+ * instead of substituting silently (Operating Rule 6), mirroring
  * getRoleplayContentLevel / getListenContentLevel.
- *
- * Returns the learner's own level when it is at or below the library ceiling
- * (A2), else the ceiling. A1 → A1, A2 → A2, B1/B2/unknown → A2.
  */
-export type ReadingContentLevel = 'A1' | 'A2'
+export type ReadingContentLevel = 'A1' | 'A2' | 'B1' | 'B2'
 
 export function getReadingContentLevel(level: string): ReadingContentLevel {
   if (level === 'A1') return 'A1'
-  return 'A2' // A2 is the highest reading text available; B1/B2 read below level
+  if (level === 'A2') return 'A2'
+  if (level === 'B1') return 'B1'
+  return 'B2' // B2 is the highest level served; unknown levels read at the B2 ceiling
 }
 
 /** True when the learner's level is above everything the reading library serves. */
