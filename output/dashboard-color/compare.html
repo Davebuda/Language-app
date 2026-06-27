@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Dashboard fargebalanse · A / B / C</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#050604;color:#E8ECE6;
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    padding:28px 20px 60px;
+  }
+  h1{font-size:15px;font-weight:600;letter-spacing:.04em;color:#fff;margin-bottom:6px}
+  .lede{font-size:12px;color:#9BA39C;line-height:1.6;max-width:760px;margin-bottom:26px}
+  .lede b{color:#C8FF20;font-weight:600}
+  .row{display:flex;gap:24px;overflow-x:auto;padding-bottom:20px;align-items:flex-start}
+  .col{flex:0 0 auto;width:412px}
+  .tag{
+    display:flex;align-items:baseline;gap:9px;margin-bottom:11px;padding:0 2px;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9BA39C;
+  }
+  .tag .k{font-weight:600}
+  .tag.a .k{color:#C8FF20}
+  .tag.b .k{color:#F2952E}
+  .tag.c .k{color:#00C2E0}
+  .tag .d{font-size:10px;color:#5C6660;letter-spacing:.04em;text-transform:none}
+  iframe{
+    width:412px;height:1760px;border:1px solid #2A3236;border-radius:18px;background:#07090A;
+    box-shadow:0 30px 70px -34px rgba(0,0,0,.9);
+  }
+  .hint{font-size:11px;color:#5C6660;margin-top:18px;line-height:1.6}
+  /* Each iframe shows only the HOME device of its source file; the source pages
+     also include the explainer header + a session screen which we scroll past. */
+</style>
+</head>
+<body>
+  <h1>Dashboard · fargebalanse — tre retninger</h1>
+  <p class="lede">Samme struktur og samme flytende glass-fliser i alle tre — bare <b>balansen av temafargene</b> er ulik.
+  Bla vannrett. Hver ramme er den ekte HJEM-skjermen fra A/B/C-filene.</p>
+
+  <div class="row">
+    <div class="col">
+      <div class="tag a"><span class="k">A · Instrument</span><span class="d">balansert fler-hue · nåværende</span></div>
+      <iframe src="A-instrument.html" scrolling="no" title="Balanse A"></iframe>
+    </div>
+    <div class="col">
+      <div class="tag b"><span class="k">B · Varm</span><span class="d">lime kun handling · gull/amber-brett</span></div>
+      <iframe src="B-warm.html" scrolling="no" title="Balanse B"></iframe>
+    </div>
+    <div class="col">
+      <div class="tag c"><span class="k">C · Kjølig</span><span class="d">cyan/teal-brett · korall = kun feil</span></div>
+      <iframe src="C-cool.html" scrolling="no" title="Balanse C"></iframe>
+    </div>
+  </div>
+
+  <p class="hint">Filene ligger i <b style="color:#9BA39C">output/dashboard-color/</b> — åpne A-instrument.html / B-warm.html / C-cool.html direkte for full størrelse.
+  Hver iframe er forskjøvet for å vise HJEM-skjermen (kildefilene har også en forklaringstopp + en økt-skjerm under).</p>
+
+  <script>
+    // Offset each iframe so the HOME device (not the explainer header) is in view.
+    // The explainer .page-head is ~ the first chunk; the home .frame-wrap follows.
+    function align(){
+      document.querySelectorAll('iframe').forEach(f=>{
+        try{
+          const doc=f.contentDocument;
+          const home=doc.querySelector('.frame-wrap .device');
+          if(home){ f.contentWindow.scrollTo(0, home.getBoundingClientRect().top + f.contentWindow.scrollY - 14); }
+        }catch(e){/* cross-origin / not ready */}
+      });
+    }
+    addEventListener('load', ()=>setTimeout(align, 350));
+  </script>
+</body>
+</html>

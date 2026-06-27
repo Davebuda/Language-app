@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NorskCoach — Samtale med Kari</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 60% 30%, #B8B4AB 0%, #A8A49B 40%, #9A958C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Schibsted Grotesk', sans-serif;
+    }
+
+    /* ═══ PHONE SHELL ═══ */
+    .phone {
+      width: 390px;
+      height: 844px;
+      background: #ECEAE4;
+      border-radius: 50px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow:
+        0 0 0 11px #1A1A1A,
+        0 0 0 13px #333333,
+        0 50px 100px rgba(0,0,0,0.5),
+        0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    /* ═══ STATUS BAR ═══ */
+    .status-bar {
+      height: 44px;
+      background: #10131A;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 22px 9px;
+      flex-shrink: 0;
+    }
+
+    .status-time {
+      font-size: 13px;
+      font-weight: 600;
+      color: #FFFFFF;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: -0.01em;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ═══ HEADER: Kari + Dave ═══ */
+    .header {
+      height: 58px;
+      background: #10131A;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .kari-section {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .kari-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5B8AF5 0%, #2D5CE8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      position: relative;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .kari-online-dot {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 8px;
+      height: 8px;
+      background: #4ADE80;
+      border-radius: 50%;
+      border: 2px solid #10131A;
+    }
+
+    .kari-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .kari-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #F3F4F6;
+      letter-spacing: -0.015em;
+      line-height: 1;
+    }
+
+    .kari-status {
+      font-size: 10px;
+      color: #4B5563;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .dave-section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dave-meta {
+      text-align: right;
+    }
+
+    .dave-level {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: #A8D756;
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .dave-streak {
+      font-size: 10px;
+      color: #4B5563;
+      font-weight: 500;
+    }
+
+    .dave-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #A8D756;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #10131A;
+      flex-shrink: 0;
+    }
+
+    /* ═══ CHAT AREA ═══ */
+    .chat-area {
+      flex: 1;
+      padding: 10px 14px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      overflow: hidden;
+    }
+
+    /* Kari bubble */
+    .bubble {
+      max-width: 87%;
+      align-self: flex-start;
+    }
+
+    .bubble-body {
+      background: #FFFFFF;
+      border-radius: 3px 15px 15px 15px;
+      padding: 9px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    .bubble-text {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #1A1D22;
+      font-weight: 400;
+    }
+
+    .bubble-text strong {
+      font-weight: 700;
+      color: #0F1217;
+    }
+
+    /* Tags row */
+    .tag-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 7px;
+      flex-wrap: wrap;
+    }
+
+    /* Fanget — coral/red alert */
+    .tag-fanget {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #FEF2F2;
+      color: #B91C1C;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 100px;
+      border: 1px solid #FECACA;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .fanget-pip {
+      width: 5px;
+      height: 5px;
+      background: #DC2626;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Trend: good (green) */
+    .tag-trend-good {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #15803D;
+      font-family: 'IBM Plex Mono', monospace;
+      background: #F0FDF4;
+      padding: 3px 8px;
+      border-radius: 100px;
+      border: 1px solid #BBF7D0;
+      white-space: nowrap;
+    }
+
+    /* Fikset — green mastered */
+    .tag-fikset {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #F0FDF4;
+      color: #15803D;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 100px;
+      border: 1px solid #BBF7D0;
+      font-family: 'IBM Plex Mono', monospace;
+      white-space: nowrap;
+    }
+
+    .check-icon {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+
+    /* Production stat bubble */
+    .prod-bubble-body {
+      background: #FFFFFF;
+      border-radius: 3px 15px 15px 15px;
+      padding: 9px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    .prod-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .prod-num {
+      font-size: 34px;
+      font-weight: 800;
+      color: #0F1217;
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1;
+    }
+
+    .prod-desc {
+      font-size: 12.5px;
+      color: #6B7280;
+      line-height: 1.35;
+    }
+
+    /* Action card — the økt offer */
+    .action-bubble {
+      max-width: 94%;
+      align-self: flex-start;
+    }
+
+    .action-card {
+      background: #10131A;
+      border-radius: 3px 15px 15px 15px;
+      padding: 13px 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+
+    .action-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      color: #4B5563;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: 'IBM Plex Mono', monospace;
+      margin-bottom: 3px;
+    }
+
+    .action-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #F9FAFB;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .action-meta {
+      font-size: 10px;
+      color: #6B7280;
+      margin-top: 5px;
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1.4;
+    }
+
+    .action-cta {
+      margin-top: 10px;
+      background: #A8D756;
+      color: #10131A;
+      font-weight: 800;
+      font-size: 14px;
+      text-align: center;
+      padding: 10px 16px;
+      border-radius: 9px;
+      font-family: 'Schibsted Grotesk', sans-serif;
+      letter-spacing: -0.01em;
+      display: block;
+      cursor: pointer;
+    }
+
+    /* ═══ QUICK-REPLY CHIPS ═══ */
+    .chips-area {
+      padding: 0 14px;
+      flex-shrink: 0;
+    }
+
+    .chips-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 1px;
+    }
+
+    .chips-scroll::-webkit-scrollbar { display: none; }
+
+    .chip {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 11px;
+      background: #FFFFFF;
+      border: 1.5px solid #DDDAD2;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chip svg {
+      width: 12px;
+      height: 12px;
+      stroke: #9CA3AF;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ═══ PLAN BAR ═══ */
+    .plan-bar {
+      margin: 6px 14px 0;
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 7px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .plan-left {}
+
+    .plan-eyebrow {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #9CA3AF;
+      font-weight: 600;
+      font-family: 'IBM Plex Mono', monospace;
+      margin-bottom: 4px;
+    }
+
+    .plan-cells {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .plan-cell { text-align: center; }
+
+    .plan-n {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1A1D22;
+      font-family: 'IBM Plex Mono', monospace;
+      display: block;
+      line-height: 1;
+    }
+
+    .plan-lbl {
+      font-size: 8.5px;
+      color: #9CA3AF;
+      font-weight: 500;
+      margin-top: 2px;
+      font-family: 'Schibsted Grotesk', sans-serif;
+    }
+
+    .plan-vline {
+      width: 1px;
+      height: 22px;
+      background: #F0EDE6;
+    }
+
+    .ai-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #6B7280;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .ai-dot {
+      width: 6px;
+      height: 6px;
+      background: #5B8AF5;
+      border-radius: 50%;
+    }
+
+    /* ═══ STATUS ROW ═══ */
+    .status-row {
+      display: flex;
+      align-items: center;
+      padding: 4px 14px 2px;
+      flex-shrink: 0;
+    }
+
+    .stat-cell {
+      flex: 1;
+      text-align: center;
+      padding: 3px 0;
+    }
+
+    .stat-v {
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      font-family: 'IBM Plex Mono', monospace;
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-k {
+      font-size: 8px;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-top: 2px;
+      font-weight: 600;
+      font-family: 'Schibsted Grotesk', sans-serif;
+    }
+
+    .stat-vline {
+      width: 1px;
+      height: 16px;
+      background: #DDDAD2;
+    }
+
+    /* ═══ BOTTOM: composer + nav ═══ */
+    .bottom-area {
+      background: #FFFFFF;
+      border-top: 1px solid #E8E5DE;
+      flex-shrink: 0;
+    }
+
+    .composer-row {
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .composer-field {
+      flex: 1;
+      height: 37px;
+      background: #F4F2EC;
+      border: 1.5px solid #DDDAD2;
+      border-radius: 100px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .composer-placeholder {
+      font-size: 13px;
+      color: #9CA3AF;
+      font-family: 'Schibsted Grotesk', sans-serif;
+      font-weight: 400;
+    }
+
+    .mic-btn {
+      width: 37px;
+      height: 37px;
+      background: #A8D756;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .mic-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: #10131A;
+      fill: none;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      display: flex;
+      align-items: center;
+      padding: 2px 0 16px;
+      border-top: 1px solid #F0EDE6;
+    }
+
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+    }
+
+    .nav-item svg {
+      width: 20px;
+      height: 20px;
+      stroke: #C8C4BC;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-item.active svg {
+      stroke: #10131A;
+    }
+
+    .nav-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: #C8C4BC;
+      letter-spacing: 0.01em;
+      font-family: 'Schibsted Grotesk', sans-serif;
+    }
+
+    .nav-item.active .nav-label {
+      color: #10131A;
+    }
+
+    /* Active nav dot indicator */
+    .nav-item.active::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      background: #A8D756;
+      border-radius: 50%;
+      margin-bottom: -2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- ─── STATUS BAR ─── -->
+  <div class="status-bar">
+    <span class="status-time">09:41</span>
+    <div class="status-right">
+      <!-- Signal -->
+      <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+        <rect x="0" y="7.5" width="2.5" height="3.5" rx="0.5" fill="#FFFFFF" fill-opacity="0.35"/>
+        <rect x="4.5" y="5" width="2.5" height="6" rx="0.5" fill="#FFFFFF" fill-opacity="0.55"/>
+        <rect x="9" y="2" width="2.5" height="9" rx="0.5" fill="#FFFFFF" fill-opacity="0.75"/>
+        <rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="#FFFFFF"/>
+      </svg>
+      <!-- Battery -->
+      <svg width="23" height="11" viewBox="0 0 23 11" fill="none">
+        <rect x="0.5" y="0.5" width="19" height="10" rx="2.5" stroke="#FFFFFF" stroke-opacity="0.4"/>
+        <rect x="20" y="3.5" width="2.5" height="4" rx="1" fill="#FFFFFF" fill-opacity="0.4"/>
+        <rect x="2" y="2" width="14" height="7" rx="1.5" fill="#FFFFFF"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ─── HEADER: Kari + Dave ─── -->
+  <div class="header">
+    <div class="kari-section">
+      <div class="kari-avatar">
+        K
+        <div class="kari-online-dot"></div>
+      </div>
+      <div class="kari-text">
+        <span class="kari-name">Kari</span>
+        <span class="kari-status">din norsklærer · aktiv nå</span>
+      </div>
+    </div>
+    <div class="dave-section">
+      <div class="dave-meta">
+        <span class="dave-level">B1</span>
+        <span class="dave-streak">14 dager på rad</span>
+      </div>
+      <div class="dave-avatar">D</div>
+    </div>
+  </div>
+
+  <!-- ─── CHAT ─── -->
+  <div class="chat-area">
+
+    <!-- Bubble 1: Greeting -->
+    <div class="bubble">
+      <div class="bubble-body">
+        <p class="bubble-text">God morgen, Dave! Jeg har sett på setningene dine fra denne uka og har noe viktig å si.</p>
+      </div>
+    </div>
+
+    <!-- Bubble 2: Diagnosis + Fanget tag + positive trend -->
+    <div class="bubble">
+      <div class="bubble-body">
+        <p class="bubble-text">Jeg har lagt merke til at <strong>ordstillingen etter «fordi»</strong> knekker setningene dine — i dag fikser vi akkurat det.</p>
+        <div class="tag-row">
+          <span class="tag-fanget">
+            <span class="fanget-pip"></span>Fanget · ordstilling
+          </span>
+          <span class="tag-trend-good">
+            <svg width="9" height="9" viewBox="0 0 10 10" fill="none" style="stroke:#15803D;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="1,7 4,3 7,5 9,2"/></svg>
+            −39 % feil
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bubble 3: Fikset -->
+    <div class="bubble">
+      <div class="bubble-body">
+        <p class="bubble-text">Det gode nyhetene: to ting sitter nå!</p>
+        <div class="tag-row">
+          <span class="tag-fikset">
+            <svg class="check-icon" viewBox="0 0 12 12" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            Substantivkjønn
+          </span>
+          <span class="tag-fikset">
+            <svg class="check-icon" viewBox="0 0 12 12" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            Bestemt form
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bubble 4: Production count -->
+    <div class="bubble">
+      <div class="prod-bubble-body">
+        <div class="prod-row">
+          <span class="prod-num">9</span>
+          <span class="prod-desc">setninger du kan<br>bygge denne uka</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action card: the økt offer -->
+    <div class="action-bubble">
+      <div class="action-card">
+        <div class="action-eyebrow">Dagens økt</div>
+        <div class="action-title">Start dagens økt</div>
+        <div class="action-meta">22 oppgaver · ca. 17 min · starter på «fordi»-feilen</div>
+        <div class="action-cta">Start nå</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── QUICK-REPLY CHIPS ─── -->
+  <div class="chips-area">
+    <div class="chips-scroll">
+
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Lær
+      </div>
+
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Snakk
+      </div>
+
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="15" y2="18"/></svg>
+        Les
+      </div>
+
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        Lytt
+      </div>
+
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Skriv
+      </div>
+
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Notatboka
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── PLAN BAR ─── -->
+  <div class="plan-bar">
+    <div class="plan-left">
+      <div class="plan-eyebrow">Dagens plan</div>
+      <div class="plan-cells">
+        <div class="plan-cell">
+          <span class="plan-n">9</span>
+          <div class="plan-lbl">Remediering</div>
+        </div>
+        <div class="plan-vline"></div>
+        <div class="plan-cell">
+          <span class="plan-n">6</span>
+          <div class="plan-lbl">Repetisjon</div>
+        </div>
+        <div class="plan-vline"></div>
+        <div class="plan-cell">
+          <span class="plan-n">4</span>
+          <div class="plan-lbl">Nytt</div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-badge">
+      <span class="ai-dot"></span>
+      Sky-AI
+    </div>
+  </div>
+
+  <!-- ─── STATUS ROW ─── -->
+  <div class="status-row">
+    <div class="stat-cell">
+      <span class="stat-v">14</span>
+      <div class="stat-k">Rekke</div>
+    </div>
+    <div class="stat-vline"></div>
+    <div class="stat-cell">
+      <span class="stat-v">34</span>
+      <div class="stat-k">Min talt</div>
+    </div>
+    <div class="stat-vline"></div>
+    <div class="stat-cell">
+      <span class="stat-v">83 %</span>
+      <div class="stat-k">Treff</div>
+    </div>
+  </div>
+
+  <!-- ─── BOTTOM: composer + nav ─── -->
+  <div class="bottom-area">
+
+    <div class="composer-row">
+      <div class="composer-field">
+        <span class="composer-placeholder">Snakk med Kari…</span>
+      </div>
+      <div class="mic-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+
+      <!-- Hjem (active) -->
+      <div class="nav-item active">
+        <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="nav-label">Hjem</span>
+      </div>
+
+      <!-- Lær -->
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="nav-label">Lær</span>
+      </div>
+
+      <!-- Snakk -->
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="nav-label">Snakk</span>
+      </div>
+
+      <!-- Notatboka -->
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span class="nav-label">Notatboka</span>
+      </div>
+
+      <!-- Deg -->
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="nav-label">Deg</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

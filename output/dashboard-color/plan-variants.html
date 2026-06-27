@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagens plan — 6 komplementære varianter</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#F1F0E8;--cream-2:#E7E6DC;--ink:#0E1207;--ink-2:#474C3F;--ink-3:#7C8275;
+    --lime:#C8FF20;--coral:#FF6A55;--cyan:#00C2E0;--amber:#F2952E;--teal:#2BC9A0;
+    --on-dark:#E8ECE6;--on-dark-2:#9BA39C;--on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace;--sans:'Schibsted Grotesk',sans-serif;
+    --gl:rgba(200,255,32,.5);--ga:rgba(242,149,46,.5);--gc:rgba(0,194,224,.5);--gco:rgba(255,106,85,.5);
+  }
+  body{background:#050604;font-family:var(--sans);color:#E8ECE6;padding:30px 16px 70px}
+  .row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;max-width:1180px;margin:0 auto}
+  .col{width:360px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#5C6660;margin:0 2px 6px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:#cfd6cd;font-weight:600}
+  .note{font-size:10.5px;color:#5C6660;margin:0 2px 10px;line-height:1.4}
+  .stage{background:radial-gradient(260px 150px at 70% 20%,#0d1310,transparent 70%),#07090A;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px}
+  .led{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+  .led .s{font-family:var(--mono);font-size:10px;color:var(--lime)}
+  .led .t{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-2)}
+  .led .line{flex:1;height:1px;background:rgba(255,255,255,.07)}
+  .led .meta{font-family:var(--mono);font-size:9px;color:var(--on-dark-3)}
+  .recipe{display:flex;height:6px;border-radius:3px;overflow:hidden;gap:1.5px;margin-bottom:8px}
+  .recipe span{display:block}
+  .anbefalt{font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2c3a06;background:var(--lime);padding:1px 6px;border-radius:5px}
+</style>
+</head>
+<body>
+<div class="row" id="root"></div>
+<script>
+const LANES=[
+  ['01','Remediering · ordstilling','11','grunnårsak','lime','var(--lime)','var(--gl)',true],
+  ['02','Repetisjon · SRS','10','forfaller','amber','var(--amber)','var(--ga)',false],
+  ['03','Nytt materiale','4','B1','cyan','var(--cyan)','var(--gc)',false],
+  ['04','Fletting','2','daglig','coral','var(--coral)','var(--gco)',false],
+];
+const RECIPE=`<div class="recipe"><span style="width:40%;background:var(--lime)"></span><span style="width:30%;background:var(--amber)"></span><span style="width:20%;background:var(--cyan)"></span><span style="width:10%;background:var(--coral)"></span></div>`;
+const LED=`<div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>`;
+
+// A · Mørk renset
+function A(){
+  let l='';for(const [n,nm,c,d,k,col,glow,rec] of LANES){
+    l+=`<div style="display:flex;align-items:center;gap:9px;padding:7px 2px;${n!=='04'?'border-bottom:1px solid rgba(255,255,255,.05)':''}"><span style="font-family:var(--mono);font-size:9px;font-weight:600;color:var(--on-dark-3);width:14px">${n}</span><span style="width:7px;height:7px;border-radius:50%;background:${col};box-shadow:0 0 5px ${glow}"></span><span style="font-size:11.5px;font-weight:600;color:var(--on-dark);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${nm}</span>${rec?'<span class="anbefalt">Anbefalt</span>':''}<span style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--on-dark-2)">${c}</span><span style="font-family:var(--mono);font-size:8px;color:var(--on-dark-3);text-transform:uppercase;width:62px;text-align:right">${d}</span></div>`;}
+  return RECIPE+l;
+}
+// B · Krem-kort
+function B(){
+  let l='';for(const [n,nm,c,d,k,col,glow,rec] of LANES){
+    l+=`<div style="display:flex;align-items:center;gap:9px;padding:7px 0;${n!=='04'?'border-bottom:1px solid #E4E3D8':''}"><span style="font-family:var(--mono);font-size:9px;font-weight:600;color:#A9A89C;width:14px">${n}</span><span style="width:7px;height:7px;border-radius:50%;background:${col}"></span><span style="font-size:11.5px;font-weight:600;color:var(--ink);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${nm}</span>${rec?'<span class="anbefalt">Anbefalt</span>':''}<span style="font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ink-2)">${c}</span><span style="font-family:var(--mono);font-size:8px;color:#A9A89C;text-transform:uppercase;width:62px;text-align:right">${d}</span></div>`;}
+  return `<div style="background:var(--cream);border-radius:13px;padding:11px 13px">${RECIPE}${l}</div>`;
+}
+// C · Resept-segmenter
+function C(){
+  const segs=[['Remediering','40','11','var(--lime)','#2c3a06'],['Repetisjon','30','10','var(--amber)','#3a2606'],['Nytt','20','4','var(--cyan)','#04323a'],['Fletting','10','2','var(--coral)','#3a120c']];
+  let s='';for(const [nm,pct,c,col,ink] of segs){
+    s+=`<div style="width:${pct}%;background:${col};color:${ink};padding:9px 8px;display:flex;flex-direction:column;justify-content:space-between;min-height:62px"><span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;line-height:1.1">${nm}</span><span style="font-family:var(--mono);font-size:17px;font-weight:600;line-height:1">${c}</span></div>`;}
+  return `<div style="display:flex;gap:2px;border-radius:11px;overflow:hidden">${s}</div><div style="font-family:var(--mono);font-size:8px;color:var(--on-dark-3);margin-top:8px;letter-spacing:.04em">RESEPT 40 / 30 / 20 / 10 · LEDER MED ORDSTILLING</div>`;
+}
+// D · Anbefalt-fremhevet
+function D(){
+  const hero=LANES[0];
+  let rest='';for(const [n,nm,c,d,k,col,glow,rec] of LANES.slice(1)){
+    rest+=`<div style="display:flex;align-items:center;gap:9px;padding:6px 2px"><span style="font-family:var(--mono);font-size:9px;color:var(--on-dark-3);width:14px">${n}</span><span style="width:6px;height:6px;border-radius:50%;background:${col}"></span><span style="font-size:11px;color:var(--on-dark-2);flex:1">${nm}</span><span style="font-family:var(--mono);font-size:10px;color:var(--on-dark-2)">${c}</span><span style="font-family:var(--mono);font-size:8px;color:var(--on-dark-3);text-transform:uppercase;width:58px;text-align:right">${d}</span></div>`;}
+  return RECIPE+`<div style="background:linear-gradient(180deg,rgba(200,255,32,.1),rgba(200,255,32,.03));border:1px solid rgba(200,255,32,.34);border-radius:11px;padding:11px 12px;margin-bottom:6px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:5px"><span class="anbefalt">Anbefalt · grunnårsak</span><span style="font-family:var(--mono);font-size:9px;color:var(--on-dark-3);margin-left:auto">01</span></div><div style="display:flex;align-items:flex-end;justify-content:space-between"><span style="font-size:14px;font-weight:700;color:#fff">Remediering · ordstilling</span><span style="font-family:var(--mono);font-size:18px;font-weight:600;color:var(--lime)">11</span></div></div>${rest}`;
+}
+// E · Stegvis stepper
+function E(){
+  let l='';LANES.forEach(([n,nm,c,d,k,col,glow,rec],i)=>{
+    const last=i===LANES.length-1;
+    l+=`<div style="display:flex;gap:11px"><div style="display:flex;flex-direction:column;align-items:center"><span style="width:20px;height:20px;border-radius:50%;background:${rec?col:'transparent'};border:1.5px solid ${col};display:grid;place-items:center;font-family:var(--mono);font-size:9px;font-weight:600;color:${rec?'#0e1207':col};flex-shrink:0;${rec?`box-shadow:0 0 8px ${glow}`:''}">${n.replace('0','')}</span>${!last?`<span style="width:1.5px;flex:1;background:linear-gradient(${col},${LANES[i+1][5]});min-height:14px;margin:2px 0"></span>`:''}</div><div style="padding-bottom:${last?'0':'12px'};flex:1"><div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:12px;font-weight:600;color:${rec?'#fff':'var(--on-dark)'}">${nm}</span><span style="font-family:var(--mono);font-size:11px;font-weight:600;color:${col}">${c}</span></div><div style="font-family:var(--mono);font-size:8px;color:var(--on-dark-3);text-transform:uppercase;margin-top:2px">${d}${rec?' · start her':''}</div></div></div>`;});
+  return RECIPE+`<div style="margin-top:4px">${l}</div>`;
+}
+// F · Lane-fliser (echo the tools tiles)
+function F(){
+  let g='';for(const [n,nm,c,d,k,col,glow,rec] of LANES){
+    g+=`<div style="position:relative;overflow:hidden;border-radius:11px;padding:9px 10px;min-height:62px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,#14191b 0%,#12171a 46%,color-mix(in srgb,${col} 24%,#12171a) 100%)">${rec?'<span class="anbefalt" style="position:absolute;top:8px;right:8px">Anbefalt</span>':''}<div style="display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:${col};box-shadow:0 0 5px ${glow}"></span><span style="font-family:var(--mono);font-size:8px;color:var(--on-dark-3)">${n} · ${d}</span></div><div><div style="font-size:12px;font-weight:700;color:#fff;line-height:1.1">${nm.split(' · ')[0]}</div><div style="display:flex;align-items:baseline;gap:5px;margin-top:2px"><span style="font-family:var(--mono);font-size:16px;font-weight:600;color:${col}">${c}</span><span style="font-size:9px;color:var(--on-dark-2)">${nm.split(' · ')[1]||'oppg'}</span></div></div></div>`;}
+  return RECIPE+`<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">${g}</div>`;
+}
+
+const V=[
+  ['A','Mørk renset','The current dark list, tightened — accent dots with glow, the recommended lane tagged. Grounds the bottom; complements the dark tiles + plan.',A()],
+  ['B','Krem-kort','The plan on a cream card — adds white to the lower half, bookending the cream command card. Best for white balance.',B()],
+  ['C','Resept-segmenter','The 40/30/20/10 recipe IS the visual — a labeled segmented bar with counts. Makes the scheduler logic legible at a glance.',C()],
+  ['D','Anbefalt-fremhevet','The coach-recommended lane is a highlighted lime card; the other three are quiet rows. Clear "do this first" hierarchy.',D()],
+  ['E','Stegvis','The four lanes as a connected stepper — the økt as a sequence. Step 1 glows as "start here". Reads as a journey.',E()],
+  ['F','Lane-fliser','Each lane a small accent tile in the §Verktøy material — visually rhymes with the tool grid above.',F()],
+];
+let html='';
+for(const [k,name,note,body] of V){
+  html+=`<div class="col"><div class="cap">${k} <b>· ${name}</b></div><div class="note">${note}</div><div class="stage">${LED}${body}</div></div>`;
+}
+document.getElementById('root').innerHTML=html;
+</script>
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Final dashboard · V3 Liquid Glass tiles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090A;
+    --frame:#0B0E0F;
+    --raised:#101415;
+    --raised-2:#161B1C;
+    --line:#1D2325;
+    --line-2:#2A3236;
+
+    --paper:#FFFFFF;
+    --cream:#F1F0E8;
+    --cream-2:#E7E6DC;
+    --ink:#0E1207;
+    --ink-2:#474C3F;
+    --ink-3:#7C8275;
+
+    --on-dark:#E8ECE6;
+    --on-dark-2:#9BA39C;
+    --on-dark-3:#5C6660;
+
+    --lime:#C8FF20;
+    --coral:#FF6A55;
+    --amber:#F2952E;
+    --cyan:#00C2E0;
+    --teal:#2BC9A0;
+    --violet:#8B7CF0;
+    --green:#1FB866;
+
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Schibsted Grotesk', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:
+      radial-gradient(900px 600px at 50% -6%, #11160f 0%, #06080400 62%),
+      #050604;
+    color:var(--on-dark);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    padding:40px 16px 80px;
+  }
+  .tnum{font-variant-numeric:tabular-nums}
+
+  /* ===== TITLE STRIP ===== */
+  .page-head{
+    max-width:430px;margin:0 auto 38px;
+    border:1px solid var(--line-2);background:var(--raised);
+    padding:20px 22px;border-radius:14px;
+  }
+  .page-head .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--lime);margin-bottom:11px;display:flex;align-items:center;gap:9px;
+  }
+  .page-head h1{font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:9px;color:#fff}
+  .page-head p{font-size:13px;color:var(--on-dark-2);line-height:1.55}
+  .page-head p b{color:#fff;font-weight:500}
+  .page-head .dot{width:6px;height:6px;background:var(--lime);border-radius:50%;box-shadow:0 0 8px var(--lime)}
+  .swatch{display:flex;gap:7px;margin-top:18px;flex-wrap:wrap}
+  .swatch span{width:24px;height:24px;border-radius:7px;border:1px solid #ffffff14;position:relative}
+  .swatch span small{
+    position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--on-dark-3);white-space:nowrap;
+  }
+
+  /* ===== FRAME ===== */
+  .frame-wrap{max-width:390px;margin:0 auto 52px}
+  .frame-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--on-dark-3);margin:0 0 11px 2px;
+    display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .frame-label b{color:var(--on-dark-2);font-weight:500}
+  .device{
+    width:390px;
+    background:
+      radial-gradient(360px 280px at 84% 40%, #0d1310 0%, #07090a00 70%),
+      radial-gradient(340px 300px at 10% 74%, #0c110f 0%, #07090a00 72%),
+      var(--bg);
+    border:1px solid var(--line-2);border-radius:34px;overflow:hidden;position:relative;
+    box-shadow:0 40px 80px -28px rgba(0,0,0,.85), inset 0 1px 0 #ffffff08;
+  }
+  .status-bar{
+    height:42px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;font-family:var(--mono);font-size:12px;color:var(--on-dark-2);letter-spacing:.04em;
+  }
+  .status-bar .dots{display:flex;gap:5px;align-items:center}
+  .status-bar svg{width:15px;height:15px;stroke:var(--on-dark-2);fill:none}
+  .screen{padding:0 0 12px}
+
+  /* ===== IDENTITY ===== */
+  .id-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:4px 20px 16px;border-bottom:1px solid var(--line);
+  }
+  .id-row .who{display:flex;align-items:center;gap:12px}
+  .id-row .av{
+    width:40px;height:40px;border-radius:12px;background:var(--lime);
+    display:grid;place-items:center;font-weight:700;color:var(--ink);font-size:16px;letter-spacing:-.02em;
+  }
+  .id-row .meta{display:flex;flex-direction:column;gap:2px}
+  .id-row .meta .name{font-size:16px;font-weight:600;letter-spacing:-.01em;color:#fff}
+  .id-row .meta .sub{font-family:var(--mono);font-size:11px;color:var(--on-dark-3);letter-spacing:.04em}
+  .id-row .meta .sub b{color:var(--amber);font-weight:500}
+  /* AI badge — glass, lit cyan dot */
+  .ai-badge{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--on-dark);
+    background:radial-gradient(40px 30px at 18% 50%, rgba(0,194,224,.16), transparent 72%), rgba(18,22,18,.5);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:inset 1px 1px 0 rgba(255,255,255,.10);
+    padding:6px 11px;border-radius:9px;display:flex;align-items:center;gap:8px;
+  }
+  .ai-badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px 1px var(--cyan)}
+
+  /* ===== SECTION MARKERS ===== */
+  .sec{display:flex;align-items:center;gap:10px;padding:20px 20px 11px}
+  .sec .mark{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-3)}
+  .sec .mark .sn{color:var(--lime)}
+  .sec .rule{flex:1;height:1px;background:var(--line)}
+  .sec .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--on-dark-3)}
+
+  /* ===== DIAGNOSE — white focal (SOLID — dense data, legibility first) ===== */
+  .diag{
+    margin:0 20px;background:var(--paper);color:var(--ink);
+    border-radius:18px;overflow:hidden;position:relative;
+    box-shadow:0 18px 40px -24px rgba(0,0,0,.9);
+  }
+  .diag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--coral)}
+  .diag .head{display:flex;justify-content:space-between;align-items:flex-start;padding:17px 18px 14px}
+  .diag .verdict-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--coral);margin-bottom:7px;display:flex;align-items:center;gap:6px;
+  }
+  .diag .verdict-label .pd{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+  .diag .verdict{font-size:24px;font-weight:700;letter-spacing:-.025em;line-height:1.08;color:var(--ink)}
+  .diag .verdict .q{color:var(--ink-3)}
+  .diag .conf{
+    font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;
+    color:#eafcc4;background:var(--ink);padding:6px 10px;border-radius:100px;
+    display:flex;align-items:center;gap:7px;
+  }
+  .diag .conf .led{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 7px var(--lime)}
+  .diag .evidence{padding:0 18px 15px;font-size:13.5px;color:var(--ink-2);line-height:1.5;max-width:320px}
+  .diag .evidence b{color:var(--ink);font-weight:600}
+
+  .gauge{padding:14px 18px 16px;border-top:1px solid #ECEBE2}
+  .gauge .glabel{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:13px}
+  .gauge .glabel .gl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .gauge .glabel .delta{
+    font-family:var(--mono);font-size:12px;font-weight:600;color:var(--green);
+    background:#E6F7EC;padding:4px 9px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;
+  }
+  .gauge .delta svg{width:11px;height:11px;stroke:var(--green);fill:none}
+  .bars{display:flex;align-items:flex-end;gap:9px;height:70px}
+  .barcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end}
+  .barcol .bar{width:100%;border-radius:4px 4px 0 0;background:#E2E1D6}
+  .barcol.now .bar{background:var(--lime)}
+  .barcol .bv{font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:600}
+  .barcol.now .bv{color:var(--ink)}
+  .barcol .wk{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+  .fixed-row{display:flex;gap:7px;padding:14px 18px;flex-wrap:wrap;align-items:center;border-top:1px solid #ECEBE2}
+  .fixed-row .fl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:2px}
+  .chip-fixed{
+    font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--cream);
+    border:1px solid var(--cream-2);padding:6px 10px;border-radius:100px;display:flex;align-items:center;gap:6px;
+  }
+  .chip-fixed svg{width:11px;height:11px;stroke:var(--green);fill:none}
+
+  /* ===== I DAG — cream command card (SOLID) ===== */
+  .cmd{margin:0 20px;background:var(--cream);color:var(--ink);border-radius:18px;overflow:hidden}
+  .cmd .countrow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 18px 14px}
+  .cmd .countblock{display:flex;align-items:baseline;gap:13px}
+  .cmd .bignum{font-family:var(--mono);font-size:50px;font-weight:500;letter-spacing:-.04em;line-height:.85;color:var(--ink)}
+  .cmd .countlbl{font-size:14px;color:var(--ink-2);line-height:1.3;max-width:128px}
+  .cmd .countlbl b{color:var(--ink);font-weight:600}
+  .cmd .spark{display:flex;align-items:flex-end;gap:4px;height:44px}
+  .cmd .spark i{width:6px;border-radius:3px;background:#D8D7CB;display:block}
+  .cmd .spark i.on{background:var(--lime)}
+  .ledger-lines{padding:2px 18px 6px}
+  .lline{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #E4E3D8;font-size:13px}
+  .lline:last-child{border-bottom:none}
+  .lline .lk{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+  .lline .lv{font-family:var(--mono);font-size:13px;color:var(--ink-2);font-weight:500}
+  .lline .lv b{color:var(--ink);font-weight:600}
+  .lline .lv .seg{color:var(--ink-3)}
+  .lline .lv .seg.lead{color:var(--coral)}
+  /* start button — SOLID lime (the one prescribed action), lit go-circle */
+  .start-btn{
+    margin:8px 14px 14px;width:calc(100% - 28px);
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--lime);color:var(--ink);border:none;padding:15px 16px 15px 18px;
+    border-radius:13px;cursor:pointer;font-family:var(--sans);
+  }
+  .start-btn .t{display:flex;flex-direction:column;gap:3px;text-align:left}
+  .start-btn .t .reason{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:#3a4a06;display:flex;align-items:center;gap:6px}
+  .start-btn .t .reason svg{width:12px;height:12px;stroke:#3a4a06;fill:none}
+  .start-btn .t b{font-size:18px;font-weight:700;letter-spacing:-.02em}
+  .start-btn .go{width:42px;height:42px;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 14px -2px rgba(200,255,32,.55)}
+  .start-btn .go svg{width:20px;height:20px;stroke:var(--lime);fill:none;filter:drop-shadow(0 0 4px rgba(200,255,32,.7))}
+
+  /* ===== § VERKTØY — V3 LIQUID GLASS 3D TILES ===== */
+  /* heavy beveled refractive glass; the big embedded glyph glows from UNDER the glass as the ONLY light source */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 20px}
+  .gtile{
+    position:relative;overflow:hidden;isolation:isolate;
+    min-height:138px;border-radius:22px;cursor:pointer;
+    background:linear-gradient(160deg, #1c241d 0%, #11160f 60%, #0c0f0b 100%);
+    /* thick-glass bevel: bright top-left rim, dark bottom-right inner shade + outer cast */
+    box-shadow:
+      0 1px 1px #ffffff22 inset,
+      0 -14px 24px -16px #00000090 inset,
+      14px 16px 22px -18px #ffffff10 inset,
+      0 18px 34px -18px #000000d0,
+      0 2px 0 #00000060;
+    border:1px solid #ffffff14;
+    transition:transform .25s cubic-bezier(.2,.8,.25,1);
+  }
+  .gtile:active{transform:translateY(1px) scale(.992)}
+  .gtile.span2{grid-column:1 / -1;min-height:118px}
+  /* (1) UNDERLAYER — the big glowing glyph = the only light source, sits UNDER the glass */
+  .gtile .embed{position:absolute;inset:0;display:grid;place-items:center;z-index:0}
+  .gtile .embed svg{
+    width:28%;height:28%;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;
+    opacity:.88;
+    filter:drop-shadow(0 0 5px var(--cg));
+  }
+  .gtile .embed svg *{stroke:var(--c);stroke-width:1.1}
+  .gtile.span2 .embed svg{width:34%;height:60%}
+  /* color bloom radiating from the glyph, tinting the whole glass */
+  .gtile .bloom{
+    position:absolute;z-index:-1;inset:0;
+    background:radial-gradient(58% 52% at 50% 46%, var(--cg) 0%, transparent 66%);
+    opacity:.9;mix-blend-mode:screen;
+  }
+  /* (2) thick refractive top gloss — the wet liquid-glass sheen */
+  .gtile .gloss{
+    position:absolute;left:0;right:0;top:0;height:52%;z-index:3;pointer-events:none;
+    background:linear-gradient(180deg, #ffffff3a 0%, #ffffff10 30%, transparent 75%);
+    -webkit-mask-image:radial-gradient(120% 100% at 50% -28%, #000 42%, transparent 70%);
+            mask-image:radial-gradient(120% 100% at 50% -28%, #000 42%, transparent 70%);
+  }
+  /* (3) specular glints — rolling highlight beads */
+  .gtile .glint{
+    position:absolute;z-index:4;pointer-events:none;
+    width:60%;height:13px;left:10%;top:9%;
+    background:linear-gradient(90deg, transparent, #ffffffcc 45%, #ffffffee 55%, transparent);
+    border-radius:50%;filter:blur(2px);opacity:.82;transform:rotate(-7deg);
+  }
+  .gtile .glint.s2{
+    width:18%;height:18%;left:auto;right:11%;top:auto;bottom:14%;
+    background:radial-gradient(circle at 40% 35%, #ffffffd0, #ffffff20 45%, transparent 62%);
+    transform:none;filter:blur(.5px);opacity:.68;border-radius:50%;
+  }
+  /* (4) accent rim ring catching the hue */
+  .gtile .rim{
+    position:absolute;inset:6px;border-radius:16px;z-index:2;pointer-events:none;
+    box-shadow:0 0 0 1px #ffffff10 inset, 0 1px 10px var(--cg) inset;
+  }
+  /* (5) text overlay on the glass surface — title in the accent tint, muted mono subtitle */
+  .gtile .gc{
+    position:relative;z-index:5;height:100%;
+    padding:15px 15px 14px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;
+  }
+  .gtile .gt{font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--lit);text-shadow:0 1px 8px #00000080,0 0 1px #00000060}
+  .gtile.span2 .gt{font-size:20px}
+  .gtile .gs{font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:#cfd6cd;opacity:.78;text-shadow:0 1px 6px #000000aa}
+  .gtile .gtarrow{
+    position:absolute;z-index:5;top:13px;right:13px;width:24px;height:24px;border-radius:50%;
+    display:grid;place-items:center;background:#ffffff10;border:1px solid #ffffff1c;
+    box-shadow:0 1px 2px #00000060, 0 1px 0 #ffffff18 inset;
+  }
+  .gtile .gtarrow svg{width:12px;height:12px;stroke:#eef3eb;stroke-width:2.2;fill:none;opacity:.82}
+
+  /* ===== DAGENS PLAN — recipe + dark lanes ===== */
+  .recipe{display:flex;height:6px;margin:0 20px;border-radius:100px;overflow:hidden;margin-top:11px}
+  .recipe i{display:block;height:100%}
+  .recipe-key{display:flex;gap:14px;flex-wrap:wrap;padding:9px 20px 0;font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--on-dark-3)}
+  .recipe-key span{display:flex;align-items:center;gap:6px}
+  .recipe-key i{width:8px;height:8px;border-radius:2px}
+  .plan{margin:0 20px;border:1px solid var(--line-2);background:var(--raised);border-radius:16px;overflow:hidden}
+  .lane{display:flex;align-items:center;gap:13px;padding:13px 15px;border-bottom:1px solid var(--line)}
+  .lane:last-child{border-bottom:none}
+  .lane .ln{font-family:var(--mono);font-size:12px;color:var(--on-dark-3);width:18px;font-weight:500}
+  .lane.lead .ln{color:var(--lime)}
+  /* lane icon — glass lit tile */
+  .lane .ic{position:relative;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;
+    background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);box-shadow:inset 1px 1px 0 rgba(255,255,255,.06)}
+  .lane .ic svg{width:16px;height:16px;stroke:var(--on-dark-2);stroke-width:1.75;fill:none}
+  .lane.lead .ic{background:radial-gradient(28px 22px at 50% 42%, rgba(200,255,32,.22), transparent 70%), rgba(255,255,255,.03);border-color:rgba(200,255,32,.28)}
+  .lane.lead .ic::before{content:"";position:absolute;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(200,255,32,.4),transparent 66%);filter:blur(5px)}
+  .lane.lead .ic svg{position:relative;stroke:var(--lime);filter:drop-shadow(0 0 4px rgba(200,255,32,.6))}
+  .lane .body{flex:1;min-width:0}
+  .lane .body .lt{font-size:14px;font-weight:500;letter-spacing:-.005em;color:var(--on-dark)}
+  .lane .body .ls{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--on-dark-3);margin-top:3px}
+  .lane .body .ls .due{color:var(--amber)}
+  .lane .rec{
+    font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);background:var(--lime);padding:4px 7px;border-radius:6px;font-weight:600;box-shadow:0 0 12px -3px rgba(200,255,32,.7);
+  }
+  .lane .duepill{
+    font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--amber);border:1px solid #553b16;padding:4px 7px;border-radius:6px;display:flex;align-items:center;gap:5px;
+  }
+  .lane .duepill svg{width:10px;height:10px;stroke:var(--amber);fill:none}
+  .lane .arrow{stroke:var(--on-dark-3);width:15px;height:15px;stroke-width:1.75;fill:none}
+
+  /* ===== STATUS — tabular week (SOLID dark) ===== */
+  .status-tbl{margin:0 20px;border:1px solid var(--line-2);background:var(--raised);border-radius:16px;overflow:hidden}
+  .status-tbl .thead{
+    display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:11px 16px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-3);
+  }
+  .status-tbl .thead .r{text-align:right}
+  .trow{display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center}
+  .trow:last-child{border-bottom:none}
+  .trow .metric{font-size:13px;color:var(--on-dark-2);display:flex;align-items:center;gap:7px}
+  .trow .metric svg{width:14px;height:14px;fill:none}
+  .trow .v{font-family:var(--mono);font-size:14px;text-align:right;color:var(--on-dark)}
+  .trow .v .unit{color:var(--on-dark-3);font-size:11px}
+  .trow .d{font-family:var(--mono);font-size:13px;text-align:right;font-weight:500}
+  .trow .d.up{color:var(--green)}
+  .trow .d.flat{color:var(--on-dark-3)}
+
+  /* ===== SNAKK CTA — V3 LIQUID GLASS rail (cyan), lit mic glyph embedded under glass ===== */
+  .speak-cta{
+    margin:16px 20px 0;position:relative;overflow:hidden;isolation:isolate;border-radius:20px;
+    min-height:84px;padding:16px 18px;display:flex;align-items:center;gap:15px;cursor:pointer;
+    --c:#00C2E0;--cg:#00c2e055;
+    background:linear-gradient(160deg, #16221f 0%, #0f1614 60%, #0b100e 100%);
+    box-shadow:
+      0 1px 1px #ffffff22 inset,
+      0 -14px 24px -16px #00000090 inset,
+      14px 16px 22px -18px #ffffff10 inset,
+      0 18px 34px -18px #000000d0,
+      0 2px 0 #00000060;
+    border:1px solid #ffffff14;
+  }
+  .speak-cta .bloom{position:absolute;z-index:-1;inset:0;background:radial-gradient(60% 120% at 14% 50%, var(--cg) 0%, transparent 60%);opacity:.9;mix-blend-mode:screen}
+  .speak-cta .gloss{
+    position:absolute;left:0;right:0;top:0;height:60%;z-index:3;pointer-events:none;
+    background:linear-gradient(180deg,#ffffff32 0%,#ffffff0c 32%,transparent 78%);
+    -webkit-mask-image:radial-gradient(120% 120% at 22% -28%, #000 40%, transparent 72%);
+            mask-image:radial-gradient(120% 120% at 22% -28%, #000 40%, transparent 72%);
+  }
+  .speak-cta .glint{
+    position:absolute;z-index:4;pointer-events:none;width:42%;height:11px;left:7%;top:11%;
+    background:linear-gradient(90deg, transparent, #ffffffcc 45%, #ffffffee 55%, transparent);
+    border-radius:50%;filter:blur(2px);opacity:.78;transform:rotate(-6deg);
+  }
+  .speak-cta .rim{position:absolute;inset:6px;border-radius:15px;z-index:2;pointer-events:none;box-shadow:0 0 0 1px #ffffff10 inset, 0 1px 10px var(--cg) inset}
+  /* the embedded lit mic = the only light source */
+  .speak-cta .mic{position:relative;z-index:5;width:48px;height:48px;display:grid;place-items:center;flex-shrink:0}
+  .speak-cta .mic svg{
+    position:relative;width:25px;height:25px;stroke:#eafffd;stroke-width:1.7;fill:none;
+    filter:drop-shadow(0 0 5px var(--c)) drop-shadow(0 0 16px var(--c)) drop-shadow(0 0 34px var(--cg));
+  }
+  .speak-cta .body{position:relative;z-index:5;flex:1;min-width:0}
+  .speak-cta .body .h{display:flex;align-items:center;gap:8px}
+  .speak-cta .body .h .st{font-size:15.5px;font-weight:700;letter-spacing:-.01em;color:#fff;text-shadow:0 1px 8px #00000080}
+  .speak-cta .body .h .live{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#9df1ff;border:1px solid rgba(0,194,224,.4);border-radius:100px;padding:2px 7px;box-shadow:0 0 10px -3px var(--cyan)}
+  .speak-cta .body .ss{font-size:12.5px;color:#cfe7ec;opacity:.85;margin-top:3px}
+  .speak-cta .min{position:relative;z-index:5;font-family:var(--mono);font-size:11px;color:#9fb0b3;text-align:right;line-height:1.3;white-space:nowrap}
+  .speak-cta .min b{color:#9df1ff;display:block;font-size:16px;font-weight:600}
+
+  /* ===== BOTTOM NAV — glass; active tab = V3 liquid-glass lit ===== */
+  .botnav{
+    display:flex;border-top:1px solid rgba(255,255,255,.07);margin-top:20px;
+    background:rgba(11,14,13,.72);
+    backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%);
+  }
+  .botnav a{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 0 15px;text-decoration:none;
+    font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--on-dark-3);position:relative;
+  }
+  .botnav a .navic{position:relative;display:grid;place-items:center;width:38px;height:30px;border-radius:12px}
+  .botnav a svg{width:21px;height:21px;stroke:var(--on-dark-3);stroke-width:1.75;fill:none}
+  .botnav a.on{color:var(--lime)}
+  /* active = a small liquid-glass lozenge lit from within by the icon */
+  .botnav a.on .navic{
+    background:linear-gradient(160deg, #1c241d, #0f140d);
+    border:1px solid #ffffff16;
+    box-shadow:0 1px 1px #ffffff22 inset, 0 -8px 14px -10px #00000090 inset, 0 6px 14px -8px #000;
+  }
+  .botnav a.on .navic::after{
+    content:"";position:absolute;left:6px;right:6px;top:3px;height:42%;border-radius:9px;
+    background:linear-gradient(180deg,#ffffff30,transparent);pointer-events:none;
+  }
+  .botnav a.on svg{position:relative;stroke:var(--lime);filter:drop-shadow(0 0 4px var(--lime)) drop-shadow(0 0 12px rgba(200,255,32,.55))}
+  .botnav a.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:2px;background:var(--lime);box-shadow:0 0 9px var(--lime)}
+
+  /* ===== SESSION / REPAIR ===== */
+  .sess-top{display:flex;align-items:center;gap:13px;padding:6px 20px 16px;border-bottom:1px solid var(--line)}
+  .sess-x{position:relative;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;
+    background:rgba(18,22,18,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.10);box-shadow:inset 1px 1px 0 rgba(255,255,255,.08)}
+  .sess-x svg{width:16px;height:16px;stroke:var(--on-dark);stroke-width:2;fill:none}
+  .progbar{flex:1;height:5px;background:var(--line);border-radius:100px;overflow:hidden;position:relative}
+  .progbar i{position:absolute;left:0;top:0;bottom:0;width:36%;background:var(--lime);border-radius:100px;box-shadow:0 0 8px rgba(200,255,32,.6)}
+  .sess-top .frac{font-family:var(--mono);font-size:12px;color:var(--on-dark-2);font-weight:500}
+
+  /* root-cause badge — glass lit lime */
+  .ga-badge{
+    margin:18px 20px 0;position:relative;display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--lime);padding:7px 12px 7px 11px;border-radius:100px;
+    background:radial-gradient(40px 30px at 14% 50%, rgba(200,255,32,.2), transparent 72%), rgba(18,22,18,.5);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(200,255,32,.24);box-shadow:inset 1px 1px 0 rgba(255,255,255,.08);
+  }
+  .ga-badge svg{width:13px;height:13px;stroke:var(--lime);stroke-width:1.75;fill:none;filter:drop-shadow(0 0 4px rgba(200,255,32,.7))}
+
+  /* white exercise card (SOLID — dense data) */
+  .ex-card{margin:14px 20px 0;background:var(--paper);color:var(--ink);border-radius:18px;padding:20px 18px 18px;box-shadow:0 18px 40px -24px rgba(0,0,0,.9)}
+  .ex-card .prompt-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .ex-card .en{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--ink);margin-bottom:18px}
+  .ex-card .en .q{color:var(--ink-3)}
+  .ex-card .field{
+    border:1.5px solid var(--coral);border-radius:13px;background:#FFF4F2;
+    padding:14px 15px;font-size:17px;font-weight:500;color:var(--ink);min-height:54px;display:flex;align-items:center;
+  }
+  .ex-card .field s{color:var(--coral);text-decoration-thickness:2px;text-underline-offset:3px}
+
+  /* repair — V3 GLASS dark sheet (coral) + lit coral "Fanget" glyph; data on inner SOLID card */
+  .repair{
+    margin:13px 20px 0;position:relative;overflow:hidden;isolation:isolate;border-radius:20px;
+    --c:#FF6A55;--cg:#ff6a5555;
+    background:linear-gradient(160deg, #241a18 0%, #16110f 60%, #100b0a 100%);
+    box-shadow:
+      0 1px 1px #ffffff22 inset,
+      0 -14px 24px -16px #00000090 inset,
+      14px 16px 22px -18px #ffffff10 inset,
+      0 22px 40px -22px #000000d8,
+      0 2px 0 #00000060;
+    border:1px solid #ffffff14;
+  }
+  .repair .rbloom{position:absolute;z-index:-1;inset:0;background:radial-gradient(50% 60% at 14% 12%, var(--cg) 0%, transparent 62%);opacity:.9;mix-blend-mode:screen}
+  .repair .rgloss{
+    position:absolute;left:0;right:0;top:0;height:46%;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,#ffffff2e 0%,#ffffff0a 34%,transparent 78%);
+    -webkit-mask-image:radial-gradient(120% 110% at 30% -28%, #000 40%, transparent 72%);
+            mask-image:radial-gradient(120% 110% at 30% -28%, #000 40%, transparent 72%);
+  }
+  .repair .rglint{
+    position:absolute;z-index:2;pointer-events:none;width:46%;height:11px;left:8%;top:8%;
+    background:linear-gradient(90deg, transparent, #ffffffc0 45%, #ffffffe0 55%, transparent);
+    border-radius:50%;filter:blur(2px);opacity:.7;transform:rotate(-6deg);
+  }
+  .repair .rhead{position:relative;z-index:3;display:flex;align-items:center;gap:12px;padding:15px 16px 13px}
+  .repair .lit-warn{position:relative;width:42px;height:42px;display:grid;place-items:center;flex-shrink:0}
+  .repair .lit-warn svg{position:relative;width:23px;height:23px;stroke:#fff;stroke-width:2;fill:none;filter:drop-shadow(0 0 5px var(--c)) drop-shadow(0 0 16px var(--c)) drop-shadow(0 0 34px var(--cg))}
+  .repair .rtitle{min-width:0}
+  .repair .rtitle .ft{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#ff9a8c;font-weight:500;text-shadow:0 1px 8px #00000080}
+  .repair .rtitle .yours{display:block;margin-top:3px;font-family:var(--mono);font-size:11px;color:#a86f66;text-decoration:line-through}
+  .repair .panel{position:relative;z-index:3;margin:0 14px 13px;background:#fff;border-radius:14px;padding:14px 15px;box-shadow:0 10px 26px -20px rgba(0,0,0,.8)}
+  .repair .panel .explain{font-size:14px;color:#43210d;line-height:1.5}
+  .repair .panel .explain b{color:#1f0e05;font-weight:600}
+  .repair .panel .correct{
+    margin-top:13px;background:#F6FBF1;border:1px solid #E2EFD5;border-radius:12px;
+    padding:12px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  }
+  .repair .panel .correct .rt{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .repair .panel .correct .rt .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+  .repair .panel .correct .rt .v{font-size:15.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .repair .panel .correct .rt .v mark{background:transparent;color:#0f8a4a;font-weight:700}
+  .repair .panel .correct .save{width:40px;height:40px;border-radius:11px;background:var(--cream);border:1px solid var(--cream-2);display:grid;place-items:center;flex-shrink:0}
+  .repair .panel .correct .save svg{width:17px;height:17px;stroke:var(--ink-2);stroke-width:1.9;fill:none}
+  .repair .ractions{position:relative;z-index:3;display:flex;gap:10px;padding:0 16px 16px}
+  .repair .ractions button{
+    border:none;font-family:var(--sans);font-size:14.5px;font-weight:600;letter-spacing:-.01em;
+    padding:14px;border-radius:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .repair .ractions .ghost{flex:0 0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);color:#ffb8ac;padding:14px 18px}
+  /* primary — lit lime glass */
+  .repair .ractions .primary{
+    flex:1;color:var(--lime);
+    background:radial-gradient(90px 40px at 50% 50%, rgba(200,255,32,.16), transparent 72%), rgba(18,22,18,.7);
+    border:1px solid rgba(200,255,32,.32);box-shadow:inset 1px 1px 0 rgba(255,255,255,.08), 0 0 18px -6px rgba(200,255,32,.55);
+  }
+  .repair .ractions .primary svg{width:16px;height:16px;stroke:var(--lime);stroke-width:2.2;fill:none;filter:drop-shadow(0 0 4px rgba(200,255,32,.7))}
+
+  .ai-tag{display:flex;align-items:center;gap:8px;justify-content:center;margin:15px 20px 0;font-family:var(--mono);font-size:10.5px;color:var(--on-dark-3);letter-spacing:.02em}
+  .ai-tag .b{display:inline-flex;align-items:center;gap:6px;background:rgba(0,194,224,.08);border:1px solid rgba(0,194,224,.26);padding:5px 10px;border-radius:100px;color:var(--cyan)}
+  .ai-tag .b .led{width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
+
+  .sess-foot{margin:16px 20px 0;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--on-dark-3);text-align:center;line-height:1.6}
+
+  /* ===== BALANCE C — COOL PRECISION ==========================
+     Lime reserved for the action + the production gauge only.
+     Avatar, § marks, active nav run cyan; the recommended lane
+     runs teal (cool "confirmed"). Coral strictly the breaker.
+     Reads calm, clinical, instrument-precise. ================ */
+  .id-row .av{background:var(--cyan);color:#00252b}
+  .sec .mark .sn{color:var(--cyan)}
+  .lane.lead .ln{color:var(--teal)}
+  .lane.lead .ic{background:radial-gradient(28px 22px at 50% 42%, rgba(43,201,160,.24), transparent 70%), rgba(255,255,255,.03);border-color:rgba(43,201,160,.3)}
+  .lane.lead .ic::before{background:radial-gradient(circle,rgba(43,201,160,.42),transparent 66%)}
+  .lane.lead .ic svg{stroke:var(--teal);filter:drop-shadow(0 0 4px rgba(43,201,160,.6))}
+  .lane .rec{background:var(--teal);color:#04231b;box-shadow:0 0 12px -3px rgba(43,201,160,.7)}
+  .recipe i:nth-child(1){background:var(--teal)}
+  .recipe-key span:nth-child(1) i{background:var(--teal)}
+  .diag .conf .led{background:var(--cyan);box-shadow:0 0 7px var(--cyan)}
+  .botnav a.on{color:var(--cyan)}
+  .botnav a.on svg{stroke:var(--cyan);filter:drop-shadow(0 0 4px var(--cyan)) drop-shadow(0 0 12px rgba(0,194,224,.55))}
+  .botnav a.on::before{background:var(--cyan);box-shadow:0 0 9px var(--cyan)}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="kicker"><span class="dot"></span> Fargebalanse C · KJØLIG — lime kun til handling/måler, brettet går cyan/teal, korall = kun feil</div>
+  <h1>Mørk hovedbok + <em style="font-style:normal;color:var(--lime)">flytende glass-verktøy</em> — ett innstøpt ikon lyser hver flis opp innenfra</h1>
+  <p>Den fulle hovedbok-strukturen (§-seksjoner, mono-tall, hele motoren på én skjerm) er beholdt nøyaktig. Verktøyrutenettet bærer nå <b>V3 «Liquid Glass 3D»</b>: tykt, fasettert refraktivt glass med våt topp-glød, rullende spekulære glimt, en aksent-kantring og <b>ett stort Lucide-ikon støpt inn UNDER glasset</b> som glør i flisens farge som den eneste lyskilden. Samme materiale går igjen på <b>Snakk med Kari-raden</b> (cyan) og den <b>aktive nav-fanen</b>. <b>Tett data lever fortsatt på solide hvite og kremfargede kort</b> (diagnosen, «I dag», statusen, reparasjonen) — glass er for verktøy, navigasjon og handling; solid for tall du må lese.</p>
+  <div class="swatch">
+    <span style="background:#0B0E0F"><small>frame</small></span>
+    <span style="background:#FFFFFF"><small>data</small></span>
+    <span style="background:#F1F0E8"><small>cream</small></span>
+    <span style="background:#C8FF20"><small>lime</small></span>
+    <span style="background:#FF6A55"><small>coral</small></span>
+    <span style="background:#F2952E"><small>amber</small></span>
+    <span style="background:#00C2E0"><small>cyan</small></span>
+    <span style="background:#2BC9A0"><small>teal</small></span>
+    <span style="background:#8B7CF0"><small>violet</small></span>
+  </div>
+</div>
+
+<!-- ============ SCREEN 1 — HJEM ============ -->
+<div class="frame-wrap">
+  <div class="frame-label"><span>HJEM · /dashboard</span><b>hovedbok + flytende glass-verktøy</b></div>
+  <div class="device">
+    <div class="status-bar">
+      <span>09:24</span>
+      <div class="dots">
+        <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14 0M1.5 9a16 16 0 0 1 21 0M8.5 16a6 6 0 0 1 7 0M12 20h.01" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="10" rx="2" stroke-width="2"/><path d="M22 11v2" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="screen">
+
+      <div class="id-row">
+        <div class="who">
+          <div class="av">D</div>
+          <div class="meta">
+            <div class="name">Dave</div>
+            <div class="sub">B1 · DAG <b>14</b> PÅ RAD</div>
+          </div>
+        </div>
+        <div class="ai-badge"><span class="pulse"></span>SKY</div>
+      </div>
+
+      <!-- § DIAGNOSE — solid white -->
+      <div class="sec"><span class="mark"><span class="sn">§</span> DIAGNOSE</span><span class="rule"></span><span class="tag">7D-VINDU</span></div>
+      <div class="diag">
+        <div class="head">
+          <div>
+            <div class="verdict-label"><span class="pd"></span>Rotårsak</div>
+            <div class="verdict">Ordstilling etter <span class="q">«fordi»</span></div>
+          </div>
+          <div class="conf"><span class="led"></span>Sikker</div>
+        </div>
+        <div class="evidence">Basert på <b>14 feil de siste 7 dagene</b> ser det ut som verbet havner for tidlig i leddsetninger.</div>
+        <div class="gauge">
+          <div class="glabel">
+            <span class="gl">Feil / uke · ordstilling</span>
+            <span class="delta">
+              <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+              −39 %
+            </span>
+          </div>
+          <div class="bars">
+            <div class="barcol"><div class="bar" style="height:62px"></div><div class="bv tnum">18</div><div class="wk">U−2</div></div>
+            <div class="barcol"><div class="bar" style="height:46px"></div><div class="bv tnum">14</div><div class="wk">U−1</div></div>
+            <div class="barcol now"><div class="bar" style="height:34px"></div><div class="bv tnum">11</div><div class="wk">NÅ</div></div>
+          </div>
+        </div>
+        <div class="fixed-row">
+          <span class="fl">FIKSET</span>
+          <span class="chip-fixed"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Substantivkjønn</span>
+          <span class="chip-fixed"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Bestemt form</span>
+        </div>
+      </div>
+
+      <!-- § I DAG — cream command card -->
+      <div class="sec"><span class="mark"><span class="sn">§</span> I DAG</span><span class="rule"></span><span class="tag">ØKT 14</span></div>
+      <div class="cmd">
+        <div class="countrow">
+          <div class="countblock">
+            <div class="bignum tnum">9</div>
+            <div class="countlbl"><b>setninger</b> du kan bygge etter dagens økt</div>
+          </div>
+          <div class="spark">
+            <i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:82%"></i><i class="on" style="height:100%"></i>
+          </div>
+        </div>
+        <div class="ledger-lines">
+          <div class="lline"><span class="lk">Oppgaver</span><span class="lv tnum"><b>22</b> stk</span></div>
+          <div class="lline"><span class="lk">Varighet</span><span class="lv tnum">ca. <b>17</b> min</span></div>
+          <div class="lline"><span class="lk">Resept</span><span class="lv tnum"><b>40</b><span class="seg"> / 30 / 20 / 10</span></span></div>
+          <div class="lline"><span class="lk">Leder med</span><span class="lv"><span class="seg lead">ordstilling</span></span></div>
+        </div>
+        <button class="start-btn">
+          <span class="t">
+            <span class="reason"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 1.5"/></svg>STARTER PÅ «FORDI»-FEILEN</span>
+            <b>Start dagens økt</b>
+          </span>
+          <span class="go"><svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </button>
+      </div>
+
+      <!-- § VERKTØY — V3 Liquid Glass tool grid (the signature) -->
+      <div class="sec"><span class="mark"><span class="sn">§</span> VERKTØY</span><span class="rule"></span><span class="tag">6 SPRÅKFLATER</span></div>
+      <div class="tools">
+
+        <!-- Lær — lime -->
+        <div class="gtile" style="--c:#C8FF20;--cg:#c8ff2050;--lit:#eaffb3">
+          <div class="bloom"></div>
+          <div class="embed">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/><path d="M22 10v6"/></svg>
+          </div>
+          <div class="rim"></div>
+          <div class="gloss"></div>
+          <div class="glint"></div>
+          <div class="glint s2"></div>
+          <div class="gtarrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="gc"><div class="gt">Lær</div><div class="gs">Dagens økt · 22 oppg</div></div>
+        </div>
+
+        <!-- Snakk — cyan -->
+        <div class="gtile" style="--c:#00C2E0;--cg:#00c2e055;--lit:#9df1ff">
+          <div class="bloom"></div>
+          <div class="embed">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+          </div>
+          <div class="rim"></div>
+          <div class="gloss"></div>
+          <div class="glint"></div>
+          <div class="glint s2"></div>
+          <div class="gtarrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="gc"><div class="gt">Snakk</div><div class="gs">Kari · øv høyt</div></div>
+        </div>
+
+        <!-- Les — teal -->
+        <div class="gtile" style="--c:#2BC9A0;--cg:#2bc9a050;--lit:#bdf6e4">
+          <div class="bloom"></div>
+          <div class="embed">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3Z"/></svg>
+          </div>
+          <div class="rim"></div>
+          <div class="gloss"></div>
+          <div class="glint"></div>
+          <div class="glint s2"></div>
+          <div class="gtarrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="gc"><div class="gt">Les</div><div class="gs">Tekster på nivå</div></div>
+        </div>
+
+        <!-- Lytt — amber -->
+        <div class="gtile" style="--c:#F2952E;--cg:#f2952e50;--lit:#ffd8a6">
+          <div class="bloom"></div>
+          <div class="embed">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a9 9 0 0 1 18 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+          </div>
+          <div class="rim"></div>
+          <div class="gloss"></div>
+          <div class="glint"></div>
+          <div class="glint s2"></div>
+          <div class="gtarrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="gc"><div class="gt">Lytt</div><div class="gs">Hør og svar</div></div>
+        </div>
+
+        <!-- Skriv — coral -->
+        <div class="gtile" style="--c:#FF6A55;--cg:#ff6a5550;--lit:#ffc4ba">
+          <div class="bloom"></div>
+          <div class="embed">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
+          <div class="rim"></div>
+          <div class="gloss"></div>
+          <div class="glint"></div>
+          <div class="glint s2"></div>
+          <div class="gtarrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="gc"><div class="gt">Skriv</div><div class="gs">Journal · rettet</div></div>
+        </div>
+
+        <!-- Notatboka — violet -->
+        <div class="gtile" style="--c:#8B7CF0;--cg:#8b7cf050;--lit:#d6cffd">
+          <div class="bloom"></div>
+          <div class="embed">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M2 6h4M2 10h4M2 14h4M2 18h4"/><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M16 2v20"/></svg>
+          </div>
+          <div class="rim"></div>
+          <div class="gloss"></div>
+          <div class="glint"></div>
+          <div class="glint s2"></div>
+          <div class="gtarrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="gc"><div class="gt">Notatboka</div><div class="gs">12 lagret · 3 forfaller</div></div>
+        </div>
+
+      </div>
+
+      <!-- § DAGENS PLAN -->
+      <div class="sec"><span class="mark"><span class="sn">§</span> DAGENS PLAN</span><span class="rule"></span><span class="tag">4 SPOR</span></div>
+      <div class="recipe">
+        <i style="width:40%;background:var(--lime)"></i>
+        <i style="width:30%;background:var(--cyan)"></i>
+        <i style="width:20%;background:var(--amber)"></i>
+        <i style="width:10%;background:var(--coral)"></i>
+      </div>
+      <div class="recipe-key">
+        <span><i style="background:var(--lime)"></i>40 Remediering</span>
+        <span><i style="background:var(--cyan)"></i>30 Repetisjon</span>
+        <span><i style="background:var(--amber)"></i>20 Nytt</span>
+        <span><i style="background:var(--coral)"></i>10 Fletting</span>
+      </div>
+      <div class="plan" style="margin-top:12px">
+        <div class="lane lead">
+          <span class="ln">01</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg></div>
+          <div class="body"><div class="lt">Remediering · ordstilling</div><div class="ls">9 OPPG · GRUNNÅRSAK</div></div>
+          <span class="rec">Anbefalt</span>
+        </div>
+        <div class="lane">
+          <span class="ln">02</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9zM12 7v5l3 2"/></svg></div>
+          <div class="body"><div class="lt">Repetisjon · SRS</div><div class="ls">6 OPPG · <span class="due">3 FORFALLER I DAG</span></div></div>
+          <span class="duepill"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 1.5" stroke-linecap="round"/></svg>3→7d</span>
+        </div>
+        <div class="lane">
+          <span class="ln">03</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+          <div class="body"><div class="lt">Nytt · produksjon</div><div class="ls">4 OPPG · A2→B1</div></div>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="lane">
+          <span class="ln">04</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-6 0v4M5 9h14l1 11H4L5 9z"/></svg></div>
+          <div class="body"><div class="lt">Bøyningsdrill · verb</div><div class="ls">3 OPPG · DAGLIG</div></div>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+
+      <!-- § STATUS -->
+      <div class="sec"><span class="mark"><span class="sn">§</span> STATUS</span><span class="rule"></span><span class="tag">DENNE UKA</span></div>
+      <div class="status-tbl">
+        <div class="thead"><span>Måling</span><span class="r">Nå</span><span class="r">Trend</span></div>
+        <div class="trow">
+          <span class="metric"><svg viewBox="0 0 24 24" stroke="var(--amber)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 4 4 4 8a4 4 0 0 1-8 0c0-1 .5-2 1-3 .5 2 2 2 2 1 0-2-1-4 1-6z"/></svg>Rekke</span>
+          <span class="v tnum">14 <span class="unit">dgr</span></span>
+          <span class="d up tnum">+7</span>
+        </div>
+        <div class="trow">
+          <span class="metric"><svg viewBox="0 0 24 24" stroke="var(--cyan)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg>Min talt</span>
+          <span class="v tnum">34 <span class="unit">min</span></span>
+          <span class="d up tnum">+12</span>
+        </div>
+        <div class="trow">
+          <span class="metric"><svg viewBox="0 0 24 24" stroke="var(--on-dark-2)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Treff</span>
+          <span class="v tnum">83 <span class="unit">%</span></span>
+          <span class="d up tnum">+5</span>
+        </div>
+      </div>
+
+      <!-- SNAKK — V3 liquid glass rail, lit cyan mic -->
+      <div class="speak-cta">
+        <div class="bloom"></div>
+        <div class="rim"></div>
+        <div class="gloss"></div>
+        <div class="glint"></div>
+        <div class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="body">
+          <div class="h"><span class="st">Snakk med Kari</span><span class="live">Live</span></div>
+          <div class="ss">Øv ordstillingen høyt — i en samtale</div>
+        </div>
+        <div class="min"><b class="tnum">34</b>min talt</div>
+      </div>
+
+      <!-- NAV — glass, active = liquid-glass lit -->
+      <div class="botnav">
+        <a href="#" class="on"><span class="navic"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg></span>Hjem</a>
+        <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Lær</a>
+        <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg></span>Snakk</a>
+        <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg></span>Notatboka</a>
+        <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></span>Deg</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 2 — LÆR / SESSION + REPAIR ============ -->
+<div class="frame-wrap">
+  <div class="frame-label"><span>LÆR · økt + reparasjon på stedet</span><b>glass-reparasjon · baklyst «Fanget»</b></div>
+  <div class="device">
+    <div class="status-bar">
+      <span>09:41</span>
+      <div class="dots">
+        <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14 0M1.5 9a16 16 0 0 1 21 0M8.5 16a6 6 0 0 1 7 0M12 20h.01" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="10" rx="2" stroke-width="2"/><path d="M22 11v2" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="screen" style="display:flex;flex-direction:column;min-height:716px">
+
+      <div class="sess-top">
+        <div class="sess-x"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"/></svg></div>
+        <div class="progbar"><i></i></div>
+        <div class="frac">OPPG <b style="color:var(--on-dark)">08</b> / 22</div>
+      </div>
+
+      <div class="ga-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2 4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+        GRUNNÅRSAK · ORDSTILLING
+      </div>
+
+      <!-- white exercise card with wrong answer (SOLID) -->
+      <div class="ex-card">
+        <div class="prompt-lbl">§ Oversett til norsk</div>
+        <div class="en"><span class="q">«</span>I stay home because I am tired.<span class="q">»</span></div>
+        <div class="field"><span>Jeg blir hjemme fordi <s>er jeg</s> sliten.</span></div>
+      </div>
+
+      <!-- repair — V3 glass dark sheet, lit coral "Fanget" + solid inner data panel -->
+      <div class="repair">
+        <div class="rbloom"></div>
+        <div class="rgloss"></div>
+        <div class="rglint"></div>
+        <div class="rhead">
+          <div class="lit-warn">
+            <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+          </div>
+          <div class="rtitle">
+            <span class="ft">Fanget · ordstilling</span>
+            <span class="yours">…fordi er jeg</span>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="explain">Etter <b>«fordi»</b> kommer subjektet før verbet. Du la verbet for tidlig — <b>«er jeg»</b> skal være <b>«jeg er»</b>. Det er nettopp rotårsaken vi jobber med.</div>
+          <div class="correct">
+            <div class="rt">
+              <span class="k">Riktig</span>
+              <span class="v">Jeg blir hjemme fordi <mark>jeg er</mark> sliten.</span>
+            </div>
+            <div class="save"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
+          </div>
+        </div>
+        <div class="ractions">
+          <button class="ghost">Vis regelen</button>
+          <button class="primary">Prøv igjen<svg viewBox="0 0 24 24"><path d="M3 2v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg></button>
+        </div>
+      </div>
+
+      <div class="ai-tag">
+        <span class="b"><span class="led"></span>Forslag · ikke verifisert</span>
+        forklaringen er AI-generert
+      </div>
+
+      <div class="sess-foot">FEIL LOGGET → SRS NULLSTILT → 1 DAG · MASTERY UENDRET TIL RIKTIG SVAR</div>
+
+      <div style="margin-top:auto">
+        <div class="botnav">
+          <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg></span>Hjem</a>
+          <a href="#" class="on"><span class="navic"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Lær</a>
+          <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg></span>Snakk</a>
+          <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg></span>Notatboka</a>
+          <a href="#"><span class="navic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></span>Deg</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

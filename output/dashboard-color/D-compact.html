@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Kompakt dashboard · én skjerm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090A;--frame:#0B0E0F;--raised:#101415;--raised-2:#161B1C;--line:#1D2325;--line-2:#2A3236;
+    --paper:#FFFFFF;--cream:#F1F0E8;--cream-2:#E7E6DC;--ink:#0E1207;--ink-2:#474C3F;--ink-3:#7C8275;
+    --on-dark:#E8ECE6;--on-dark-2:#9BA39C;--on-dark-3:#5C6660;
+    --lime:#C8FF20;--coral:#FF6A55;--amber:#F2952E;--cyan:#00C2E0;--teal:#2BC9A0;--violet:#8B7CF0;--green:#1FB866;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;--sans:'Schibsted Grotesk',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#050604;color:var(--on-dark);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:30px 16px 60px}
+  .tnum{font-variant-numeric:tabular-nums}
+  .head{max-width:390px;margin:0 auto 12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-3);display:flex;justify-content:space-between}
+  .head b{color:var(--lime);font-weight:500}
+
+  /* ===== DEVICE — fixed one-viewport frame (390 × 844 = iPhone) ===== */
+  .device{
+    width:390px;height:844px;margin:0 auto;overflow:hidden;position:relative;
+    background:radial-gradient(360px 280px at 84% 36%,#0d1310 0%,#07090a00 70%),radial-gradient(340px 300px at 8% 70%,#0c110f 0%,#07090a00 72%),var(--bg);
+    border:1px solid var(--line-2);border-radius:30px;box-shadow:0 40px 80px -28px rgba(0,0,0,.85),inset 0 1px 0 #ffffff08;
+  }
+  .screen{height:100%;display:flex;flex-direction:column;padding:12px 13px 0}
+
+  /* ID ROW */
+  .id{display:flex;align-items:center;gap:9px;height:34px;flex-shrink:0;margin-bottom:8px}
+  .id .av{width:31px;height:31px;border-radius:9px;background:linear-gradient(150deg,#1d2620,#0f1512);border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 1px 1px rgba(255,255,255,.12);display:grid;place-items:center;font-weight:700;color:#eaffb3;font-size:15px;flex-shrink:0}
+  .id .nm{font-size:14px;font-weight:600;color:#fff;line-height:1}
+  .id .sub{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--on-dark-3);margin-top:2px}
+  .id .sub b{color:var(--amber);font-weight:500}
+  .id .ai{margin-left:auto;display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;color:var(--cyan);padding:5px 11px;border:1px solid rgba(0,194,224,.42);border-radius:999px;background:rgba(0,194,224,.09)}
+  .id .ai .p{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 7px var(--cyan)}
+
+  /* ===== MERGED COMMAND CARD (diagnose + I dag, compressed into one) ===== */
+  .cmd{flex-shrink:0;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#13181a,#0d1112);border:1px solid var(--line-2);box-shadow:0 16px 32px -18px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.05);margin-bottom:9px}
+  .cmd .top{padding:10px 13px 11px}
+  .cmd .krow{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .cmd .kick{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#aee632;font-weight:600}
+  .cmd .lvl{font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--on-dark-2);border:1px solid var(--line-2);padding:2px 7px;border-radius:6px}
+  .cmd .frow{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+  .cmd .fanget{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--coral);background:rgba(255,106,85,.12);border:1px solid rgba(255,106,85,.42);padding:5px 11px;border-radius:8px}
+  .cmd .fanget .pd{width:5px;height:5px;border-radius:50%;background:var(--coral);box-shadow:0 0 6px var(--coral)}
+  .cmd .see{font-size:9.5px;font-weight:600;color:#27d6f0;white-space:nowrap}
+  .cmd .sig{font-family:var(--mono);font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--on-dark-3);margin-bottom:9px}
+  .cmd .sig b{color:var(--teal);font-weight:600}
+  .cmd .hero{display:flex;align-items:flex-end;gap:10px}
+  .cmd .big{font-size:42px;font-weight:800;line-height:.78;letter-spacing:-.03em;color:var(--lime)}
+  .cmd .hl{font-size:11px;color:var(--on-dark-2);padding-bottom:4px;line-height:1.25}
+  .cmd .spark{margin-left:auto;display:flex;align-items:flex-end;gap:3px;height:26px;padding-bottom:4px}
+  .cmd .spark i{width:6px;border-radius:2px 2px 0 0;background:rgba(200,255,32,.2);display:block}
+  .cmd .spark i.on{background:var(--lime);box-shadow:0 0 6px rgba(200,255,32,.5)}
+  .cmd .fixed{display:flex;align-items:center;gap:8px;margin-top:10px;background:var(--cream);border-radius:9px;padding:6px 11px}
+  .cmd .fixed .fl{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#177c5e;font-weight:600}
+  .cmd .fixed .fl .d{width:5px;height:5px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px rgba(43,201,160,.5)}
+  .cmd .fixed .fv{font-size:11px;font-weight:700;color:var(--ink)}
+  /* act half */
+  .cmd .act{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C8FF20,#B8EF10);padding:10px 13px;text-decoration:none}
+  .cmd .act .t{display:flex;flex-direction:column;min-width:0}
+  .cmd .act .t .r{font-family:var(--mono);font-size:9px;letter-spacing:.01em;color:rgba(10,18,6,.62);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cmd .act .t b{font-size:17px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.025em}
+  .cmd .act .t .m{font-size:9px;font-weight:700;color:rgba(10,18,6,.6);margin-top:3px}
+  .cmd .act .go{margin-left:auto;width:33px;height:33px;border-radius:50%;background:rgba(10,18,6,.92);display:grid;place-items:center;flex-shrink:0}
+  .cmd .act .go svg{width:16px;height:16px;stroke:#fff;stroke-width:2;fill:none}
+
+  /* SECTION MARKER (compact) */
+  .sec{display:flex;align-items:center;gap:7px;height:13px;flex-shrink:0;margin:2px 0 6px}
+  .sec .sn{color:var(--lime);font-family:var(--mono);font-size:10px}
+  .sec .t{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2)}
+  .sec .rule{flex:1;height:1px;background:var(--line)}
+  .sec .tag{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-3)}
+
+  /* ===== VERKTØY — compact glowing glass tiles ===== */
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0}
+  /* Glassmorphic tiles — a bit-dark FROSTED glass over a BRIGHT accent underlayer.
+     Lit icon glows on the RIGHT as the light source, diffused under the frost; text LEFT. */
+  .gtile{position:relative;overflow:hidden;isolation:isolate;height:92px;border-radius:18px;cursor:pointer;
+    background:linear-gradient(160deg,#1f2820 0%,#151b16 100%);
+    box-shadow:0 14px 26px -18px #000000c8,0 2px 0 #00000050,inset 0 1px 1px #ffffff1e;
+    border:1px solid #ffffff1c}
+  /* (1) BRIGHT underlayer — accent light pooled on the RIGHT */
+  .gtile .bloom{position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.72;
+    background:radial-gradient(72% 130% at 88% 50%,var(--c) 0%,var(--cg) 30%,transparent 64%)}
+  /* (2) LIT icon — large, on the RIGHT, the light source; sits UNDER the frosted glass */
+  .gtile .embed{position:absolute;inset:0;z-index:1;pointer-events:none}
+  .gtile .embed svg{position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:92px;height:92px;
+    fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.95;
+    filter:drop-shadow(0 0 8px var(--c)) drop-shadow(0 0 22px var(--cg))}
+  .gtile .embed svg *{stroke:var(--c);stroke-width:1}
+  /* (3) FROSTED GLASS — full cover, a bit dark; blurs the bright underlayer + icon beneath */
+  .gtile .gloss{position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:18px;
+    backdrop-filter:blur(3.5px) saturate(1.15);-webkit-backdrop-filter:blur(3.5px) saturate(1.15);
+    background:linear-gradient(160deg,rgba(16,20,16,.26),rgba(11,14,11,.44) 62%,rgba(9,12,9,.50))}
+  /* (4) rim + (5) top sheen — crisp glass highlights on TOP of the frost */
+  .gtile .rim{position:absolute;inset:4px;border-radius:14px;z-index:3;pointer-events:none;
+    box-shadow:0 0 0 1px #ffffff16 inset,0 1px 10px var(--cg) inset}
+  .gtile .glint{position:absolute;z-index:3;pointer-events:none;left:0;right:0;top:0;height:46%;
+    background:linear-gradient(180deg,#ffffff28 0%,#ffffff0a 40%,transparent 78%);
+    -webkit-mask-image:radial-gradient(120% 100% at 50% -26%,#000 42%,transparent 70%);
+    mask-image:radial-gradient(120% 100% at 50% -26%,#000 42%,transparent 70%)}
+  /* (6) text — LEFT, vertically centered, on TOP of the glass, clear of the right icon */
+  .gtile .gc{position:relative;z-index:5;height:100%;padding:0 92px 0 14px;display:flex;flex-direction:column;justify-content:center;gap:3px}
+  .gtile .gt{font-size:15px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--lit);text-shadow:0 1px 8px #000000a8}
+  .gtile .gs{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;color:#e0e5dd;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 6px #000000aa}
+  .gtile .ar{display:none}
+
+  /* ===== DAGENS PLAN — recipe + condensed lanes ===== */
+  .recipe{display:flex;height:6px;border-radius:100px;overflow:hidden;gap:1.5px;margin-bottom:7px;flex-shrink:0}
+  .recipe i{display:block;height:100%}
+  .plan{display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+  .lane{display:flex;align-items:center;gap:8px;height:28px;background:var(--raised);border:1px solid var(--line);border-radius:9px;padding:0 9px}
+  .lane.lead{background:linear-gradient(90deg,rgba(200,255,32,.08),var(--raised) 40%);border-color:rgba(200,255,32,.32)}
+  .lane .n{font-family:var(--mono);font-size:10px;color:var(--on-dark-3);width:15px}
+  .lane .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+  .lane .lt{flex:1;font-size:11px;color:var(--on-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .lane .lt b{font-weight:600}
+  .lane .rec{font-family:var(--mono);font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:var(--lime);padding:2px 5px;border-radius:5px;font-weight:600}
+  .lane .mt{font-family:var(--mono);font-size:8px;letter-spacing:.05em;text-transform:uppercase;color:var(--on-dark-3);white-space:nowrap}
+
+  /* ===== STATUS strip ===== */
+  .status{display:flex;background:var(--cream);border-radius:11px;overflow:hidden;flex-shrink:0}
+  .status .cell{flex:1;padding:6px 9px;display:flex;flex-direction:column;gap:2px}
+  .status .cell+.cell{border-left:1px solid var(--cream-2)}
+  .status .cl{font-family:var(--mono);font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .status .cv{font-size:15px;font-weight:700;color:var(--ink);line-height:1}
+  .status .cv small{font-size:9px;color:var(--ink-3)}
+
+  /* ===== SNAKK rail ===== */
+  .snakk{position:relative;overflow:hidden;isolation:isolate;height:52px;border-radius:14px;display:flex;align-items:center;gap:11px;padding:0 13px;flex-shrink:0;--c:#00C2E0;--cg:#00c2e055;
+    background:linear-gradient(160deg,#10262b,#0c1a1e 60%,#091316);border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 14px 26px -16px rgba(0,0,0,.82),inset 0 1px 1px rgba(255,255,255,.12),inset 0 -12px 20px -16px rgba(0,0,0,.56);text-decoration:none}
+  .snakk .b{position:absolute;inset:0;mix-blend-mode:screen;background:radial-gradient(46% 70% at 16% 50%,var(--cg) 0%,transparent 64%);pointer-events:none}
+  .snakk .mic{position:relative;z-index:1;width:26px;height:26px;display:grid;place-items:center;flex-shrink:0}
+  .snakk .mic svg{width:22px;height:22px;stroke:var(--cyan);stroke-width:1.4;fill:none;filter:drop-shadow(0 0 5px var(--cg))}
+  .snakk .tx{position:relative;z-index:1;min-width:0}
+  .snakk .h{display:flex;align-items:center;gap:7px}
+  .snakk .h .st{font-size:13px;font-weight:600;color:#d6fbff}
+  .snakk .h .live{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:#001316;background:var(--cyan);padding:1px 5px;border-radius:4px;font-weight:600}
+  .snakk .ss{font-family:var(--mono);font-size:8px;color:#cfd6cd;opacity:.78;margin-top:2px}
+  .snakk .min{position:relative;z-index:1;margin-left:auto;text-align:right}
+  .snakk .min b{display:block;font-size:17px;font-weight:700;color:var(--on-dark);line-height:1}
+  .snakk .min span{font-family:var(--mono);font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-3)}
+
+  /* ===== BOTTOM NAV ===== */
+  .nav{margin-top:auto;display:flex;border-top:1px solid rgba(255,255,255,.07);background:rgba(11,14,13,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);margin:9px -13px 0}
+  .nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 0 12px;text-decoration:none;font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--on-dark-3);position:relative}
+  .nav a svg{width:19px;height:19px;stroke:var(--on-dark-3);stroke-width:1.7;fill:none}
+  .nav a.on{color:var(--lime)}
+  .nav a.on svg{stroke:var(--lime);filter:drop-shadow(0 0 4px var(--lime))}
+  .nav a.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--lime);box-shadow:0 0 9px var(--lime)}
+</style>
+</head>
+<body>
+  <div class="head"><span>HJEM · /dashboard — kompakt, én skjerm</span><b>D · komprimert topp</b></div>
+  <div class="device">
+    <div class="screen">
+
+      <!-- ID -->
+      <div class="id">
+        <div class="av">D</div>
+        <div><div class="nm">Dave</div><div class="sub">B1 · DAG <b>14</b> PÅ RAD</div></div>
+        <div class="ai"><span class="p"></span>SKY-AI</div>
+      </div>
+
+      <!-- MERGED COMMAND CARD (diagnose + I dag compressed) -->
+      <div class="cmd">
+        <div class="top">
+          <div class="krow"><span class="kick">Dagens mål · ordstilling</span><span class="lvl">B1</span></div>
+          <div class="frow">
+            <span class="fanget"><span class="pd"></span>Fanget · ordstilling</span>
+            <a class="see" href="#">Se hele bildet ›</a>
+          </div>
+          <div class="sig">Sikker diagnose · <b>−39 % feil denne uka</b></div>
+          <div class="hero">
+            <span class="big tnum">9</span>
+            <span class="hl">setninger<br>denne uka</span>
+            <span class="spark"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:82%"></i><i class="on" style="height:100%"></i></span>
+          </div>
+          <div class="fixed"><span class="fl"><span class="d"></span>Fikset</span><span class="fv">Substantivkjønn · Bestemt form</span></div>
+        </div>
+        <a class="act" href="#">
+          <span class="t"><span class="r">Starter på «fordi»-feilen</span><b>Start dagens økt</b><span class="m">22 oppgaver · ca. 17 min</span></span>
+          <span class="go"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+      </div>
+
+      <!-- VERKTØY -->
+      <div class="sec"><span class="sn">§</span><span class="t">Verktøy</span><span class="rule"></span><span class="tag">6 øvelser</span></div>
+      <div class="tools">
+        <div class="gtile" style="--c:#C8FF20;--cg:#c8ff2050;--lit:#eaffb3"><div class="bloom"></div><div class="embed"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></div><div class="rim"></div><div class="gloss"></div><div class="glint"></div><div class="ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="gc"><div class="gt">Lær</div><div class="gs">Dagens økt · 22 oppg</div></div></div>
+        <div class="gtile" style="--c:#00C2E0;--cg:#00c2e055;--lit:#9df1ff"><div class="bloom"></div><div class="embed"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg></div><div class="rim"></div><div class="gloss"></div><div class="glint"></div><div class="ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="gc"><div class="gt">Snakk</div><div class="gs">Kari · øv høyt</div></div></div>
+        <div class="gtile" style="--c:#2BC9A0;--cg:#2bc9a050;--lit:#bdf6e4"><div class="bloom"></div><div class="embed"><svg viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3Z"/></svg></div><div class="rim"></div><div class="gloss"></div><div class="glint"></div><div class="ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="gc"><div class="gt">Les</div><div class="gs">Tekster på nivå</div></div></div>
+        <div class="gtile" style="--c:#F2952E;--cg:#f2952e50;--lit:#ffd8a6"><div class="bloom"></div><div class="embed"><svg viewBox="0 0 24 24"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a9 9 0 0 1 18 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></div><div class="rim"></div><div class="gloss"></div><div class="glint"></div><div class="ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="gc"><div class="gt">Lytt</div><div class="gs">Hør og svar</div></div></div>
+        <div class="gtile" style="--c:#FF6A55;--cg:#ff6a5550;--lit:#ffc4ba"><div class="bloom"></div><div class="embed"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><div class="rim"></div><div class="gloss"></div><div class="glint"></div><div class="ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="gc"><div class="gt">Skriv</div><div class="gs">Journal · rettet</div></div></div>
+        <div class="gtile" style="--c:#8B7CF0;--cg:#8b7cf050;--lit:#d6cffd"><div class="bloom"></div><div class="embed"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M2 6h4M2 10h4M2 14h4M16 2v20"/></svg></div><div class="rim"></div><div class="gloss"></div><div class="glint"></div><div class="ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="gc"><div class="gt">Notatboka</div><div class="gs">12 lagret · 3 forf.</div></div></div>
+      </div>
+
+      <!-- DAGENS PLAN -->
+      <div class="sec"><span class="sn">§</span><span class="t">Dagens plan</span><span class="rule"></span><span class="tag">22 oppg</span></div>
+      <div class="recipe"><i style="width:40%;background:var(--lime)"></i><i style="width:30%;background:var(--amber)"></i><i style="width:20%;background:var(--cyan)"></i><i style="width:10%;background:var(--coral)"></i></div>
+      <div class="plan">
+        <div class="lane lead"><span class="n">01</span><span class="dot" style="background:var(--lime);box-shadow:0 0 6px var(--lime)"></span><span class="lt"><b>Remediering</b> · ordstilling</span><span class="rec">Anbefalt</span><span class="mt">9 · grunnårsak</span></div>
+        <div class="lane"><span class="n">02</span><span class="dot" style="background:var(--amber);box-shadow:0 0 6px var(--amber)"></span><span class="lt"><b>Repetisjon</b> · SRS</span><span class="mt">6 · forfaller</span></div>
+        <div class="lane"><span class="n">03</span><span class="dot" style="background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></span><span class="lt"><b>Nytt materiale</b></span><span class="mt">4 · B1</span></div>
+      </div>
+
+      <!-- STATUS + SNAKK side by side to save height -->
+      <div style="display:flex;gap:8px;margin-top:9px;flex-shrink:0">
+        <div class="status" style="flex:1">
+          <div class="cell"><span class="cl">Rekke</span><span class="cv tnum">14<small> dgr</small></span></div>
+          <div class="cell"><span class="cl">Min talt</span><span class="cv tnum">34<small> min</small></span></div>
+          <div class="cell"><span class="cl">Treff</span><span class="cv tnum">83<small> %</small></span></div>
+        </div>
+      </div>
+
+      <a class="snakk" href="#" style="margin-top:8px">
+        <span class="b"></span>
+        <span class="mic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></span>
+        <span class="tx"><span class="h"><span class="st">Snakk med Kari</span><span class="live">Live</span></span><span class="ss">Øv ordstillingen høyt — i en samtale</span></span>
+        <span class="min"><b class="tnum">34</b><span>min talt</span></span>
+      </a>
+
+      <!-- NAV -->
+      <div class="nav">
+        <a class="on" href="#"><svg viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg>Hjem</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Lær</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-4.5A8.4 8.4 0 1 1 21 11.5z"/></svg>Snakk</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg>Notatboka</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>Deg</a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kommandokort — ring + hvitbalanse (5)</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07090A; --line:rgba(255,255,255,0.07); --line-hi:rgba(255,255,255,0.12);
+    --cream:#F1F0E8; --cream-2:#E7E6DC; --paper:#FFFFFF;
+    --ink:#0E1207; --ink-2:#474C3F; --ink-3:#7C8275;
+    --lime:#C8FF20; --coral:#FF6A55; --coral-ink:#C2402C; --cyan:#00C2E0; --teal:#2BC9A0; --green:#1FB866;
+    --on-dark:#E8ECE6; --on-dark-2:#9BA39C; --on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace; --sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#050604;font-family:var(--sans);color:var(--on-dark);padding:30px 16px 70px}
+  .row{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;max-width:1280px;margin:0 auto}
+  .col{width:366px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-3);margin:0 2px 12px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:var(--lime);font-weight:600}
+  .shell{border-radius:18px;overflow:hidden;box-shadow:0 18px 38px -20px rgba(0,0,0,.88)}
+
+  /* ring */
+  .ring{position:relative;flex-shrink:0}
+  .ring .cn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .cn b{font-family:var(--mono);font-weight:600;line-height:1}
+  .ring .cn small{font-family:var(--mono);margin-top:3px}
+  .ring .well{position:absolute;inset:7px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#15201d,#0c1110);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+
+  .kick{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .biglbl{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.12}
+  .sublbl{font-size:11.5px;line-height:1.35;margin-top:6px}
+
+  /* cream stat pills */
+  .stats{display:flex;gap:8px}
+  .stat-c{flex:1;background:#fff;border:1px solid var(--cream-2);border-radius:11px;padding:8px 6px;text-align:center}
+  .stat-c .v{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--ink);line-height:1}
+  .stat-c .v.tl{color:#0E8C73}
+  .stat-c .l{font-family:var(--mono);font-size:8px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+  /* dark stat pills */
+  .stat-d{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:11px;padding:8px 6px;text-align:center}
+  .stat-d .v{font-family:var(--mono);font-size:15px;font-weight:600;color:#fff;line-height:1}
+  .stat-d .v.tl{color:var(--teal)}
+  .stat-d .l{font-family:var(--mono);font-size:8px;color:var(--on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+
+  .fpill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px}
+  .fpill .pd{width:5px;height:5px;border-radius:50%}
+  .fpill.c{color:var(--coral-ink);background:rgba(255,106,85,.13);border:1px solid rgba(255,106,85,.34)}
+  .fpill.c .pd{background:var(--coral)}
+
+  .cta{display:flex;align-items:center;gap:10px;background:var(--lime);border-radius:12px;padding:12px 13px;text-decoration:none;cursor:pointer}
+  .cta .reason{font-family:var(--mono);font-size:9px;color:#3a4a06;margin-bottom:3px}
+  .cta .big{font-size:18px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.025em;display:block}
+  .cta .meta{font-size:9px;font-weight:700;color:#3a4a06;margin-top:3px}
+  .cta .arr{margin-left:auto;width:34px;height:34px;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 14px -2px rgba(200,255,32,.55)}
+  .cta .arr svg{stroke:var(--lime);width:17px;height:17px;fill:none}
+  .arrowsvg{stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+  .gco{stop-color:#00C2E0} .gci{stop-color:#C8FF20}      /* dark ring: cyan→lime */
+  .gco2{stop-color:#0E8FA3} .gci2{stop-color:#2BC9A0}    /* cream ring: deep cyan→teal */
+</style>
+</head>
+<body>
+<div class="row">
+
+  <!-- 1 · KREM-RING (full cream) -->
+  <div class="col">
+    <div class="cap">1 <b>· Krem-ring</b></div>
+    <div class="shell" style="background:var(--cream);color:var(--ink)">
+      <div style="padding:14px 15px">
+        <div style="display:flex;align-items:center;gap:15px">
+          <div class="ring" style="width:92px;height:92px">
+            <svg width="92" height="92" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(14,18,7,.1)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#r1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="r1" x1="0" y1="0" x2="1" y2="1"><stop class="gco2" offset="0"/><stop class="gci2" offset="1"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:29px;color:var(--ink)">9</b><small style="color:var(--ink-3)">/ 15 mål</small></div>
+          </div>
+          <div>
+            <div class="kick" style="color:var(--ink-3)">Denne uka</div>
+            <div class="biglbl" style="color:var(--ink);margin-top:5px">setninger<br>du kan bygge</div>
+            <div class="sublbl" style="color:var(--ink-2)"><b style="color:var(--ink)">60 %</b> av ukemålet · 6 gjenstår</div>
+          </div>
+        </div>
+        <div style="margin:13px 0"><span class="fpill c"><span class="pd"></span>Fanget · ordstilling</span></div>
+        <div class="stats">
+          <div class="stat-c"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat-c"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat-c"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="margin:0 13px 14px"><span style="min-width:0"><span class="reason">Starter på «fordi»-feilen</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg class="arrowsvg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- 2 · KREM + MØRK RINGBRØNN -->
+  <div class="col">
+    <div class="cap">2 <b>· Krem + mørk ringbrønn</b></div>
+    <div class="shell" style="background:var(--cream);color:var(--ink)">
+      <div style="padding:14px 15px">
+        <div style="display:flex;align-items:center;gap:15px">
+          <div class="ring" style="width:92px;height:92px">
+            <div class="well"></div>
+            <svg width="92" height="92" viewBox="0 0 100 100" style="position:relative">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#r2)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="r2" x1="0" y1="0" x2="1" y2="1"><stop class="gco" offset="0"/><stop class="gci" offset="1"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:29px;color:#fff">9</b><small style="color:var(--on-dark-3)">/ 15 mål</small></div>
+          </div>
+          <div>
+            <div class="kick" style="color:var(--ink-3)">Denne uka</div>
+            <div class="biglbl" style="color:var(--ink);margin-top:5px">setninger<br>du kan bygge</div>
+            <div class="sublbl" style="color:var(--ink-2)"><b style="color:var(--ink)">60 %</b> av ukemålet · 6 gjenstår</div>
+          </div>
+        </div>
+        <div style="margin:13px 0"><span class="fpill c"><span class="pd"></span>Fanget · ordstilling</span></div>
+        <div class="stats">
+          <div class="stat-c"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat-c"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat-c"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="margin:0 13px 14px"><span style="min-width:0"><span class="reason">Starter på «fordi»-feilen</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg class="arrowsvg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- 3 · MØRK RING + KREM-SOKKEL -->
+  <div class="col">
+    <div class="cap">3 <b>· Mørk ring + krem-sokkel</b></div>
+    <div class="shell">
+      <div style="background:linear-gradient(180deg,#14191b,#0e1213);padding:14px 15px 15px">
+        <div style="display:flex;align-items:center;gap:15px">
+          <div class="ring" style="width:88px;height:88px">
+            <svg width="88" height="88" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#r3)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="r3" x1="0" y1="0" x2="1" y2="1"><stop class="gco" offset="0"/><stop class="gci" offset="1"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:27px;color:#fff">9</b><small style="color:var(--on-dark-3)">/ 15</small></div>
+          </div>
+          <div>
+            <div class="kick" style="color:var(--on-dark-3)">Denne uka</div>
+            <div class="biglbl" style="color:#fff;margin-top:5px">setninger du kan bygge</div>
+            <div class="sublbl" style="color:var(--on-dark-2)"><b style="color:var(--lime)">60 %</b> av ukemålet · 6 gjenstår</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--cream);padding:11px 13px;display:flex;align-items:center;gap:9px">
+        <div class="stats" style="flex:1">
+          <div class="stat-c" style="box-shadow:none;background:transparent;border:none;border-right:1px solid var(--cream-2)"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat-c" style="box-shadow:none;background:transparent;border:none;border-right:1px solid var(--cream-2)"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat-c" style="box-shadow:none;background:transparent;border:none"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="border-radius:0;margin:0;padding:13px 15px"><span style="min-width:0"><span class="reason">Starter på «fordi»-feilen</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg class="arrowsvg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- 4 · HVITT DIAGNOSE + MØRK RING -->
+  <div class="col">
+    <div class="cap">4 <b>· Hvitt diagnose + mørk ring</b></div>
+    <div class="shell">
+      <div style="background:var(--paper);color:var(--ink);position:relative;padding:14px 16px 13px">
+        <span style="position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--coral)"></span>
+        <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);margin-bottom:6px;display:flex;align-items:center;gap:6px"><span style="width:5px;height:5px;border-radius:50%;background:var(--coral)"></span>Rotårsak</div>
+        <div style="font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--ink)">Ordstilling etter <span style="color:var(--ink-3)">«fordi»</span></div>
+      </div>
+      <div style="background:linear-gradient(180deg,#14191b,#0e1213);padding:14px 15px;display:flex;align-items:center;gap:15px">
+        <div class="ring" style="width:82px;height:82px">
+          <svg width="82" height="82" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="url(#r4)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+            <defs><linearGradient id="r4" x1="0" y1="0" x2="1" y2="1"><stop class="gco" offset="0"/><stop class="gci" offset="1"/></linearGradient></defs>
+          </svg>
+          <div class="cn"><b style="font-size:25px;color:#fff">9</b><small style="color:var(--on-dark-3)">/ 15</small></div>
+        </div>
+        <div>
+          <div class="kick" style="color:var(--on-dark-3)">Denne uka</div>
+          <div class="biglbl" style="color:#fff;margin-top:5px;font-size:16px">setninger du kan bygge</div>
+          <div class="sublbl" style="color:var(--on-dark-2)">60 % av ukemålet · 6 gjenstår</div>
+        </div>
+      </div>
+      <a class="cta" style="border-radius:0;margin:0;padding:13px 15px"><span style="min-width:0"><span class="reason">Starter på grunnårsaken</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg class="arrowsvg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- 5 · KREM TODELT + RING -->
+  <div class="col">
+    <div class="cap">5 <b>· Krem todelt + ring</b></div>
+    <div class="shell" style="background:var(--cream);color:var(--ink)">
+      <div style="padding:14px 15px 13px">
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:13px">
+          <div class="ring" style="width:86px;height:86px">
+            <svg width="86" height="86" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(14,18,7,.1)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#r5)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="r5" x1="0" y1="0" x2="1" y2="1"><stop class="gco2" offset="0"/><stop class="gci2" offset="1"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:27px;color:var(--ink)">9</b><small style="color:var(--ink-3)">/ 15</small></div>
+          </div>
+          <div>
+            <div class="kick" style="color:var(--ink-3)">Denne uka</div>
+            <div class="biglbl" style="color:var(--ink);margin-top:5px">setninger du kan bygge</div>
+            <div class="sublbl" style="color:var(--ink-2)">Fanget: <b style="color:var(--coral-ink)">ordstilling</b> · sikker</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat-c"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat-c"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat-c"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="border-radius:0;margin:0;padding:14px 15px"><span style="min-width:0"><span class="reason">Starter på grunnårsaken</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg class="arrowsvg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Redesign C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: #B8B5AA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Schibsted Grotesk', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 24px 0;
+}
+
+/* ─── PHONE FRAME ─────────────────────────────────────────── */
+.phone {
+  width: 390px;
+  height: 844px;
+  background: #ECEBE6;
+  border-radius: 52px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.35),
+    0 0 0 1.5px rgba(0,0,0,0.85),
+    0 32px 100px rgba(0,0,0,0.45),
+    0 6px 20px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── STATUS BAR ─────────────────────────────────────────── */
+.sbar {
+  height: 20px;
+  padding: 5px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.sbar-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: #1B1B1F;
+  letter-spacing: -0.2px;
+}
+.sbar-icons { display: flex; gap: 5px; align-items: center; }
+
+/* ─── MAIN CONTENT ──────────────────────────────────────── */
+.content {
+  flex: 1;
+  padding: 6px 12px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* leaves 60px at bottom for fixed nav */
+  padding-bottom: 64px;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────── */
+.header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  margin-bottom: 7px;
+}
+.hleft { display: flex; align-items: center; gap: 9px; }
+.avatar {
+  width: 33px; height: 33px;
+  background: #1B1B1F;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #ECEBE6;
+  font-size: 13px; font-weight: 800;
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+.hname {
+  font-size: 14px; font-weight: 700; color: #1B1B1F;
+  line-height: 1; letter-spacing: -0.3px;
+}
+.hstreak {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px; color: #7A7870;
+  margin-top: 2.5px; font-weight: 400;
+}
+.ai-badge {
+  display: flex; align-items: center; gap: 5px;
+  background: #F0EFE9;
+  border: 1px solid #D5D2C8;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 10px; font-weight: 600; color: #5A5950;
+}
+.ai-dot {
+  width: 5px; height: 5px;
+  background: #22A35D;
+  border-radius: 50%;
+}
+
+/* ─── BENTO GRID ─────────────────────────────────────────── */
+.bento {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 122px 160px 84px 186px;
+  gap: 7px;
+  min-height: 0;
+}
+
+/* ─── BASE TILE ──────────────────────────────────────────── */
+.tile {
+  background: #FFFFFF;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.058);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 3px 9px rgba(0,0,0,0.04);
+  overflow: hidden;
+  position: relative;
+}
+.col2 { grid-column: 1 / -1; }
+
+/* ─── T1: DIAGNOSIS ─────────────────────────────────────── */
+.t-diag {
+  background: #1C1C21;
+  border-color: transparent;
+  padding: 13px 15px 12px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.diag-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.fanget-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(225, 80, 60, 0.16);
+  border: 1px solid rgba(225, 80, 60, 0.32);
+  border-radius: 24px;
+  padding: 3.5px 9px 3.5px 7px;
+  font-size: 10px; font-weight: 700; color: #E8614E;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  flex-shrink: 0;
+}
+.fanget-dot {
+  width: 5px; height: 5px;
+  background: #E8614E; border-radius: 50%;
+}
+.diag-conf {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; color: rgba(255,255,255,0.3);
+  text-align: right; margin-top: 3px; line-height: 1.3;
+}
+.diag-root {
+  font-size: 20px; font-weight: 800; color: #FFFFFF;
+  line-height: 1.1; letter-spacing: -0.5px; margin-top: 5px;
+}
+.diag-bottom {
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+.fikset-group {
+  display: flex; align-items: center; gap: 5px;
+  flex-wrap: wrap;
+}
+.fikset-label {
+  font-size: 9px; font-weight: 600;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.fikset-chip {
+  background: rgba(34, 163, 93, 0.14);
+  border: 1px solid rgba(34, 163, 93, 0.26);
+  border-radius: 10px; padding: 2px 7px;
+  font-size: 9.5px; font-weight: 500; color: #28CC72;
+}
+.trend {
+  display: flex; align-items: center; gap: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; font-weight: 600; color: #28CC72;
+  flex-shrink: 0;
+}
+
+/* ─── T2: PRODUCTION COUNT ──────────────────────────────── */
+.t-count {
+  padding: 13px 14px 12px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.tile-cap {
+  font-size: 9px; font-weight: 700; color: #B0AFA7;
+  text-transform: uppercase; letter-spacing: 0.07em; line-height: 1;
+}
+.big-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 70px; font-weight: 600; color: #1B1B1F;
+  line-height: 1; letter-spacing: -4px;
+  margin-top: auto; display: block;
+}
+.count-sub {
+  font-size: 9.5px; color: #B0AFA7; line-height: 1.35;
+  margin-top: 4px; max-width: 110px;
+}
+
+/* ─── T3: TOOLS 3×2 ─────────────────────────────────────── */
+.t-tools { padding: 9px; }
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+  height: 100%;
+}
+.tool-cell {
+  background: #F3F2ED;
+  border-radius: 11px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 3.5px; padding: 5px 2px;
+  cursor: pointer;
+}
+.tool-cell svg {
+  width: 15px; height: 15px;
+  stroke: #4A4840; stroke-width: 1.4;
+  fill: none; flex-shrink: 0;
+}
+.tc-name {
+  font-size: 8.5px; font-weight: 700; color: #3C3B37;
+  text-align: center; line-height: 1.1;
+}
+.tc-sub {
+  font-size: 7.5px; color: #9E9D95;
+  text-align: center; line-height: 1;
+}
+
+/* ─── T4: START ØKT ─────────────────────────────────────── */
+.t-start {
+  background: #1F4A27;
+  border-color: transparent;
+  padding: 14px 18px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.start-body { flex: 1; }
+.start-pre {
+  font-size: 9px; font-weight: 700;
+  color: rgba(255,255,255,0.38);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  margin-bottom: 4px;
+}
+.start-title {
+  font-size: 19px; font-weight: 800; color: #FFFFFF;
+  line-height: 1.05; letter-spacing: -0.45px;
+}
+.start-reason {
+  font-size: 11px; color: rgba(255,255,255,0.6);
+  margin-top: 4px; line-height: 1.3;
+}
+.start-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px; color: rgba(255,255,255,0.38);
+  margin-top: 5px;
+}
+.start-arrow {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.11);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-left: 14px;
+}
+.start-arrow svg {
+  width: 16px; height: 16px;
+  stroke: rgba(255,255,255,0.75);
+  stroke-width: 2; fill: none;
+}
+
+/* ─── T5: DAILY PLAN ─────────────────────────────────────── */
+.t-plan {
+  padding: 12px 13px 11px;
+  display: flex; flex-direction: column;
+}
+.plan-head {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 7px;
+}
+.plan-ttl { font-size: 11px; font-weight: 700; color: #1B1B1F; }
+.plan-tot {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; color: #AEADA5;
+}
+
+/* Recipe bar */
+.recipe-bar {
+  display: flex; gap: 2px; height: 4px;
+  border-radius: 4px; overflow: hidden; margin-bottom: 9px;
+}
+.rb { border-radius: 2px; }
+.rb-rem { background: #E8614E; flex: 0.40; }
+.rb-rep { background: #4F86FF; flex: 0.30; }
+.rb-new { background: #22A35D; flex: 0.20; }
+.rb-flt { background: #C4930C; flex: 0.10; }
+
+/* Lanes */
+.lanes { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.lane {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  background: #F4F3EE; border-radius: 9px;
+}
+.lane-l { display: flex; align-items: center; gap: 6px; }
+.lane-no {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px; font-weight: 500; color: #C0BFB7;
+  min-width: 14px;
+}
+.lane-nm { font-size: 10px; font-weight: 700; color: #1B1B1F; line-height: 1; }
+.lane-sb { font-size: 8.5px; color: #9B9992; margin-top: 1px; }
+.lane-r { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.lane-ct {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px; font-weight: 600; color: #1B1B1F;
+}
+.badge {
+  font-size: 7.5px; font-weight: 700;
+  border-radius: 8px; padding: 1.5px 5px;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.b-anb {
+  background: rgba(196,147,12,0.13);
+  color: #A07708;
+  border: 1px solid rgba(196,147,12,0.22);
+}
+.b-srs {
+  background: rgba(79,134,255,0.11);
+  color: #3568D8;
+  border: 1px solid rgba(79,134,255,0.2);
+}
+.b-nytt {
+  background: rgba(34,163,93,0.11);
+  color: #178A45;
+  border: 1px solid rgba(34,163,93,0.2);
+}
+
+/* ─── T6: SNAKK MED KARI ─────────────────────────────────── */
+.t-snakk {
+  background: #1C1C21;
+  border-color: transparent;
+  padding: 12px 13px 11px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.live-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(34,163,93,0.17);
+  border: 1px solid rgba(34,163,93,0.27);
+  border-radius: 20px;
+  padding: 2.5px 7px;
+  font-size: 8.5px; font-weight: 700;
+  color: #28CC72;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 6px; align-self: flex-start;
+}
+.live-dot {
+  width: 4.5px; height: 4.5px;
+  background: #28CC72; border-radius: 50%;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+.snakk-ttl {
+  font-size: 14.5px; font-weight: 700; color: #FFFFFF;
+  letter-spacing: -0.3px; line-height: 1.15; margin-bottom: 4px;
+}
+.snakk-desc {
+  font-size: 10px; color: rgba(255,255,255,0.45);
+  line-height: 1.35;
+}
+.snakk-foot {
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+.snakk-stat {
+  display: flex; align-items: center; gap: 5px;
+}
+.snakk-stat svg {
+  width: 13px; height: 13px;
+  stroke: rgba(255,255,255,0.32);
+  stroke-width: 1.5; fill: none;
+}
+.snakk-min {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; font-weight: 400;
+  color: rgba(255,255,255,0.42);
+}
+.snakk-go {
+  width: 30px; height: 30px;
+  background: rgba(255,255,255,0.09);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.snakk-go svg {
+  width: 14px; height: 14px;
+  stroke: rgba(255,255,255,0.65);
+  stroke-width: 2; fill: none;
+}
+
+/* ─── STAT STRIP (inside bento as last row context) ─────── */
+/* Status is embedded in the bottom content padding, as 3 metrics */
+.stat-strip {
+  position: absolute;
+  bottom: 64px;
+  left: 12px; right: 12px;
+  height: 40px;
+  display: flex; align-items: center; justify-content: space-around;
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.stat-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px; font-weight: 600; color: #1B1B1F;
+  letter-spacing: -0.5px;
+}
+.stat-lbl { font-size: 9px; color: #9B9992; font-weight: 500; }
+.stat-div { width: 1px; height: 20px; background: #D5D2C8; }
+
+/* ─── BOTTOM NAV ─────────────────────────────────────────── */
+.bottom-nav {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 64px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  display: flex; align-items: flex-start;
+  padding-top: 9px;
+}
+.nav-item {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 3px;
+  cursor: pointer;
+}
+.nav-item svg {
+  width: 22px; height: 22px;
+  stroke: #BDBBB3; stroke-width: 1.5; fill: none;
+}
+.nav-item.active svg { stroke: #1B1B1F; }
+.nav-lbl { font-size: 8.5px; font-weight: 500; color: #BDBBB3; }
+.nav-item.active .nav-lbl { color: #1B1B1F; font-weight: 700; }
+
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- STATUS BAR -->
+  <div class="sbar">
+    <span class="sbar-time">09:41</span>
+    <div class="sbar-icons">
+      <!-- signal -->
+      <svg width="13" height="11" viewBox="0 0 13 11" fill="#1B1B1F">
+        <rect x="0" y="7" width="2.5" height="4" rx="0.4"/>
+        <rect x="3.5" y="5" width="2.5" height="6" rx="0.4"/>
+        <rect x="7" y="2.5" width="2.5" height="8.5" rx="0.4"/>
+        <rect x="10.5" y="0" width="2.5" height="11" rx="0.4" opacity="0.28"/>
+      </svg>
+      <!-- wifi -->
+      <svg width="14" height="11" viewBox="0 0 20 16" fill="none" stroke="#1B1B1F" stroke-width="2">
+        <path d="M1 5.5a12.5 12.5 0 0 1 18 0"/>
+        <path d="M4 9a8 8 0 0 1 12 0"/>
+        <path d="M7.5 12.5a4 4 0 0 1 5 0"/>
+        <circle cx="10" cy="15.5" r="1.2" fill="#1B1B1F"/>
+      </svg>
+      <!-- battery -->
+      <svg width="18" height="11" viewBox="0 0 24 12" fill="none" stroke="#1B1B1F" stroke-width="1.6">
+        <rect x="0.8" y="1" width="19" height="10" rx="2"/>
+        <path d="M21 4v4" stroke-linecap="round" stroke-width="2"/>
+        <rect x="2.2" y="2.5" width="14" height="7" rx="1" fill="#1B1B1F"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="hleft">
+        <div class="avatar">D</div>
+        <div>
+          <div class="hname">Dave</div>
+          <div class="hstreak">B1 · 14 dager på rad</div>
+        </div>
+      </div>
+      <div class="ai-badge">
+        <div class="ai-dot"></div>
+        Sky-AI
+      </div>
+    </div>
+
+    <!-- BENTO -->
+    <div class="bento">
+
+      <!-- ROW 1 ── DIAGNOSIS (col-span-2) -->
+      <div class="tile t-diag col2">
+        <div class="diag-top">
+          <div class="fanget-pill">
+            <div class="fanget-dot"></div>
+            Fanget · ordstilling
+          </div>
+          <div class="diag-conf">Sikker<br>diagnose</div>
+        </div>
+        <div class="diag-root">Ordstilling etter «fordi»</div>
+        <div class="diag-bottom">
+          <div class="fikset-group">
+            <span class="fikset-label">Fikset</span>
+            <span class="fikset-chip">Substantivkjønn</span>
+            <span class="fikset-chip">Bestemt form</span>
+          </div>
+          <div class="trend">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#28CC72" stroke-width="2">
+              <path d="M1 9L5 5L8 7L11 3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            −39 %
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2 LEFT ── PRODUCTION COUNT -->
+      <div class="tile t-count">
+        <div class="tile-cap">Setninger bygd</div>
+        <span class="big-num">9</span>
+        <div class="count-sub">setninger du kan bygge denne uka</div>
+      </div>
+
+      <!-- ROW 2 RIGHT ── 6 TOOLS (3×2 bento sub-grid) -->
+      <div class="tile t-tools">
+        <div class="tools-grid">
+
+          <!-- Lær -->
+          <div class="tool-cell">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <div class="tc-name">Lær</div>
+            <div class="tc-sub">22 oppg</div>
+          </div>
+
+          <!-- Snakk -->
+          <div class="tool-cell">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+            <div class="tc-name">Snakk</div>
+            <div class="tc-sub">Kari</div>
+          </div>
+
+          <!-- Les -->
+          <div class="tool-cell">
+            <svg viewBox="0 0 24 24">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <div class="tc-name">Les</div>
+            <div class="tc-sub">Tekster</div>
+          </div>
+
+          <!-- Lytt -->
+          <div class="tool-cell">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+              <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+            <div class="tc-name">Lytt</div>
+            <div class="tc-sub">Hør og svar</div>
+          </div>
+
+          <!-- Skriv -->
+          <div class="tool-cell">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/>
+            </svg>
+            <div class="tc-name">Skriv</div>
+            <div class="tc-sub">Journal</div>
+          </div>
+
+          <!-- Notatboka -->
+          <div class="tool-cell">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+            <div class="tc-name">Notater</div>
+            <div class="tc-sub">12 lagret</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ROW 3 ── START ØKT (col-span-2) -->
+      <div class="tile t-start col2">
+        <div class="start-body">
+          <div class="start-pre">Dagens økt</div>
+          <div class="start-title">Start dagens økt</div>
+          <div class="start-reason">Starter på «fordi»-feilen</div>
+          <div class="start-meta">22 oppgaver · ca. 17 min</div>
+        </div>
+        <div class="start-arrow">
+          <svg viewBox="0 0 24 24">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ROW 4 LEFT ── DAILY PLAN -->
+      <div class="tile t-plan">
+        <div class="plan-head">
+          <span class="plan-ttl">Dagens plan</span>
+          <span class="plan-tot">19 oppg</span>
+        </div>
+
+        <!-- Recipe 40/30/20/10 -->
+        <div class="recipe-bar">
+          <div class="rb rb-rem"></div>
+          <div class="rb rb-rep"></div>
+          <div class="rb rb-new"></div>
+          <div class="rb rb-flt"></div>
+        </div>
+
+        <div class="lanes">
+          <!-- Lane 01 -->
+          <div class="lane">
+            <div class="lane-l">
+              <span class="lane-no">01</span>
+              <div>
+                <div class="lane-nm">Remediering</div>
+                <div class="lane-sb">ordstilling</div>
+              </div>
+            </div>
+            <div class="lane-r">
+              <span class="lane-ct">9</span>
+              <span class="badge b-anb">Anbefalt</span>
+            </div>
+          </div>
+
+          <!-- Lane 02 -->
+          <div class="lane">
+            <div class="lane-l">
+              <span class="lane-no">02</span>
+              <div>
+                <div class="lane-nm">Repetisjon</div>
+                <div class="lane-sb">SRS</div>
+              </div>
+            </div>
+            <div class="lane-r">
+              <span class="lane-ct">6</span>
+              <span class="badge b-srs">Forfaller</span>
+            </div>
+          </div>
+
+          <!-- Lane 03 -->
+          <div class="lane">
+            <div class="lane-l">
+              <span class="lane-no">03</span>
+              <div>
+                <div class="lane-nm">Nytt materiale</div>
+                <div class="lane-sb">B1</div>
+              </div>
+            </div>
+            <div class="lane-r">
+              <span class="lane-ct">4</span>
+              <span class="badge b-nytt">B1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4 RIGHT ── SNAKK MED KARI -->
+      <div class="tile t-snakk">
+        <div>
+          <div class="live-pill">
+            <div class="live-dot"></div>
+            Live
+          </div>
+          <div class="snakk-ttl">Snakk med Kari</div>
+          <div class="snakk-desc">Øv ordstillingen høyt — i en samtale</div>
+        </div>
+        <div class="snakk-foot">
+          <div class="snakk-stat">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            </svg>
+            <span class="snakk-min">34 min talt</span>
+          </div>
+          <div class="snakk-go">
+            <svg viewBox="0 0 24 24">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /bento -->
+
+  </div><!-- /content -->
+
+  <!-- STATUS STRIP (above bottom nav) -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <span class="stat-val">14</span>
+      <span class="stat-lbl">Rekke</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <span class="stat-val">34</span>
+      <span class="stat-lbl">Min talt</span>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <span class="stat-val">83 %</span>
+      <span class="stat-lbl">Treff</span>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+
+    <div class="nav-item active">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span class="nav-lbl">Hjem</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      <span class="nav-lbl">Lær</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+        <line x1="12" y1="19" x2="12" y2="23"/>
+        <line x1="8" y1="23" x2="16" y2="23"/>
+      </svg>
+      <span class="nav-lbl">Snakk</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span class="nav-lbl">Notatboka</span>
+    </div>
+
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span class="nav-lbl">Deg</span>
+    </div>
+
+  </div>
+
+</div><!-- /phone -->
+
+</body>
+</html>

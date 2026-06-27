@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kommandokort — ring-remiks (5 varianter)</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07090A; --line:rgba(255,255,255,0.07); --line-hi:rgba(255,255,255,0.12);
+    --cream:#F1F0E8; --cream-2:#E7E6DC; --ink:#0E1207; --ink-2:#474C3F; --ink-3:#7C8275;
+    --lime:#C8FF20; --coral:#FF6A55; --cyan:#00C2E0; --teal:#2BC9A0; --amber:#F2952E; --green:#1FB866;
+    --on-dark:#E8ECE6; --on-dark-2:#9BA39C; --on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace; --sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#050604;font-family:var(--sans);color:var(--on-dark);padding:30px 16px 70px}
+  .row{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;max-width:1280px;margin:0 auto}
+  .col{width:366px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-3);margin:0 2px 12px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:var(--lime);font-weight:600}
+
+  .card{background:linear-gradient(180deg,#14191b,#0c1011);border:1px solid var(--line-hi);border-radius:18px;overflow:hidden;box-shadow:0 18px 38px -20px rgba(0,0,0,.88)}
+  .pad{padding:14px 15px}
+
+  /* ring gauge */
+  .ring{position:relative;flex-shrink:0}
+  .ring .cn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .cn b{font-family:var(--mono);font-weight:600;color:#fff;line-height:1}
+  .ring .cn small{font-family:var(--mono);color:var(--on-dark-3);margin-top:3px}
+
+  /* kicker / labels */
+  .kick{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-3);font-weight:500}
+  .biglbl{font-size:18px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.12}
+  .sublbl{font-size:11.5px;color:var(--on-dark-2);line-height:1.35;margin-top:6px}
+  .sublbl b{color:var(--lime);font-weight:600}
+
+  /* fanget pill */
+  .fpill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--coral);background:rgba(255,106,85,.12);border:1px solid rgba(255,106,85,.42);padding:4px 10px;border-radius:8px}
+  .fpill .pd{width:5px;height:5px;border-radius:50%;background:var(--coral);box-shadow:0 0 6px var(--coral)}
+  .seeall{font-size:9.5px;font-weight:600;color:#27d6f0;text-decoration:none;white-space:nowrap}
+
+  /* stat pills */
+  .stats{display:flex;gap:8px}
+  .stat{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:11px;padding:8px 6px;text-align:center}
+  .stat .v{font-family:var(--mono);font-size:15px;font-weight:600;color:#fff;line-height:1}
+  .stat .v.tl{color:var(--teal)}
+  .stat .l{font-family:var(--mono);font-size:8px;color:var(--on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+
+  /* trend bar gauge (from D) */
+  .tg{border-top:1px solid var(--line);padding-top:11px}
+  .tg .gl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .tg .gk{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-3)}
+  .tg .dl{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green);background:rgba(31,184,102,.12);padding:3px 8px;border-radius:999px}
+  .tg .gb{display:flex;align-items:flex-end;gap:9px;height:42px}
+  .tg .gc{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;justify-content:flex-end;height:100%}
+  .tg .gc .b{width:100%;border-radius:3px 3px 0 0;background:rgba(255,255,255,.12)}
+  .tg .gc.now .b{background:var(--lime)}
+  .tg .gc .bv{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--on-dark-2)}
+  .tg .gc .wk{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--on-dark-3)}
+
+  /* diagnosis lead (from B) */
+  .dlead .dl{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .dlead .dl .pd{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+  .dlead .verdict{font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.12;color:#fff}
+  .dlead .verdict .q{color:var(--on-dark-3)}
+  .conf{font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#eafcc4;background:rgba(255,255,255,.06);border:1px solid rgba(200,255,32,.3);padding:5px 9px;border-radius:999px;display:flex;align-items:center;gap:6px}
+  .conf .led{width:5px;height:5px;border-radius:50%;background:var(--lime);box-shadow:0 0 6px var(--lime)}
+
+  /* CTA */
+  .cta{display:flex;align-items:center;gap:10px;background:var(--lime);border-radius:12px;padding:12px 13px;text-decoration:none;cursor:pointer}
+  .cta .reason{font-family:var(--mono);font-size:9px;color:#3a4a06;margin-bottom:3px}
+  .cta .big{font-size:18px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.025em;display:block}
+  .cta .meta{font-size:9px;font-weight:700;color:#3a4a06;margin-top:3px}
+  .cta .arr{margin-left:auto;width:34px;height:34px;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 14px -2px rgba(200,255,32,.55)}
+  .cta .arr svg{stroke:var(--lime);width:17px;height:17px;fill:none}
+</style>
+</head>
+<body>
+<div class="row">
+
+  <!-- V1 · Ring-hovedbok -->
+  <div class="col">
+    <div class="cap">1 <b>· Ring-hovedbok</b></div>
+    <div class="card">
+      <div class="pad">
+        <div style="display:flex;align-items:center;gap:15px">
+          <div class="ring" style="width:96px;height:96px">
+            <svg width="96" height="96" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:30px">9</b><small>/ 15 mål</small></div>
+          </div>
+          <div>
+            <div class="kick">Denne uka</div>
+            <div class="biglbl" style="margin-top:5px">setninger<br>du kan bygge</div>
+            <div class="sublbl"><b>60 %</b> av ukemålet · 6 gjenstår</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin:13px 0">
+          <span class="fpill"><span class="pd"></span>Fanget · ordstilling</span>
+          <a class="seeall">Se hele bildet ›</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="margin:0 13px 14px"><span style="min-width:0"><span class="reason">Starter på «fordi»-feilen</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- V2 · Ring + trendmåler -->
+  <div class="col">
+    <div class="cap">2 <b>· Ring + trendmåler</b></div>
+    <div class="card">
+      <div class="pad">
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:13px">
+          <div class="ring" style="width:84px;height:84px">
+            <svg width="84" height="84" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:26px">9</b><small>/ 15</small></div>
+          </div>
+          <div>
+            <div class="kick">Denne uka</div>
+            <div class="biglbl" style="margin-top:5px">setninger du kan bygge</div>
+            <div class="sublbl"><b>60 %</b> av ukemålet · 6 gjenstår</div>
+          </div>
+        </div>
+        <div class="tg">
+          <div class="gl"><span class="gk">Feil / uke · ordstilling</span><span class="dl">↓ −39 %</span></div>
+          <div class="gb">
+            <div class="gc"><div class="b" style="height:36px"></div><div class="bv">18</div><div class="wk">U−2</div></div>
+            <div class="gc"><div class="b" style="height:27px"></div><div class="bv">14</div><div class="wk">U−1</div></div>
+            <div class="gc now"><div class="b" style="height:20px"></div><div class="bv">11</div><div class="wk">Nå</div></div>
+          </div>
+        </div>
+      </div>
+      <a class="cta" style="margin:0 13px 14px"><span style="min-width:0"><span class="reason">Starter på «fordi»-feilen</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- V3 · Diagnose-leder + ring -->
+  <div class="col">
+    <div class="cap">3 <b>· Diagnose-leder + ring</b></div>
+    <div class="card">
+      <div class="pad">
+        <div class="dlead" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px">
+          <div>
+            <div class="dl"><span class="pd"></span>Rotårsak</div>
+            <div class="verdict">Ordstilling etter <span class="q">«fordi»</span></div>
+          </div>
+          <span class="conf"><span class="led"></span>Sikker</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:13px">
+          <div class="ring" style="width:80px;height:80px">
+            <svg width="80" height="80" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#g3)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:25px">9</b><small>/ 15</small></div>
+          </div>
+          <div>
+            <div class="kick">Denne uka</div>
+            <div class="biglbl" style="margin-top:5px;font-size:16px">setninger du kan bygge</div>
+            <div class="sublbl">60 % av ukemålet · 6 gjenstår</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="margin:0 13px 14px"><span style="min-width:0"><span class="reason">Starter på grunnårsaken</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- V4 · Stor ring sentrert -->
+  <div class="col">
+    <div class="cap">4 <b>· Stor ring sentrert</b></div>
+    <div class="card">
+      <div class="pad" style="text-align:center">
+        <div class="kick" style="margin-bottom:12px">Denne uka · ordstilling</div>
+        <div class="ring" style="width:138px;height:138px;margin:0 auto 8px">
+          <svg width="138" height="138" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="43" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
+            <circle cx="50" cy="50" r="43" fill="none" stroke="url(#g4)" stroke-width="6" stroke-linecap="round" stroke-dasharray="162 270" transform="rotate(-90 50 50)"/>
+            <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+          </svg>
+          <div class="cn"><b style="font-size:42px">9</b><small style="font-size:9px">/ 15 mål denne uka</small></div>
+        </div>
+        <div class="biglbl" style="font-size:17px">setninger du kan bygge</div>
+        <div class="sublbl" style="margin-top:4px"><b>60 %</b> av ukemålet · 6 gjenstår</div>
+        <div style="display:flex;justify-content:center;margin:12px 0 13px"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span></div>
+        <div class="stats">
+          <div class="stat"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="margin:0 13px 14px"><span style="min-width:0"><span class="reason">Starter på «fordi»-feilen</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- V5 · Ring + lime todelt -->
+  <div class="col">
+    <div class="cap">5 <b>· Ring + lime todelt</b></div>
+    <div class="card">
+      <div class="pad">
+        <div style="display:flex;align-items:center;gap:15px;margin-bottom:13px">
+          <div class="ring" style="width:88px;height:88px">
+            <svg width="88" height="88" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#g5)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/>
+              <defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+            </svg>
+            <div class="cn"><b style="font-size:27px">9</b><small>/ 15</small></div>
+          </div>
+          <div>
+            <div class="kick">Denne uka</div>
+            <div class="biglbl" style="margin-top:5px">setninger du kan bygge</div>
+            <div class="sublbl">Fanget: <b style="color:var(--coral)">ordstilling</b> · sikker</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">14</div><div class="l">Rekke dgr</div></div>
+          <div class="stat"><div class="v">34</div><div class="l">Min talt</div></div>
+          <div class="stat"><div class="v tl">83%</div><div class="l">Treff</div></div>
+        </div>
+      </div>
+      <a class="cta" style="border-radius:0;margin:0;padding:14px 15px"><span style="min-width:0"><span class="reason">Starter på grunnårsaken</span><span class="big">Start dagens økt</span><span class="meta">27 oppgaver · ca. 21 min</span></span><span class="arr"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kommando-hero — 9 varianter</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#F1F0E8;--cream-2:#E7E6DC;--ink:#0E1207;--ink-2:#474C3F;--ink-3:#7C8275;
+    --lime:#C8FF20;--coral:#FF6A55;--coral-ink:#C2402C;--cyan:#00C2E0;--teal:#2BC9A0;--green:#1FB866;
+    --mono:'IBM Plex Mono',monospace;--sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#050604;font-family:var(--sans);color:#E8ECE6;padding:30px 16px 70px}
+  .row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;max-width:1180px;margin:0 auto}
+  .col{width:360px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#5C6660;margin:0 2px 6px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:#cfd6cd;font-weight:600}
+  .note{font-size:10.5px;color:#5C6660;margin:0 2px 10px;line-height:1.4}
+  .card{background:var(--cream);color:var(--ink);border-radius:16px;padding:14px 15px;box-shadow:0 14px 30px -22px rgba(0,0,0,.8)}
+
+  .kick{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .lead{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.1}
+  .sub{font-size:11px;color:var(--ink-2);margin-top:5px;line-height:1.3}
+  .sub b{color:var(--ink);font-weight:600}
+  .ring{position:relative;flex-shrink:0}
+  .ring .cn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .cn b{font-family:var(--mono);font-weight:600;color:var(--ink);line-height:1}
+  .ring .cn small{font-family:var(--mono);color:var(--ink-3);margin-top:2px}
+  .num{font-family:var(--mono);font-weight:500;color:var(--ink);letter-spacing:-.03em;line-height:.85}
+  .fanget{display:flex;align-items:center;gap:10px;margin-top:13px;flex-wrap:wrap}
+  .fpill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--coral-ink);background:rgba(255,106,85,.13);border:1px solid rgba(255,106,85,.34);padding:4px 10px;border-radius:8px}
+  .fpill .pd{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+  .seeall{font-size:9.5px;font-weight:600;color:#0E8FA3;text-decoration:none}
+  .spark{display:flex;align-items:flex-end;gap:3px;height:30px}
+  .spark i{width:6px;border-radius:3px;background:#D8D7CB;display:block}
+  .spark i.on{background:var(--lime)}
+  .delta{font-family:var(--mono);font-size:11px;font-weight:600;color:#0c8a4a;background:#E6F7EC;padding:3px 8px;border-radius:999px}
+  .conf{font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#eafcc4;background:var(--ink);padding:4px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+  .conf .led{width:5px;height:5px;border-radius:50%;background:var(--lime)}
+  svg.r circle{fill:none}
+</style>
+</head>
+<body>
+<div class="row">
+
+  <!-- 1 -->
+  <div class="col"><div class="cap">1 <b>· Ring-baseline (renset)</b></div><div class="note">The current layout, tightened: ring left, label right, diagnosis line below. Calm baseline.</div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:15px">
+        <div class="ring" style="width:74px;height:74px"><svg class="r" width="74" height="74" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="rgba(14,18,7,.1)" stroke-width="8"/><circle cx="50" cy="50" r="42" stroke="url(#a1)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="a1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#2BC9A0"/></linearGradient></defs></svg><div class="cn"><b style="font-size:24px">9</b><small style="font-size:8px">/ 15 mål</small></div></div>
+        <div><div class="kick">Denne uka</div><div class="lead" style="margin-top:4px">setninger<br>du kan bygge</div><div class="sub"><b>60 %</b> av ukemålet · 6 gjenstår</div></div>
+      </div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="col"><div class="cap">2 <b>· Tall-i-ring</b></div><div class="note">Number dominates inside a bigger ring; the label reduces to a clean line. Count-forward.</div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="ring" style="width:90px;height:90px"><svg class="r" width="90" height="90" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="rgba(14,18,7,.1)" stroke-width="7"/><circle cx="50" cy="50" r="42" stroke="url(#a2)" stroke-width="7" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="a2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#2BC9A0"/></linearGradient></defs></svg><div class="cn"><b style="font-size:34px">9</b><small style="font-size:8px">/ 15</small></div></div>
+        <div><div class="lead" style="font-size:18px">setninger du kan bygge</div><div class="sub"><b>60 %</b> av ukemålet · 6 igjen</div></div>
+      </div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="col"><div class="cap">3 <b>· Søyler (count-leads)</b></div><div class="note">No ring — the original count-leads: a big number + week sparkbars. The honest "real count" hero.</div>
+    <div class="card">
+      <div style="display:flex;align-items:flex-end;gap:13px">
+        <div class="num" style="font-size:46px">9</div>
+        <div style="flex:1"><div class="lead">setninger du kan bygge</div><div class="sub"><b>60 %</b> av ukemålet · 6 gjenstår</div></div>
+        <div class="spark"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:82%"></i><i class="on" style="height:100%"></i></div>
+      </div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="col"><div class="cap">4 <b>· Linjemåler</b></div><div class="note">A horizontal progress bar instead of a ring (9/15 → 60 %), with the "6 gjenstår" gap explicit. Reads like a goal tracker.</div>
+    <div class="card">
+      <div class="kick">Denne uka</div>
+      <div class="lead" style="margin-top:5px"><span class="num" style="font-size:24px">9</span> setninger du kan bygge</div>
+      <div style="margin-top:12px"><div style="position:relative;height:9px;border-radius:6px;background:#E2E1D6;overflow:hidden"><span style="position:absolute;left:0;top:0;bottom:0;width:60%;border-radius:6px;background:linear-gradient(90deg,#00C2E0,#2BC9A0)"></span></div><div style="display:flex;justify-content:space-between;margin-top:5px"><span class="sub" style="margin:0"><b>60 %</b> av ukemålet</span><span class="sub" style="margin:0;color:var(--ink-3)">6 gjenstår · mål 15</span></div></div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="col"><div class="cap">5 <b>· Diagnose-leder</b></div><div class="note">Moat-first: the root cause leads big, the count becomes the supporting metric. Puts the differentiator on top.</div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+        <div><div style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-ink)">Fanget · rotårsak</div><div class="lead" style="font-size:18px;margin-top:5px">Ordstilling etter <span style="color:var(--ink-3)">«fordi»</span></div></div>
+        <span class="conf"><span class="led"></span>Sikker</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:13px;padding-top:12px;border-top:1px solid #E2E1D6">
+        <div class="ring" style="width:50px;height:50px"><svg class="r" width="50" height="50" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="rgba(14,18,7,.1)" stroke-width="10"/><circle cx="50" cy="50" r="42" stroke="url(#a5)" stroke-width="10" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="a5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#2BC9A0"/></linearGradient></defs></svg><div class="cn"><b style="font-size:17px">9</b></div></div>
+        <div class="sub" style="margin:0"><b>9 setninger</b> du kan bygge · 60 % av ukemålet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="col"><div class="cap">6 <b>· To-metrikk</b></div><div class="note">The build-count ring paired with the speaking metric — two honest numbers side by side, divided.</div>
+    <div class="card">
+      <div style="display:flex;align-items:center">
+        <div style="display:flex;align-items:center;gap:12px;flex:1">
+          <div class="ring" style="width:60px;height:60px"><svg class="r" width="60" height="60" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="rgba(14,18,7,.1)" stroke-width="9"/><circle cx="50" cy="50" r="42" stroke="url(#a6)" stroke-width="9" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="a6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#2BC9A0"/></linearGradient></defs></svg><div class="cn"><b style="font-size:19px">9</b></div></div>
+          <div><div class="lead" style="font-size:13px">setninger du<br>kan bygge</div><div class="sub" style="margin-top:3px">60 % av målet</div></div>
+        </div>
+        <div style="width:1px;align-self:stretch;background:#E2E1D6;margin:2px 14px"></div>
+        <div style="text-align:right"><div class="num" style="font-size:28px;color:#0E8C73">34</div><div class="sub" style="margin-top:2px">min snakket</div></div>
+      </div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span></div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="col"><div class="cap">7 <b>· Editorial</b></div><div class="note">Typographic — the sentence IS the headline, the number set inside it. Most editorial / least chrome.</div>
+    <div class="card">
+      <div class="kick">Denne uka</div>
+      <div style="font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.025em;line-height:1.15;margin-top:7px"><span class="num" style="font-size:40px;vertical-align:-6px;margin-right:4px">9</span>setninger du kan bygge</div>
+      <div class="sub" style="margin-top:8px"><b>60 %</b> av ukemålet · 6 gjenstår av 15</div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="col"><div class="cap">8 <b>· Ring + vekst</b></div><div class="note">Adds an honest growth delta (+3 vs forrige uke) — shows momentum, not just a static count.</div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:15px">
+        <div class="ring" style="width:74px;height:74px"><svg class="r" width="74" height="74" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="rgba(14,18,7,.1)" stroke-width="8"/><circle cx="50" cy="50" r="42" stroke="url(#a8)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="a8" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#2BC9A0"/></linearGradient></defs></svg><div class="cn"><b style="font-size:24px">9</b><small style="font-size:8px">/ 15</small></div></div>
+        <div><div class="lead" style="font-size:15px">setninger du kan bygge</div><div style="display:flex;align-items:center;gap:8px;margin-top:7px"><span class="delta">↑ +3 denne uka</span><span class="sub" style="margin:0">60 % av målet</span></div></div>
+      </div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="col"><div class="cap">9 <b>· Mørk ringbrønn på krem</b></div><div class="note">The ring sits in a small dark inset so the cyan→lime glows (the variant-2 well), set into the cream card. Glow without a dark card.</div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:15px">
+        <div class="ring" style="width:78px;height:78px"><div style="position:absolute;inset:5px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#15201d,#0c1110)"></div><svg class="r" width="78" height="78" viewBox="0 0 100 100" style="position:relative"><circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,.08)" stroke-width="8"/><circle cx="50" cy="50" r="42" stroke="url(#a9)" stroke-width="8" stroke-linecap="round" stroke-dasharray="158 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="a9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs></svg><div class="cn"><b style="font-size:25px;color:#fff">9</b><small style="font-size:8px;color:#9BA39C">/ 15</small></div></div>
+        <div><div class="kick">Denne uka</div><div class="lead" style="margin-top:4px">setninger<br>du kan bygge</div><div class="sub"><b>60 %</b> av ukemålet · 6 gjenstår</div></div>
+      </div>
+      <div class="fanget"><span class="fpill"><span class="pd"></span>Fanget · ordstilling</span><a class="seeall">Se hele bildet ›</a></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

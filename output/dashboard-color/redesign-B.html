@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — PULSE Dashboard (B)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --canvas: #15161A;
+  --surface-1: #1B1D22;
+  --surface-2: #21242C;
+  --surface-3: #282C36;
+  --surface-4: #2E3240;
+  --border: rgba(255,255,255,0.07);
+  --text-primary: #F0F1EC;
+  --text-secondary: #8A8FA0;
+  --text-muted: #565C70;
+  --teal: #3DD6C0;
+  --teal-dim: rgba(61,214,192,0.12);
+  --teal-glow: rgba(61,214,192,0.25);
+  --coral: #FF6B5E;
+  --coral-dim: rgba(255,107,94,0.12);
+  --green: #4EC97A;
+  --green-dim: rgba(78,201,122,0.12);
+  --amber: #F5A623;
+  --ring-track: rgba(255,255,255,0.06);
+  --r: 20px;
+  --r-lg: 28px;
+}
+
+body {
+  font-family: 'Schibsted Grotesk', sans-serif;
+  background: #0D0E11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 16px;
+}
+
+.phone-frame {
+  width: 390px;
+  height: 844px;
+  background: var(--canvas);
+  border-radius: 48px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 32px 80px rgba(0,0,0,0.8),
+    0 8px 24px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status bar */
+.status-bar {
+  height: 44px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.status-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.status-icons svg { color: var(--text-primary); }
+
+/* Scrollable content */
+.scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  padding: 0 0 8px 0;
+}
+.scroll-body::-webkit-scrollbar { display: none; }
+
+/* Header */
+.header {
+  padding: 8px 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal) 0%, #2BA8A0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0D2B28;
+  flex-shrink: 0;
+}
+.header-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.header-streak {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+.ai-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+.ai-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 6px var(--teal);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.ai-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+/* RING HERO */
+.ring-hero {
+  margin: 0 20px;
+  background: var(--surface-1);
+  border-radius: var(--r-lg);
+  padding: 24px 20px 20px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.ring-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(61,214,192,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ring-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ring-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ring-svg {
+  display: block;
+}
+
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ring-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.ring-goal {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+.ring-info {
+  flex: 1;
+  min-width: 0;
+}
+.ring-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.ring-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.ring-subtext {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Stat chips below ring */
+.stat-chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.stat-chip {
+  flex: 1;
+  background: var(--surface-2);
+  border-radius: 12px;
+  padding: 10px 10px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.chip-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.chip-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* DIAGNOSIS CARD */
+.diagnosis-card {
+  margin: 10px 20px 0;
+  background: var(--surface-1);
+  border-radius: var(--r);
+  border: 1px solid rgba(255,107,94,0.2);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.diagnosis-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--coral), transparent);
+}
+.dx-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.dx-breaker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dx-pill {
+  background: var(--coral-dim);
+  border: 1px solid rgba(255,107,94,0.3);
+  border-radius: 20px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--coral);
+  letter-spacing: 0.02em;
+}
+.dx-confident {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.dx-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--green-dim);
+  border: 1px solid rgba(78,201,122,0.25);
+  border-radius: 20px;
+  padding: 3px 9px;
+}
+.dx-trend-arrow {
+  color: var(--green);
+  display: flex;
+  align-items: center;
+}
+.dx-trend-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+}
+.dx-root {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.dx-fixed {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dx-fixed-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.dx-chip {
+  background: var(--green-dim);
+  border: 1px solid rgba(78,201,122,0.2);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* PRIMARY ACTION */
+.cta-wrap {
+  margin: 10px 20px 0;
+}
+.cta-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--teal) 0%, #2ABFB0 100%);
+  border: none;
+  border-radius: var(--r);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(61,214,192,0.25), 0 2px 8px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+.cta-left { text-align: left; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0D2B28;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.cta-reason {
+  font-size: 12px;
+  color: rgba(13,43,40,0.7);
+  font-style: italic;
+}
+.cta-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+}
+.cta-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: rgba(13,43,40,0.6);
+  letter-spacing: 0.02em;
+}
+.cta-meta-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(13,43,40,0.4);
+}
+.cta-arrow {
+  width: 36px;
+  height: 36px;
+  background: rgba(13,43,40,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* TOOLS ROW */
+.section-label {
+  padding: 14px 20px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.tools-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  padding: 0 20px 4px;
+  display: flex;
+  gap: 8px;
+}
+.tools-scroll::-webkit-scrollbar { display: none; }
+
+.tool-pill {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.tool-pill:hover { background: var(--surface-3); border-color: rgba(255,255,255,0.12); }
+.tool-icon { color: var(--text-secondary); display: flex; align-items: center; }
+.tool-inner { }
+.tool-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+  white-space: nowrap;
+}
+.tool-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 1px;
+  white-space: nowrap;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.tool-badge {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--coral);
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+/* DAILY PLAN */
+.plan-card {
+  margin: 0 20px;
+  background: var(--surface-1);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.plan-header {
+  padding: 12px 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.plan-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.plan-recipe {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.recipe-seg {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.plan-lane {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.plan-lane:last-child { border-bottom: none; }
+
+.lane-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 18px;
+  flex-shrink: 0;
+}
+.lane-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.lane-info { flex: 1; min-width: 0; }
+.lane-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.lane-tags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+.lane-tag {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.lane-tag-pill {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+.tag-recommended {
+  background: rgba(61,214,192,0.1);
+  color: var(--teal);
+  border: 1px solid rgba(61,214,192,0.2);
+}
+.tag-root {
+  background: var(--coral-dim);
+  color: var(--coral);
+  border: 1px solid rgba(255,107,94,0.2);
+}
+.lane-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* SNAKK */
+.snakk-card {
+  margin: 10px 20px 0;
+  background: var(--surface-1);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.snakk-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(61,214,192,0.1);
+  border: 1px solid rgba(61,214,192,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.snakk-body { flex: 1; min-width: 0; }
+.snakk-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+.snakk-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.snakk-live {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-dim);
+  border: 1px solid rgba(78,201,122,0.2);
+  border-radius: 10px;
+  padding: 1px 5px;
+  letter-spacing: 0.06em;
+}
+.snakk-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+.snakk-min {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.snakk-arr {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+  height: 72px;
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 8px 8px;
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 4px;
+  cursor: pointer;
+}
+.nav-icon { color: var(--text-muted); display: flex; align-items: center; }
+.nav-icon.active { color: var(--teal); }
+.nav-label {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+.nav-label.active {
+  color: var(--teal);
+  font-weight: 600;
+}
+.nav-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--teal);
+  margin-top: -2px;
+}
+
+/* spacer */
+.spacer { height: 8px; }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="status-time">09:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+        <rect x="0" y="3" width="3" height="9" rx="1" fill="currentColor" opacity="0.4"/>
+        <rect x="4.5" y="2" width="3" height="10" rx="1" fill="currentColor" opacity="0.6"/>
+        <rect x="9" y="0" width="3" height="12" rx="1" fill="currentColor" opacity="0.8"/>
+        <rect x="13.5" y="0" width="2.5" height="12" rx="1" fill="currentColor"/>
+      </svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+        <path d="M8 3C10.4 3 12.6 4 14.1 5.7L15.5 4.2C13.6 2.2 11 1 8 1 5 1 2.4 2.2 0.5 4.2L1.9 5.7C3.4 4 5.6 3 8 3Z" fill="currentColor" opacity="0.5"/>
+        <path d="M8 6C9.5 6 10.9 6.6 11.9 7.6L13.3 6.1C11.9 4.8 10 4 8 4 6 4 4.1 4.8 2.7 6.1L4.1 7.6C5.1 6.6 6.5 6 8 6Z" fill="currentColor" opacity="0.75"/>
+        <circle cx="8" cy="10" r="2" fill="currentColor"/>
+      </svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+        <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity="0.35"/>
+        <rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/>
+        <path d="M23 4.5V7.5C23.8 7.2 24.5 6.7 24.5 6C24.5 5.3 23.8 4.8 23 4.5Z" fill="currentColor" opacity="0.4"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Scrollable body -->
+  <div class="scroll-body">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <div class="avatar">D</div>
+        <div>
+          <div class="header-name">Dave</div>
+          <div class="header-streak">B1 · 14 dager på rad</div>
+        </div>
+      </div>
+      <div class="ai-badge">
+        <div class="ai-dot"></div>
+        <span class="ai-label">Sky-AI</span>
+      </div>
+    </div>
+
+    <!-- RING HERO -->
+    <div class="ring-hero">
+      <div class="ring-section">
+        <!-- Ring SVG -->
+        <div class="ring-wrap">
+          <svg class="ring-svg" width="140" height="140" viewBox="0 0 140 140">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3DD6C0"/>
+                <stop offset="100%" stop-color="#2BA8F0"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+            <!-- Track -->
+            <circle cx="70" cy="70" r="56" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+            <!-- Filled arc ~60% = 217.6deg of 360; circumference = 2π×56 ≈ 351.9 -->
+            <!-- dashoffset = 351.9 × (1 - 0.60) = 140.7 -->
+            <circle
+              cx="70" cy="70" r="56"
+              fill="none"
+              stroke="url(#ringGrad)"
+              stroke-width="10"
+              stroke-linecap="round"
+              stroke-dasharray="351.9"
+              stroke-dashoffset="140.8"
+              transform="rotate(-90 70 70)"
+              filter="url(#glow)"
+            />
+            <!-- Subtle secondary ring -->
+            <circle cx="70" cy="70" r="44" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="6"/>
+            <!-- secondary 80% fill -->
+            <circle
+              cx="70" cy="70" r="44"
+              fill="none"
+              stroke="rgba(61,214,192,0.25)"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-dasharray="276.5"
+              stroke-dashoffset="55.3"
+              transform="rotate(-90 70 70)"
+            />
+          </svg>
+          <div class="ring-center">
+            <div class="ring-number">9</div>
+            <div class="ring-goal">/ 15 mål</div>
+          </div>
+        </div>
+
+        <!-- Ring info -->
+        <div class="ring-info">
+          <div class="ring-label">Denne uka</div>
+          <div class="ring-title">setninger<br>du kan bygge</div>
+          <div class="ring-subtext">60 % av ukemålet · 6 gjenstår</div>
+        </div>
+      </div>
+
+      <!-- Stat chips -->
+      <div class="stat-chips">
+        <div class="stat-chip">
+          <div class="chip-val">14</div>
+          <div class="chip-lbl">rekke dgr</div>
+        </div>
+        <div class="stat-chip">
+          <div class="chip-val">34</div>
+          <div class="chip-lbl">min talt</div>
+        </div>
+        <div class="stat-chip">
+          <div class="chip-val" style="color:var(--teal)">83%</div>
+          <div class="chip-lbl">treff</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGNOSIS CARD -->
+    <div class="diagnosis-card">
+      <div class="dx-header">
+        <div class="dx-breaker">
+          <div class="dx-pill">Fanget · ordstilling</div>
+          <span class="dx-confident">Sikker diagnose</span>
+        </div>
+        <div class="dx-trend">
+          <div class="dx-trend-arrow">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M5 8L5 2M5 2L2 5M5 2L8 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="dx-trend-val">−39%</span>
+        </div>
+      </div>
+      <div class="dx-root">Ordstilling etter «fordi»</div>
+      <div class="dx-fixed">
+        <span class="dx-fixed-label">Fikset</span>
+        <span class="dx-chip">Substantivkjønn</span>
+        <span class="dx-chip">Bestemt form</span>
+      </div>
+    </div>
+
+    <!-- PRIMARY ACTION -->
+    <div class="cta-wrap">
+      <button class="cta-btn">
+        <div class="cta-left">
+          <div class="cta-title">Start dagens økt</div>
+          <div class="cta-reason">Starter på «fordi»-feilen</div>
+          <div class="cta-meta-row">
+            <span class="cta-meta">22 oppgaver</span>
+            <div class="cta-meta-dot"></div>
+            <span class="cta-meta">ca. 17 min</span>
+          </div>
+        </div>
+        <div class="cta-arrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 12L10 8L6 4" stroke="#0D2B28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="section-label">Verktøy</div>
+    <div class="tools-scroll">
+
+      <!-- Lær -->
+      <div class="tool-pill">
+        <div class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 4l6-3 6 3v6c0 2-2 3.5-6 4C4 14 2 12.5 2 10V4z"/>
+          </svg>
+        </div>
+        <div class="tool-inner">
+          <div class="tool-name">Lær</div>
+          <div class="tool-sub">22 oppg</div>
+        </div>
+      </div>
+
+      <!-- Snakk -->
+      <div class="tool-pill">
+        <div class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 1C4.7 1 2 3.4 2 6.4c0 1.6.7 3 1.9 4L3 13l3.1-1.2c.6.2 1.2.2 1.9.2 3.3 0 6-2.4 6-5.4S11.3 1 8 1z"/>
+          </svg>
+        </div>
+        <div class="tool-inner">
+          <div class="tool-name">Snakk</div>
+          <div class="tool-sub">Kari · øv høyt</div>
+        </div>
+        <div class="tool-badge"></div>
+      </div>
+
+      <!-- Les -->
+      <div class="tool-pill">
+        <div class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z"/>
+            <path d="M5 5h6M5 8h6M5 11h4"/>
+          </svg>
+        </div>
+        <div class="tool-inner">
+          <div class="tool-name">Les</div>
+          <div class="tool-sub">Tekster på nivå</div>
+        </div>
+      </div>
+
+      <!-- Lytt -->
+      <div class="tool-pill">
+        <div class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2a4 4 0 014 4v2a4 4 0 01-8 0V6a4 4 0 014-4z"/>
+            <path d="M4 9a4 4 0 008 0M8 13v2M6 15h4"/>
+          </svg>
+        </div>
+        <div class="tool-inner">
+          <div class="tool-name">Lytt</div>
+          <div class="tool-sub">Hør og svar</div>
+        </div>
+      </div>
+
+      <!-- Skriv -->
+      <div class="tool-pill">
+        <div class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 2l3 3-8 8H3v-3L11 2z"/>
+          </svg>
+        </div>
+        <div class="tool-inner">
+          <div class="tool-name">Skriv</div>
+          <div class="tool-sub">Journal · rettet</div>
+        </div>
+      </div>
+
+      <!-- Notatboka -->
+      <div class="tool-pill">
+        <div class="tool-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 1h8a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z"/>
+            <path d="M6 5h4M6 8h4M6 11h2"/>
+            <path d="M3 4H1M3 8H1M3 12H1"/>
+          </svg>
+        </div>
+        <div class="tool-inner">
+          <div class="tool-name">Notatboka</div>
+          <div class="tool-sub">12 lagret · 3 forfaller</div>
+        </div>
+        <div class="tool-badge"></div>
+      </div>
+
+    </div>
+
+    <!-- DAILY PLAN -->
+    <div class="section-label">Dagens plan</div>
+    <div class="plan-card">
+      <div class="plan-header">
+        <span class="plan-title">Dagens økt</span>
+        <div class="plan-recipe">
+          <div class="recipe-seg" style="width:36px;background:var(--coral);opacity:0.8;"></div>
+          <div class="recipe-seg" style="width:27px;background:var(--teal);opacity:0.6;"></div>
+          <div class="recipe-seg" style="width:18px;background:var(--amber);opacity:0.7;"></div>
+          <div class="recipe-seg" style="width:9px;background:#8A8FA0;opacity:0.5;"></div>
+        </div>
+      </div>
+      <div class="plan-lane">
+        <span class="lane-num">01</span>
+        <div class="lane-dot" style="background:var(--coral);"></div>
+        <div class="lane-info">
+          <div class="lane-name">Remediering · ordstilling</div>
+          <div class="lane-tags">
+            <span class="lane-tag-pill tag-recommended">Anbefalt</span>
+            <span class="lane-tag-pill tag-root">grunnårsak</span>
+          </div>
+        </div>
+        <span class="lane-count">9</span>
+      </div>
+      <div class="plan-lane">
+        <span class="lane-num">02</span>
+        <div class="lane-dot" style="background:var(--teal);"></div>
+        <div class="lane-info">
+          <div class="lane-name">Repetisjon · SRS</div>
+          <div class="lane-tags">
+            <span class="lane-tag">forfaller i dag</span>
+          </div>
+        </div>
+        <span class="lane-count">6</span>
+      </div>
+      <div class="plan-lane">
+        <span class="lane-num">03</span>
+        <div class="lane-dot" style="background:var(--amber);"></div>
+        <div class="lane-info">
+          <div class="lane-name">Nytt materiale</div>
+          <div class="lane-tags">
+            <span class="lane-tag">B1 · nytt</span>
+          </div>
+        </div>
+        <span class="lane-count">4</span>
+      </div>
+    </div>
+
+    <!-- SNAKK CTA -->
+    <div class="snakk-card">
+      <div class="snakk-icon-wrap">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 1C5.1 1 2 3.9 2 7.5c0 2 .9 3.7 2.3 4.9L3.5 16l3.6-1.6c.6.1 1.2.2 1.9.2 3.9 0 7-2.9 7-6.5S12.9 1 9 1z"/>
+        </svg>
+      </div>
+      <div class="snakk-body">
+        <div class="snakk-row">
+          <span class="snakk-title">Snakk med Kari</span>
+          <span class="snakk-live">Live</span>
+        </div>
+        <div class="snakk-sub">Øv ordstillingen høyt — i en samtale</div>
+        <div class="snakk-min">34 min talt</div>
+      </div>
+      <div class="snakk-arr">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 12l4-4-4-4"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+  </div><!-- end scroll-body -->
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <div class="nav-icon active">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9L10 2l7 7"/>
+          <path d="M5 7v9h4v-4h2v4h4V7"/>
+        </svg>
+      </div>
+      <div class="nav-label active">Hjem</div>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 5h14a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1z"/>
+          <path d="M7 5V3M13 5V3M7 10h6"/>
+        </svg>
+      </div>
+      <div class="nav-label">Lær</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 2C6.1 2 3 4.9 3 8.5c0 2 .9 3.7 2.3 4.9L4.5 17l3.6-1.6c.6.1 1.2.2 1.9.2 3.9 0 7-2.9 7-6.5S13.9 2 10 2z"/>
+        </svg>
+      </div>
+      <div class="nav-label">Snakk</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 2h10a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V3a1 1 0 011-1z"/>
+          <path d="M7 7h6M7 10h6M7 13h4"/>
+          <path d="M4 6H2M4 10H2M4 14H2"/>
+        </svg>
+      </div>
+      <div class="nav-label">Notatboka</div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="10" cy="7" r="3"/>
+          <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+        </svg>
+      </div>
+      <div class="nav-label">Deg</div>
+    </div>
+  </div>
+
+</div><!-- end phone-frame -->
+</body>
+</html>

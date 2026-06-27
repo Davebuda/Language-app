@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snakk — hvit↔blå, ingen glød · 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07090A; --line:rgba(255,255,255,0.07); --line-hi:rgba(255,255,255,0.12);
+    --cyan:#00C2E0; --ink:#12303A; --ink-2:#4C6770;
+    --on-dark-3:#5C6660; --mono:'IBM Plex Mono',monospace; --sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#050604;font-family:var(--sans);color:#E8ECE6;padding:30px 16px 70px}
+  .row{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;max-width:1180px;margin:0 auto}
+  .col{width:374px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-3);margin:0 2px 7px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:var(--cyan);font-weight:600}
+  .note{font-size:11px;color:var(--on-dark-3);margin:0 2px 12px;line-height:1.4}
+  .stage{background:radial-gradient(260px 160px at 78% 30%,#0d1310,transparent 70%),var(--bg);border:1px solid var(--line-hi);border-radius:18px;padding:14px}
+  .ctx{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-3);display:flex;align-items:center;gap:8px;margin:0 2px 10px}
+  .ctx .ln{flex:1;height:1px;background:var(--line)}
+
+  @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+  /* shared clean rail (NO glow) */
+  .k{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:13px;cursor:pointer;text-decoration:none;
+    box-shadow:0 14px 30px -22px rgba(8,28,38,.55)}
+  .mic{width:25px;height:25px;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .ic{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+  .tx{min-width:0}
+  .tx .h{display:flex;align-items:center;gap:7px}
+  .tx .h b{font-size:12.5px;font-weight:700;color:var(--ink)}
+  .tx .s{font-size:10px;color:var(--ink-2);margin-top:2px}
+  .live{font-family:var(--mono);font-size:7px;font-weight:600;color:#0A6B7E;letter-spacing:.08em;border:1px solid #AAD3DD;padding:1px 5px 1px 12px;border-radius:999px;background:#DBEFF3;position:relative}
+  .live::before{content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:blink 1.6s ease-in-out infinite}
+  .wave{display:flex;align-items:center;gap:2.5px;height:18px;margin-left:auto;flex-shrink:0}
+  .wave i{width:2.5px;height:16px;border-radius:2px;transform:scaleY(.35);transform-origin:center;background:#0AA6C4;animation:eq 1.2s ease-in-out infinite}
+  .stat{font-family:var(--mono);font-size:9px;font-weight:500;color:#0A6B7E;flex-shrink:0;margin-left:11px}
+  .cymic{background:linear-gradient(160deg,#1AC4E4,#0098B8);border:1px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
+  .cymic svg{stroke:#fff}
+  .whmic{background:#fff;border:1px solid #BFD8E0}
+  .whmic svg{stroke:#0098B8}
+</style>
+</head>
+<body>
+<div class="row">
+
+  <!-- A · Isblå -->
+  <div class="col">
+    <div class="cap">A <b>· Isblå</b></div>
+    <div class="note">Icy pale-blue surface (the white↔blue midpoint), solid cyan mic tile, ink text, flat waveform. Calm, balanced.</div>
+    <div class="stage"><div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="k" style="background:linear-gradient(165deg,#ECF5F8,#DCEAEF);border:1px solid #C8DBE2">
+        <div class="ic cymic"><svg class="mic" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt</div></div>
+        <div class="wave"><i style="animation-delay:0s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.28s"></i></div>
+        <div class="stat" style="margin-left:11px">34<br>min</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- B · Hvit + blå mikrofon -->
+  <div class="col">
+    <div class="cap">B <b>· Hvit + blå mikrofon</b></div>
+    <div class="note">Whiter end — near-white surface (closest to the cream command card / stat pills), cyan mic + cyan accents carry the blue.</div>
+    <div class="stage"><div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="k" style="background:linear-gradient(165deg,#FFFFFF,#F1F5F7);border:1px solid #E3E9EC">
+        <div class="ic cymic"><svg class="mic" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt</div></div>
+        <div class="wave"><i style="animation-delay:0s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.28s"></i></div>
+        <div class="stat" style="margin-left:11px">34<br>min</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- C · Hvit→blå gradient -->
+  <div class="col">
+    <div class="cap">C <b>· Hvit→blå gradient</b></div>
+    <div class="note">The literal blend: surface crosses white (left, text) to blue (right, waveform). One rail that IS the white↔blue middle.</div>
+    <div class="stage"><div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="k" style="background:linear-gradient(100deg,#F6FAFB 0%,#D6E9EF 58%,#A9D8E4 100%);border:1px solid #BFDCE4">
+        <div class="ic cymic"><svg class="mic" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt</div></div>
+        <div class="wave"><i style="background:#067a92;animation-delay:0s"></i><i style="background:#067a92;animation-delay:.18s"></i><i style="background:#067a92;animation-delay:.36s"></i><i style="background:#067a92;animation-delay:.1s"></i><i style="background:#067a92;animation-delay:.28s"></i></div>
+        <div class="stat" style="color:#055968;margin-left:11px">34<br>min</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- D · Hvit kort + blå hette -->
+  <div class="col">
+    <div class="cap">D <b>· Hvit + blå hette</b></div>
+    <div class="note">Split: white card on the left (mic + text), a solid blue cap on the right holding the minutes. Clean two-block white|blue division.</div>
+    <div class="stage"><div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="k" style="background:#F4F8F9;border:1px solid #DCE6E9;padding:0;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;flex:1;min-width:0">
+          <div class="ic cymic"><svg class="mic" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+          <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt</div></div>
+        </div>
+        <div style="align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:0 16px;background:linear-gradient(160deg,#13B6D6,#0090AE);color:#fff;flex-shrink:0">
+          <span style="font-family:var(--mono);font-size:16px;font-weight:600;line-height:1">34</span>
+          <span style="font-family:var(--mono);font-size:7px;letter-spacing:.08em;opacity:.85">MIN TALT</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- E · Blå-tonet + hvit mikrofon -->
+  <div class="col">
+    <div class="cap">E <b>· Blå-tonet + hvit mikrofon</b></div>
+    <div class="note">Bluer end — a deeper icy-blue surface with the relationship inverted: a WHITE mic tile (cyan glyph). The blue carries, white punctuates.</div>
+    <div class="stage"><div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="k" style="background:linear-gradient(165deg,#CDE7EE,#B6DCE6);border:1px solid #A6CFDA">
+        <div class="ic whmic"><svg class="mic" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b style="color:#0A3641">Snakk med Kari</b><span class="live" style="background:#fff;border-color:#fff">LIVE</span></div><div class="s" style="color:#3D6470">Øv ordstillingen høyt</div></div>
+        <div class="wave"><i style="background:#05728A;animation-delay:0s"></i><i style="background:#05728A;animation-delay:.18s"></i><i style="background:#05728A;animation-delay:.36s"></i><i style="background:#05728A;animation-delay:.1s"></i><i style="background:#05728A;animation-delay:.28s"></i></div>
+        <div class="stat" style="color:#05566A;margin-left:11px">34<br>min</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

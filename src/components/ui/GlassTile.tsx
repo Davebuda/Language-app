@@ -268,7 +268,161 @@ export function GlassTile({
     )
   }
 
-  // ── Tile shell ────────────────────────────────────────────────────────────
+  // ── Grid variant — clean one-box glowing tile (E-density, 3-col) ─────────
+  // A big backlit glyph is sunk into the BACK of the glass (right side) under a
+  // thin frosted sheen; the white label sits on top, bottom-left. One accent
+  // bloom + a top-edge hairline are the only glow. Whiter/frostier glass than
+  // the heavy hero variant; NO inner rim ring, double glints, or arrow pill —
+  // the "one nice box" Dave approved in the clean-tiles iteration.
+  if (size === 'grid') {
+    const gridStyle: React.CSSProperties = {
+      ...accentVars,
+      position: 'relative',
+      overflow: 'hidden',
+      isolation: 'isolate',
+      minHeight: 96,
+      borderRadius: 14,
+      padding: '11px 11px 11px',
+      border: '1px solid rgba(255,255,255,0.12)',
+      background:
+        'linear-gradient(168deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.05) 52%, rgba(255,255,255,0.025) 100%)',
+      boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.16), 0 10px 24px -16px rgba(0,0,0,0.78)',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      cursor: isInteractive ? 'pointer' : 'default',
+      transition: 'transform .25s cubic-bezier(.2,.8,.25,1), box-shadow .25s',
+      textDecoration: 'none',
+      WebkitFontSmoothing: 'antialiased',
+    }
+
+    const gridInner = (
+      <>
+        {/* Accent bloom — the single glow, anchored behind the back-glass glyph */}
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 0,
+            pointerEvents: 'none',
+            background: 'radial-gradient(150px 120px at 66% 46%, var(--cg) 0%, transparent 70%)',
+          }}
+        />
+        {/* Top-edge accent hairline */}
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 14,
+            right: 14,
+            height: 1,
+            zIndex: 1,
+            pointerEvents: 'none',
+            background: 'linear-gradient(90deg, transparent, var(--c), transparent)',
+            opacity: 0.6,
+          }}
+        />
+        {/* Big backlit glyph sunk into the back of the glass */}
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            right: 6,
+            transform: 'translateY(-50%)',
+            zIndex: 0,
+            pointerEvents: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Icon
+            width={54}
+            height={54}
+            color="var(--c)"
+            strokeWidth={0.6}
+            aria-hidden="true"
+            style={{ display: 'block', opacity: 0.34, filter: 'drop-shadow(0 0 7px var(--cg))' }}
+          />
+        </span>
+        {/* Thin frosted sheen over the glyph — reads as embedded-in-glass */}
+        <span
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            pointerEvents: 'none',
+            background:
+              'linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02) 55%, transparent)',
+            backdropFilter: 'blur(0.5px)',
+            WebkitBackdropFilter: 'blur(0.5px)',
+          }}
+        />
+        {/* White label — vividly visible on top of the glass */}
+        <span style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <span
+            style={{
+              fontWeight: 700,
+              fontSize: 13,
+              lineHeight: 1,
+              letterSpacing: '-0.2px',
+              color: '#FFFFFF',
+              textShadow: '0 1px 8px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.5)',
+            }}
+          >
+            {title}
+          </span>
+          {subtitle != null && (
+            <span
+              style={{
+                fontFamily: 'var(--v3-mono)',
+                fontSize: 8,
+                marginTop: 3,
+                letterSpacing: '0.02em',
+                color: 'rgba(255,255,255,0.72)',
+                textShadow: '0 1px 6px rgba(0,0,0,0.55)',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {subtitle}
+            </span>
+          )}
+        </span>
+      </>
+    )
+
+    const gridActiveClass = isInteractive
+      ? 'active:translate-y-px active:scale-[.992] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--c)]'
+      : ''
+
+    if (href) {
+      return (
+        <a href={href} onClick={onClick} aria-label={title} className={gridActiveClass} style={gridStyle}>
+          {gridInner}
+        </a>
+      )
+    }
+    return (
+      <div
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        aria-label={onClick ? title : undefined}
+        onClick={onClick}
+        className={gridActiveClass}
+        style={gridStyle}
+      >
+        {gridInner}
+      </div>
+    )
+  }
+
+  // ── Tile shell (hero variant) ───────────────────────────────────────────────
   // Replicates .tile from variant-3.html using .dash-v3 glass tokens.
   const tileStyle: React.CSSProperties = {
     ...accentVars,
@@ -305,18 +459,17 @@ export function GlassTile({
     pointerEvents: 'none',
   }
 
-  // ── Rim ring — refractive inner edge catching the accent ─────────────────
+  // ── Rim glow — accent edge light on the SINGLE tile edge ─────────────────
+  // Sits flush with the outer border (inset 0, same radius) so the card reads
+  // as ONE box, not a box-inside-a-box. Soft accent inner glow only — no
+  // discrete second outline.
   const rimStyle: React.CSSProperties = {
     position: 'absolute',
-    inset: 6,
-    borderRadius: 20,
+    inset: 0,
+    borderRadius: 26,
     zIndex: 2,
     pointerEvents: 'none',
-    border: '1px solid transparent',
-    // gradient only visible in the border-box area (gradient border technique)
-    background: 'linear-gradient(180deg, rgba(255,255,255,0.078), transparent 40%) border-box',
-    boxShadow:
-      '0 0 0 1px var(--glass-rim-base) inset, 0 1px 10px var(--cg) inset',
+    boxShadow: '0 1px 12px var(--cg) inset',
   }
 
   // ── Gloss — thick refractive top-sheen layer (masked) ────────────────────
@@ -421,20 +574,17 @@ export function GlassTile({
     textShadow: '0 1px 6px rgba(0,0,0,0.667)',
   }
 
-  // ── Icon sizing — hero is slightly smaller relative to tile area ──────────
-  const glyphContainerSize = isHero ? '40%' : '54%'
+  // ── Icon sizing — small, delicate backlit glyph (Dave: thinner, less
+  // shiny, ~half the old size). Hero stays a touch larger than grid.
+  const glyphContainerSize = isHero ? '34%' : '28%'
 
   const iconStyle: React.CSSProperties = {
     display: 'block',
     width: '100%',
     height: '100%',
-    opacity: 0.96,
-    // Triple drop-shadow creates the multi-radius glow bloom
-    filter: [
-      'drop-shadow(0 0 5px var(--c))',
-      'drop-shadow(0 0 18px var(--c))',
-      'drop-shadow(0 0 40px var(--cg))',
-    ].join(' '),
+    opacity: 0.88,
+    // Single soft glow — backlit, not shiny
+    filter: 'drop-shadow(0 0 5px var(--cg))',
   }
 
   // ── Shared inner markup ───────────────────────────────────────────────────
@@ -460,7 +610,7 @@ export function GlassTile({
             width="100%"
             height="100%"
             color="var(--c)"
-            strokeWidth={1.5}
+            strokeWidth={1.1}
             aria-hidden="true"
             style={iconStyle}
           />

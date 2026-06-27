@@ -247,11 +247,11 @@ export function DashboardV3() {
               fontSize: 9.5,
               fontWeight: 600,
               letterSpacing: '.12em',
-              color: 'var(--v3-lime)',
+              color: 'var(--v3-cyan)',
               padding: '5px 11px',
-              border: '1px solid rgba(200,255,32,.42)',
+              border: '1px solid rgba(0,194,224,.42)',
               borderRadius: 999,
-              background: 'rgba(200,255,32,.09)',
+              background: 'rgba(0,194,224,.09)',
             }}
           >
             <span
@@ -260,8 +260,8 @@ export function DashboardV3() {
                 width: 6,
                 height: 6,
                 borderRadius: '50%',
-                background: 'var(--v3-lime)',
-                boxShadow: '0 0 7px var(--v3-lime)',
+                background: 'var(--v3-cyan)',
+                boxShadow: '0 0 7px var(--v3-cyan)',
                 display: 'inline-block',
                 flexShrink: 0,
               }}
@@ -323,16 +323,16 @@ export function DashboardV3() {
                     gap: 6,
                     fontSize: 11.5,
                     fontWeight: 700,
-                    color: 'var(--v3-lime)',
-                    background: 'rgba(200,255,32,.12)',
-                    border: '1px solid rgba(200,255,32,.42)',
+                    color: 'var(--v3-coral)',
+                    background: 'rgba(255,106,85,.12)',
+                    border: '1px solid rgba(255,106,85,.42)',
                     padding: '5px 11px',
                     borderRadius: 8,
                   }}
                 >
                   <span
                     aria-hidden="true"
-                    style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--v3-lime)', boxShadow: '0 0 6px var(--v3-lime)' }}
+                    style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--v3-coral)', boxShadow: '0 0 6px var(--v3-coral)' }}
                   />
                   Fanget · {breakerVerdict.label}
                 </span>
@@ -358,7 +358,15 @@ export function DashboardV3() {
                   marginBottom: 10,
                 }}
               >
-                {diagnosisHighlight.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'} · Fokus: {diagnosisHighlight.focusLabel}
+                <span
+                  style={{
+                    color: diagnosisHighlight.confidenceTier === 'strong' ? 'var(--v3-teal)' : 'var(--v3-amber)',
+                    fontWeight: 600,
+                  }}
+                >
+                  {diagnosisHighlight.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'}
+                </span>
+                {' · Fokus: '}{diagnosisHighlight.focusLabel}
               </div>
             ) : null}
 
@@ -416,15 +424,22 @@ export function DashboardV3() {
                 style={{ gap: 9, marginTop: 11, background: 'var(--v3-cream)', borderRadius: 9, padding: '7px 11px' }}
               >
                 <span
+                  className="inline-flex items-center"
                   style={{
+                    gap: 5,
                     fontFamily: 'var(--v3-mono)',
                     fontSize: 8,
                     letterSpacing: '.1em',
                     textTransform: 'uppercase',
-                    color: 'var(--v3-ink-3)',
+                    color: '#177c5e',
+                    fontWeight: 600,
                     flexShrink: 0,
                   }}
                 >
+                  <span
+                    aria-hidden="true"
+                    style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--v3-teal)', boxShadow: '0 0 6px var(--v3-teal-glow)' }}
+                  />
                   Fikset
                 </span>
                 <span
@@ -482,22 +497,27 @@ export function DashboardV3() {
           </Link>
         </div>
 
-        {/* ══ §VERKTØY — compact header + 2-col rail-tile grid ═══════════════ */}
+        {/* ══ §VERKTØY — 3-col grid of clean glowing glass tiles ════════════ */}
+        {/* Approved direction (clean-tiles iteration): one nice box per tile — a
+            big backlit glyph sunk into the back glass, white label on top, a
+            single accent bloom + top hairline. E-density 3-col so all 6 fit in
+            two rows within the one-viewport frame. Each its own accent
+            (Lær=lime … Notatboka=violet). */}
         <Led title="Verktøy" meta="6 øvelser" />
-        <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 7, flexShrink: 0 }}>
-          <GlassTile accent="violet" icon={GraduationCap} title="Lær" subtitle={lerSubtitle} href="/session" size="rail" />
-          <GlassTile accent="cyan" icon={Mic} title="Snakk" subtitle="Kari · øv høyt" href="/snakk" size="rail" />
+        <div className="grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: 8, flexShrink: 0 }}>
+          <GlassTile accent="lime" icon={GraduationCap} title="Lær" subtitle={lerSubtitle} href="/session" size="grid" />
+          <GlassTile accent="cyan" icon={Mic} title="Snakk" subtitle="Kari · øv høyt" href="/snakk" size="grid" />
           <GlassTile
             accent="teal"
             icon={BookOpen}
             title="Les"
             subtitle="Tekster på nivå"
             href={skrivReplacesReading ? '/skriv' : '/reading'}
-            size="rail"
+            size="grid"
           />
-          <GlassTile accent="amber" icon={Headphones} title="Lytt" subtitle="Hør og svar" href="/listen" size="rail" />
-          <GlassTile accent="coral" icon={PenLine} title="Skriv" subtitle="Journal · rettet" href="/journal" size="rail" />
-          <GlassTile accent="slate" icon={Notebook} title="Notatboka" subtitle="Ord du har lagret" href="/vocab" size="rail" />
+          <GlassTile accent="amber" icon={Headphones} title="Lytt" subtitle="Hør og svar" href="/listen" size="grid" />
+          <GlassTile accent="coral" icon={PenLine} title="Skriv" subtitle="Journal · rettet" href="/journal" size="grid" />
+          <GlassTile accent="violet" icon={Notebook} title="Notatboka" subtitle="Ord du har lagret" href="/vocab" size="grid" />
         </div>
 
         {/* ══ §DAGENS PLAN — recipe bar + 4 numbered lanes ══════════════════ */}
@@ -512,8 +532,8 @@ export function DashboardV3() {
             {plan ? (
               <>
                 <span style={{ width: `${remPct}%`, background: 'var(--v3-lime)', display: 'block' }} />
-                <span style={{ width: `${revPct}%`, background: 'var(--v3-cyan)', display: 'block' }} />
-                <span style={{ width: `${newPct}%`, background: 'var(--v3-amber)', display: 'block' }} />
+                <span style={{ width: `${revPct}%`, background: 'var(--v3-amber)', display: 'block' }} />
+                <span style={{ width: `${newPct}%`, background: 'var(--v3-cyan)', display: 'block' }} />
                 <span style={{ width: `${intPct}%`, background: 'var(--v3-coral)', display: 'block' }} />
               </>
             ) : (
@@ -704,8 +724,8 @@ function Led({ title, meta }: { title: string; meta?: string }) {
 // §DAGENS PLAN lane row (R1 .lane). Dot color is keyed off `lane`.
 const LANE_DOT: Record<'lead' | 'l2' | 'l3' | 'l4', { background: string; boxShadow: string }> = {
   lead: { background: 'var(--v3-lime)', boxShadow: '0 0 6px var(--v3-lime)' },
-  l2:   { background: 'var(--v3-cyan)', boxShadow: '0 0 6px var(--v3-cyan-glow)' },
-  l3:   { background: 'var(--v3-amber)', boxShadow: '0 0 6px var(--v3-amber-glow)' },
+  l2:   { background: 'var(--v3-amber)', boxShadow: '0 0 6px var(--v3-amber-glow)' },
+  l3:   { background: 'var(--v3-cyan)', boxShadow: '0 0 6px var(--v3-cyan-glow)' },
   l4:   { background: 'var(--v3-coral)', boxShadow: '0 0 6px var(--v3-coral-glow)' },
 }
 

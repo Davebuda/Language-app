@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorskCoach — Avis Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #F4F2EC;
+    --paper-white: #FFFFFF;
+    --ink: #16150F;
+    --ink-mid: #3A3830;
+    --ink-light: #6B6860;
+    --ink-faint: #C8C5BC;
+    --rule: #D6D3CA;
+    --accent-red: #C8170D;
+    --accent-confirm: #1A6B3A;
+    --accent-confirm-bg: #EAF5EE;
+    --font-display: 'Schibsted Grotesk', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  body {
+    background: #E8E6DF;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    padding: 32px 16px;
+  }
+
+  /* Phone frame */
+  .phone-frame {
+    width: 390px;
+    height: 844px;
+    background: var(--paper);
+    border-radius: 44px;
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.08),
+      0 4px 6px rgba(0,0,0,0.04),
+      0 24px 64px rgba(0,0,0,0.18),
+      0 48px 96px rgba(0,0,0,0.10);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* Scrollable content area */
+  .dashboard-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+  .dashboard-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--paper-white);
+    border-bottom: 2px solid var(--ink);
+    padding: 0 20px;
+  }
+  .masthead-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead-wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .masthead-date {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+  }
+  .masthead-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper-white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .identity-text {
+    flex: 1;
+  }
+  .identity-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .identity-streak {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-light);
+    margin-top: 2px;
+  }
+  .sky-badge {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    border: 1px solid var(--rule);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* ── LEAD STORY: DIAGNOSIS ── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+  }
+  .section-rule-heavy {
+    border: none;
+    border-top: 2px solid var(--ink);
+  }
+
+  .lead-story {
+    background: var(--paper-white);
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .story-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .kicker-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-white);
+    background: var(--accent-red);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+  .kicker-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--accent-red);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .story-headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .story-standfirst {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .story-byline {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    color: var(--ink-light);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .byline-dot { color: var(--rule); }
+
+  .trend-down {
+    color: var(--accent-confirm);
+    font-weight: 600;
+  }
+
+  /* Fikset proof chips */
+  .fikset-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .fikset-chip {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--accent-confirm);
+    background: var(--accent-confirm-bg);
+    border: 1px solid #B8DFC8;
+    padding: 3px 8px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    letter-spacing: 0.02em;
+  }
+  .fikset-chip svg { flex-shrink: 0; }
+
+  /* ── PRODUCTION COUNT ── */
+  .count-section {
+    background: var(--paper);
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .count-figure-wrap {
+    flex-shrink: 0;
+    border-right: 1px solid var(--rule);
+    padding-right: 16px;
+    margin-right: 0;
+  }
+  .count-figure {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.04em;
+  }
+  .count-caption {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .count-right {
+    flex: 1;
+    padding-top: 4px;
+  }
+  .count-label {
+    font-size: 11px;
+    color: var(--ink-mid);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  /* 7-bar weekly trend */
+  .week-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+  }
+  .week-bar {
+    flex: 1;
+    background: var(--ink-faint);
+    border-radius: 1px;
+    min-width: 0;
+  }
+  .week-bar.today {
+    background: var(--ink);
+  }
+
+  /* ── PRIMARY ACTION ── */
+  .action-section {
+    background: var(--paper-white);
+    padding: 14px 20px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .action-meta {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .action-btn {
+    display: block;
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper-white);
+    border: none;
+    border-radius: 3px;
+    padding: 13px 18px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .action-btn-left {}
+  .action-btn-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--paper-white);
+    letter-spacing: -0.01em;
+  }
+  .action-btn-reason {
+    font-size: 11px;
+    color: rgba(244,242,236,0.6);
+    margin-top: 2px;
+  }
+  .action-btn-arrow {
+    color: rgba(244,242,236,0.5);
+    flex-shrink: 0;
+  }
+  .action-tasks {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    color: var(--ink-light);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── TOOLS INDEX ── */
+  .tools-section {
+    background: var(--paper-white);
+    padding: 0 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-header {
+    padding: 10px 0 8px;
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+  .section-label {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .section-rule-inline {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .tool-cell {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tool-cell:nth-child(odd) {
+    border-right: 1px solid var(--rule);
+    padding-right: 12px;
+  }
+  .tool-cell:nth-child(even) {
+    padding-left: 12px;
+  }
+  .tool-cell:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+  .tool-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink-mid);
+  }
+  .tool-text {}
+  .tool-name {
+    font-weight: 700;
+    font-size: 11.5px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .tool-sub {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-light);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tool-badge {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--accent-red);
+    font-weight: 600;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* ── DAILY PLAN ── */
+  .plan-section {
+    background: var(--paper);
+    padding: 0 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .plan-recipe {
+    display: flex;
+    gap: 0;
+    margin: 10px 0 10px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .recipe-bar {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 600;
+    text-align: center;
+    padding: 4px 2px;
+    color: var(--paper-white);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .recipe-rem { background: var(--ink); flex: 40; }
+  .recipe-rep { background: var(--ink-mid); flex: 30; }
+  .recipe-new { background: #6B6860; flex: 20; }
+  .recipe-flt { background: #9A9890; flex: 10; }
+
+  .plan-lanes {}
+  .lane-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lane-row:last-child { border-bottom: none; }
+  .lane-num {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-faint);
+    width: 16px;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+  .lane-name {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .lane-sub {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-light);
+    font-weight: 400;
+    display: block;
+    margin-top: 1px;
+  }
+  .lane-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .lane-tag {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 5px;
+    border-radius: 2px;
+  }
+  .lane-tag.anbefalt {
+    background: #D6F0DF;
+    color: var(--accent-confirm);
+    border: 1px solid #B8DFC8;
+  }
+  .lane-tag.grunnarsak {
+    background: #FDECEA;
+    color: var(--accent-red);
+    border: 1px solid #F5C8C5;
+  }
+
+  /* ── STATUS STRIP ── */
+  .status-strip {
+    background: var(--paper-white);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat-cell {
+    flex: 1;
+    text-align: center;
+  }
+  .stat-cell + .stat-cell {
+    border-left: 1px solid var(--rule);
+  }
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    color: var(--ink-light);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── SNAKK CTA ── */
+  .snakk-section {
+    background: var(--paper);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .snakk-left {
+    flex: 1;
+  }
+  .snakk-kicker {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-confirm);
+    flex-shrink: 0;
+  }
+  .snakk-live-label {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-confirm);
+  }
+  .snakk-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .snakk-desc {
+    font-size: 11px;
+    color: var(--ink-mid);
+    line-height: 1.35;
+  }
+  .snakk-minutes {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink-light);
+    margin-top: 4px;
+  }
+  .snakk-btn {
+    background: var(--ink);
+    color: var(--paper-white);
+    border: none;
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    background: var(--paper-white);
+    border-top: 2px solid var(--ink);
+    display: flex;
+    align-items: stretch;
+    flex-shrink: 0;
+    height: 62px;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-item.active .nav-label {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .nav-item.active .nav-icon {
+    color: var(--ink);
+  }
+  .nav-item.active::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: var(--accent-red);
+  }
+  .nav-icon {
+    color: var(--ink-faint);
+    width: 18px;
+    height: 18px;
+  }
+  .nav-label {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Bottom safe area */
+  .safe-bottom {
+    height: 6px;
+    background: var(--paper-white);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+
+  <!-- SCROLLABLE CONTENT -->
+  <div class="dashboard-scroll">
+
+    <!-- MASTHEAD -->
+    <div class="masthead">
+      <div class="masthead-top">
+        <span class="masthead-wordmark">NorskCoach</span>
+        <span class="masthead-date">Fre 27. Juni 2026</span>
+      </div>
+      <div class="masthead-identity">
+        <div class="avatar">D</div>
+        <div class="identity-text">
+          <div class="identity-name">Dave</div>
+          <div class="identity-streak">B1 · 14 dager på rad</div>
+        </div>
+        <div class="sky-badge">Sky-AI</div>
+      </div>
+    </div>
+
+    <!-- LEAD STORY: DIAGNOSIS -->
+    <div class="lead-story">
+      <div class="story-kicker">
+        <span class="kicker-label">Fanget</span>
+        <span class="kicker-tag">Ordstilling</span>
+      </div>
+      <h1 class="story-headline">Ordstilling etter «fordi»</h1>
+      <p class="story-standfirst">Setninger med leddsetninger etter «fordi» bryter V2-regelen din konsekvent — underordnet konjunksjon forskyver verbposisjonen.</p>
+      <div class="story-byline">
+        <span>Sikker diagnose</span>
+        <span class="byline-dot">·</span>
+        <span class="trend-down">↓ −39 % denne uka</span>
+        <span class="byline-dot">·</span>
+        <span>Bedre</span>
+      </div>
+      <div class="fikset-row">
+        <div class="fikset-chip">
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+            <path d="M2 5l2.5 2.5L8 3" stroke="#1A6B3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Fikset: Substantivkjønn
+        </div>
+        <div class="fikset-chip">
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+            <path d="M2 5l2.5 2.5L8 3" stroke="#1A6B3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Fikset: Bestemt form
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTION COUNT -->
+    <div class="count-section">
+      <div class="count-figure-wrap">
+        <div class="count-figure">9</div>
+        <div class="count-caption">denne uka</div>
+      </div>
+      <div class="count-right">
+        <div class="count-label">setninger du kan bygge denne uka</div>
+        <div class="week-bars">
+          <div class="week-bar" style="height:30%"></div>
+          <div class="week-bar" style="height:55%"></div>
+          <div class="week-bar" style="height:40%"></div>
+          <div class="week-bar" style="height:70%"></div>
+          <div class="week-bar" style="height:60%"></div>
+          <div class="week-bar" style="height:85%"></div>
+          <div class="week-bar today" style="height:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY ACTION -->
+    <div class="action-section">
+      <div class="action-meta">Dagens anbefaling</div>
+      <button class="action-btn">
+        <div class="action-btn-left">
+          <div class="action-btn-title">Start dagens økt</div>
+          <div class="action-btn-reason">Starter på «fordi»-feilen</div>
+        </div>
+        <svg class="action-btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M6 9h6M9 6l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="action-tasks">22 oppgaver &nbsp;·&nbsp; ca. 17 min</div>
+    </div>
+
+    <!-- TOOLS INDEX -->
+    <div class="tools-section">
+      <div class="section-header">
+        <span class="section-label">Verktøy</span>
+        <div class="section-rule-inline"></div>
+      </div>
+      <div class="tools-grid">
+
+        <!-- Lær -->
+        <div class="tool-cell">
+          <div class="tool-icon">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+              <path d="M2 4.5L8.5 2L15 4.5V8C15 11.5 11.8 14.5 8.5 15.5C5.2 14.5 2 11.5 2 8V4.5Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+              <path d="M6 8.5l1.5 1.5L11 7" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="tool-text">
+            <div class="tool-name">Lær</div>
+            <div class="tool-sub">Dagens økt · 22 oppg</div>
+          </div>
+        </div>
+
+        <!-- Snakk -->
+        <div class="tool-cell">
+          <div class="tool-icon">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+              <path d="M3 3h11v8H9.5L6.5 14v-3H3V3Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="tool-text">
+            <div class="tool-name">Snakk</div>
+            <div class="tool-sub">Kari · øv høyt</div>
+          </div>
+        </div>
+
+        <!-- Les -->
+        <div class="tool-cell">
+          <div class="tool-icon">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+              <rect x="2.5" y="2" width="12" height="13" rx="1" stroke="currentColor" stroke-width="1.25"/>
+              <path d="M5 6h7M5 8.5h7M5 11h4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="tool-text">
+            <div class="tool-name">Les</div>
+            <div class="tool-sub">Tekster på nivå</div>
+          </div>
+        </div>
+
+        <!-- Lytt -->
+        <div class="tool-cell">
+          <div class="tool-icon">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+              <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.25"/>
+              <path d="M6.5 6.5C6.5 5.4 7.3 4.5 8.5 4.5C9.7 4.5 10.5 5.4 10.5 6.5C10.5 9 8.5 9.5 8.5 11.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+              <circle cx="8.5" cy="13" r="0.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="tool-text">
+            <div class="tool-name">Lytt</div>
+            <div class="tool-sub">Hør og svar</div>
+          </div>
+        </div>
+
+        <!-- Skriv -->
+        <div class="tool-cell">
+          <div class="tool-icon">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+              <path d="M3 13.5L5 8.5L11.5 2L15 5.5L8.5 12L3 13.5Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+              <path d="M9 4l4 4" stroke="currentColor" stroke-width="1.25"/>
+            </svg>
+          </div>
+          <div class="tool-text">
+            <div class="tool-name">Skriv</div>
+            <div class="tool-sub">Journal · rettet</div>
+          </div>
+        </div>
+
+        <!-- Notatboka -->
+        <div class="tool-cell">
+          <div class="tool-icon">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+              <rect x="3" y="2" width="9" height="13" rx="1" stroke="currentColor" stroke-width="1.25"/>
+              <path d="M3 5h9M3 8h9M3 11h6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+              <circle cx="13" cy="12.5" r="2.5" fill="var(--accent-red)"/>
+              <path d="M12.2 12.5h1.6M13 11.7v1.6" stroke="white" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="tool-text">
+            <div class="tool-name">Notatboka</div>
+            <div class="tool-sub">12 lagret · 3 forfaller</div>
+          </div>
+          <div class="tool-badge">3</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DAILY PLAN -->
+    <div class="plan-section">
+      <div class="section-header">
+        <span class="section-label">Dagens plan</span>
+        <div class="section-rule-inline"></div>
+      </div>
+      <div class="plan-recipe">
+        <div class="recipe-bar recipe-rem">Rem<br>40%</div>
+        <div class="recipe-bar recipe-rep">Rep<br>30%</div>
+        <div class="recipe-bar recipe-new">Nytt<br>20%</div>
+        <div class="recipe-bar recipe-flt">Flt<br>10%</div>
+      </div>
+      <div class="plan-lanes">
+        <div class="lane-row">
+          <span class="lane-num">01</span>
+          <div class="lane-name">
+            Remediering · ordstilling
+            <span class="lane-sub">grunnårsak · forbi-setninger</span>
+          </div>
+          <span class="lane-count">9</span>
+          <span class="lane-tag grunnarsak">Grunnårsak</span>
+          <span class="lane-tag anbefalt">Anbefalt</span>
+        </div>
+        <div class="lane-row">
+          <span class="lane-num">02</span>
+          <div class="lane-name">
+            Repetisjon · SRS
+            <span class="lane-sub">forfaller i dag</span>
+          </div>
+          <span class="lane-count">6</span>
+        </div>
+        <div class="lane-row">
+          <span class="lane-num">03</span>
+          <div class="lane-name">
+            Nytt materiale
+            <span class="lane-sub">B1 · neste konsept</span>
+          </div>
+          <span class="lane-count">4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATUS STRIP -->
+    <div class="status-strip">
+      <div class="stat-cell">
+        <div class="stat-value">14</div>
+        <div class="stat-label">Rekke dgr</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">34</div>
+        <div class="stat-label">Min talt</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-value">83%</div>
+        <div class="stat-label">Treff</div>
+      </div>
+    </div>
+
+    <!-- SNAKK CTA -->
+    <div class="snakk-section">
+      <div class="snakk-left">
+        <div class="snakk-kicker">
+          <div class="live-dot"></div>
+          <span class="snakk-live-label">Live</span>
+        </div>
+        <div class="snakk-title">Snakk med Kari</div>
+        <div class="snakk-desc">Øv ordstillingen høyt — i en samtale</div>
+        <div class="snakk-minutes">34 min talt totalt</div>
+      </div>
+      <button class="snakk-btn">Start samtale</button>
+    </div>
+
+    <!-- bottom padding so last item clears nav -->
+    <div style="height:8px;background:var(--paper);"></div>
+
+  </div><!-- end scroll -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <div class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none">
+        <path d="M3 7.5L9 2l6 5.5V16H12v-4H6v4H3V7.5Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+      </svg>
+      <span class="nav-label">Hjem</span>
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none">
+        <path d="M3 4.5L9 2L15 4.5V8C15 12 11.8 15 9 16C6.2 15 3 12 3 8V4.5Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+      </svg>
+      <span class="nav-label">Lær</span>
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none">
+        <path d="M3 3h12v8.5H10L7 15v-3.5H3V3Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+      </svg>
+      <span class="nav-label">Snakk</span>
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none">
+        <rect x="3" y="2" width="10" height="14" rx="1" stroke="currentColor" stroke-width="1.25"/>
+        <path d="M5.5 6h5M5.5 9h5M5.5 12h3" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-label">Notatboka</span>
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.25"/>
+        <path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-label">Deg</span>
+    </div>
+  </nav>
+  <div class="safe-bottom"></div>
+
+</div>
+</body>
+</html>

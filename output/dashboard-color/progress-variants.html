@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress-sone + mørk balanse · 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --cream:#F1F0E8;--cream-2:#E7E6DC;--ink:#0E1207;--ink-2:#474C3F;--ink-3:#7C8275;
+    --lime:#C8FF20;--coral:#FF6A55;--coral-ink:#C2402C;--cyan:#00C2E0;--teal:#2BC9A0;--green:#1FB866;
+    --on-dark:#E8ECE6;--on-dark-2:#9BA39C;--on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace;--sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#050604;font-family:var(--sans);color:#E8ECE6;padding:30px 16px 70px}
+  .row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;max-width:1180px;margin:0 auto}
+  .col{width:360px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#5C6660;margin:0 2px 6px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:#cfd6cd;font-weight:600}
+  .note{font-size:10.5px;color:#5C6660;margin:0 2px 10px;line-height:1.4}
+  .cmd{background:var(--cream);color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 14px 30px -22px rgba(0,0,0,.8)}
+  .pad{padding:14px 15px 13px}
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .kick{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .lvl{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--ink);border:1px solid var(--cream-2);background:#fff;padding:2px 8px;border-radius:999px}
+  .obj{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.025em;line-height:1.05}
+  .focusrow{display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap}
+  .focus{display:inline-flex;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2c3a06;background:var(--lime);padding:3px 9px;border-radius:6px}
+  .sikker{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#0E8C73;display:inline-flex;align-items:center;gap:5px}
+  .sikker::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal)}
+  .seeall{font-size:9.5px;font-weight:600;color:#7df0ff;text-decoration:none;margin-left:auto}
+
+  /* DARK progress zone (the balance + the real data) */
+  .dz{position:relative;overflow:hidden;background:linear-gradient(180deg,#171d1f,#0f1416);border:1px solid rgba(255,255,255,.09);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);margin-top:13px}
+  .dz .seeall{color:#7df0ff}
+  .ring{position:relative;flex-shrink:0}
+  .ring svg{position:relative}
+  .ring .cn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .cn b{font-family:var(--mono);font-weight:600;color:#fff;line-height:1}
+  .ring .cn small{font-family:var(--mono);color:var(--on-dark-3);margin-top:2px}
+  .dlbl{font-size:12px;color:var(--on-dark-2);line-height:1.35}.dlbl b{color:#fff;font-weight:700}
+  .mstat{text-align:center}
+  .mstat .v{font-family:var(--mono);font-size:15px;font-weight:600;color:#fff;line-height:1}
+  .mstat .v.tl{color:var(--cyan)}
+  .mstat .l{font-family:var(--mono);font-size:7.5px;color:var(--on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+  .dv{width:1px;align-self:stretch;background:rgba(255,255,255,.1);margin:3px 0}
+  .spark{display:flex;align-items:flex-end;gap:3px;height:30px}
+  .spark i{width:6px;border-radius:3px 3px 0 0;background:rgba(200,255,32,.22)}.spark i.on{background:var(--lime);box-shadow:0 0 6px rgba(200,255,32,.5)}
+  .delta{font-family:var(--mono);font-size:10px;font-weight:600;color:#7af0a8;background:rgba(31,184,102,.16);padding:3px 7px;border-radius:999px}
+  .gbars{display:flex;align-items:flex-end;gap:8px;height:38px}
+  .gcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end;height:100%}
+  .gcol .b{width:100%;border-radius:3px 3px 0 0;background:rgba(255,255,255,.14)}
+  .gcol.now .b{background:var(--lime)}
+  .gcol .bv{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--on-dark-2)}
+  .gcol .wk{font-family:var(--mono);font-size:7px;color:var(--on-dark-3);text-transform:uppercase}
+  .fpill-d{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#ff9a8c;background:rgba(255,106,85,.14);border:1px solid rgba(255,106,85,.4);padding:4px 10px;border-radius:8px}
+  .fpill-d .pd{width:5px;height:5px;border-radius:50%;background:var(--coral);box-shadow:0 0 6px var(--coral)}
+  .ledg .ll{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:11px}
+  .ledg .ll:last-child{border-bottom:none}
+  .lk{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--on-dark-3)}
+  .lvv{font-family:var(--mono);font-size:11px;color:var(--on-dark-2)}.lvv b{color:#fff;font-weight:700}.lvv .lead{color:#ff9a8c}
+
+  .cta{display:flex;align-items:center;gap:10px;background:var(--lime);margin:13px 13px 13px;border-radius:12px;padding:11px 13px;text-decoration:none}
+  .cta .big{font-size:16px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.025em}
+  .cta .meta{font-size:9px;font-weight:700;color:#3a4a06;margin-top:3px}
+  .cta .arr{margin-left:auto;width:32px;height:32px;border-radius:50%;background:var(--ink);display:grid;place-items:center;flex-shrink:0}
+  .cta .arr svg{stroke:var(--lime);width:16px;height:16px;fill:none}
+  svg.r circle{fill:none}
+</style>
+</head>
+<body>
+<div class="row" id="root"></div>
+<script>
+const ARR='<svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+function ringDark(id,size,dash,num,den){return `<div class="ring" style="width:${size}px;height:${size}px"><svg class="r" width="${size}" height="${size}" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,.1)" stroke-width="9"/><circle cx="50" cy="50" r="42" stroke="url(#${id})" stroke-width="9" stroke-linecap="round" stroke-dasharray="${dash} 264" transform="rotate(-90 50 50)" style="filter:drop-shadow(0 0 5px rgba(0,194,224,.6))"/><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs></svg><div class="cn"><b style="font-size:${size*0.3}px">${num}</b><small style="font-size:7px">/ ${den}</small></div></div>`;}
+const TOP=`<div class="top"><span class="kick">Dagens mål</span><span class="lvl">B1</span></div><div class="obj">Bygg setninger</div><div class="focusrow"><span class="focus">Fokus · ordstilling</span><span class="sikker">Sikker diagnose</span></div>`;
+const CTA=`<a class="cta"><span><span class="big">Start dagens økt</span><span class="meta" style="display:block">27 oppgaver · ca. 21 min</span></span><span class="arr">${ARR}</span></a>`;
+
+const V=[
+['1','Mørk progress-panel','A dark inset panel holds the ring + the three live stats (streak / min / hit-rate) — the stats move INTO the dark zone, balancing the cream and filling the gap.',
+  `<div class="dz" style="padding:13px"><div style="display:flex;align-items:center;gap:14px">${ringDark('p1',62,158,9,15)}<div class="dlbl" style="flex:1"><b>9 setninger</b><br>du kan bygge · 6 igjen</div></div><div style="display:flex;margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.08)"><div class="mstat" style="flex:1"><div class="v">14</div><div class="l">Rekke dgr</div></div><div class="dv"></div><div class="mstat" style="flex:1"><div class="v">34</div><div class="l">Min talt</div></div><div class="dv"></div><div class="mstat" style="flex:1"><div class="v tl">83%</div><div class="l">Treff</div></div></div></div>`],
+
+['2','Mørk + ukestrend','The dark panel shows the ring + a 7-day build sparkline + a "+3 denne uka" growth delta — progress over time, not a static number.',
+  `<div class="dz" style="padding:13px"><div style="display:flex;align-items:center;gap:14px">${ringDark('p2',58,158,9,15)}<div style="flex:1"><div class="dlbl"><b>setninger</b> du kan bygge</div><div style="display:flex;align-items:center;gap:8px;margin-top:7px"><span class="delta">↑ +3 denne uka</span><span class="dlbl" style="font-size:10px">60 % av målet</span></div></div><div class="spark"><i style="height:34%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:66%"></i><i style="height:58%"></i><i style="height:80%"></i><i class="on" style="height:100%"></i></div></div></div>`],
+
+['3','Mørk diagnose-trend','The dark zone shows the MOAT data: the caught error + the weekly error-trend dropping (−39 %). Proof the diagnosis is working — the important progress.',
+  `<div class="dz" style="padding:13px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px"><span class="fpill-d"><span class="pd"></span>Fanget · ordstilling</span><span class="delta">↓ −39 % feil</span></div><div style="display:flex;align-items:flex-end;gap:14px"><div class="gbars" style="flex:1"><div class="gcol"><div class="b" style="height:34px"></div><div class="bv">18</div><div class="wk">U−2</div></div><div class="gcol"><div class="b" style="height:26px"></div><div class="bv">14</div><div class="wk">U−1</div></div><div class="gcol now"><div class="b" style="height:19px"></div><div class="bv">11</div><div class="wk">Nå</div></div></div><div style="text-align:right">${ringDark('p3',52,158,9,15)}</div></div></div>`],
+
+['4','To-tone delt','Split row: a cream count block (left) beside a dark stats block (right) — the dark balances and the two progress reads sit side by side.',
+  `<div style="display:flex;gap:10px;margin-top:13px"><div style="flex:1;background:#fff;border:1px solid var(--cream-2);border-radius:12px;padding:12px 13px"><div style="font-family:var(--mono);font-size:38px;font-weight:500;color:var(--ink);line-height:.85">9</div><div style="font-size:10.5px;color:var(--ink-2);margin-top:6px;line-height:1.3"><b style="color:var(--ink)">setninger</b> · 6 igjen</div></div><div class="dz" style="margin:0;width:150px;flex-shrink:0;padding:11px 12px;display:flex;flex-direction:column;justify-content:center;gap:8px"><div class="mstat" style="text-align:left;display:flex;justify-content:space-between;align-items:baseline"><span class="l" style="margin:0">Rekke</span><span class="v" style="font-size:13px">14 d</span></div><div class="mstat" style="text-align:left;display:flex;justify-content:space-between;align-items:baseline"><span class="l" style="margin:0">Min talt</span><span class="v" style="font-size:13px">34</span></div><div class="mstat" style="text-align:left;display:flex;justify-content:space-between;align-items:baseline"><span class="l" style="margin:0">Treff</span><span class="v tl" style="font-size:13px">83%</span></div></div></div>`],
+
+['5','Mørk instrument-ledger','Ring + a dark mono ledger (Oppgaver / Varighet / Resept / Leder med) — the "whole engine on one screen" instrument feel, dark for balance.',
+  `<div class="dz ledg" style="padding:12px 13px"><div style="display:flex;align-items:center;gap:13px;margin-bottom:10px">${ringDark('p5',50,158,9,15)}<div class="dlbl"><b>9 setninger</b> du kan bygge · 6 igjen</div></div><div class="ll"><span class="lk">Oppgaver</span><span class="lvv"><b>27</b> stk</span></div><div class="ll"><span class="lk">Varighet</span><span class="lvv">ca. <b>21</b> min</span></div><div class="ll"><span class="lk">Leder med</span><span class="lvv lead">ordstilling</span></div></div>`],
+
+['6','Mørk hero-band','The whole progress zone becomes an edge-to-edge dark band (ring + count + week sparkline + diagnosis line) — strongest dark balance, sandwiched cream→dark→lime.',
+  `<div class="dz" style="margin:13px -15px 0;border-radius:0;border-left:none;border-right:none;padding:14px 15px"><div style="display:flex;align-items:center;gap:14px">${ringDark('p6',60,158,9,15)}<div style="flex:1"><div class="dlbl"><b>9 setninger</b> du kan bygge denne uka</div><div class="dlbl" style="font-size:10px;margin-top:3px">60 % av målet · 6 igjen</div></div><div class="spark"><i style="height:34%"></i><i style="height:50%"></i><i style="height:42%"></i><i style="height:66%"></i><i style="height:58%"></i><i style="height:80%"></i><i class="on" style="height:100%"></i></div></div><div style="margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:8px"><span class="fpill-d" style="font-size:10px;padding:3px 8px"><span class="pd"></span>Fanget · ordstilling</span><span class="delta">↓ −39 % feil denne uka</span></div></div>`],
+];
+
+let html='';
+for(const [k,name,note,zone] of V){
+  html+=`<div class="col"><div class="cap">${k} <b>· ${name}</b></div><div class="note">${note}</div><div class="cmd"><div class="pad">${TOP}${zone}</div>${CTA}</div></div>`;
+}
+document.getElementById('root').innerHTML=html;
+</script>
+</body>
+</html>

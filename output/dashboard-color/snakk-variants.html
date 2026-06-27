@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snakk med Kari — 5 varianter</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07090A; --line:rgba(255,255,255,0.07); --line-hi:rgba(255,255,255,0.12);
+    --cream:#F1F0E8; --cream-2:#E7E6DC; --ink:#0E1207; --ink-2:#474C3F; --ink-3:#7C8275;
+    --lime:#C8FF20; --coral:#FF6A55; --cyan:#00C2E0; --teal:#2BC9A0;
+    --on-dark:#E8ECE6; --on-dark-2:#9BA39C; --on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace; --sans:'Schibsted Grotesk',sans-serif;
+    --cg:rgba(0,194,224,.30);
+  }
+  body{background:#050604;font-family:var(--sans);color:var(--on-dark);padding:30px 16px 70px}
+  .row{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;max-width:1180px;margin:0 auto}
+  .col{width:374px}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-3);margin:0 2px 7px;display:flex;gap:8px;align-items:baseline}
+  .cap b{color:var(--cyan);font-weight:600}
+  .note{font-size:11px;color:var(--on-dark-3);margin:0 2px 12px;line-height:1.4}
+  /* dark stage so rails are judged on the real frame */
+  .stage{background:radial-gradient(260px 160px at 78% 30%,#0d1310,transparent 70%),var(--bg);border:1px solid var(--line-hi);border-radius:18px;padding:14px}
+  .ctx{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-3);display:flex;align-items:center;gap:8px;margin:0 2px 10px}
+  .ctx .ln{flex:1;height:1px;background:var(--line)}
+
+  .mic{width:25px;height:25px;stroke:#eafffd;stroke-width:1.6;fill:none}
+  @keyframes eq{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+  @keyframes pulse{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes sweep{0%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
+  .live{font-family:var(--mono);font-size:7px;font-weight:600;letter-spacing:.08em;border-radius:999px;padding:1px 5px 1px 12px;position:relative}
+  .live::before{content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;animation:blink 1.4s ease-in-out infinite}
+
+  /* ============ V1 · GLASS-FLIS SØSKEN ============ */
+  .v1{position:relative;overflow:hidden;isolation:isolate;border-radius:14px;min-height:74px;display:flex;align-items:center;gap:13px;padding:0 16px;text-decoration:none;cursor:pointer;
+    border:1px solid rgba(255,255,255,.12);background:linear-gradient(168deg,rgba(255,255,255,.11),rgba(255,255,255,.05) 52%,rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 10px 24px -16px rgba(0,0,0,.78)}
+  .v1::before{content:'';position:absolute;inset:0;z-index:0;background:radial-gradient(150px 120px at 84% 50%,var(--cg),transparent 70%)}
+  .v1::after{content:'';position:absolute;top:0;left:14px;right:14px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.6}
+  .v1 .bg-glyph{position:absolute;right:6px;top:50%;transform:translateY(-50%);z-index:0;opacity:.3;filter:drop-shadow(0 0 8px var(--cg))}
+  .v1 .bg-glyph svg{width:60px;height:60px;stroke:var(--cyan);stroke-width:.8;fill:none}
+  .v1 .micbox{position:relative;z-index:2;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;background:rgba(0,194,224,.16);border:1px solid rgba(0,194,224,.4);box-shadow:0 0 14px -3px rgba(0,194,224,.7)}
+  .v1 .micbox::after{content:'';position:absolute;inset:-3px;border-radius:12px;border:1px solid rgba(0,194,224,.6);animation:pulse 2.2s ease-out infinite}
+  .v1 .micbox svg{filter:drop-shadow(0 0 5px var(--cyan))}
+  .v1 .tx{position:relative;z-index:2;min-width:0}
+  .v1 .tx .h{display:flex;align-items:center;gap:7px}
+  .v1 .tx .h b{font-size:14px;font-weight:700;color:#fff}
+  .v1 .live{color:#bdf3ff;border:1px solid rgba(0,194,224,.45);background:rgba(0,194,224,.14)}
+  .v1 .live::before{background:#22e6ff;box-shadow:0 0 6px #22e6ff}
+  .v1 .tx .s{font-size:10.5px;color:#cfe7ec;margin-top:2px}
+  .v1 .stat{position:relative;z-index:2;margin-left:auto;font-family:var(--mono);font-size:9px;color:#9df1ff;text-align:right;line-height:1.3;white-space:nowrap}
+  .v1 .stat b{display:block;font-size:15px;font-weight:600;color:#bdf3ff}
+
+  /* ============ V2 · RING-SØSKEN (echoes command ring) ============ */
+  .v2{position:relative;border-radius:14px;min-height:74px;display:flex;align-items:center;gap:14px;padding:0 16px;text-decoration:none;cursor:pointer;
+    background:linear-gradient(180deg,#14191b,#0e1213);border:1px solid var(--line-hi);box-shadow:0 12px 26px -16px rgba(0,0,0,.8)}
+  .v2 .ring{position:relative;width:54px;height:54px;flex-shrink:0}
+  .v2 .ring .well{position:absolute;inset:5px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#15201d,#0c1110)}
+  .v2 .ring svg{position:relative}
+  .v2 .ring .cc{position:absolute;inset:0;display:grid;place-items:center}
+  .v2 .ring .cc svg{width:20px;height:20px;stroke:var(--cyan);stroke-width:1.7;fill:none;filter:drop-shadow(0 0 4px var(--cyan))}
+  .v2 .tx{min-width:0;flex:1}
+  .v2 .tx .h{display:flex;align-items:center;gap:7px}
+  .v2 .tx .h b{font-size:14px;font-weight:700;color:#fff}
+  .v2 .live{color:#bdf3ff;border:1px solid rgba(0,194,224,.45);background:rgba(0,194,224,.12)}
+  .v2 .live::before{background:#22e6ff;box-shadow:0 0 6px #22e6ff}
+  .v2 .tx .s{font-size:10.5px;color:var(--on-dark-2);margin-top:2px}
+  .v2 .min{font-family:var(--mono);font-size:9px;color:var(--on-dark-3);text-align:right;line-height:1.3;white-space:nowrap}
+  .v2 .min b{display:block;font-size:15px;font-weight:600;color:var(--cyan)}
+
+  /* ============ V3 · KREM-RAD + CYAN MIKROFON ============ */
+  .v3{position:relative;overflow:hidden;border-radius:14px;min-height:74px;display:flex;align-items:center;gap:13px;padding:0 16px;text-decoration:none;cursor:pointer;
+    background:var(--cream);border:1px solid var(--cream-2);box-shadow:0 14px 30px -22px rgba(0,0,0,.8),inset 0 1px 0 #fff}
+  .v3 .micbox{position:relative;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;background:rgba(0,194,224,.16);border:1px solid rgba(0,194,224,.42);box-shadow:0 0 14px -3px rgba(0,194,224,.7)}
+  .v3 .micbox::after{content:'';position:absolute;inset:-3px;border-radius:12px;border:1px solid rgba(0,194,224,.6);animation:pulse 2.2s ease-out infinite}
+  .v3 .micbox svg{filter:drop-shadow(0 0 5px var(--cyan))}
+  .v3 .tx{min-width:0}
+  .v3 .tx .h{display:flex;align-items:center;gap:7px}
+  .v3 .tx .h b{font-size:14px;font-weight:700;color:var(--ink)}
+  .v3 .live{color:#0E7E90;border:1px solid rgba(0,194,224,.45);background:rgba(0,194,224,.1)}
+  .v3 .live::before{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
+  .v3 .tx .s{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+  .v3 .wave{display:flex;align-items:center;gap:2.5px;height:20px;margin-left:auto;flex-shrink:0}
+  .v3 .wave i{width:2.5px;height:18px;border-radius:2px;transform:scaleY(.3);transform-origin:center;background:linear-gradient(180deg,#15b8d6,var(--cyan));box-shadow:0 0 4px rgba(0,194,224,.5);animation:eq 1.1s ease-in-out infinite}
+
+  /* ============ V4 · HANDLINGS-TVILLING (cyan, mirrors lime CTA) ============ */
+  .v4{position:relative;overflow:hidden;border-radius:14px;display:flex;align-items:center;gap:12px;padding:13px 14px;text-decoration:none;cursor:pointer;
+    background:linear-gradient(125deg,#00C2E0,#1AA8C4 70%);box-shadow:0 12px 26px -14px rgba(0,194,224,.6)}
+  .v4::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 34%,rgba(255,255,255,.28) 50%,transparent 66%);transform:translateX(-120%);animation:sweep 4.5s ease-in-out infinite;pointer-events:none}
+  .v4 .tx{position:relative;z-index:1;min-width:0}
+  .v4 .tx .r{font-family:var(--mono);font-size:9px;color:#04323a;margin-bottom:3px;letter-spacing:.02em}
+  .v4 .tx .b{font-size:18px;font-weight:800;color:#042b32;line-height:1;letter-spacing:-.025em;display:flex;align-items:center;gap:7px}
+  .v4 .live{color:#04323a;border:1px solid rgba(4,43,50,.4);background:rgba(255,255,255,.35)}
+  .v4 .live::before{background:#063;box-shadow:0 0 5px #063}
+  .v4 .tx .m{font-size:9px;font-weight:700;color:#04323a;opacity:.7;margin-top:3px}
+  .v4 .go{position:relative;z-index:1;margin-left:auto;width:38px;height:38px;border-radius:50%;background:#042b32;display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 14px -2px rgba(4,43,50,.5)}
+  .v4 .go svg{width:19px;height:19px;stroke:#7df0ff;stroke-width:1.7;fill:none;filter:drop-shadow(0 0 4px #00C2E0)}
+
+  /* ============ V5 · BØLGE-HELT (waveform hero) ============ */
+  .v5{position:relative;overflow:hidden;isolation:isolate;border-radius:14px;min-height:78px;display:flex;align-items:center;gap:13px;padding:0 16px;text-decoration:none;cursor:pointer;
+    background:linear-gradient(180deg,#0f1a1c,#0b1113);border:1px solid rgba(0,194,224,.3);box-shadow:0 12px 26px -16px rgba(0,0,0,.8),0 0 24px -12px rgba(0,194,224,.5)}
+  .v5 .field{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;gap:3px;opacity:.5;mask-image:linear-gradient(90deg,transparent,#000 30%,#000 100%)}
+  .v5 .field i{width:2.5px;border-radius:2px;background:linear-gradient(180deg,#7df0ff,var(--cyan));transform-origin:center;transform:scaleY(.3);animation:eq 1.2s ease-in-out infinite}
+  .v5 .micbox{position:relative;z-index:2;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:rgba(0,194,224,.2);border:1px solid rgba(0,194,224,.45);box-shadow:0 0 16px -3px rgba(0,194,224,.8)}
+  .v5 .micbox::after{content:'';position:absolute;inset:-3px;border-radius:13px;border:1px solid rgba(0,194,224,.6);animation:pulse 2.2s ease-out infinite}
+  .v5 .micbox svg{filter:drop-shadow(0 0 6px var(--cyan))}
+  .v5 .tx{position:relative;z-index:2;min-width:0}
+  .v5 .tx .h{display:flex;align-items:center;gap:7px}
+  .v5 .tx .h b{font-size:14px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .v5 .live{color:#bdf3ff;border:1px solid rgba(0,194,224,.5);background:rgba(0,194,224,.18)}
+  .v5 .live::before{background:#22e6ff;box-shadow:0 0 6px #22e6ff}
+  .v5 .tx .s{font-size:10.5px;color:#cfe7ec;margin-top:2px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .v5 .min{position:relative;z-index:2;margin-left:auto;font-family:var(--mono);font-size:9px;color:#9df1ff;text-align:right;line-height:1.3;white-space:nowrap}
+  .v5 .min b{display:block;font-size:15px;font-weight:600;color:#bdf3ff}
+</style>
+</head>
+<body>
+<div class="row">
+
+  <!-- V1 -->
+  <div class="col">
+    <div class="cap">1 <b>· Glass-flis søsken</b></div>
+    <div class="note">Same dark glowing-glass material as the §Verktøy tiles — reads as a wide 7th tool. Cyan back-glyph + bloom + top-hairline.</div>
+    <div class="stage">
+      <div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="v1">
+        <div class="bg-glyph"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg></div>
+        <div class="micbox"><svg class="mic" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt</div></div>
+        <div class="stat"><b>34</b>min talt</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- V2 -->
+  <div class="col">
+    <div class="cap">2 <b>· Ring-søsken</b></div>
+    <div class="note">Echoes the command-card ring: a cyan ring = speaking minutes toward the daily talk-goal, mic in the centre. Ties the rail to the ring motif.</div>
+    <div class="stage">
+      <div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="v2">
+        <div class="ring">
+          <div class="well"></div>
+          <svg width="54" height="54" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="9"/><circle cx="50" cy="50" r="42" fill="none" stroke="url(#sg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="224 264" transform="rotate(-90 50 50)"/><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#7df0ff"/></linearGradient></defs></svg>
+          <div class="cc"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        </div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">34 / 40 min denne uka — øv høyt</div></div>
+        <div class="min"><b>85%</b>av målet</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- V3 -->
+  <div class="col">
+    <div class="cap">3 <b>· Krem-rad + cyan mikrofon</b></div>
+    <div class="note">Cream surface (matches the command card + stat pills, adds white to the lower half); the cyan glowing mic + waveform stay as the AI cue.</div>
+    <div class="stage">
+      <div class="ctx"><span>§ Verktøy</span><span class="ln"></span></div>
+      <a class="v3">
+        <div class="micbox"><svg class="mic" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt</div></div>
+        <div class="wave"><i style="animation-delay:0s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.28s"></i></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- V4 -->
+  <div class="col">
+    <div class="cap">4 <b>· Handlings-tvilling</b></div>
+    <div class="note">The cyan twin of the lime "Start dagens økt" CTA — solid cyan fill, dark ink, go-circle. Reads as the second prescribed action: speak.</div>
+    <div class="stage">
+      <div class="ctx"><span>§ Snakk</span><span class="ln"></span></div>
+      <a class="v4">
+        <div class="tx"><div class="r">Den beste måten å feste ordstillingen</div><div class="b">Snakk med Kari <span class="live">LIVE</span></div><div class="m">34 min talt · øv høyt nå</div></div>
+        <div class="go"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- V5 -->
+  <div class="col">
+    <div class="cap">5 <b>· Bølge-helt</b></div>
+    <div class="note">The AI voice IS the surface — a live waveform field spans the rail behind the mic + label. Boldest expression of "live conversation", still dark+cyan.</div>
+    <div class="stage">
+      <div class="ctx"><span>§ Snakk</span><span class="ln"></span></div>
+      <a class="v5">
+        <div class="field" id="field"></div>
+        <div class="micbox"><svg class="mic" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></div>
+        <div class="tx"><div class="h"><b>Snakk med Kari</b><span class="live">LIVE</span></div><div class="s">Øv ordstillingen høyt — i en samtale</div></div>
+        <div class="min"><b>34</b>min talt</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+<script>
+  // V5 waveform field
+  const f=document.getElementById('field');let h='';for(let i=0;i<34;i++){h+=`<i style="height:${22+Math.round(20*Math.abs(Math.sin(i*0.7)))}px;animation-delay:${(i%7)*0.13}s"></i>`}f.innerHTML=h;
+</script>
+</body>
+</html>
