@@ -171,9 +171,18 @@ export function DashboardV3() {
   // Sparkbars + ring for the command card
   const weekBars = wallView?.weekBars ?? []
   const sparkMax = Math.max(1, ...weekBars.map((b) => b.value))
-  // Progress ring fill — today's production vs the strongest day this week.
-  // Honest: a REAL ratio, never a fabricated daily goal (Rule 8). 264 ≈ 2πr (r=42).
-  const ringFill = wallView ? Math.min(1, wallView.heroCount / sparkMax) : 0
+  // Progress ring fill — a REAL ratio, never a fabricated goal (Rule 8). 264 ≈ 2πr (r=42).
+  //  • A1/A2/B1 hero = TODAY's prod+guided bricks → today vs the strongest day this week.
+  //  • B2 hero = CUMULATIVE lexical words activated → vocab coverage (activated / total);
+  //    using heroCount/sparkMax there (cumulative ÷ daily) would pin the ring to a false
+  //    100% and the "i dag" label would misread a lifetime count as today's work.
+  const ringLexical = wallView?.lexical // VocabCoverage | undefined — narrows below (no non-null assertion)
+  const ringIsLexical = Boolean(ringLexical)
+  const ringFill = !wallView
+    ? 0
+    : ringLexical
+      ? Math.min(1, ringLexical.activated / Math.max(1, ringLexical.total))
+      : Math.min(1, wallView.heroCount / sparkMax)
 
   // Honest session meta — only when a plan exists
   const sessionMeta = plan ? `${sessionItems.length} oppgaver · ca. ${sessionDuration} min` : ''
@@ -290,7 +299,7 @@ export function DashboardV3() {
                   fontSize: 9,
                   letterSpacing: '.13em',
                   textTransform: 'uppercase',
-                  color: 'var(--v3-ink-3)',
+                  color: '#5a6052', // darker than --v3-ink-3 so 9px clears WCAG AA on cream
                   fontWeight: 500,
                 }}
               >
@@ -349,7 +358,8 @@ export function DashboardV3() {
                       fontWeight: 500,
                       letterSpacing: '.04em',
                       textTransform: 'uppercase',
-                      color: diagnosisHighlight.confidenceTier === 'strong' ? '#0E8C73' : '#9a6a12',
+                      // darkened for WCAG AA (4.5:1) at 9px on the cream card
+                      color: diagnosisHighlight.confidenceTier === 'strong' ? '#0a6e5b' : '#835a0e',
                     }}
                   >
                     <span
@@ -367,7 +377,7 @@ export function DashboardV3() {
                 <Link
                   href="/progress"
                   className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--v3-cyan)]"
-                  style={{ fontSize: 9.5, fontWeight: 600, color: '#0E8FA3', whiteSpace: 'nowrap', textDecoration: 'none', marginLeft: 'auto' }}
+                  style={{ fontSize: 9.5, fontWeight: 600, color: '#0b6c7a', whiteSpace: 'nowrap', textDecoration: 'none', marginLeft: 'auto' }}
                 >
                   Se hele bildet ›
                 </Link>
@@ -386,7 +396,7 @@ export function DashboardV3() {
               }}
             >
               <div className="flex items-center" style={{ gap: 14 }}>
-                {/* Ring — today's production vs strongest day this week */}
+                {/* Ring — today vs strongest day (A1/A2/B1) or vocab coverage (B2) */}
                 <div style={{ position: 'relative', flexShrink: 0, width: 62, height: 62 }}>
                   <svg width="62" height="62" viewBox="0 0 100 100" aria-hidden="true">
                     <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.1)" strokeWidth="9" />
@@ -397,7 +407,9 @@ export function DashboardV3() {
                       fill="none"
                       stroke="url(#v3ring)"
                       strokeWidth="9"
-                      strokeLinecap="round"
+                      // round cap only when there's real fill — a 0-length round dash
+                      // paints a misleading dot at 12 o'clock on a cold start
+                      strokeLinecap={ringFill > 0 ? 'round' : 'butt'}
                       strokeDasharray={`${(ringFill * 264).toFixed(1)} 264`}
                       transform="rotate(-90 50 50)"
                       style={{ filter: 'drop-shadow(0 0 5px rgba(0,194,224,.6))', transition: 'stroke-dasharray .6s ease' }}
@@ -413,7 +425,9 @@ export function DashboardV3() {
                     <b className="tabular-nums" style={{ fontFamily: 'var(--v3-mono)', fontSize: 19, fontWeight: 600, color: '#fff', lineHeight: 1 }}>
                       {wallView?.heroCount ?? '—'}
                     </b>
-                    <small style={{ fontFamily: 'var(--v3-mono)', fontSize: 7, color: 'var(--v3-on-dark-3)', marginTop: 2 }}>i dag</small>
+                    <small style={{ fontFamily: 'var(--v3-mono)', fontSize: 7, color: 'var(--v3-on-dark-3)', marginTop: 2 }}>
+                      {ringIsLexical ? 'totalt' : 'i dag'}
+                    </small>
                   </div>
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--v3-on-dark-2)', lineHeight: 1.35 }}>
