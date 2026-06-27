@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="no"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --lime:#C8FF20; --ink:#0E1207; --cream:#F1F0E8; --cream-2:#E7E6DC;
+    --line:#1D2325; --on-dark:#E8ECE6; --on-dark-2:#9BA39C; --on-dark-3:#5C6660;
+    --cyan:#00C2E0; --cyan-lit:#d6fbff; --cyan-glow:rgba(0,194,224,.33);
+    --mono:'IBM Plex Mono',monospace; --bg:#07090A;
+  }
+  body{background:#020304;font-family:'Schibsted Grotesk',sans-serif;padding:28px;display:flex;flex-wrap:wrap;gap:22px;justify-content:center;align-items:flex-start}
+  .col{display:flex;flex-direction:column;gap:11px;align-items:center}
+  .device{width:375px;background:radial-gradient(360px 280px at 84% 18%,#0d1310 0%,#07090a00 70%),var(--bg);
+    border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:14px 12px;color:var(--on-dark)}
+  .vtag{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:#7C8275}
+  .vtag b{color:var(--lime);font-weight:600}
+  .cap{font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:#646b62;max-width:360px;text-align:center;line-height:1.5}
+  /* grid hint above each rail to convey placement */
+  .gridhint{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;opacity:.5}
+  .gh{height:30px;border-radius:9px;background:linear-gradient(180deg,#14191b,#12171a);border:1px solid rgba(255,255,255,.1)}
+  .led{display:flex;align-items:center;gap:7px;height:12px;margin:2px 0 6px}
+  .led .s{font-family:var(--mono);font-size:10px;color:var(--lime)}
+  .led .t{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-2)}
+  .led .line{flex:1;height:1px;background:var(--line)}
+  /* AI pill — shared idea, restyled per variant */
+  .ai{font-family:var(--mono);font-size:7px;font-weight:600;letter-spacing:.1em;display:inline-flex;align-items:center;gap:4px}
+  .micsvg{stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  .wv{display:flex;align-items:center;gap:2.5px;height:18px}
+  .wv i{width:2.5px;height:16px;border-radius:2px;transform-origin:center;animation:eq 1.2s ease-in-out infinite}
+</style></head>
+<body>
+
+<!-- V1 SYSTEM GLASS (cyan) -->
+<div class="col">
+  <div class="vtag"><b>1</b> · System glass — a 7th tool</div>
+  <div class="device">
+    <div class="led"><span class="s">§</span><span class="t">Verktøy</span><span class="line"></span></div>
+    <div class="gridhint"><div class="gh"></div><div class="gh"></div><div class="gh"></div></div>
+    <a style="position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;height:60px;padding:0 13px;border-radius:13px;text-decoration:none;
+      background:linear-gradient(180deg,#14191b 0%,#12171a 46%,color-mix(in srgb,var(--cyan) 24%,#12171a) 100%);border:1px solid rgba(255,255,255,.13);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)">
+      <span style="position:absolute;inset:0;background:radial-gradient(120px 90px at 14% 50%,var(--cyan-glow),transparent 70%)"></span>
+      <span style="position:absolute;top:0;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.55"></span>
+      <span style="position:relative;display:grid;place-items:center;width:30px;height:30px;flex-shrink:0">
+        <svg width="26" height="26" viewBox="0 0 24 24" stroke="var(--cyan)" class="micsvg" style="filter:drop-shadow(0 0 6px var(--cyan))"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg>
+      </span>
+      <span style="position:relative;min-width:0">
+        <span style="display:flex;align-items:center;gap:7px"><span style="font-size:13px;font-weight:600;color:var(--cyan-lit)">Snakk med Kari</span><span class="ai" style="color:#001316;background:var(--cyan);padding:1px 6px;border-radius:4px">AI</span></span>
+        <span style="display:block;font-family:var(--mono);font-size:8px;color:#cfd6cd;opacity:.78;margin-top:2px">Øv ordstilling høyt — i en samtale</span>
+      </span>
+      <span class="wv" style="position:relative;margin-left:auto;flex-shrink:0">
+        <i style="background:var(--cyan);animation-delay:0s"></i><i style="background:var(--cyan);animation-delay:.18s"></i><i style="background:var(--cyan);animation-delay:.36s"></i><i style="background:var(--cyan);animation-delay:.1s"></i>
+      </span>
+    </a>
+  </div>
+  <div class="cap">Same dark-glass + tint + glow recipe as the tools above — reads as one system, a wide "7th tool". Cyan = the Snakk accent.</div>
+</div>
+
+<!-- V2 CREAM COMPANION -->
+<div class="col">
+  <div class="vtag"><b>2</b> · Cream companion</div>
+  <div class="device">
+    <div class="led"><span class="s">§</span><span class="t">Verktøy</span><span class="line"></span></div>
+    <div class="gridhint"><div class="gh"></div><div class="gh"></div><div class="gh"></div></div>
+    <a style="display:flex;align-items:center;gap:12px;height:60px;padding:0 13px;border-radius:13px;text-decoration:none;
+      background:var(--cream);border:1px solid var(--cream-2);box-shadow:0 16px 34px -24px rgba(0,0,0,.8)">
+      <span style="display:grid;place-items:center;width:36px;height:36px;border-radius:9px;flex-shrink:0;background:linear-gradient(160deg,#15323b,#0d2129);border:1px solid rgba(0,194,224,.4)">
+        <svg width="19" height="19" viewBox="0 0 24 24" stroke="var(--cyan)" class="micsvg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg>
+      </span>
+      <span style="min-width:0">
+        <span style="display:flex;align-items:center;gap:7px"><span style="font-size:13px;font-weight:700;color:var(--ink)">Snakk med Kari</span><span class="ai" style="color:#0A6B7E;background:#E2EFF2;border:1px solid #C5DDE3;padding:1px 6px;border-radius:999px">AI</span></span>
+        <span style="display:block;font-size:10px;color:#5C6660;margin-top:2px">Øv ordstilling høyt — i en samtale</span>
+      </span>
+      <span style="margin-left:auto;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);flex-shrink:0">
+        <svg width="15" height="15" viewBox="0 0 24 24" stroke="var(--cream)" class="micsvg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </div>
+  <div class="cap">Cream like the command card — pairs with it and balances the dark grid. Dark mic tile + quiet AI pill. Editorial, warm.</div>
+</div>
+
+<!-- V3 LIME PRIMARY ACTION -->
+<div class="col">
+  <div class="vtag"><b>3</b> · Lime primary-action</div>
+  <div class="device">
+    <div class="led"><span class="s">§</span><span class="t">Verktøy</span><span class="line"></span></div>
+    <div class="gridhint"><div class="gh"></div><div class="gh"></div><div class="gh"></div></div>
+    <a style="position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;height:60px;padding:0 13px;border-radius:13px;text-decoration:none;
+      background:linear-gradient(180deg,#14191b,#0f1416);border:1px solid rgba(200,255,32,.3);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)">
+      <span style="position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:var(--lime)"></span>
+      <span style="display:grid;place-items:center;width:34px;height:34px;border-radius:9px;flex-shrink:0;background:var(--lime)">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="var(--ink)" class="micsvg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg>
+      </span>
+      <span style="min-width:0">
+        <span style="display:flex;align-items:center;gap:7px"><span style="font-size:13px;font-weight:600;color:#fff">Snakk med Kari</span><span class="ai" style="color:#2c3a06;background:var(--lime);padding:1px 6px;border-radius:4px">AI</span></span>
+        <span style="display:block;font-family:var(--mono);font-size:8px;color:var(--on-dark-2);margin-top:2px">Den eneste veien til å snakke — i en samtale</span>
+      </span>
+      <span style="margin-left:auto;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--lime);flex-shrink:0">
+        <svg width="15" height="15" viewBox="0 0 24 24" stroke="var(--ink)" class="micsvg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </div>
+  <div class="cap">Treated as a key action — lime edge + lime mic + arrow. Speaking is the North Star, so it gets the action colour. Most "do this".</div>
+</div>
+
+<!-- V4 VOICE-FORWARD -->
+<div class="col">
+  <div class="vtag"><b>4</b> · Voice-forward</div>
+  <div class="device">
+    <div class="led"><span class="s">§</span><span class="t">Verktøy</span><span class="line"></span></div>
+    <div class="gridhint"><div class="gh"></div><div class="gh"></div><div class="gh"></div></div>
+    <a style="position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;height:64px;padding:0 15px;border-radius:13px;text-decoration:none;
+      background:linear-gradient(110deg,#0c2026 0%,#0f2d35 55%,#103a44 100%);border:1px solid rgba(0,194,224,.28);box-shadow:0 12px 26px -16px rgba(0,0,0,.8)">
+      <span style="position:relative;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;background:radial-gradient(circle,var(--cyan),#0098B8);box-shadow:0 0 16px -2px var(--cyan-glow)">
+        <svg width="17" height="17" viewBox="0 0 24 24" stroke="#001316" class="micsvg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg>
+      </span>
+      <span style="min-width:0;flex-shrink:0">
+        <span style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:700;color:var(--cyan-lit)">Snakk med Kari</span><span class="ai" style="color:var(--cyan);border:1px solid rgba(0,194,224,.5);padding:1px 6px;border-radius:999px">● AI</span></span>
+        <span style="display:block;font-family:var(--mono);font-size:8px;color:#9fc6cf;margin-top:2px">Øv høyt</span>
+      </span>
+      <span class="wv" style="margin-left:auto;height:26px;gap:3px;flex-shrink:0">
+        <i style="background:var(--cyan);height:20px;animation-delay:0s"></i><i style="background:var(--cyan);height:24px;animation-delay:.15s"></i><i style="background:var(--cyan);height:14px;animation-delay:.3s"></i><i style="background:var(--cyan);height:26px;animation-delay:.1s"></i><i style="background:var(--cyan);height:18px;animation-delay:.24s"></i><i style="background:var(--cyan);height:22px;animation-delay:.05s"></i><i style="background:var(--cyan);height:12px;animation-delay:.34s"></i>
+      </span>
+    </a>
+  </div>
+  <div class="cap">The live AI voice is the hero — a big animated waveform fills the right. Glowing cyan mic. Says "this thing talks back". Most alive.</div>
+</div>
+
+<!-- V5 DUO SPLIT -->
+<div class="col">
+  <div class="vtag"><b>5</b> · Duo split (info → act)</div>
+  <div class="device">
+    <div class="led"><span class="s">§</span><span class="t">Verktøy</span><span class="line"></span></div>
+    <div class="gridhint"><div class="gh"></div><div class="gh"></div><div class="gh"></div></div>
+    <a style="display:flex;align-items:stretch;height:60px;border-radius:13px;overflow:hidden;text-decoration:none;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)">
+      <span style="flex:1;display:flex;align-items:center;gap:11px;padding:0 13px;background:linear-gradient(180deg,#14191b,#0f1416);min-width:0">
+        <span style="display:grid;place-items:center;width:30px;height:30px;flex-shrink:0">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="var(--cyan)" class="micsvg" style="filter:drop-shadow(0 0 5px var(--cyan-glow))"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg>
+        </span>
+        <span style="min-width:0">
+          <span style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600;color:#fff">Snakk med Kari</span><span class="ai" style="color:#001316;background:var(--cyan);padding:1px 5px;border-radius:4px">AI</span></span>
+          <span style="display:block;font-family:var(--mono);font-size:8px;color:var(--on-dark-2);margin-top:2px">34 min talt</span>
+        </span>
+      </span>
+      <span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:84px;flex-shrink:0;background:linear-gradient(160deg,#1AC4E4,#0098B8);color:#001316">
+        <svg width="18" height="18" viewBox="0 0 24 24" stroke="#001316" class="micsvg"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span style="font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.04em">SNAKK</span>
+      </span>
+    </a>
+  </div>
+  <div class="cap">Echoes the command card's status→act split: dark glass info + a solid cyan action panel ("SNAKK →"). Clearest call-to-act.</div>
+</div>
+
+</body></html>

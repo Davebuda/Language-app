@@ -854,3 +854,10 @@
      canonical project mono stack without a hardcoded string.  */
   --v3-mono: var(--font-mono, 'IBM Plex Mono', ui-monospace, monospace);
 }
+
+/* Snakk-rail equalizer — the system-glass Kari rail (DashboardV3).
+   Referenced by inline animation styles. Honours reduced-motion. */
+@keyframes v3kariEq { 0%,100% { transform: scaleY(.3) } 50% { transform: scaleY(1) } }
+@media (prefers-reduced-motion: reduce) {
+  .v3-kari-eq { animation: none !important }
+}

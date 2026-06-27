@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="no"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --v3-lime:#C8FF20; --v3-ink:#0E1207; --v3-ink-2:#474C3F; --v3-ink-3:#7C8275;
+    --v3-cream:#F1F0E8; --v3-cream-2:#E7E6DC;
+    --v3-raised:#101415; --v3-line:#1D2325;
+    --v3-on-dark:#E8ECE6; --v3-on-dark-2:#9BA39C; --v3-on-dark-3:#5C6660;
+    --v3-cyan:#00C2E0; --v3-teal:#2BC9A0; --v3-amber:#F2952E; --v3-lime-lit:#eaffb3;
+    --v3-mono:'IBM Plex Mono',monospace; --v3-bg:#07090A;
+  }
+  body{background:#020304;font-family:'Schibsted Grotesk',sans-serif;padding:28px;display:flex;justify-content:center}
+  .device{width:375px;background:radial-gradient(360px 280px at 84% 18%,#0d1310 0%,#07090a00 70%),var(--v3-bg);
+    border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:9px 12px;display:flex;flex-direction:column;gap:8px;color:var(--v3-on-dark)}
+  .led{display:flex;align-items:center;gap:7px;height:12px;margin-top:4px}
+  .led .s{font-family:var(--v3-mono);font-size:10px;color:var(--v3-lime)}
+  .led .t{font-family:var(--v3-mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--v3-on-dark-2)}
+  .led .line{flex:1;height:1px;background:var(--v3-line)}
+  .led .meta{font-family:var(--v3-mono);font-size:9px;color:var(--v3-on-dark-3)}
+</style></head>
+<body>
+<div class="device">
+
+  <!-- ID ROW -->
+  <div style="display:flex;align-items:center;gap:9px;height:34px">
+    <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,#1d2620,#0f1512);border:1px solid rgba(255,255,255,.09);display:grid;place-items:center;font-weight:700;font-size:15px;color:var(--v3-lime-lit)">D</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="font-size:14px;font-weight:600;line-height:1;color:var(--v3-on-dark)">Dave</div>
+      <div style="font-family:var(--v3-mono);font-size:9px;letter-spacing:.07em;color:var(--v3-on-dark-3)">B1 · DAG 14 PÅ RAD <b style="color:var(--v3-amber);font-weight:500">●</b></div>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-family:var(--v3-mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;color:var(--v3-cyan);padding:5px 11px;border:1px solid rgba(0,194,224,.42);border-radius:999px;background:rgba(0,194,224,.09)"><span style="width:6px;height:6px;border-radius:50%;background:var(--v3-cyan);box-shadow:0 0 7px var(--v3-cyan)"></span>SKY-AI</div>
+  </div>
+
+  <!-- CREAM COMMAND CARD -->
+  <div style="border-radius:16px;overflow:hidden;background:var(--v3-cream);color:var(--v3-ink);box-shadow:0 18px 40px -24px rgba(0,0,0,.9)">
+    <div style="padding:14px 15px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
+        <span style="font-family:var(--v3-mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--v3-ink-3);font-weight:500">Dagens mål · produksjon</span>
+        <span style="font-family:var(--v3-mono);font-size:9px;font-weight:600;color:var(--v3-ink);border:1px solid var(--v3-cream-2);background:#fff;padding:2px 8px;border-radius:999px">B1</span>
+      </div>
+      <div style="font-size:20px;font-weight:800;color:var(--v3-ink);letter-spacing:-.025em;line-height:1.05">Produser leddsetninger</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;font-family:var(--v3-mono);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#2c3a06;background:var(--v3-lime);padding:3px 9px;border-radius:6px">Fokus · ordstilling</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--v3-mono);font-size:9px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:#0E8C73"><span style="width:5px;height:5px;border-radius:50%;background:var(--v3-teal)"></span>Sikker diagnose</span>
+        <a style="font-size:9.5px;font-weight:600;color:#0E8FA3;white-space:nowrap;text-decoration:none;margin-left:auto">Se hele bildet ›</a>
+      </div>
+      <!-- dark stats zone -->
+      <div style="background:linear-gradient(180deg,#171d1f,#0f1416);border:1px solid rgba(255,255,255,.09);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);margin-top:13px;padding:13px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="position:relative;flex-shrink:0;width:62px;height:62px">
+            <svg width="62" height="62" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#rg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="158.4 264" transform="rotate(-90 50 50)" style="filter:drop-shadow(0 0 5px rgba(0,194,224,.6))"/>
+              <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <b style="font-family:var(--v3-mono);font-size:19px;font-weight:600;color:#fff;line-height:1">9</b>
+              <small style="font-family:var(--v3-mono);font-size:7px;color:var(--v3-on-dark-3);margin-top:2px">i dag</small>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--v3-on-dark-2);line-height:1.35"><b style="color:#fff;font-weight:700">9 setninger produsert</b> · sterkeste dag 15</div>
+        </div>
+        <div style="display:flex;margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.08)">
+          <div style="flex:1;text-align:center"><div style="font-family:var(--v3-mono);font-size:15px;font-weight:600;color:#fff;line-height:1">14</div><div style="font-family:var(--v3-mono);font-size:7.5px;color:var(--v3-on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px">Rekke dgr</div></div>
+          <span style="width:1px;align-self:stretch;background:rgba(255,255,255,.1);margin:2px 0"></span>
+          <div style="flex:1;text-align:center"><div style="font-family:var(--v3-mono);font-size:15px;font-weight:600;color:#fff;line-height:1">34</div><div style="font-family:var(--v3-mono);font-size:7.5px;color:var(--v3-on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px">Min talt</div></div>
+          <span style="width:1px;align-self:stretch;background:rgba(255,255,255,.1);margin:2px 0"></span>
+          <div style="flex:1;text-align:center"><div style="font-family:var(--v3-mono);font-size:15px;font-weight:600;color:var(--v3-cyan);line-height:1">83%</div><div style="font-family:var(--v3-mono);font-size:7.5px;color:var(--v3-on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px">Treff</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- lime act -->
+    <a style="display:flex;align-items:center;gap:10px;margin:0 13px 14px;border-radius:12px;background:var(--v3-lime);padding:12px 13px;text-decoration:none">
+      <span style="display:flex;flex-direction:column;text-align:left;min-width:0">
+        <span style="font-family:var(--v3-mono);font-size:9px;letter-spacing:.01em;color:rgba(10,18,6,.62);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Starter på «fordi»-feilen — grunnårsaken</span>
+        <strong style="font-size:18px;font-weight:800;color:var(--v3-ink);line-height:1;letter-spacing:-.025em">Start dagens økt</strong>
+        <span style="font-size:9px;font-weight:700;color:rgba(10,18,6,.6);margin-top:3px">27 oppgaver · ca. 21 min</span>
+      </span>
+      <span style="margin-left:auto;width:34px;height:34px;border-radius:50%;background:rgba(10,18,6,.92);display:grid;place-items:center;flex-shrink:0">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <!-- §DAGENS PLAN — 4b recipe bar -->
+  <div style="margin-top:2px">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div style="display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px">
+      <div style="flex:11 1 0;min-width:0;min-height:60px;padding:9px 8px;background:var(--v3-lime);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="min-width:0"><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;color:#3c4a08;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Remediering</div><div style="font-family:var(--v3-mono);font-size:7px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:2px;color:#55670f">Grunnårsak</div></div>
+        <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:var(--v3-ink)">11</div>
+      </div>
+      <div style="flex:10 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#41531c;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+        <div><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#C7E095">Repetisjon</div></div>
+        <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:#E6F5C0">10</div>
+      </div>
+      <div style="flex:4 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#2f3c1b;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+        <div><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#B0CB80">Nytt</div></div>
+        <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:#D4EAA1">4</div>
+      </div>
+      <div style="flex:2 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#222c1b;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+        <div><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#95AE6A">Fletting</div></div>
+        <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:#B9D088">2</div>
+      </div>
+    </div>
+    <div style="font-family:var(--v3-mono);font-size:8px;color:var(--v3-on-dark-3);margin-top:8px;letter-spacing:.04em">Resept <b style="color:var(--v3-on-dark-2);font-weight:600">41 / 37 / 15 / 7</b> · leder med ordstilling</div>
+  </div>
+
+</div>
+</body></html>

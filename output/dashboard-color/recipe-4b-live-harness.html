@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="no"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --v3-lime:#C8FF20; --v3-ink:#0E1207; --v3-raised:#101415; --v3-line:#1D2325;
+    --v3-on-dark:#E8ECE6; --v3-on-dark-2:#9BA39C; --v3-on-dark-3:#5C6660;
+    --v3-mono:'IBM Plex Mono',monospace; --v3-bg:#07090A;
+  }
+  body{background:#020304;font-family:'Schibsted Grotesk',sans-serif;padding:30px;display:flex;justify-content:center}
+  .device{width:375px;background:radial-gradient(360px 280px at 84% 18%,#0d1310 0%,#07090a00 70%),var(--v3-bg);
+    border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:14px 13px}
+  /* Led */
+  .led{display:flex;align-items:center;gap:7px;height:12px}
+  .led .s{font-family:var(--v3-mono);font-size:10px;color:var(--v3-lime)}
+  .led .t{font-family:var(--v3-mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--v3-on-dark-2)}
+  .led .line{flex:1;height:1px;background:var(--v3-line)}
+  .led .meta{font-family:var(--v3-mono);font-size:9px;color:var(--v3-on-dark-3)}
+</style></head>
+<body>
+<div class="device">
+  <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+
+  <!-- segmented bar — exact new JSX, real counts 11/10/4/2 -->
+  <div style="display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px">
+    <!-- lead (step0) -->
+    <div style="flex:11 1 0;min-width:0;min-height:60px;padding:9px 8px;background:var(--v3-lime);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="min-width:0">
+        <div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;color:#3c4a08;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Remediering</div>
+        <div style="font-family:var(--v3-mono);font-size:7px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:2px;color:#55670f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Grunnårsak</div>
+      </div>
+      <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:var(--v3-ink)">11</div>
+    </div>
+    <!-- rev (step1) -->
+    <div style="flex:10 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#41531c;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="min-width:0"><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;color:#C7E095;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Repetisjon</div></div>
+      <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:#E6F5C0">10</div>
+    </div>
+    <!-- new (step2) -->
+    <div style="flex:4 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#2f3c1b;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="min-width:0"><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;color:#B0CB80;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nytt</div></div>
+      <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:#D4EAA1">4</div>
+    </div>
+    <!-- int (step3) -->
+    <div style="flex:2 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#222c1b;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="min-width:0"><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;color:#95AE6A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Fletting</div></div>
+      <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;line-height:1;color:#B9D088">2</div>
+    </div>
+  </div>
+
+  <div style="font-family:var(--v3-mono);font-size:8px;color:var(--v3-on-dark-3);margin-top:8px;letter-spacing:.04em">Resept <b style="color:var(--v3-on-dark-2);font-weight:600">41 / 37 / 15 / 7</b> · leder med ordstilling</div>
+</div>
+</body></html>

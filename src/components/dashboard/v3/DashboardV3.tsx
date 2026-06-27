@@ -13,12 +13,11 @@
  *
  * Sections (top → bottom, one mobile viewport):
  *   Identity row  — avatar · name · mono level/streak · lime AI pill
- *   I DAG         — merged dark command card (Fanget lime pill · bright-lime
- *                   hero count · white FIKSET pill · lime "Start dagens økt" act)
- *   §VERKTØY      — compact "§" header + 2-col grid of 6 rail GlassTiles
- *   §DAGENS PLAN  — compact header + recipe distribution bar + 4 numbered lanes
- *   STATUS        — cream 3-col strip (Rekke / Min talt / Treff)
- *   Snakk rail    — cyan glass CTA → /conversation
+ *   I DAG         — cream command card (objective title · diagnosis focus row ·
+ *                   dark stats zone with progress ring + 3 stats · lime act)
+ *   §VERKTØY      — compact "§" header + 3-col grid of 6 rail GlassTiles
+ *   Snakk rail    — system-glass "7th tool" CTA → /conversation (labelled AI)
+ *   §DAGENS PLAN  — compact header + single-hue "Instrument" recipe bar (4b)
  *   BottomNav     — unchanged existing component
  *
  * Layout tokens from .dash-v3 in globals.css; wraps the root element in
@@ -136,21 +135,16 @@ export function DashboardV3() {
       )
     : null
 
-  // BreakerStory — identical derivation to dashboard/page.tsx
-  const { breakerVerdict, fixedLabels } = useMemo<{
-    breakerVerdict: BreakerVerdict | null
-    fixedLabels: string[]
-  }>(() => {
-    if (!fingerprint) return { breakerVerdict: null, fixedLabels: [] }
-    const { active, retired } = deriveBreakerStory(fingerprint, getCumulativeConcepts(levelLabel))
+  // BreakerStory — the active sentence-breaker gates the cream card's focus row
+  // + "Se hele bildet". (The retired "Fikset" proof lives in /progress now — the
+  // cream command card follows the mockup, which leads with the active focus.)
+  const breakerVerdict = useMemo<BreakerVerdict | null>(() => {
+    if (!fingerprint) return null
+    const { active } = deriveBreakerStory(fingerprint, getCumulativeConcepts(levelLabel))
     const top = active[0]
-    return {
-      breakerVerdict: top
-        ? { label: top.label, thisWeek: top.thisWeek, priorWeek: top.priorWeek, trend: top.trend }
-        : null,
-      // Retired ("Fikset") breakers — real past struggle, now mastered. Up to 2.
-      fixedLabels: retired.slice(0, 2).map((row) => row.label),
-    }
+    return top
+      ? { label: top.label, thisWeek: top.thisWeek, priorWeek: top.priorWeek, trend: top.trend }
+      : null
   }, [fingerprint, levelLabel])
 
   // ── Session recipe — derived from actual plan item purposes (honest) ───────
@@ -174,9 +168,12 @@ export function DashboardV3() {
   // Lær tile: live item count when plan is available
   const lerSubtitle = plan ? `Dagens økt · ${sessionItems.length} oppg` : 'Laster...'
 
-  // Sparkbars for the command card
+  // Sparkbars + ring for the command card
   const weekBars = wallView?.weekBars ?? []
   const sparkMax = Math.max(1, ...weekBars.map((b) => b.value))
+  // Progress ring fill — today's production vs the strongest day this week.
+  // Honest: a REAL ratio, never a fabricated daily goal (Rule 8). 264 ≈ 2πr (r=42).
+  const ringFill = wallView ? Math.min(1, wallView.heroCount / sparkMax) : 0
 
   // Honest session meta — only when a plan exists
   const sessionMeta = plan ? `${sessionItems.length} oppgaver · ca. ${sessionDuration} min` : ''
@@ -270,29 +267,31 @@ export function DashboardV3() {
           </div>
         </div>
 
-        {/* ══ I DAG — merged dark command card ═══════════════════════════════ */}
+        {/* ══ I DAG — cream command card (mockup direction) ══════════════════
+            Cream shell → objective title → diagnosis focus row → dark stats
+            zone (progress ring + 3 REAL stats) → inset lime act. All values
+            real; the ring is today-vs-strongest-day, not a fabricated goal. */}
         <div
           style={{
-            position: 'relative',
             borderRadius: 16,
             overflow: 'hidden',
             flexShrink: 0,
-            background: 'linear-gradient(180deg,#13181a,#0d1112)',
-            border: '1px solid var(--v3-line-2)',
-            boxShadow: '0 16px 32px -18px rgba(0,0,0,.85)',
+            background: 'var(--v3-cream)',
+            color: 'var(--v3-ink)',
+            boxShadow: '0 18px 40px -24px rgba(0,0,0,.9)',
           }}
         >
-          <div style={{ padding: '11px 13px 12px' }}>
+          <div style={{ padding: '14px 15px' }}>
             {/* Kicker + level chip */}
-            <div className="flex items-center justify-between" style={{ gap: 8, marginBottom: 9 }}>
+            <div className="flex items-center justify-between" style={{ gap: 8, marginBottom: 8 }}>
               <span
                 style={{
                   fontFamily: 'var(--v3-mono)',
                   fontSize: 9,
                   letterSpacing: '.13em',
                   textTransform: 'uppercase',
-                  color: '#aee632',
-                  fontWeight: 600,
+                  color: 'var(--v3-ink-3)',
+                  fontWeight: 500,
                 }}
               >
                 {wallView?.objectiveKicker ?? 'Dagens mål'}
@@ -300,13 +299,13 @@ export function DashboardV3() {
               <span
                 style={{
                   fontFamily: 'var(--v3-mono)',
-                  fontSize: 8,
-                  letterSpacing: '.06em',
-                  color: 'var(--v3-lime)',
-                  border: '1px solid rgba(200,255,32,.42)',
-                  background: 'rgba(200,255,32,.10)',
-                  padding: '2px 7px',
-                  borderRadius: 6,
+                  fontSize: 9,
+                  fontWeight: 600,
+                  color: 'var(--v3-ink)',
+                  border: '1px solid var(--v3-cream-2)',
+                  background: '#fff',
+                  padding: '2px 8px',
+                  borderRadius: 999,
                   flexShrink: 0,
                 }}
               >
@@ -314,152 +313,139 @@ export function DashboardV3() {
               </span>
             </div>
 
-            {/* Fanget pill + "Se hele bildet" — gated on a real breaker (cold-start hides) */}
-            {breakerVerdict ? (
-              <div className="flex items-center" style={{ gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-                <span
-                  className="inline-flex items-center"
-                  style={{
-                    gap: 6,
-                    fontSize: 11.5,
-                    fontWeight: 700,
-                    color: 'var(--v3-coral)',
-                    background: 'rgba(255,106,85,.12)',
-                    border: '1px solid rgba(255,106,85,.42)',
-                    padding: '5px 11px',
-                    borderRadius: 8,
-                  }}
-                >
+            {/* Objective title */}
+            <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--v3-ink)', letterSpacing: '-.025em', lineHeight: 1.05 }}>
+              {wallView?.objectiveTitle ?? 'Bygg setninger'}
+            </div>
+
+            {/* Focus row — diagnosis focus chip + confidence + see-all (gated on real diagnosis) */}
+            {diagnosisHighlight || breakerVerdict ? (
+              <div className="flex items-center" style={{ gap: 10, marginTop: 9, flexWrap: 'wrap' }}>
+                {remediationFocusLabel ? (
                   <span
-                    aria-hidden="true"
-                    style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--v3-coral)', boxShadow: '0 0 6px var(--v3-coral)' }}
-                  />
-                  Fanget · {breakerVerdict.label}
-                </span>
+                    className="inline-flex items-center"
+                    style={{
+                      fontFamily: 'var(--v3-mono)',
+                      fontSize: 9,
+                      fontWeight: 600,
+                      letterSpacing: '.06em',
+                      textTransform: 'uppercase',
+                      color: '#2c3a06',
+                      background: 'var(--v3-lime)',
+                      padding: '3px 9px',
+                      borderRadius: 6,
+                    }}
+                  >
+                    Fokus · {remediationFocusLabel}
+                  </span>
+                ) : null}
+                {diagnosisHighlight ? (
+                  <span
+                    className="inline-flex items-center"
+                    style={{
+                      gap: 5,
+                      fontFamily: 'var(--v3-mono)',
+                      fontSize: 9,
+                      fontWeight: 500,
+                      letterSpacing: '.04em',
+                      textTransform: 'uppercase',
+                      color: diagnosisHighlight.confidenceTier === 'strong' ? '#0E8C73' : '#9a6a12',
+                    }}
+                  >
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        width: 5,
+                        height: 5,
+                        borderRadius: '50%',
+                        background: diagnosisHighlight.confidenceTier === 'strong' ? 'var(--v3-teal)' : 'var(--v3-amber)',
+                      }}
+                    />
+                    {diagnosisHighlight.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'}
+                  </span>
+                ) : null}
                 <Link
                   href="/progress"
                   className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--v3-cyan)]"
-                  style={{ fontSize: 9.5, fontWeight: 600, color: '#27d6f0', whiteSpace: 'nowrap', textDecoration: 'none' }}
+                  style={{ fontSize: 9.5, fontWeight: 600, color: '#0E8FA3', whiteSpace: 'nowrap', textDecoration: 'none', marginLeft: 'auto' }}
                 >
                   Se hele bildet ›
                 </Link>
               </div>
             ) : null}
 
-            {/* Signal line — gated on a structured diagnosis highlight */}
-            {diagnosisHighlight ? (
-              <div
-                style={{
-                  fontFamily: 'var(--v3-mono)',
-                  fontSize: 8.5,
-                  letterSpacing: '.07em',
-                  textTransform: 'uppercase',
-                  color: 'var(--v3-on-dark-3)',
-                  marginBottom: 10,
-                }}
-              >
-                <span
-                  style={{
-                    color: diagnosisHighlight.confidenceTier === 'strong' ? 'var(--v3-teal)' : 'var(--v3-amber)',
-                    fontWeight: 600,
-                  }}
-                >
-                  {diagnosisHighlight.confidenceTier === 'strong' ? 'Sikker diagnose' : 'Tidlig signal'}
-                </span>
-                {' · Fokus: '}{diagnosisHighlight.focusLabel}
-              </div>
-            ) : null}
-
-            {/* Hero count + week sparkbars */}
-            <div className="flex" style={{ alignItems: 'flex-end', gap: 10 }}>
-              <span
-                className="tabular-nums"
-                style={{ fontSize: 42, fontWeight: 800, lineHeight: '.78', letterSpacing: '-.03em', color: 'var(--v3-lime)' }}
-              >
-                {wallView?.heroCount ?? '—'}
-              </span>
-              <span style={{ fontSize: 11, color: 'var(--v3-on-dark-2)', paddingBottom: 4 }}>
-                {wallView?.heroUnit ?? 'produsert'}<br />denne uka
-              </span>
-              {weekBars.length > 0 ? (
-                <div
-                  aria-hidden="true"
-                  className="flex"
-                  style={{ marginLeft: 'auto', alignItems: 'flex-end', gap: 3, height: 26, paddingBottom: 4 }}
-                >
-                  {weekBars.map((bar, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        width: 6,
-                        height: `${Math.max(3, Math.round((bar.value / sparkMax) * 25))}px`,
-                        borderRadius: '2px 2px 0 0',
-                        background: bar.live ? 'var(--v3-lime)' : 'rgba(200,255,32,.2)',
-                        boxShadow: bar.live ? '0 0 6px var(--v3-lime-glow)' : undefined,
-                        display: 'block',
-                      }}
+            {/* Dark stats zone — progress ring + 3 real stats */}
+            <div
+              style={{
+                background: 'linear-gradient(180deg,#171d1f,#0f1416)',
+                border: '1px solid rgba(255,255,255,.09)',
+                borderRadius: 12,
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,.06)',
+                marginTop: 13,
+                padding: 13,
+              }}
+            >
+              <div className="flex items-center" style={{ gap: 14 }}>
+                {/* Ring — today's production vs strongest day this week */}
+                <div style={{ position: 'relative', flexShrink: 0, width: 62, height: 62 }}>
+                  <svg width="62" height="62" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.1)" strokeWidth="9" />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="42"
+                      fill="none"
+                      stroke="url(#v3ring)"
+                      strokeWidth="9"
+                      strokeLinecap="round"
+                      strokeDasharray={`${(ringFill * 264).toFixed(1)} 264`}
+                      transform="rotate(-90 50 50)"
+                      style={{ filter: 'drop-shadow(0 0 5px rgba(0,194,224,.6))', transition: 'stroke-dasharray .6s ease' }}
                     />
-                  ))}
+                    <defs>
+                      <linearGradient id="v3ring" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stopColor="#00C2E0" />
+                        <stop offset="1" stopColor="#C8FF20" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="flex flex-col items-center justify-center" style={{ position: 'absolute', inset: 0 }}>
+                    <b className="tabular-nums" style={{ fontFamily: 'var(--v3-mono)', fontSize: 19, fontWeight: 600, color: '#fff', lineHeight: 1 }}>
+                      {wallView?.heroCount ?? '—'}
+                    </b>
+                    <small style={{ fontFamily: 'var(--v3-mono)', fontSize: 7, color: 'var(--v3-on-dark-3)', marginTop: 2 }}>i dag</small>
+                  </div>
                 </div>
-              ) : null}
-              <span
-                style={{
-                  marginLeft: weekBars.length > 0 ? undefined : 'auto',
-                  fontFamily: 'var(--v3-mono)',
-                  fontSize: 8,
-                  letterSpacing: '.06em',
-                  textTransform: 'uppercase',
-                  color: 'var(--v3-on-dark-3)',
-                  paddingBottom: 4,
-                }}
-              >
-                uka
-              </span>
-            </div>
-
-            {/* FIKSET proof pill — gated on real retired breakers */}
-            {fixedLabels.length > 0 ? (
-              <div
-                className="flex items-center"
-                style={{ gap: 9, marginTop: 11, background: 'var(--v3-cream)', borderRadius: 9, padding: '7px 11px' }}
-              >
-                <span
-                  className="inline-flex items-center"
-                  style={{
-                    gap: 5,
-                    fontFamily: 'var(--v3-mono)',
-                    fontSize: 8,
-                    letterSpacing: '.1em',
-                    textTransform: 'uppercase',
-                    color: '#177c5e',
-                    fontWeight: 600,
-                    flexShrink: 0,
-                  }}
-                >
-                  <span
-                    aria-hidden="true"
-                    style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--v3-teal)', boxShadow: '0 0 6px var(--v3-teal-glow)' }}
-                  />
-                  Fikset
-                </span>
-                <span
-                  style={{ fontSize: 11, fontWeight: 700, color: 'var(--v3-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
-                >
-                  {fixedLabels.join(' · ')}
-                </span>
+                <div style={{ fontSize: 12, color: 'var(--v3-on-dark-2)', lineHeight: 1.35 }}>
+                  <b style={{ color: '#fff', fontWeight: 700 }}>
+                    {wallView ? `${wallView.heroCount} ${wallView.heroUnit}` : 'Ingen data ennå'}
+                  </b>
+                  {wallView && sparkMax > wallView.heroCount ? ` · sterkeste dag ${sparkMax}` : ''}
+                </div>
               </div>
-            ) : null}
+
+              {/* 3 real stats */}
+              <div className="flex" style={{ marginTop: 12, paddingTop: 11, borderTop: '1px solid rgba(255,255,255,.08)' }}>
+                <StatCell label="Rekke dgr" value={streak > 0 ? streak : '—'} />
+                <span aria-hidden="true" style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,.1)', margin: '2px 0' }} />
+                <StatCell label="Min talt" value={speakingMins > 0 ? speakingMins : '—'} />
+                <span aria-hidden="true" style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,.1)', margin: '2px 0' }} />
+                <StatCell label="Treff" value={accuracyDisplay} accent />
+              </div>
+            </div>
           </div>
 
-          {/* Act half — the ONE prescribed action */}
+          {/* Act half — the ONE prescribed action (inset lime pill) */}
           <Link
             href="/session"
             aria-label={`Start dagens økt${sessionMeta ? ` — ${sessionMeta}` : ''}`}
             className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--v3-ink)]"
             style={{
               gap: 10,
-              background: 'linear-gradient(135deg,#C8FF20,#B8EF10)',
-              padding: '11px 13px',
+              margin: '0 13px 14px',
+              borderRadius: 12,
+              background: 'var(--v3-lime)',
+              padding: '12px 13px',
               textDecoration: 'none',
             }}
           >
@@ -520,103 +506,63 @@ export function DashboardV3() {
           <GlassTile accent="violet" icon={Notebook} title="Notatboka" subtitle="Ord du har lagret" href="/vocab" size="grid" />
         </div>
 
-        {/* ══ §DAGENS PLAN — recipe bar + 4 numbered lanes ══════════════════ */}
-        <div style={{ flexShrink: 0 }}>
-          <Led title="Dagens plan" meta={plan ? `${sessionItems.length} oppg` : undefined} />
-          {/* Recipe distribution bar */}
-          <div
-            className="flex overflow-hidden"
-            style={{ height: 6, borderRadius: 3, margin: '5px 0 6px', gap: 1.5 }}
-            aria-hidden="true"
-          >
-            {plan ? (
-              <>
-                <span style={{ width: `${remPct}%`, background: 'var(--v3-lime)', display: 'block' }} />
-                <span style={{ width: `${revPct}%`, background: 'var(--v3-amber)', display: 'block' }} />
-                <span style={{ width: `${newPct}%`, background: 'var(--v3-cyan)', display: 'block' }} />
-                <span style={{ width: `${intPct}%`, background: 'var(--v3-coral)', display: 'block' }} />
-              </>
-            ) : (
-              <span style={{ width: '100%', background: 'var(--v3-line-2)', display: 'block' }} />
-            )}
-          </div>
-          {/* Lanes */}
-          <div className="flex flex-col" style={{ gap: 4 }}>
-            <PlanLane
-              number="01"
-              lane="lead"
-              isLead={Boolean(diagnosisHighlight)}
-              title="Remediering"
-              titleTail={remediationFocusLabel ? ` · ${remediationFocusLabel}` : ''}
-              rec={diagnosisHighlight ? 'Anbefalt' : undefined}
-              meta={`${remCount}${diagnosisHighlight ? ' · GRUNNÅRSAK' : ''}`}
-            />
-            <PlanLane number="02" lane="l2" title="Repetisjon" titleTail=" · SRS" meta={`${revCount} · FORFALLER`} />
-            <PlanLane number="03" lane="l3" title="Nytt materiale" titleTail="" meta={`${newCount} · ${levelLabel}`} />
-            <PlanLane number="04" lane="l4" title="Fletting" titleTail="" meta={`${intCount} · DAGLIG`} />
-          </div>
-        </div>
-
-        {/* ══ STATUS — cream 3-col strip ════════════════════════════════════ */}
-        <div className="flex overflow-hidden" style={{ background: 'var(--v3-cream)', borderRadius: 11, flexShrink: 0 }}>
-          <StatusCell label="Rekke" value={streak > 0 ? streak : '—'} unit={streak > 0 ? 'dgr' : undefined} first />
-          <StatusCell label="Min talt" value={speakingMins > 0 ? speakingMins : '—'} unit={speakingMins > 0 ? 'min' : undefined} />
-          <StatusCell label="Treff" value={accuracyDisplay} />
-        </div>
-
-        {/* ══ Snakk med Kari — cyan glass rail → /conversation ══════════════ */}
+        {/* ══ Snakk med Kari — system-glass rail (V1) → /conversation ══════════
+            Sits directly under the §Verktøy grid as a wide "7th tool": the same
+            dark-glass + cyan tint + glow + hairline recipe as the tiles, so it
+            belongs. Labelled AI (Kari is an AI). Animated equalizer honours
+            prefers-reduced-motion (globals.css). */}
         <Link
           href="/conversation"
-          aria-label="Snakk med Kari — øv norsk i en samtale"
+          aria-label="Snakk med Kari — øv norsk i en samtale med en AI"
           className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--v3-cyan)]"
           style={{
             position: 'relative',
-            height: 56,
-            borderRadius: 14,
             overflow: 'hidden',
             display: 'flex',
             alignItems: 'center',
-            gap: 11,
+            gap: 12,
+            height: 60,
             padding: '0 13px',
             flexShrink: 0,
-            marginTop: 2,
-            background: 'linear-gradient(160deg,#10262b,#0c1a1e 60%,#091316)',
-            border: '1px solid rgba(255,255,255,.08)',
-            boxShadow: '0 14px 26px -16px rgba(0,0,0,.82),inset 0 1px 1px rgba(255,255,255,.12),inset 0 -12px 20px -16px rgba(0,0,0,.56)',
+            borderRadius: 13,
+            background: 'linear-gradient(180deg,#14191b 0%,#12171a 46%,#0d434d 100%)',
+            border: '1px solid rgba(255,255,255,.13)',
+            boxShadow: '0 10px 22px -16px rgba(0,0,0,.7)',
             textDecoration: 'none',
           }}
         >
-          {/* Cyan bloom */}
-          <span
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              mixBlendMode: 'screen',
-              background: 'radial-gradient(46% 70% at 16% 50%,var(--v3-cyan-glow) 0%,transparent 64%)',
-              pointerEvents: 'none',
-            }}
-          />
-          {/* Top gloss */}
+          {/* Cyan bloom — left light source */}
           <span
             aria-hidden="true"
             style={{
               position: 'absolute',
               inset: 0,
               pointerEvents: 'none',
-              background: 'linear-gradient(180deg,rgba(255,255,255,.16),transparent 50%)',
-              WebkitMaskImage: 'radial-gradient(120% 100% at 50% -28%,#000 42%,transparent 70%)',
-              maskImage: 'radial-gradient(120% 100% at 50% -28%,#000 42%,transparent 70%)',
+              background: 'radial-gradient(120px 90px at 14% 50%,var(--v3-cyan-glow),transparent 70%)',
             }}
           />
-          {/* Lit mic — the only light source for this rail */}
+          {/* Top hairline */}
+          <span
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 12,
+              right: 12,
+              height: 1,
+              pointerEvents: 'none',
+              background: 'linear-gradient(90deg,transparent,var(--v3-cyan),transparent)',
+              opacity: 0.55,
+            }}
+          />
+          {/* Lit mic — the light source */}
           <span
             aria-hidden="true"
             className="flex items-center justify-center"
-            style={{ position: 'relative', zIndex: 1, width: 28, height: 28, flexShrink: 0 }}
+            style={{ position: 'relative', zIndex: 1, width: 30, height: 30, flexShrink: 0 }}
           >
             <Mic
-              size={25}
+              size={26}
               color="var(--v3-cyan)"
               strokeWidth={1.5}
               style={{ filter: 'drop-shadow(0 0 6px var(--v3-cyan)) drop-shadow(0 0 18px var(--v3-cyan-glow))' }}
@@ -629,16 +575,16 @@ export function DashboardV3() {
               <span
                 style={{
                   fontFamily: 'var(--v3-mono)',
-                  fontSize: 7.5,
+                  fontSize: 7,
                   letterSpacing: '.1em',
                   color: '#001316',
                   background: 'var(--v3-cyan)',
-                  padding: '1px 5px',
+                  padding: '1px 6px',
                   borderRadius: 4,
                   fontWeight: 600,
                 }}
               >
-                LIVE
+                AI
               </span>
             </span>
             <span
@@ -658,22 +604,130 @@ export function DashboardV3() {
                 : 'Øv norsk høyt — i en samtale'}
             </span>
           </span>
-          {/* Speaking minutes — only when > 0 (honest gate) */}
-          {speakingMins > 0 ? (
-            <span
-              style={{ position: 'relative', zIndex: 1, marginLeft: 'auto', textAlign: 'right', flexShrink: 0 }}
-            >
-              <span className="tabular-nums" style={{ display: 'block', fontSize: 18, fontWeight: 700, color: 'var(--v3-on-dark)', lineHeight: 1 }}>
-                {speakingMins}
-              </span>
-              <span
-                style={{ fontFamily: 'var(--v3-mono)', fontSize: 7.5, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--v3-on-dark-3)' }}
-              >
-                min talt
-              </span>
+          {/* Right group — animated equalizer + honest speaking-minutes gate */}
+          <span className="flex items-center" style={{ position: 'relative', zIndex: 1, marginLeft: 'auto', gap: 9, flexShrink: 0 }}>
+            <span aria-hidden="true" className="flex items-center" style={{ gap: 2.5, height: 18 }}>
+              {[0, 0.18, 0.36, 0.1].map((delay, i) => (
+                <span
+                  key={i}
+                  className="v3-kari-eq"
+                  style={{
+                    width: 2.5,
+                    height: 16,
+                    borderRadius: 2,
+                    background: 'var(--v3-cyan)',
+                    transformOrigin: 'center',
+                    transform: 'scaleY(.35)',
+                    animation: `v3kariEq 1.2s ease-in-out ${delay}s infinite`,
+                  }}
+                />
+              ))}
             </span>
-          ) : null}
+            {speakingMins > 0 ? (
+              <span style={{ fontFamily: 'var(--v3-mono)', fontSize: 9, fontWeight: 500, color: 'var(--v3-on-dark-3)', whiteSpace: 'nowrap' }}>
+                {speakingMins} min
+              </span>
+            ) : null}
+          </span>
         </Link>
+
+        {/* ══ §DAGENS PLAN — single-hue "Instrument" recipe bar (4b) ════════════
+            One proportional bar: bright lime lead chip (the diagnosed moat lane)
+            fading to lime-tinted dark glass. Segment width = real lane count, so
+            it doubles as the distribution. The GRUNNÅRSAK cause marker rides the
+            lead chip and the diagnosis focus stays in the recipe line — the moat
+            signal survives the compaction; secondary per-lane scheduling tags
+            (SRS/level/daily) are dropped from this dense bar by design. */}
+        <div style={{ flexShrink: 0 }}>
+          <Led title="Dagens plan" meta={plan ? `${sessionItems.length} oppg` : undefined} />
+          {plan ? (
+            <div
+              className="flex"
+              style={{ gap: 2, borderRadius: 11, overflow: 'hidden', marginTop: 5 }}
+              role="list"
+              aria-label="Dagens øktfordeling"
+            >
+              {[
+                { key: 'rem', label: 'Remediering', count: remCount, step: 0, cause: Boolean(diagnosisHighlight) },
+                { key: 'rev', label: 'Repetisjon', count: revCount, step: 1, cause: false },
+                { key: 'new', label: 'Nytt', count: newCount, step: 2, cause: false },
+                { key: 'int', label: 'Fletting', count: intCount, step: 3, cause: false },
+              ]
+                .filter((lane) => lane.count > 0)
+                .map((lane) => {
+                  const tone = RECIPE_STEPS[lane.step]
+                  return (
+                    <div
+                      key={lane.key}
+                      role="listitem"
+                      aria-label={`${lane.label}: ${lane.count} oppgaver`}
+                      className="flex flex-col justify-between"
+                      style={{
+                        flex: `${lane.count} 1 0`,
+                        minWidth: 0,
+                        minHeight: 60,
+                        padding: '9px 8px',
+                        background: tone.bg,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <div style={{ minWidth: 0 }}>
+                        <div
+                          style={{
+                            fontFamily: 'var(--v3-mono)',
+                            fontSize: 8,
+                            fontWeight: 700,
+                            letterSpacing: '.03em',
+                            textTransform: 'uppercase',
+                            lineHeight: 1.1,
+                            color: tone.label,
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {lane.label}
+                        </div>
+                        {lane.cause ? (
+                          <div
+                            style={{
+                              fontFamily: 'var(--v3-mono)',
+                              fontSize: 7,
+                              fontWeight: 600,
+                              letterSpacing: '.04em',
+                              textTransform: 'uppercase',
+                              marginTop: 2,
+                              color: tone.meta,
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            }}
+                          >
+                            Grunnårsak
+                          </div>
+                        ) : null}
+                      </div>
+                      <div style={{ fontFamily: 'var(--v3-mono)', fontSize: 17, fontWeight: 600, lineHeight: 1, color: tone.count }}>
+                        {lane.count}
+                      </div>
+                    </div>
+                  )
+                })}
+            </div>
+          ) : (
+            <div
+              style={{ height: 60, marginTop: 5, borderRadius: 11, background: 'var(--v3-raised)', border: '1px solid var(--v3-line)' }}
+              aria-hidden="true"
+            />
+          )}
+          <div style={{ fontFamily: 'var(--v3-mono)', fontSize: 8, color: 'var(--v3-on-dark-3)', marginTop: 8, letterSpacing: '.04em' }}>
+            Resept{' '}
+            <b style={{ color: 'var(--v3-on-dark-2)', fontWeight: 600 }}>
+              {remPct} / {revPct} / {newPct} / {intPct}
+            </b>
+            {remediationFocusLabel ? ` · leder med ${remediationFocusLabel}` : ''}
+          </div>
+        </div>
 
       </main>
 
@@ -722,129 +776,48 @@ function Led({ title, meta }: { title: string; meta?: string }) {
 }
 
 // §DAGENS PLAN lane row (R1 .lane). Dot color is keyed off `lane`.
-const LANE_DOT: Record<'lead' | 'l2' | 'l3' | 'l4', { background: string; boxShadow: string }> = {
-  lead: { background: 'var(--v3-lime)', boxShadow: '0 0 6px var(--v3-lime)' },
-  l2:   { background: 'var(--v3-amber)', boxShadow: '0 0 6px var(--v3-amber-glow)' },
-  l3:   { background: 'var(--v3-cyan)', boxShadow: '0 0 6px var(--v3-cyan-glow)' },
-  l4:   { background: 'var(--v3-coral)', boxShadow: '0 0 6px var(--v3-coral-glow)' },
-}
+// §DAGENS PLAN — single-hue "Instrument" recipe-bar steps (direction 4b):
+// a bright lime lead chip (the diagnosed moat lane) fading to lime-tinted dark
+// glass across the rest, so the section keeps colour but stops competing with
+// the full-saturation original. Index = lane role (0 rem · 1 rev · 2 new · 3 int)
+// so the colour stays role-stable even when an empty lane is dropped. Mixed
+// values are pre-computed (lime over #12171a) — no runtime color-mix dependency.
+const RECIPE_STEPS = [
+  { bg: 'var(--v3-lime)', label: '#3c4a08', count: 'var(--v3-ink)', meta: '#55670f' },
+  { bg: '#41531c', label: '#C7E095', count: '#E6F5C0', meta: '#A0B975' },
+  { bg: '#2f3c1b', label: '#B0CB80', count: '#D4EAA1', meta: '#8BA367' },
+  { bg: '#222c1b', label: '#95AE6A', count: '#B9D088', meta: '#778A50' },
+] as const
 
-interface PlanLaneProps {
-  number: string
-  lane: 'lead' | 'l2' | 'l3' | 'l4'
-  /** Lead lane: apply the lime-tinted lead surface (honest — only when diagnosed) */
-  isLead?: boolean
-  title: string
-  titleTail: string
-  /** "Anbefalt" pill — only on the lead lane when a diagnosis is present */
-  rec?: string
-  meta: string
-}
-
-function PlanLane({ number, lane, isLead = false, title, titleTail, rec, meta }: PlanLaneProps) {
-  return (
-    <div
-      className="flex items-center"
-      style={{
-        gap: 8,
-        height: 29,
-        background: isLead ? 'linear-gradient(90deg,rgba(200,255,32,.08),var(--v3-raised) 40%)' : 'var(--v3-raised)',
-        border: isLead ? '1px solid rgba(200,255,32,.32)' : '1px solid var(--v3-line)',
-        borderRadius: 9,
-        padding: '0 9px',
-        position: 'relative',
-      }}
-    >
-      <span style={{ fontFamily: 'var(--v3-mono)', fontSize: 10, color: 'var(--v3-on-dark-3)', width: 15, flexShrink: 0 }}>
-        {number}
-      </span>
-      <span
-        aria-hidden="true"
-        style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, ...LANE_DOT[lane] }}
-      />
-      <span
-        style={{
-          fontSize: 11,
-          fontWeight: 500,
-          color: 'var(--v3-on-dark)',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          minWidth: 0,
-          flex: 1,
-        }}
-      >
-        <b style={{ fontWeight: 600 }}>{title}</b>{titleTail}
-      </span>
-      {rec ? (
-        <span
-          style={{
-            fontFamily: 'var(--v3-mono)',
-            fontSize: 7.5,
-            letterSpacing: '.06em',
-            textTransform: 'uppercase',
-            color: 'var(--v3-ink)',
-            background: 'var(--v3-lime)',
-            padding: '2px 5px',
-            borderRadius: 5,
-            flexShrink: 0,
-            fontWeight: 600,
-          }}
-        >
-          {rec}
-        </span>
-      ) : null}
-      <span
-        style={{
-          fontFamily: 'var(--v3-mono)',
-          fontSize: 8,
-          letterSpacing: '.05em',
-          color: 'var(--v3-on-dark-3)',
-          textTransform: 'uppercase',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-        }}
-      >
-        {meta}
-      </span>
-    </div>
-  )
-}
-
-// STATUS strip cell (R1 .cell). `value` is a number or "—"; `unit` shown as a small suffix.
-interface StatusCellProps {
+// Command-card dark-zone stat cell. `value` is a number or "—"; `accent` tints
+// the value cyan (used for Treff). Sits on the dark stats zone, not the cream.
+interface StatCellProps {
   label: string
   value: number | string
-  unit?: string
-  first?: boolean
+  accent?: boolean
 }
 
-function StatusCell({ label, value, unit, first = false }: StatusCellProps) {
+function StatCell({ label, value, accent = false }: StatCellProps) {
   return (
-    <div
-      className="flex flex-col"
-      style={{
-        flex: 1,
-        padding: '6px 8px',
-        gap: 2,
-        borderLeft: first ? undefined : '1px solid var(--v3-cream-2)',
-      }}
-    >
-      <span
+    <div style={{ flex: 1, textAlign: 'center' }}>
+      <div
+        className="tabular-nums"
+        style={{ fontFamily: 'var(--v3-mono)', fontSize: 15, fontWeight: 600, color: accent ? 'var(--v3-cyan)' : '#fff', lineHeight: 1 }}
+      >
+        {value}
+      </div>
+      <div
         style={{
           fontFamily: 'var(--v3-mono)',
           fontSize: 7.5,
-          letterSpacing: '.08em',
+          color: 'var(--v3-on-dark-3)',
           textTransform: 'uppercase',
-          color: 'var(--v3-ink-3)',
+          letterSpacing: '.05em',
+          marginTop: 3,
         }}
       >
         {label}
-      </span>
-      <span className="tabular-nums" style={{ fontSize: 16, fontWeight: 700, color: 'var(--v3-ink)', lineHeight: 1 }}>
-        {value}
-        {unit ? <small style={{ fontSize: 9, fontWeight: 600, color: 'var(--v3-ink-3)' }}> {unit}</small> : null}
-      </span>
+      </div>
     </div>
   )
 }

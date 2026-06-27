@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagens plan — 5 reduced-colour variants</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07090A; --line:rgba(255,255,255,0.07); --line-hi:rgba(255,255,255,0.12);
+    --cream:#F1F0E8; --cream-2:#E7E6DC;
+    --lime:#C8FF20; --coral:#FF6A55; --cyan:#00C2E0; --teal:#2BC9A0; --amber:#F2952E; --violet:#8B7CF0;
+    --on-dark:#E8ECE6; --on-dark-2:#9BA39C; --on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace; --sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#020304;font-family:var(--sans);padding:34px 0 60px;display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:flex-start}
+  .col{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .device{width:390px;background:radial-gradient(360px 280px at 84% 18%,#0d1310 0%,#07090a00 70%),radial-gradient(340px 300px at 8% 64%,#0c110f 0%,#07090a00 72%),var(--bg);
+    border:1px solid var(--line-hi);border-radius:26px;overflow:hidden;box-shadow:0 40px 80px -28px rgba(0,0,0,.85)}
+  .main{display:flex;flex-direction:column;gap:9px;padding:16px 13px}
+  .vtag{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:#7C8275}
+  .vtag b{color:#C8FF20;font-weight:600}
+
+  /* section header (§) */
+  .led{display:flex;align-items:center;gap:7px;height:12px}
+  .led .s{font-family:var(--mono);font-size:10px;color:var(--lime)}
+  .led .t{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-2)}
+  .led .line{flex:1;height:1px;background:var(--line)}
+  .led .meta{font-family:var(--mono);font-size:9px;color:var(--on-dark-3)}
+  .recipe-line{font-family:var(--mono);font-size:8px;color:var(--on-dark-3);margin-top:9px;letter-spacing:.04em}
+  .recipe-line b{color:var(--on-dark-2);font-weight:600}
+  .cap{font-family:var(--mono);font-size:8px;letter-spacing:.05em;color:#646b62;margin-top:7px;max-width:360px;text-align:center;line-height:1.5}
+
+  /* ============ ORIGINAL (reference, full-saturation) ============ */
+  .rbar0{display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px}
+  .rbar0 .rseg{display:flex;flex-direction:column;justify-content:space-between;min-height:60px;padding:9px 8px;overflow:hidden}
+  .rbar0 .rl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rbar0 .rc{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1}
+
+  /* ============ V1 — DEMPET (muted hues on dark glass, hue = edge+number) ============ */
+  .rbar1{display:flex;gap:6px;margin-top:5px}
+  .rbar1 .seg{flex-grow:0;display:flex;flex-direction:column;justify-content:space-between;min-height:62px;padding:9px 9px 9px 11px;border-radius:11px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#13181a,#0f1416);border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+  .rbar1 .seg::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:3px;background:var(--c);opacity:.85}
+  .rbar1 .rl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--on-dark-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rbar1 .rc{font-family:var(--mono);font-size:18px;font-weight:600;line-height:1;color:var(--c)}
+
+  /* ============ V2 — ÉN AKSENT (lead lime, rest neutral grey ramp) ============ */
+  .rbar2{display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px}
+  .rbar2 .seg{display:flex;flex-direction:column;justify-content:space-between;min-height:60px;padding:9px 8px;overflow:hidden}
+  .rbar2 .rl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rbar2 .rc{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1}
+
+  /* ============ V3 — TONET GLASS (low-alpha tint + hairline, matches §Verktøy) ============ */
+  .rbar3{display:flex;gap:5px;margin-top:5px}
+  .rbar3 .seg{display:flex;flex-direction:column;justify-content:space-between;min-height:62px;padding:10px 9px;border-radius:11px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#14191b 0%,#12171a 46%,color-mix(in srgb,var(--c) 20%,#12171a) 100%);
+    border:1px solid rgba(255,255,255,.11);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)}
+  .rbar3 .seg .hair{position:absolute;top:0;left:10px;right:10px;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.55}
+  .rbar3 .rl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:relative;z-index:2}
+  .rbar3 .rc{font-family:var(--mono);font-size:18px;font-weight:600;line-height:1;color:#fff;position:relative;z-index:2}
+
+  /* ============ V4 — INSTRUMENT (single lime hue, 4 brightness steps) ============ */
+  .rbar4{display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px}
+  .rbar4 .seg{display:flex;flex-direction:column;justify-content:space-between;min-height:60px;padding:9px 8px;overflow:hidden}
+  .rbar4 .rl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rbar4 .rc{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1}
+
+  /* ============ V5 — BLEKK + NØKLER (neutral bar, colour = top tick + legend dot) ============ */
+  .rbar5{display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px}
+  .rbar5 .seg{display:flex;flex-direction:column;justify-content:space-between;min-height:60px;padding:11px 8px 9px;overflow:hidden;position:relative;background:#11161800;border-top:2px solid var(--c)}
+  .rbar5 .seg{background:rgba(255,255,255,.035)}
+  .rbar5 .rl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.1;color:var(--on-dark-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:5px}
+  .rbar5 .rl::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--c);flex-shrink:0}
+  .rbar5 .rc{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1;color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ORIGINAL reference -->
+<div class="col">
+  <div class="vtag"><b>0</b> · Original (full saturation)</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar0">
+      <div class="rseg" style="width:40%;background:var(--lime);color:#2c3a06"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="rseg" style="width:30%;background:var(--amber);color:#3a2606"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="rseg" style="width:20%;background:var(--cyan);color:#04323a"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="rseg" style="width:10%;background:var(--coral);color:#3a120c"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">The one section screaming — four solid fills at full chroma.</div>
+</div>
+
+<!-- V1 DEMPET -->
+<div class="col">
+  <div class="vtag"><b>1</b> · Dempet — muted hues, dark glass</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar1">
+      <div class="seg" style="flex:40;--c:#A9C95B"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="flex:30;--c:#C99A5B"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="flex:20;--c:#5BA6BC"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="flex:10;--c:#C97E72"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Same hue language, ~half the chroma. Colour recedes to a left-edge + the number; the fill goes dark glass like the rest of the app.</div>
+</div>
+
+<!-- V2 ÉN AKSENT -->
+<div class="col">
+  <div class="vtag"><b>2</b> · Én aksent — lead lime, rest neutral</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar2">
+      <div class="seg" style="width:40%;background:var(--lime);color:#2c3a06"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="width:30%;background:#2A2F31;color:#C7CEC8"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="width:20%;background:#23282A;color:#9BA39C"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="width:10%;background:#1C2123;color:#7C8275"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">One accent rule. Only Remediering (the moat lane) carries lime; the rest step down in neutral grey. Hierarchy = colour.</div>
+</div>
+
+<!-- V3 TONET GLASS -->
+<div class="col">
+  <div class="vtag"><b>3</b> · Tonet glass — tints match §Verktøy</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar3">
+      <div class="seg" style="flex:40;--c:#C8FF20"><span class="hair"></span><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="flex:30;--c:#F2952E"><span class="hair"></span><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="flex:20;--c:#00C2E0"><span class="hair"></span><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="flex:10;--c:#FF6A55"><span class="hair"></span><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Each lane becomes a dark glass tile with a ~20% colour tint + glowing hairline — exactly the §Verktøy tile recipe. Most cohesive with the surfaces above.</div>
+</div>
+
+<!-- V4 INSTRUMENT -->
+<div class="col">
+  <div class="vtag"><b>4</b> · Instrument — one lime, 4 steps</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar4">
+      <div class="seg" style="width:40%;background:#C8FF20;color:#2c3a06"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="width:30%;background:#8FB82A;color:#10210a"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="width:20%;background:#587326;color:#E6F2C8"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="width:10%;background:#33401F;color:#BFD89A"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Drop the rainbow entirely — one brand hue at four brightness steps reads as a single instrument. Calmest, most "owned", but loses per-lane colour coding.</div>
+</div>
+
+<!-- V5 BLEKK + NØKLER -->
+<div class="col">
+  <div class="vtag"><b>5</b> · Blekk + nøkler — colour as a cue</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar5">
+      <div class="seg" style="width:40%;--c:#C8FF20"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="width:30%;--c:#F2952E"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="width:20%;--c:#00C2E0"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="width:10%;--c:#FF6A55"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Neutral bar; colour survives only as a top-edge tick + a legend dot by each label. Most editorial / quietest — colour as data key, not as fill.</div>
+</div>
+
+</body>
+</html>

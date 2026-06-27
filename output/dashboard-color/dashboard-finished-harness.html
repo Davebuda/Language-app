@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="no"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --v3-lime:#C8FF20; --v3-ink:#0E1207; --v3-ink-3:#7C8275; --v3-cream:#F1F0E8; --v3-cream-2:#E7E6DC;
+    --v3-line:#1D2325; --v3-on-dark:#E8ECE6; --v3-on-dark-2:#9BA39C; --v3-on-dark-3:#5C6660;
+    --v3-cyan:#00C2E0; --v3-teal:#2BC9A0; --v3-amber:#F2952E; --v3-lime-lit:#eaffb3;
+    --v3-mono:'IBM Plex Mono',monospace; --v3-bg:#07090A;
+  }
+  body{background:#020304;font-family:'Schibsted Grotesk',sans-serif;padding:26px;display:flex;justify-content:center}
+  .device{width:375px;background:radial-gradient(360px 280px at 84% 18%,#0d1310 0%,#07090a00 70%),radial-gradient(340px 300px at 8% 64%,#0c110f 0%,#07090a00 72%),var(--v3-bg);
+    border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:9px 12px 16px;display:flex;flex-direction:column;gap:7px;color:var(--v3-on-dark)}
+  .led{display:flex;align-items:center;gap:7px;height:12px}
+  .led .s{font-family:var(--v3-mono);font-size:10px;color:var(--v3-lime)}
+  .led .t{font-family:var(--v3-mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--v3-on-dark-2)}
+  .led .line{flex:1;height:1px;background:var(--v3-line)}
+  .led .meta{font-family:var(--v3-mono);font-size:9px;color:var(--v3-on-dark-3)}
+  /* tiles */
+  .toolgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .ct{position:relative;overflow:hidden;min-height:84px;border-radius:13px;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;
+    background:linear-gradient(180deg,#14191b 0%,#12171a 46%,color-mix(in srgb,var(--a) 26%,#12171a) 100%);
+    border:1px solid rgba(255,255,255,.13);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)}
+  .ct .bloom{position:absolute;inset:0;background:radial-gradient(120px 96px at 70% 40%,var(--ag),transparent 72%)}
+  .ct .glyph{position:absolute;right:5px;top:46%;transform:translateY(-50%);opacity:.32;filter:drop-shadow(0 0 6px var(--ag))}
+  .ct .glyph svg{width:42px;height:42px;stroke:var(--a);stroke-width:.8;fill:none}
+  .ct .hair{position:absolute;top:0;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,var(--a),transparent);opacity:.6}
+  .ct .nm{position:relative;font-weight:700;font-size:12.5px;color:#fff;letter-spacing:-.2px}
+  .ct .sb{position:relative;font-family:var(--v3-mono);font-size:8px;margin-top:3px;color:rgba(255,255,255,.74);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .a-lime{--a:#C8FF20;--ag:rgba(200,255,32,.30)} .a-cyan{--a:#00C2E0;--ag:rgba(0,194,224,.30)}
+  .a-teal{--a:#2BC9A0;--ag:rgba(43,201,160,.29)} .a-amber{--a:#F2952E;--ag:rgba(242,149,46,.30)}
+  .a-coral{--a:#FF6A55;--ag:rgba(255,106,85,.29)} .a-violet{--a:#8B7CF0;--ag:rgba(139,124,240,.30)}
+  @keyframes v3kariEq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  @keyframes v3kariBlink{0%,100%{opacity:1}50%{opacity:.3}}
+</style></head>
+<body>
+<div class="device">
+
+  <!-- ID -->
+  <div style="display:flex;align-items:center;gap:9px;height:34px">
+    <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,#1d2620,#0f1512);border:1px solid rgba(255,255,255,.09);display:grid;place-items:center;font-weight:700;font-size:15px;color:var(--v3-lime-lit)">D</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="font-size:14px;font-weight:600;line-height:1">Dave</div>
+      <div style="font-family:var(--v3-mono);font-size:9px;letter-spacing:.07em;color:var(--v3-on-dark-3)">B1 · DAG 14 PÅ RAD <b style="color:var(--v3-amber);font-weight:500">●</b></div>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-family:var(--v3-mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;color:var(--v3-cyan);padding:5px 11px;border:1px solid rgba(0,194,224,.42);border-radius:999px;background:rgba(0,194,224,.09)"><span style="width:6px;height:6px;border-radius:50%;background:var(--v3-cyan);box-shadow:0 0 7px var(--v3-cyan)"></span>SKY-AI</div>
+  </div>
+
+  <!-- CREAM COMMAND CARD -->
+  <div style="border-radius:16px;overflow:hidden;background:var(--v3-cream);color:var(--v3-ink);box-shadow:0 18px 40px -24px rgba(0,0,0,.9)">
+    <div style="padding:14px 15px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
+        <span style="font-family:var(--v3-mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--v3-ink-3);font-weight:500">Dagens mål · produksjon</span>
+        <span style="font-family:var(--v3-mono);font-size:9px;font-weight:600;color:var(--v3-ink);border:1px solid var(--v3-cream-2);background:#fff;padding:2px 8px;border-radius:999px">B1</span>
+      </div>
+      <div style="font-size:20px;font-weight:800;color:var(--v3-ink);letter-spacing:-.025em;line-height:1.05">Produser leddsetninger</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:9px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;font-family:var(--v3-mono);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#2c3a06;background:var(--v3-lime);padding:3px 9px;border-radius:6px">Fokus · ordstilling</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--v3-mono);font-size:9px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:#0E8C73"><span style="width:5px;height:5px;border-radius:50%;background:var(--v3-teal)"></span>Sikker diagnose</span>
+        <a style="font-size:9.5px;font-weight:600;color:#0E8FA3;white-space:nowrap;text-decoration:none;margin-left:auto">Se hele bildet ›</a>
+      </div>
+      <div style="background:linear-gradient(180deg,#171d1f,#0f1416);border:1px solid rgba(255,255,255,.09);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);margin-top:13px;padding:13px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="position:relative;flex-shrink:0;width:62px;height:62px">
+            <svg width="62" height="62" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#rg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="158.4 264" transform="rotate(-90 50 50)" style="filter:drop-shadow(0 0 5px rgba(0,194,224,.6))"/>
+              <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00C2E0"/><stop offset="1" stop-color="#C8FF20"/></linearGradient></defs>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <b style="font-family:var(--v3-mono);font-size:19px;font-weight:600;color:#fff;line-height:1">9</b>
+              <small style="font-family:var(--v3-mono);font-size:7px;color:var(--v3-on-dark-3);margin-top:2px">i dag</small>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--v3-on-dark-2);line-height:1.35"><b style="color:#fff;font-weight:700">9 setninger produsert</b> · sterkeste dag 15</div>
+        </div>
+        <div style="display:flex;margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.08)">
+          <div style="flex:1;text-align:center"><div style="font-family:var(--v3-mono);font-size:15px;font-weight:600;color:#fff;line-height:1">14</div><div style="font-family:var(--v3-mono);font-size:7.5px;color:var(--v3-on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px">Rekke dgr</div></div>
+          <span style="width:1px;align-self:stretch;background:rgba(255,255,255,.1);margin:2px 0"></span>
+          <div style="flex:1;text-align:center"><div style="font-family:var(--v3-mono);font-size:15px;font-weight:600;color:#fff;line-height:1">34</div><div style="font-family:var(--v3-mono);font-size:7.5px;color:var(--v3-on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px">Min talt</div></div>
+          <span style="width:1px;align-self:stretch;background:rgba(255,255,255,.1);margin:2px 0"></span>
+          <div style="flex:1;text-align:center"><div style="font-family:var(--v3-mono);font-size:15px;font-weight:600;color:var(--v3-cyan);line-height:1">83%</div><div style="font-family:var(--v3-mono);font-size:7.5px;color:var(--v3-on-dark-3);text-transform:uppercase;letter-spacing:.05em;margin-top:3px">Treff</div></div>
+        </div>
+      </div>
+    </div>
+    <a style="display:flex;align-items:center;gap:10px;margin:0 13px 14px;border-radius:12px;background:var(--v3-lime);padding:12px 13px;text-decoration:none">
+      <span style="display:flex;flex-direction:column;text-align:left;min-width:0">
+        <span style="font-family:var(--v3-mono);font-size:9px;color:rgba(10,18,6,.62);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Starter på «fordi»-feilen — grunnårsaken</span>
+        <strong style="font-size:18px;font-weight:800;color:var(--v3-ink);line-height:1;letter-spacing:-.025em">Start dagens økt</strong>
+        <span style="font-size:9px;font-weight:700;color:rgba(10,18,6,.6);margin-top:3px">27 oppgaver · ca. 21 min</span>
+      </span>
+      <span style="margin-left:auto;width:34px;height:34px;border-radius:50%;background:rgba(10,18,6,.92);display:grid;place-items:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+
+  <!-- §VERKTØY -->
+  <div class="led" style="margin-top:3px"><span class="s">§</span><span class="t">Verktøy</span><span class="line"></span><span class="meta">6 øvelser</span></div>
+  <div class="toolgrid">
+    <div class="ct a-lime"><span class="bloom"></span><span class="hair"></span><span class="glyph"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><div class="nm">Lær</div><div class="sb">Dagens økt · 27 …</div></div>
+    <div class="ct a-cyan"><span class="bloom"></span><span class="hair"></span><span class="glyph"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="nm">Snakk</div><div class="sb">Kari · øv høyt</div></div>
+    <div class="ct a-teal"><span class="bloom"></span><span class="hair"></span><span class="glyph"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><div class="nm">Les</div><div class="sb">Tekster på nivå</div></div>
+    <div class="ct a-amber"><span class="bloom"></span><span class="hair"></span><span class="glyph"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><div class="nm">Lytt</div><div class="sb">Hør og svar</div></div>
+    <div class="ct a-coral"><span class="bloom"></span><span class="hair"></span><span class="glyph"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="M2 2l7.586 7.586"/></svg></span><div class="nm">Skriv</div><div class="sb">Journal · rettet</div></div>
+    <div class="ct a-violet"><span class="bloom"></span><span class="hair"></span><span class="glyph"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg></span><div class="nm">Notatboka</div><div class="sb">Ord du har lagret</div></div>
+  </div>
+
+  <!-- SNAKK RAIL — V1 system glass, under the grid -->
+  <a style="position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;height:60px;padding:0 13px;margin-top:7px;border-radius:13px;text-decoration:none;background:linear-gradient(180deg,#14191b 0%,#12171a 46%,#0d434d 100%);border:1px solid rgba(255,255,255,.13);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)">
+    <span style="position:absolute;inset:0;background:radial-gradient(120px 90px at 14% 50%,rgba(0,194,224,.33),transparent 70%)"></span>
+    <span style="position:absolute;top:0;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,#00C2E0,transparent);opacity:.55"></span>
+    <span style="position:relative;display:grid;place-items:center;width:30px;height:30px;flex-shrink:0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00C2E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 6px #00C2E0) drop-shadow(0 0 18px rgba(0,194,224,.33))"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></span>
+    <span style="position:relative;min-width:0">
+      <span style="display:flex;align-items:center;gap:7px;margin-bottom:2px"><span style="font-size:13px;font-weight:600;color:#d6fbff">Snakk med Kari</span><span style="font-family:var(--v3-mono);font-size:7px;font-weight:600;letter-spacing:.1em;color:#001316;background:#00C2E0;padding:1px 6px;border-radius:4px">AI</span></span>
+      <span style="display:block;font-family:var(--v3-mono);font-size:8px;color:#cfd6cd;opacity:.78">Øv ordstilling høyt — i en samtale</span>
+    </span>
+    <span style="position:relative;margin-left:auto;display:flex;align-items:center;gap:9px;flex-shrink:0">
+      <span style="display:flex;align-items:center;gap:2.5px;height:18px">
+        <span style="width:2.5px;height:16px;border-radius:2px;background:#00C2E0;transform-origin:center;animation:v3kariEq 1.2s ease-in-out 0s infinite"></span>
+        <span style="width:2.5px;height:16px;border-radius:2px;background:#00C2E0;transform-origin:center;animation:v3kariEq 1.2s ease-in-out .18s infinite"></span>
+        <span style="width:2.5px;height:16px;border-radius:2px;background:#00C2E0;transform-origin:center;animation:v3kariEq 1.2s ease-in-out .36s infinite"></span>
+        <span style="width:2.5px;height:16px;border-radius:2px;background:#00C2E0;transform-origin:center;animation:v3kariEq 1.2s ease-in-out .1s infinite"></span>
+      </span>
+      <span style="font-family:var(--v3-mono);font-size:9px;color:var(--v3-on-dark-3)">34 min</span>
+    </span>
+  </a>
+
+  <!-- §DAGENS PLAN -->
+  <div style="margin-top:3px">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div style="display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px">
+      <div style="flex:11 1 0;min-width:0;min-height:60px;padding:9px 8px;background:var(--v3-lime);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden">
+        <div style="min-width:0"><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;text-transform:uppercase;color:#3c4a08;letter-spacing:.03em">Remediering</div><div style="font-family:var(--v3-mono);font-size:7px;font-weight:600;text-transform:uppercase;margin-top:2px;color:#55670f">Grunnårsak</div></div>
+        <div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;color:var(--v3-ink)">11</div>
+      </div>
+      <div style="flex:10 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#41531c;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden"><div><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;text-transform:uppercase;color:#C7E095;letter-spacing:.03em">Repetisjon</div></div><div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;color:#E6F5C0">10</div></div>
+      <div style="flex:4 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#2f3c1b;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden"><div><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;text-transform:uppercase;color:#B0CB80;letter-spacing:.03em">Nytt</div></div><div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;color:#D4EAA1">4</div></div>
+      <div style="flex:2 1 0;min-width:0;min-height:60px;padding:9px 8px;background:#222c1b;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden"><div><div style="font-family:var(--v3-mono);font-size:8px;font-weight:700;text-transform:uppercase;color:#95AE6A;letter-spacing:.03em">Fletting</div></div><div style="font-family:var(--v3-mono);font-size:17px;font-weight:600;color:#B9D088">2</div></div>
+    </div>
+    <div style="font-family:var(--v3-mono);font-size:8px;color:var(--v3-on-dark-3);margin-top:8px;letter-spacing:.04em">Resept <b style="color:var(--v3-on-dark-2);font-weight:600">41 / 37 / 15 / 7</b> · leder med ordstilling</div>
+  </div>
+
+</div>
+</body></html>

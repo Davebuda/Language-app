@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagens plan — Instrument (V4) tuning</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#07090A; --line:rgba(255,255,255,0.07); --line-hi:rgba(255,255,255,0.12);
+    --lime:#C8FF20;
+    --on-dark-2:#9BA39C; --on-dark-3:#5C6660;
+    --mono:'IBM Plex Mono',monospace; --sans:'Schibsted Grotesk',sans-serif;
+  }
+  body{background:#020304;font-family:var(--sans);padding:34px 0 60px;display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:flex-start}
+  .col{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .device{width:390px;background:radial-gradient(360px 280px at 84% 18%,#0d1310 0%,#07090a00 70%),radial-gradient(340px 300px at 8% 64%,#0c110f 0%,#07090a00 72%),var(--bg);
+    border:1px solid var(--line-hi);border-radius:26px;overflow:hidden;box-shadow:0 40px 80px -28px rgba(0,0,0,.85)}
+  .main{display:flex;flex-direction:column;gap:9px;padding:16px 13px}
+  .vtag{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:#7C8275}
+  .vtag b{color:var(--lime);font-weight:600}
+
+  .led{display:flex;align-items:center;gap:7px;height:12px}
+  .led .s{font-family:var(--mono);font-size:10px;color:var(--lime)}
+  .led .t{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-2)}
+  .led .line{flex:1;height:1px;background:var(--line)}
+  .led .meta{font-family:var(--mono);font-size:9px;color:var(--on-dark-3)}
+  .recipe-line{font-family:var(--mono);font-size:8px;color:var(--on-dark-3);margin-top:9px;letter-spacing:.04em}
+  .recipe-line b{color:var(--on-dark-2);font-weight:600}
+  .cap{font-family:var(--mono);font-size:8px;letter-spacing:.05em;color:#646b62;margin-top:7px;max-width:360px;text-align:center;line-height:1.5}
+
+  .rbar{display:flex;gap:2px;border-radius:11px;overflow:hidden;margin-top:5px}
+  .rbar .seg{display:flex;flex-direction:column;justify-content:space-between;min-height:60px;padding:9px 8px;overflow:hidden}
+  .rbar .rl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rbar .rc{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1}
+
+  /* glass variant */
+  .gbar{display:flex;gap:5px;margin-top:5px}
+  .gbar .seg{display:flex;flex-direction:column;justify-content:space-between;min-height:62px;padding:10px 9px;border-radius:11px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#14191b 0%,#12171a 46%,color-mix(in srgb,var(--lime) var(--t),#12171a) 100%);
+    border:1px solid rgba(255,255,255,.11);box-shadow:0 10px 22px -16px rgba(0,0,0,.7)}
+  .gbar .seg .hair{position:absolute;top:0;left:10px;right:10px;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--lime) var(--h),transparent),transparent)}
+  .gbar .rl{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.72);position:relative;z-index:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gbar .rc{font-family:var(--mono);font-size:18px;font-weight:600;line-height:1;position:relative;z-index:2}
+</style>
+</head>
+<body>
+
+<!-- 4 — current (olive problem) -->
+<div class="col">
+  <div class="vtag"><b>4</b> · current (muddy floor)</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar">
+      <div class="seg" style="width:40%;background:#C8FF20;color:#2c3a06"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="width:30%;background:#8FB82A;color:#10210a"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="width:20%;background:#587326;color:#E6F2C8"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="width:10%;background:#33401F;color:#BFD89A"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Hue drifts lime → olive → swamp green. The lower two steps look dirty.</div>
+</div>
+
+<!-- 4a — clean fade (lime mixed toward the dark bg) -->
+<div class="col">
+  <div class="vtag"><b>4a</b> · Ren falming — lime → dark, one hue</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar">
+      <div class="seg" style="width:40%;background:#C8FF20;color:#2c3a06"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="width:30%;background:color-mix(in srgb,#C8FF20 60%,#0E1207);color:#0E1207"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="width:20%;background:color-mix(in srgb,#C8FF20 34%,#0E1207);color:#DCF2A6"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="width:10%;background:color-mix(in srgb,#C8FF20 20%,#0E1207);color:#C2E07A"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Same lime, blended straight toward the app's ink — no hue shift, reads as one light fading. The number stays legible at every step.</div>
+</div>
+
+<!-- 4b — bright lead, dim glass floor -->
+<div class="col">
+  <div class="vtag"><b>4b</b> · Lyskilde — bright lead, glass floor</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="rbar">
+      <div class="seg" style="width:40%;background:#C8FF20;color:#2c3a06"><span class="rl">Remediering</span><span class="rc">11</span></div>
+      <div class="seg" style="width:30%;background:color-mix(in srgb,#C8FF20 26%,#12171A);color:#D8F2A0"><span class="rl">Repetisjon</span><span class="rc">10</span></div>
+      <div class="seg" style="width:20%;background:color-mix(in srgb,#C8FF20 16%,#12171A);color:#BFE07F"><span class="rl">Nytt</span><span class="rc">4</span></div>
+      <div class="seg" style="width:10%;background:color-mix(in srgb,#C8FF20 9%,#12171A);color:#9DBE6B"><span class="rl">Flett</span><span class="rc">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Only the lead lane is a solid lime chip; the rest fall away to lime-tinted dark glass. Most restrained — the colour is mostly the one bright block.</div>
+</div>
+
+<!-- 4c — lime glass tiles, intensity ramps -->
+<div class="col">
+  <div class="vtag"><b>4c</b> · Lime-glass — separate tiles, tint ramps</div>
+  <div class="device"><div class="main">
+    <div class="led"><span class="s">§</span><span class="t">Dagens plan</span><span class="line"></span><span class="meta">27 oppg</span></div>
+    <div class="gbar">
+      <div class="seg" style="flex:40;--t:44%;--h:90%"><span class="hair"></span><span class="rl">Remediering</span><span class="rc" style="color:#fff">11</span></div>
+      <div class="seg" style="flex:30;--t:30%;--h:60%"><span class="hair"></span><span class="rl">Repetisjon</span><span class="rc" style="color:#EAF6C8">10</span></div>
+      <div class="seg" style="flex:20;--t:20%;--h:42%"><span class="hair"></span><span class="rl">Nytt</span><span class="rc" style="color:#CDE39A">4</span></div>
+      <div class="seg" style="flex:10;--t:12%;--h:28%"><span class="hair"></span><span class="rl">Flett</span><span class="rc" style="color:#AEC982">2</span></div>
+    </div>
+    <div class="recipe-line">Resept <b>40 / 30 / 20 / 10</b> · leder med ordstilling</div>
+  </div></div>
+  <div class="cap">Keeps the §Verktøy glass-tile recipe but single-hue: lime tint + hairline both step down with the proportion. Most cohesive with the tiles above.</div>
+</div>
+
+</body>
+</html>
